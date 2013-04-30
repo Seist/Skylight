@@ -22,6 +22,20 @@ namespace Skylight
             Player p = getPlayer(m.GetInt(0));
             World w = new World();
 
+            foreach (World wl in World.Worlds)
+            {
+                if (wl.pull == this)
+                {
+                    w = wl;
+                }
+            }
+            if (w == null)
+                Out.writeLine("I don't know where that message came from", error);
+            
+            else
+                Out.writeLine("Message came from " + w.name, success);
+            
+
             // This is where we diverge the messages.
             // I chose to use a switch for this, but an else-if chain would work just as well.
             // Also, don't feel compelled to make your bot do something for every message. 75% of these you will never see or need to use.
