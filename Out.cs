@@ -13,7 +13,7 @@ namespace Skylight
         private int blockDelay = 6, speechDelay = 60;
         private bool loginError = false, joinError = false;
         private string GameID = "everybody-edits-su9rn58o40itdbnw69plyw";
-        
+
         public static ConsoleColor blank = ConsoleColor.White, progress = ConsoleColor.Yellow, success = ConsoleColor.Green, error = ConsoleColor.Red, info = ConsoleColor.Cyan;
         public static Client client;
 
@@ -43,7 +43,7 @@ namespace Skylight
             // Create a connection, push, and pull.
             // Connection can have some errors, so we add it seperately in a try-catch.
 
-            World temp = new World() { id = levelID, pull = new In()};
+            World temp = new World() { id = levelID, pull = new In() };
 
             try
             {

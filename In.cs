@@ -11,7 +11,7 @@ namespace Skylight
     {
         public static ConsoleColor blank = ConsoleColor.White, progress = ConsoleColor.Yellow, success = ConsoleColor.Green, error = ConsoleColor.Red, info = ConsoleColor.Cyan;
 
-        private static string parseLevelID(string unparsedLevelID)
+        public static string parseLevelID(string unparsedLevelID)
         {
             string[] pathcomponents = unparsedLevelID.Split('/'); //Split the URL
             return pathcomponents[pathcomponents.Count() - 1];    //Return the last section: the ID
@@ -19,7 +19,8 @@ namespace Skylight
 
         public void onMessage(object sender, PlayerIOClient.Message m)
         {
-            Player p = getPlayer(m.GetInt(0));
+            //Player p = getPlayer(m.GetInt(0));
+            Player p = new Player();
             World w = new World();
 
             foreach (World wl in World.Worlds)
@@ -31,10 +32,10 @@ namespace Skylight
             }
             if (w == null)
                 Out.writeLine("I don't know where that message came from", error);
-            
+
             else
                 Out.writeLine("Message came from " + w.name, success);
-            
+
 
             // This is where we diverge the messages.
             // I chose to use a switch for this, but an else-if chain would work just as well.
