@@ -7,9 +7,8 @@ using PlayerIOClient;
 
 namespace Skylight
 {
-    class World
+    public class World
     {
-        public static World MainWorld = new World();
         public static List<World> Worlds = new List<World>();
 
         public string name, owner, worldKey, editKey, id;

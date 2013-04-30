@@ -7,8 +7,7 @@ using PlayerIOClient;
 
 namespace Skylight
 {
-
-    class Player
+    public class Player
     {
         public double x, y;
         public int id, smiley;

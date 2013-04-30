@@ -7,7 +7,7 @@ using PlayerIOClient;
 
 namespace Skylight
 {
-    class In
+    public class In
     {
         public static ConsoleColor blank = ConsoleColor.White, progress = ConsoleColor.Yellow, success = ConsoleColor.Green, error = ConsoleColor.Red, info = ConsoleColor.Cyan;
 

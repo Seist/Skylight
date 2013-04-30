@@ -8,16 +8,16 @@ using PlayerIOClient;
 
 namespace Skylight
 {
-    class Out
+    public class Out
     {
-        private static int blockDelay = 6, speechDelay = 60;
-        private static bool loginError = false, joinError = false;
-        private static string GameID = "everybody-edits-su9rn58o40itdbnw69plyw";
+        private int blockDelay = 6, speechDelay = 60;
+        private bool loginError = false, joinError = false;
+        private string GameID = "everybody-edits-su9rn58o40itdbnw69plyw";
         
         public static ConsoleColor blank = ConsoleColor.White, progress = ConsoleColor.Yellow, success = ConsoleColor.Green, error = ConsoleColor.Red, info = ConsoleColor.Cyan;
         public static Client client;
 
-        public static void connect(string email, string pass)
+        public void connect(string email, string pass)
         {
             try
             {
@@ -38,7 +38,7 @@ namespace Skylight
             loginError = false;
         }
 
-        public static void joinRoom(string levelID)
+        public void joinRoom(string levelID)
         {
             // Create a connection, push, and pull.
             // Connection can have some errors, so we add it seperately in a try-catch.
@@ -82,24 +82,24 @@ namespace Skylight
             Console.Write(message);
         }
 
-        public static void build(Block b, World w)
+        public void build(Block b, World w)
         {
             w.C.Send(w.worldKey, b.x, b.y, b.id, b.layer);
             Thread.Sleep(blockDelay);
         }
 
-        public static void say(string s, World w)
+        public void say(string s, World w)
         {
             w.C.Send("say", s);
             Thread.Sleep(speechDelay);
         }
 
-        public static void move(double[] args, World w)
+        public void move(double[] args, World w)
         {
             w.C.Send("m", args);
         }
 
-        public static void changeTitle(string s, World w)
+        public void changeTitle(string s, World w)
         {
             w.C.Send("name", s);
         }
