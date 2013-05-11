@@ -60,7 +60,7 @@ namespace Skylight
             Thread.Sleep(speechDelay);
         }
 
-        public void move(double[] args, World w)
+        public void move(object[] args, World w)
         {
             w.C.Send("m", args);
         }

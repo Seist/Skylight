@@ -8,9 +8,6 @@ namespace Skylight
 {
     public class In
     {
-        public delegate void playerEvent(object[] args, Player p, World w);
-        public delegate void worldEvent(object[] args, World w);
-
         public static ConsoleColor blank = ConsoleColor.White, progress = ConsoleColor.Yellow, success = ConsoleColor.Green, error = ConsoleColor.Red, info = ConsoleColor.Cyan;
 
         public string parseLevelID(string unparsedLevelID)
@@ -19,64 +16,9 @@ namespace Skylight
             return pathcomponents[pathcomponents.Count() - 1];    //Return the last section: the ID
         }
 
-
-         /*case
-
-
-          */
-
-        public static event worldEvent
-            _onPotionToggle,
-            _onSystemMessage,
-            _onUpdate,
-            _onUpdateMeta,
-            _onShow,
-            _onHide,
-            _onSaved,
-            _onOldChat,
-            _onReset,
-            _onRefreshshop,
-            _onKill,
-            _onInfo,
-            _onClear;
-
-
-        public static event playerEvent
-            _onInit,
-            _onAccess,
-            _onLostAccess,
-            _onAutotext,
-            _onCrown,
-            _onModMode,
-            _onLevelUp,
-            _onTrophy,
-            _onLabel,
-            _onFace,
-            _onGod,
-            _onGrinch,
-            _onWitch,
-            _onWizard,
-            _onRedWizard,
-            _onLeave,
-            _onJoin,
-            _onMovement,
-            _onPotion,
-            _onChat,
-            _onRotate,
-            _onCoinCollected,
-            _onTeleport,
-            _onTele,
-            _onWoot,
-            _onBlock,
-            _onCoinBlock,
-            _onSoundBlock,
-            _onPortalBlock,
-            _onWorldPortalBlock,
-            _onSignBlock;
-
         public void onMessage(object sender, PlayerIOClient.Message m)
         {
-            World w = getWorld(this);
+            World w = thisWorld();
 
             // This is where we diverge the messages.
             // I chose to use a switch for this, but an else-if chain would work just as well.
@@ -180,7 +122,7 @@ namespace Skylight
 
         private void onAdd(PlayerIOClient.Message m)
         {
-            World w = getWorld(this);
+            World w = thisWorld();
 
             string name = m.GetString(1);
 
@@ -197,7 +139,7 @@ namespace Skylight
                 hasBoost = m.GetBoolean(9),
                 isFriend = m.GetBoolean(10),
                 hasClub = m.GetBoolean(12);
-            
+
             Player p = new Player
                 {
                     name = name,
@@ -233,7 +175,7 @@ namespace Skylight
 
         private void onInit(PlayerIOClient.Message m)
         {
-            World w = getWorld(this);
+            World w = thisWorld();
 
             w.owner = m.GetString(0);
             w.name = m.GetString(1);
@@ -252,7 +194,7 @@ namespace Skylight
 
         private void onM(PlayerIOClient.Message m, Player p)
         {
-            World w = getWorld(this);
+            World w = thisWorld();
 
             double x = m.GetDouble(1), // Starting x location
                 y = m.GetDouble(2), // Starting y location
@@ -271,23 +213,22 @@ namespace Skylight
 
             object[] args = new object[10] { x, y, speedX, speedY, modifierX, modifierY, horizontal, vertical, gravityMultiplier, spacedown };
 
-            _onMovement.Invoke(args, p, w);
+            playerEvent handler = _onMovement;
+            handler(w, p, args);
         }
 
         private void onSay(PlayerIOClient.Message m, Player p)
         {
-            World w = getWorld(this);
+            World w = thisWorld();
             string message = m.GetString(1);
             object[] args = new object[1] { message };
-            _onChat.Invoke(args, p, w);
         }
 
         private void onB(PlayerIOClient.Message m, Player p)
         {
-            World w = getWorld(this);
+            World w = thisWorld();
 
             object[] args = new object[1] { m };
-            _onBlock.Invoke(args, p, w);
         }
 
         public static string rot13(string worldKey)
@@ -324,31 +265,82 @@ namespace Skylight
             return new string(array);
         }
 
-        public static Player getPlayer(int id)
+        public Player getPlayer(int id)
         {
-            foreach (World w in World.Worlds)
+            World w = thisWorld();
+
+            foreach (Player p in w.onlinePlayers)
             {
-                foreach (Player p in w.onlinePlayers)
+                if (p.id == id)
                 {
-                    if (p.id == id)
-                    {
-                        return p;
-                    }
+                    return p;
                 }
             }
 
             return new Player();
         }
-        public static World getWorld(In pull)
+        public World thisWorld()
         {
             foreach (World w in World.Worlds)
             {
-                if (w.pull == pull)
+                if (w.pull == this)
                 {
                     return w;
                 }
             }
             return new World() { name = "null" };
         }
+
+        public delegate void worldEvent(World origin, object[] args);
+        
+        public delegate void playerEvent(World origin, Player sender, object[] args);
+
+        public event worldEvent
+            _onPotionToggle = delegate { },
+            _onSystemMessage = delegate { },
+            _onUpdate = delegate { },
+            _onUpdateMeta = delegate { },
+            _onShow = delegate { },
+            _onHide = delegate { },
+            _onSaved = delegate { },
+            _onOldChat = delegate { },
+            _onReset = delegate { },
+            _onRefreshshop = delegate { },
+            _onKill = delegate { },
+            _onInfo = delegate { },
+            _onClear = delegate { };
+
+        public event playerEvent
+            _onInit = delegate { },
+            _onAccess = delegate { },
+            _onLostAccess = delegate { },
+            _onAutotext = delegate { },
+            _onCrown = delegate { },
+            _onModMode = delegate { },
+            _onLevelUp = delegate { },
+            _onTrophy = delegate { },
+            _onLabel = delegate { },
+            _onFace = delegate { },
+            _onGod = delegate { },
+            _onGrinch = delegate { },
+            _onWitch = delegate { },
+            _onWizard = delegate { },
+            _onRedWizard = delegate { },
+            _onLeave = delegate { },
+            _onJoin = delegate { },
+            _onMovement = delegate { },
+            _onPotion = delegate { },
+            _onChat = delegate { },
+            _onRotate = delegate { },
+            _onCoinCollected = delegate { },
+            _onTeleport = delegate { },
+            _onTele = delegate { },
+            _onWoot = delegate { },
+            _onBlock = delegate { },
+            _onCoinBlock = delegate { },
+            _onSoundBlock = delegate { },
+            _onPortalBlock = delegate { },
+            _onWorldPortalBlock = delegate { },
+            _onSignBlock = delegate { };
     }
 }

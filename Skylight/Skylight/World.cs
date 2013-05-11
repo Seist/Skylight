@@ -18,12 +18,12 @@ namespace Skylight
         public string name, owner, worldKey, editKey, id;
         public int plays, woots, totalWoots;
 
-        public void joinRoom()
+        public void join()
         {
-            // Create a connection, push, and pull.
+            // Create a connection to the level.
             // Connection can have some errors, so we add it seperately in a try-catch.
 
-            World temp = new World() { id = this.id };
+            World temp = this;
 
             try
             {
