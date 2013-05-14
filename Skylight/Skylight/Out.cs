@@ -4,24 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using PlayerIOClient;
+using System.Runtime.CompilerServices;
 
 
 namespace Skylight
 {
     public class Out
     {
-        public static void writeLine(string message, ConsoleColor color)
+        public World w
         {
-            Console.ForegroundColor = color;
-            Console.WriteLine(message);
+            get
+            {
+                foreach (World w in World.Worlds)
+                {
+                    if (w.push == this)
+                        return w;
+                }
+                return new World() { name = "null" };
+            }
+        }
 
-        }
-        public static void write(string message, ConsoleColor color)
-        {
-            Console.ForegroundColor = color;
-            Console.Write(message);
-        }
-        private static string GameID = "everybody-edits-su9rn58o40itdbnw69plyw";
+        private const string GameID = "everybody-edits-su9rn58o40itdbnw69plyw";
         public static ConsoleColor blank = ConsoleColor.White, progress = ConsoleColor.Yellow, success = ConsoleColor.Green, error = ConsoleColor.Red, info = ConsoleColor.Cyan;
         public static Client client;
 
@@ -36,36 +39,38 @@ namespace Skylight
             }
             catch (PlayerIOError e)
             {
-                writeLine("Unable to connect: " + e.Message, error);
+                Console.ForegroundColor = error;
+                Console.WriteLine("Unable to connect: {0}", e.Message);
 
                 loginError = true;
 
                 return;
             }
 
-            writeLine("Connected successfully.", success);
+            Console.ForegroundColor = success;
+            Console.WriteLine("Connected successfully.");
 
             loginError = false;
         }
 
-        public void build(Block b, World w)
+        public void build(Block b)
         {
             w.C.Send(w.worldKey, b.x, b.y, b.id, b.layer);
             Thread.Sleep(blockDelay);
         }
 
-        public void say(string s, World w)
+        public void say(string s)
         {
             w.C.Send("say", s);
             Thread.Sleep(speechDelay);
         }
 
-        public void move(object[] args, World w)
+        public void move(object[] args)
         {
             w.C.Send("m", args);
         }
 
-        public void changeTitle(string s, World w)
+        public void changeTitle(string s)
         {
             w.C.Send("name", s);
         }

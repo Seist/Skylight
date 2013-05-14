@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace Skylight
 {
@@ -10,120 +12,146 @@ namespace Skylight
     {
         public static ConsoleColor blank = ConsoleColor.White, progress = ConsoleColor.Yellow, success = ConsoleColor.Green, error = ConsoleColor.Red, info = ConsoleColor.Cyan;
 
-        public string parseLevelID(string unparsedLevelID)
-        {
-            string[] pathcomponents = unparsedLevelID.Split('/'); //Split the URL
-            return pathcomponents[pathcomponents.Count() - 1];    //Return the last section: the ID
-        }
-
         public void onMessage(object sender, PlayerIOClient.Message m)
         {
             World w = thisWorld();
-
-            // This is where we diverge the messages.
-            // I chose to use a switch for this, but an else-if chain would work just as well.
-            // Also, don't feel compelled to make your bot do something for every message. 75% of these you will never see or need to use.
-
             switch (Convert.ToString(m.Type))
             {
-                case "access":
-                    break; // Triggered when someone gets edit rights.
-                case "add": onAdd(m);
+                case "add": onAdd(w, m);
                     break; // Triggered when someone joins.
-                case "allowpotions":
+
+                case "allowpotions": onAllowPotions(w, m);
                     break; // Triggered when you allow/deny potions
-                case "autotext":
+
+                case "autotext": onAutotext(w, getPlayer(m.GetInt(0)), m);
                     break; // Triggered when someone says an autotext phrase. (e.g. "Help me!", "Left.")
-                case "b": onB(m, getPlayer(m.GetInt(0)));
+
+                case "b": onB(w, getPlayer(m.GetInt(0)), m);
                     break; // Triggered when someone builds a brick.
-                case "bc":
+
+                case "bc": onBc(w, getPlayer(m.GetInt(0)), m);
                     break; // Triggered when someone places a coin block.
-                case "br":
+
+                case "br": onBr(w, getPlayer(m.GetInt(0)), m);
                     break; // Triggered when someone rotates a block.
-                case "bs":
+
+                case "bs": onBs(w, getPlayer(m.GetInt(0)), m);
                     break; // Triggered when someone creates a sound block.
-                case "c":
+
+                case "c": onC(w, getPlayer(m.GetInt(0)), m);
                     break; // Triggered when someone collects a coin.
-                case "clear":
+
+                case "clear": onClear(w, m);
                     break; // Triggered when someone clears level.
-                case "face":
+
+                case "face": onFace(w, getPlayer(m.GetInt(0)), m);
                     break; // Triggered when someone changes smiley.
-                case "givegrinch":
+
+                case "givegrinch": onGiveGrinch(w, getPlayer(m.GetInt(0)), m);
                     break; // Triggered when someone gets Grinch smiley.
-                case "givewitch":
+
+                case "givewitch": onGiveWitch(w, getPlayer(m.GetInt(0)), m);
                     break; // Triggered when someone gets Witch smiley.
-                case "givewizard":
+
+                case "givewizard": onGiveWizard(w, getPlayer(m.GetInt(0)), m);
                     break; // Triggered when someone gets Blue Wizard smiley.
-                case "givewizard2":
+
+                case "givewizard2": onGiveWizard2(w, getPlayer(m.GetInt(0)), m);
                     break; // Triggered when someone gets Red Wizard smiley.
-                case "god":
+
+                case "god": onGod(w, getPlayer(m.GetInt(0)), m);
                     break; // Triggered when someone goes into/out of god mode.
-                case "hide":
+
+                case "hide": onHide(w, m);
                     break; // Triggered when timed doors hide.
-                case "info":
+
+                case "info": onInfo(w, m);
                     break; // Triggered when the bot receives a pop-up window (like kick, info).
-                case "init": onInit(m);
+
+                case "init": onInit(w, m);
                     break; // Triggered when the bot joins the level.
-                case "k":
+
+                case "k": onK(w, getPlayer(m.GetInt(0)), m);
                     break; // Triggered when someone gets the crown.
-                case "kill":
+
+                case "kill": onKill(w, m);
                     break; // Triggered when the world crashes.
-                case "ks":
+
+                case "ks": onKs(w, getPlayer(m.GetInt(0)), m);
                     break; // Triggered when someone touches trophy.
-                case "lb":
+
+                case "lb": onLb(w, getPlayer(m.GetInt(0)), m);
                     break; // Triggered when a mod places a label.
-                case "left": onLeft(m, getPlayer(m.GetInt(0)));
+
+                case "left": onLeft(w, getPlayer(m.GetInt(0)), m);
                     break; // Triggered when someone leaves.
-                case "levelup":
+
+                case "levelup": onLevelUp(w, getPlayer(m.GetInt(0)), m);
                     break; // Triggered when someone levels up.
-                case "lostaccess":
-                    break; // Triggered when someone loses edit rights.
-                case "m": onM(m, getPlayer(m.GetInt(0)));
+
+                case "m": onM(w, getPlayer(m.GetInt(0)), m);
                     break; // Triggered when someone moves.
-                case "mod":
+
+                case "mod": onMod(w, getPlayer(m.GetInt(0)), m);
                     break; // Triggered when someone goes into mod-mode.
-                case "p":
+
+                case "p": onP(w, getPlayer(m.GetInt(0)), m);
                     break; // Triggered when someone uses a potion
-                case "pt":
+
+                case "pt": onPt(w, getPlayer(m.GetInt(0)), m);
                     break; // Triggered when someone places a portal.
-                case "refreshshop":
+
+                case "refreshshop": onRefreshShop(w, m);
                     break; // Triggered when the shop is refreshed.
-                case "reset":
+
+                case "reset": onReset(w, m);
                     break; // Triggered when someone resets the level.
-                case "say": onSay(m, getPlayer(m.GetInt(0)));
+
+                case "say": onSay(w, getPlayer(m.GetInt(0)), m);
                     break; // Triggered when someone says something.
-                case "say_old":
+
+                case "say_old": onSayOld(w, m);
                     break; // Triggered when the bot joins; gets old messages.
-                case "saved":
+
+                case "saved": onSaved(w, m);
                     break; // Triggered when the level is saved.
-                case "show":
+
+                case "show": onShow(w, m);
                     break; // Triggered when timed doors show.
-                case "tele": // Triggered when someone teleports via /reset or /loadlevel
-                    break;
-                case "teleport":
+
+                case "tele": onTele(w, m);
+                    break; // Triggered when someone teleports via /reset or /loadlevel
+
+                case "teleport": onTeleport(w, m);
                     break; // Triggered when someone teleports.
-                case "ts":
+
+                case "ts": onTs(w, getPlayer(m.GetInt(0)), m);
                     break; // Triggered when someone places a sign. (?)
-                case "updatemeta":
+
+                case "updatemeta": onUpdateMeta(w, m);
                     break; // Automatically sent every 30 seconds with level info.
-                case "upgrade":
+
+                case "upgrade": onUpgrade(w, m);
                     break; //Triggered when game updates.
-                case "wp":
+
+                case "wp": onWp(w, getPlayer(m.GetInt(0)), m);
                     break; // Triggered when someone places world portal.
-                case "write":
+
+                case "write": onWrite(w, m);
                     break; // Triggered when the system says something in chat.
+
                 case "w":
-                case "wu":
+                case "wu": onW(w, getPlayer(m.GetInt(0)), m);
                     break; // Triggered when someone woots.
+
                 default:
                     break;
             }
         }
 
-        private void onAdd(PlayerIOClient.Message m)
+        private void onAdd(World w, PlayerIOClient.Message m)
         {
-            World w = thisWorld();
-
+            // Extract data.
             string name = m.GetString(1);
 
             int id = m.GetInt(0),
@@ -140,6 +168,7 @@ namespace Skylight
                 isFriend = m.GetBoolean(10),
                 hasClub = m.GetBoolean(12);
 
+            // Update relevant objects.
             Player p = new Player
                 {
                     name = name,
@@ -158,44 +187,238 @@ namespace Skylight
 
             w.onlinePlayers.Add(p);
 
-            if (w.name == null)
-            {
-                w.alreadyJoined.Add(p);
-            }
-            else
-            {
-                Out.writeLine(name + " has joined " + w.name + ".", success);
-            }
+            // Trigger the event.
+            object[] args = new object[12] { name, id, smiley, coins, xplevel, x, y, isGod, isMod, isFriend, hasBoost, hasClub};
+
+            playerEvent handler = _onJoin;
+            handler(w, p, args);
         }
 
-        private void onLeft(PlayerIOClient.Message m, Player p)
+        private void onAllowPotions(World w, PlayerIOClient.Message m)
         {
+            // Extract data.
+            bool potions = m.GetBoolean(0);
+            
+            // Update relevant objects.
+            w.potionsAllowed = potions;
 
+            // Trigger the event.
+            object[] args = new object[1] { potions };
+
+            worldEvent handler = _onPotionToggle;
+            handler(w, args);
         }
 
-        private void onInit(PlayerIOClient.Message m)
+        private void onAutotext(World w, Player p, PlayerIOClient.Message m)
         {
-            World w = thisWorld();
+            // Extract data.
+            string message = m.GetString(1);
 
-            w.owner = m.GetString(0);
-            w.name = m.GetString(1);
-            w.plays = m.GetInt(2);
-            w.woots = m.GetInt(3);
-            w.totalWoots = m.GetInt(4);
-            w.worldKey = rot13(m.GetString(5));
 
-            Out.writeLine("Joined level \"" + w.name + "\" successfully.", success);
+            // Trigger the events.
+            object[] args = new object[1] { message };
 
-            foreach (Player p in w.alreadyJoined)
-            {
-                Out.writeLine(p.name + " has joined " + w.name + ".", success);
-            }
+            playerEvent handler = _onAutotext;
+            handler(w, p, args);
         }
 
-        private void onM(PlayerIOClient.Message m, Player p)
+        private void onBc(World w, Player p, PlayerIOClient.Message m)
         {
-            World w = thisWorld();
+            Console.ForegroundColor = info;
+            Console.WriteLine(Convert.ToString(m));
+        }
 
+        private void onBr(World w, Player p, PlayerIOClient.Message m)
+        {
+            Console.ForegroundColor = info;
+            Console.WriteLine(Convert.ToString(m));
+        }
+
+        private void onBs(World w, Player p, PlayerIOClient.Message m)
+        {
+            Console.ForegroundColor = info;
+            Console.WriteLine(Convert.ToString(m));
+        }
+
+        private void onC(World w, Player p, PlayerIOClient.Message m)
+        {
+            Console.ForegroundColor = info;
+            Console.WriteLine(Convert.ToString(m));
+        }
+
+        private void onFace(World w, Player p, PlayerIOClient.Message m)
+        { }
+
+        private void onGiveGrinch(World w, Player p, PlayerIOClient.Message m)
+        { }
+
+        private void onGiveWitch(World w, Player p, PlayerIOClient.Message m)
+        { }
+
+        private void onGiveWizard(World w, Player p, PlayerIOClient.Message m)
+        { }
+
+        private void onGiveWizard2(World w, Player p, PlayerIOClient.Message m)
+        { }
+
+        private void onGod(World w, Player p, PlayerIOClient.Message m)
+        { }
+
+        private void onK(World w, Player subject, PlayerIOClient.Message m)
+        {
+            // Extract data.
+            int id = m.GetInt(0);
+
+            // Update relevant objects.
+            // Take the crown from the current holder.
+            Tools.getCrownHolder(w).hasCrown = false;
+            // Give it to the subject.
+            subject.hasCrown = true;
+
+            // Trigger the event.
+            object[] args = new object[1] { id };
+
+            playerEvent handler = _onCrown;
+            handler(w, subject, args);
+        }
+
+        private void onKs(World w, Player p, PlayerIOClient.Message m)
+        {
+            // Extract data.
+            int id = m.GetInt(0);
+
+            // Update relevant objects.
+            p.hasSilverCrown = true;
+
+            // Trigger the event.
+            object[] args = new object[1] { id };
+
+            playerEvent handler = _onTrophy;
+            handler(w, p, args);
+        }
+
+        private void onKill(PlayerIOClient.Message m, Player p)
+        { }
+
+        private void onLb(World w, Player p, PlayerIOClient.Message m)
+        { }
+
+        private void onLevelUp(World w, Player p, PlayerIOClient.Message m)
+        { }
+
+        private void onMod(World w, Player p, PlayerIOClient.Message m)
+        { }
+
+        private void onP(World w, Player p, PlayerIOClient.Message m)
+        { }
+
+        private void onPt(World w, Player p, PlayerIOClient.Message m)
+        { }
+
+        private void onTs(World w, Player p, PlayerIOClient.Message m)
+        { }
+
+        private void onW(World w, Player p, PlayerIOClient.Message m)
+        { }
+
+        private void onWp(World w, Player p, PlayerIOClient.Message m)
+        { }
+
+        private void onKill(World w, PlayerIOClient.Message m)
+        { }
+
+        private void onClear(World w, PlayerIOClient.Message m)
+        { }
+
+        private void onHide(World w, PlayerIOClient.Message m)
+        { }
+
+        private void onInfo(World w, PlayerIOClient.Message m)
+        { }
+
+        private void onRefreshShop(World w, PlayerIOClient.Message m)
+        { }
+
+        private void onReset(World w, PlayerIOClient.Message m)
+        { }
+
+        private void onSaved(World w, PlayerIOClient.Message m)
+        { }
+
+        private void onSayOld(World w, PlayerIOClient.Message m)
+        { }
+
+        private void onShow(World w, PlayerIOClient.Message m)
+        { }
+
+        private void onTeleport(World w, PlayerIOClient.Message m)
+        { }
+
+        private void onTele(World w, PlayerIOClient.Message m)
+        { }
+
+        private void onUpdateMeta(World w, PlayerIOClient.Message m)
+        { }
+
+        private void onUpgrade(World w, PlayerIOClient.Message m)
+        { }
+
+        private void onWrite(World w, PlayerIOClient.Message m)
+        { }
+
+        private void onLeft(World w, Player p, PlayerIOClient.Message m)
+        { }
+
+        private void onInit(World w, PlayerIOClient.Message m)
+        {
+            string owner = m.GetString(0),
+                name = m.GetString(1),
+                worldKey = Tools.rot13(m.GetString(5)),
+                botName = m.GetString(9);
+
+            int plays = m.GetInt(2),
+                woots = m.GetInt(3),
+                totalWoots = m.GetInt(4);
+
+            double botX = m.GetDouble(7),
+                botY = m.GetDouble(8);
+
+            w.owner = owner;
+            w.name = name;
+            w.plays = plays;
+            w.woots = woots;
+            w.totalWoots = totalWoots;
+            w.worldKey = worldKey;
+
+            World.bot.x = botX;
+            World.bot.y = botY;
+            World.bot.name = botName;
+
+            //msg[6] = 58  (0)
+            //...
+            //msg[10] = False  (8)
+            //msg[11] = False  (8)
+            //msg[12] = 100  (0)
+            //msg[13] = 400  (0)
+            //msg[14] = False  (8)
+            //msg[15] = 1  (4)
+            //msg[16] = False  (8)
+            //msg[17] = ws  (6)
+            //msg[18] = 182  (1)
+            //msg[19] = 0  (0)
+
+            Console.WriteLine("Joined level \"" + w.name + "\" successfully.", success);
+
+            World.Worlds.Add(w);
+
+            object[] args = new object[9] { owner, name, plays, woots, totalWoots, worldKey, botX, botY, botName };
+
+            playerEvent handler = _onInit;
+            handler(w, World.bot, args);
+        }
+
+        private void onM(World w, Player p, PlayerIOClient.Message m)
+        {
             double x = m.GetDouble(1), // Starting x location
                 y = m.GetDouble(2), // Starting y location
                 speedX = m.GetDouble(3), // Starting horizontal speed
@@ -217,53 +440,23 @@ namespace Skylight
             handler(w, p, args);
         }
 
-        private void onSay(PlayerIOClient.Message m, Player p)
+        private void onSay(World w, Player p, PlayerIOClient.Message m)
         {
-            World w = thisWorld();
             string message = m.GetString(1);
+
             object[] args = new object[1] { message };
+
+            playerEvent handler = _onChat;
+            handler(w, p, args);
         }
 
-        private void onB(PlayerIOClient.Message m, Player p)
+        private void onB(World w, Player p, PlayerIOClient.Message m)
         {
-            World w = thisWorld();
-
-            object[] args = new object[1] { m };
+            Console.WriteLine(m);
         }
 
-        public static string rot13(string worldKey)
-        {
-            char[] array = worldKey.ToCharArray();
-            for (int i = 0; i < array.Length; i++)
-            {
-                int number = (int)array[i];
 
-                if (number >= 'a' && number <= 'z')
-                {
-                    if (number > 'm')
-                    {
-                        number -= 13;
-                    }
-                    else
-                    {
-                        number += 13;
-                    }
-                }
-                else if (number >= 'A' && number <= 'Z')
-                {
-                    if (number > 'M')
-                    {
-                        number -= 13;
-                    }
-                    else
-                    {
-                        number += 13;
-                    }
-                }
-                array[i] = (char)number;
-            }
-            return new string(array);
-        }
+
 
         public Player getPlayer(int id)
         {
@@ -279,6 +472,7 @@ namespace Skylight
 
             return new Player();
         }
+
         public World thisWorld()
         {
             foreach (World w in World.Worlds)
@@ -312,8 +506,6 @@ namespace Skylight
 
         public event playerEvent
             _onInit = delegate { },
-            _onAccess = delegate { },
-            _onLostAccess = delegate { },
             _onAutotext = delegate { },
             _onCrown = delegate { },
             _onModMode = delegate { },
