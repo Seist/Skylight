@@ -9,7 +9,11 @@ namespace Skylight
 {
     public static class Tools
     {
+        // Public tools.
+
         public static readonly Random ran = new Random();
+
+        // Extensions.
 
         public static void Shuffle<T>(this IList<T> list)
         {
@@ -32,6 +36,8 @@ namespace Skylight
             }
         }
 
+        // Getters
+
         public static Player getCrownHolder(World w)
         {
             foreach (Player p in w.onlinePlayers)
@@ -44,6 +50,8 @@ namespace Skylight
 
             return new Player() { name = "null" };
         }
+
+        // Internal tools.
 
         internal static string rot13(string worldKey)
         {

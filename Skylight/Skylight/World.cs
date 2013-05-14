@@ -38,8 +38,11 @@ namespace Skylight
 
         public void join()
         {
+            // Parse the level ID.
+            this.id = Tools.parseURL(this.id);
+
             // Create a connection to the level.
-            // Connection can have some errors, so we add it seperately in a try-catch.
+            // The connection can have some errors, so add it seperately in a try-catch.
 
             World temp = this;
 
