@@ -16,7 +16,7 @@ namespace Skylight
         public Player placer { get; internal set; }
         public World world { get; internal set; }
 
-        public readonly int LEFT_ARROW = 1,
+        public static readonly int LEFT_ARROW = 1,
             UP_ARROW = 2,
             RIGHT_ARROW = 3,
             GRAVITY_DOT = 4,
