@@ -22,9 +22,9 @@ namespace Skylight
 
         private List<String> _chatLog = new List<String>();
         public List<String> chatLog { get { return _chatLog; } internal set { _chatLog = value; } }
-        
-        
-        public string name { get; internal set { this.push.changeTitle(value); } }
+
+
+        public string name { get { return this.name; } internal set { this.push.changeTitle(value); } }
         public string owner { get; internal set; }
         public string worldKey { get; internal set; }
         public string editKey { get; internal set; }
