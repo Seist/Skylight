@@ -3,8 +3,11 @@ c:\users\tako.takos-pc\documents\visual studio 2012\Projects\Skylight\Skylight\b
 c:\users\tako.takos-pc\documents\visual studio 2012\Projects\Skylight\Skylight\bin\Debug\Skylight.pdb
 c:\users\tako.takos-pc\documents\visual studio 2012\Projects\Skylight\Skylight\obj\Debug\Skylight.dll
 c:\users\tako.takos-pc\documents\visual studio 2012\Projects\Skylight\Skylight\obj\Debug\Skylight.pdb
-C:\Users\Tako.TAKOS-PC\Documents\GitHub\Skylight\Skylight\Skylight\obj\Debug\Skylight.csprojResolveAssemblyReference.cache
-C:\Users\Tako.TAKOS-PC\Documents\GitHub\Skylight\Skylight\Skylight\obj\Debug\Skylight.dll
 C:\Users\Tako.TAKOS-PC\Documents\GitHub\Skylight\Skylight\Skylight\bin\Debug\Skylight.dll
 C:\Users\Tako.TAKOS-PC\Documents\GitHub\Skylight\Skylight\Skylight\bin\Debug\Skylight.pdb
+C:\Users\Tako.TAKOS-PC\Documents\GitHub\Skylight\Skylight\Skylight\obj\Debug\Skylight.dll
 C:\Users\Tako.TAKOS-PC\Documents\GitHub\Skylight\Skylight\Skylight\obj\Debug\Skylight.pdb
+C:\Users\Tako.TAKOS-PC\Documents\GitHub\Skylight\Skylight\Skylight\obj\Debug\Skylight.csprojResolveAssemblyReference.cache
+C:\Users\Tako.TAKOS-PC\Documents\GitHub\Skylight\Skylight\Skylight\bin\Debug\BlockData.dll
+C:\Users\Tako.TAKOS-PC\Documents\GitHub\Skylight\Skylight\Skylight\bin\Debug\BlockData.pdb
+C:\Users\Tako.TAKOS-PC\Documents\GitHub\Skylight\Skylight\Skylight\bin\Debug\Skylight.dll.config

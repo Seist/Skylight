@@ -1,76 +1,179 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PlayerIOClient;
-
+﻿// <author>TakoMan02</author>
+// <summary>World.cs is a basic layout of a singular world in EE.</summary>
 namespace Skylight
 {
+    using System;
+    using System.Collections.Generic;
+    using PlayerIOClient;
+
     public class World
     {
-        public static List<World> Worlds = new List<World>();
-
-        private static Player _bot = new Player();
-        public static Player bot { get { return _bot; } internal set { _bot = value; } }
-
-        private List<Block> _placedBlocks = new List<Block>();
-        public List<Block> placedBlocks { get { return _placedBlocks; } internal set { _placedBlocks = value; } }
+        // Private static fields
+        private static List<World> joinedWorlds = new List<World>();
         
-        private List<Player> _onlinePlayers = new List<Player>();
-        public List<Player> onlinePlayers { get { return _onlinePlayers; } internal set { _onlinePlayers = value; } }
+        // Private instance fields
+        private Connection c;
 
-        private List<String> _chatLog = new List<String>();
-        public List<String> chatLog { get { return _chatLog; } internal set { _chatLog = value; } }
+        private string id;
+        
+        private In pull = new In();
 
+        private Out push = new Out();
 
-        public string name { get { return this.name; } internal set { this.push.changeTitle(value); name = value; } }
-        public string owner { get; internal set; }
-        public string worldKey { get; internal set; }
-        public string editKey { get; internal set; }
-        public string id;
+        private List<Block> placedBlocks = new List<Block>();
+        
+        private List<Player> onlinePlayers = new List<Player>();
+        
+        private List<string> chatLog = new List<string>();
+        
+        private string name;
+        
+        private bool potionsAllowed;
 
-        public int plays { get; internal set; }
-        public int woots { get; internal set; }
-        public int totalWoots { get; internal set; }
+        // Public static properties
+        public static List<World> JoinedWorlds
+        {
+            get { return joinedWorlds; }
+            internal set { joinedWorlds = value; }
+        }
 
-        public bool potionsAllowed { get; internal set; }
+        // Public instance properties
+        public Connection C
+        {
+            get { return this.c; }
+            internal set { this.c = value; }
+        }
 
-        public void join()
+        public In Pull
+        {
+            get { return this.pull; }
+            internal set { this.pull = value; }
+        }
+
+        public Out Push
+        {
+            get { return this.push; }
+            internal set { this.push = value; }
+        }
+
+        public string Id
+        {
+            get { return this.id; }
+            set { this.id = value; }
+        }
+
+        public string EditKey { get; set; }
+
+        public List<Block> PlacedBlocks
+        {
+            get { return this.placedBlocks; }
+            internal set { this.placedBlocks = value; }
+        }
+
+        public List<Player> OnlinePlayers
+        {
+            get { return this.onlinePlayers; }
+            internal set { this.onlinePlayers = value; }
+        }
+
+        public List<string> ChatLog
+        {
+            get { return this.chatLog; }
+            internal set { this.chatLog = value; }
+        }
+
+        public string Name
+        {
+            get
+            {
+                return this.name;
+            }
+
+            internal set
+            {
+                if (value != string.Empty)
+                {
+                    // TODO: Check to see if this works.
+                    this.push.ChangeTitle(value);
+
+                    this.name = value;
+                }
+            }
+        }
+
+        public string Owner { get; internal set; }
+
+        public string WorldKey { get; internal set; }
+
+        public int Plays { get; internal set; }
+
+        public int Woots { get; internal set; }
+
+        public int TotalWoots { get; internal set; }
+
+        public int Width { get; internal set; }
+
+        public int Height { get; internal set; }
+        
+        public bool PotionsAllowed
+        {
+            get
+            {
+                return this.potionsAllowed;
+            }
+
+            set
+            {
+                // If the bot has access to change it, change it.
+                // TODO: Change potions value in-game.
+                if (this.Owner == Tools.GameTools.Bot.Name)
+                {
+                    this.potionsAllowed = value;
+                }
+            }
+        }
+        
+        // Public methods
+        public void Join()
         {
             // Parse the level ID.
-            this.id = Tools.parseURL(this.id);
+            this.Id = Tools.ParseURL(this.Id);
 
             // Create a connection to the level.
             // The connection can have some errors, so add it seperately in a try-catch.
-
-            World temp = this;
-
             try
             {
-                temp.C = Out.client.Multiplayer.JoinRoom(this.id, new Dictionary<string, string>());
+                this.C = Tools.GameTools.Client.Multiplayer.JoinRoom(this.Id, new Dictionary<string, string>());
 
-                temp.C.OnMessage += temp.pull.onMessage;
+                this.C.OnMessage += this.pull.OnMessage;
 
-                temp.C.Send("init");
+                this.C.Send("init");
 
-                temp.C.Send("init2");
+                this.C.Send("init2");
             }
-            catch (PlayerIOError e)
+            catch (Exception e)
             {
-                Console.ForegroundColor = Out.error;
-                Console.WriteLine("Unable to join room \"{0}\": {1}", this.id, e.Message);
+                Console.ForegroundColor = Tools.Error;
+                Console.Write("Unable to join room \"{0}\": ", this.Id);
 
-                Out.joinError = true;
+                if (e is PlayerIOError)
+                {
+                    Console.Write(e.Data);
+
+                    Tools.GameTools.JoinError = true;
+                }
+
+                if (e is NullReferenceException)
+                {
+                    Console.WriteLine("not connected to EE");
+                }
 
                 return;
             }
 
-            Out.joinError = false;
-        }
+            JoinedWorlds.Add(this);
 
-        public In pull = new In();
-        public Out push = new Out();
-        public Connection C;
+            Tools.GameTools.JoinError = false;
+        }
     }
 }

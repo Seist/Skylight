@@ -1,247 +1,51 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿// <author>TakoMan02</author>
+// <summary>A description of a singular block in a world.</summary>
 namespace Skylight
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using BlockData;
+
     public class Block
     {
-        public int x { get; internal set; }
-        public int y { get; internal set; }
-        public int layer { get; internal set; }
-        public int id { get; internal set; }
-        public int direction { get; internal set; }
-        public Player placer { get; internal set; }
-        public World world { get; internal set; }
+        public int X
+        {
+            get;
+            internal set;
+        }
 
-        public static readonly int LEFT_ARROW = 1,
-            UP_ARROW = 2,
-            RIGHT_ARROW = 3,
-            GRAVITY_DOT = 4,
-            CROWN = 5,
-            RED_KEY = 6,
-            GREEN_KEY = 7,
-            BLUE_KEY = 8,
-            SOLID_BASIC = 9,
-            SOLID_BLUE = 10,
-            SOLID_PURPLE = 11,
-            SOLID_RED = 12,
-            SOLID_YELLOW = 13,
-            SOLID_GREEN = 14,
-            SOLID_CYAN = 15,
-            BRICK_BROWN = 16,
-            BRICK_AQUAMARINE = 17,
-            BRICK_PURPLE = 18,
-            BRICK_GREEN = 19,
-            BRICK_RED = 20,
-            BRICK_BROWN_YELLOW = 21,
-            STRIPED_CONSTRUCTION = 22,
-            KEY__RED = 23,
-            KEY__GREEN = 24,
-            KEY__BLUE = 25,
-            KEY__RED_OPEN = 26,
-            KEY__GREEN_OPEN = 27,
-            KEY__BLUE_OPEN = 28,
-            METAL_GRAY = 29,
-            METAL_RED = 30,
-            METAL_ORANGE = 31,
-            FACE = 32,
-            GLOSSED_BLACK = 33,
-            GRASS_LEFT = 34,
-            GRASS_CENTER = 35,
-            GRASS_RIGHT = 36,
-            BETA_PURPLE = 37,
-            BETA_GREEN = 38,
-            BETA_BLUE = 39,
-            BETA_RED = 40,
-            BETA_YELLOW = 41,
-            BETA_GRAY = 42,
-            COIN_DOOR = 43,
-            FULLY_BLACK = 44,
-            CONSTRUCTION_METAL = 45,
-            CONSTRUCTION_GRAY = 46,
-            CONSTRUCTION_WOOD = 47,
-            CONSTRUCTION_CRATE = 48,
-            CONSTRUCTION_SCALE = 49,
-            SECRET_SOLID = 50,
-            GLASS_RED = 51,
-            GLASS_PINK = 52,
-            GLASS_PURPLE = 53,
-            GLASS_BLUE = 54,
-            GLASS_LIGHT_BLUE = 55,
-            GLASS_GREEN = 56,
-            GLASS_ORANGE_YELLOW = 57,
-            GLASS_ORANGE = 58,
-            SAND = 59,
-            CANDY_PINK = 60,
-            CANDY_ONE_WAY_PINK = 61,
-            CANDY_ONE_WAY_RED = 62,
-            CANDY_ONE_WAY_CYAN = 63,
-            CANDY_ONE_WAY_GREEN = 64,
-            CANDY_PEPPERMINT = 65,
-            CANDY_CANDY_CORN = 66,
-            CANDY_GINGERBREAD = 67,
-            HALLOWEEN_BLOOD = 68,
-            HALLOWEEN_BRICK = 69,
-            MINERAL_RED = 70,
-            MINERAL_PINK = 71,
-            MINERAL_BLUE = 72,
-            MINERAL_CYAN = 73,
-            MINERAL_GREEN = 74,
-            MINERAL_YELLOW = 75,
-            MINERAL_ORANGE = 76,
-            MUSIC_PIANO = 77,
-            XMAS_YELLOW_GREEN = 78,
-            XMAS_WHITE_RED = 79,
-            XMAS_RED_YELLOW = 80,
-            XMAS_BLUE_RED = 81,
-            XMAS_GREEN_RED = 82,
-            MUSIC_DRUM = 83,
-            SCIFI_RED = 84,
-            SCIFI_BLUE = 85,
-            SCIFI_GRAY = 86,
-            SCIFI_WHITE = 87,
-            SCIFI_BROWN = 88,
-            SCIFI_ONE_WAY_RED = 89,
-            SCIFI_ONE_WAY_BLUE = 90,
-            SCIFI_ONE_WAY_GREEN = 91,
-            JAIL_BRICK = 92,
-            PIRATE_PLANK = 93,
-            PIRATE_CHEST = 94,
-            VIKING_BRICK = 95,
-            //96-97: Unknown/Reserved
-            INVISIBLE_SOLID_1 = 98,
-            INVISIBLE_SOLID_2 = 99,
-            COIN_GOLD = 100,
-            COIN_BLUE = 101,
-            //102-109: Unknown/Reserved
-            COIN_GOLD_COLLECTED = 110,
-            COIN_BLUE_COLLECTED = 111,
-            //112-217: Unknown/Reserved
-            //Decorations:
-            XMAS_ORNAMENT_RED = 218,
-            XMAS_ORNAMENT_GREEN = 219,
-            XMAS_ORNAMENT_BLUE = 220,
-            XMAS_WREATH = 221,
-            XMAS_STAR = 222,
-            //223: Unknown/Reserved
-            HALLOWEEN_GRAVESTONE = 224,
-            HALLOWEEN_WEB_LEFT = 225,
-            HALLOWEEN_WEB_RIGHT = 226,
-            CANDY_PUFF = 227,
-            SUMMER_UMBRELLA = 228,
-            SUMMER_SAND_RIGHT = 229,
-            SUMMER_SAND_LEFT = 230,
-            SUMMER_ROCK = 231,
-            SUMMER_SHRUB = 232,
-            SPRING_GRASS_LEFT = 233,
-            SPRING_GRASS_MIDDLE = 234,
-            SPRING_GRASS_RIGHT = 235,
-            SPRING_HEDGE_LEFT = 236,
-            SPRING_HEDGE_MIDDLE = 237,
-            SPRING_HEDGE_RIGHT = 238,
-            SPRING_FLOWER = 239,
-            SPRING_SHRUB = 240,
-            //241-242: Unknown/Reserved
-            SECRET_FULLY_BLACK = 243,
-            NEWYEAR_PURPLE = 244,
-            NEWYEAR_GOLD = 245,
-            NEWYEAR_BLUE = 246,
-            NEWYEAR_RED = 247,
-            NEWYEAR_GREEN = 248,
-            XMAS_SNOW_RIGHT = 249,
-            XMAS_SNOW_LEFT = 250,
-            XMAS_TREE = 251,
-            XMAS_TREE_LIT = 252,
-            XMAS_FENCE_SNOW = 253,
-            XMAS_FENCE = 254,
-            SPAWN_POINT = 255,
-            EASTER_EGG_BLUE = 256,
-            EASTER_EGG_PURPLE = 257,
-            EASTER_EGG_YELLOW = 258,
-            EASTER_EGG_RED = 259,
-            EASTER_EGG_GREEN = 260,
-            JAIL_BARS = 261,
-            DECOR_GLASS_CLEAR = 262,
-            DECOR_GLASS_GREEN = 263,
-            DECOR_GLASS_CYAN = 264,
-            DECOR_GLASS_BLUE = 265,
-            DECOR_GLASS_PURPLE = 266,
-            DECOR_GLASS_RED = 267,
-            DECOR_GLASS_ORANGE = 268,
-            DECOR_GLASS_YELLOW = 269,
-            PIRATE_GONG = 270,
-            PIRATE_SKULL = 271,
-            VIKING_SHIELD_RED = 272,
-            VIKING_SHIELD_BLUE = 273,
-            VIKING_AXE = 274,
-            //275-499: Unknown/Reserved
-            BG_BASIC_GRAY = 500,
-            BG_BASIC_BLUE = 501,
-            BG_BASIC_PURPLE = 502,
-            BG_BASIC_RED = 503,
-            BG_BASIC_YELLOW = 504,
-            BG_BASIC_GREEN = 505,
-            BG_BASIC_CYAN = 506,
-            BG_BRICK_BROWN = 507,
-            BG_BRICK_TEAL = 508,
-            BG_BRICK_PURPLE = 509,
-            BG_BRICK_GREEN = 510,
-            BG_BRICK_RED = 511,
-            BG_BRICK_TAN = 512,
-            BG_CHECKER_GRAY = 513,
-            BG_CHECKER_BLUE = 514,
-            BG_CHECKER_PURPLE = 515,
-            BG_CHECKER_RED = 516,
-            BG_CHECKER_YELLOW = 517,
-            BG_CHECKER_GREEN = 518,
-            BG_CHECKER_CYAN = 519,
-            BG_DARK_GRAY = 520,
-            BG_DARK_BLUE = 521,
-            BG_DARK_PURPLE = 522,
-            BG_DARK_RED = 523,
-            BG_DARK_YELLOW = 524,
-            BG_DARK_GREEN = 525,
-            BG_DARK_CYAN = 526,
-            BG_PASTEL_ORANGE = 527,
-            BG_PASTEL_GREEN = 528,
-            BG_PASTEL_YELLOW = 529,
-            BG_PASTEL_TEAL = 530,
-            BG_PASTEL_BLUE = 531,
-            BG_PASTEL_RED = 532,
-            BG_CANVAS_RED = 533,
-            BG_CANVAS_TAN = 534,
-            BG_CANVAS_ORANGE = 535,
-            BG_CANVAS_GREEN = 536,
-            BG_CANVAS_BLUE = 537,
-            BG_CANVAS_GRAY = 538,
-            BG_CANDY_PINK = 539,
-            BG_CANDY_BLUE = 540,
-            BG_HALLOWEEN_GRAY = 541,
-            BG_HALLOWEEN_BRICK = 542,
-            BG_HALLOWEEN_STAIR_LEFT = 543,
-            BG_HALLOWEEN_STAIR_RIGHT = 544,
-            BG_CARNIVAL_STRIPE_RED = 545,
-            BG_CARNIVAL_STRIPE_PURPLE = 546,
-            BG_CARNIVAL_PINK = 547,
-            BG_CARNIVAL_CHECKER = 548,
-            BG_CARNIVAL_GREEN = 549,
-            BG_JAIL_BRICK = 550,
-            BG_JAIL_WINDOW = 551,
-            BG_JAIL_BARS = 552,
-            BG_JAIL_BARS_DARK = 553,
-            BG_PIRATE_PLANK_DARK = 554,
-            BG_PIRATE_PLANK_LIGHT = 555,
-            BG_PIRATE_PLANK_PEGS = 556,
-            BG_PIRATE_LIFE_SAVER = 557,
-            BG_PIRATE_WINDOW = 558,
-            BG_PIRATE_CANNON = 559,
-            BG_PIRATE_SKULL = 560,
-            BG_VIKING_BRICK = 561,
-            BG_VIKING_BRICK2 = 562,
-            BG_VIKING_STRIPE = 563;
-            // 564+: Unknown/Reserved
+        public int Y
+        {
+            get;
+            internal set;
+        }
+
+        public int Id
+        {
+            get;
+            internal set;
+        }
+
+        public int Layer
+        {
+            get;
+            internal set;
+        }
+
+        public int Direction
+        {
+            get;
+            internal set;
+        }
+
+        public Player Placer
+        {
+            get;
+            internal set;
+        }
     }
 }

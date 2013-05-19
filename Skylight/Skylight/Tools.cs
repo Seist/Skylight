@@ -1,19 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Text.RegularExpressions;
-
+﻿// <author>TakoMan02</author>
+// <summary>Tools.cs is the tools that belong to no specific class or are not related to EE.</summary>
 namespace Skylight
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text.RegularExpressions;
+    using PlayerIOClient;
+
     public static class Tools
     {
-        // Public tools.
+        public static readonly Random Ran = new Random();
 
-        public static readonly Random ran = new Random();
-
-        // Extensions.
+        public static readonly ConsoleColor 
+            Blank = ConsoleColor.White, 
+            Progress = ConsoleColor.Yellow, 
+            Success = ConsoleColor.Green, 
+            Error = ConsoleColor.Red, 
+            Info = ConsoleColor.Cyan;
 
         public static void Shuffle<T>(this IList<T> list)
         {
@@ -21,39 +24,14 @@ namespace Skylight
             while (n > 1)
             {
                 n--;
-                int k = ran.Next(n + 1);
+                int k = Ran.Next(n + 1);
                 T value = list[k];
                 list[k] = list[n];
                 list[n] = value;
             }
         }
 
-        public static void Draw<T>(this IList<T> list, World w) where T : Block
-        {
-            foreach (Block b in list)
-            {
-                w.push.build(b);
-            }
-        }
-
-        // Getters
-
-        public static Player getCrownHolder(World w)
-        {
-            foreach (Player p in w.onlinePlayers)
-            {
-                if (p.hasCrown)
-                {
-                    return p;
-                }
-            }
-
-            return new Player() { name = "null" };
-        }
-
-        // Internal tools.
-
-        internal static string rot13(string worldKey)
+        internal static string Derot(string worldKey)
         {
             char[] array = worldKey.ToCharArray();
             for (int i = 0; i < array.Length; i++)
@@ -82,22 +60,137 @@ namespace Skylight
                         number += 13;
                     }
                 }
+
                 array[i] = (char)number;
             }
+
             return new string(array);
         }
 
-        internal static string parseURL(string id)
+        internal static string ParseURL(string id)
         {
             // If it matches any type of URL and has 13 characters at the end, return the last 13 characters.
             // Supports haphazard copy/pasting.
             if (Regex.IsMatch(id, "[htp:/w.evrybodis.comga]{0,36}[a-zA-Z0-9_-]{13}"))
             {
-                return id.Substring(id.ToCharArray().Length - 13, 12);
+                string parsedURL = id.Substring(id.ToCharArray().Length - 13, 13);
+                return parsedURL;
             }
+
             // I don't even know what you put in.
-            return id;
+            return null;
         }
 
+        public static class GameTools
+        {
+            internal static readonly string GameID = "everybody-edits-su9rn58o40itdbnw69plyw";
+            
+            private static Client client;
+
+            private static bool loginError = false, joinError = false;
+            
+            private static Player bot = new Player();
+
+            public static Client Client
+            {
+                get { return client; }
+                internal set { client = value; }
+            }
+
+            public static bool LoginError
+            {
+                get { return loginError; }
+                internal set { loginError = value; }
+            }
+
+            public static bool JoinError
+            {
+                get { return joinError; }
+                internal set { joinError = value; }
+            }
+
+            public static Player Bot
+            {
+                get { return bot; }
+                internal set { bot = value; }
+            }
+
+            public static void Connect(string email, string pass)
+            {
+                try
+                {
+                    Tools.GameTools.Client = PlayerIO.QuickConnect.SimpleConnect(Tools.GameTools.GameID, email, pass);
+                }
+                catch (PlayerIOError e)
+                {
+                    Console.ForegroundColor = Tools.Error;
+                    Console.WriteLine("Unable to connect: {0}", e.Message);
+
+                    LoginError = true;
+
+                    return;
+                }
+
+                Console.ForegroundColor = Tools.Success;
+                Console.WriteLine("Connected successfully.");
+
+                LoginError = false;
+            }
+
+            // Getters
+            public static Player GetPlayer(int id, World w)
+            {
+                foreach (Player p in w.OnlinePlayers)
+                {
+                    if (p.Id == id)
+                    {
+                        return p;
+                    }
+                }
+
+                return new Player() { Name = "Null" };
+            }
+
+            public static Player GetPlayer(string name, World w)
+            {
+                foreach (Player p in w.OnlinePlayers)
+                {
+                    if (p.Name == name)
+                    {
+                        return p;
+                    }
+                }
+
+                return new Player() { Name = "Null" };
+            }
+
+            public static Player GetCrownHolder(World w)
+            {
+                foreach (Player p in w.OnlinePlayers)
+                {
+                    if (p.HasCrown)
+                    {
+                        return p;
+                    }
+                }
+
+                return new Player() { Name = "null" };
+            }
+
+            public static List<Player> GetWinners(World w)
+            {
+                List<Player> winners = new List<Player>();
+
+                foreach (Player p in w.OnlinePlayers)
+                {
+                    if (p.HasSilverCrown)
+                    {
+                        winners.Add(p);
+                    }
+                }
+
+                return winners;
+            }
+        }
     }
 }

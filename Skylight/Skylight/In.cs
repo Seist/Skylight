@@ -1,147 +1,226 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Diagnostics;
-using System.Text.RegularExpressions;
-
+﻿// <author>TakoMan02</author>
+// <summary>In.cs is s receiver and processor for every event that happens in the world it is in.</summary>
 namespace Skylight
 {
+    using System;
+
     public class In
     {
-        public static ConsoleColor blank = ConsoleColor.White, progress = ConsoleColor.Yellow, success = ConsoleColor.Green, error = ConsoleColor.Red, info = ConsoleColor.Cyan;
+        private World w;
 
-        public void onMessage(object sender, PlayerIOClient.Message m)
+        public delegate void WorldEvent(object[] args);
+
+        public delegate void PlayerEvent(object sender, PlayerEventArgs e);
+
+        public delegate void BlockEvent(object sender, BlockEventArgs e);
+
+        public delegate void ChatEvent(object sender, ChatEventArgs e);
+
+        public delegate void InitEvent(object sender, InitEventArgs e);
+
+        public static event WorldEvent
+            PotionToggleEvent = delegate { },
+            SystemMessageEvent = delegate { },
+            UpdateEvent = delegate { },
+            UpdateMetaEvent = delegate { },
+            ShowEvent = delegate { },
+            HideEvent = delegate { },
+            SavedEvent = delegate { },
+            OldChatEvent = delegate { },
+            ResetEvent = delegate { },
+            RefreshshopEvent = delegate { },
+            KillEvent = delegate { },
+            InfoEvent = delegate { },
+            ClearEvent = delegate { };
+
+        public static event PlayerEvent
+            JumpEvent = delegate { },
+            CrownEvent = delegate { },
+            ModModeEvent = delegate { },
+            LevelUpEvent = delegate { },
+            TrophyEvent = delegate { },
+            LabelEvent = delegate { },
+            FaceEvent = delegate { },
+            GodEvent = delegate { },
+            GrinchEvent = delegate { },
+            WitchEvent = delegate { },
+            WizardEvent = delegate { },
+            RedWizardEvent = delegate { },
+            LeaveEvent = delegate { },
+            AddEvent = delegate { },
+            MovementEvent = delegate { },
+            PotionEvent = delegate { },
+            RotateEvent = delegate { },
+            CoinCollectedEvent = delegate { },
+            TeleportEvent = delegate { },
+            TeleEvent = delegate { },
+            WootEvent = delegate { };
+
+        public static event BlockEvent
+            NormalBlockEvent = delegate { },
+            CoinBlockEvent = delegate { },
+            SoundBlockEvent = delegate { },
+            PortalBlockEvent = delegate { },
+            WorldPortalBlockEvent = delegate { },
+            SignBlockEvent = delegate { };
+
+        public static event ChatEvent
+            AutotextEvent = delegate { },
+            NormalChatEvent = delegate { };
+
+        public static event InitEvent
+            NormalInitEvent = delegate { };
+
+        public World W
         {
-            World w = thisWorld();
+            get
+            {
+                foreach (World wl in World.JoinedWorlds)
+                {
+                    if (wl.Pull == this)
+                    {
+                        return wl;
+                    }
+                }
+
+                return new World() { Name = "Null" };
+            }
+
+            set
+            {
+                this.w = value;
+            }
+        }
+
+        public void OnMessage(object sender, PlayerIOClient.Message m)
+        {
             switch (Convert.ToString(m.Type))
             {
-                case "add": onAdd(w, m);
+                case "add": this.OnAdd(m);
                     break; // Triggered when someone joins.
 
-                case "allowpotions": onAllowPotions(w, m);
+                case "allowpotions": this.OnAllowPotions(m);
                     break; // Triggered when you allow/deny potions
 
-                case "autotext": onAutotext(w, getPlayer(m.GetInt(0)), m);
+                case "autotext": this.OnAutotext(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
                     break; // Triggered when someone says an autotext phrase. (e.g. "Help me!", "Left.")
 
-                case "b": onB(w, getPlayer(m.GetInt(0)), m);
+                case "b": this.OnB(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
                     break; // Triggered when someone builds a brick.
 
-                case "bc": onBc(w, getPlayer(m.GetInt(0)), m);
+                case "bc": this.OnBc(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
                     break; // Triggered when someone places a coin block.
 
-                case "br": onBr(w, getPlayer(m.GetInt(0)), m);
+                case "br": this.OnBr(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
                     break; // Triggered when someone rotates a block.
 
-                case "bs": onBs(w, getPlayer(m.GetInt(0)), m);
+                case "bs": this.OnBs(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
                     break; // Triggered when someone creates a sound block.
 
-                case "c": onC(w, getPlayer(m.GetInt(0)), m);
+                case "c": this.OnC(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
                     break; // Triggered when someone collects a coin.
 
-                case "clear": onClear(w, m);
+                case "clear": this.OnClear(m);
                     break; // Triggered when someone clears level.
 
-                case "face": onFace(w, getPlayer(m.GetInt(0)), m);
+                case "face": this.OnFace(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
                     break; // Triggered when someone changes smiley.
 
-                case "givegrinch": onGiveGrinch(w, getPlayer(m.GetInt(0)), m);
+                case "givegrinch": this.OnGiveGrinch(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
                     break; // Triggered when someone gets Grinch smiley.
 
-                case "givewitch": onGiveWitch(w, getPlayer(m.GetInt(0)), m);
+                case "givewitch": this.OnGiveWitch(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
                     break; // Triggered when someone gets Witch smiley.
 
-                case "givewizard": onGiveWizard(w, getPlayer(m.GetInt(0)), m);
+                case "givewizard": this.OnGiveWizard(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
                     break; // Triggered when someone gets Blue Wizard smiley.
 
-                case "givewizard2": onGiveWizard2(w, getPlayer(m.GetInt(0)), m);
+                case "givewizard2": this.OnGiveWizard2(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
                     break; // Triggered when someone gets Red Wizard smiley.
 
-                case "god": onGod(w, getPlayer(m.GetInt(0)), m);
+                case "god": this.OnGod(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
                     break; // Triggered when someone goes into/out of god mode.
 
-                case "hide": onHide(w, m);
+                case "hide": this.OnHide(m);
                     break; // Triggered when timed doors hide.
 
-                case "info": onInfo(w, m);
+                case "info": this.OnInfo(m);
                     break; // Triggered when the bot receives a pop-up window (like kick, info).
 
-                case "init": onInit(w, m);
+                case "init": this.OnInit(m);
                     break; // Triggered when the bot joins the level.
 
-                case "k": onK(w, getPlayer(m.GetInt(0)), m);
+                case "k": this.OnK(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
                     break; // Triggered when someone gets the crown.
 
-                case "kill": onKill(w, m);
+                case "kill": this.OnKill(m);
                     break; // Triggered when the world crashes.
 
-                case "ks": onKs(w, getPlayer(m.GetInt(0)), m);
+                case "ks": this.OnKs(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
                     break; // Triggered when someone touches trophy.
 
-                case "lb": onLb(w, getPlayer(m.GetInt(0)), m);
+                case "lb": this.OnLb(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
                     break; // Triggered when a mod places a label.
 
-                case "left": onLeft(w, getPlayer(m.GetInt(0)), m);
+                case "left": this.OnLeft(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
                     break; // Triggered when someone leaves.
 
-                case "levelup": onLevelUp(w, getPlayer(m.GetInt(0)), m);
+                case "levelup": this.OnLevelUp(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
                     break; // Triggered when someone levels up.
 
-                case "m": onM(w, getPlayer(m.GetInt(0)), m);
+                case "m": this.OnM(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
                     break; // Triggered when someone moves.
 
-                case "mod": onMod(w, getPlayer(m.GetInt(0)), m);
+                case "mod": this.OnMod(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
                     break; // Triggered when someone goes into mod-mode.
 
-                case "p": onP(w, getPlayer(m.GetInt(0)), m);
+                case "p": this.OnP(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
                     break; // Triggered when someone uses a potion
 
-                case "pt": onPt(w, getPlayer(m.GetInt(0)), m);
+                case "pt": this.OnPt(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
                     break; // Triggered when someone places a portal.
 
-                case "refreshshop": onRefreshShop(w, m);
+                case "refreshshop": this.OnRefreshShop(m);
                     break; // Triggered when the shop is refreshed.
 
-                case "reset": onReset(w, m);
+                case "reset": this.OnReset(m);
                     break; // Triggered when someone resets the level.
 
-                case "say": onSay(w, getPlayer(m.GetInt(0)), m);
+                case "say": this.OnSay(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
                     break; // Triggered when someone says something.
 
-                case "say_old": onSayOld(w, m);
+                case "say_old": this.OnSayOld(m);
                     break; // Triggered when the bot joins; gets old messages.
 
-                case "saved": onSaved(w, m);
+                case "saved": this.OnSaved(m);
                     break; // Triggered when the level is saved.
 
-                case "show": onShow(w, m);
+                case "show": this.OnShow(m);
                     break; // Triggered when timed doors show.
 
-                case "tele": onTele(w, m);
+                case "tele": this.OnTele(m);
                     break; // Triggered when someone teleports via /reset or /loadlevel
 
-                case "teleport": onTeleport(w, m);
+                case "teleport": this.OnTeleport(m);
                     break; // Triggered when someone teleports.
 
-                case "ts": onTs(w, getPlayer(m.GetInt(0)), m);
+                case "ts": this.OnTs(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
                     break; // Triggered when someone places a sign. (?)
 
-                case "updatemeta": onUpdateMeta(w, m);
+                case "updatemeta": this.OnUpdateMeta(m);
                     break; // Automatically sent every 30 seconds with level info.
 
-                case "upgrade": onUpgrade(w, m);
-                    break; //Triggered when game updates.
+                case "upgrade": this.OnUpgrade(m);
+                    break; // Triggered when game updates.
 
-                case "wp": onWp(w, getPlayer(m.GetInt(0)), m);
+                case "wp": this.OnWp(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
                     break; // Triggered when someone places world portal.
 
-                case "write": onWrite(w, m);
+                case "write": this.OnWrite(m);
                     break; // Triggered when the system says something in chat.
 
                 case "w":
-                case "wu": onW(w, getPlayer(m.GetInt(0)), m);
+                case "wu": this.OnW(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
                     break; // Triggered when someone woots.
 
                 default:
@@ -149,7 +228,7 @@ namespace Skylight
             }
         }
 
-        private void onAdd(World w, PlayerIOClient.Message m)
+        private void OnAdd(PlayerIOClient.Message m)
         {
             // Extract data.
             string name = m.GetString(1);
@@ -169,370 +248,364 @@ namespace Skylight
                 hasClub = m.GetBoolean(12);
 
             // Update relevant objects.
-            Player p = new Player
-                {
-                    name = name,
-                    id = id,
-                    smiley = smiley,
-                    coins = coins,
-                    xplevel = xplevel,
-                    x = x,
-                    y = y,
-                    isGod = isGod,
-                    isMod = isMod,
-                    isFriend = isFriend,
-                    hasBoost = hasBoost,
-                    hasClub = hasClub
-                };
+            Player subject = new Player
+            {
+                Name = name,
+                Id = id,
+                Smiley = smiley,
+                Coins = coins,
+                XpLevel = xplevel,
+                X = x,
+                Y = y,
+                IsGod = isGod,
+                IsMod = isMod,
+                IsFriend = isFriend,
+                HasBoost = hasBoost,
+                HasClub = hasClub
+            };
 
-            w.onlinePlayers.Add(p);
+            this.W.OnlinePlayers.Add(subject);
 
             // Trigger the event.
-            object[] args = new object[12] { name, id, smiley, coins, xplevel, x, y, isGod, isMod, isFriend, hasBoost, hasClub};
+            PlayerEventArgs e = new PlayerEventArgs(subject, this.W);
 
-            playerEvent handler = _onJoin;
-            handler(w, p, args);
+            AddEvent(this, e);
         }
 
-        private void onAllowPotions(World w, PlayerIOClient.Message m)
+        private void OnAllowPotions(PlayerIOClient.Message m)
         {
             // Extract data.
             bool potions = m.GetBoolean(0);
-            
+
             // Update relevant objects.
-            w.potionsAllowed = potions;
+            this.W.PotionsAllowed = potions;
 
             // Trigger the event.
             object[] args = new object[1] { potions };
 
-            worldEvent handler = _onPotionToggle;
-            handler(w, args);
+            WorldEvent handler = PotionToggleEvent;
+            handler(args);
         }
 
-        private void onAutotext(World w, Player p, PlayerIOClient.Message m)
+        private void OnAutotext(Player subject, PlayerIOClient.Message m)
         {
             // Extract data.
             string message = m.GetString(1);
 
+            // Update relevant objects.
+            this.W.ChatLog.Add(message);
 
-            // Trigger the events.
-            object[] args = new object[1] { message };
+            // Trigger the event.
+            ChatEventArgs e = new ChatEventArgs(subject, this.W);
 
-            playerEvent handler = _onAutotext;
-            handler(w, p, args);
+            AutotextEvent(this, e);
         }
 
-        private void onBc(World w, Player p, PlayerIOClient.Message m)
+        // TODO: Finish this.
+        private void OnBc(Player subject, PlayerIOClient.Message m)
         {
-            Console.ForegroundColor = info;
+            Console.ForegroundColor = Tools.Info;
             Console.WriteLine(Convert.ToString(m));
         }
 
-        private void onBr(World w, Player p, PlayerIOClient.Message m)
+        private void OnBr(Player subject, PlayerIOClient.Message m)
         {
-            Console.ForegroundColor = info;
+            Console.ForegroundColor = Tools.Info;
             Console.WriteLine(Convert.ToString(m));
         }
 
-        private void onBs(World w, Player p, PlayerIOClient.Message m)
+        private void OnBs(Player subject, PlayerIOClient.Message m)
         {
-            Console.ForegroundColor = info;
+            Console.ForegroundColor = Tools.Info;
             Console.WriteLine(Convert.ToString(m));
         }
 
-        private void onC(World w, Player p, PlayerIOClient.Message m)
+        private void OnC(Player subject, PlayerIOClient.Message m)
         {
-            Console.ForegroundColor = info;
+            Console.ForegroundColor = Tools.Info;
             Console.WriteLine(Convert.ToString(m));
         }
 
-        private void onFace(World w, Player p, PlayerIOClient.Message m)
-        { }
+        private void OnFace(Player subject, PlayerIOClient.Message m)
+        { 
+        }
 
-        private void onGiveGrinch(World w, Player p, PlayerIOClient.Message m)
-        { }
+        private void OnGiveGrinch(Player subject, PlayerIOClient.Message m)
+        { 
+        }
 
-        private void onGiveWitch(World w, Player p, PlayerIOClient.Message m)
-        { }
+        private void OnGiveWitch(Player subject, PlayerIOClient.Message m)
+        { 
+        }
 
-        private void onGiveWizard(World w, Player p, PlayerIOClient.Message m)
-        { }
+        private void OnGiveWizard(Player subject, PlayerIOClient.Message m)
+        { 
+        }
 
-        private void onGiveWizard2(World w, Player p, PlayerIOClient.Message m)
-        { }
+        private void OnGiveWizard2(Player subject, PlayerIOClient.Message m)
+        { 
+        }
 
-        private void onGod(World w, Player p, PlayerIOClient.Message m)
-        { }
+        private void OnGod(Player subject, PlayerIOClient.Message m)
+        { 
+        }
 
-        private void onK(World w, Player subject, PlayerIOClient.Message m)
+        private void OnK(Player subject, PlayerIOClient.Message m)
         {
             // Extract data.
             int id = m.GetInt(0);
 
             // Update relevant objects.
             // Take the crown from the current holder.
-            Tools.getCrownHolder(w).hasCrown = false;
+            Tools.GameTools.GetCrownHolder(this.W).HasCrown = false;
+
             // Give it to the subject.
-            subject.hasCrown = true;
+            subject.HasCrown = true;
 
             // Trigger the event.
-            object[] args = new object[1] { id };
+            PlayerEventArgs e = new PlayerEventArgs(subject, this.W);
 
-            playerEvent handler = _onCrown;
-            handler(w, subject, args);
+            CrownEvent(this, e);
         }
 
-        private void onKs(World w, Player p, PlayerIOClient.Message m)
+        private void OnKs(Player subject, PlayerIOClient.Message m)
         {
             // Extract data.
             int id = m.GetInt(0);
 
             // Update relevant objects.
-            p.hasSilverCrown = true;
+            subject.HasSilverCrown = true;
 
             // Trigger the event.
-            object[] args = new object[1] { id };
+            PlayerEventArgs e = new PlayerEventArgs(subject, this.W);
 
-            playerEvent handler = _onTrophy;
-            handler(w, p, args);
+            TrophyEvent(this, e);
         }
 
-        private void onKill(PlayerIOClient.Message m, Player p)
-        { }
+        private void OnKill(PlayerIOClient.Message m, Player subject)
+        { 
+        }
 
-        private void onLb(World w, Player p, PlayerIOClient.Message m)
-        { }
+        private void OnLb(Player subject, PlayerIOClient.Message m)
+        { 
+        }
 
-        private void onLevelUp(World w, Player p, PlayerIOClient.Message m)
-        { }
+        private void OnLevelUp(Player subject, PlayerIOClient.Message m)
+        { 
+        }
 
-        private void onMod(World w, Player p, PlayerIOClient.Message m)
-        { }
+        private void OnMod(Player subject, PlayerIOClient.Message m)
+        { 
+        }
 
-        private void onP(World w, Player p, PlayerIOClient.Message m)
-        { }
+        private void OnP(Player subject, PlayerIOClient.Message m)
+        { 
+        }
 
-        private void onPt(World w, Player p, PlayerIOClient.Message m)
-        { }
+        private void OnPt(Player subject, PlayerIOClient.Message m)
+        { 
+        }
 
-        private void onTs(World w, Player p, PlayerIOClient.Message m)
-        { }
+        private void OnTs(Player subject, PlayerIOClient.Message m)
+        { 
+        }
 
-        private void onW(World w, Player p, PlayerIOClient.Message m)
-        { }
+        private void OnW(Player subject, PlayerIOClient.Message m)
+        { 
+        }
 
-        private void onWp(World w, Player p, PlayerIOClient.Message m)
-        { }
+        private void OnWp(Player subject, PlayerIOClient.Message m)
+        { 
+        }
 
-        private void onKill(World w, PlayerIOClient.Message m)
-        { }
-
-        private void onClear(World w, PlayerIOClient.Message m)
-        { }
-
-        private void onHide(World w, PlayerIOClient.Message m)
-        { }
-
-        private void onInfo(World w, PlayerIOClient.Message m)
-        { }
-
-        private void onRefreshShop(World w, PlayerIOClient.Message m)
-        { }
-
-        private void onReset(World w, PlayerIOClient.Message m)
-        { }
-
-        private void onSaved(World w, PlayerIOClient.Message m)
-        { }
-
-        private void onSayOld(World w, PlayerIOClient.Message m)
-        { }
-
-        private void onShow(World w, PlayerIOClient.Message m)
-        { }
-
-        private void onTeleport(World w, PlayerIOClient.Message m)
-        { }
-
-        private void onTele(World w, PlayerIOClient.Message m)
-        { }
-
-        private void onUpdateMeta(World w, PlayerIOClient.Message m)
-        { }
-
-        private void onUpgrade(World w, PlayerIOClient.Message m)
-        { }
-
-        private void onWrite(World w, PlayerIOClient.Message m)
-        { }
-
-        private void onLeft(World w, Player p, PlayerIOClient.Message m)
-        { }
-
-        private void onInit(World w, PlayerIOClient.Message m)
+        private void OnKill(PlayerIOClient.Message m)
         {
+        }
+
+        private void OnClear(PlayerIOClient.Message m)
+        { 
+        }
+
+        private void OnHide(PlayerIOClient.Message m)
+        { 
+        }
+
+        private void OnInfo(PlayerIOClient.Message m)
+        { 
+        }
+
+        private void OnRefreshShop(PlayerIOClient.Message m)
+        { 
+        }
+
+        private void OnReset(PlayerIOClient.Message m)
+        { 
+        }
+
+        private void OnSaved(PlayerIOClient.Message m)
+        { 
+        }
+
+        private void OnSayOld(PlayerIOClient.Message m)
+        { 
+        }
+
+        private void OnShow(PlayerIOClient.Message m)
+        { 
+        }
+
+        private void OnTeleport(PlayerIOClient.Message m)
+        { 
+        }
+
+        private void OnTele(PlayerIOClient.Message m)
+        { 
+        }
+
+        private void OnUpdateMeta(PlayerIOClient.Message m)
+        { 
+        }
+
+        private void OnUpgrade(PlayerIOClient.Message m)
+        { 
+        }
+
+        private void OnWrite(PlayerIOClient.Message m)
+        { 
+        }
+
+        private void OnLeft(Player subject, PlayerIOClient.Message m)
+        {
+        }
+
+        private void OnInit(PlayerIOClient.Message m)
+        {
+            // Extract data
             string owner = m.GetString(0),
                 name = m.GetString(1),
-                worldKey = Tools.rot13(m.GetString(5)),
+                worldKey = Tools.Derot(m.GetString(5)),
                 botName = m.GetString(9);
 
             int plays = m.GetInt(2),
                 woots = m.GetInt(3),
-                totalWoots = m.GetInt(4);
+                totalWoots = m.GetInt(4),
+                botID = m.GetInt(6),
+                width = m.GetInt(12),
+                height = m.GetInt(13);
 
             double botX = m.GetDouble(7),
                 botY = m.GetDouble(8);
 
-            w.owner = owner;
-            w.name = name;
-            w.plays = plays;
-            w.woots = woots;
-            w.totalWoots = totalWoots;
-            w.worldKey = worldKey;
+            bool potions = m.GetBoolean(16),
+                hasAccess = m.GetBoolean(10),
+                isOwner = m.GetBoolean(11);
 
-            World.bot.x = botX;
-            World.bot.y = botY;
-            World.bot.name = botName;
+            // Update relevant objects
+            this.W.Owner = owner;
+            this.W.Name = name;
+            this.W.Plays = plays;
+            this.W.Woots = woots;
+            this.W.TotalWoots = totalWoots;
+            this.W.WorldKey = worldKey;
+            this.W.Height = height;
+            this.W.Width = width;
+            this.W.PotionsAllowed = potions;
 
-            //msg[6] = 58  (0)
-            //...
-            //msg[10] = False  (8)
-            //msg[11] = False  (8)
-            //msg[12] = 100  (0)
-            //msg[13] = 400  (0)
-            //msg[14] = False  (8)
-            //msg[15] = 1  (4)
-            //msg[16] = False  (8)
-            //msg[17] = ws  (6)
-            //msg[18] = 182  (1)
-            //msg[19] = 0  (0)
+            Tools.GameTools.Bot.Id = botID;
+            Tools.GameTools.Bot.X = botX;
+            Tools.GameTools.Bot.Y = botY;
+            Tools.GameTools.Bot.Name = botName;
+            Tools.GameTools.Bot.HasAccess = hasAccess;
+            Tools.GameTools.Bot.IsOwner = isOwner;
 
-            Console.WriteLine("Joined level \"" + w.name + "\" successfully.", success);
-
-            World.Worlds.Add(w);
+            // msg[18] = 182 Roomdata start
+            Console.ForegroundColor = Tools.Success;
+            Console.WriteLine("Joined level \"" + this.W.Name + "\" successfully.");
 
             object[] args = new object[9] { owner, name, plays, woots, totalWoots, worldKey, botX, botY, botName };
 
-            playerEvent handler = _onInit;
-            handler(w, World.bot, args);
+            // Trigger the event.
+            InitEventArgs e = new InitEventArgs(this.W);
+
+            NormalInitEvent(this, e);
         }
 
-        private void onM(World w, Player p, PlayerIOClient.Message m)
+        private void OnM(Player subject, PlayerIOClient.Message m)
         {
-            double x = m.GetDouble(1), // Starting x location
-                y = m.GetDouble(2), // Starting y location
-                speedX = m.GetDouble(3), // Starting horizontal speed
-                speedY = m.GetDouble(4), // Starting vertical speed
-                modifierX = m.GetDouble(5), // Horizontal modifier
-                modifierY = m.GetDouble(6), // Vertical modifier
-                horizontal = m.GetDouble(7), // Horizontal angle
-                vertical = m.GetDouble(8), // Vertical angle
-                gravityMultiplier = m.GetDouble(9); // Gravity multiplier
+            // Extract data.
+            double myxLocation = m.GetDouble(1),
+                myyLocation = m.GetDouble(2),
+                horizontalSpeed = m.GetDouble(3),
+                verticalSpeed = m.GetDouble(4),
+                horizontalModifier = m.GetDouble(5),
+                verticalModifier = m.GetDouble(6),
+                horizontalDirection = m.GetDouble(7),
+                verticalDirection = m.GetDouble(8),
+                gravityMultiplier = m.GetDouble(9);
 
-            bool spacedown = m.GetBoolean(10);
+            bool spacedown = m.GetBoolean(11);
 
-            p.x = x;
-            p.y = y;
+            // Update relevant objects.
+            subject.IsHoldingUp = false;
+            subject.IsHoldingDown = false;
+            subject.IsHoldingLeft = false;
+            subject.IsHoldingRight = false;
 
-            object[] args = new object[10] { x, y, speedX, speedY, modifierX, modifierY, horizontal, vertical, gravityMultiplier, spacedown };
+            if (verticalDirection == -1)
+            {
+                subject.IsHoldingUp = true;
+            }
 
-            playerEvent handler = _onMovement;
-            handler(w, p, args);
+            if (verticalDirection == 1)
+            {
+                subject.IsHoldingDown = true;
+            }
+
+            if (horizontalDirection == -1)
+            {
+                subject.IsHoldingLeft = true;
+            }
+
+            if (horizontalDirection == 1)
+            {
+                subject.IsHoldingRight = true;
+            }
+
+            if (spacedown)
+            {
+                // Trigger the jump event.
+                PlayerEventArgs jumpEventArgs = new PlayerEventArgs(subject, this.W);
+
+                JumpEvent(this, jumpEventArgs);
+            }
+
+            subject.X = myxLocation;
+            subject.Y = myyLocation;
+
+            // Trigger the movement event.
+            object[] args = new object[10] { myxLocation, myyLocation, horizontalSpeed, verticalSpeed, horizontalModifier, verticalModifier, horizontalDirection, verticalDirection, gravityMultiplier, spacedown };
+
+            PlayerEventArgs movementEventArgs = new PlayerEventArgs(subject, this.W);
+
+            JumpEvent(this, movementEventArgs);
         }
 
-        private void onSay(World w, Player p, PlayerIOClient.Message m)
+        private void OnSay(Player subject, PlayerIOClient.Message m)
         {
+            // Extract data.
             string message = m.GetString(1);
 
-            object[] args = new object[1] { message };
+            // Update relevant objects.
+            this.W.ChatLog.Add(message);
 
-            playerEvent handler = _onChat;
-            handler(w, p, args);
+            // Trigger the event.
+            ChatEventArgs e = new ChatEventArgs(subject, this.W);
+
+            NormalChatEvent(this, e);
         }
 
-        private void onB(World w, Player p, PlayerIOClient.Message m)
+        private void OnB(Player subject, PlayerIOClient.Message m)
         {
-            Console.WriteLine(m);
         }
-
-
-
-
-        public Player getPlayer(int id)
-        {
-            World w = thisWorld();
-
-            foreach (Player p in w.onlinePlayers)
-            {
-                if (p.id == id)
-                {
-                    return p;
-                }
-            }
-
-            return new Player();
-        }
-
-        public World thisWorld()
-        {
-            foreach (World w in World.Worlds)
-            {
-                if (w.pull == this)
-                {
-                    return w;
-                }
-            }
-            return new World() { name = "null" };
-        }
-
-        public delegate void worldEvent(World origin, object[] args);
-        
-        public delegate void playerEvent(World origin, Player sender, object[] args);
-
-        public event worldEvent
-            _onPotionToggle = delegate { },
-            _onSystemMessage = delegate { },
-            _onUpdate = delegate { },
-            _onUpdateMeta = delegate { },
-            _onShow = delegate { },
-            _onHide = delegate { },
-            _onSaved = delegate { },
-            _onOldChat = delegate { },
-            _onReset = delegate { },
-            _onRefreshshop = delegate { },
-            _onKill = delegate { },
-            _onInfo = delegate { },
-            _onClear = delegate { };
-
-        public event playerEvent
-            _onInit = delegate { },
-            _onAutotext = delegate { },
-            _onCrown = delegate { },
-            _onModMode = delegate { },
-            _onLevelUp = delegate { },
-            _onTrophy = delegate { },
-            _onLabel = delegate { },
-            _onFace = delegate { },
-            _onGod = delegate { },
-            _onGrinch = delegate { },
-            _onWitch = delegate { },
-            _onWizard = delegate { },
-            _onRedWizard = delegate { },
-            _onLeave = delegate { },
-            _onJoin = delegate { },
-            _onMovement = delegate { },
-            _onPotion = delegate { },
-            _onChat = delegate { },
-            _onRotate = delegate { },
-            _onCoinCollected = delegate { },
-            _onTeleport = delegate { },
-            _onTele = delegate { },
-            _onWoot = delegate { },
-            _onBlock = delegate { },
-            _onCoinBlock = delegate { },
-            _onSoundBlock = delegate { },
-            _onPortalBlock = delegate { },
-            _onWorldPortalBlock = delegate { },
-            _onSignBlock = delegate { };
     }
 }
