@@ -449,9 +449,7 @@ namespace Skylight
             {
                 public static readonly int
                     PIANO = 77,
-                    DRUM = 83;
-
-                // TODO: Get IDs for different keys
+                    PERCUSSION = 83;
             }
 
             public static class Coins
@@ -500,7 +498,10 @@ namespace Skylight
 
             public static class Portals
             {
-                // TODO: Find these.
+                public static readonly int
+                    INVISIBLE = 381,
+                    NORMAL = 242,
+                    WORLD = 374;
             }
 
             public static class Cake
@@ -510,7 +511,6 @@ namespace Skylight
             }
         }
 
-        // TODO: Finish this
         public static class Decorative
         {
             public static class Christmas2010
@@ -576,6 +576,7 @@ namespace Skylight
             public static class Halloween2011
             {
                 public static readonly int
+                    TOMBSTONE = 224,
                     LEFTCORNERWEB = 225,
                     RIGHTCORNERWEB = 226;
             }
@@ -631,87 +632,208 @@ namespace Skylight
                     LEFTBRIGHTROOFTOP = 276,
                     RIGHTBRIGHTROOFTOP = 277,
                     BRIGHTWINDOW = 278,
-                    LEFTDARKROOFTOP = 279;
+                    LEFTDARKROOFTOP = 279,
+                    RIGHTDARKROOFTOP = 280,
+                    DARKWINDOW = 281,
+                    LADDER = 282,
+                    ANTENNAE = 283,
+                    YINYANG = 284;
             }
 
-            /* public static class Cowboy
+            public static class Cowboy
             { 
                 public static readonly int 
+                    WHITEBAR = 285,
+                    GRAYBAR = 286,
+                    LEFTBROWNDOOR = 287,
+                    RIGHTBROWNDOOR = 288,
+                    LEFTREDDOOR = 289,
+                    RIGHTREDDOOR = 290,
+                    LEFTBLUEDOOR = 291,
+                    RIGHTBLUEDOOR = 292,
+                    CURTAINS = 293,
+                    LIGHTBROWNRAIL = 294,
+                    DARKBROWNRAIL = 295,
+                    LIGHTREDRAIL = 296,
+                    DARKREDRAIL = 297,
+                    LIGHTBLUERAIL = 298,
+                    DARKBLUERAIL = 299;
                 }
+
             public static class Water
             { 
                 public static readonly int 
-                }
+                    WAVES = 300;
+            }
+
             public static class Sand
             { 
-                public static readonly int 
-                }
+                public static readonly int
+                    WHITE = 301,
+                    GRAY = 302,
+                    LIGHTTAN = 303,
+                    ORANGE = 304,
+                    TAN = 305,
+                    BROWN = 306;
+            }
+
             public static class Summer2012
             { 
                 public static readonly int 
-                }
+                    BALL = 307,
+                    BUCKET = 308,
+                    SHOVEL = 309,
+                    MARTINI = 310;
+            }
+
             public static class Cloud
             { 
-                public static readonly int 
-                }
+                public static readonly int
+                    BOTTOM = 311,
+                    TOP = 312,
+                    RIGHT = 313,
+                    LEFT = 314,
+                    BOTTOMLEFTCORNER = 315,
+                    BOTTOMRIGHTCORNER = 316,
+                    TOPRIGHTCORNER = 317,
+                    TOPLEFTCORNER = 318;
+            }
+
             public static class Signs
             { 
                 public static readonly int 
-                }
+                    FLAME = 319,
+                    SKULL = 320,
+                    BOLT = 321,
+                    CROSS = 322,
+                    HORIZONTALBAR = 323,
+                    VERTICALBAR = 324;
+            }
+
             public static class Castle
             { 
                 public static readonly int 
-                }
+                    ROOFSUPPORT = 325,
+                    MERLON = 326;
+            }
+
             public static class Medieval
             { 
                 public static readonly int 
-                }
+                    BLUEFLAG = 327,
+                    REDFLAG = 328,
+                    SWORD = 329,
+                    SHIELD = 330,
+                    ROCKS = 331;
+            }
+
             public static class Rocket
             { 
                 public static readonly int 
-                }
+                    COMPUTERSCREEN = 332,
+                    REDLIGHT = 333,
+                    BLUELIGHT = 334,
+                    CONTROLPANEL = 335;
+            }
+
             public static class Mars
             { 
-                public static readonly int 
-                }
+                public static readonly int
+                    ROCK = 336;
+            }
+
             public static class Monster
             { 
                 public static readonly int 
-                }
+                    BIGTOOTHBOTTOM = 337,
+                    SMALLTEETHBOTTOM = 338,
+                    SMALLTEETHTOP = 339,
+                    ORANGEEYE = 340,
+                    BLUEEYE = 341;
+            }
+
             public static class Fog
             { 
                 public static readonly int 
-                }
+                    FULL = 343,
+                    BOTTOM = 344,
+                    TOP = 345,
+                    RIGHT = 346,
+                    LEFT = 347,
+                    BOTTOMLEFTCORNER = 348,
+                    BOTTOMRIGHTCORNER = 349,
+                    TOPRIGHTCORNER = 350,
+                    TOPLEFTCORNER = 351;
+            }
+
             public static class Halloween2012
             { 
                 public static readonly int 
+                    TESLACAP = 352,
+                    TESLACOIL = 353,
+                    VERTICALWIRES = 354,
+                    HORIZONTALWIRES = 355,
+                    ELECTRICITY = 356;
                 }
+
             public static class Jungle
             { 
                 public static readonly int 
+                    UNDERGROWTH = 357,
+                    LOG = 358,
+                    IDOL = 359;
                 }
+
             public static class Christmas2012
             { 
                 public static readonly int 
-                }
+                    BLUEVERTICALRIBBON = 362,
+                    BLUEHORIZONTALRIBBON = 363,
+                    BLUECROSSEDRIBBON = 364,
+                    REDVERTICALRIBBON = 365,
+                    REDHORIZONTALRIBBON = 366,
+                    REDCROSSEDRIBBON = 367;
+            }
+
             public static class Swamp
             { 
-                public static readonly int 
-                }
+                public static readonly int
+                    MUDBUBBLES = 370,
+                    GRASS = 371,
+                    LOG = 372,
+                    SIGN = 373;
+            }
+
             public static class SciFi2013
             { 
                 public static readonly int 
-                }
+                    BLUEBEND = 375,
+                    BLUESTRAIGHT = 376,
+                    ORANGEBEND = 377,
+                    ORANGESTRAIGHT = 378,
+                    GREENBEND = 379,
+                    GREENSTRAIGHT = 380;
+            }
+
             public static class Sparta
             { 
                 public static readonly int 
-                }
+                    CAPITAL = 382,
+                    SHAFT = 383,
+                    BASE = 384;
+            }
+
             public static class Farm
-            { 
-                public static readonly int 
-                } */
+            {
+                public static readonly int
+                    HAY = 386,
+                    CORN = 387,
+                    LEFTFENCE = 388,
+                    RIGHTFENCE = 389;
+            }
         }
 
+        // TODO: Finish this
         public static class BackgroundGroup
         {
         }

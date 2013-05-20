@@ -12,22 +12,15 @@ namespace Skylight
         private static List<World> joinedWorlds = new List<World>();
         
         // Private instance fields
+        private Dictionary<Coords, Block> map = new Dictionary<Coords, Block>();
+        private Player bot;
         private Connection c;
-
         private string id;
-        
         private In pull = new In();
-
         private Out push = new Out();
-
-        private List<Block> placedBlocks = new List<Block>();
-        
         private List<Player> onlinePlayers = new List<Player>();
-        
         private List<string> chatLog = new List<string>();
-        
         private string name;
-        
         private bool potionsAllowed;
 
         // Public static properties
@@ -38,6 +31,19 @@ namespace Skylight
         }
 
         // Public instance properties
+        public Player Bot
+        {
+            get
+            {
+                return this.bot;
+            }
+
+            internal set
+            {
+                this.bot = value;
+            }
+        }
+
         public Connection C
         {
             get { return this.c; }
@@ -64,10 +70,10 @@ namespace Skylight
 
         public string EditKey { get; set; }
 
-        public List<Block> PlacedBlocks
+        public Dictionary<Coords, Block> Map
         {
-            get { return this.placedBlocks; }
-            internal set { this.placedBlocks = value; }
+            get { return this.map; }
+            internal set { this.map = value; }
         }
 
         public List<Player> OnlinePlayers
@@ -126,7 +132,7 @@ namespace Skylight
             {
                 // If the bot has access to change it, change it.
                 // TODO: Change potions value in-game.
-                if (this.Owner == Tools.GameTools.Bot.Name)
+                if (this.Bot.HasAccess)
                 {
                     this.potionsAllowed = value;
                 }
@@ -143,7 +149,7 @@ namespace Skylight
             // The connection can have some errors, so add it seperately in a try-catch.
             try
             {
-                this.C = Tools.GameTools.Client.Multiplayer.JoinRoom(this.Id, new Dictionary<string, string>());
+                this.C = Tools.Client.Multiplayer.JoinRoom(this.Id, new Dictionary<string, string>());
 
                 this.C.OnMessage += this.pull.OnMessage;
 
@@ -160,7 +166,7 @@ namespace Skylight
                 {
                     Console.Write(e.Data);
 
-                    Tools.GameTools.JoinError = true;
+                    Tools.JoinError = true;
                 }
 
                 if (e is NullReferenceException)
@@ -173,7 +179,7 @@ namespace Skylight
 
             JoinedWorlds.Add(this);
 
-            Tools.GameTools.JoinError = false;
+            Tools.JoinError = false;
         }
     }
 }

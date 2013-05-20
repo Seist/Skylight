@@ -9,11 +9,7 @@ namespace Skylight
 
     public class Out
     {
-        // TODO: Create holdLeft, holdRight, holdUp, holdDown, holdSpace, etc methods.
-        private static object[] holdargs = new object[10] { Tools.GameTools.Bot.X, Tools.GameTools.Bot.Y, 0, 0, 0, 0, 0, 0, 0, false };
-
         private int blockDelay = 6, speechDelay = 60;
-
         private World w;
 
         public int BlockDelay
@@ -53,7 +49,7 @@ namespace Skylight
         {
             if (this.W.C.Connected)
             {
-                this.W.C.Send(this.W.WorldKey, b.Layer, b.X, b.Y, b.Id, b.Direction);
+                this.W.C.Send(this.W.WorldKey, b.Layer, b.Coords.X, b.Coords.Y, b.Id, b.Direction);
                 Thread.Sleep(this.BlockDelay);
             }
         }
@@ -110,68 +106,68 @@ namespace Skylight
         // stationary = new object[10] { World.bot.x, World.bot.y, 0, 0, 0, 0, 0, 0, 0, false };
         public void HoldLeft()
         {
-            holdargs[2] = 0;
-            holdargs[3] = 0;
-            holdargs[4] = 0;
-            holdargs[5] = 0;
-            holdargs[6] = 0;
-            holdargs[7] = 0;
-            holdargs[8] = 0;
+            Tools.HoldArgs[2] = 0;
+            Tools.HoldArgs[3] = 0;
+            Tools.HoldArgs[4] = 0;
+            Tools.HoldArgs[5] = 0;
+            Tools.HoldArgs[6] = 0;
+            Tools.HoldArgs[7] = 0;
+            Tools.HoldArgs[8] = 0;
         }
 
         public void HoldRight()
         {
-            holdargs[2] = 0;
-            holdargs[3] = 0;
-            holdargs[4] = 0;
-            holdargs[5] = 0;
-            holdargs[6] = 0;
-            holdargs[7] = 0;
-            holdargs[8] = 0;
+            Tools.HoldArgs[2] = 0;
+            Tools.HoldArgs[3] = 0;
+            Tools.HoldArgs[4] = 0;
+            Tools.HoldArgs[5] = 0;
+            Tools.HoldArgs[6] = 0;
+            Tools.HoldArgs[7] = 0;
+            Tools.HoldArgs[8] = 0;
         }
 
         public void HoldUp()
         {
-            holdargs[2] = 0;
-            holdargs[3] = 0;
-            holdargs[4] = 0;
-            holdargs[5] = 0;
-            holdargs[6] = 0;
-            holdargs[7] = 0;
-            holdargs[8] = 0;
+            Tools.HoldArgs[2] = 0;
+            Tools.HoldArgs[3] = 0;
+            Tools.HoldArgs[4] = 0;
+            Tools.HoldArgs[5] = 0;
+            Tools.HoldArgs[6] = 0;
+            Tools.HoldArgs[7] = 0;
+            Tools.HoldArgs[8] = 0;
         }
 
         public void HoldDown()
         {
-            holdargs[2] = 0;
-            holdargs[3] = 0;
-            holdargs[4] = 0;
-            holdargs[5] = 0;
-            holdargs[6] = 0;
-            holdargs[7] = 0;
-            holdargs[8] = 0;
+            Tools.HoldArgs[2] = 0;
+            Tools.HoldArgs[3] = 0;
+            Tools.HoldArgs[4] = 0;
+            Tools.HoldArgs[5] = 0;
+            Tools.HoldArgs[6] = 0;
+            Tools.HoldArgs[7] = 0;
+            Tools.HoldArgs[8] = 0;
         }
 
         public void Jump()
         {
-            holdargs[2] = 0;
-            holdargs[3] = 0;
-            holdargs[4] = 0;
-            holdargs[5] = 0;
-            holdargs[6] = 0;
-            holdargs[7] = 0;
-            holdargs[8] = 0;
+            Tools.HoldArgs[2] = 0;
+            Tools.HoldArgs[3] = 0;
+            Tools.HoldArgs[4] = 0;
+            Tools.HoldArgs[5] = 0;
+            Tools.HoldArgs[6] = 0;
+            Tools.HoldArgs[7] = 0;
+            Tools.HoldArgs[8] = 0;
         }
 
         public void Release()
         {
-            holdargs[2] = 0;
-            holdargs[3] = 0;
-            holdargs[4] = 0;
-            holdargs[5] = 0;
-            holdargs[6] = 0;
-            holdargs[7] = 0;
-            holdargs[8] = 0;
+            Tools.HoldArgs[2] = 0;
+            Tools.HoldArgs[3] = 0;
+            Tools.HoldArgs[4] = 0;
+            Tools.HoldArgs[5] = 0;
+            Tools.HoldArgs[6] = 0;
+            Tools.HoldArgs[7] = 0;
+            Tools.HoldArgs[8] = 0;
         }
     }
 }

@@ -10,15 +10,15 @@ namespace Skylight
 
         public delegate void WorldEvent(object[] args);
 
-        public delegate void PlayerEvent(object sender, PlayerEventArgs e);
+        public delegate void PlayerEvent(PlayerEventArgs e);
 
-        public delegate void BlockEvent(object sender, BlockEventArgs e);
+        public delegate void BlockEvent(BlockEventArgs e);
 
-        public delegate void ChatEvent(object sender, ChatEventArgs e);
+        public delegate void ChatEvent(ChatEventArgs e);
 
-        public delegate void InitEvent(object sender, InitEventArgs e);
+        public delegate void InitEvent(InitEventArgs e);
 
-        public static event WorldEvent
+        public event WorldEvent
             PotionToggleEvent = delegate { },
             SystemMessageEvent = delegate { },
             UpdateEvent = delegate { },
@@ -33,7 +33,7 @@ namespace Skylight
             InfoEvent = delegate { },
             ClearEvent = delegate { };
 
-        public static event PlayerEvent
+        public event PlayerEvent
             JumpEvent = delegate { },
             CrownEvent = delegate { },
             ModModeEvent = delegate { },
@@ -56,7 +56,7 @@ namespace Skylight
             TeleEvent = delegate { },
             WootEvent = delegate { };
 
-        public static event BlockEvent
+        public event BlockEvent
             NormalBlockEvent = delegate { },
             CoinBlockEvent = delegate { },
             SoundBlockEvent = delegate { },
@@ -64,11 +64,11 @@ namespace Skylight
             WorldPortalBlockEvent = delegate { },
             SignBlockEvent = delegate { };
 
-        public static event ChatEvent
+        public event ChatEvent
             AutotextEvent = delegate { },
             NormalChatEvent = delegate { };
 
-        public static event InitEvent
+        public event InitEvent
             NormalInitEvent = delegate { };
 
         public World W
@@ -97,131 +97,131 @@ namespace Skylight
             switch (Convert.ToString(m.Type))
             {
                 case "add": this.OnAdd(m);
-                    break; // Triggered when someone joins.
+                    break; // Fireed when someone joins.
 
                 case "allowpotions": this.OnAllowPotions(m);
-                    break; // Triggered when you allow/deny potions
+                    break; // Fireed when you allow/deny potions
 
-                case "autotext": this.OnAutotext(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
-                    break; // Triggered when someone says an autotext phrase. (e.g. "Help me!", "Left.")
+                case "autotext": this.OnAutotext(Tools.GetPlayer(m.GetInt(0), this.W), m);
+                    break; // Fireed when someone says an autotext phrase. (e.g. "Help me!", "Left.")
 
-                case "b": this.OnB(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
-                    break; // Triggered when someone builds a brick.
+                case "b": this.OnB(Tools.GetPlayer(m.GetInt(0), this.W), m);
+                    break; // Fireed when someone builds a brick.
 
-                case "bc": this.OnBc(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
-                    break; // Triggered when someone places a coin block.
+                case "bc": this.OnBc(Tools.GetPlayer(m.GetInt(0), this.W), m);
+                    break; // Fireed when someone places a coin block.
 
-                case "br": this.OnBr(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
-                    break; // Triggered when someone rotates a block.
+                case "br": this.OnBr(Tools.GetPlayer(m.GetInt(0), this.W), m);
+                    break; // Fireed when someone rotates a block.
 
-                case "bs": this.OnBs(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
-                    break; // Triggered when someone creates a sound block.
+                case "bs": this.OnBs(Tools.GetPlayer(m.GetInt(0), this.W), m);
+                    break; // Fireed when someone creates a sound block.
 
-                case "c": this.OnC(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
-                    break; // Triggered when someone collects a coin.
+                case "c": this.OnC(Tools.GetPlayer(m.GetInt(0), this.W), m);
+                    break; // Fireed when someone collects a coin.
 
                 case "clear": this.OnClear(m);
-                    break; // Triggered when someone clears level.
+                    break; // Fireed when someone clears level.
 
-                case "face": this.OnFace(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
-                    break; // Triggered when someone changes smiley.
+                case "face": this.OnFace(Tools.GetPlayer(m.GetInt(0), this.W), m);
+                    break; // Fireed when someone changes smiley.
 
-                case "givegrinch": this.OnGiveGrinch(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
-                    break; // Triggered when someone gets Grinch smiley.
+                case "givegrinch": this.OnGiveGrinch(Tools.GetPlayer(m.GetInt(0), this.W), m);
+                    break; // Fireed when someone gets Grinch smiley.
 
-                case "givewitch": this.OnGiveWitch(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
-                    break; // Triggered when someone gets Witch smiley.
+                case "givewitch": this.OnGiveWitch(Tools.GetPlayer(m.GetInt(0), this.W), m);
+                    break; // Fireed when someone gets Witch smiley.
 
-                case "givewizard": this.OnGiveWizard(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
-                    break; // Triggered when someone gets Blue Wizard smiley.
+                case "givewizard": this.OnGiveWizard(Tools.GetPlayer(m.GetInt(0), this.W), m);
+                    break; // Fireed when someone gets Blue Wizard smiley.
 
-                case "givewizard2": this.OnGiveWizard2(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
-                    break; // Triggered when someone gets Red Wizard smiley.
+                case "givewizard2": this.OnGiveWizard2(Tools.GetPlayer(m.GetInt(0), this.W), m);
+                    break; // Fireed when someone gets Red Wizard smiley.
 
-                case "god": this.OnGod(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
-                    break; // Triggered when someone goes into/out of god mode.
+                case "god": this.OnGod(Tools.GetPlayer(m.GetInt(0), this.W), m);
+                    break; // Fireed when someone goes into/out of god mode.
 
                 case "hide": this.OnHide(m);
-                    break; // Triggered when timed doors hide.
+                    break; // Fireed when timed doors hide.
 
                 case "info": this.OnInfo(m);
-                    break; // Triggered when the bot receives a pop-up window (like kick, info).
+                    break; // Fireed when the bot receives a pop-up window (like kick, info).
 
                 case "init": this.OnInit(m);
-                    break; // Triggered when the bot joins the level.
+                    break; // Fireed when the bot joins the level.
 
-                case "k": this.OnK(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
-                    break; // Triggered when someone gets the crown.
+                case "k": this.OnK(Tools.GetPlayer(m.GetInt(0), this.W), m);
+                    break; // Fireed when someone gets the crown.
 
                 case "kill": this.OnKill(m);
-                    break; // Triggered when the world crashes.
+                    break; // Fireed when the world crashes.
 
-                case "ks": this.OnKs(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
-                    break; // Triggered when someone touches trophy.
+                case "ks": this.OnKs(Tools.GetPlayer(m.GetInt(0), this.W), m);
+                    break; // Fireed when someone touches trophy.
 
-                case "lb": this.OnLb(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
-                    break; // Triggered when a mod places a label.
+                case "lb": this.OnLb(Tools.GetPlayer(m.GetInt(0), this.W), m);
+                    break; // Fireed when a mod places a label.
 
-                case "left": this.OnLeft(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
-                    break; // Triggered when someone leaves.
+                case "left": this.OnLeft(Tools.GetPlayer(m.GetInt(0), this.W), m);
+                    break; // Fireed when someone leaves.
 
-                case "levelup": this.OnLevelUp(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
-                    break; // Triggered when someone levels up.
+                case "levelup": this.OnLevelUp(Tools.GetPlayer(m.GetInt(0), this.W), m);
+                    break; // Fireed when someone levels up.
 
-                case "m": this.OnM(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
-                    break; // Triggered when someone moves.
+                case "m": this.OnM(Tools.GetPlayer(m.GetInt(0), this.W), m);
+                    break; // Fireed when someone moves.
 
-                case "mod": this.OnMod(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
-                    break; // Triggered when someone goes into mod-mode.
+                case "mod": this.OnMod(Tools.GetPlayer(m.GetInt(0), this.W), m);
+                    break; // Fireed when someone goes into mod-mode.
 
-                case "p": this.OnP(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
-                    break; // Triggered when someone uses a potion
+                case "p": this.OnP(Tools.GetPlayer(m.GetInt(0), this.W), m);
+                    break; // Fireed when someone uses a potion
 
-                case "pt": this.OnPt(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
-                    break; // Triggered when someone places a portal.
+                case "pt": this.OnPt(Tools.GetPlayer(m.GetInt(0), this.W), m);
+                    break; // Fireed when someone places a portal.
 
                 case "refreshshop": this.OnRefreshShop(m);
-                    break; // Triggered when the shop is refreshed.
+                    break; // Fireed when the shop is refreshed.
 
                 case "reset": this.OnReset(m);
-                    break; // Triggered when someone resets the level.
+                    break; // Fireed when someone resets the level.
 
-                case "say": this.OnSay(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
-                    break; // Triggered when someone says something.
+                case "say": this.OnSay(Tools.GetPlayer(m.GetInt(0), this.W), m);
+                    break; // Fireed when someone says something.
 
                 case "say_old": this.OnSayOld(m);
-                    break; // Triggered when the bot joins; gets old messages.
+                    break; // Fireed when the bot joins; gets old messages.
 
                 case "saved": this.OnSaved(m);
-                    break; // Triggered when the level is saved.
+                    break; // Fireed when the level is saved.
 
                 case "show": this.OnShow(m);
-                    break; // Triggered when timed doors show.
+                    break; // Fireed when timed doors show.
 
                 case "tele": this.OnTele(m);
-                    break; // Triggered when someone teleports via /reset or /loadlevel
+                    break; // Fireed when someone teleports via /reset or /loadlevel
 
                 case "teleport": this.OnTeleport(m);
-                    break; // Triggered when someone teleports.
+                    break; // Fireed when someone teleports.
 
-                case "ts": this.OnTs(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
-                    break; // Triggered when someone places a sign. (?)
+                case "ts": this.OnTs(Tools.GetPlayer(m.GetInt(0), this.W), m);
+                    break; // Fireed when someone places a sign. (?)
 
                 case "updatemeta": this.OnUpdateMeta(m);
                     break; // Automatically sent every 30 seconds with level info.
 
                 case "upgrade": this.OnUpgrade(m);
-                    break; // Triggered when game updates.
+                    break; // Fireed when game updates.
 
-                case "wp": this.OnWp(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
-                    break; // Triggered when someone places world portal.
+                case "wp": this.OnWp(Tools.GetPlayer(m.GetInt(0), this.W), m);
+                    break; // Fireed when someone places world portal.
 
                 case "write": this.OnWrite(m);
-                    break; // Triggered when the system says something in chat.
+                    break; // Fireed when the system says something in chat.
 
                 case "w":
-                case "wu": this.OnW(Tools.GameTools.GetPlayer(m.GetInt(0), this.W), m);
-                    break; // Triggered when someone woots.
+                case "wu": this.OnW(Tools.GetPlayer(m.GetInt(0), this.W), m);
+                    break; // Fireed when someone woots.
 
                 default:
                     break;
@@ -266,10 +266,10 @@ namespace Skylight
 
             this.W.OnlinePlayers.Add(subject);
 
-            // Trigger the event.
+            // Fire the event.
             PlayerEventArgs e = new PlayerEventArgs(subject, this.W);
 
-            AddEvent(this, e);
+            AddEvent(e);
         }
 
         private void OnAllowPotions(PlayerIOClient.Message m)
@@ -280,10 +280,10 @@ namespace Skylight
             // Update relevant objects.
             this.W.PotionsAllowed = potions;
 
-            // Trigger the event.
+            // Fire the event.
             object[] args = new object[1] { potions };
 
-            WorldEvent handler = PotionToggleEvent;
+            WorldEvent handler = this.PotionToggleEvent;
             handler(args);
         }
 
@@ -295,10 +295,10 @@ namespace Skylight
             // Update relevant objects.
             this.W.ChatLog.Add(message);
 
-            // Trigger the event.
+            // Fire the event.
             ChatEventArgs e = new ChatEventArgs(subject, this.W);
 
-            AutotextEvent(this, e);
+            this.AutotextEvent(e);
         }
 
         // TODO: Finish this.
@@ -316,8 +316,33 @@ namespace Skylight
 
         private void OnBs(Player subject, PlayerIOClient.Message m)
         {
-            Console.ForegroundColor = Tools.Info;
-            Console.WriteLine(Convert.ToString(m));
+            // Extract data.
+            int x = m.GetInt(0),
+                y = m.GetInt(1),
+                id = m.GetInt(2),
+                note = m.GetInt(3);
+
+            // Update relevant objects.
+            Block b = new Block();
+            Coords c = new Coords() { X = x, Y = y };
+
+            if (id == 77)
+            {
+                b.Coords = c;
+                b.W = this.w;
+            }
+            else
+            {
+                b.Coords = c;
+                b.W = this.w;
+            }
+
+            this.w.Map[c] = b;
+
+            // Fire the event.
+            BlockEventArgs e = new BlockEventArgs(b, this.w);
+
+            this.SoundBlockEvent(e);
         }
 
         private void OnC(Player subject, PlayerIOClient.Message m)
@@ -357,15 +382,15 @@ namespace Skylight
 
             // Update relevant objects.
             // Take the crown from the current holder.
-            Tools.GameTools.GetCrownHolder(this.W).HasCrown = false;
+            Tools.GetCrownHolder(this.W).HasCrown = false;
 
             // Give it to the subject.
             subject.HasCrown = true;
 
-            // Trigger the event.
+            // Fire the event.
             PlayerEventArgs e = new PlayerEventArgs(subject, this.W);
 
-            CrownEvent(this, e);
+            CrownEvent(e);
         }
 
         private void OnKs(Player subject, PlayerIOClient.Message m)
@@ -376,10 +401,10 @@ namespace Skylight
             // Update relevant objects.
             subject.HasSilverCrown = true;
 
-            // Trigger the event.
+            // Fire the event.
             PlayerEventArgs e = new PlayerEventArgs(subject, this.W);
 
-            TrophyEvent(this, e);
+            TrophyEvent(e);
         }
 
         private void OnKill(PlayerIOClient.Message m, Player subject)
@@ -399,11 +424,13 @@ namespace Skylight
         }
 
         private void OnP(Player subject, PlayerIOClient.Message m)
-        { 
+        {
+            Console.WriteLine(m);
         }
 
         private void OnPt(Player subject, PlayerIOClient.Message m)
-        { 
+        {
+            Console.WriteLine(m);
         }
 
         private void OnTs(Player subject, PlayerIOClient.Message m)
@@ -415,7 +442,24 @@ namespace Skylight
         }
 
         private void OnWp(Player subject, PlayerIOClient.Message m)
-        { 
+        {
+            // Extract data.
+            int x = m.GetInt(0),
+                y = m.GetInt(1),
+                id = m.GetInt(2);
+
+            string destination = m.GetString(3);
+
+            // Update relevant objects.
+            Coords c = new Coords() { X = x, Y = x };
+            Block b = new WorldPortal() { Id = id, Coords = c, PortalDestination = destination };
+
+            this.w.Map[c] = b;
+
+            // Fire the event
+            BlockEventArgs e = new BlockEventArgs(b, this.w);
+
+            WorldPortalBlockEvent(e);
         }
 
         private void OnKill(PlayerIOClient.Message m)
@@ -511,12 +555,12 @@ namespace Skylight
             this.W.Width = width;
             this.W.PotionsAllowed = potions;
 
-            Tools.GameTools.Bot.Id = botID;
-            Tools.GameTools.Bot.X = botX;
-            Tools.GameTools.Bot.Y = botY;
-            Tools.GameTools.Bot.Name = botName;
-            Tools.GameTools.Bot.HasAccess = hasAccess;
-            Tools.GameTools.Bot.IsOwner = isOwner;
+            this.W.Bot.Id = botID;
+            this.W.Bot.X = botX;
+            this.W.Bot.Y = botY;
+            this.W.Bot.Name = botName;
+            this.W.Bot.HasAccess = hasAccess;
+            this.W.Bot.IsOwner = isOwner;
 
             // msg[18] = 182 Roomdata start
             Console.ForegroundColor = Tools.Success;
@@ -524,10 +568,10 @@ namespace Skylight
 
             object[] args = new object[9] { owner, name, plays, woots, totalWoots, worldKey, botX, botY, botName };
 
-            // Trigger the event.
+            // Fire the event.
             InitEventArgs e = new InitEventArgs(this.W);
 
-            NormalInitEvent(this, e);
+            this.NormalInitEvent(e);
         }
 
         private void OnM(Player subject, PlayerIOClient.Message m)
@@ -573,21 +617,21 @@ namespace Skylight
 
             if (spacedown)
             {
-                // Trigger the jump event.
+                // Fire the jump event.
                 PlayerEventArgs jumpEventArgs = new PlayerEventArgs(subject, this.W);
 
-                JumpEvent(this, jumpEventArgs);
+                this.JumpEvent(jumpEventArgs);
             }
 
             subject.X = myxLocation;
             subject.Y = myyLocation;
 
-            // Trigger the movement event.
+            // Fire the movement event.
             object[] args = new object[10] { myxLocation, myyLocation, horizontalSpeed, verticalSpeed, horizontalModifier, verticalModifier, horizontalDirection, verticalDirection, gravityMultiplier, spacedown };
 
             PlayerEventArgs movementEventArgs = new PlayerEventArgs(subject, this.W);
 
-            JumpEvent(this, movementEventArgs);
+            this.JumpEvent(movementEventArgs);
         }
 
         private void OnSay(Player subject, PlayerIOClient.Message m)
@@ -598,10 +642,10 @@ namespace Skylight
             // Update relevant objects.
             this.W.ChatLog.Add(message);
 
-            // Trigger the event.
+            // Fire the event.
             ChatEventArgs e = new ChatEventArgs(subject, this.W);
 
-            NormalChatEvent(this, e);
+            NormalChatEvent(e);
         }
 
         private void OnB(Player subject, PlayerIOClient.Message m)

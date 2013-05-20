@@ -1,1 +1,7 @@
-<StyleCopViolations />
+<StyleCopViolations>
+  <Violation Section="Root.Skylight.Tools.HoldArgs" LineNumber="56" Source="C:\Users\Tako.TAKOS-PC\Documents\GitHub\Skylight\Skylight\Skylight\Tools.cs" RuleNamespace="StyleCop.CSharp.MaintainabilityRules" Rule="FieldsMustBePrivate" RuleId="SA1401">Fields must be declared with private access. Use properties to expose fields.</Violation>
+  <Violation Section="Root.Skylight.Tools.client" LineNumber="33" Source="C:\Users\Tako.TAKOS-PC\Documents\GitHub\Skylight\Skylight\Skylight\Tools.cs" RuleNamespace="StyleCop.CSharp.OrderingRules" Rule="ElementsMustBeOrderedByAccess" RuleId="SA1202">All private fields must be placed after all public fields.</Violation>
+  <Violation Section="Root.Skylight.Tools.client" LineNumber="35" Source="C:\Users\Tako.TAKOS-PC\Documents\GitHub\Skylight\Skylight\Skylight\Tools.cs" RuleNamespace="StyleCop.CSharp.OrderingRules" Rule="ElementsMustBeOrderedByAccess" RuleId="SA1202">All private fields must be placed after all public fields.</Violation>
+  <Violation Section="Root.Skylight.Tools.client" LineNumber="56" Source="C:\Users\Tako.TAKOS-PC\Documents\GitHub\Skylight\Skylight\Skylight\Tools.cs" RuleNamespace="StyleCop.CSharp.OrderingRules" Rule="ElementsMustBeOrderedByAccess" RuleId="SA1202">All private fields must be placed after all public fields.</Violation>
+  <Violation Section="Root.Skylight.Tools.client" LineNumber="149" Source="C:\Users\Tako.TAKOS-PC\Documents\GitHub\Skylight\Skylight\Skylight\Tools.cs" RuleNamespace="StyleCop.CSharp.OrderingRules" Rule="ElementsMustBeOrderedByAccess" RuleId="SA1202">All private fields must be placed after all internal fields.</Violation>
+</StyleCopViolations>

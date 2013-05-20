@@ -7,9 +7,7 @@ namespace Skylight
     public class BlockEventArgs : EventArgs
     {
         private Block placed;
-
         private Player placer;
-
         private World origin;
 
         public BlockEventArgs(Block b, World origin)
