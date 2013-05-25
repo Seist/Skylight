@@ -8,9 +8,9 @@ namespace Skylight
     {
         private Block placed;
         private Player placer;
-        private World origin;
+        private Room origin;
 
-        public BlockEventArgs(Block b, World origin)
+        public BlockEventArgs(Block b, Room origin)
         {
             this.origin = origin;
             this.placed = b;
@@ -27,7 +27,7 @@ namespace Skylight
             get { return this.placer; }
         }
 
-        public World Origin
+        public Room Origin
         {
             get { return this.origin; }
         }

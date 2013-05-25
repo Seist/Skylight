@@ -21,7 +21,7 @@ namespace Skylight
         // Fields
         private int id, direction;
         private Player placer;
-        private World w;
+        private Room r;
         private Coords coords;
 
         // Properties
@@ -34,32 +34,8 @@ namespace Skylight
 
             set
             {
-                if (this.W.Bot.HasAccess)
+                if (this.coords == null)
                 {
-                    this.W.Push.Build(
-                        new Block() 
-                        { 
-                            Coords = new Coords() 
-                            { 
-                                X = this.coords.X, 
-                                Y = this.coords.Y 
-                            }, 
-
-                            id = BlockIds.Action.Gravity.DOWN
-                        });
-
-                    this.W.Push.Build(
-                        new Block()
-                        {
-                            Coords = new Coords() 
-                            {
-                                X = this.coords.X,
-                                Y = this.coords.Y
-                            },
-
-                            id = this.Id
-                        });
-
                     this.coords = value;
                 }
             }
@@ -74,35 +50,8 @@ namespace Skylight
 
             set
             {
-                if (
-
-                    // If you have access to change this value
-                    this.W.Bot.HasAccess &&
-
-                    // and if it's a proper piano block...
-                    ((this is PianoBlock &&
-                    value == BlockIds.Action.Music.PIANO) ||
-
-                    // ...or it's a proper percussion block...
-                    (this is PercussionBlock &&
-                    value == BlockIds.Action.Music.PERCUSSION) ||
-
-                    // ...or it's a proper portal/invisible portal...
-                    (this is Portal &&
-                    (value == BlockIds.Action.Portals.NORMAL ||
-                    value == BlockIds.Action.Portals.INVISIBLE)) ||
-
-                    // ...or it's a proper world portal...
-                    (this is WorldPortal &&
-                    value == BlockIds.Action.Portals.WORLD) ||
-
-                    // ...or it's JUST a block.
-                    (!(this is PianoBlock) &&
-                    !(this is PercussionBlock) &&
-                    !(this is Portal) &&
-                    !(this is WorldPortal))))
+                if (this.id == 0)
                 {
-                    this.W.Push.Build(this);
                     this.id = value;
                 }
             }
@@ -132,8 +81,7 @@ namespace Skylight
 
             set
             {
-                // If it's a valid direction and you have the rights to change it
-                if (value <= 4 && this.W.Bot.HasAccess)
+                if (this.direction == 0)
                 {
                     this.direction = value;
                 }
@@ -153,16 +101,16 @@ namespace Skylight
             }
         }
 
-        public World W
+        public Room W
         {
             get
             {
-                return this.w;
+                return this.r;
             }
 
             internal set
             {
-                this.w = value;
+                this.r = value;
             }
         }
     }

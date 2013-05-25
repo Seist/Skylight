@@ -8,9 +8,9 @@ namespace Skylight
     {
         private Player subject;
 
-        private World origin;
+        private Room origin;
 
-        public PlayerEventArgs(Player subject, World origin)
+        public PlayerEventArgs(Player subject, Room origin)
         {
             this.subject = subject;
             this.origin = origin;
@@ -21,7 +21,7 @@ namespace Skylight
             get { return this.subject; }
         }
 
-        public World Origin
+        public Room Origin
         {
             get { return this.origin; }
         }

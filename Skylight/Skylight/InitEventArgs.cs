@@ -6,16 +6,16 @@ namespace Skylight
 
     public class InitEventArgs : EventArgs
     {
-        private World joinedWorld;
+        private Room joinedRoom;
 
-        public InitEventArgs(World joinedWorld)
+        public InitEventArgs(Room joinedRoom)
         {
-            this.joinedWorld = joinedWorld;
+            this.joinedRoom = joinedRoom;
         }
 
-        public World JoinedWorld
+        public Room JoinedRoom
         {
-            get { return this.joinedWorld; }
+            get { return this.joinedRoom; }
         }
     }
 }

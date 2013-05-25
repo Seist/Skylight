@@ -5,16 +5,14 @@ namespace Skylight
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     public class ChatEventArgs : EventArgs
     {
         private Player speaker;
         
-        private World origin;
+        private Room origin;
 
-        public ChatEventArgs(Player speaker, World origin)
+        public ChatEventArgs(Player speaker, Room origin)
         {
             this.origin = origin;
             this.origin.ChatLog = origin.ChatLog;
@@ -26,19 +24,14 @@ namespace Skylight
             get { return this.speaker; }
         }
 
-        public World Origin
+        public Room Origin
         {
             get { return this.origin; }
         }
 
         public string Message
         {
-            get { return this.origin.ChatLog[this.origin.ChatLog.Count - 1]; }
-        }
-
-        public List<string> ChatLog
-        {
-            get { return this.origin.ChatLog; }
+            get { return this.Origin.ChatLog.Last().Key; }
         }
     }
 }

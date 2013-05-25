@@ -3,7 +3,7 @@
     using System;
     using System.Text.RegularExpressions;
 
-    public partial class WorldPortal : Block
+    public partial class RoomPortal : Block
     {
         private string portalDestination;
 

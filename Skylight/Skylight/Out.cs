@@ -9,165 +9,256 @@ namespace Skylight
 
     public class Out
     {
-        private int blockDelay = 6, speechDelay = 60;
-        private World w;
-
-        public int BlockDelay
-        {
-            get { return this.blockDelay; }
-            set { this.blockDelay = value; }
-        }
-
-        public int SpeechDelay
-        {
-            get { return this.speechDelay; }
-            set { this.speechDelay = value; }
-        }
-
-        public World W
+        public Bot Bot
         {
             get
             {
-                foreach (World wl in World.JoinedWorlds)
+                foreach (Room r in Room.JoinedRooms)
                 {
-                    if (wl.Push == this)
+                    foreach (Bot b in r.ConnectedBots)
                     {
-                        return wl;
+                        if (b.Push == this)
+                        {
+                            return b;
+                        }
                     }
                 }
 
-                return new World() { Name = "Null" };
-            }
-
-            set
-            {
-                this.w = value;
+                Console.WriteLine("Throwing new bot...");
+                return new Bot();
             }
         }
 
-        public void Build(Block b)
+        public Connection C(Room r)
         {
-            if (this.W.C.Connected)
+            foreach (Connection c in Bot.BotClient.Connections)
             {
-                this.W.C.Send(this.W.WorldKey, b.Layer, b.Coords.X, b.Coords.Y, b.Id, b.Direction);
-                Thread.Sleep(this.BlockDelay);
+                foreach (Connection c2 in r.Connections)
+                {
+                    if (c == c2)
+                    {
+                        return c;
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        public void Build(Block b, Room r)
+        {
+            if (this.C(r).Connected)
+            {
+                this.C(r).Send(r.RoomKey, b.Layer, b.Coords.X, b.Coords.Y, b.Id, b.Direction);
+                Thread.Sleep(this.Bot.BlockDelay);
             }
         }
 
-        public void Build(List<Block> blockList)
+        public void Build(List<Block> blockList, Room r)
         {
-            if (this.W.C.Connected)
+            if (this.C(r).Connected)
             {
                 foreach (Block b in blockList)
                 {
-                    this.Build(b);
+                    this.Build(b, r);
                 }
             }
         }
-
-        public void InputCode(string editKey)
+        
+        public void HoldDown(Room r)
         {
-            this.W.C.Send("access", editKey);
+            object[] holdArgs = new object[10];
+            holdArgs[2] = 0;
+            holdArgs[3] = 0;
+            holdArgs[4] = 0;
+            holdArgs[5] = 0;
+            holdArgs[6] = 0;
+            holdArgs[7] = 0;
+            holdArgs[8] = 0;
         }
 
-        public void Say(string s)
+        public void HoldLeft(Room r)
         {
-            if (this.W.C.Connected)
+            object[] holdArgs = new object[10];
+            holdArgs[2] = 0;
+            holdArgs[3] = 0;
+            holdArgs[4] = 0;
+            holdArgs[5] = 0;
+            holdArgs[6] = 0;
+            holdArgs[7] = 0;
+            holdArgs[8] = 0;
+        }
+
+        public void HoldRight(Room r)
+        {
+            object[] holdArgs = new object[10];
+            holdArgs[2] = 0;
+            holdArgs[3] = 0;
+            holdArgs[4] = 0;
+            holdArgs[5] = 0;
+            holdArgs[6] = 0;
+            holdArgs[7] = 0;
+            holdArgs[8] = 0;
+        }
+
+        public void HoldUp(Room r)
+        {
+            object[] holdArgs = new object[10];
+            holdArgs[2] = 0;
+            holdArgs[3] = 0;
+            holdArgs[4] = 0;
+            holdArgs[5] = 0;
+            holdArgs[6] = 0;
+            holdArgs[7] = 0;
+            holdArgs[8] = 0;
+        }
+
+        public void InputCode(string editKey, Room r)
+        {
+            this.C(r).Send("access", editKey);
+        }
+
+        public void Jump(Room r)
+        {
+            object[] holdArgs = new object[10];
+            holdArgs[2] = 0;
+            holdArgs[3] = 0;
+            holdArgs[4] = 0;
+            holdArgs[5] = 0;
+            holdArgs[6] = 0;
+            holdArgs[7] = 0;
+            holdArgs[8] = 0;
+        }
+
+        public void Move(object[] args, Room r)
+        {
+            if (this.C(r).Connected)
             {
-                this.W.C.Send("say", s);
-                Thread.Sleep(this.SpeechDelay);
+                this.C(r).Send("m", args);
             }
-        }
-
-        public void Move(object[] args)
-        {
-            if (this.W.C.Connected)
-            {
-                this.W.C.Send("m", args);
-            }
-        }
-
-        public void ChangeTitle(string s)
-        {
-            if (this.W.C.Connected && s != string.Empty)
-            {
-                this.W.C.Send("name", s);
-            }
-        }
-
-        // north = new object[10] { World.bot.x, World.bot.y, 0, 0, 0, 2, 0, -1, 0, false },
-        // northeast = new object[10] { World.bot.x, World.bot.y, 0, 0, 0, 2, 0, -1, 0, false },
-        // east = new object[10] { World.bot.x, World.bot.y, 0.981319527991571, 0, 1, 2, 1, 0, 0, false },
-        // southeast = new object[10] { World.bot.x, World.bot.y, 0, 0, 0, 2, 0, -1, 0, false },
-        // south = new object[10] { World.bot.x, World.bot.y, 0, 0, 0, 2, 0, -1, 0, false },
-        // southwest = new object[10] { World.bot.x, World.bot.y, 0, 0, 0, 2, 0, -1, 0, false },
-        // west = new object[10] { World.bot.x, World.bot.y, 0, 0, 0, 2, 0, -1, 0, false },
-        // northwest = new object[10] { World.bot.x, World.bot.y, 0, 0, 0, 2, 0, -1, 0, false },
-        // stationary = new object[10] { World.bot.x, World.bot.y, 0, 0, 0, 0, 0, 0, 0, false };
-        public void HoldLeft()
-        {
-            Tools.HoldArgs[2] = 0;
-            Tools.HoldArgs[3] = 0;
-            Tools.HoldArgs[4] = 0;
-            Tools.HoldArgs[5] = 0;
-            Tools.HoldArgs[6] = 0;
-            Tools.HoldArgs[7] = 0;
-            Tools.HoldArgs[8] = 0;
-        }
-
-        public void HoldRight()
-        {
-            Tools.HoldArgs[2] = 0;
-            Tools.HoldArgs[3] = 0;
-            Tools.HoldArgs[4] = 0;
-            Tools.HoldArgs[5] = 0;
-            Tools.HoldArgs[6] = 0;
-            Tools.HoldArgs[7] = 0;
-            Tools.HoldArgs[8] = 0;
-        }
-
-        public void HoldUp()
-        {
-            Tools.HoldArgs[2] = 0;
-            Tools.HoldArgs[3] = 0;
-            Tools.HoldArgs[4] = 0;
-            Tools.HoldArgs[5] = 0;
-            Tools.HoldArgs[6] = 0;
-            Tools.HoldArgs[7] = 0;
-            Tools.HoldArgs[8] = 0;
-        }
-
-        public void HoldDown()
-        {
-            Tools.HoldArgs[2] = 0;
-            Tools.HoldArgs[3] = 0;
-            Tools.HoldArgs[4] = 0;
-            Tools.HoldArgs[5] = 0;
-            Tools.HoldArgs[6] = 0;
-            Tools.HoldArgs[7] = 0;
-            Tools.HoldArgs[8] = 0;
-        }
-
-        public void Jump()
-        {
-            Tools.HoldArgs[2] = 0;
-            Tools.HoldArgs[3] = 0;
-            Tools.HoldArgs[4] = 0;
-            Tools.HoldArgs[5] = 0;
-            Tools.HoldArgs[6] = 0;
-            Tools.HoldArgs[7] = 0;
-            Tools.HoldArgs[8] = 0;
         }
 
         public void Release()
         {
-            Tools.HoldArgs[2] = 0;
-            Tools.HoldArgs[3] = 0;
-            Tools.HoldArgs[4] = 0;
-            Tools.HoldArgs[5] = 0;
-            Tools.HoldArgs[6] = 0;
-            Tools.HoldArgs[7] = 0;
-            Tools.HoldArgs[8] = 0;
+            object[] holdArgs = new object[10];
+            holdArgs[2] = 0;
+            holdArgs[3] = 0;
+            holdArgs[4] = 0;
+            holdArgs[5] = 0;
+            holdArgs[6] = 0;
+            holdArgs[7] = 0;
+            holdArgs[8] = 0;
+        }
+
+        public void Say(string s, Room r)
+        {
+            if (this.C(r).Connected)
+            {
+                this.C(r).Send("say", s);
+                Thread.Sleep(this.Bot.SpeechDelay);
+            }
+        }
+
+        public void SetTitle(string s, Room r)
+        {
+            if (this.C(r).Connected && s != string.Empty)
+            {
+                this.C(r).Send("name", s);
+            }
+        }
+
+        // TODO: Add these
+        // Room voids:
+        public void Save(Room r)
+        { 
+        }
+
+        public void Loadlevel(Room r)
+        {
+            if (this.Bot.IsOwner)
+            {
+                this.Say("/loadlevel", r);
+            }
+        }
+
+        public void Reset(Room r)
+        {
+            if (this.Bot.IsOwner)
+            {
+                this.Say("/reset", r);
+            }
+        }
+
+        public void RespawnAll(Room r)
+        {
+            if (this.Bot.IsOwner)
+            {
+                this.Say("/respawnall", r); 
+            }
+        }
+
+        public void SetAllPotionBans(bool value)
+        { 
+        }
+
+        public void SetAllPlayerBans(bool value)
+        {
+        }
+
+        public void Ban(Potion p)
+        { 
+        }
+
+        public void Ban(Player p)
+        { 
+        }
+
+        public void Unban(Potion p)
+        {
+        }
+
+        public void Unban(Player p)
+        { 
+        }
+
+        public void Mute(Player p)
+        {
+        }
+
+        public void GiveEdit(Player p, Room r)
+        {
+            if (this.Bot.IsOwner)
+            {
+                this.Say("/giveedit " + p.Name, r);
+            }
+        }
+
+        public void RemoveEdit(Player p, Room r)
+        {
+            if (this.Bot.IsOwner)
+            {
+                this.Say("/removeedit " + p.Name, r);
+            }
+        }
+
+        public void Respawn(Player p, Room r)
+        {
+            if (this.Bot.IsOwner)
+            {
+                this.Say("/kill " + p.Name, r);
+            }
+        }
+
+        public void Kick(Player p)
+        {
+        }
+
+        public void Kill(Player p)
+        {
+        }
+
+        public void Teleport(Player p)
+        {
         }
     }
 }
