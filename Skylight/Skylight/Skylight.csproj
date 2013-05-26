@@ -59,10 +59,10 @@
     <Compile Include="BlockIds.cs" />
     <Compile Include="Bot.cs" />
     <Compile Include="BotClient.cs" />
+    <Compile Include="BotEventArgs.cs" />
     <Compile Include="ChatEventArgs.cs" />
     <Compile Include="Coords.cs" />
     <Compile Include="PercussionBlock.cs" />
-    <Compile Include="InitEventArgs.cs" />
     <Compile Include="PlayerEventArgs.cs" />
     <Compile Include="Block.cs" />
     <Compile Include="In.cs" />

@@ -3,157 +3,154 @@
 namespace Skylight
 {
     using System;
+    using System.Collections.Generic;
 
     public class Player
     {
-        private int 
-            smiley, 
-            id = -1, 
-            coins,
-            xpLevel,
-            collectedMagic;
-
+        // Private instance fields
         private bool
-            commandAccess = false,
             hasAccess = false,
             hasBoost = false,
             hasClub = false,
+            hasCommandAccess = false,
             hasCrown = false,
-            hasSilverCrown = false,
             hasGravityModifier = false,
+            hasSilverCrown = false,
             isFriend = false,
             isGod = false,
             isHoldingDown = false,
-            isHoldingUp = false,
-            isHoldingRight = false,
             isHoldingLeft = false,
-            isHoldingSpace = true,
+            isHoldingRight = false,
+            isHoldingUp = false,
+            isHoldingSpace = false,
             isMod = false,
             isOwner = false;
 
-        private Room isPlayingIn;
-
-        private string name;
+        private int
+            coins,
+            collectedMagic,
+            id = -1,
+            smiley,
+            xpLevel;
 
         private double
             horizontalDirection,
-            verticalDirection,
             horizontalModifier,
-            verticalModifier,
-            x,
-            y,
             horizontalSpeed,
-            verticalSpeed;
+            verticalModifier,
+            verticalDirection,
+            verticalSpeed,
+            x,
+            y;
+            
+        private Room playingIn;
 
-        private Potion potionEffect;
+        private string name;
 
-        public Potion PotionEffect
+        private List<Potion> potionEffects = new List<Potion>();
+
+        // Public instance properties.
+        public bool HasAccess
         {
             get
             {
-                return this.potionEffect;
+                return this.hasAccess;
             }
 
             internal set
             {
-                this.potionEffect = value;
+                this.hasAccess = value;
             }
         }
-
-        public int CollectedMagic
+        
+        public bool HasBoost
         {
             get
-            {                
-                return this.collectedMagic;
+            {
+                return this.hasBoost;
             }
 
             internal set
             {
-                this.collectedMagic = value;
+                this.hasBoost = value;
             }
         }
-
-        public bool CommandAccess
+        
+        public bool HasClub
         {
             get
             {
-                return this.commandAccess;
+                return this.hasClub;
+            }
+
+            internal set
+            {
+                this.hasClub = value;
+            }
+        }
+        
+        public bool HasCommandAccess
+        {
+            get
+            {
+                return this.hasCommandAccess;
             }
 
             set
             {
-                this.commandAccess = value;
+                this.hasCommandAccess = value;
             }
         }
-
-        public Room IsPlayingIn
+        
+        public bool HasCrown
         {
             get
             {
-                return this.isPlayingIn;
+                return this.hasCrown;
             }
 
             internal set
             {
-                this.isPlayingIn = value;
+                this.hasCrown = value;
             }
         }
-
-        public string Name
-        {
-            get { return this.name; }
-            internal set { this.name = value.ToLower(); }
-        }
-
-        public int Smiley
+        
+        public bool HasGravityModifier
         {
             get
             {
-                return this.smiley;
+                return this.hasGravityModifier;
             }
 
             internal set
             {
-                this.smiley = value;
+                this.hasGravityModifier = value;
             }
         }
 
-        public int Id
+        public bool HasSilverCrown
         {
             get
             {
-                return this.id;
+                return this.hasSilverCrown;
             }
 
             internal set
             {
-                this.id = value;
+                this.hasSilverCrown = value;
             }
         }
 
-        public int Coins
+        public bool IsFriend
         {
             get
             {
-                return this.coins;
+                return this.isFriend;
             }
 
             internal set
             {
-                this.coins = value;
-            }
-        }
-
-        public int XpLevel
-        {
-            get
-            {
-                return this.xpLevel;
-            }
-
-            internal set
-            {
-                this.xpLevel = value;
+                this.isFriend = value;
             }
         }
 
@@ -180,19 +177,6 @@ namespace Skylight
             internal set
             {
                 this.isMod = value;
-            }
-        }
-
-        public bool IsFriend
-        {
-            get
-            {
-                return this.isFriend;
-            }
-
-            internal set
-            {
-                this.isFriend = value;
             }
         }
 
@@ -281,7 +265,84 @@ namespace Skylight
             }
         }
 
-        // Location in the world
+        public double HorizontalDirection
+        {
+            get
+            {
+                return this.horizontalDirection;
+            }
+
+            internal set
+            {
+                this.horizontalDirection = value;
+            }
+        }
+        
+        public double HorizontalModifier
+        {
+            get
+            {
+                return this.horizontalModifier;
+            }
+
+            internal set
+            {
+                this.horizontalModifier = value;
+            }
+        }
+        
+        public double HorizontalSpeed
+        {
+            get
+            {
+                return this.horizontalSpeed;
+            }
+
+            internal set
+            {
+                this.horizontalSpeed = value;
+            }
+        }
+
+        public double VerticalDirection
+        {
+            get
+            {
+                return this.verticalDirection;
+            }
+
+            internal set
+            {
+                this.verticalDirection = value;
+            }
+        }
+        
+        public double VerticalModifier
+        {
+            get
+            {
+                return this.verticalModifier;
+            }
+
+            internal set
+            {
+                this.verticalModifier = value;
+            }
+        }
+        
+        public double VerticalSpeed
+        {
+            get
+            {
+                return this.verticalSpeed;
+            }
+
+            internal set
+            {
+                this.verticalSpeed = value;
+            }
+        }
+        
         public double X
         {
             get
@@ -307,163 +368,102 @@ namespace Skylight
                 this.y = value;
             }
         }
-
-        // Movement variables
-        public double HorizontalSpeed
+        
+        public int Coins
         {
             get
             {
-                return this.horizontalSpeed;
+                return this.coins;
             }
 
             internal set
             {
-                this.horizontalSpeed = value;
+                this.coins = value;
+            }
+        }
+        
+        public int CollectedMagic
+        {
+            get
+            {                
+                return this.collectedMagic;
+            }
+
+            internal set
+            {
+                this.collectedMagic = value;
+            }
+        }
+        
+        public int Id
+        {
+            get
+            {
+                return this.id;
+            }
+
+            internal set
+            {
+                this.id = value;
+            }
+        }
+        
+        public int Smiley
+        {
+            get
+            {
+                return this.smiley;
+            }
+
+            internal set
+            {
+                this.smiley = value;
             }
         }
 
-        public double VerticalSpeed
+        public int XpLevel
         {
             get
             {
-                return this.verticalSpeed;
+                return this.xpLevel;
             }
 
             internal set
             {
-                this.verticalSpeed = value;
+                this.xpLevel = value;
             }
         }
 
-        public double HorizontalModifier
+        public List<Potion> PotionEffects
         {
             get
             {
-                return this.horizontalModifier;
+                return this.potionEffects;
             }
 
             internal set
             {
-                this.horizontalModifier = value;
+                this.potionEffects = value;
+            }
+        }
+        
+        public Room IsPlayingIn
+        {
+            get
+            {
+                return this.playingIn;
+            }
+
+            internal set
+            {
+                this.playingIn = value;
             }
         }
 
-        public double VerticalModifier
+        public string Name
         {
-            get
-            {
-                return this.verticalModifier;
-            }
-
-            internal set
-            {
-                this.verticalModifier = value;
-            }
-        }
-
-        public double HorizontalDirection
-        {
-            get
-            {
-                return this.horizontalDirection;
-            }
-
-            internal set
-            {
-                this.horizontalDirection = value;
-            }
-        }
-
-        public double VerticalDirection
-        {
-            get
-            {
-                return this.verticalDirection;
-            }
-
-            internal set
-            {
-                this.verticalDirection = value;
-            }
-        }
-
-        // Things that you can own
-        public bool HasClub
-        {
-            get
-            {
-                return this.hasClub;
-            }
-
-            internal set
-            {
-                this.hasClub = value;
-            }
-        }
-
-        public bool HasBoost
-        {
-            get
-            {
-                return this.hasBoost;
-            }
-
-            internal set
-            {
-                this.hasBoost = value;
-            }
-        }
-
-        public bool HasAccess
-        {
-            get
-            {
-                return this.hasAccess;
-            }
-
-            internal set
-            {
-                this.hasAccess = value;
-            }
-        }
-
-        public bool HasSilverCrown
-        {
-            get
-            {
-                return this.hasSilverCrown;
-            }
-
-            internal set
-            {
-                this.hasSilverCrown = value;
-            }
-        }
-
-        public bool HasCrown
-        {
-            get
-            {
-                return this.hasCrown;
-            }
-
-            internal set
-            {
-                this.hasCrown = value;
-            }
-        }
-
-        public bool HasGravityModifier
-        {
-            get
-            {
-                return this.hasGravityModifier;
-            }
-
-            internal set
-            {
-                this.hasGravityModifier = value;
-            }
+            get { return this.name; }
+            internal set { this.name = value.ToLower(); }
         }
     }
 }

@@ -13,6 +13,7 @@ namespace Skylight
         {
             get
             {
+                // Scan every bot for the match.
                 foreach (Room r in Room.JoinedRooms)
                 {
                     foreach (Bot b in r.ConnectedBots)
@@ -24,7 +25,7 @@ namespace Skylight
                     }
                 }
 
-                Console.WriteLine("Throwing new bot...");
+                Console.WriteLine("Referenced to an unknown bot in Out.cs");
                 return new Bot();
             }
         }
@@ -42,6 +43,7 @@ namespace Skylight
                 }
             }
 
+            Console.WriteLine("Referenced to an unknown connection in Out.cs");
             return null;
         }
 
@@ -64,7 +66,7 @@ namespace Skylight
                 }
             }
         }
-        
+
         public void HoldDown(Room r)
         {
             object[] holdArgs = new object[10];
@@ -167,10 +169,42 @@ namespace Skylight
             }
         }
 
-        // TODO: Add these
-        // Room voids:
-        public void Save(Room r)
-        { 
+        // TODO: Finish this.
+        // * SYSTEM: 
+        // Type '/help' followed by command name.
+        // Command names:
+        //     /loadlevel
+        //     /reset
+        //     /respawnall
+        //     /giveedit
+        //     /removeedit
+        //     /kick
+        //     /kill
+        //     /killemall
+        //     /teleport
+        // /potionson
+        // /potionsoff
+        // /visible
+        // /getpos
+        // /listportals
+        // /reportabuse
+        // /kickguests
+        // /mute
+        // /unmute
+        public void BanPlayer(Room r, Player p)
+        {
+        }
+        
+        public void BanPotion(Room r, Potion p)
+        {
+        }
+
+        public void Kick(Room r, Player p)
+        {
+        }
+
+        public void Kill(Room r, Player p)
+        {
         }
 
         public void Loadlevel(Room r)
@@ -178,6 +212,22 @@ namespace Skylight
             if (this.Bot.IsOwner)
             {
                 this.Say("/loadlevel", r);
+            }
+        }
+        
+        public void Respawn(Room r, Player p)
+        {
+            if (this.Bot.IsOwner)
+            {
+                this.Say("/kill " + p.Name, r);
+            }
+        }
+
+        public void RespawnAll(Room r)
+        {
+            if (this.Bot.IsOwner)
+            {
+                this.Say("/respawnall", r);
             }
         }
 
@@ -189,43 +239,42 @@ namespace Skylight
             }
         }
 
-        public void RespawnAll(Room r)
+        public void Save(Room r)
         {
-            if (this.Bot.IsOwner)
+        }
+
+        public void SetAllPotionBans(Room r, bool value)
+        {
+            if (this.C(r).Connected && this.Bot.IsOwner)
             {
-                this.Say("/respawnall", r); 
+                if (value)
+                {
+                    this.Say("/potionson", r);
+                }
+                else
+                {
+                    this.Say("/potionsoff", r);
+                }
             }
         }
 
-        public void SetAllPotionBans(bool value)
-        { 
-        }
-
-        public void SetAllPlayerBans(bool value)
+        public void SetAllPlayerBans(Room r, bool value)
         {
         }
 
-        public void Ban(Potion p)
-        { 
-        }
-
-        public void Ban(Player p)
-        { 
-        }
-
-        public void Unban(Potion p)
+        public void SetPotionBan(Room r, Potion p, bool value)
         {
         }
 
-        public void Unban(Player p)
-        { 
-        }
-
-        public void Mute(Player p)
+        public void SetPlayerBan(Room r, Player p, bool value)
         {
         }
 
-        public void GiveEdit(Player p, Room r)
+        public void SetMute(Room r, Player p, bool value)
+        {
+        }
+
+        public void SetEdit(Room r, Player p)
         {
             if (this.Bot.IsOwner)
             {
@@ -233,32 +282,12 @@ namespace Skylight
             }
         }
 
-        public void RemoveEdit(Player p, Room r)
-        {
-            if (this.Bot.IsOwner)
-            {
-                this.Say("/removeedit " + p.Name, r);
-            }
-        }
-
-        public void Respawn(Player p, Room r)
-        {
-            if (this.Bot.IsOwner)
-            {
-                this.Say("/kill " + p.Name, r);
-            }
-        }
-
-        public void Kick(Player p)
+        public void Teleport(Room r, Player p, Coords newLocation)
         {
         }
 
-        public void Kill(Player p)
-        {
-        }
-
-        public void Teleport(Player p)
-        {
+        public void TeleportAll(Room r, Coords newLocation)
+        { 
         }
     }
 }

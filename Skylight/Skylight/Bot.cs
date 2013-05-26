@@ -8,27 +8,44 @@
 
     public class Bot : Player
     {
-        internal static readonly string GameID = "everybody-edits-su9rn58o40itdbnw69plyw";
+        private bool
+            isConnected;
 
-        // TODO: Organize these damned variables
-        private int blockDelay = 6, speechDelay = 60;
-        private string email, password;
-        private bool isConnected;
+        private int 
+            blockDelay  = 6, 
+            speechDelay = 60;
 
+        private string 
+            email, 
+            password;
+      
         private BotClient botClient = new BotClient();
+
         private Out push = new Out();
 
-        // Each pull is from a different room
-        public Out Push
+        public bool IsConnected
         {
             get
             {
-                return this.push;
+                return this.isConnected;
             }
 
             internal set
             {
-                this.push = value;
+                this.isConnected = value;
+            }
+        }
+        
+        public int BlockDelay
+        {
+            get
+            {
+                return this.blockDelay;
+            }
+
+            set
+            {
+                this.blockDelay = value;
             }
         }
         
@@ -42,19 +59,6 @@
             set
             {
                 this.speechDelay = value;
-            }
-        }
-
-        public int BlockDelay
-        {
-            get
-            {
-                return this.blockDelay;
-            }
-
-            set
-            {
-                this.blockDelay = value;
             }
         }
 
@@ -84,19 +88,6 @@
             }
         }
 
-        public bool IsConnected
-        {
-            get
-            {
-                return this.isConnected;
-            }
-
-            internal set
-            {
-                this.isConnected = value;
-            }
-        }
-
         internal BotClient BotClient
         {
             get
@@ -109,15 +100,28 @@
                 this.botClient = value;
             }
         }
+        
+        internal Out Push
+        {
+            get
+            {
+                return this.push;
+            }
+
+            set
+            {
+                this.push = value;
+            }
+        }
 
         // Public methods
         public void LogIn()
         {
             try
             {
-                this.BotClient.Client = PlayerIO.QuickConnect.SimpleConnect(GameID, this.Email, this.Password);
+                this.BotClient.Client = PlayerIO.QuickConnect.SimpleConnect(Tools.GameID, this.Email, this.Password);
                 Console.ForegroundColor = Tools.Success;
-                Console.WriteLine("Connected/Logged in successfully.");
+                Console.WriteLine("Logged in successfully.");
             }
             catch (PlayerIOError e)
             {

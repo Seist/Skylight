@@ -6,10 +6,12 @@ namespace Skylight
 
     public class BlockEventArgs : EventArgs
     {
-        private Block placed;
-        private Player placer;
         private Room origin;
 
+        private Block placed;
+
+        private Player placer;
+        
         public BlockEventArgs(Block b, Room origin)
         {
             this.origin = origin;
@@ -17,6 +19,11 @@ namespace Skylight
             this.placer = b.Placer;
         }
 
+        public Room Origin
+        {
+            get { return this.origin; }
+        }
+        
         public Block Placed
         {
             get { return this.placed; }
@@ -25,11 +32,6 @@ namespace Skylight
         public Player Placer
         {
             get { return this.placer; }
-        }
-
-        public Room Origin
-        {
-            get { return this.origin; }
         }
     }
 }

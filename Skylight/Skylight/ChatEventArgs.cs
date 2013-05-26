@@ -9,7 +9,7 @@ namespace Skylight
     public class ChatEventArgs : EventArgs
     {
         private Player speaker;
-        
+
         private Room origin;
 
         public ChatEventArgs(Player speaker, Room origin)
@@ -19,9 +19,9 @@ namespace Skylight
             this.speaker = speaker;
         }
 
-        public Player Speaker
+        public string Message
         {
-            get { return this.speaker; }
+            get { return this.Origin.ChatLog.Last().Key; }
         }
 
         public Room Origin
@@ -29,9 +29,9 @@ namespace Skylight
             get { return this.origin; }
         }
 
-        public string Message
+        public Player Speaker
         {
-            get { return this.Origin.ChatLog.Last().Key; }
+            get { return this.speaker; }
         }
     }
 }

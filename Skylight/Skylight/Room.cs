@@ -12,36 +12,46 @@ namespace Skylight
         private static List<Room> joinedRooms = new List<Room>();
 
         // Private instance fields
-        private List<Connection> connections = new List<Connection>();
-        private Dictionary<Coords, Block> map = new Dictionary<Coords, Block>();
-        private List<Player> alreadyOnlinePlayers = new List<Player>();
-        private List<Player> onlinePlayers = new List<Player>();
-        private List<KeyValuePair<string, Player>> chatLog = new List<KeyValuePair<string, Player>>();
-        private List<Bot> connectedBots = new List<Bot>();
+        // The room itself
+        private bool
+            hasPull        = false,
+            isInitialized  = false,
+            isTutorialRoom = false,
+            potionsAllowed = true;
+            
+        private double 
+            gravityMultiplier;
+
+        private int
+            height,
+            plays,
+            totalWoots,
+            width,
+            woots;
+
         private string
+            editKey,   
             id,
             name,
-            worldKey,
-            editKey;
-
-        private bool
-            potionsAllowed,
-            isInitialized = false,
-            isTutorialRoom = false,
-            hasPull = false;
-
-        private int 
-            height,
-            width,
-            plays,
-            woots,
-            totalWoots;
-
-        private double gravityMultiplier;
+            worldKey;
+        
         private Player owner = new Player();
-        private In pull = new In();
-        private List<In> pulls = new List<In>();
-        private Bot receiver = new Bot();
+
+        // The players
+        private List<Player> onlinePlayers = new List<Player>();
+        private List<Bot> connectedBots    = new List<Bot>();
+
+        // The chat
+        private Dictionary<string, Player> chatLog = new Dictionary<string, Player>();
+        
+        // The map
+        private Dictionary<Coords, Block> map = new Dictionary<Coords, Block>();
+
+        // Receivers of new information:
+        private Bot receiver                 = new Bot();
+        private In pull                      = new In();
+        private List<Connection> connections = new List<Connection>();
+        private List<In> pulls               = new List<In>();
 
         // Public static properties
         public static List<Room> JoinedRooms
@@ -58,29 +68,16 @@ namespace Skylight
         }
 
         // Public instance properties
-        public In Pull
+        public Dictionary<Coords, Block> Map
         {
             get
             {
-                return this.pull;
-            }
-
-            set
-            {
-                this.pull = value;
-            }
-        }
-
-        public Bot Receiver
-        {
-            get
-            {
-                return this.receiver;
+                return this.map;
             }
 
             internal set
             {
-                this.receiver = value;
+                this.map = value;
             }
         }
 
@@ -96,20 +93,72 @@ namespace Skylight
                 this.hasPull = value;
             }
         }
-
-        public List<In> Pulls
+        
+        public bool IsTutorialRoom
         {
             get
             {
-                return this.pulls;
+                return this.isTutorialRoom;
             }
 
             internal set
             {
-                this.pulls = value;
+                this.isTutorialRoom = value;
+            }
+        }
+        
+        public bool PotionsAllowed
+        {
+            get
+            {
+                return this.potionsAllowed;
+            }
+
+            set
+            {
+                this.potionsAllowed = value;
             }
         }
 
+        public bool IsInitialized
+        {
+            get
+            {
+                return this.isInitialized;
+            }
+
+            internal set
+            {
+                this.isInitialized = value;
+            }
+        }
+        
+        public Bot Receiver
+        {
+            get
+            {
+                return this.receiver;
+            }
+
+            internal set
+            {
+                this.receiver = value;
+            }
+        }
+        
+        public Dictionary<string, Player> ChatLog
+        {
+            get
+            {
+                return this.chatLog;
+            }
+
+            internal set
+            {
+                this.chatLog = value;
+            }
+        }
+        
         public double GravityMultiplier
         {
             get
@@ -123,149 +172,32 @@ namespace Skylight
             }
         }
 
-        public bool IsTutorialRoom
+        public In Pull
         {
             get
             {
-                return this.isTutorialRoom;
-            }
-
-            internal set
-            {
-                this.isTutorialRoom = value;
-            }
-        }
-
-        public List<Bot> ConnectedBots
-        {
-            get
-            {
-                return this.connectedBots;
+                return this.pull;
             }
 
             set
             {
-                this.connectedBots = value;
+                this.pull = value;
             }
         }
-
-        public string Id
-        {
-            get
-            {
-                return this.id;
-            }
-
-            set
-            {
-                this.id = value;
-            }
-        }
-
-        public string EditKey
-        {
-            get
-            {
-                return this.editKey;
-            }
-
-            set
-            {
-                this.editKey = value;
-            }
-        }
-
-        public Dictionary<Coords, Block> Map
-        {
-            get
-            {
-                return this.map;
-            }
-
-            internal set
-            {
-                this.map = value;
-            }
-        }
-
-        public List<Player> OnlinePlayers
-        {
-            get
-            {
-                return this.onlinePlayers;
-            }
-
-            internal set
-            {
-                this.onlinePlayers = value;
-            }
-        }
-
-        public List<Player> AlreadyOnlinePlayers
-        {
-            get
-            {
-                return this.alreadyOnlinePlayers;
-            }
-
-            internal set
-            {
-                this.alreadyOnlinePlayers = value;
-            }
-        }
-
-        public List<KeyValuePair<string, Player>> ChatLog
-        {
-            get
-            {
-                return this.chatLog;
-            }
-
-            internal set
-            {
-                this.chatLog = value;
-            }
-        }
-
-        public string Name
-        {
-            get
-            {
-                return this.name;
-            }
-
-            set
-            {
-                this.name = value;
-            }
-        }
-
-        public Player Owner
+        
+        public int Height
         {
             get
             { 
-                return this.owner;
+                return this.height;
             }
 
             internal set
             { 
-                this.owner = value;
+                this.height = value;
             }
         }
-
-        public string RoomKey
-        {
-            get
-            { 
-                return this.worldKey;
-            }
-
-            internal set
-            { 
-                this.worldKey = value;
-            }
-        }
-
+        
         public int Plays
         {
             get
@@ -278,20 +210,7 @@ namespace Skylight
                 this.plays = value;
             }
         }
-
-        public int Woots
-        {
-            get
-            { 
-                return this.woots;
-            }
-
-            internal set
-            { 
-                this.woots = value;
-            }
-        }
-
+        
         public int TotalWoots
         {
             get
@@ -317,43 +236,121 @@ namespace Skylight
                 this.width = value;
             }
         }
-
-        public int Height
+        
+        public int Woots
         {
             get
             { 
-                return this.height;
+                return this.woots;
             }
 
             internal set
             { 
-                this.height = value;
+                this.woots = value;
             }
         }
 
-        public bool PotionsAllowed
+        public List<Bot> ConnectedBots
         {
             get
             {
-                return this.potionsAllowed;
+                return this.connectedBots;
             }
 
             set
             {
-                this.potionsAllowed = value;
+                this.connectedBots = value;
             }
         }
 
-        public bool IsInitialized
+        public List<In> Pulls
         {
             get
             {
-                return this.isInitialized;
+                return this.pulls;
             }
 
             internal set
             {
-                this.isInitialized = value;
+                this.pulls = value;
+            }
+        }
+        
+        public List<Player> OnlinePlayers
+        {
+            get
+            {
+                return this.onlinePlayers;
+            }
+
+            internal set
+            {
+                this.onlinePlayers = value;
+            }
+        }
+        
+        public Player Owner
+        {
+            get
+            { 
+                return this.owner;
+            }
+
+            internal set
+            { 
+                this.owner = value;
+            }
+        }
+        
+        public string EditKey
+        {
+            get
+            {
+                return this.editKey;
+            }
+
+            set
+            {
+                this.editKey = value;
+            }
+        }
+
+        public string Id
+        {
+            get
+            {
+                return this.id;
+            }
+
+            set
+            {
+                this.id = value;
+            }
+        }
+
+        public string Name
+        {
+            get
+            {
+                return this.name;
+            }
+
+            set
+            {
+                this.name = value;
+            }
+        }
+        
+        public string RoomKey
+        {
+            get
+            { 
+                return this.worldKey;
+            }
+
+            internal set
+            { 
+                this.worldKey = value;
             }
         }
 

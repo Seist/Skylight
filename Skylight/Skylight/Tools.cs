@@ -9,8 +9,6 @@ namespace Skylight
 
     public static class Tools
     {
-        public static readonly Random Ran = new Random();
-
         public static readonly ConsoleColor
             Blank = ConsoleColor.White,
             Progress = ConsoleColor.Yellow,
@@ -18,7 +16,41 @@ namespace Skylight
             Error = ConsoleColor.Red,
             Info = ConsoleColor.Cyan;
 
-        public static Player GetPlayer(int id, Room r)
+        public static readonly Random
+            Ran = new Random();
+
+        internal const string GameID = "everybody-edits-su9rn58o40itdbnw69plyw";
+        
+        public static List<Player> GetWinners(Room r)
+        {
+            List<Player> winners = new List<Player>();
+
+            foreach (Player p in r.OnlinePlayers)
+            {
+                if (p.HasSilverCrown)
+                {
+                    winners.Add(p);
+                }
+            }
+
+            return winners;
+        }
+        
+        public static Player GetCrownHolder(Room r)
+        {
+            foreach (Player p in r.OnlinePlayers)
+            {
+                if (p.HasCrown)
+                {
+                    return p;
+                }
+            }
+
+            Console.WriteLine("Could not find crown holder.");
+            return new Player() { Name = "null" };
+        }
+
+        public static Player GetPlayerById(int id, Room r)
         {
             foreach (Player p in r.OnlinePlayers)
             {
@@ -40,7 +72,7 @@ namespace Skylight
             return new Player() { Name = "Null" };
         }
 
-        public static Player GetPlayer(string name, Room r)
+        public static Player GetPlayerByName(string name, Room r)
         {
             foreach (Player p in r.OnlinePlayers)
             {
@@ -76,35 +108,6 @@ namespace Skylight
             return new Room();
         }
 
-        public static Player GetCrownHolder(Room r)
-        {
-            foreach (Player p in r.OnlinePlayers)
-            {
-                if (p.HasCrown)
-                {
-                    return p;
-                }
-            }
-
-            Console.WriteLine("Could not find crown holder.");
-            return new Player() { Name = "null" };
-        }
-
-        public static List<Player> GetWinners(Room r)
-        {
-            List<Player> winners = new List<Player>();
-
-            foreach (Player p in r.OnlinePlayers)
-            {
-                if (p.HasSilverCrown)
-                {
-                    winners.Add(p);
-                }
-            }
-
-            return winners;
-        }
-
         public static void Shuffle<T>(this IList<T> list)
         {
             int n = list.Count;
@@ -116,20 +119,6 @@ namespace Skylight
                 list[k] = list[n];
                 list[n] = value;
             }
-        }
-
-        internal static string ParseURL(string id)
-        {
-            // If it matches any type of URL and has 13 characters at the end, return the last 13 characters.
-            // Supports haphazard copy/pasting.
-            if (Regex.IsMatch(id, "[htp:/w.evrybodis.comga]{0,36}[a-zA-Z0-9_-]{13}"))
-            {
-                string parsedURL = id.Substring(id.ToCharArray().Length - 13, 13);
-                return parsedURL;
-            }
-
-            // I don't even know what you put in.
-            return null;
         }
         
         internal static string Derot(string worldKey)
@@ -166,6 +155,20 @@ namespace Skylight
             }
 
             return new string(array);
+        }
+        
+        internal static string ParseURL(string id)
+        {
+            // If it matches any type of URL and has 13 characters at the end, return the last 13 characters.
+            // Supports haphazard copy/pasting.
+            if (Regex.IsMatch(id, "[htp:/w.evrybodis.comga]{0,36}[a-zA-Z0-9_-]{13}"))
+            {
+                string parsedURL = id.Substring(id.ToCharArray().Length - 13, 13);
+                return parsedURL;
+            }
+
+            // I don't even know what you put in.
+            return null;
         }
     }
 }

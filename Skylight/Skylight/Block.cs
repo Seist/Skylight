@@ -12,19 +12,28 @@ namespace Skylight
 
     public class Block
     {
-        public static readonly int
+        // Public const ints
+        public const int
             RIGHT = 0,
-            DOWN = 1,
-            LEFT = 2,
-            UP = 3;
+            DOWN  = 1,
+            LEFT  = 2,
+            UP    = 3;
 
-        // Fields
-        private int id, direction;
-        private Player placer;
-        private Room r;
-        private Coords coords;
+        // Private instance fields
+        private Coords 
+            coords;
+        
+        private int 
+            direction,
+            id;
+            
+        private Player 
+            placer;
 
-        // Properties
+        private Room 
+            r;
+
+        // Public isntance properties
         public Coords Coords
         {
             get
@@ -41,6 +50,22 @@ namespace Skylight
             }
         }
 
+        public int Direction
+        {
+            get
+            {
+                return this.direction;
+            }
+
+            set
+            {
+                if (this.direction == 0)
+                {
+                    this.direction = value;
+                }
+            }
+        }
+        
         public int Id
         {
             get
@@ -72,22 +97,6 @@ namespace Skylight
             }
         }
 
-        public int Direction
-        {
-            get
-            {
-                return this.direction;
-            }
-
-            set
-            {
-                if (this.direction == 0)
-                {
-                    this.direction = value;
-                }
-            }
-        }
-
         public Player Placer
         {
             get
@@ -101,7 +110,7 @@ namespace Skylight
             }
         }
 
-        public Room W
+        public Room R
         {
             get
             {
