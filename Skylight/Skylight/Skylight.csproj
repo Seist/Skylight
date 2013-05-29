@@ -61,6 +61,7 @@
     <Compile Include="BotClient.cs" />
     <Compile Include="BotEventArgs.cs" />
     <Compile Include="ChatEventArgs.cs" />
+    <Compile Include="CoinBlock.cs" />
     <Compile Include="Coords.cs" />
     <Compile Include="PercussionBlock.cs" />
     <Compile Include="PlayerEventArgs.cs" />
@@ -68,7 +69,7 @@
     <Compile Include="In.cs" />
     <Compile Include="Out.cs" />
     <Compile Include="Player.cs" />
-    <Compile Include="Portal.cs" />
+    <Compile Include="PortalBlock.cs" />
     <Compile Include="Potion.cs" />
     <Compile Include="PotionIds.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -79,10 +80,11 @@
     </Compile>
     <Compile Include="Smiley.cs" />
     <Compile Include="PianoBlock.cs" />
+    <Compile Include="TextBlock.cs" />
     <Compile Include="Tools.cs" />
     <Compile Include="Room.cs" />
     <Compile Include="WorldEventArgs.cs" />
-    <Compile Include="WorldPortal.cs" />
+    <Compile Include="RoomPortalBlock.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

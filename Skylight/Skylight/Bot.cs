@@ -11,9 +11,10 @@
         private bool
             isConnected;
 
+        // In milliseconds.
         private int 
-            blockDelay  = 6, 
-            speechDelay = 60;
+            blockDelay  = 50, 
+            speechDelay = 50;
 
         private string 
             email, 
@@ -88,6 +89,19 @@
             }
         }
 
+        public Out Push
+        {
+            get
+            {
+                return this.push;
+            }
+
+            internal set
+            {
+                this.push = value;
+            }
+        }
+        
         internal BotClient BotClient
         {
             get
@@ -95,22 +109,9 @@
                 return this.botClient;
             }
 
-            private set
-            {
-                this.botClient = value;
-            }
-        }
-        
-        internal Out Push
-        {
-            get
-            {
-                return this.push;
-            }
-
             set
             {
-                this.push = value;
+                this.botClient = value;
             }
         }
 
@@ -162,27 +163,36 @@
                 Room.JoinedRooms.Add(r);
                 r.ConnectedBots.Add(this);
                 r.OnlinePlayers.Add(this);
-                r.Pulls.Add(r.Pull);
-
-                // Only one pull per room has a receiver.
-                if (!r.HasPull)
-                {
-                    r.Receiver = this;
-                    r.HasPull = true;
-                    r.Pulls[0] = r.Pull;
-                }
-
-                // Every pull has a source room and a bot and an OnMessage.
-                r.Pulls.Last().Source = r;
-                r.Pulls.Last().Bot = this;
-
-                c.OnMessage += r.Pulls.Last().OnMessage;
-
-                c.Send("init");
-                c.Send("init2");
-
+            
+                // Everyone gets a connection.
                 r.Connections.Add(c);
                 this.BotClient.Connections.Add(c);
+
+                // Every bot receives info from the room, because some of it is exclusive to the bot.
+                // We call those "personal" pulls.
+                // They are exactly the same as the main pull, except In.IsPersonal = true.
+                r.Pulls.Add(r.Pull);
+                r.Pulls.Last().IsPersonal = true;
+                r.Pulls.Last().Source = r;
+                r.Pulls.Last().Bot = this;
+                c.OnMessage += r.Pulls.Last().OnMessage;
+
+                // However, everything else only needs one bot to handle. Things like chat and movement.
+                // We don't need five bots firing an event every time someone chats.
+                if (!r.HasPull)
+                {
+                    r.HasPull = true;
+
+                    r.Receiver = this;
+
+                    r.Pull.IsPersonal = false;
+                    r.Pull.Bot = this;
+                    r.Pull.Source = r;
+                }
+
+                // Once everything is settled, send the init.
+                c.Send("init");
+                c.Send("init2");
             }
             catch (Exception e)
             {

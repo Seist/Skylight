@@ -8,7 +8,13 @@
 
     public class Coords
     {
-        private int x, y;
+        private int x = -1, y = -1;
+
+        public Coords(int x, int y)
+        {
+            this.X = x;
+            this.Y = y;
+        }
 
         public int X
         {
@@ -19,10 +25,7 @@
 
             set
             {
-                if (this.x == 0)
-                {
-                    this.x = value;
-                }
+                this.x = value;
             }
         }
 
@@ -30,15 +33,12 @@
         {
             get
             {
-                return this.x;
+                return this.y;
             }
 
             set
             {
-                if (this.y == 0)
-                {
-                    this.y = value;
-                }
+                this.y = value;
             }
         }
     }

@@ -2,7 +2,7 @@
 {
     using System;
 
-    public partial class PercussionBlock : Block
+    public class PercussionBlock : Block
     {
         public const int
             BASE1   = 0,
@@ -18,11 +18,34 @@
 
         private int percussionId = -1;
 
+        public PercussionBlock(
+            int x,
+            int y,
+            int id,
+            int percussionId,
+            Room r,
+            Player placer = null) : base(x, y, id, r, placer)
+        {
+            this.Coords.X = x;
+            this.Coords.Y = y;
+            this.PercussionId = percussionId;
+            this.R = r;
+            this.Placer = placer;
+        }
+
         public int PercussionId
         {
             get
             {
                 return this.percussionId;
+            }
+
+            set
+            {
+                if (this.percussionId == -1)
+                {
+                    this.percussionId = value;
+                }
             }
         }
     }

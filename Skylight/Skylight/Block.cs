@@ -21,19 +21,36 @@ namespace Skylight
 
         // Private instance fields
         private Coords 
-            coords;
+            coords = new Coords(0, 0);
         
         private int 
             direction,
             id;
             
         private Player 
-            placer;
+            placer = new Player();
 
         private Room 
-            r;
+            r = new Room();
+        
+        // Constructor
+        public Block(
+            int x, 
+            int y, 
+            int id, 
+            Room r, 
+            Player placer = null, 
+            int direction = UP)
+        {
+            this.Coords.X = x;
+            this.Coords.Y = y;
+            this.Id = id;
+            this.R = r;
+            this.Placer = placer;
+            this.Direction = direction;
+        }
 
-        // Public isntance properties
+        // Public instance properties
         public Coords Coords
         {
             get
@@ -43,10 +60,7 @@ namespace Skylight
 
             set
             {
-                if (this.coords == null)
-                {
-                    this.coords = value;
-                }
+                this.coords = value;
             }
         }
 
@@ -57,12 +71,9 @@ namespace Skylight
                 return this.direction;
             }
 
-            set
+            internal set
             {
-                if (this.direction == 0)
-                {
-                    this.direction = value;
-                }
+                this.direction = value;
             }
         }
         
@@ -73,12 +84,9 @@ namespace Skylight
                 return this.id;
             }
 
-            set
+            internal set
             {
-                if (this.id == 0)
-                {
-                    this.id = value;
-                }
+                this.id = value;
             }
         }
 

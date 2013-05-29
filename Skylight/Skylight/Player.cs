@@ -29,6 +29,7 @@ namespace Skylight
         private int
             coins,
             collectedMagic,
+            deathCount = 0,
             id = -1,
             smiley,
             xpLevel;
@@ -392,6 +393,19 @@ namespace Skylight
             internal set
             {
                 this.collectedMagic = value;
+            }
+        }
+
+        public int DeathCount
+        {
+            get
+            {
+                return this.deathCount;
+            }
+
+            internal set
+            {
+                this.deathCount = value;
             }
         }
         

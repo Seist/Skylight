@@ -2,18 +2,38 @@
 {
     using System;
 
-    public partial class Portal : Block
+    public partial class PortalBlock : Block
     {
         private const int
             MINPORTALID = 0,
             MAXPORTALID = 99;
 
         private bool 
-            visible;
+            visible = false;
 
         private int
-            portalDestination,
-            portalId;
+            portalDestination = -1,
+            portalId = -1;
+        
+        public PortalBlock(
+            int x, 
+            int y, 
+            int id, 
+            int portalDestination, 
+            int portalId, 
+            bool visible,
+            Room r, 
+            int direction = Block.RIGHT,
+            Player placer = null) : base(x, y, id, r, placer)
+        {
+            this.Coords.X = x;
+            this.Coords.Y = y;
+            this.PortalDestination = portalDestination;
+            this.PortalId = portalId;
+            this.Visible = visible;
+            this.R = r;
+            this.Placer = placer;
+        }
 
         public int PortalDestination
         {
@@ -22,7 +42,7 @@
                 return this.portalDestination;
             }
 
-            set
+            internal set
             {
                 if (value > MINPORTALID && value < MAXPORTALID)
                 {
@@ -38,7 +58,7 @@
                 return this.portalId;
             }
 
-            set
+            internal set
             {
                 if (value < MAXPORTALID && value > MINPORTALID)
                 {

@@ -2,7 +2,7 @@
 {
     using System;
 
-    public partial class PianoBlock : Block
+    public class PianoBlock : Block
     {
         public const int
             C1      = 1,
@@ -32,12 +32,35 @@
             C3      = 25;
 
         private int pianoId = -1;
+        
+        public PianoBlock(
+            int x, 
+            int y, 
+            int id, 
+            int key, 
+            Room r, 
+            Player placer = null) : base(x, y, id, r, placer)
+        {
+            this.Coords.X = x;
+            this.Coords.Y = y;
+            this.PianoId = key;
+            this.R = r;
+            this.Placer = placer;
+        }
 
         public int PianoId
         {
             get
             {
                 return this.pianoId;
+            }
+
+            set
+            {
+                if (this.pianoId == -1)
+                {
+                    this.pianoId = value;
+                }
             }
         }
     }

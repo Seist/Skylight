@@ -14,10 +14,11 @@ namespace Skylight
         // Private instance fields
         // The room itself
         private bool
-            hasPull        = false,
-            isInitialized  = false,
+            hasPull = false,
+            isInitialized = false,
             isTutorialRoom = false,
-            potionsAllowed = true;
+            potionsAllowed = true,
+            timeDoorsVisible = false;
             
         private double 
             gravityMultiplier;
@@ -94,6 +95,19 @@ namespace Skylight
             }
         }
         
+        public bool IsInitialized
+        {
+            get
+            {
+                return this.isInitialized;
+            }
+
+            internal set
+            {
+                this.isInitialized = value;
+            }
+        }
+        
         public bool IsTutorialRoom
         {
             get
@@ -120,16 +134,16 @@ namespace Skylight
             }
         }
 
-        public bool IsInitialized
+        public bool TimeDoorsVisible
         {
             get
             {
-                return this.isInitialized;
+                return this.timeDoorsVisible;
             }
 
             internal set
             {
-                this.isInitialized = value;
+                this.timeDoorsVisible = value;
             }
         }
         
