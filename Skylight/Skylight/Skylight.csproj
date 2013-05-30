@@ -62,7 +62,6 @@
     <Compile Include="BotEventArgs.cs" />
     <Compile Include="ChatEventArgs.cs" />
     <Compile Include="CoinBlock.cs" />
-    <Compile Include="Coords.cs" />
     <Compile Include="PercussionBlock.cs" />
     <Compile Include="PlayerEventArgs.cs" />
     <Compile Include="Block.cs" />

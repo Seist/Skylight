@@ -24,6 +24,8 @@
 
         private Out push = new Out();
 
+        private Room r = new Room();
+
         public bool IsConnected
         {
             get
@@ -101,6 +103,19 @@
                 this.push = value;
             }
         }
+
+        public Room R
+        {
+            get
+            {
+                return this.r;
+            }
+
+            set
+            {
+                this.r = value;
+            }
+        }
         
         internal BotClient BotClient
         {
@@ -120,14 +135,25 @@
         {
             try
             {
+                Console.ForegroundColor = Tools.Success; 
+                Console.Write("Logging in...");
                 this.BotClient.Client = PlayerIO.QuickConnect.SimpleConnect(Tools.GameID, this.Email, this.Password);
-                Console.ForegroundColor = Tools.Success;
-                Console.WriteLine("Logged in successfully.");
+                for (int i = 0; i < 13; i++)
+                {
+                    Console.Write("\b \b");
+                }
+
+                Console.WriteLine("Logged in.");
             }
             catch (PlayerIOError e)
             {
+                for (int i = 0; i < 13; i++)
+                {
+                    Console.Write("\b \b");
+                }
+
                 Console.ForegroundColor = Tools.Error;
-                Console.WriteLine("Could not connect/log in: {0}", e.Message);
+                Console.WriteLine("Cannot log in: {0}", e.Message);
                 this.IsConnected = false;
                 return;
             }
@@ -135,11 +161,8 @@
             this.IsConnected = true;
         }
 
-        public void Join(Room r)
+        public void Join()
         {
-            // Parse the level ID (because some people like to put full URLs in).
-            r.Id = Tools.ParseURL(r.Id);
-
             if (!this.IsConnected)
             {
                 // Log in
@@ -151,53 +174,82 @@
                     return;
                 }
             }
+            
+            Console.Write("Parsing URL...");
+
+            // Parse the level ID (because some people like to put full URLs in).
+            this.R.Id = Tools.ParseURL(this.R.Id);
+            for (int i = 0; i < 14; i++)
+            {
+                Console.Write("\b \b");
+            }
 
             try
             {
                 Connection c;
+                Console.Write("Establishing connection...");
 
                 // Join room
-                c = this.BotClient.Client.Multiplayer.JoinRoom(r.Id, new Dictionary<string, string>());
+                c = this.BotClient.Client.Multiplayer.JoinRoom(this.R.Id, new Dictionary<string, string>());
+                for (int i = 0; i < 26; i++)
+                {
+                    Console.Write("\b \b");
+                }
 
                 // Update room data
-                Room.JoinedRooms.Add(r);
-                r.ConnectedBots.Add(this);
-                r.OnlinePlayers.Add(this);
+                Console.Write("Creating receivers...");
+                Room.JoinedRooms.Add(this.R);
+                this.R.ConnectedBots.Add(this);
+                this.R.OnlinePlayers.Add(this);
             
                 // Everyone gets a connection.
-                r.Connections.Add(c);
+                this.R.Connections.Add(c);
                 this.BotClient.Connections.Add(c);
 
                 // Every bot receives info from the room, because some of it is exclusive to the bot.
                 // We call those "personal" pulls.
                 // They are exactly the same as the main pull, except In.IsPersonal = true.
-                r.Pulls.Add(r.Pull);
-                r.Pulls.Last().IsPersonal = true;
-                r.Pulls.Last().Source = r;
-                r.Pulls.Last().Bot = this;
-                c.OnMessage += r.Pulls.Last().OnMessage;
+                In p = new In();
+                p.IsPersonal = true;
+                p.Source = this.R;
+                p.Bot = this;
+                c.OnMessage += p.OnMessage;
+                this.R.Pulls.Add(p);
 
                 // However, everything else only needs one bot to handle. Things like chat and movement.
                 // We don't need five bots firing an event every time someone chats.
-                if (!r.HasPull)
+                if (!this.R.HasPull)
                 {
-                    r.HasPull = true;
+                    this.R.HasPull = true;
 
-                    r.Receiver = this;
+                    this.R.Receiver = this;
 
-                    r.Pull.IsPersonal = false;
-                    r.Pull.Bot = this;
-                    r.Pull.Source = r;
+                    c.OnMessage += this.R.Pull.OnMessage;
+                    this.R.Pull.IsPersonal = false;
+                    this.R.Pull.Bot = this;
+                    this.R.Pull.Source = this.R;
                 }
 
                 // Once everything is settled, send the init.
                 c.Send("init");
                 c.Send("init2");
+
+                for (int i = 0; i < 21; i++)
+                {
+                    Console.Write("\b \b");
+                }
+
+                Console.WriteLine("Joined room.");
             }
             catch (Exception e)
             {
+                for (int i = 0; i < 26; i++)
+                {
+                    Console.Write("\b \b");
+                }
+
                 Console.ForegroundColor = Tools.Error;
-                Console.Write("Unable to join room \"{0}\": {1}", r.Id, e.Message);
+                Console.WriteLine("Unable to join room \"{0}\": {1}", this.R.Id, e.Message);
 
                 return;
             }

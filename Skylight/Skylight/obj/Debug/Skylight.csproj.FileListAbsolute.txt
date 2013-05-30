@@ -7,9 +7,9 @@ C:\Users\Tako.TAKOS-PC\Documents\GitHub\Skylight\Skylight\Skylight\bin\Debug\Sky
 C:\Users\Tako.TAKOS-PC\Documents\GitHub\Skylight\Skylight\Skylight\bin\Debug\Skylight.pdb
 C:\Users\Tako.TAKOS-PC\Documents\GitHub\Skylight\Skylight\Skylight\obj\Debug\Skylight.dll
 C:\Users\Tako.TAKOS-PC\Documents\GitHub\Skylight\Skylight\Skylight\obj\Debug\Skylight.pdb
-C:\Users\Tako.TAKOS-PC\Documents\GitHub\Skylight\Skylight\Skylight\obj\Debug\Skylight.csprojResolveAssemblyReference.cache
 C:\Users\Tako.TAKOS-PC\Documents\GitHub\Skylight\Skylight\Skylight\bin\Debug\BlockData.dll
 C:\Users\Tako.TAKOS-PC\Documents\GitHub\Skylight\Skylight\Skylight\bin\Debug\BlockData.pdb
 C:\Users\Tako.TAKOS-PC\Documents\GitHub\Skylight\Skylight\Skylight\bin\Debug\Skylight.dll.config
 C:\Users\Tako.TAKOS-PC\Documents\GitHub\Skylight\Skylight\Skylight\bin\Debug\PlayerIOClient.dll
 C:\Users\Tako.TAKOS-PC\Documents\GitHub\Skylight\Skylight\Skylight\bin\Debug\PlayerIOClient.xml
+C:\Users\Tako.TAKOS-PC\Documents\GitHub\Skylight\Skylight\Skylight\obj\Debug\Skylight.csprojResolveAssemblyReference.cache

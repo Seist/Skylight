@@ -5,6 +5,7 @@ namespace Skylight
     using System;
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
+    using System.Threading;
     using PlayerIOClient;
 
     public static class Tools
@@ -20,7 +21,173 @@ namespace Skylight
             Ran = new Random();
 
         internal const string GameID = "everybody-edits-su9rn58o40itdbnw69plyw";
-        
+
+        public static List<Block> ConvertMessageToBlockList(Message m, uint start, Room r)
+        {
+            List<Block> list = new List<Block>();
+            try
+            {
+                //// FULL CREDIT TO BASS5098 FOR THE FOLLOWING CODE
+                //// I wrote it in my own way in C# but Bass5098 made the original.
+                //// https://github.com/kevin-brown/ee-level-editor/blob/master/LevelEditor/WorldConverter.vb
+                //// Lines 438-507
+                //// Praise him. (this is mainly due to my laziness)
+
+                uint messageIndex = start;
+
+                // Iterate through each set of messages.
+                while (messageIndex < m.Count)
+                {
+                    // If it is a string, exit.
+                    if (m[messageIndex] is string)
+                    {
+                        break;
+                    }
+
+                    // The ID is first.
+                    int blockId = m.GetInteger(messageIndex);
+                    messageIndex++;
+
+                    // Then the z.
+                    int z = m.GetInteger(messageIndex);
+                    messageIndex++;
+
+                    // Then the list of all X coordinates of given block
+                    byte[] xa = m.GetByteArray(messageIndex);
+                    messageIndex++;
+                    
+                    // Then the list of all Y coordinates of given block
+                    byte[] ya = m.GetByteArray(messageIndex);
+                    messageIndex++;
+
+                    // Some variables to simplify things.
+                    int x = 0, y = 0;
+
+                    for (int pos = 0; pos < ya.Length; pos += 2)
+                    {
+                        x = (xa[pos] * 256) + xa[pos + 1];
+                        y = (ya[pos] * 256) + ya[pos + 1];
+
+                        if (blockId == BlockIds.Action.Portals.NORMAL ||
+                            blockId == BlockIds.Action.Portals.INVISIBLE)
+                        {
+                            int direction = m.GetInteger(messageIndex);
+                            messageIndex++;
+                            
+                            int portalId = m.GetInteger(messageIndex);
+                            messageIndex++;
+                            
+                            int destination = m.GetInteger(messageIndex);
+                            messageIndex++;
+                            
+                            bool isVisible = true;
+                            if (blockId == BlockIds.Action.Portals.INVISIBLE)
+                            {
+                                isVisible = false;
+                            }
+
+                            list.Add(new PortalBlock(
+                                blockId,
+                                x,
+                                y,
+                                direction,
+                                portalId,
+                                destination,
+                                isVisible,
+                                r));
+                        }
+                        else if (blockId == BlockIds.Action.Portals.WORLD)
+                        {                            
+                            string destination = m.GetString(messageIndex);
+                            messageIndex++;
+
+                            list.Add(new RoomPortalBlock(
+                                x,
+                                y,
+                                destination,
+                                r));
+                        }
+                        else if (blockId == BlockIds.Action.Doors.COIN ||
+                            blockId == BlockIds.Action.Gates.COIN)
+                        {
+                            int coins = m.GetInteger(messageIndex);
+                            messageIndex++;
+                            
+                            bool isGate = false;
+                            if (blockId == BlockIds.Action.Gates.COIN)
+                            {
+                                isGate = true;
+                            }
+
+                            list.Add(new CoinBlock(
+                                blockId,
+                                x,
+                                y,
+                                coins,
+                                isGate,
+                                r));
+                        }
+                        else if (blockId == BlockIds.Action.Music.PERCUSSION)
+                        {
+                            int type = m.GetInteger(messageIndex);
+                            messageIndex++;
+
+                            list.Add(new PercussionBlock(
+                                x,
+                                y,
+                                type,
+                                r));
+                        }
+                        else if (blockId == BlockIds.Action.Music.PIANO)
+                        {
+                            int note = m.GetInteger(messageIndex);
+                            messageIndex++;
+
+                            list.Add(new PianoBlock(
+                                x,
+                                y,
+                                note,
+                                r));
+                        }
+                        else if (blockId == BlockIds.Decorative.SciFi2013.BLUEBEND ||
+                            blockId == BlockIds.Decorative.SciFi2013.BLUESTRAIGHT ||
+                            blockId == BlockIds.Decorative.SciFi2013.GREENBEND ||
+                            blockId == BlockIds.Decorative.SciFi2013.GREENSTRAIGHT ||
+                            blockId == BlockIds.Decorative.SciFi2013.ORANGEBEND ||
+                            blockId == BlockIds.Decorative.SciFi2013.ORANGESTRAIGHT ||
+                            blockId == BlockIds.Action.Hazards.SPIKE)
+                        {
+                            int rotation = m.GetInteger(messageIndex);
+                            messageIndex++;
+
+                            list.Add(new Block(
+                                blockId,
+                                x,
+                                y,
+                                r,
+                                null,
+                                rotation));
+                        }
+                        else
+                        {
+                            list.Add(new Block(
+                            blockId,
+                            x,
+                            y,
+                            r,
+                            null));
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error loading existing blocks: " + e.Message);
+            }
+            
+            return list;
+        }
+
         public static List<Player> GetWinners(Room r)
         {
             List<Player> winners = new List<Player>();
@@ -52,6 +219,7 @@ namespace Skylight
 
         public static Player GetPlayerById(int id, Room r)
         {
+            Console.WriteLine("Searching {0} players.", r.OnlinePlayers.Count);
             foreach (Player p in r.OnlinePlayers)
             {
                 if (p.Id == id)
@@ -60,6 +228,7 @@ namespace Skylight
                 }
             }
 
+            Console.WriteLine("Searching {0} bots.", r.ConnectedBots.Count);
             foreach (Bot bt in r.ConnectedBots)
             {
                 if (bt.Id == id)
@@ -106,6 +275,49 @@ namespace Skylight
 
             Console.WriteLine("Could not find room \"{0}\"", name);
             return new Room();
+        }
+
+        public static void DisplayBlockData(Block b)
+        {
+            for (int i = 0; i < 34; i++)
+            {
+                Console.Write("\b");
+            }
+
+            Console.Write("Loading block {0} ", b.Id);
+            if (b.Id < 100)
+            {
+                Console.Write(" ");
+            }
+
+            if (b.Id < 10)
+            {
+                Console.Write(" ");
+            }
+
+            Console.Write("@ ( {0}", b.X);
+            if (b.X < 100)
+            {
+                Console.Write(" ");
+            }
+
+            if (b.X < 10)
+            {
+                Console.Write(" ");
+            }
+
+            Console.Write(" , {0} ", b.Y);
+            if (b.Y < 100)
+            {
+                Console.Write(" ");
+            }
+
+            if (b.Y < 10)
+            {
+                Console.Write(" ");
+            }
+
+            Console.Write(").");
         }
 
         public static void Shuffle<T>(this IList<T> list)
@@ -156,7 +368,7 @@ namespace Skylight
 
             return new string(array);
         }
-        
+
         internal static string ParseURL(string id)
         {
             // If it matches any type of URL and has 13 characters at the end, return the last 13 characters.
@@ -167,8 +379,7 @@ namespace Skylight
                 return parsedURL;
             }
 
-            // I don't even know what you put in.
-            return null;
+            return id;
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Skylight
             hasPull = false,
             isInitialized = false,
             isTutorialRoom = false,
-            potionsAllowed = true,
+            potionsAllowed = false,
             timeDoorsVisible = false;
             
         private double 
@@ -43,10 +43,10 @@ namespace Skylight
         private List<Bot> connectedBots    = new List<Bot>();
 
         // The chat
-        private Dictionary<string, Player> chatLog = new Dictionary<string, Player>();
+        private List<KeyValuePair<string, Player>> chatLog = new List<KeyValuePair<string, Player>>();
         
         // The map
-        private Dictionary<Coords, Block> map = new Dictionary<Coords, Block>();
+        private Block[,,] map = new Block[400, 400, 2];
 
         // Receivers of new information:
         private Bot receiver                 = new Bot();
@@ -69,7 +69,7 @@ namespace Skylight
         }
 
         // Public instance properties
-        public Dictionary<Coords, Block> Map
+        public Block[,,] Map
         {
             get
             {
@@ -159,8 +159,8 @@ namespace Skylight
                 this.receiver = value;
             }
         }
-        
-        public Dictionary<string, Player> ChatLog
+
+        public List<KeyValuePair<string, Player>> ChatLog
         {
             get
             {

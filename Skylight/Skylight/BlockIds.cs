@@ -26,7 +26,6 @@ namespace Skylight
         // 381
         // 385
         // 390-499
-        // 361-363
         // 341+
         public static class Blocks
         {
@@ -494,8 +493,8 @@ namespace Skylight
             public static class Hazards
             {
                 public const int
-                    SPIKE = 165,
-                    FIRE = 172;
+                    SPIKE = 361,
+                    FIRE = 368;
             }
 
             public static class Ladders

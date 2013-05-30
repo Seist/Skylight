@@ -16,18 +16,18 @@
             portalId = -1;
         
         public PortalBlock(
+            int id,
             int x, 
             int y, 
-            int id, 
-            int portalDestination, 
+            int direction,
             int portalId, 
+            int portalDestination, 
             bool visible,
             Room r, 
-            int direction = Block.RIGHT,
             Player placer = null) : base(x, y, id, r, placer)
         {
-            this.Coords.X = x;
-            this.Coords.Y = y;
+            this.X = x;
+            this.Y = y;
             this.PortalDestination = portalDestination;
             this.PortalId = portalId;
             this.Visible = visible;

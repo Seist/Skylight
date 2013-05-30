@@ -13,16 +13,16 @@
         private int coinsRequired = -1;
 
         public CoinBlock(
+            int id,
             int x,
             int y,
-            int id,
             int coinsRequired,
             bool isGate,
             Room r,
             Player placer = null) : base(x, y, id, r, placer)
         {
-            this.Coords.X = x;
-            this.Coords.Y = y;
+            this.X = x;
+            this.Y = y;
             this.CoinsRequired = coinsRequired;
             this.IsGate = isGate;
             this.R = r;

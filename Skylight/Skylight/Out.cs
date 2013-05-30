@@ -51,7 +51,7 @@ namespace Skylight
         {
             if (this.C(r).Connected)
             {
-                this.C(r).Send(r.RoomKey, b.Layer, b.Coords.X, b.Coords.Y, b.Id, b.Direction);
+                this.C(r).Send(r.RoomKey, b.Z, b.X, b.Y, b.Id, b.Direction);
                 Thread.Sleep(this.Bot.BlockDelay);
             }
         }
@@ -282,11 +282,11 @@ namespace Skylight
             }
         }
 
-        public void Teleport(Room r, Player p, Coords newLocation)
+        public void Teleport(Room r, Player p, int newXLocation, int newYLocation)
         {
         }
 
-        public void TeleportAll(Room r, Coords newLocation)
+        public void TeleportAll(Room r, int newXLocation, int newYLocation)
         { 
         }
     }

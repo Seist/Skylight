@@ -7,15 +7,15 @@
         private string text = null;
 
         public TextBlock(
+            int id,
             int x,
             int y,
-            int id,
             string text,
             Room r,
             Player placer = null) : base(x, y, id, r, placer)
         {
-            this.Coords.X = x;
-            this.Coords.Y = y;
+            this.X = x;
+            this.Y = y;
             this.Text = text;
             this.R = r;
             this.Placer = placer;

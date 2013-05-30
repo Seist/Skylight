@@ -10,10 +10,9 @@
         public RoomPortalBlock(
             int x,
             int y,
-            int id,
             string portalDestination,
             Room r,
-            Player placer = null) : base(x, y, id, r, placer)
+            Player placer = null) : base(x, y, BlockIds.Action.Portals.WORLD, r, placer)
         {
             this.PortalDestination = portalDestination;
         }

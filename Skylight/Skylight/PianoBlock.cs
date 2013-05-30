@@ -33,16 +33,15 @@
 
         private int pianoId = -1;
         
-        public PianoBlock(
+        public PianoBlock( 
             int x, 
             int y, 
-            int id, 
             int key, 
             Room r, 
-            Player placer = null) : base(x, y, id, r, placer)
+            Player placer = null) : base(BlockIds.Action.Music.PIANO, x, y, r, placer)
         {
-            this.Coords.X = x;
-            this.Coords.Y = y;
+            this.X = x;
+            this.Y = y;
             this.PianoId = key;
             this.R = r;
             this.Placer = placer;
