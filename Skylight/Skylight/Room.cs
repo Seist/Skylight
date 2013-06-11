@@ -12,13 +12,12 @@ namespace Skylight
         private static List<Room> joinedRooms = new List<Room>();
 
         // Private instance fields
-        // The room itself
         private bool
-            hasPull = false,
-            isInitialized = false,
-            isTutorialRoom = false,
-            potionsAllowed = false,
-            timeDoorsVisible = false;
+            hasPull,
+            isInitialized,
+            isTutorialRoom,
+            potionsAllowed,
+            timeDoorsVisible;
             
         private double 
             gravityMultiplier;
@@ -40,16 +39,16 @@ namespace Skylight
 
         // The players
         private List<Player> onlinePlayers = new List<Player>();
-        private List<Bot> connectedBots    = new List<Bot>();
+        private List<Bot> onlineBots    = new List<Bot>();
 
         // The chat
         private List<KeyValuePair<string, Player>> chatLog = new List<KeyValuePair<string, Player>>();
         
-        // The map
+        // The map (a three-dimensional array of blocks)
         private Block[,,] map = new Block[400, 400, 2];
 
         // Receivers of new information:
-        private Bot receiver                 = new Bot();
+        private Bot receiver;
         private In pull                      = new In();
         private List<Connection> connections = new List<Connection>();
         private List<In> pulls               = new List<In>();
@@ -62,7 +61,7 @@ namespace Skylight
                 return joinedRooms;
             }
 
-            internal set
+            set
             {
                 joinedRooms = value;
             }
@@ -76,7 +75,7 @@ namespace Skylight
                 return this.map;
             }
 
-            internal set
+            set
             {
                 this.map = value;
             }
@@ -89,7 +88,7 @@ namespace Skylight
                 return this.hasPull;
             }
 
-            internal set
+            set
             {
                 this.hasPull = value;
             }
@@ -102,7 +101,7 @@ namespace Skylight
                 return this.isInitialized;
             }
 
-            internal set
+            set
             {
                 this.isInitialized = value;
             }
@@ -115,7 +114,7 @@ namespace Skylight
                 return this.isTutorialRoom;
             }
 
-            internal set
+            set
             {
                 this.isTutorialRoom = value;
             }
@@ -141,12 +140,12 @@ namespace Skylight
                 return this.timeDoorsVisible;
             }
 
-            internal set
+            set
             {
                 this.timeDoorsVisible = value;
             }
         }
-        
+
         public Bot Receiver
         {
             get
@@ -154,22 +153,9 @@ namespace Skylight
                 return this.receiver;
             }
 
-            internal set
+            set
             {
                 this.receiver = value;
-            }
-        }
-
-        public List<KeyValuePair<string, Player>> ChatLog
-        {
-            get
-            {
-                return this.chatLog;
-            }
-
-            internal set
-            {
-                this.chatLog = value;
             }
         }
         
@@ -180,7 +166,7 @@ namespace Skylight
                 return this.gravityMultiplier;
             }
 
-            internal set
+            set
             {
                 this.gravityMultiplier = value;
             }
@@ -206,7 +192,7 @@ namespace Skylight
                 return this.height;
             }
 
-            internal set
+            set
             { 
                 this.height = value;
             }
@@ -219,7 +205,7 @@ namespace Skylight
                 return this.plays;
             }
 
-            internal set
+            set
             { 
                 this.plays = value;
             }
@@ -232,7 +218,7 @@ namespace Skylight
                 return this.totalWoots;
             }
 
-            internal set
+            set
             { 
                 this.totalWoots = value;
             }
@@ -245,7 +231,7 @@ namespace Skylight
                 return this.width;
             }
 
-            internal set
+            set
             { 
                 this.width = value;
             }
@@ -258,22 +244,9 @@ namespace Skylight
                 return this.woots;
             }
 
-            internal set
+            set
             { 
                 this.woots = value;
-            }
-        }
-
-        public List<Bot> ConnectedBots
-        {
-            get
-            {
-                return this.connectedBots;
-            }
-
-            set
-            {
-                this.connectedBots = value;
             }
         }
 
@@ -284,9 +257,22 @@ namespace Skylight
                 return this.pulls;
             }
 
-            internal set
+            set
             {
                 this.pulls = value;
+            }
+        }
+        
+        public List<KeyValuePair<string, Player>> ChatLog
+        {
+            get
+            {
+                return this.chatLog;
+            }
+
+            set
+            {
+                this.chatLog = value;
             }
         }
         
@@ -297,9 +283,22 @@ namespace Skylight
                 return this.onlinePlayers;
             }
 
-            internal set
+            set
             {
                 this.onlinePlayers = value;
+            }
+        }
+
+        public List<Bot> OnlineBots
+        {
+            get
+            {
+                return this.onlineBots;
+            }
+
+            set
+            {
+                this.onlineBots = value;
             }
         }
         
@@ -310,7 +309,7 @@ namespace Skylight
                 return this.owner;
             }
 
-            internal set
+            set
             { 
                 this.owner = value;
             }
@@ -362,7 +361,7 @@ namespace Skylight
                 return this.worldKey;
             }
 
-            internal set
+            set
             { 
                 this.worldKey = value;
             }

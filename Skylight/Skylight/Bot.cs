@@ -10,6 +10,8 @@
     {
         private bool
             isConnected;
+        
+        private Client client;
 
         // In milliseconds.
         private int 
@@ -19,8 +21,8 @@
         private string 
             email, 
             password;
-      
-        private BotClient botClient = new BotClient();
+
+        private Connection connection;
 
         private Out push = new Out();
 
@@ -33,9 +35,22 @@
                 return this.isConnected;
             }
 
-            internal set
+            set
             {
                 this.isConnected = value;
+            }
+        }
+        
+        public Client Client
+        {
+            get
+            {
+                return this.client;
+            }
+
+            set
+            {
+                this.client = value;
             }
         }
         
@@ -98,7 +113,7 @@
                 return this.push;
             }
 
-            internal set
+            set
             {
                 this.push = value;
             }
@@ -116,17 +131,17 @@
                 this.r = value;
             }
         }
-        
-        internal BotClient BotClient
+       
+        public Connection Connection
         {
             get
             {
-                return this.botClient;
+                return this.connection;
             }
 
             set
             {
-                this.botClient = value;
+                this.connection = value;
             }
         }
 
@@ -135,23 +150,13 @@
         {
             try
             {
-                Console.ForegroundColor = Tools.Success; 
-                Console.Write("Logging in...");
-                this.BotClient.Client = PlayerIO.QuickConnect.SimpleConnect(Tools.GameID, this.Email, this.Password);
-                for (int i = 0; i < 13; i++)
-                {
-                    Console.Write("\b \b");
-                }
+                this.Client = PlayerIO.QuickConnect.SimpleConnect(Tools.GameID, this.Email, this.Password);
 
+                Console.ForegroundColor = Tools.Success; 
                 Console.WriteLine("Logged in.");
             }
             catch (PlayerIOError e)
             {
-                for (int i = 0; i < 13; i++)
-                {
-                    Console.Write("\b \b");
-                }
-
                 Console.ForegroundColor = Tools.Error;
                 Console.WriteLine("Cannot log in: {0}", e.Message);
                 this.IsConnected = false;
@@ -175,46 +180,29 @@
                 }
             }
             
-            Console.Write("Parsing URL...");
-
             // Parse the level ID (because some people like to put full URLs in).
             this.R.Id = Tools.ParseURL(this.R.Id);
-            for (int i = 0; i < 14; i++)
-            {
-                Console.Write("\b \b");
-            }
 
             try
             {
-                Connection c;
-                Console.Write("Establishing connection...");
-
                 // Join room
-                c = this.BotClient.Client.Multiplayer.JoinRoom(this.R.Id, new Dictionary<string, string>());
-                for (int i = 0; i < 26; i++)
-                {
-                    Console.Write("\b \b");
-                }
+                this.Connection = this.Client.Multiplayer.JoinRoom(this.R.Id, new Dictionary<string, string>());
 
                 // Update room data
-                Console.Write("Creating receivers...");
                 Room.JoinedRooms.Add(this.R);
-                this.R.ConnectedBots.Add(this);
-                this.R.OnlinePlayers.Add(this);
             
                 // Everyone gets a connection.
-                this.R.Connections.Add(c);
-                this.BotClient.Connections.Add(c);
+                this.R.Connections.Add(this.Connection);
 
                 // Every bot receives info from the room, because some of it is exclusive to the bot.
                 // We call those "personal" pulls.
                 // They are exactly the same as the main pull, except In.IsPersonal = true.
-                In p = new In();
-                p.IsPersonal = true;
-                p.Source = this.R;
-                p.Bot = this;
-                c.OnMessage += p.OnMessage;
-                this.R.Pulls.Add(p);
+                In i = new In();
+                i.IsPersonal = true;
+                i.Source = this.R;
+                i.Bot = this;
+                this.Connection.OnMessage += i.OnMessage;
+                this.R.Pulls.Add(i);
 
                 // However, everything else only needs one bot to handle. Things like chat and movement.
                 // We don't need five bots firing an event every time someone chats.
@@ -224,35 +212,36 @@
 
                     this.R.Receiver = this;
 
-                    c.OnMessage += this.R.Pull.OnMessage;
+                    this.Connection.OnMessage += this.R.Pull.OnMessage;
                     this.R.Pull.IsPersonal = false;
                     this.R.Pull.Bot = this;
                     this.R.Pull.Source = this.R;
                 }
 
                 // Once everything is settled, send the init.
-                c.Send("init");
-                c.Send("init2");
+                this.Connection.Send("init");
+                this.Connection.Send("init2");
 
-                for (int i = 0; i < 21; i++)
-                {
-                    Console.Write("\b \b");
-                }
+                this.R.OnlinePlayers.Add(this);
 
+                Console.ForegroundColor = Tools.Success;
                 Console.WriteLine("Joined room.");
             }
             catch (Exception e)
             {
-                for (int i = 0; i < 26; i++)
-                {
-                    Console.Write("\b \b");
-                }
-
                 Console.ForegroundColor = Tools.Error;
                 Console.WriteLine("Unable to join room \"{0}\": {1}", this.R.Id, e.Message);
 
                 return;
             }
+        }
+
+        public void CancelConnection()
+        {
+            // Basically undo everything you already did.
+            this.Client = null;
+            this.Connection = null;
+            this.Push = null;
         }
     }
 }

@@ -9,31 +9,23 @@ namespace Skylight
     {
         // Private instance fields
         private bool
-            hasAccess = false,
-            hasBoost = false,
-            hasClub = false,
-            hasCommandAccess = false,
-            hasCrown = false,
-            hasGravityModifier = false,
-            hasSilverCrown = false,
-            isFriend = false,
-            isGod = false,
-            isHoldingDown = false,
-            isHoldingLeft = false,
-            isHoldingRight = false,
-            isHoldingUp = false,
-            isHoldingSpace = false,
-            isMod = false,
-            isOwner = false;
-
-        private int
-            coins,
-            collectedMagic,
-            deathCount = 0,
-            id = -1,
-            smiley,
-            xpLevel;
-
+            hasAccess,
+            hasBoost,
+            hasClub,
+            hasCommandAccess,
+            hasCrown,
+            hasGravityModifier,
+            hasSilverCrown,
+            isFriend,
+            isGod,
+            isHoldingDown,
+            isHoldingLeft,
+            isHoldingRight,
+            isHoldingUp,
+            isHoldingSpace,
+            isMod,
+            isOwner;
+        
         private double
             horizontalDirection,
             horizontalModifier,
@@ -43,12 +35,20 @@ namespace Skylight
             verticalSpeed,
             x,
             y;
+
+        private int
+            coins,
+            collectedMagic,
+            deathCount,
+            id = -1,
+            smiley,
+            xpLevel;
+
+        private List<int> potionEffects = new List<int>();
             
         private Room playingIn;
 
         private string name;
-
-        private List<Potion> potionEffects = new List<Potion>();
 
         // Public instance properties.
         public bool HasAccess
@@ -58,7 +58,7 @@ namespace Skylight
                 return this.hasAccess;
             }
 
-            internal set
+            set
             {
                 this.hasAccess = value;
             }
@@ -71,7 +71,7 @@ namespace Skylight
                 return this.hasBoost;
             }
 
-            internal set
+            set
             {
                 this.hasBoost = value;
             }
@@ -84,7 +84,7 @@ namespace Skylight
                 return this.hasClub;
             }
 
-            internal set
+            set
             {
                 this.hasClub = value;
             }
@@ -110,7 +110,7 @@ namespace Skylight
                 return this.hasCrown;
             }
 
-            internal set
+            set
             {
                 this.hasCrown = value;
             }
@@ -123,7 +123,7 @@ namespace Skylight
                 return this.hasGravityModifier;
             }
 
-            internal set
+            set
             {
                 this.hasGravityModifier = value;
             }
@@ -136,9 +136,28 @@ namespace Skylight
                 return this.hasSilverCrown;
             }
 
-            internal set
+            set
             {
                 this.hasSilverCrown = value;
+            }
+        }
+
+        public bool IsBot
+        {
+            get
+            {
+                if (this.PlayingIn != null)
+                {
+                    foreach (Bot bt in this.PlayingIn.OnlineBots)
+                    {
+                        if (bt.Id == this.Id)
+                        {
+                            return true;
+                        }
+                    }
+                }
+
+                return false;
             }
         }
 
@@ -149,7 +168,7 @@ namespace Skylight
                 return this.isFriend;
             }
 
-            internal set
+            set
             {
                 this.isFriend = value;
             }
@@ -162,7 +181,7 @@ namespace Skylight
                 return this.isGod;
             }
 
-            internal set
+            set
             {
                 this.isGod = value;
             }
@@ -175,7 +194,7 @@ namespace Skylight
                 return this.isMod;
             }
 
-            internal set
+            set
             {
                 this.isMod = value;
             }
@@ -188,7 +207,7 @@ namespace Skylight
                 return this.isHoldingLeft;
             }
 
-            internal set
+            set
             {
                 this.isHoldingLeft = value;
             }
@@ -201,7 +220,7 @@ namespace Skylight
                 return this.isHoldingRight;
             }
 
-            internal set
+            set
             {
                 this.isHoldingRight = value;
             }
@@ -214,7 +233,7 @@ namespace Skylight
                 return this.isHoldingUp;
             }
 
-            internal set
+            set
             {
                 this.isHoldingUp = value;
             }
@@ -227,7 +246,7 @@ namespace Skylight
                 return this.isHoldingDown;
             }
 
-            internal set
+            set
             {
                 this.isHoldingDown = value;
             }
@@ -240,7 +259,7 @@ namespace Skylight
                 return this.isHoldingSpace;
             }
 
-            internal set
+            set
             {
                 this.isHoldingSpace = value;
             }
@@ -250,7 +269,7 @@ namespace Skylight
         {
             get
             {
-                if (this.IsPlayingIn.Owner == this)
+                if (this.PlayingIn.Owner == this)
                 {
                     return true;
                 }
@@ -260,7 +279,7 @@ namespace Skylight
                 }
             }
 
-            internal set
+            set
             {
                 this.isOwner = value;
             }
@@ -273,7 +292,7 @@ namespace Skylight
                 return this.horizontalDirection;
             }
 
-            internal set
+            set
             {
                 this.horizontalDirection = value;
             }
@@ -286,7 +305,7 @@ namespace Skylight
                 return this.horizontalModifier;
             }
 
-            internal set
+            set
             {
                 this.horizontalModifier = value;
             }
@@ -299,7 +318,7 @@ namespace Skylight
                 return this.horizontalSpeed;
             }
 
-            internal set
+            set
             {
                 this.horizontalSpeed = value;
             }
@@ -312,7 +331,7 @@ namespace Skylight
                 return this.verticalDirection;
             }
 
-            internal set
+            set
             {
                 this.verticalDirection = value;
             }
@@ -325,7 +344,7 @@ namespace Skylight
                 return this.verticalModifier;
             }
 
-            internal set
+            set
             {
                 this.verticalModifier = value;
             }
@@ -338,7 +357,7 @@ namespace Skylight
                 return this.verticalSpeed;
             }
 
-            internal set
+            set
             {
                 this.verticalSpeed = value;
             }
@@ -351,7 +370,7 @@ namespace Skylight
                 return this.x;
             }
 
-            internal set
+            set
             {
                 this.x = value;
             }
@@ -364,7 +383,7 @@ namespace Skylight
                 return this.y;
             }
 
-            internal set
+            set
             {
                 this.y = value;
             }
@@ -377,7 +396,7 @@ namespace Skylight
                 return this.coins;
             }
 
-            internal set
+            set
             {
                 this.coins = value;
             }
@@ -390,7 +409,7 @@ namespace Skylight
                 return this.collectedMagic;
             }
 
-            internal set
+            set
             {
                 this.collectedMagic = value;
             }
@@ -403,7 +422,7 @@ namespace Skylight
                 return this.deathCount;
             }
 
-            internal set
+            set
             {
                 this.deathCount = value;
             }
@@ -416,7 +435,7 @@ namespace Skylight
                 return this.id;
             }
 
-            internal set
+            set
             {
                 this.id = value;
             }
@@ -429,7 +448,7 @@ namespace Skylight
                 return this.smiley;
             }
 
-            internal set
+            set
             {
                 this.smiley = value;
             }
@@ -442,33 +461,33 @@ namespace Skylight
                 return this.xpLevel;
             }
 
-            internal set
+            set
             {
                 this.xpLevel = value;
             }
         }
 
-        public List<Potion> PotionEffects
+        public List<int> PotionEffects
         {
             get
             {
                 return this.potionEffects;
             }
 
-            internal set
+            set
             {
                 this.potionEffects = value;
             }
         }
-        
-        public Room IsPlayingIn
+
+        public Room PlayingIn
         {
             get
             {
                 return this.playingIn;
             }
 
-            internal set
+            set
             {
                 this.playingIn = value;
             }
@@ -477,7 +496,7 @@ namespace Skylight
         public string Name
         {
             get { return this.name; }
-            internal set { this.name = value.ToLower(); }
+            set { this.name = value.ToLower(); }
         }
     }
 }

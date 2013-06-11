@@ -202,7 +202,7 @@ namespace Skylight
 
             return winners;
         }
-        
+
         public static Player GetCrownHolder(Room r)
         {
             foreach (Player p in r.OnlinePlayers)
@@ -214,53 +214,55 @@ namespace Skylight
             }
 
             Console.WriteLine("Could not find crown holder.");
-            return new Player() { Name = "null" };
+            return new Player();
         }
 
-        public static Player GetPlayerById(int id, Room r)
+        public static Player GetPlayerById(int id, Room r, bool onlyReturnBots = false)
         {
-            Console.WriteLine("Searching {0} players.", r.OnlinePlayers.Count);
             foreach (Player p in r.OnlinePlayers)
             {
                 if (p.Id == id)
                 {
-                    return p;
-                }
-            }
+                    // If value is false, return the first match.
+                    if (!onlyReturnBots)
+                    {
+                        return p;
+                    }
 
-            Console.WriteLine("Searching {0} bots.", r.ConnectedBots.Count);
-            foreach (Bot bt in r.ConnectedBots)
-            {
-                if (bt.Id == id)
-                {
-                    return bt;
+                    // Otherwise, only return a bot.
+                    if (p.IsBot)
+                    {
+                        return p;
+                    }
                 }
             }
 
             Console.WriteLine("Could not find player {0} in {1}", id, r.Name);
-            return new Player() { Name = "Null" };
+            return new Player();
         }
 
-        public static Player GetPlayerByName(string name, Room r)
+        public static Player GetPlayerByName(string name, Room r, bool onlyReturnBots = false)
         {
             foreach (Player p in r.OnlinePlayers)
             {
                 if (p.Name == name)
                 {
-                    return p;
+                    // If value is false, return the first match.
+                    if (!onlyReturnBots)
+                    {
+                        return p;
+                    }
+                    
+                    // Otherwise, only return a bot.
+                    if (p.IsBot)
+                    {
+                        return p;
+                    }
                 }
             }
 
-            foreach (Bot bt in r.ConnectedBots)
-            {
-                if (bt.Name == name)
-                {
-                    return bt;
-                }
-            }
-
-            Console.WriteLine("Could not find player {0}.", name);
-            return new Player() { Name = "Null" };
+            Console.WriteLine("Could not find player {0} in {1}", name, r.Name);
+            return new Player();
         }
 
         public static Room GetRoom(string name)
@@ -275,49 +277,6 @@ namespace Skylight
 
             Console.WriteLine("Could not find room \"{0}\"", name);
             return new Room();
-        }
-
-        public static void DisplayBlockData(Block b)
-        {
-            for (int i = 0; i < 34; i++)
-            {
-                Console.Write("\b");
-            }
-
-            Console.Write("Loading block {0} ", b.Id);
-            if (b.Id < 100)
-            {
-                Console.Write(" ");
-            }
-
-            if (b.Id < 10)
-            {
-                Console.Write(" ");
-            }
-
-            Console.Write("@ ( {0}", b.X);
-            if (b.X < 100)
-            {
-                Console.Write(" ");
-            }
-
-            if (b.X < 10)
-            {
-                Console.Write(" ");
-            }
-
-            Console.Write(" , {0} ", b.Y);
-            if (b.Y < 100)
-            {
-                Console.Write(" ");
-            }
-
-            if (b.Y < 10)
-            {
-                Console.Write(" ");
-            }
-
-            Console.Write(").");
         }
 
         public static void Shuffle<T>(this IList<T> list)

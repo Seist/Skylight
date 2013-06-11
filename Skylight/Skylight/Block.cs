@@ -57,7 +57,7 @@ namespace Skylight
                 return this.direction;
             }
 
-            internal set
+            set
             {
                 this.direction = value;
             }
@@ -70,7 +70,7 @@ namespace Skylight
                 return this.id;
             }
 
-            internal set
+            set
             {
                 this.id = value;
             }
@@ -98,7 +98,7 @@ namespace Skylight
                 return this.x;
             }
 
-            internal set
+            set
             {
                 this.x = value;
             }
@@ -111,7 +111,7 @@ namespace Skylight
                 return this.y;
             }
 
-            internal set
+            set
             {
                 this.y = value;
             }
@@ -124,7 +124,7 @@ namespace Skylight
                 return this.placer;
             }
 
-            internal set
+            set
             {
                 this.placer = value;
             }
@@ -137,7 +137,7 @@ namespace Skylight
                 return this.r;
             }
 
-            internal set
+            set
             {
                 this.r = value;
             }

@@ -305,7 +305,7 @@ namespace Skylight
             this.Bot.HasAccess = true;
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(this.Bot, this.Source);
+            PlayerEventArgs e = new PlayerEventArgs(this.Bot, this.Source, m);
 
             this.Source.Pull.GainAccessEvent(e);
         }
@@ -341,6 +341,7 @@ namespace Skylight
                 Y = y,
                 IsGod = isGod,
                 IsMod = isMod,
+                PlayingIn = this.Source,
                 IsFriend = isFriend,
                 HasBoost = hasBoost,
                 HasClub = hasClub
@@ -349,7 +350,7 @@ namespace Skylight
             this.Source.OnlinePlayers.Add(subject);
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source);
+            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
 
             this.Source.Pull.AddEvent(e);
         }
@@ -490,7 +491,7 @@ namespace Skylight
             subject.Coins = totalCoins;
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source);
+            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
 
             this.Source.Pull.CoinCollectedEvent(e);
         }
@@ -528,7 +529,7 @@ namespace Skylight
             subject.Smiley = smileyId;
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source);
+            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
 
             this.Source.Pull.FaceEvent(e);
         }
@@ -542,7 +543,7 @@ namespace Skylight
             Player subject = Tools.GetPlayerById(id, this.Source);
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source);
+            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
 
             this.Source.Pull.GrinchEvent(e);
         }
@@ -556,7 +557,7 @@ namespace Skylight
             Player subject = Tools.GetPlayerById(id, this.Source);
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source);
+            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
 
             this.Source.Pull.WitchEvent(e);
         }
@@ -570,7 +571,7 @@ namespace Skylight
             Player subject = Tools.GetPlayerById(id, this.Source);
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source);
+            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
 
             this.Source.Pull.WizardEvent(e);
         }
@@ -584,7 +585,7 @@ namespace Skylight
             Player subject = Tools.GetPlayerById(id, this.Source);
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source);
+            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
 
             this.Source.Pull.RedWizardEvent(e);
         }
@@ -602,7 +603,7 @@ namespace Skylight
             subject.IsGod = isGod;
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source);
+            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
 
             this.Source.Pull.GodEvent(e);
         }
@@ -629,13 +630,18 @@ namespace Skylight
             // Update relevant objects.
             Console.ForegroundColor = Tools.Info;
             Console.WriteLine("Bot {0} received a pop-up window:\n{1}\n{2}", this.Bot.Name, title, body);
-        
+
+            if (title == "Limit reached")
+            {
+                this.Bot.CancelConnection();
+            }
+
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(this.Bot, this.Source);
+            PlayerEventArgs e = new PlayerEventArgs(this.Bot, this.Source, m);
 
             this.Source.Pull.InfoEvent(e);
         }
-        
+
         private void OnInit(Message m)
         {
             // Extract data
@@ -661,15 +667,15 @@ namespace Skylight
                 isOwner = m.GetBoolean(11);
 
             // Update relevant objects
-            if (this.Bot.Id == -1)
-            {
-                this.Bot.Name = botName;
-                this.Bot.Id = botId;
-                this.Bot.X = botX;
-                this.Bot.Y = botY;
-                this.Bot.HasAccess = hasAccess;
-                this.Bot.IsOwner = isOwner;
-            }
+            this.Bot.Name = botName;
+            this.Bot.Id = botId;
+            this.Bot.X = botX;
+            this.Bot.Y = botY;
+            this.Bot.HasAccess = hasAccess;
+            this.Bot.IsOwner = isOwner;
+            this.Bot.PlayingIn = this.Source;
+
+            this.Source.OnlineBots.Add(this.Bot);
 
             if (this.Source.IsInitialized)
             {
@@ -690,35 +696,21 @@ namespace Skylight
             this.Source.GravityMultiplier = gravityMultiplier;
 
             this.Source.IsInitialized = true;
-            Console.Write("Initializing...");
 
+            // Load the blocks
             foreach (Block b in Tools.ConvertMessageToBlockList(m, 18, this.Source))
             {
-                Tools.DisplayBlockData(b);
-
                 this.Source.Map[b.X, b.Y, b.Z] = b;
-            }
-
-            for (int i = 0; i < 34; i++)
-            {
-                Console.Write("\b \b");
             }
 
             Console.WriteLine("Loaded room.");
 
-            try
+            foreach (Message msg in this.prematureMessages)
             {
-                foreach (Message msg in this.prematureMessages)
-                {
-                    this.OnMessage(new object(), msg);
-                }
-                
-                this.prematureMessages.Clear();
+                this.OnMessage(new object(), msg);
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+
+            this.prematureMessages.Clear();
 
             // Fire the event.
             RoomEventArgs e = new RoomEventArgs(this.Source);
@@ -740,13 +732,14 @@ namespace Skylight
             Player subject = Tools.GetPlayerById(id, this.Source);
 
             // Take the crown from the current holder.
-            Tools.GetCrownHolder(this.Source).HasCrown = false;
+            Player crownHolder = Tools.GetCrownHolder(this.Source);
+            crownHolder.HasCrown = false;
 
             // Give it to the subject.
             subject.HasCrown = true;
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source);
+            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
 
             this.Source.Pull.CrownEvent(e);
         }
@@ -762,7 +755,7 @@ namespace Skylight
             subject.DeathCount++;
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source);
+            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
 
             this.Source.Pull.DeathEvent(e);
         }
@@ -778,7 +771,7 @@ namespace Skylight
             subject.HasSilverCrown = true;
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source);
+            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
 
             this.Source.Pull.TrophyEvent(e);
         }
@@ -819,7 +812,7 @@ namespace Skylight
             }
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source);
+            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
 
             this.Source.Pull.LeaveEvent(e);
         }
@@ -835,7 +828,7 @@ namespace Skylight
             subject.XpLevel++;
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source);
+            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
 
             this.Source.Pull.LevelUpEvent(e);
         }
@@ -847,7 +840,7 @@ namespace Skylight
             this.Bot.HasAccess = false;
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(this.Bot, this.Source);
+            PlayerEventArgs e = new PlayerEventArgs(this.Bot, this.Source, m);
 
             this.Source.Pull.LoseAccessEvent(e);
         }
@@ -883,7 +876,7 @@ namespace Skylight
                     (subject.HorizontalDirection == horizontalDirection))
                 {
                     // Fire the jump event.
-                    PlayerEventArgs jumpEventArgs = new PlayerEventArgs(subject, this.Source);
+                    PlayerEventArgs jumpEventArgs = new PlayerEventArgs(subject, this.Source, m);
 
                     this.Source.Pull.JumpEvent(jumpEventArgs);
                 }
@@ -924,7 +917,7 @@ namespace Skylight
             }
 
             // Fire the event.
-            PlayerEventArgs movementEventArgs = new PlayerEventArgs(subject, this.Source);
+            PlayerEventArgs movementEventArgs = new PlayerEventArgs(subject, this.Source, m);
 
             this.Source.Pull.MovementEvent(movementEventArgs);
         }
@@ -942,7 +935,7 @@ namespace Skylight
             subject.IsMod = isMod;
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source);
+            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
 
             this.Source.Pull.ModModeEvent(e);
         }
@@ -958,14 +951,17 @@ namespace Skylight
             // Update relevant objects
             Player subject = Tools.GetPlayerById(id, this.Source);
 
-            subject.PotionEffects.Add(new Potion() 
-            { 
-                Id = potionId, 
-                IsActive = isActive 
-            });
+            if (isActive)
+            {
+                subject.PotionEffects.Add(id);
+            }
+            else
+            {
+                subject.PotionEffects.Remove(id);
+            }
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source);
+            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
 
             this.Source.Pull.PotionEvent(e);
         }
@@ -1012,7 +1008,6 @@ namespace Skylight
 
         private void OnReset(Message m)
         {
-            Console.WriteLine(m);
             foreach (Block b in Tools.ConvertMessageToBlockList(m, 1, this.Source))
             {
                 this.Source.Map[b.X, b.Y, b.Z] = b;
@@ -1090,7 +1085,7 @@ namespace Skylight
             subject.Y = y;
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source);
+            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
 
             this.Source.Pull.TeleportEvent(e);
         }
@@ -1139,7 +1134,7 @@ namespace Skylight
                 subject.Y = y;
 
                 // Fire the event.
-                PlayerEventArgs e = new PlayerEventArgs(subject, this.Source);
+                PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
 
                 this.Source.Pull.DeathEvent(e);
             }
@@ -1201,6 +1196,7 @@ namespace Skylight
 
         private void OnW(Message m)
         {
+            // "W" stands for "woot" which is the old name for magic.
             // Extract data.
             int id = m.GetInteger(0);
 
@@ -1210,7 +1206,7 @@ namespace Skylight
             subject.CollectedMagic++;
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source);
+            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
 
             this.Source.Pull.MagicCoinEvent(e);
         }
@@ -1263,7 +1259,7 @@ namespace Skylight
             this.Source.Woots++;
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source);
+            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
 
             this.Source.Pull.WootEvent(e);
         }

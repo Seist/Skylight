@@ -42,7 +42,7 @@
                 return this.portalDestination;
             }
 
-            internal set
+            set
             {
                 if (value > MINPORTALID && value < MAXPORTALID)
                 {
@@ -58,7 +58,7 @@
                 return this.portalId;
             }
 
-            internal set
+            set
             {
                 if (value < MAXPORTALID && value > MINPORTALID)
                 {

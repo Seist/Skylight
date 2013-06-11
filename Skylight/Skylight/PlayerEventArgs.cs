@@ -3,6 +3,7 @@
 namespace Skylight
 {
     using System;
+    using PlayerIOClient;
 
     public class PlayerEventArgs : EventArgs
     {
@@ -10,10 +11,13 @@ namespace Skylight
 
         private Room origin;
 
-        public PlayerEventArgs(Player subject, Room origin)
+        private Message rawMessage;
+
+        public PlayerEventArgs(Player subject, Room origin, Message rawMessage)
         {
             this.subject = subject;
             this.origin = origin;
+            this.rawMessage = rawMessage;
         }
 
         public Player Subject
@@ -24,6 +28,11 @@ namespace Skylight
         public Room Origin
         {
             get { return this.origin; }
+        }
+
+        public Message RawMessage
+        {
+            get { return this.rawMessage; }
         }
     }
 }

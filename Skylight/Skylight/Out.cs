@@ -16,7 +16,7 @@ namespace Skylight
                 // Scan every bot for the match.
                 foreach (Room r in Room.JoinedRooms)
                 {
-                    foreach (Bot b in r.ConnectedBots)
+                    foreach (Bot b in r.OnlineBots)
                     {
                         if (b.Push == this)
                         {
@@ -30,264 +30,357 @@ namespace Skylight
             }
         }
 
-        public Connection C(Room r)
+        public Connection C
         {
-            foreach (Connection c in Bot.BotClient.Connections)
+            get
             {
-                foreach (Connection c2 in r.Connections)
-                {
-                    if (c == c2)
-                    {
-                        return c;
-                    }
-                }
+                return this.Bot.Connection;
             }
-
-            Console.WriteLine("Referenced to an unknown connection in Out.cs");
-            return null;
         }
 
-        public void Build(Block b, Room r)
+        public Room R
         {
-            if (this.C(r).Connected)
+            get
             {
-                this.C(r).Send(r.RoomKey, b.Z, b.X, b.Y, b.Id, b.Direction);
+                return this.Bot.R;
+            }
+        }
+
+        public void Build(Block b)
+        {
+            if (this.C != null)
+            {
+                this.C.Send(this.R.RoomKey, b.Z, b.X, b.Y, b.Id, b.Direction);
                 Thread.Sleep(this.Bot.BlockDelay);
             }
         }
 
-        public void Build(List<Block> blockList, Room r)
+        public void Build(List<Block> blockList)
         {
-            if (this.C(r).Connected)
+            if (this.C != null)
             {
                 foreach (Block b in blockList)
                 {
-                    this.Build(b, r);
+                    this.Build(b);
                 }
             }
         }
 
-        public void HoldDown(Room r)
+        public void HoldDown(double startX, double startY)
         {
-            object[] holdArgs = new object[10];
+            object[] holdArgs = new object[11];
+
+            holdArgs[0] = startX;
+            holdArgs[1] = startY;
             holdArgs[2] = 0;
             holdArgs[3] = 0;
             holdArgs[4] = 0;
-            holdArgs[5] = 0;
+            holdArgs[5] = 2;
             holdArgs[6] = 0;
-            holdArgs[7] = 0;
-            holdArgs[8] = 0;
+            holdArgs[7] = 1;
+            holdArgs[8] = 4;
+            holdArgs[9] = false;
+            holdArgs[10] = false;
+
+            this.Move(holdArgs);
         }
 
-        public void HoldLeft(Room r)
+        public void HoldLeft(double startX, double startY)
         {
-            object[] holdArgs = new object[10];
+            object[] holdArgs = new object[11];
+
+            holdArgs[0] = startX;
+            holdArgs[1] = startY;
+            holdArgs[2] = 0;
+            holdArgs[3] = 0;
+            holdArgs[4] = -1;
+            holdArgs[5] = 2;
+            holdArgs[6] = -1;
+            holdArgs[7] = 0;
+            holdArgs[8] = 4;
+            holdArgs[9] = false;
+            holdArgs[10] = false;
+
+            this.Move(holdArgs);
+        }
+
+        public void HoldRight(double startX, double startY)
+        {
+            object[] holdArgs = new object[11];
+
+            holdArgs[0] = startX;
+            holdArgs[1] = startY;
+            holdArgs[2] = 0;
+            holdArgs[3] = 0;
+            holdArgs[4] = 1;
+            holdArgs[5] = 2;
+            holdArgs[6] = 1;
+            holdArgs[7] = 0;
+            holdArgs[8] = 0;
+            holdArgs[9] = false;
+            holdArgs[10] = false;
+
+            this.Move(holdArgs);
+        }
+
+        public void HoldUp(double startX, double startY)
+        {
+            object[] holdArgs = new object[11];
+
+            holdArgs[0] = startX;
+            holdArgs[1] = startY;
             holdArgs[2] = 0;
             holdArgs[3] = 0;
             holdArgs[4] = 0;
-            holdArgs[5] = 0;
+            holdArgs[5] = 2;
             holdArgs[6] = 0;
-            holdArgs[7] = 0;
-            holdArgs[8] = 0;
+            holdArgs[7] = -1;
+            holdArgs[8] = 4;
+            holdArgs[9] = false;
+            holdArgs[10] = false;
+
+            this.Move(holdArgs);
         }
 
-        public void HoldRight(Room r)
+        public void InputCode(string editKey)
         {
-            object[] holdArgs = new object[10];
-            holdArgs[2] = 0;
-            holdArgs[3] = 0;
-            holdArgs[4] = 0;
-            holdArgs[5] = 0;
-            holdArgs[6] = 0;
-            holdArgs[7] = 0;
-            holdArgs[8] = 0;
+            this.C.Send("access", editKey);
         }
 
-        public void HoldUp(Room r)
+        public void SetCode(string newCode)
         {
-            object[] holdArgs = new object[10];
-            holdArgs[2] = 0;
-            holdArgs[3] = 0;
-            holdArgs[4] = 0;
-            holdArgs[5] = 0;
-            holdArgs[6] = 0;
-            holdArgs[7] = 0;
-            holdArgs[8] = 0;
-        }
-
-        public void InputCode(string editKey, Room r)
-        {
-            this.C(r).Send("access", editKey);
-        }
-
-        public void Jump(Room r)
-        {
-            object[] holdArgs = new object[10];
-            holdArgs[2] = 0;
-            holdArgs[3] = 0;
-            holdArgs[4] = 0;
-            holdArgs[5] = 0;
-            holdArgs[6] = 0;
-            holdArgs[7] = 0;
-            holdArgs[8] = 0;
-        }
-
-        public void Move(object[] args, Room r)
-        {
-            if (this.C(r).Connected)
+            if (this.Bot.Name == this.R.Owner.Name)
             {
-                this.C(r).Send("m", args);
+                this.C.Send("key", newCode);
             }
         }
 
-        public void Release()
+        public void Jump(double startX, double startY)
         {
-            object[] holdArgs = new object[10];
+            object[] holdArgs = new object[11];
+
+            holdArgs[0] = startX;
+            holdArgs[1] = startY;
+            holdArgs[2] = 0;
+            holdArgs[3] = -52;
+            holdArgs[4] = 0;
+            holdArgs[5] = 2;
+            holdArgs[6] = 0;
+            holdArgs[7] = 0;
+            holdArgs[8] = 4;
+            holdArgs[9] = false;
+            holdArgs[10] = true;
+
+            this.Move(holdArgs);
+        }
+
+        public void Move(object[] args)
+        {
+            if (this.C != null)
+            {
+                this.C.Send("m", args);
+            }
+        }
+
+        public void Move(Message m)
+        {
+            if (this.C != null)
+            {
+                this.C.Send(
+                    "m", 
+                    m.GetDouble(1), 
+                    m.GetDouble(2), 
+                    m.GetDouble(3),
+                    m.GetDouble(4),
+                    m.GetDouble(5),
+                    m.GetDouble(6),
+                    m.GetDouble(7),
+                    m.GetDouble(8),
+                    m.GetInt(9),
+                    m.GetBoolean(10),
+                    m.GetBoolean(11));
+            }
+        }
+
+        public void Release(double startX, double startY)
+        {
+            object[] holdArgs = new object[11];
+            holdArgs[0] = startX;
+            holdArgs[1] = startY;
             holdArgs[2] = 0;
             holdArgs[3] = 0;
             holdArgs[4] = 0;
-            holdArgs[5] = 0;
+            holdArgs[5] = 2;
             holdArgs[6] = 0;
             holdArgs[7] = 0;
-            holdArgs[8] = 0;
+            holdArgs[8] = 4;
+            holdArgs[9] = false;
+            holdArgs[10] = false;
+
+            this.Move(holdArgs);
         }
 
-        public void Say(string s, Room r)
+        public void Say(string s)
         {
-            if (this.C(r).Connected)
+            if (this.C != null)
             {
-                this.C(r).Send("say", s);
+                this.C.Send("say", s);
                 Thread.Sleep(this.Bot.SpeechDelay);
             }
         }
 
-        public void SetTitle(string s, Room r)
+        public void SetTitle(string s)
         {
-            if (this.C(r).Connected && s != string.Empty)
+            if (this.C != null && s != string.Empty)
             {
-                this.C(r).Send("name", s);
+                this.C.Send("name", s);
             }
         }
 
-        // TODO: Finish this.
-        // * SYSTEM: 
-        // Type '/help' followed by command name.
-        // Command names:
-        //     /loadlevel
-        //     /reset
-        //     /respawnall
-        //     /giveedit
-        //     /removeedit
-        //     /kick
-        //     /kill
-        //     /killemall
-        //     /teleport
-        // /potionson
-        // /potionsoff
-        // /visible
-        // /getpos
-        // /listportals
-        // /reportabuse
-        // /kickguests
-        // /mute
-        // /unmute
-        public void BanPlayer(Room r, Player p)
+        public void BanPotion(int potionId)
         {
-        }
-        
-        public void BanPotion(Room r, Potion p)
-        {
-        }
-
-        public void Kick(Room r, Player p)
-        {
-        }
-
-        public void Kill(Room r, Player p)
-        {
-        }
-
-        public void Loadlevel(Room r)
-        {
-            if (this.Bot.IsOwner)
+            if (this.Bot.Name == this.R.Owner.Name)
             {
-                this.Say("/loadlevel", r);
+                this.Say("/potionsoff " + potionId);
+            }
+        }
+
+        public void Kick(Player p)
+        {
+            if (this.Bot.Name == this.R.Owner.Name)
+            {
+                this.Say("/kick " + p.Name);
+            }
+        }
+
+        public void Loadlevel()
+        {
+            if (this.Bot.Name == this.R.Owner.Name)
+            {
+                this.Say("/loadlevel");
             }
         }
         
-        public void Respawn(Room r, Player p)
+        public void Respawn(Player p)
         {
-            if (this.Bot.IsOwner)
+            if (this.Bot.Name == this.R.Owner.Name)
             {
-                this.Say("/kill " + p.Name, r);
+                this.Say("/kill " + p.Name);
             }
         }
 
-        public void RespawnAll(Room r)
+        public void RespawnAll()
         {
-            if (this.Bot.IsOwner)
+            if (this.Bot.Name == this.R.Owner.Name)
             {
-                this.Say("/respawnall", r);
+                this.Say("/respawnall");
             }
         }
 
-        public void Reset(Room r)
+        public void Reset()
         {
-            if (this.Bot.IsOwner)
+            if (this.Bot.Name == this.R.Owner.Name)
             {
-                this.Say("/reset", r);
+                this.Say("/reset");
             }
         }
 
-        public void Save(Room r)
+        public void Save()
         {
+            if (this.C != null && this.Bot.Name == this.R.Owner.Name)
+            {
+                this.C.Send("save");
+            }
         }
 
-        public void SetAllPotionBans(Room r, bool value)
+        public void SetAllPotionBans(bool value)
         {
-            if (this.C(r).Connected && this.Bot.IsOwner)
+            if (this.C != null && this.Bot.IsOwner)
+            {
+                this.C.Send("allowpotions", value);
+            }
+        }
+        
+        public void SetEdit(Player p)
+        {
+            if (this.Bot.Name == this.R.Owner.Name)
+            {
+                this.Say("/giveedit " + p.Name);
+            }
+        }
+
+        public void SetMute(Player p, bool value)
+        {
+            if (this.Bot.Name == this.R.Owner.Name)
             {
                 if (value)
                 {
-                    this.Say("/potionson", r);
+                    this.Say("/mute " + p.Name);
                 }
                 else
                 {
-                    this.Say("/potionsoff", r);
+                    this.Say("/unmute " + p.Name);
                 }
             }
         }
 
-        public void SetAllPlayerBans(Room r, bool value)
+        public void SetPotionBan(int potionId, bool value)
         {
-        }
-
-        public void SetPotionBan(Room r, Potion p, bool value)
-        {
-        }
-
-        public void SetPlayerBan(Room r, Player p, bool value)
-        {
-        }
-
-        public void SetMute(Room r, Player p, bool value)
-        {
-        }
-
-        public void SetEdit(Room r, Player p)
-        {
-            if (this.Bot.IsOwner)
+            if (this.Bot.Name == this.R.Owner.Name)
             {
-                this.Say("/giveedit " + p.Name, r);
+                if (value)
+                {
+                    this.Say("/potionson " + potionId);
+                }
+                else
+                {
+                    this.Say("/potionsoff " + potionId);
+                }
             }
         }
 
-        public void Teleport(Room r, Player p, int newXLocation, int newYLocation)
+        public void SetSmiley(int smileyId)
         {
+            if (this.C != null)
+            {
+                this.C.Send("face", smileyId);
+
+                Console.WriteLine("Set face to {0}", smileyId);
+            }
         }
 
-        public void TeleportAll(Room r, int newXLocation, int newYLocation)
-        { 
+        public void SetVisibility(bool value)
+        {
+            if (this.Bot.Name == this.R.Owner.Name)
+            {
+                this.Say("/visible " + value);
+            }
+        }
+
+        public void Teleport(int newXLocation, int newYLocation, Player p = null)
+        {
+            if (this.Bot.Name == this.R.Owner.Name)
+            {
+                if (p != null)
+                {
+                    this.Say("/teleport " + newXLocation + " " + newYLocation + " " + p.Name);
+                }
+                else
+                {
+                    this.Say("/teleport " + newXLocation + " " + newYLocation);
+                }
+            }
+        }
+
+        public void TeleportAll(int newXLocation, int newYLocation)
+        {
+            if (this.Bot.Name == this.R.Owner.Name)
+            {
+                foreach (Player p in this.R.OnlinePlayers)
+                {
+                    this.Teleport(newXLocation, newYLocation, p);
+                }
+            }
         }
     }
 }
