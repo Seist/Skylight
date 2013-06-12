@@ -14,6 +14,8 @@ namespace Skylight
             Ran = new Random();
 
         internal const string GameID = "everybody-edits-su9rn58o40itdbnw69plyw";
+        internal const string GuestEmail = "guest";
+        internal const string GuestPassword = "guest";
 
         public delegate void ProgramEvent(string message);
 
@@ -131,9 +133,10 @@ namespace Skylight
         internal static string Derot(string worldKey)
         {
             char[] array = worldKey.ToCharArray();
+
             for (int i = 0; i < array.Length; i++)
             {
-                int number = (int)array[i];
+                int number = array[i];
 
                 if (number >= 'a' && number <= 'z')
                 {
