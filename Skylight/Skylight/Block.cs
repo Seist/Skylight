@@ -28,23 +28,18 @@ namespace Skylight
             
         private Player 
             placer = new Player();
-
-        private Room 
-            r = new Room(null);
         
         // Constructor
         public Block(
             int id, 
             int x, 
             int y, 
-            Room r, 
             Player placer = null, 
             int direction = UP)
         {
             this.X = x;
             this.Y = y;
             this.Id = id;
-            this.R = r;
             this.Placer = placer;
             this.Direction = direction;
         }
@@ -127,19 +122,6 @@ namespace Skylight
             internal set
             {
                 this.placer = value;
-            }
-        }
-
-        public Room R
-        {
-            get
-            {
-                return this.r;
-            }
-
-            internal set
-            {
-                this.r = value;
             }
         }
     }

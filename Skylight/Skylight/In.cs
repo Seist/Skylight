@@ -19,8 +19,6 @@ namespace Skylight
 
         public delegate void BlockEvent(BlockEventArgs e);
 
-        public delegate void BotEvent(BotEventArgs e);
-        
         public delegate void ChatEvent(ChatEventArgs e);
         
         public delegate void RoomEvent(RoomEventArgs e);
@@ -397,7 +395,7 @@ namespace Skylight
             // Update relevant objects.
             Player subject = Tools.GetPlayerById(playerId, this.Source);
 
-            Block b = new Block(blockId, x, y, this.Source, subject);
+            Block b = new Block(blockId, x, y, subject);
 
             this.Source.Map[x, y, z] = b;
             
@@ -441,7 +439,7 @@ namespace Skylight
                 z = m.GetInteger(4);
 
             // Update relevant objects.
-            Block b = new Block(id, x, y, this.Source, null, rotation);
+            Block b = new Block(id, x, y, null, rotation);
 
             this.Source.Map[x, y, z] = b;
 
@@ -504,7 +502,7 @@ namespace Skylight
             {
                 for (int y = 0; y < this.Source.Height; y++)
                 {
-                    Block blankBlock = new Block(0, x, y, this.Source);
+                    Block blankBlock = new Block(0, x, y);
 
                     this.Source.Map[x, y, 0] = blankBlock;
                     this.Source.Map[x, y, 1] = blankBlock;

@@ -161,7 +161,6 @@ namespace Skylight
                                 blockId,
                                 x,
                                 y,
-                                r,
                                 null,
                                 rotation));
                         }
@@ -171,7 +170,6 @@ namespace Skylight
                             blockId,
                             x,
                             y,
-                            r,
                             null));
                         }
                     }
