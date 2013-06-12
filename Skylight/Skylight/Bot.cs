@@ -19,8 +19,8 @@
             speechDelay = 50;
 
         private readonly string
-            emailOrToken, 
-            password;
+            emailOrToken,
+            passwordOrToken;
         private readonly AccountType accType;
 
         private Connection connection;
@@ -29,10 +29,11 @@
 
         private Room r = new Room(null);
 
-        public Bot(string emailOrToken, string password, Room r, AccountType accType = AccountType.Regular)
+        /// <param name="password">Make this field null if it isn't needed for your log-in method.</param>
+        public Bot(string emailOrToken, string passwordOrToken, Room r, AccountType accType = AccountType.Regular)
         {
             this.emailOrToken = emailOrToken;
-            this.password = password;
+            this.passwordOrToken = passwordOrToken;
             this.R = r;
             this.accType = accType;
         }
@@ -136,11 +137,15 @@
                 switch (this.accType)
                 {
                     case AccountType.Regular:
-                        this.Client = PlayerIO.QuickConnect.SimpleConnect(Tools.GameID, this.emailOrToken, this.password);
+                        this.Client = PlayerIO.QuickConnect.SimpleConnect(Tools.GameID, this.emailOrToken, this.passwordOrToken);
                         break;
 
-                    default: //case AccountType.Facebook:
-                        this.Client = PlayerIO.QuickConnect.FacebookOAuthConnect(Tools.GameID, this.emailOrToken, string.Empty);
+                    case AccountType.Facebook:
+                        this.Client = PlayerIO.QuickConnect.FacebookOAuthConnect(Tools.GameID, this.emailOrToken, null);
+                        break;
+
+                    default: //case AccountType.Kongregate:
+                        this.Client = PlayerIO.QuickConnect.KongregateConnect(Tools.GameID, this.emailOrToken, this.passwordOrToken);
                         break;
                 }
 
@@ -234,8 +239,9 @@
 
         public enum AccountType : sbyte
         {
-            Regular = 0,
-            Facebook = 1
+            Regular = 0, 
+            Facebook = 1, 
+            Kongregate = 2
         }
     }
 }
