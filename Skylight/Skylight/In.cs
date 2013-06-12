@@ -223,7 +223,7 @@ namespace Skylight
                         case "refreshshop": this.OnRefreshShop(m);
                             break;
 
-                        case "resetset": this.OnReset(m);
+                        case "reset": this.OnReset(m);
                             break;
 
                         case "say": this.OnSay(m);
@@ -1092,7 +1092,7 @@ namespace Skylight
             // Extract some of the data.
             bool isReset = m.GetBoolean(0);
 
-            // On resetset
+            // On reset
             if (isReset)
             {
                 // Extract more data and update relevant objects.
@@ -1118,7 +1118,7 @@ namespace Skylight
             }
             else
             {
-                // On death (or whatever else isn't a resetset).
+                // On death (or whatever else isn't a reset).
                 // Extract data.
                 int id = m.GetInteger(1),
                     x = m.GetInteger(2),
