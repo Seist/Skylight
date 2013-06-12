@@ -23,12 +23,11 @@
             int y,
             int percussionId,
             Room r,
-            Player placer = null) : base(BlockIds.Action.Music.PERCUSSION, x, y, r, placer)
+            Player placer = null) : base(BlockIds.Action.Music.PERCUSSION, x, y, placer)
         {
             this.X = x;
             this.Y = y;
             this.PercussionId = percussionId;
-            this.R = r;
             this.Placer = placer;
         }
 

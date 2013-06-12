@@ -18,173 +18,7 @@ namespace Skylight
         public delegate void ProgramEvent(string message);
 
         public static event ProgramEvent ProgramMessage = delegate { };
-
-        public static List<Block> ConvertMessageToBlockList(Message m, uint start, Room r)
-        {
-            List<Block> list = new List<Block>();
-            try
-            {
-                //// FULL CREDIT TO BASS5098 FOR THE FOLLOWING CODE
-                //// I wrote it in my own way in C# but Bass5098 made the original.
-                //// https://github.com/kevin-brown/ee-level-editor/blob/master/LevelEditor/WorldConverter.vb
-                //// Lines 438-507
-                //// Praise him. (this is mainly due to my laziness)
-
-                uint messageIndex = start;
-
-                // Iterate through each internal set of messages.
-                while (messageIndex < m.Count)
-                {
-                    // If it is a string, exit.
-                    if (m[messageIndex] is string)
-                    {
-                        break;
-                    }
-
-                    // The ID is first.
-                    int blockId = m.GetInteger(messageIndex);
-                    messageIndex++;
-
-                    // Then the z.
-                    int z = m.GetInteger(messageIndex);
-                    messageIndex++;
-
-                    // Then the list of all X coordinates of given block
-                    byte[] xa = m.GetByteArray(messageIndex);
-                    messageIndex++;
-                    
-                    // Then the list of all Y coordinates of given block
-                    byte[] ya = m.GetByteArray(messageIndex);
-                    messageIndex++;
-
-                    // Some variables to simplify things.
-                    int x = 0, y = 0;
-
-                    for (int pos = 0; pos < ya.Length; pos += 2)
-                    {
-                        x = (xa[pos] * 256) + xa[pos + 1];
-                        y = (ya[pos] * 256) + ya[pos + 1];
-
-                        if (blockId == BlockIds.Action.Portals.NORMAL ||
-                            blockId == BlockIds.Action.Portals.INVISIBLE)
-                        {
-                            int direction = m.GetInteger(messageIndex);
-                            messageIndex++;
-                            
-                            int portalId = m.GetInteger(messageIndex);
-                            messageIndex++;
-                            
-                            int destination = m.GetInteger(messageIndex);
-                            messageIndex++;
-                            
-                            bool isVisible = true;
-                            if (blockId == BlockIds.Action.Portals.INVISIBLE)
-                            {
-                                isVisible = false;
-                            }
-
-                            list.Add(new PortalBlock(
-                                blockId,
-                                x,
-                                y,
-                                direction,
-                                portalId,
-                                destination,
-                                isVisible,
-                                r));
-                        }
-                        else if (blockId == BlockIds.Action.Portals.WORLD)
-                        {                            
-                            string destination = m.GetString(messageIndex);
-                            messageIndex++;
-
-                            list.Add(new RoomPortalBlock(
-                                x,
-                                y,
-                                destination,
-                                r));
-                        }
-                        else if (blockId == BlockIds.Action.Doors.COIN ||
-                            blockId == BlockIds.Action.Gates.COIN)
-                        {
-                            int coins = m.GetInteger(messageIndex);
-                            messageIndex++;
-                            
-                            bool isGate = false;
-                            if (blockId == BlockIds.Action.Gates.COIN)
-                            {
-                                isGate = true;
-                            }
-
-                            list.Add(new CoinBlock(
-                                blockId,
-                                x,
-                                y,
-                                coins,
-                                isGate,
-                                r));
-                        }
-                        else if (blockId == BlockIds.Action.Music.PERCUSSION)
-                        {
-                            int type = m.GetInteger(messageIndex);
-                            messageIndex++;
-
-                            list.Add(new PercussionBlock(
-                                x,
-                                y,
-                                type,
-                                r));
-                        }
-                        else if (blockId == BlockIds.Action.Music.PIANO)
-                        {
-                            int note = m.GetInteger(messageIndex);
-                            messageIndex++;
-
-                            list.Add(new PianoBlock(
-                                x,
-                                y,
-                                note,
-                                r));
-                        }
-                        else if (blockId == BlockIds.Decorative.SciFi2013.BLUEBEND ||
-                            blockId == BlockIds.Decorative.SciFi2013.BLUESTRAIGHT ||
-                            blockId == BlockIds.Decorative.SciFi2013.GREENBEND ||
-                            blockId == BlockIds.Decorative.SciFi2013.GREENSTRAIGHT ||
-                            blockId == BlockIds.Decorative.SciFi2013.ORANGEBEND ||
-                            blockId == BlockIds.Decorative.SciFi2013.ORANGESTRAIGHT ||
-                            blockId == BlockIds.Action.Hazards.SPIKE)
-                        {
-                            int rotation = m.GetInteger(messageIndex);
-                            messageIndex++;
-
-                            list.Add(new Block(
-                                blockId,
-                                x,
-                                y,
-                                r,
-                                null,
-                                rotation));
-                        }
-                        else
-                        {
-                            list.Add(new Block(
-                            blockId,
-                            x,
-                            y,
-                            r,
-                            null));
-                        }
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                SkylightMessage("Error loading existing blocks: " + e.Message);
-            }
-            
-            return list;
-        }
-
+        
         public static List<Player> GetWinners(Room r)
         {
             List<Player> winners = new List<Player>();
@@ -341,6 +175,167 @@ namespace Skylight
             }
 
             return id;
+        }
+        
+        internal static List<Block> ConvertMessageToBlockList(Message m, uint start, Room r)
+        {
+            List<Block> list = new List<Block>();
+            try
+            {
+                //// FULL CREDIT TO BASS5098 FOR THE FOLLOWING CODE
+                //// I wrote it in my own way in C# but Bass5098 made the original.
+                //// https://github.com/kevin-brown/ee-level-editor/blob/master/LevelEditor/WorldConverter.vb
+                //// Lines 438-507
+                //// Praise him. (this is mainly due to my laziness)
+
+                uint messageIndex = start;
+
+                // Iterate through each internal set of messages.
+                while (messageIndex < m.Count)
+                {
+                    // If it is a string, exit.
+                    if (m[messageIndex] is string)
+                    {
+                        break;
+                    }
+
+                    // The ID is first.
+                    int blockId = m.GetInteger(messageIndex);
+                    messageIndex++;
+
+                    // Then the z.
+                    int z = m.GetInteger(messageIndex);
+                    messageIndex++;
+
+                    // Then the list of all X coordinates of given block
+                    byte[] xa = m.GetByteArray(messageIndex);
+                    messageIndex++;
+                    
+                    // Then the list of all Y coordinates of given block
+                    byte[] ya = m.GetByteArray(messageIndex);
+                    messageIndex++;
+
+                    // Some variables to simplify things.
+                    int x = 0, y = 0;
+
+                    for (int pos = 0; pos < ya.Length; pos += 2)
+                    {
+                        x = (xa[pos] * 256) + xa[pos + 1];
+                        y = (ya[pos] * 256) + ya[pos + 1];
+
+                        if (blockId == BlockIds.Action.Portals.NORMAL ||
+                            blockId == BlockIds.Action.Portals.INVISIBLE)
+                        {
+                            int direction = m.GetInteger(messageIndex);
+                            messageIndex++;
+                            
+                            int portalId = m.GetInteger(messageIndex);
+                            messageIndex++;
+                            
+                            int destination = m.GetInteger(messageIndex);
+                            messageIndex++;
+                            
+                            bool isVisible = true;
+                            if (blockId == BlockIds.Action.Portals.INVISIBLE)
+                            {
+                                isVisible = false;
+                            }
+
+                            list.Add(new PortalBlock(
+                                blockId,
+                                x,
+                                y,
+                                direction,
+                                portalId,
+                                destination,
+                                isVisible));
+                        }
+                        else if (blockId == BlockIds.Action.Portals.WORLD)
+                        {                            
+                            string destination = m.GetString(messageIndex);
+                            messageIndex++;
+
+                            list.Add(new RoomPortalBlock(
+                                x,
+                                y,
+                                destination));
+                        }
+                        else if (blockId == BlockIds.Action.Doors.COIN ||
+                            blockId == BlockIds.Action.Gates.COIN)
+                        {
+                            int coins = m.GetInteger(messageIndex);
+                            messageIndex++;
+                            
+                            bool isGate = false;
+                            if (blockId == BlockIds.Action.Gates.COIN)
+                            {
+                                isGate = true;
+                            }
+
+                            list.Add(new CoinBlock(
+                                blockId,
+                                x,
+                                y,
+                                coins,
+                                isGate,
+                                r));
+                        }
+                        else if (blockId == BlockIds.Action.Music.PERCUSSION)
+                        {
+                            int type = m.GetInteger(messageIndex);
+                            messageIndex++;
+
+                            list.Add(new PercussionBlock(
+                                x,
+                                y,
+                                type,
+                                r));
+                        }
+                        else if (blockId == BlockIds.Action.Music.PIANO)
+                        {
+                            int note = m.GetInteger(messageIndex);
+                            messageIndex++;
+
+                            list.Add(new PianoBlock(
+                                x,
+                                y,
+                                note));
+                        }
+                        else if (blockId == BlockIds.Decorative.SciFi2013.BLUEBEND ||
+                            blockId == BlockIds.Decorative.SciFi2013.BLUESTRAIGHT ||
+                            blockId == BlockIds.Decorative.SciFi2013.GREENBEND ||
+                            blockId == BlockIds.Decorative.SciFi2013.GREENSTRAIGHT ||
+                            blockId == BlockIds.Decorative.SciFi2013.ORANGEBEND ||
+                            blockId == BlockIds.Decorative.SciFi2013.ORANGESTRAIGHT ||
+                            blockId == BlockIds.Action.Hazards.SPIKE)
+                        {
+                            int rotation = m.GetInteger(messageIndex);
+                            messageIndex++;
+
+                            list.Add(new Block(
+                                blockId,
+                                x,
+                                y,
+                                null,
+                                rotation));
+                        }
+                        else
+                        {
+                            list.Add(new Block(
+                            blockId,
+                            x,
+                            y,
+                            null));
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                SkylightMessage("Error loading existing blocks: " + e.Message);
+            }
+            
+            return list;
         }
     }
 }

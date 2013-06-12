@@ -37,13 +37,11 @@
             int x, 
             int y, 
             int key, 
-            Room r, 
-            Player placer = null) : base(BlockIds.Action.Music.PIANO, x, y, r, placer)
+            Player placer = null) : base(BlockIds.Action.Music.PIANO, x, y, placer)
         {
             this.X = x;
             this.Y = y;
             this.PianoId = key;
-            this.R = r;
             this.Placer = placer;
         }
 

@@ -19,13 +19,12 @@
             int coinsRequired,
             bool isGate,
             Room r,
-            Player placer = null) : base(x, y, id, r, placer)
+            Player placer = null) : base(id, x, y, placer)
         {
             this.X = x;
             this.Y = y;
             this.CoinsRequired = coinsRequired;
             this.IsGate = isGate;
-            this.R = r;
             this.Placer = placer;
         }
 
