@@ -26,7 +26,14 @@
 
         private Out push = new Out();
 
-        private Room r = new Room();
+        private Room r = new Room(null);
+
+        public Bot(string email, string password, Room r)
+        {
+            this.email = email;
+            this.password = password;
+            this.R = r;
+        }
 
         public bool IsConnected
         {
@@ -35,7 +42,7 @@
                 return this.isConnected;
             }
 
-            set
+            internal set
             {
                 this.isConnected = value;
             }
@@ -48,7 +55,7 @@
                 return this.client;
             }
 
-            set
+            internal set
             {
                 this.client = value;
             }
@@ -61,7 +68,7 @@
                 return this.blockDelay;
             }
 
-            set
+            internal set
             {
                 this.blockDelay = value;
             }
@@ -74,35 +81,9 @@
                 return this.speechDelay;
             }
 
-            set
+            internal set
             {
                 this.speechDelay = value;
-            }
-        }
-
-        public string Email
-        {
-            get
-            {
-                return this.email;
-            }
-
-            set
-            {
-                this.email = value;
-            }
-        }
-
-        public string Password
-        {
-            get
-            {
-                return this.password;
-            }
-
-            set
-            {
-                this.password = value;
             }
         }
 
@@ -113,7 +94,7 @@
                 return this.push;
             }
 
-            set
+            internal set
             {
                 this.push = value;
             }
@@ -126,7 +107,7 @@
                 return this.r;
             }
 
-            set
+            internal set
             {
                 this.r = value;
             }
@@ -139,7 +120,7 @@
                 return this.connection;
             }
 
-            set
+            internal set
             {
                 this.connection = value;
             }
@@ -150,15 +131,13 @@
         {
             try
             {
-                this.Client = PlayerIO.QuickConnect.SimpleConnect(Tools.GameID, this.Email, this.Password);
-
-                Console.ForegroundColor = Tools.Success; 
-                Console.WriteLine("Logged in.");
+                this.Client = PlayerIO.QuickConnect.SimpleConnect(Tools.GameID, this.email, this.password);
+ 
+                Tools.SkylightMessage("Logged in.");
             }
             catch (PlayerIOError e)
             {
-                Console.ForegroundColor = Tools.Error;
-                Console.WriteLine("Cannot log in: {0}", e.Message);
+                Tools.SkylightMessage("Cannot log in: " + e.Message);
                 this.IsConnected = false;
                 return;
             }
@@ -218,19 +197,17 @@
                     this.R.Pull.Source = this.R;
                 }
 
-                // Once everything is settled, send the init.
+                // Once everything is internal settled, send the init.
                 this.Connection.Send("init");
                 this.Connection.Send("init2");
 
                 this.R.OnlinePlayers.Add(this);
-
-                Console.ForegroundColor = Tools.Success;
-                Console.WriteLine("Joined room.");
+                
+                Tools.SkylightMessage("Joined room.");
             }
             catch (Exception e)
             {
-                Console.ForegroundColor = Tools.Error;
-                Console.WriteLine("Unable to join room \"{0}\": {1}", this.R.Id, e.Message);
+                Tools.SkylightMessage("Unable to join room \"" + this.R.Id + "\": " + e.Message);
 
                 return;
             }

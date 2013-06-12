@@ -24,7 +24,7 @@
                 return this.portalDestination;
             }
 
-            set
+            internal set
             {
                 string s = value;
                 Tools.ParseURL(s);

@@ -54,7 +54,7 @@
                 return this.pianoId;
             }
 
-            set
+            internal set
             {
                 if (this.pianoId == -1)
                 {

@@ -10,17 +10,14 @@ namespace Skylight
 
     public static class Tools
     {
-        public static readonly ConsoleColor
-            Blank = ConsoleColor.White,
-            Progress = ConsoleColor.Yellow,
-            Success = ConsoleColor.Green,
-            Error = ConsoleColor.Red,
-            Info = ConsoleColor.Cyan;
-
         public static readonly Random
             Ran = new Random();
 
         internal const string GameID = "everybody-edits-su9rn58o40itdbnw69plyw";
+
+        public delegate void ProgramEvent(string message);
+
+        public static event ProgramEvent ProgramMessage = delegate { };
 
         public static List<Block> ConvertMessageToBlockList(Message m, uint start, Room r)
         {
@@ -35,7 +32,7 @@ namespace Skylight
 
                 uint messageIndex = start;
 
-                // Iterate through each set of messages.
+                // Iterate through each internal set of messages.
                 while (messageIndex < m.Count)
                 {
                     // If it is a string, exit.
@@ -182,7 +179,7 @@ namespace Skylight
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error loading existing blocks: " + e.Message);
+                SkylightMessage("Error loading existing blocks: " + e.Message);
             }
             
             return list;
@@ -213,7 +210,7 @@ namespace Skylight
                 }
             }
 
-            Console.WriteLine("Could not find crown holder.");
+            SkylightMessage("Could not find crown holder.");
             return new Player();
         }
 
@@ -237,7 +234,7 @@ namespace Skylight
                 }
             }
 
-            Console.WriteLine("Could not find player {0} in {1}", id, r.Name);
+            SkylightMessage("Could not find player " + id + " in " + r.Name);
             return new Player();
         }
 
@@ -261,7 +258,7 @@ namespace Skylight
                 }
             }
 
-            Console.WriteLine("Could not find player {0} in {1}", name, r.Name);
+            SkylightMessage("Could not find player " + name + " in " + r.Name);
             return new Player();
         }
 
@@ -275,8 +272,8 @@ namespace Skylight
                 }
             }
 
-            Console.WriteLine("Could not find room \"{0}\"", name);
-            return new Room();
+            SkylightMessage("Could not find room \"" + name + "\"");
+            return null;
         }
 
         public static void Shuffle<T>(this IList<T> list)
@@ -290,6 +287,11 @@ namespace Skylight
                 list[k] = list[n];
                 list[n] = value;
             }
+        }
+
+        public static void SkylightMessage(string m)
+        {
+            ProgramMessage(m);
         }
         
         internal static string Derot(string worldKey)

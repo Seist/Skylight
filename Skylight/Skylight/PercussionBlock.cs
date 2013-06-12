@@ -39,7 +39,7 @@
                 return this.percussionId;
             }
 
-            set
+            internal set
             {
                 if (this.percussionId == -1)
                 {

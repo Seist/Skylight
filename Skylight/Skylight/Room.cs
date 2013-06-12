@@ -53,6 +53,11 @@ namespace Skylight
         private List<Connection> connections = new List<Connection>();
         private List<In> pulls               = new List<In>();
 
+        public Room(string id)
+        {
+            this.Id = id;
+        }
+
         // Public static properties
         public static List<Room> JoinedRooms
         {
@@ -61,7 +66,7 @@ namespace Skylight
                 return joinedRooms;
             }
 
-            set
+            internal set
             {
                 joinedRooms = value;
             }
@@ -75,7 +80,7 @@ namespace Skylight
                 return this.map;
             }
 
-            set
+            internal set
             {
                 this.map = value;
             }
@@ -88,7 +93,7 @@ namespace Skylight
                 return this.hasPull;
             }
 
-            set
+            internal set
             {
                 this.hasPull = value;
             }
@@ -101,7 +106,7 @@ namespace Skylight
                 return this.isInitialized;
             }
 
-            set
+            internal set
             {
                 this.isInitialized = value;
             }
@@ -114,7 +119,7 @@ namespace Skylight
                 return this.isTutorialRoom;
             }
 
-            set
+            internal set
             {
                 this.isTutorialRoom = value;
             }
@@ -127,7 +132,7 @@ namespace Skylight
                 return this.potionsAllowed;
             }
 
-            set
+            internal set
             {
                 this.potionsAllowed = value;
             }
@@ -140,7 +145,7 @@ namespace Skylight
                 return this.timeDoorsVisible;
             }
 
-            set
+            internal set
             {
                 this.timeDoorsVisible = value;
             }
@@ -153,7 +158,7 @@ namespace Skylight
                 return this.receiver;
             }
 
-            set
+            internal set
             {
                 this.receiver = value;
             }
@@ -166,7 +171,7 @@ namespace Skylight
                 return this.gravityMultiplier;
             }
 
-            set
+            internal set
             {
                 this.gravityMultiplier = value;
             }
@@ -179,7 +184,7 @@ namespace Skylight
                 return this.pull;
             }
 
-            set
+            internal set
             {
                 this.pull = value;
             }
@@ -192,7 +197,7 @@ namespace Skylight
                 return this.height;
             }
 
-            set
+            internal set
             { 
                 this.height = value;
             }
@@ -205,7 +210,7 @@ namespace Skylight
                 return this.plays;
             }
 
-            set
+            internal set
             { 
                 this.plays = value;
             }
@@ -218,7 +223,7 @@ namespace Skylight
                 return this.totalWoots;
             }
 
-            set
+            internal set
             { 
                 this.totalWoots = value;
             }
@@ -231,7 +236,7 @@ namespace Skylight
                 return this.width;
             }
 
-            set
+            internal set
             { 
                 this.width = value;
             }
@@ -244,7 +249,7 @@ namespace Skylight
                 return this.woots;
             }
 
-            set
+            internal set
             { 
                 this.woots = value;
             }
@@ -257,7 +262,7 @@ namespace Skylight
                 return this.pulls;
             }
 
-            set
+            internal set
             {
                 this.pulls = value;
             }
@@ -270,7 +275,7 @@ namespace Skylight
                 return this.chatLog;
             }
 
-            set
+            internal set
             {
                 this.chatLog = value;
             }
@@ -283,7 +288,7 @@ namespace Skylight
                 return this.onlinePlayers;
             }
 
-            set
+            internal set
             {
                 this.onlinePlayers = value;
             }
@@ -296,7 +301,7 @@ namespace Skylight
                 return this.onlineBots;
             }
 
-            set
+            internal set
             {
                 this.onlineBots = value;
             }
@@ -309,7 +314,7 @@ namespace Skylight
                 return this.owner;
             }
 
-            set
+            internal set
             { 
                 this.owner = value;
             }
@@ -322,7 +327,7 @@ namespace Skylight
                 return this.editKey;
             }
 
-            set
+            internal set
             {
                 this.editKey = value;
             }
@@ -335,7 +340,7 @@ namespace Skylight
                 return this.id;
             }
 
-            set
+            internal set
             {
                 this.id = value;
             }
@@ -348,7 +353,7 @@ namespace Skylight
                 return this.name;
             }
 
-            set
+            internal set
             {
                 this.name = value;
             }
@@ -361,7 +366,7 @@ namespace Skylight
                 return this.worldKey;
             }
 
-            set
+            internal set
             { 
                 this.worldKey = value;
             }

@@ -100,7 +100,7 @@ namespace Skylight
                 return this.source;
             }
 
-            set
+            set 
             {
                 this.source = value;
             }
@@ -225,7 +225,7 @@ namespace Skylight
                         case "refreshshop": this.OnRefreshShop(m);
                             break;
 
-                        case "reset": this.OnReset(m);
+                        case "resetset": this.OnReset(m);
                             break;
 
                         case "say": this.OnSay(m);
@@ -628,8 +628,7 @@ namespace Skylight
                 body = m.GetString(1);
 
             // Update relevant objects.
-            Console.ForegroundColor = Tools.Info;
-            Console.WriteLine("Bot {0} received a pop-up window:\n{1}\n{2}", this.Bot.Name, title, body);
+            Tools.SkylightMessage("Bot " + this.Bot.Name + " received a pop-up window:\n" + title + "\n" + body);
 
             if (title == "Limit reached")
             {
@@ -703,7 +702,7 @@ namespace Skylight
                 this.Source.Map[b.X, b.Y, b.Z] = b;
             }
 
-            Console.WriteLine("Loaded room.");
+            Tools.SkylightMessage("Loaded room.");
 
             foreach (Message msg in this.prematureMessages)
             {
@@ -1095,7 +1094,7 @@ namespace Skylight
             // Extract some of the data.
             bool isReset = m.GetBoolean(0);
 
-            // On reset
+            // On resetset
             if (isReset)
             {
                 // Extract more data and update relevant objects.
@@ -1121,7 +1120,7 @@ namespace Skylight
             }
             else
             {
-                // On death (or whatever else isn't a reset).
+                // On death (or whatever else isn't a resetset).
                 // Extract data.
                 int id = m.GetInteger(1),
                     x = m.GetInteger(2),

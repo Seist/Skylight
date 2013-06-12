@@ -42,7 +42,7 @@
                 return this.portalDestination;
             }
 
-            set
+            internal set
             {
                 if (value > MINPORTALID && value < MAXPORTALID)
                 {
@@ -58,7 +58,7 @@
                 return this.portalId;
             }
 
-            set
+            internal set
             {
                 if (value < MAXPORTALID && value > MINPORTALID)
                 {
@@ -74,7 +74,7 @@
                 return this.visible;
             }
 
-            set
+            internal set
             {
                 this.visible = value;
             }

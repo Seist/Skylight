@@ -36,7 +36,7 @@
                 return this.isGate;
             }
 
-            set
+            internal set
             {
                 this.isGate = value;
             }
@@ -49,7 +49,7 @@
                 return this.coinsRequired;
             }
 
-            set
+            internal set
             {
                 this.coinsRequired = value;
             }

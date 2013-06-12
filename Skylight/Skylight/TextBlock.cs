@@ -28,7 +28,7 @@
                         return this.text;
                     }
 
-                    set
+                    internal set
                     {
                         this.text = value;
                     }

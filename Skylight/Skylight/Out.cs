@@ -25,8 +25,8 @@ namespace Skylight
                     }
                 }
 
-                Console.WriteLine("Referenced to an unknown bot in Out.cs");
-                return new Bot();
+                Tools.SkylightMessage("Referenced to an unknown bot in Out.cs");
+                return null;
             }
         }
 
@@ -281,7 +281,7 @@ namespace Skylight
         {
             if (this.Bot.Name == this.R.Owner.Name)
             {
-                this.Say("/reset");
+                this.Say("/resetset");
             }
         }
 
@@ -339,13 +339,12 @@ namespace Skylight
             }
         }
 
+        // TODO: Fix this.
         public void SetSmiley(int smileyId)
         {
             if (this.C != null)
             {
                 this.C.Send("face", smileyId);
-
-                Console.WriteLine("Set face to {0}", smileyId);
             }
         }
 
@@ -381,6 +380,13 @@ namespace Skylight
                     this.Teleport(newXLocation, newYLocation, p);
                 }
             }
+        }
+
+        public List<Room> ListLevels()
+        {
+            List<Room> roomList = new List<Room>();
+
+            return roomList;
         }
     }
 }
