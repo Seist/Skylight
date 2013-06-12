@@ -30,7 +30,10 @@
         private Room r = new Room(null);
 
         /// <param name="password">Make this field null if it isn't needed for your log-in method.</param>
-        public Bot(string emailOrToken, string passwordOrToken, Room r, AccountType accType = AccountType.Regular)
+        public Bot(Room r,
+                   string emailOrToken = Tools.GuestEmail,
+                   string passwordOrToken = Tools.GuestPassword,
+                   AccountType accType = AccountType.Regular)
         {
             this.emailOrToken = emailOrToken;
             this.passwordOrToken = passwordOrToken;
