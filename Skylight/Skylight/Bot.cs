@@ -18,9 +18,10 @@
             blockDelay  = 50, 
             speechDelay = 50;
 
-        private string 
-            email, 
+        private readonly string
+            emailOrToken, 
             password;
+        private readonly AccountType accType;
 
         private Connection connection;
 
@@ -28,11 +29,12 @@
 
         private Room r = new Room(null);
 
-        public Bot(string email, string password, Room r)
+        public Bot(string emailOrToken, string password, Room r, AccountType accType = AccountType.Regular)
         {
-            this.email = email;
+            this.emailOrToken = emailOrToken;
             this.password = password;
             this.R = r;
+            this.accType = accType;
         }
 
         public bool IsConnected
@@ -131,8 +133,17 @@
         {
             try
             {
-                this.Client = PlayerIO.QuickConnect.SimpleConnect(Tools.GameID, this.email, this.password);
- 
+                switch (this.accType)
+                {
+                    case AccountType.Regular:
+                        this.Client = PlayerIO.QuickConnect.SimpleConnect(Tools.GameID, this.emailOrToken, this.password);
+                        break;
+
+                    default: //case AccountType.Facebook:
+                        this.Client = PlayerIO.QuickConnect.FacebookOAuthConnect(Tools.GameID, this.emailOrToken, string.Empty);
+                        break;
+                }
+
                 Tools.SkylightMessage("Logged in.");
             }
             catch (PlayerIOError e)
@@ -219,6 +230,12 @@
             this.Client = null;
             this.Connection = null;
             this.Push = null;
+        }
+
+        public enum AccountType : sbyte
+        {
+            Regular = 0,
+            Facebook = 1
         }
     }
 }
