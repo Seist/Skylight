@@ -466,7 +466,7 @@ namespace Skylight
             }
             else if (id == BlockIds.Action.Music.PIANO)
             {
-                b = new PianoBlock(x, y, note, this.Source);
+                b = new PianoBlock(x, y, note);
             }
 
             this.Source.Map[x, y, 0] = b;
@@ -783,7 +783,7 @@ namespace Skylight
             string text = m.GetString(3);
 
             // Update relevant objects.
-            TextBlock b = new TextBlock(id, x, y, text, this.Source);
+            TextBlock b = new TextBlock(id, x, y, text);
 
             this.Source.Map[x, y, 0] = b;
 
@@ -974,7 +974,7 @@ namespace Skylight
                 portalDestination = m.GetInteger(5);
 
             // Update relevant objects.
-            PortalBlock b = new PortalBlock(blockId, x, y, rotation, portalId, portalDestination, false, this.Source);
+            PortalBlock b = new PortalBlock(blockId, x, y, rotation, portalId, portalDestination, false);
             
             if (blockId == BlockIds.Action.Portals.INVISIBLE)
             {
@@ -1147,7 +1147,7 @@ namespace Skylight
             string text = m.GetString(3);
 
             // Update relevant objects.
-            TextBlock b = new TextBlock(id, x, y, text, this.Source);
+            TextBlock b = new TextBlock(id, x, y, text);
 
             this.Source.Map[x, y, 0] = b;
 
@@ -1218,7 +1218,7 @@ namespace Skylight
             string destination = m.GetString(3);
 
             // Update relevant objects.
-            Block b = new RoomPortalBlock(x, y, destination, this.Source);
+            Block b = new RoomPortalBlock(x, y, destination);
 
             this.Source.Map[x, y, 0] = b;
 

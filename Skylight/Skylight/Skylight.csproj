@@ -59,7 +59,6 @@
     <Compile Include="BlockEventArgs.cs" />
     <Compile Include="BlockIds.cs" />
     <Compile Include="Bot.cs" />
-    <Compile Include="BotEventArgs.cs" />
     <Compile Include="ChatEventArgs.cs" />
     <Compile Include="CoinBlock.cs" />
     <Compile Include="PercussionBlock.cs" />
@@ -81,7 +80,7 @@
     <Compile Include="TextBlock.cs" />
     <Compile Include="Tools.cs" />
     <Compile Include="Room.cs" />
-    <Compile Include="WorldEventArgs.cs" />
+    <Compile Include="RoomEventArgs.cs" />
     <Compile Include="RoomPortalBlock.cs" />
   </ItemGroup>
   <ItemGroup>

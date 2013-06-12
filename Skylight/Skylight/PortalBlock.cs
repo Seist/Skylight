@@ -23,8 +23,7 @@
             int portalId, 
             int portalDestination, 
             bool visible,
-            Room r, 
-            Player placer = null) : base(x, y, id, placer)
+            Player placer = null) : base(id, x, y, placer)
         {
             this.X = x;
             this.Y = y;

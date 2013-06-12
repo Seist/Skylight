@@ -11,8 +11,7 @@
             int x,
             int y,
             string portalDestination,
-            Room r,
-            Player placer = null) : base(x, y, BlockIds.Action.Portals.WORLD, placer)
+            Player placer = null) : base(BlockIds.Action.Portals.WORLD, x, y, placer)
         {
             this.PortalDestination = portalDestination;
         }

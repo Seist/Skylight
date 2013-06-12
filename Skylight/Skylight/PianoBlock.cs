@@ -37,7 +37,6 @@
             int x, 
             int y, 
             int key, 
-            Room r, 
             Player placer = null) : base(BlockIds.Action.Music.PIANO, x, y, placer)
         {
             this.X = x;

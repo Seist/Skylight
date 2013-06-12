@@ -4,14 +4,13 @@
 
     public class TextBlock : Block
     {
-        private string text = null;
+        private string text = string.Empty;
 
         public TextBlock(
             int id,
             int x,
             int y,
             string text,
-            Room r,
             Player placer = null) : base(id, x, y, placer)
         {
             this.X = x;
