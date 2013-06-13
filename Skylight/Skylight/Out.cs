@@ -339,12 +339,11 @@ namespace Skylight
             }
         }
 
-        // TODO: Fix this.
         public void SetSmiley(int smileyId)
         {
             if (this.C != null)
             {
-                this.C.Send("face", smileyId);
+                this.C.Send(this.R.RoomKey + "f", smileyId);
             }
         }
 
