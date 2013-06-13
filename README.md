@@ -7,4 +7,4 @@ Skylight is designed to make your EE-based bot much easier to develop and unders
 Special thanks to:
 Jojatekok: Adding login though Facebook and Kongregate features
 Bass5098: Providing a system for parsing init message
-Buzzerbee: Finding bugs
+BuzzerBee: Finding bugs
