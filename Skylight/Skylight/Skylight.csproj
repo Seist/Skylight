@@ -40,9 +40,6 @@
     <DelaySign>false</DelaySign>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BlockData">
-      <HintPath>References\BlockData.dll</HintPath>
-    </Reference>
     <Reference Include="PlayerIOClient">
       <HintPath>References\PlayerIOClient.dll</HintPath>
     </Reference>
