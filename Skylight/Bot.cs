@@ -2,8 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading;
     using PlayerIOClient;
 
     public class Bot : Player
@@ -140,19 +138,47 @@
                 switch (this.accType)
                 {
                     case AccountType.Regular:
-                        this.Client = PlayerIO.QuickConnect.SimpleConnect(Tools.GameID, this.emailOrToken, this.passwordOrToken);
+                        if (this.emailOrToken == Tools.GuestEmail && this.passwordOrToken == Tools.GuestPassword)
+                            this.Client = Tools.GuestClient.Value;
+                        else
+                            this.Client = PlayerIO.QuickConnect.SimpleConnect(Tools.GameID, this.emailOrToken, this.passwordOrToken);
                         break;
 
                     case AccountType.Facebook:
                         this.Client = PlayerIO.QuickConnect.FacebookOAuthConnect(Tools.GameID, this.emailOrToken, null);
                         break;
 
-                    default: //case AccountType.Kongregate:
+                    case AccountType.Kongregate:
                         this.Client = PlayerIO.QuickConnect.KongregateConnect(Tools.GameID, this.emailOrToken, this.passwordOrToken);
+                        break;
+
+                    default: //case AccountType.ArmorGames:
+                        var c = Tools.GuestClient.Value.Multiplayer.CreateJoinRoom("",
+                                                                                   Tools.AuthRoom + Tools.GetGameVersion(),
+                                                                                   false, null, null);
+                        c.OnMessage += (sender, message) =>
+                            {
+                                if (message.Type != "auth") return;
+
+                                if (message.Count == 0)
+                                    Tools.SkylightMessage("Cannot log in using ArmorGames. The response from the auth server is wrong.");
+                                else
+                                {
+                                    this.Client = PlayerIOClient.PlayerIO.Connect(Tools.GameID, "secure", 
+                                                                                  message.GetString(0), message.GetString(1), 
+                                                                                  "armorgames");
+                                    Tools.SkylightMessage("Logged in.");
+                                }
+
+                                c.Disconnect();
+                            };
+
+                        c.Send("auth", this.emailOrToken, this.passwordOrToken);
                         break;
                 }
 
-                Tools.SkylightMessage("Logged in.");
+                if (this.accType != AccountType.ArmorGames)
+                    Tools.SkylightMessage("Logged in.");
             }
             catch (PlayerIOError e)
             {
@@ -245,7 +271,8 @@
         {
             Regular = 0, 
             Facebook = 1, 
-            Kongregate = 2
+            Kongregate = 2, 
+            ArmorGames = 3
         }
     }
 }
