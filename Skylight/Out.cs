@@ -281,7 +281,7 @@ namespace Skylight
         {
             if (this.Bot.Name == this.R.Owner.Name)
             {
-                this.Say("/resetset");
+                this.Say("/reset");
             }
         }
 
@@ -339,12 +339,11 @@ namespace Skylight
             }
         }
 
-        // TODO: Fix this.
         public void SetSmiley(int smileyId)
         {
             if (this.C != null)
             {
-                this.C.Send("face", smileyId);
+                this.C.Send(this.R.RoomKey + "f", smileyId);
             }
         }
 
@@ -362,7 +361,7 @@ namespace Skylight
             {
                 if (p != null)
                 {
-                    this.Say("/teleport " + newXLocation + " " + newYLocation + " " + p.Name);
+                    this.Say("/teleport " + p.Name + " " + newXLocation + " " + newYLocation);
                 }
                 else
                 {

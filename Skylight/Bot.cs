@@ -238,6 +238,7 @@
             this.Client = null;
             this.Connection = null;
             this.Push = null;
+            this.IsConnected = false;
         }
 
         public enum AccountType : sbyte
