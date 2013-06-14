@@ -630,7 +630,7 @@ namespace Skylight
 
             if (title == "Limit reached")
             {
-                this.Bot.CancelConnection();
+                this.Bot.Disconnect();
             }
 
             // Fire the event.

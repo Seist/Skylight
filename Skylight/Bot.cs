@@ -19,6 +19,7 @@
         private readonly string
             emailOrToken,
             passwordOrToken;
+
         private readonly AccountType accType;
 
         private Connection connection;
@@ -72,7 +73,7 @@
                 return this.blockDelay;
             }
 
-            internal set
+            set
             {
                 this.blockDelay = value;
             }
@@ -85,7 +86,7 @@
                 return this.speechDelay;
             }
 
-            internal set
+            set
             {
                 this.speechDelay = value;
             }
@@ -106,15 +107,9 @@
 
         public Room R
         {
-            get
-            {
-                return this.r;
-            }
+            get;
 
-            internal set
-            {
-                this.r = value;
-            }
+            internal set;
         }
        
         public Connection Connection
@@ -258,9 +253,11 @@
             }
         }
 
-        public void CancelConnection()
+        public void Disconnect()
         {
             // Basically undo everything you already did.
+            this.Connection.Disconnect();
+
             this.Client = null;
             this.Connection = null;
             this.Push = null;
