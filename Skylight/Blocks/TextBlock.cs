@@ -19,17 +19,17 @@
             this.Placer = placer;
         }
 
-                public string Text
-                {
-                    get
-                    {
-                        return this.text;
-                    }
+        public string Text
+        {
+            get
+            {
+                return this.text;
+            }
 
-                    internal set
-                    {
-                        this.text = value;
-                    }
-                }
+            internal set
+            {
+                this.text = value;
+            }
+        }
     }
 }

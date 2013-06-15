@@ -40,10 +40,7 @@
 
             internal set
             {
-                if (this.percussionId == -1)
-                {
-                    this.percussionId = value;
-                }
+                this.percussionId = value;
             }
         }
     }
