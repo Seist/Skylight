@@ -5,7 +5,6 @@ namespace Skylight
     using System;
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
-    using System.Threading;
     using PlayerIOClient;
 
     public static class Tools
@@ -17,48 +16,15 @@ namespace Skylight
         internal const string GuestEmail = "guest";
         internal const string GuestPassword = "guest";
 
-        public const string NormalRoom = "Everybodyedits";
-        public const string AuthRoom = "Auth";
-
         internal static readonly Lazy<PlayerIOClient.Client> GuestClient =
             new Lazy<PlayerIOClient.Client>(() => PlayerIO.QuickConnect.SimpleConnect(GameID, GuestEmail, GuestPassword));
+
+        public const string NormalRoom = "Everybodyedits";
+        public const string AuthRoom = "Auth";
 
         public delegate void ProgramEvent(string message);
 
         public static event ProgramEvent ProgramMessage = delegate { };
-
-        internal static string GetGameVersion()
-        {
-            try
-            {
-                var c = PlayerIO.QuickConnect.SimpleConnect(GameID, GuestEmail, GuestPassword);
-                c.Multiplayer.CreateJoinRoom("null", "null", false, null, null);
-
-                throw new Exception("Unable to query game version.");
-            }
-            catch (PlayerIOError e)
-            {
-                if (e.ErrorCode == ErrorCode.UnknownRoomType)
-                {
-                    string[] errMsg = e.Message.Split('[')[1].Split(' ');
-
-                    for (int i = errMsg.Length - 1; i >= 0; i--)
-                    {
-                        string currentRoomType = errMsg[i];
-
-                        if (currentRoomType.StartsWith(NormalRoom, StringComparison.Ordinal))
-                        {
-                            return currentRoomType.Substring(NormalRoom.Length, currentRoomType.Length - NormalRoom.Length - 1);
-                        }
-                    }
-
-                    throw new Exception("Unable to extract game version.");
-                }
-
-                SkylightMessage("Cannot get game version: " + e.Message);
-                return null;
-            }
-        }
         
         public static List<Player> GetWinners(Room r)
         {
