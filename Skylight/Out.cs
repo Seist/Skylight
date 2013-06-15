@@ -144,7 +144,10 @@ namespace Skylight
 
         public void InputCode(string editKey)
         {
-            this.C.Send("access", editKey);
+            if (this.C != null)
+            {
+                this.C.Send("access", editKey);
+            }
         }
 
         public void SetCode(string newCode)
