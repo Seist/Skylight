@@ -149,7 +149,7 @@
 
                     default: //case AccountType.ArmorGames:
                         var c = Tools.GuestClient.Value.Multiplayer.CreateJoinRoom("",
-                                                                                   Tools.AuthRoom + Tools.GetGameVersion(),
+                                                                                   GameVersion.Value(false, Tools.AuthRoom),
                                                                                    false, null, null);
                         c.OnMessage += (sender, message) =>
                             {

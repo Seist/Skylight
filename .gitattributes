@@ -1,14 +1,16 @@
 # Auto-detect text files and perform LF normalization
 * text=auto
 
-# Custom for Visual Studio
-*.cs     diff=csharp
-*.sln    merge=union
-*.csproj merge=union
-*.vbproj merge=union
-*.fsproj merge=union
-*.dbproj merge=union
-*.cs.lnk diff=csharp
+# Visual Studio
+*.sln     merge=union text eol=crlf
+
+# C#
+*.cs      diff=csharp text eol=lf
+*.csproj  merge=union text eol=crlf
+
+# VB.NET
+*.vb      merge=union text eol=lf
+*.vbproj  merge=union text eol=crlf
 
 # Standard to msysgit
 *.doc    diff=astextplain
