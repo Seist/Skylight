@@ -55,19 +55,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BlockEventArgs.cs" />
-    <Compile Include="BlockIds.cs" />
+    <Compile Include="Blocks\BlockEventArgs.cs" />
+    <Compile Include="Blocks\BlockIds.cs" />
     <Compile Include="Bot.cs" />
     <Compile Include="ChatEventArgs.cs" />
-    <Compile Include="CoinBlock.cs" />
-    <Compile Include="GameVersion.cs" />
-    <Compile Include="PercussionBlock.cs" />
+    <Compile Include="Blocks\CoinBlock.cs" />
+    <Compile Include="Miscellaneous\GameVersion.cs" />
+    <Compile Include="Blocks\PercussionBlock.cs" />
     <Compile Include="PlayerEventArgs.cs" />
-    <Compile Include="Block.cs" />
+    <Compile Include="Blocks\Block.cs" />
     <Compile Include="In.cs" />
     <Compile Include="Out.cs" />
     <Compile Include="Player.cs" />
-    <Compile Include="PortalBlock.cs" />
+    <Compile Include="Blocks\PortalBlock.cs" />
     <Compile Include="PotionIds.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -76,9 +76,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Smiley.cs" />
-    <Compile Include="PianoBlock.cs" />
-    <Compile Include="TextBlock.cs" />
-    <Compile Include="Tools.cs" />
+    <Compile Include="Blocks\PianoBlock.cs" />
+    <Compile Include="Blocks\TextBlock.cs" />
+    <Compile Include="Miscellaneous\Tools.cs" />
     <Compile Include="Room.cs" />
     <Compile Include="RoomEventArgs.cs" />
     <Compile Include="RoomPortalBlock.cs" />
@@ -89,6 +89,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
