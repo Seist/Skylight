@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading;
     using PlayerIOClient;
 
     public class Bot : Player
@@ -213,6 +214,7 @@
                 // Everyone gets a connection.
                 this.R.Connections.Add(this.Connection);
 
+                // The following 25 lines deal with filtering messages from the client.
                 // Every bot receives info from the room, because some of it is exclusive to the bot.
                 // We call those "personal" pulls.
                 // They are exactly the same as the main pull, except In.IsPersonal = true.
@@ -243,6 +245,9 @@
 
                 this.R.OnlinePlayers.Add(this);
                 
+                // Delay a couple seconds so that the bot has time to join.
+                Thread.Sleep(2000);
+
                 Tools.SkylightMessage("Joined room.");
             }
             catch (Exception e)
