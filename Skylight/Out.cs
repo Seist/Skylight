@@ -248,11 +248,11 @@ namespace Skylight
             }
         }
 
-        public void Kick(Player p)
+        public void Kick(Player p, string reason = "")
         {
             if (this.Bot.Name == this.R.Owner.Name)
             {
-                this.Say("/kick " + p.Name);
+                this.Say("/kick " + p.Name + " " + reason);
             }
         }
 
