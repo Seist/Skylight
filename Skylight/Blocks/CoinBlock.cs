@@ -13,19 +13,13 @@
         private int coinsRequired = -1;
 
         public CoinBlock(
-            int id,
             int x,
             int y,
             int coinsRequired,
-            bool isGate,
-            Room r,
-            Player placer = null) : base(id, x, y, placer)
+            bool isGate) : base(Tools.IdByVisible(isGate), x, y, 0)
         {
-            this.X = x;
-            this.Y = y;
             this.CoinsRequired = coinsRequired;
             this.IsGate = isGate;
-            this.Placer = placer;
         }
 
         public bool IsGate

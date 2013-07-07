@@ -395,7 +395,8 @@ namespace Skylight
             // Update relevant objects.
             Player subject = Tools.GetPlayerById(playerId, this.Source);
 
-            Block b = new Block(blockId, x, y, subject);
+            Block b = new Block(blockId, x, y, 0);
+            b.Placer = subject;
 
             this.Source.Map[x, y, z] = b;
             
@@ -414,7 +415,7 @@ namespace Skylight
                 coinsRequired = m.GetInteger(3);
 
             // Update relevant objects.
-            CoinBlock b = new CoinBlock(id, x, y, coinsRequired, false, this.Source);
+            CoinBlock b = new CoinBlock(x, y, coinsRequired, false);
 
             if (id == BlockIds.Action.Gates.COIN)
             {
@@ -439,7 +440,7 @@ namespace Skylight
                 z = m.GetInteger(4);
 
             // Update relevant objects.
-            Block b = new Block(id, x, y, null, rotation);
+            Block b = new Block(id, x, y, 0, rotation);
 
             this.Source.Map[x, y, z] = b;
 
@@ -462,7 +463,7 @@ namespace Skylight
             
             if (id == BlockIds.Action.Music.PERCUSSION)
             {
-                b = new PercussionBlock(x, y, note, this.Source);
+                b = new PercussionBlock(x, y, note);
             }
             else if (id == BlockIds.Action.Music.PIANO)
             {
@@ -974,17 +975,15 @@ namespace Skylight
                 portalDestination = m.GetInteger(5);
 
             // Update relevant objects.
-            PortalBlock b = new PortalBlock(blockId, x, y, rotation, portalId, portalDestination, false);
-            
-            if (blockId == BlockIds.Action.Portals.INVISIBLE)
+            bool isVisible = false;
+
+            if (blockId == BlockIds.Action.Portals.NORMAL)
             {
-                b.Visible = false;
-            }
-            else if (blockId == BlockIds.Action.Portals.NORMAL)
-            {
-                b.Visible = true;
+                isVisible = true;
             }
 
+            PortalBlock b = new PortalBlock(x, y, rotation, portalId, portalDestination, isVisible);
+            
             this.Source.Map[x, y, 1] = b;
 
             // Fire the event.

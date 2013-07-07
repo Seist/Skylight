@@ -21,14 +21,9 @@
         public PercussionBlock(
             int x,
             int y,
-            int percussionId,
-            Room r,
-            Player placer = null) : base(BlockIds.Action.Music.PERCUSSION, x, y, placer)
+            int percussionId) : base(BlockIds.Action.Music.PERCUSSION, x, y, 0)
         {
-            this.X = x;
-            this.Y = y;
             this.PercussionId = percussionId;
-            this.Placer = placer;
         }
 
         public int PercussionId

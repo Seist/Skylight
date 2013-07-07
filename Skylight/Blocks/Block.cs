@@ -18,7 +18,8 @@ namespace Skylight
             direction,
             id,
             x,
-            y;
+            y,
+            z;
             
         private Player 
             placer = new Player();
@@ -27,14 +28,14 @@ namespace Skylight
         public Block(
             int id, 
             int x, 
-            int y, 
-            Player placer = null, 
+            int y,
+            int z = 0,
             int direction = UP)
         {
             this.X = x;
             this.Y = y;
+            this.Z = z;
             this.Id = id;
-            this.Placer = placer;
             this.Direction = direction;
         }
 
@@ -69,6 +70,14 @@ namespace Skylight
         {
             get
             {
+                // 0 is the only block that can exist on both layers, 
+                // so return the set (or default) value.
+                if (this.Id == 0)
+                {
+                    return this.z;
+                }
+
+                // Otherwise, return the normal value.
                 if (this.Id >= 500)
                 {
                     return 1;
@@ -76,6 +85,14 @@ namespace Skylight
                 else
                 {
                     return 0;
+                }
+            }
+
+            internal set
+            {
+                if (value <= 0 && value < 2)
+                {
+                    this.z = value;
                 }
             }
         }

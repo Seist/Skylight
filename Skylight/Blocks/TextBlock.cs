@@ -10,13 +10,9 @@
             int id,
             int x,
             int y,
-            string text,
-            Player placer = null) : base(id, x, y, placer)
+            string text) : base(id, x, y, 0)
         {
-            this.X = x;
-            this.Y = y;
             this.Text = text;
-            this.Placer = placer;
         }
 
         public string Text

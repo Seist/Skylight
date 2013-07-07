@@ -192,6 +192,7 @@ namespace Skylight
             {
                 //// FULL CREDIT TO BASS5098 FOR THE FOLLOWING CODE
                 //// I wrote it in my own way in C# but Bass5098 made the original.
+                //// Without it I would not know how to do this.
                 //// https://github.com/kevin-brown/ee-level-editor/blob/master/LevelEditor/WorldConverter.vb
                 //// Lines 438-507
                 //// Praise him. (this is mainly due to my laziness)
@@ -228,9 +229,12 @@ namespace Skylight
 
                     for (int pos = 0; pos < ya.Length; pos += 2)
                     {
+                        // Extract the X and Y positions from the array.
                         x = (xa[pos] * 256) + xa[pos + 1];
                         y = (ya[pos] * 256) + ya[pos + 1];
 
+                        // Ascertain the block from the ID.
+                        // Add block accordingly.
                         if (blockId == BlockIds.Action.Portals.NORMAL ||
                             blockId == BlockIds.Action.Portals.INVISIBLE)
                         {
@@ -250,7 +254,6 @@ namespace Skylight
                             }
 
                             list.Add(new PortalBlock(
-                                blockId,
                                 x,
                                 y,
                                 direction,
@@ -281,12 +284,10 @@ namespace Skylight
                             }
 
                             list.Add(new CoinBlock(
-                                blockId,
                                 x,
                                 y,
                                 coins,
-                                isGate,
-                                r));
+                                isGate));
                         }
                         else if (blockId == BlockIds.Action.Music.PERCUSSION)
                         {
@@ -296,8 +297,7 @@ namespace Skylight
                             list.Add(new PercussionBlock(
                                 x,
                                 y,
-                                type,
-                                r));
+                                type));
                         }
                         else if (blockId == BlockIds.Action.Music.PIANO)
                         {
@@ -324,7 +324,7 @@ namespace Skylight
                                 blockId,
                                 x,
                                 y,
-                                null,
+                                0,
                                 rotation));
                         }
                         else
@@ -333,7 +333,7 @@ namespace Skylight
                             blockId,
                             x,
                             y,
-                            null));
+                            0));
                         }
                     }
                 }
@@ -344,6 +344,32 @@ namespace Skylight
             }
             
             return list;
+        }
+
+        // Return the correct portal ID based on whether or not the portal is visible or invisible.
+        internal static int IdByVisible(bool visible)
+        {
+            if (visible)
+            {
+                return BlockIds.Action.Portals.NORMAL;
+            }
+            else
+            {
+                return BlockIds.Action.Portals.INVISIBLE;
+            }
+        }
+
+        // Return the correct coin ID based based on whether or not the block is gate or door
+        internal static int IdByGate(bool isGate)
+        {
+            if (isGate)
+            {
+                return BlockIds.Action.Gates.COIN;
+            }
+            else
+            {
+                return BlockIds.Action.Doors.COIN;
+            }
         }
     }
 }

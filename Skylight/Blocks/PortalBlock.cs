@@ -16,21 +16,16 @@
             portalId = -1;
         
         public PortalBlock(
-            int id,
             int x, 
-            int y, 
+            int y,
             int direction,
             int portalId, 
             int portalDestination, 
-            bool visible,
-            Player placer = null) : base(id, x, y, placer)
+            bool visible) : base(Tools.IdByVisible(visible), x, y, 0)
         {
-            this.X = x;
-            this.Y = y;
             this.PortalDestination = portalDestination;
             this.PortalId = portalId;
             this.Visible = visible;
-            this.Placer = placer;
         }
 
         public int PortalDestination
