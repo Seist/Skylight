@@ -197,6 +197,19 @@ namespace Skylight
                 //// Lines 438-507
                 //// Praise him. (this is mainly due to my laziness)
 
+                // First, fill the entire map with blank blocks (so that you don't get null exceptions).
+                for (int x = 0; x < 1000; x++)
+                {
+                    for (int y = 0; y < 1000; y++)
+                    {
+                        for (int z = 0; z < 2; z++)
+                        {
+                            r.Map[x, y, z] = new Block(0, x, y, z);
+                        }
+                    }
+                }
+
+                // And now replace empty blocks with the ones that already exist.
                 uint messageIndex = start;
 
                 // Iterate through each internal set of messages.
