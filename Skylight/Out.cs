@@ -368,7 +368,7 @@ namespace Skylight
                 }
                 else
                 {
-                    this.Say("/teleport " + newXLocation + " " + newYLocation);
+                    this.Say("/teleport " + this.Bot.Name + " " + newXLocation + " " + newYLocation);
                 }
             }
         }
