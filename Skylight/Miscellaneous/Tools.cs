@@ -237,6 +237,70 @@ namespace Skylight
                     byte[] ya = m.GetByteArray(messageIndex);
                     messageIndex++;
 
+                    int rotation = 0, note = 0, type = 0, portalId = 0, destination = 0, coins = 0;
+                    bool isVisible = false, isGate = false;
+                    string roomDestination = "";
+
+                    // Get the variables that are unique to the current block
+                    if (blockId == BlockIds.Action.Portals.NORMAL ||
+                        blockId == BlockIds.Action.Portals.INVISIBLE)
+                    {
+                        rotation = m.GetInteger(messageIndex);
+                        messageIndex++;
+
+                        portalId = m.GetInteger(messageIndex);
+                        messageIndex++;
+
+                        destination = m.GetInteger(messageIndex);
+                        messageIndex++;
+
+                        isVisible = true;
+                        if (blockId == BlockIds.Action.Portals.INVISIBLE)
+                        {
+                            isVisible = false;
+                        }
+                    }
+                    else if (blockId == BlockIds.Action.Portals.WORLD)
+                    {
+                        roomDestination = m.GetString(messageIndex);
+                        messageIndex++;
+                    }
+                    else if (blockId == BlockIds.Action.Doors.COIN ||
+                        blockId == BlockIds.Action.Gates.COIN)
+                    {
+                        coins = m.GetInteger(messageIndex);
+                        messageIndex++;
+
+                        isGate = false;
+                        if (blockId == BlockIds.Action.Gates.COIN)
+                        {
+                            isGate = true;
+                        }
+                    }
+                    else if (blockId == BlockIds.Action.Music.PERCUSSION)
+                    {
+                        type = m.GetInteger(messageIndex);
+                        messageIndex++;
+                    }
+                    else if (blockId == BlockIds.Action.Music.PIANO)
+                    {
+                        note = m.GetInteger(messageIndex);
+                        messageIndex++;
+                    }
+                    else if (blockId == BlockIds.Decorative.SciFi2013.BLUEBEND ||
+                        blockId == BlockIds.Decorative.SciFi2013.BLUESTRAIGHT ||
+                        blockId == BlockIds.Decorative.SciFi2013.GREENBEND ||
+                        blockId == BlockIds.Decorative.SciFi2013.GREENSTRAIGHT ||
+                        blockId == BlockIds.Decorative.SciFi2013.ORANGEBEND ||
+                        blockId == BlockIds.Decorative.SciFi2013.ORANGESTRAIGHT ||
+                        blockId == BlockIds.Action.Hazards.SPIKE)
+                    {
+                        rotation = m.GetInteger(messageIndex);
+                        messageIndex++;
+                    }
+                    
+
+
                     // Some variables to simplify things.
                     int x = 0, y = 0;
 
@@ -251,51 +315,24 @@ namespace Skylight
                         if (blockId == BlockIds.Action.Portals.NORMAL ||
                             blockId == BlockIds.Action.Portals.INVISIBLE)
                         {
-                            int direction = m.GetInteger(messageIndex);
-                            messageIndex++;
-                            
-                            int portalId = m.GetInteger(messageIndex);
-                            messageIndex++;
-                            
-                            int destination = m.GetInteger(messageIndex);
-                            messageIndex++;
-                            
-                            bool isVisible = true;
-                            if (blockId == BlockIds.Action.Portals.INVISIBLE)
-                            {
-                                isVisible = false;
-                            }
-
                             list.Add(new PortalBlock(
                                 x,
                                 y,
-                                direction,
+                                rotation,
                                 portalId,
                                 destination,
                                 isVisible));
                         }
                         else if (blockId == BlockIds.Action.Portals.WORLD)
                         {                            
-                            string destination = m.GetString(messageIndex);
-                            messageIndex++;
-
                             list.Add(new RoomPortalBlock(
                                 x,
                                 y,
-                                destination));
+                                roomDestination));
                         }
                         else if (blockId == BlockIds.Action.Doors.COIN ||
                             blockId == BlockIds.Action.Gates.COIN)
                         {
-                            int coins = m.GetInteger(messageIndex);
-                            messageIndex++;
-                            
-                            bool isGate = false;
-                            if (blockId == BlockIds.Action.Gates.COIN)
-                            {
-                                isGate = true;
-                            }
-
                             list.Add(new CoinBlock(
                                 x,
                                 y,
@@ -304,9 +341,6 @@ namespace Skylight
                         }
                         else if (blockId == BlockIds.Action.Music.PERCUSSION)
                         {
-                            int type = m.GetInteger(messageIndex);
-                            messageIndex++;
-
                             list.Add(new PercussionBlock(
                                 x,
                                 y,
@@ -314,9 +348,6 @@ namespace Skylight
                         }
                         else if (blockId == BlockIds.Action.Music.PIANO)
                         {
-                            int note = m.GetInteger(messageIndex);
-                            messageIndex++;
-
                             list.Add(new PianoBlock(
                                 x,
                                 y,
@@ -330,9 +361,6 @@ namespace Skylight
                             blockId == BlockIds.Decorative.SciFi2013.ORANGESTRAIGHT ||
                             blockId == BlockIds.Action.Hazards.SPIKE)
                         {
-                            int rotation = m.GetInteger(messageIndex);
-                            messageIndex++;
-
                             list.Add(new Block(
                                 blockId,
                                 x,
@@ -353,7 +381,7 @@ namespace Skylight
             }
             catch (Exception e)
             {
-                SkylightMessage("Error loading existing blocks: " + e.Message);
+                SkylightMessage("Error loading existing blocks:\n" + e);
             }
             
             return list;
