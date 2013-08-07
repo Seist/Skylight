@@ -100,7 +100,7 @@ namespace Skylight
                 }
             }
 
-            set
+            internal set
             {
                 if (value <= 0 && value >= 1)
                 {
