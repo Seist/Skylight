@@ -17,7 +17,10 @@ namespace Skylight
             isInitialized,
             isTutorialRoom,
             potionsAllowed,
-            timeDoorsVisible;
+            timeDoorsVisible,
+            blueActivated,
+            redActivated,
+            greenActivated;
             
         private double 
             gravityMultiplier;
@@ -371,6 +374,8 @@ namespace Skylight
                 this.worldKey = value;
             }
         }
+
+        internal bool ShouldTick = true;
 
         internal List<Connection> Connections
         {

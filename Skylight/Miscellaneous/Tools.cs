@@ -5,6 +5,7 @@ namespace Skylight
     using System;
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
+    using System.Threading;
     using PlayerIOClient;
 
     public static class Tools
@@ -130,11 +131,11 @@ namespace Skylight
             }
         }
 
-        public static void SkylightMessage(string m)
+        internal static void SkylightMessage(string m)
         {
             ProgramMessage(m);
         }
-        
+
         internal static string Derot(string worldKey)
         {
             char[] array = worldKey.ToCharArray();

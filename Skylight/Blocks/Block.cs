@@ -13,6 +13,10 @@ namespace Skylight
             LEFT  = 2,
             UP    = 3;
 
+        public const int
+            FOREGROUNDLAYER = 0,
+            BACKGROUNDLAYER = 1;
+
         // Private instance fields
         private int 
             direction,
@@ -40,6 +44,14 @@ namespace Skylight
         }
 
         // Public instance properties
+        public bool IsSolid
+        {
+            get
+            {
+                return (this.Id >= 9 && this.Id <= 97) || (this.Id >= 122 && this.Id <= 217);
+            }
+        }
+
         public int Direction
         {
             get
@@ -88,9 +100,9 @@ namespace Skylight
                 }
             }
 
-            internal set
+            set
             {
-                if (value <= 0 && value < 2)
+                if (value <= 0 && value >= 1)
                 {
                     this.z = value;
                 }

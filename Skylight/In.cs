@@ -17,6 +17,8 @@ namespace Skylight
 
         private Room source;
 
+        private Thread tick;
+
         public delegate void BlockEvent(BlockEventArgs e);
 
         public delegate void ChatEvent(ChatEventArgs e);
@@ -335,8 +337,8 @@ namespace Skylight
                 Smiley = smiley,
                 Coins = coins,
                 XpLevel = xplevel,
-                X = x,
-                Y = y,
+                x = x,
+                y = y,
                 IsGod = isGod,
                 IsMod = isMod,
                 PlayingIn = this.Source,
@@ -667,8 +669,8 @@ namespace Skylight
             // Update relevant objects
             this.Bot.Name = botName;
             this.Bot.Id = botId;
-            this.Bot.X = botX;
-            this.Bot.Y = botY;
+            this.Bot.x = botX;
+            this.Bot.y = botY;
             this.Bot.HasAccess = hasAccess;
             this.Bot.IsOwner = isOwner;
             this.Bot.PlayingIn = this.Source;
@@ -677,10 +679,11 @@ namespace Skylight
 
             if (this.Source.IsInitialized)
             {
-                // You don't need to get the roomdata multiple times. Save time by returning.
+                // You don't need to get the room data multiple times. Save time by returning.
                 return;
             }
 
+            // Update the room data.
             this.Source.Owner.Name = owner;
             this.Source.Name = name;
             this.Source.Plays = plays;
@@ -703,9 +706,14 @@ namespace Skylight
 
             Tools.SkylightMessage("Loaded room.");
 
+            // Begin the tick thread.
+            tick = new Thread(new ThreadStart(UpdatePhysics));
+            tick.Start();
+
+            // Execute the messages that came prematurely.
             foreach (Message msg in this.prematureMessages)
             {
-                this.OnMessage(new object(), msg);
+                this.OnMessage(this, msg);
             }
 
             this.prematureMessages.Clear();
@@ -880,8 +888,8 @@ namespace Skylight
                 }
             }
 
-            subject.X = xLocation;
-            subject.Y = yLocation;
+            subject.x = xLocation;
+            subject.y = yLocation;
             subject.HorizontalSpeed = horizontalSpeed;
             subject.VerticalSpeed = verticalSpeed;
             subject.HorizontalModifier = horizontalModifier;
@@ -1077,8 +1085,8 @@ namespace Skylight
             // Update relevant objects.
             Player subject = Tools.GetPlayerById(id, this.Source);
 
-            subject.X = x;
-            subject.Y = y;
+            subject.x = x;
+            subject.y = y;
 
             // Fire the event.
             PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
@@ -1104,8 +1112,8 @@ namespace Skylight
                         y = m.GetInteger(index + 2);
 
                     Player tempSubject = Tools.GetPlayerById(id, this.Source);
-                    tempSubject.X = x;
-                    tempSubject.Y = y;
+                    tempSubject.x = x;
+                    tempSubject.y = y;
                     
                     index += 3;
                 }
@@ -1126,8 +1134,8 @@ namespace Skylight
                 // Update relevant objects.
                 Player subject = Tools.GetPlayerById(id, this.Source);
 
-                subject.X = x;
-                subject.Y = y;
+                subject.x = x;
+                subject.y = y;
 
                 // Fire the event.
                 PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
@@ -1258,6 +1266,21 @@ namespace Skylight
             PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
 
             this.Source.Pull.WootEvent(e);
+        }
+
+        internal void UpdatePhysics()
+        {
+            // BWZQpN-d1Ha0I
+
+            while (this.Source.ShouldTick)
+            {
+                for (int i = 0; i < this.Source.OnlinePlayers.Count; i++)
+                {
+                    this.Source.OnlinePlayers[i].Tick();
+                }
+
+                Thread.Sleep(Config.physics_ms_per_tick);
+            }
         }
     }
 }

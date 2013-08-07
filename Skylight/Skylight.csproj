@@ -48,6 +48,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -63,6 +64,7 @@
     <Compile Include="Blocks\RoomPortalBlock.cs" />
     <Compile Include="Bot.cs" />
     <Compile Include="Blocks\CoinBlock.cs" />
+    <Compile Include="Config.cs" />
     <Compile Include="Miscellaneous\GameVersion.cs" />
     <Compile Include="Blocks\PercussionBlock.cs" />
     <Compile Include="Blocks\Block.cs" />
@@ -82,6 +84,8 @@
     <Compile Include="Blocks\TextBlock.cs" />
     <Compile Include="Miscellaneous\Tools.cs" />
     <Compile Include="Room.cs" />
+    <Compile Include="SynchronizedObject.cs" />
+    <Compile Include="SynchronizedSprite.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\Settings.settings">
