@@ -25,7 +25,6 @@ namespace Skylight
                     }
                 }
 
-                Tools.SkylightMessage("Referenced to an unknown bot in Out.cs");
                 return null;
             }
         }
@@ -200,7 +199,7 @@ namespace Skylight
             {
                 this.C.Send("m", args);
             }
-                        catch (NullReferenceException)
+            catch (NullReferenceException)
             {
                 Tools.SkylightMessage("Error: attempted to use Out.Move before connecting");
             }
@@ -211,9 +210,9 @@ namespace Skylight
             try
             {
                 this.C.Send(
-                    "m", 
-                    m.GetDouble(1), 
-                    m.GetDouble(2), 
+                    "m",
+                    m.GetDouble(1),
+                    m.GetDouble(2),
                     m.GetDouble(3),
                     m.GetDouble(4),
                     m.GetDouble(5),
@@ -224,7 +223,7 @@ namespace Skylight
                     m.GetBoolean(10),
                     m.GetBoolean(11));
             }
-                        catch (NullReferenceException)
+            catch (NullReferenceException)
             {
                 Tools.SkylightMessage("Error: attempted to use Out.Move before connecting");
             }
@@ -252,10 +251,24 @@ namespace Skylight
         {
             try
             {
-                this.C.Send("say", s);
-                Thread.Sleep(this.Bot.SpeechDelay);
+                if (s.Length <= 80 && s.Length > 0)
+                {
+                    this.C.Send("say", s);
+                    Thread.Sleep(this.Bot.SpeechDelay);
+                }
+                else
+                {
+                    // Say what you can.
+                    this.Say(s.Substring(0, 80));
+
+                    // Delete what you just said.
+                    s = s.Substring(80);
+
+                    // Repeat the process.
+                    this.Say(s);
+                }
             }
-                        catch (NullReferenceException)
+            catch (NullReferenceException)
             {
                 Tools.SkylightMessage("Error: attempted to use Out.Say before connecting");
             }
@@ -270,7 +283,7 @@ namespace Skylight
                     this.C.Send("name", s);
                 }
             }
-                        catch (NullReferenceException)
+            catch (NullReferenceException)
             {
                 Tools.SkylightMessage("Error: attempted to use Out.SetTitle before connecting");
             }
@@ -291,7 +304,7 @@ namespace Skylight
                 this.Say("/loadlevel");
             }
         }
-        
+
         public void Respawn(Player p)
         {
             if (this.Bot.IsOwner)
@@ -325,7 +338,7 @@ namespace Skylight
                     this.C.Send("save");
                 }
             }
-                        catch (NullReferenceException)
+            catch (NullReferenceException)
             {
                 Tools.SkylightMessage("Error: attempted to use Out.Save before connecting");
             }
@@ -340,12 +353,12 @@ namespace Skylight
                     this.C.Send("allowpotions", value);
                 }
             }
-                        catch (NullReferenceException)
+            catch (NullReferenceException)
             {
                 Tools.SkylightMessage("Error: attempted to use Out.SetAllPotionBans before connecting");
             }
         }
-        
+
         public void SetEdit(Player p, bool value)
         {
             if (this.Bot.IsOwner)
@@ -397,7 +410,7 @@ namespace Skylight
             {
                 this.C.Send(this.R.RoomKey + "f", smileyId);
             }
-                        catch (NullReferenceException)
+            catch (NullReferenceException)
             {
                 Tools.SkylightMessage("Error: attempted to use Out.SetSmiley before connecting");
             }
@@ -413,7 +426,7 @@ namespace Skylight
 
         public void Teleport(int newXLocation, int newYLocation, Player p = null)
         {
-            if (this.Bot.IsOwner)
+            //if (this.Bot.IsOwner)
             {
                 if (p != null)
                 {

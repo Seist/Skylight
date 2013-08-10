@@ -667,6 +667,7 @@ namespace Skylight
                 isOwner = m.GetBoolean(11);
 
             // Update relevant objects
+            this.InitMessage = m;
             this.Bot.Name = botName;
             this.Bot.Id = botId;
             this.Bot.x = botX;
@@ -699,16 +700,7 @@ namespace Skylight
             this.Source.IsInitialized = true;
 
             // Load the blocks
-            foreach (Block b in Tools.ConvertMessageToBlockList(m, 18, this.Source))
-            {
-                this.Source.Map[b.X, b.Y, b.Z] = b;
-            }
-
-            Tools.SkylightMessage("Loaded room.");
-
-            // Begin the tick thread.
-            tick = new Thread(new ThreadStart(UpdatePhysics));
-            tick.Start();
+            Thread loadBlocks = new Thread(LoadBlocks);
 
             // Execute the messages that came prematurely.
             foreach (Message msg in this.prematureMessages)
@@ -1060,7 +1052,7 @@ namespace Skylight
             // Fire the event.
             ChatEventArgs e = new ChatEventArgs(subject, this.Source);
 
-            this.Source.Pull.NormalChatEvent(e);
+            this.Source.Pull.SayOldEvent(e);
         }
 
         private void OnShow(Message m)
@@ -1281,6 +1273,23 @@ namespace Skylight
 
                 Thread.Sleep(Config.physics_ms_per_tick);
             }
+        }
+
+        private Message InitMessage;
+
+        private void LoadBlocks()
+        {
+            foreach (Block b in Tools.ConvertMessageToBlockList(InitMessage, 18, this.Source))
+            {
+                this.Source.Map[b.X, b.Y, b.Z] = b;
+            }
+
+            Tools.SkylightMessage("Loaded room.");
+
+            // Now that you have loaded the room, begin updating the physics.
+
+            tick = new Thread(UpdatePhysics);
+            tick.Start();
         }
     }
 }

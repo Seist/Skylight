@@ -507,9 +507,7 @@ namespace Skylight
         //private uint textcolor;
         private int morx = 0,
             mory = 0,
-            woots = 0,
-            current = 0,
-            current_bg = 0;
+            current = 0;
 
         public bool purple = false;
         public int overlapy = 0;
@@ -590,7 +588,7 @@ namespace Skylight
         {
             List<int> _loc_8 = new List<int>();
             //int _loc_10 = 0;
-            int _loc_11 = 0;
+            int surroundingBlockId = 0;
             if (param1.x < 0 || param1.y < 0 || param1.x >= this.PlayingIn.Width || param1.y >= this.PlayingIn.Height)
             {
                 return 1;
@@ -601,8 +599,8 @@ namespace Skylight
                 return 0;
             }
 
-            double _loc_3 = ((this.y) / 16);
-            double _loc_4 = ((this.x) / 16);
+            double blockY = ((this.y) / 16);
+            double blockX = ((this.x) / 16);
             //double _loc_5 = (param1.x + param1.height) / 16;
             //Console.WriteLine(_loc_3 + " - "  +_loc_5);
             //double _loc_6 = (param1.y + param1.width) / 16;
@@ -611,7 +609,7 @@ namespace Skylight
             {
                 for (int yy = -2; yy < 1; yy++)
                 {
-                    if (_loc_3 + xx > 0 && _loc_3 + xx < this.PlayingIn.Width && _loc_4 + yy > 0 && _loc_4 + yy <= this.PlayingIn.Height)
+                    if (blockY + xx > 0 && blockY + xx < this.PlayingIn.Width && blockX + yy > 0 && blockX + yy <= this.PlayingIn.Height)
                     {
                         for (int xTest = 0; xTest < 16; xTest++)
                         {
@@ -619,8 +617,8 @@ namespace Skylight
                             {
                                 if (hitTest((int)(xTest + this.x + xx * 16), (int)(yTest + this.y + yy * 16)))
                                 {
-                                    double _loc_9 = _loc_4;
-                                    _loc_11 = this.PlayingIn.Map[
+                                    double _blockX = blockX;
+                                    surroundingBlockId = this.PlayingIn.Map[
                                         (int)(((xx * 16) + this.x + xTest) / 16),
                                         (int)(((yy * 16) + this.y + yTest) / 16), 0].Id;
 
@@ -628,7 +626,7 @@ namespace Skylight
                                         (int)(((xx * 16) + this.x + xTest) / 16),
                                         (int)(((yy * 16) + this.y + yTest) / 16), 0].IsSolid)
                                     {
-                                        switch (_loc_11)
+                                        switch (surroundingBlockId)
                                         {
                                             case 61:
                                             case 62:
@@ -650,11 +648,11 @@ namespace Skylight
                                             case 158:
                                             case 194:
                                                 {
-                                                    if (this.SpeedY < 0 || _loc_9 <= this.overlapy)
+                                                    if (this.SpeedY < 0 || _blockX <= this.overlapy)
                                                     {
-                                                        if (_loc_9 != _loc_4 || this.overlapy == -1)
+                                                        if (_blockX != blockX || this.overlapy == -1)
                                                         {
-                                                            this.overlapy = (int)_loc_9;
+                                                            this.overlapy = (int)_blockX;
                                                         }
                                                         //_loc_7 = true;
                                                         break;
@@ -664,7 +662,7 @@ namespace Skylight
                                             default:
                                                     break;
                                         }
-                                        return _loc_11;
+                                        return surroundingBlockId;
                                     }
                                 }
                             }

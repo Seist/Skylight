@@ -14,8 +14,8 @@
 
         // In milliseconds.
         private int 
-            blockDelay  = 50, 
-            speechDelay = 50;
+            blockDelay  = 10, 
+            speechDelay = 1000;
 
         private readonly string
             emailOrToken,
