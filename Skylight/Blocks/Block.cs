@@ -11,9 +11,7 @@ namespace Skylight
             RIGHT = 0,
             DOWN  = 1,
             LEFT  = 2,
-            UP    = 3;
-
-        public const int
+            UP    = 3,
             FOREGROUNDLAYER = 0,
             BACKGROUNDLAYER = 1;
 
@@ -30,8 +28,8 @@ namespace Skylight
         
         // Constructor
         public Block(
-            int id, 
-            int x, 
+            int id,
+            int x,
             int y,
             int z = 0,
             int direction = UP)
@@ -102,7 +100,7 @@ namespace Skylight
 
             internal set
             {
-                if (value <= 0 && value >= 1)
+                if (value >= 0 && value <= 1)
                 {
                     this.z = value;
                 }
