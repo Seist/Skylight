@@ -397,7 +397,7 @@ namespace Skylight
             // Update relevant objects.
             Player subject = Tools.GetPlayerById(playerId, this.Source);
 
-            Block b = new Block(blockId, x, y, 0);
+            Block b = new Block(blockId, x, y, z);
             b.Placer = subject;
 
             this.Source.Map[x, y, z] = b;
@@ -668,6 +668,7 @@ namespace Skylight
 
             // Update relevant objects
             this.InitMessage = m;
+
             this.Bot.Name = botName;
             this.Bot.Id = botId;
             this.Bot.x = botX;
@@ -701,6 +702,7 @@ namespace Skylight
 
             // Load the blocks
             Thread loadBlocks = new Thread(LoadBlocks);
+            loadBlocks.Start();
 
             // Execute the messages that came prematurely.
             foreach (Message msg in this.prematureMessages)

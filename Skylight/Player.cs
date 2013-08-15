@@ -567,9 +567,15 @@ namespace Skylight
         {
         }
 
-        public Player(int ID, string name, int frame, float xPos, float yPos, bool isGod, bool isMod, bool bla, int coins, bool purple, bool isFriend, int level)
+        public Player(int id, string name)
         {
-            this.Id = ID;
+            this.Id = id;
+            this.Name = name;
+        }
+
+        public Player(int id, string name, int frame, float xPos, float yPos, bool isGod, bool isMod, bool bla, int coins, bool purple, bool isFriend, int level)
+        {
+            this.Id = id;
             this.Name = name;
             this.frame = frame; 
             this.Coins = coins; 

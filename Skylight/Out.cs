@@ -60,7 +60,10 @@ namespace Skylight
 
         public void Build(List<Block> blockList)
         {
-            foreach (Block b in blockList)
+            List<Block> tempList = new List<Block>();
+            tempList.AddRange(blockList);
+
+            foreach (Block b in tempList)
             {
                 this.Build(b);
             }

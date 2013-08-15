@@ -375,7 +375,7 @@ namespace Skylight
                             blockId,
                             x,
                             y,
-                            0));
+                            z));
                         }
                     }
                 }
