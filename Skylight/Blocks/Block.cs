@@ -100,7 +100,7 @@ namespace Skylight
 
             internal set
             {
-                if (value >= 0 && value <= 1)
+                if (value == 0 && value == 1)
                 {
                     this.z = value;
                 }
