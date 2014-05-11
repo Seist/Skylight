@@ -49,7 +49,43 @@ namespace Skylight
         {
             try
             {
-                this.C.Send(this.R.RoomKey, b.Z, b.X, b.Y, b.Id, b.Direction);
+                if (b is CoinBlock)
+                {
+                    CoinBlock c = b as CoinBlock;
+
+                    /* int id = BlockIds.Action.Doors.COIN;
+                    if (c.IsGate)
+                    {
+                        id = BlockIds.Action.Gates.COIN;
+                    } */
+
+                    this.C.Send(this.R.RoomKey, c.Z, c.X, c.Y, c.Id, c.CoinsRequired);
+                }
+                else if (b is PercussionBlock)
+                {
+
+                }
+                else if (b is PianoBlock)
+                {
+
+                }
+                else if (b is PortalBlock)
+                {
+
+                }
+                else if (b is RoomPortalBlock)
+                {
+
+                }
+                else if (b is TextBlock)
+                {
+
+                }
+                else
+                {
+                    this.C.Send(this.R.RoomKey, b.Z, b.X, b.Y, b.Id, b.Direction);
+                }
+                
                 Thread.Sleep(this.Bot.BlockDelay);
             }
             catch (NullReferenceException)

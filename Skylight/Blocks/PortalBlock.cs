@@ -21,7 +21,7 @@
             int direction,
             int portalId, 
             int portalDestination, 
-            bool visible) : base(Tools.IdByVisible(visible), x, y, 0)
+            bool visible) : base(Tools.PortalIdByVisible(visible), x, y, 0)
         {
             this.PortalDestination = portalDestination;
             this.PortalId = portalId;

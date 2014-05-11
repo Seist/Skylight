@@ -389,7 +389,7 @@ namespace Skylight
         }
 
         // Return the correct portal ID based on whether or not the portal is visible or invisible.
-        internal static int IdByVisible(bool visible)
+        internal static int PortalIdByVisible(bool visible)
         {
             if (visible)
             {
@@ -402,7 +402,7 @@ namespace Skylight
         }
 
         // Return the correct coin ID based based on whether or not the block is gate or door
-        internal static int IdByGate(bool isGate)
+        internal static int CoinIdByGate(bool isGate)
         {
             if (isGate)
             {

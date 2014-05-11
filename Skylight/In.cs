@@ -803,11 +803,12 @@ namespace Skylight
 
             // Update relevant objects.
             Player subject = Tools.GetPlayerById(id, this.Source);
-            foreach (Player p in this.Source.OnlinePlayers)
+            for (int i = 0; i < this.Source.OnlinePlayers.Count; i++)
             {
-                if (p == subject)
+                if (this.Source.OnlinePlayers[i] == subject)
                 {
-                    this.Source.OnlinePlayers.Remove(p);
+                    this.Source.OnlinePlayers.RemoveAt(i);
+                    break;
                 }
             }
 

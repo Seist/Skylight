@@ -16,7 +16,7 @@
             int x,
             int y,
             int coinsRequired,
-            bool isGate) : base(Tools.IdByVisible(isGate), x, y, 0)
+            bool isGate) : base(Tools.PortalIdByVisible(isGate), x, y, 0)
         {
             this.CoinsRequired = coinsRequired;
             this.IsGate = isGate;
