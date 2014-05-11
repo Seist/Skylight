@@ -6,7 +6,7 @@ namespace Skylight
     using System.Collections.Generic;
     using System.Drawing;
 
-    public class Player : SynchronizedSprite
+    public partial class Player : SynchronizedSprite
     {
         // Private instance fields
         private bool

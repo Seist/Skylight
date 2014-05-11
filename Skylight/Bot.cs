@@ -5,7 +5,7 @@
     using System.Threading;
     using PlayerIOClient;
 
-    public class Bot : Player
+    public partial class Bot : Player
     {
         private bool
             isConnected;

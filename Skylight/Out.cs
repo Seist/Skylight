@@ -60,6 +60,7 @@ namespace Skylight
                     } */
 
                     this.C.Send(this.R.RoomKey, c.Z, c.X, c.Y, c.Id, c.CoinsRequired);
+                    Tools.SkylightMessage("Sent the coin block");
                 }
                 else if (b is PercussionBlock)
                 {
