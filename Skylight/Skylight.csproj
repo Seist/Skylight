@@ -84,8 +84,6 @@
     <Compile Include="Blocks\TextBlock.cs" />
     <Compile Include="Miscellaneous\Tools.cs" />
     <Compile Include="Room.cs" />
-    <Compile Include="SynchronizedObject.cs" />
-    <Compile Include="SynchronizedSprite.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\Settings.settings">
@@ -93,7 +91,9 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Physics\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

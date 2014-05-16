@@ -17,8 +17,6 @@ namespace Skylight
 
         private Room source;
 
-        private Thread tick;
-
         public delegate void BlockEvent(BlockEventArgs e);
 
         public delegate void ChatEvent(ChatEventArgs e);
@@ -337,8 +335,8 @@ namespace Skylight
                 Smiley = smiley,
                 Coins = coins,
                 XpLevel = xplevel,
-                x = x,
-                y = y,
+                X = x,
+                Y = y,
                 IsGod = isGod,
                 IsMod = isMod,
                 PlayingIn = this.Source,
@@ -671,8 +669,8 @@ namespace Skylight
 
             this.Bot.Name = botName;
             this.Bot.Id = botId;
-            this.Bot.x = botX;
-            this.Bot.y = botY;
+            this.Bot.X = botX;
+            this.Bot.Y = botY;
             this.Bot.HasAccess = hasAccess;
             this.Bot.IsOwner = isOwner;
             this.Bot.PlayingIn = this.Source;
@@ -883,8 +881,8 @@ namespace Skylight
                 }
             }
 
-            subject.x = xLocation;
-            subject.y = yLocation;
+            subject.X = xLocation;
+            subject.Y = yLocation;
             subject.HorizontalSpeed = horizontalSpeed;
             subject.VerticalSpeed = verticalSpeed;
             subject.HorizontalModifier = horizontalModifier;
@@ -1080,8 +1078,8 @@ namespace Skylight
             // Update relevant objects.
             Player subject = Tools.GetPlayerById(id, this.Source);
 
-            subject.x = x;
-            subject.y = y;
+            subject.X = x;
+            subject.Y = y;
 
             // Fire the event.
             PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
@@ -1107,8 +1105,8 @@ namespace Skylight
                         y = m.GetInteger(index + 2);
 
                     Player tempSubject = Tools.GetPlayerById(id, this.Source);
-                    tempSubject.x = x;
-                    tempSubject.y = y;
+                    tempSubject.X = x;
+                    tempSubject.Y = y;
                     
                     index += 3;
                 }
@@ -1129,8 +1127,8 @@ namespace Skylight
                 // Update relevant objects.
                 Player subject = Tools.GetPlayerById(id, this.Source);
 
-                subject.x = x;
-                subject.y = y;
+                subject.X = x;
+                subject.Y = y;
 
                 // Fire the event.
                 PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
@@ -1263,21 +1261,6 @@ namespace Skylight
             this.Source.Pull.WootEvent(e);
         }
 
-        internal void UpdatePhysics()
-        {
-            // BWZQpN-d1Ha0I
-
-            while (this.Source.ShouldTick)
-            {
-                for (int i = 0; i < this.Source.OnlinePlayers.Count; i++)
-                {
-                    this.Source.OnlinePlayers[i].Tick();
-                }
-
-                Thread.Sleep(Config.physics_ms_per_tick);
-            }
-        }
-
         private Message InitMessage;
 
         private void LoadBlocks()
@@ -1287,12 +1270,9 @@ namespace Skylight
                 this.Source.Map[b.X, b.Y, b.Z] = b;
             }
 
-            Tools.SkylightMessage("Loaded room.");
+            Tools.SkylightMessage("Loaded room's blocks.");
 
             // Now that you have loaded the room, begin updating the physics.
-
-            tick = new Thread(UpdatePhysics);
-            tick.Start();
         }
     }
 }
