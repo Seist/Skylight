@@ -7,6 +7,7 @@ Skylight is designed to make your EE-based bot much easier to develop and unders
 Special thanks to:<br>
 <ul>
 <li>Jojatekok: Adding extra login features.</li>
-<li>Bass5098: Providing a system for parsing init message, a ton of other stuff.</li>
-<li>BuzzerBee: Finding bugs and breaking things a lot.</li>
+<li>Bass5098: Providing a system for parsing init message; other OnMessage documentation.</li>
+<li>BuzzerBee: Finding bugs.</li>
+<li>gustav9797: Porting physics engine to C#.</li>
 </ul>

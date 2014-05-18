@@ -53,34 +53,36 @@ namespace Skylight
                 {
                     CoinBlock c = b as CoinBlock;
 
-                    /* int id = BlockIds.Action.Doors.COIN;
-                    if (c.IsGate)
-                    {
-                        id = BlockIds.Action.Gates.COIN;
-                    } */
-
                     this.C.Send(this.R.RoomKey, c.Z, c.X, c.Y, c.Id, c.CoinsRequired);
-                    Tools.SkylightMessage("Sent the coin block");
                 }
                 else if (b is PercussionBlock)
                 {
+                    PercussionBlock p = b as PercussionBlock;
 
+                    this.C.Send(this.R.RoomKey, p.Z, p.X, p.Y, p.PercussionId);
                 }
                 else if (b is PianoBlock)
                 {
+                    PianoBlock p = b as PianoBlock;
 
+                    this.C.Send(this.R.RoomKey, p.Z, p.X, p.Y, p.PianoId);
                 }
                 else if (b is PortalBlock)
                 {
+                    PortalBlock p = b as PortalBlock;
 
+                    this.C.Send(this.R.RoomKey, p.Z, p.X, p.Y, p.Direction, p.PortalId, p.PortalDestination);
                 }
                 else if (b is RoomPortalBlock)
                 {
+                    RoomPortalBlock r = b as RoomPortalBlock;
 
+                    this.C.Send(this.R.RoomKey, r.Z, r.X, r.Y, r.PortalDestination);
                 }
                 else if (b is TextBlock)
                 {
-
+                    TextBlock t = b as TextBlock;
+                    this.C.Send(this.R.RoomKey, t.Z, t.X, t.Y, t.Text);
                 }
                 else
                 {

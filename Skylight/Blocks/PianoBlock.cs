@@ -6,7 +6,7 @@
     {
         public const int
             C1      = 1,
-            CSHARP1 = 2,
+            CSHARP1 = 2, // ha ha ha
             D1      = 3,
             DSHARP1 = 4,
             E1      = 5,
