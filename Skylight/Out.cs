@@ -293,9 +293,9 @@ namespace Skylight
         {
             try
             {
-                if (s.Length <= 80 && s.Length > 0)
+                if (s.Length + this.Bot.ChatPrefix.Length <= 80 && s.Length > 0)
                 {
-                    this.C.Send("say", s);
+                    this.C.Send("say", this.Bot.ChatPrefix + s);
                     Thread.Sleep(this.Bot.SpeechDelay);
                 }
                 else

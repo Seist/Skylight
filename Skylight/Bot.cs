@@ -17,6 +17,8 @@
             blockDelay  = 10, 
             speechDelay = 1000;
 
+        private string chatPrefix;
+
         private readonly string
             emailOrToken,
             passwordOrToken;
@@ -90,6 +92,19 @@
             set
             {
                 this.speechDelay = value;
+            }
+        }
+
+        public string ChatPrefix
+        {
+            get
+            {
+                return this.chatPrefix;
+            }
+
+            set
+            {
+                this.chatPrefix = value;
             }
         }
 
