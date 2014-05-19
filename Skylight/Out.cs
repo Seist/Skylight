@@ -293,21 +293,43 @@ namespace Skylight
         {
             try
             {
-                if (s.Length + this.Bot.ChatPrefix.Length <= 80 && s.Length > 0)
+                if (s.StartsWith("/"))
                 {
-                    this.C.Send("say", this.Bot.ChatPrefix + s);
-                    Thread.Sleep(this.Bot.SpeechDelay);
+                    if (s.Length <= 80 && s.Length > 0)
+                    {
+                        this.C.Send("say", s);
+                        Thread.Sleep(this.Bot.SpeechDelay);
+                    }
+                    else
+                    {
+                        // Say what you can.
+                        this.Say(s.Substring(0, 80));
+
+                        // Delete what you just said.
+                        s = s.Substring(80);
+
+                        // Repeat the process.
+                        this.Say(s);
+                    }
                 }
                 else
                 {
-                    // Say what you can.
-                    this.Say(s.Substring(0, 80));
+                    if (s.Length + this.Bot.ChatPrefix.Length <= 80 && s.Length > 0)
+                    {
+                        this.C.Send("say", this.Bot.ChatPrefix + s);
+                        Thread.Sleep(this.Bot.SpeechDelay);
+                    }
+                    else
+                    {
+                        // Say what you can.
+                        this.Say(s.Substring(0, 80));
 
-                    // Delete what you just said.
-                    s = s.Substring(80);
+                        // Delete what you just said.
+                        s = s.Substring(80);
 
-                    // Repeat the process.
-                    this.Say(s);
+                        // Repeat the process.
+                        this.Say(s);
+                    }
                 }
             }
             catch (NullReferenceException)
