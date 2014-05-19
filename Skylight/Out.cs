@@ -59,30 +59,30 @@ namespace Skylight
                 {
                     PercussionBlock p = b as PercussionBlock;
 
-                    this.C.Send(this.R.RoomKey, p.Z, p.X, p.Y, p.PercussionId);
+                    this.C.Send(this.R.RoomKey, p.Z, p.X, p.Y, p.Id, p.PercussionId);
                 }
                 else if (b is PianoBlock)
                 {
                     PianoBlock p = b as PianoBlock;
 
-                    this.C.Send(this.R.RoomKey, p.Z, p.X, p.Y, p.PianoId);
+                    this.C.Send(this.R.RoomKey, p.Z, p.X, p.Y, p.Id, p.PianoId);
                 }
                 else if (b is PortalBlock)
                 {
                     PortalBlock p = b as PortalBlock;
 
-                    this.C.Send(this.R.RoomKey, p.Z, p.X, p.Y, p.Direction, p.PortalId, p.PortalDestination);
+                    this.C.Send(this.R.RoomKey, p.Z, p.X, p.Y, p.Id, p.Direction, p.PortalId, p.PortalDestination);
                 }
                 else if (b is RoomPortalBlock)
                 {
                     RoomPortalBlock r = b as RoomPortalBlock;
 
-                    this.C.Send(this.R.RoomKey, r.Z, r.X, r.Y, r.PortalDestination);
+                    this.C.Send(this.R.RoomKey, r.Z, r.X, r.Y, r.Id, r.PortalDestination);
                 }
                 else if (b is TextBlock)
                 {
                     TextBlock t = b as TextBlock;
-                    this.C.Send(this.R.RoomKey, t.Z, t.X, t.Y, t.Text);
+                    this.C.Send(this.R.RoomKey, t.Z, t.X, t.Y, t.Id, t.Text);
                 }
                 else
                 {
