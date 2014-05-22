@@ -221,7 +221,12 @@
             try
             {
                 // Join room
-                this.Connection = this.Client.Multiplayer.JoinRoom(this.R.Id, new Dictionary<string, string>());
+                this.Connection = this.Client.Multiplayer.CreateJoinRoom(
+                    this.R.Id,                         // RoomId   (URL)
+                    GameVersion.Value(),               // RoomType (Server)
+                    true,                              // Visible
+                    new Dictionary<string, string>(),  // RoomData
+                    new Dictionary<string, string>()); // JoinData
 
                 // Update room data
                 Room.JoinedRooms.Add(this.R);
@@ -261,7 +266,7 @@
                 this.R.OnlinePlayers.Add(this);
                 
                 // Delay a couple seconds so that the bot has time to join.
-                Thread.Sleep(2000);
+                Thread.Sleep(1000);
 
                 Tools.SkylightMessage("Joined room.");
             }
