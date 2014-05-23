@@ -210,7 +210,7 @@ namespace Skylight
 
         public void SetCode(string newCode)
         {
-            if (this.Bot.IsOwner)
+            if (this.Bot.Name == this.R.Owner.Name)
             {
                 this.C.Send("key", newCode);
             }
@@ -355,7 +355,7 @@ namespace Skylight
 
         public void Kick(Player p, string reason = "")
         {
-            if (this.Bot.IsOwner)
+            if (this.Bot.Name == this.R.Owner.Name)
             {
                 this.Say("/kick " + p.Name + " " + reason);
             }
@@ -363,7 +363,7 @@ namespace Skylight
 
         public void Loadlevel()
         {
-            if (this.Bot.IsOwner)
+            if (this.Bot.Name == this.R.Owner.Name)
             {
                 this.Say("/loadlevel");
             }
@@ -371,7 +371,7 @@ namespace Skylight
 
         public void Respawn(Player p)
         {
-            if (this.Bot.IsOwner)
+            if (this.Bot.Name == this.R.Owner.Name)
             {
                 this.Say("/kill " + p.Name);
             }
@@ -379,7 +379,7 @@ namespace Skylight
 
         public void RespawnAll()
         {
-            if (this.Bot.IsOwner)
+            if (this.Bot.Name == this.R.Owner.Name)
             {
                 this.Say("/respawnall");
             }
@@ -387,7 +387,7 @@ namespace Skylight
 
         public void Reset()
         {
-            if (this.Bot.IsOwner)
+            if (this.Bot.Name == this.R.Owner.Name)
             {
                 this.Say("/reset");
             }
@@ -397,7 +397,7 @@ namespace Skylight
         {
             try
             {
-                if (this.Bot.IsOwner)
+                if (this.Bot.Name == this.R.Owner.Name)
                 {
                     this.C.Send("save");
                 }
@@ -412,7 +412,7 @@ namespace Skylight
         {
             try
             {
-                if (this.Bot.IsOwner)
+                if (this.Bot.Name == this.R.Owner.Name)
                 {
                     this.C.Send("allowpotions", value);
                 }
@@ -425,7 +425,7 @@ namespace Skylight
 
         public void SetEdit(Player p, bool value)
         {
-            if (this.Bot.IsOwner)
+            if (this.Bot.Name == this.R.Owner.Name)
             {
                 if (value)
                 {
@@ -440,7 +440,7 @@ namespace Skylight
 
         public void SetMute(Player p, bool value)
         {
-            if (this.Bot.IsOwner)
+            if (this.Bot.Name == this.R.Owner.Name)
             {
                 if (value)
                 {
@@ -455,7 +455,7 @@ namespace Skylight
 
         public void SetPotionBan(int potionId, bool value)
         {
-            if (this.Bot.IsOwner)
+            if (this.Bot.Name == this.R.Owner.Name)
             {
                 if (value)
                 {
@@ -482,7 +482,7 @@ namespace Skylight
 
         public void SetVisibility(bool value)
         {
-            if (this.Bot.IsOwner)
+            if (this.Bot.Name == this.R.Owner.Name)
             {
                 this.Say("/visible " + value);
             }
@@ -490,7 +490,7 @@ namespace Skylight
 
         public void Teleport(int newXLocation, int newYLocation, Player p = null)
         {
-            //if (this.Bot.IsOwner)
+            if (this.Bot.Name == this.R.Owner.Name)
             {
                 if (p != null)
                 {
@@ -505,7 +505,7 @@ namespace Skylight
 
         public void TeleportAll(int newXLocation, int newYLocation)
         {
-            if (this.Bot.IsOwner)
+            if (this.Bot.Name == this.R.Owner.Name)
             {
                 foreach (Player p in this.R.OnlinePlayers)
                 {
