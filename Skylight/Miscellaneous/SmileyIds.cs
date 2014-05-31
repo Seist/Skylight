@@ -1,5 +1,5 @@
-﻿// <author>TakoMan02</author>
-// <summary>Smiley.cs is a list of smileys and their IDs.</summary>
+﻿
+
 namespace Skylight
 {
     using System;

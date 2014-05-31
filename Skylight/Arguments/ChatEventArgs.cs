@@ -1,5 +1,5 @@
-﻿// <author>TakoMan02</author>
-// <summary>ChatEventArgs.cs provides an in-depth description of the ChatEvent.</summary>
+﻿
+
 namespace Skylight
 {
     using System;

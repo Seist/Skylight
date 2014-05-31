@@ -1,5 +1,5 @@
-﻿// <author>TakoMan02</author>
-// <summary>BlockIds.cs is a list of every block ID in EE.</summary>
+﻿
+
 namespace Skylight
 {
     using System;
@@ -10,23 +10,6 @@ namespace Skylight
 
     public static class BlockIds
     {
-        // MISSING:
-        // 102-112
-        // 136
-        // 155
-        // 161
-        // 164
-        // 183
-        // 200-201
-        // 205
-        // 213-217
-        // 223
-        // 241-242
-        // 374
-        // 381
-        // 385
-        // 390-499
-        // 341+
         public static class Blocks
         {
             public static class Basic

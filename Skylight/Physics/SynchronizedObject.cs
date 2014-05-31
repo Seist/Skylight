@@ -1,8 +1,7 @@
-﻿using System;
-namespace MasterBot.Movement
+﻿namespace Skylight.Physics
 {
-    //import SynchronizedObject.*;
-    //import blitter.*;
+    using System;
+    using System.Windows.Media.Imaging;
 
     public class SynchronizedObject : BlObject
     {
@@ -43,7 +42,7 @@ namespace MasterBot.Movement
             this.mult = Config.physics_variable_multiplyer;
             this.last = DateTime.Now;
             return;
-        }// end function
+        }
 
         protected int blockX
         {

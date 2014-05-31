@@ -1,5 +1,5 @@
-﻿// <author>TakoMan02</author>
-// <summary>BlockEventArgs.cs provides an in-depth description of the BlockEvent.</summary>
+﻿
+
 namespace Skylight
 {
     using System;

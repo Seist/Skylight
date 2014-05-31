@@ -1,5 +1,5 @@
-﻿// <author>TakoMan02</author>
-// <summary>Room.cs is a basic layout of a singular world in EE.</summary>
+﻿
+
 namespace Skylight
 {
     using System;
@@ -8,10 +8,8 @@ namespace Skylight
 
     public class Room
     {
-        // Private static fields
         private static List<Room> joinedRooms = new List<Room>();
 
-        // Private instance fields
         private bool
             hasPull,
             isInitialized,
@@ -21,8 +19,8 @@ namespace Skylight
             blueActivated,
             redActivated,
             greenActivated;
-            
-        private double 
+
+        private double
             gravityMultiplier;
 
         private int
@@ -33,35 +31,35 @@ namespace Skylight
             woots;
 
         private string
-            editKey,   
+            editKey,
             id,
             name,
             worldKey;
-        
-        private Player owner = new Player();
 
-        // The players
+        private Player owner;
+
+
         private List<Player> onlinePlayers = new List<Player>();
-        private List<Bot> onlineBots    = new List<Bot>();
+        private List<Bot> onlineBots = new List<Bot>();
 
-        // The chat
+
         private List<KeyValuePair<string, Player>> chatLog = new List<KeyValuePair<string, Player>>();
-        
-        // The map (a three-dimensional array of blocks)
+
+
         private Block[, ,] map = new Block[1000, 1000, 2];
 
-        // Receivers of new information:
+
         private Bot receiver;
-        private In pull                      = new In();
+        private In pull = new In();
         private List<Connection> connections = new List<Connection>();
-        private List<In> pulls               = new List<In>();
+        private List<In> pulls = new List<In>();
 
         public Room(string id)
         {
             this.Id = id;
         }
 
-        // Public static properties
+
         public static List<Room> JoinedRooms
         {
             get
@@ -75,8 +73,8 @@ namespace Skylight
             }
         }
 
-        // Public instance properties
-        public Block[,,] Map
+
+        public Block[, ,] Map
         {
             get
             {
@@ -101,7 +99,7 @@ namespace Skylight
                 this.hasPull = value;
             }
         }
-        
+
         public bool IsInitialized
         {
             get
@@ -114,7 +112,7 @@ namespace Skylight
                 this.isInitialized = value;
             }
         }
-        
+
         public bool IsTutorialRoom
         {
             get
@@ -127,7 +125,7 @@ namespace Skylight
                 this.isTutorialRoom = value;
             }
         }
-        
+
         public bool PotionsAllowed
         {
             get
@@ -166,7 +164,7 @@ namespace Skylight
                 this.receiver = value;
             }
         }
-        
+
         public double GravityMultiplier
         {
             get
@@ -192,42 +190,42 @@ namespace Skylight
                 this.pull = value;
             }
         }
-        
+
         public int Height
         {
             get
-            { 
+            {
                 return this.height;
             }
 
             internal set
-            { 
+            {
                 this.height = value;
             }
         }
-        
+
         public int Plays
         {
             get
-            { 
+            {
                 return this.plays;
             }
 
             internal set
-            { 
+            {
                 this.plays = value;
             }
         }
-        
+
         public int TotalWoots
         {
             get
-            { 
+            {
                 return this.totalWoots;
             }
 
             internal set
-            { 
+            {
                 this.totalWoots = value;
             }
         }
@@ -235,25 +233,25 @@ namespace Skylight
         public int Width
         {
             get
-            { 
+            {
                 return this.width;
             }
 
             internal set
-            { 
+            {
                 this.width = value;
             }
         }
-        
+
         public int Woots
         {
             get
-            { 
+            {
                 return this.woots;
             }
 
             internal set
-            { 
+            {
                 this.woots = value;
             }
         }
@@ -270,7 +268,7 @@ namespace Skylight
                 this.pulls = value;
             }
         }
-        
+
         public List<KeyValuePair<string, Player>> ChatLog
         {
             get
@@ -283,7 +281,7 @@ namespace Skylight
                 this.chatLog = value;
             }
         }
-        
+
         public List<Player> OnlinePlayers
         {
             get
@@ -309,20 +307,20 @@ namespace Skylight
                 this.onlineBots = value;
             }
         }
-        
+
         public Player Owner
         {
             get
-            { 
+            {
                 return this.owner;
             }
 
             internal set
-            { 
+            {
                 this.owner = value;
             }
         }
-        
+
         public string EditKey
         {
             get
@@ -361,16 +359,16 @@ namespace Skylight
                 this.name = value;
             }
         }
-        
+
         public string RoomKey
         {
             get
-            { 
+            {
                 return this.worldKey;
             }
 
             internal set
-            { 
+            {
                 this.worldKey = value;
             }
         }
@@ -387,6 +385,40 @@ namespace Skylight
             set
             {
                 this.connections = value;
+            }
+        }
+
+        public bool RedActivated
+        {
+            get
+            {
+                return this.redActivated;
+            }
+            set
+            {
+                this.redActivated = value;
+            }
+        }
+        public bool GreenActivated
+        {
+            get
+            {
+                return this.greenActivated;
+            }
+            set
+            {
+                this.greenActivated = value;
+            }
+        }
+        public bool BlueActivated
+        {
+            get
+            {
+                return this.blueActivated;
+            }
+            set
+            {
+                this.blueActivated = value;
             }
         }
     }

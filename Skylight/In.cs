@@ -4,6 +4,7 @@ namespace Skylight
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Threading;
     using PlayerIOClient;
 
@@ -16,6 +17,10 @@ namespace Skylight
         private List<Message> prematureMessages = new List<Message>();
 
         private Room source;
+
+        private Stopwatch playerPhysicsStopwatch = new Stopwatch();
+
+        private Thread playerPhysicsThread;
 
         public delegate void BlockEvent(BlockEventArgs e);
 
@@ -328,22 +333,7 @@ namespace Skylight
                 hasClub = m.GetBoolean(12);
 
             // Update relevant objects.
-            Player subject = new Player
-            {
-                Name = name,
-                Id = id,
-                Smiley = smiley,
-                Coins = coins,
-                XpLevel = xplevel,
-                X = x,
-                Y = y,
-                IsGod = isGod,
-                IsMod = isMod,
-                PlayingIn = this.Source,
-                IsFriend = isFriend,
-                HasBoost = hasBoost,
-                HasClub = hasClub
-            };
+            Player subject = new Player(this.Source, id, name, smiley, x, y, isGod, isMod, true, coins, hasBoost, isFriend, xplevel);
 
             this.Source.OnlinePlayers.Add(subject);
 
@@ -385,25 +375,32 @@ namespace Skylight
 
         private void OnB(Message m)
         {
-            // Extract data.
-            int z = m.GetInteger(0),
-                x = m.GetInteger(1),
-                y = m.GetInteger(2),
-                blockId = m.GetInteger(3),
-                playerId = m.GetInteger(4);
+            try
+            {
+                // Extract data.
+                int z = m.GetInteger(0),
+                    x = m.GetInteger(1),
+                    y = m.GetInteger(2),
+                    blockId = m.GetInteger(3),
+                    playerId = m.GetInteger(4);
 
-            // Update relevant objects.
-            Player subject = Tools.GetPlayerById(playerId, this.Source);
+                // Update relevant objects.
+                Player subject = Tools.GetPlayerById(playerId, this.Source);
 
-            Block b = new Block(blockId, x, y, z);
-            b.Placer = subject;
+                Block b = new Block(blockId, x, y, z);
+                b.Placer = subject;
 
-            this.Source.Map[x, y, z] = b;
-            
-            // Fire the event.
-            BlockEventArgs e = new BlockEventArgs(b, this.Source);
+                this.Source.Map[x, y, z] = b;
 
-            this.Source.Pull.NormalBlockEvent(e);
+                // Fire the event.
+                BlockEventArgs e = new BlockEventArgs(b, this.Source);
+
+                this.Source.Pull.NormalBlockEvent(e);
+            }
+            catch (Exception ex)
+            {
+                Tools.SkylightMessage(ex.ToString());
+            }
         }
 
         private void OnBc(Message m)
@@ -480,19 +477,26 @@ namespace Skylight
 
         private void OnC(Message m)
         {
-            // Extract data.
-            string name = m.GetString(0);
-            int totalCoins = m.GetInteger(1);
+            try
+            {
+                // Extract data.
+                string name = m.GetString(0);
+                int totalCoins = m.GetInteger(1);
 
-            // Update relevant objects.
-            Player subject = Tools.GetPlayerByName(name, this.Source);
+                // Update relevant objects.
+                Player subject = Tools.GetPlayerByName(name, this.Source);
 
-            subject.Coins = totalCoins;
+                subject.Coins = totalCoins;
 
-            // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
-
-            this.Source.Pull.CoinCollectedEvent(e);
+                // Fire the event.
+                PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
+                
+                this.Source.Pull.CoinCollectedEvent(e);
+            }
+            catch (Exception ex)
+            {
+                Tools.SkylightMessage(ex.ToString());
+            }
         }
 
         private void OnClear(Message m)
@@ -669,8 +673,8 @@ namespace Skylight
 
             this.Bot.Name = botName;
             this.Bot.Id = botId;
-            this.Bot.X = botX;
-            this.Bot.Y = botY;
+            this.Bot.x = botX;
+            this.Bot.y = botY;
             this.Bot.HasAccess = hasAccess;
             this.Bot.IsOwner = isOwner;
             this.Bot.PlayingIn = this.Source;
@@ -881,8 +885,8 @@ namespace Skylight
                 }
             }
 
-            subject.X = xLocation;
-            subject.Y = yLocation;
+            subject.x = xLocation;
+            subject.y = yLocation;
             subject.HorizontalSpeed = horizontalSpeed;
             subject.VerticalSpeed = verticalSpeed;
             subject.HorizontalModifier = horizontalModifier;
@@ -1046,12 +1050,12 @@ namespace Skylight
                 name = m.GetString(0);
 
             // Update relevant objects.
-            Player subject = new Player() { Name = name };
+            // Player subject = new Player() { Name = name };
 
-            this.Source.ChatLog.Add(new KeyValuePair<string, Player>(message, subject));
+            this.Source.ChatLog.Add(new KeyValuePair<string, Player>(message, null));
 
             // Fire the event.
-            ChatEventArgs e = new ChatEventArgs(subject, this.Source);
+            ChatEventArgs e = new ChatEventArgs(null, this.Source);
 
             this.Source.Pull.SayOldEvent(e);
         }
@@ -1078,8 +1082,8 @@ namespace Skylight
             // Update relevant objects.
             Player subject = Tools.GetPlayerById(id, this.Source);
 
-            subject.X = x;
-            subject.Y = y;
+            subject.x = x;
+            subject.y = y;
 
             // Fire the event.
             PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
@@ -1105,8 +1109,8 @@ namespace Skylight
                         y = m.GetInteger(index + 2);
 
                     Player tempSubject = Tools.GetPlayerById(id, this.Source);
-                    tempSubject.X = x;
-                    tempSubject.Y = y;
+                    tempSubject.x = x;
+                    tempSubject.y = y;
                     
                     index += 3;
                 }
@@ -1127,8 +1131,8 @@ namespace Skylight
                 // Update relevant objects.
                 Player subject = Tools.GetPlayerById(id, this.Source);
 
-                subject.X = x;
-                subject.Y = y;
+                subject.x = x;
+                subject.y = y;
 
                 // Fire the event.
                 PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
@@ -1235,11 +1239,11 @@ namespace Skylight
                 message = m.GetString(1);
 
             // Update relevant objects.
-            Player system = new Player() { Name = prefix };
-            this.Source.ChatLog.Add(new KeyValuePair<string, Player>(message, system));
+            // Player system = new Player() { Name = prefix };
+            this.Source.ChatLog.Add(new KeyValuePair<string, Player>(message, null));
 
             // Fire the event.
-            ChatEventArgs e = new ChatEventArgs(system, this.Source);
+            ChatEventArgs e = new ChatEventArgs(null, this.Source);
 
             this.Source.Pull.SystemMessageEvent(e);
         }
@@ -1265,14 +1269,35 @@ namespace Skylight
 
         private void LoadBlocks()
         {
+            Tools.SkylightMessage("Began loading blocks.");
+
             foreach (Block b in Tools.ConvertMessageToBlockList(InitMessage, 18, this.Source))
             {
                 this.Source.Map[b.X, b.Y, b.Z] = b;
             }
 
-            Tools.SkylightMessage("Loaded room's blocks.");
+            Tools.SkylightMessage("Loaded blocks for \"" + this.Source.Name + "\".");
 
-            // Now that you have loaded the room, begin updating the physics.
+            playerPhysicsThread = new Thread(UpdatePhysics);
+            playerPhysicsThread.Start();
+        }
+
+        private void UpdatePhysics()
+        {
+            Tools.SkylightMessage("Updating physics...");
+
+            playerPhysicsStopwatch.Start();
+            while (true)
+            {
+                if (playerPhysicsStopwatch.ElapsedMilliseconds >= Physics.Config.physics_ms_per_tick)
+                {
+                    playerPhysicsStopwatch.Restart();
+                    foreach (Player player in this.Source.OnlinePlayers)
+                    {
+                        player.tick();
+                    }
+                }
+            }
         }
     }
 }

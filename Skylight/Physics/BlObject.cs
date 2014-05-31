@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace MasterBot.Movement
+namespace Skylight.Physics
 {
     //import flash.display.*;
 

@@ -8,7 +8,7 @@
             MINCOINSREQUIRED = 1,
             MAXCOINSREQUIRED = 99;
 
-        private bool isGate = false; // Gates are nonsolid and move to solid
+        private bool isGate = false; 
 
         private int coinsRequired = -1;
 

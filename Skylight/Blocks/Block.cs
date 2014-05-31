@@ -1,12 +1,12 @@
-﻿// <author>TakoMan02</author>
-// <summary>A description of a singular block in a world.</summary>
+﻿
+
 namespace Skylight
 {
     using System;
 
     public class Block
     {
-        // Public const ints
+        
         public const int
             RIGHT = 0,
             DOWN  = 1,
@@ -15,7 +15,7 @@ namespace Skylight
             FOREGROUNDLAYER = 0,
             BACKGROUNDLAYER = 1;
 
-        // Private instance fields
+        
         private int 
             direction,
             id,
@@ -24,9 +24,9 @@ namespace Skylight
             z;
             
         private Player 
-            placer = new Player();
+            placer;
         
-        // Constructor
+        
         public Block(
             int id,
             int x,
@@ -41,7 +41,7 @@ namespace Skylight
             this.Direction = direction;
         }
 
-        // Public instance properties
+        
         public bool IsSolid
         {
             get
@@ -80,14 +80,14 @@ namespace Skylight
         {
             get
             {
-                // 0 is the only block that can exist on both layers, 
-                // so return the set (or default) value.
+                
+                
                 if (this.Id == 0)
                 {
                     return this.z;
                 }
 
-                // Otherwise, return the normal value.
+                
                 if (this.Id >= 500)
                 {
                     return 1;

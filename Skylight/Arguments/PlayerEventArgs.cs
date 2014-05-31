@@ -1,5 +1,5 @@
-﻿// <author>TakoMan02</author>
-// <summary>PlayerEventArs.cs provides an in-depth description of the PlayerEvent.</summary> 
+﻿
+
 namespace Skylight
 {
     using System;

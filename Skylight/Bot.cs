@@ -35,7 +35,7 @@
         public Bot(Room r,
                    string emailOrToken = Tools.GuestEmail,
                    string passwordOrToken = Tools.GuestPassword,
-                   AccountType accType = AccountType.Regular)
+                   AccountType accType = AccountType.Regular) : base (r, 0, "", 0, 0.0, 0.0, false, false, true, 0, false, false, 0)
         {
             this.emailOrToken = emailOrToken;
             this.passwordOrToken = passwordOrToken;

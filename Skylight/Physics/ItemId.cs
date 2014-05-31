@@ -1,4 +1,4 @@
-﻿namespace MasterBot.Movement
+﻿namespace Skylight.Physics
 {
 
     public class ItemId : object

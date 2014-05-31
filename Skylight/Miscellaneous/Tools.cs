@@ -53,7 +53,7 @@ namespace Skylight
             }
 
             SkylightMessage("Could not find crown holder.");
-            return new Player();
+            return null;
         }
 
         public static Player GetPlayerById(int id, Room r, bool onlyReturnBots = false)
@@ -77,7 +77,7 @@ namespace Skylight
             }
 
             SkylightMessage("Could not find player " + id + " in " + r.Name);
-            return new Player();
+            return null;
         }
 
         public static Player GetPlayerByName(string name, Room r, bool onlyReturnBots = false)
@@ -101,7 +101,7 @@ namespace Skylight
             }
 
             SkylightMessage("Could not find player " + name + " in " + r.Name);
-            return new Player();
+            return null;
         }
 
         public static Room GetRoom(string name)
