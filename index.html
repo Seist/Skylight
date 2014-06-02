@@ -1,47 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
+<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
+<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
 <html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Skylight : Everybody Edits Software Development Kit by TakoMan02" />
+  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen"/>
+  <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/script.js"></script>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+  <title>Skylight</title>
+  <meta name="description" content="Everybody Edits Software Development Kit by TakoMan02">
 
-    <title>Skylight</title>
-  </head>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <body>
+</head>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/Seist/Skylight">View on GitHub</a>
+<body>
 
-          <h1 id="project_title">Skylight</h1>
-          <h2 id="project_tagline">Everybody Edits Software Development Kit by TakoMan02</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/Seist/Skylight/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/Seist/Skylight/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>
+  <div class="wrapper">
+    <header>
+      <h1 class="title">Skylight</h1>
+    </header>
+    <div id="container">
+      <p class="tagline">Everybody Edits Software Development Kit by TakoMan02</p>
+      <div id="main" role="main">
+        <div class="download-bar">
+        <div class="inner">
+          <a href="https://github.com/Seist/Skylight/tarball/master" class="download-button tar"><span>Download</span></a>
+          <a href="https://github.com/Seist/Skylight/zipball/master" class="download-button zip"><span>Download</span></a>
+          <a href="https://github.com/Seist/Skylight" class="code">View Skylight on GitHub</a>
+        </div>
+        <span class="blc"></span><span class="trc"></span>
+        </div>
+        <article class="markdown-body">
+          <h3>
 <a name="welcome-to-skylight-pages" class="anchor" href="#welcome-to-skylight-pages"><span class="octicon octicon-link"></span></a>Welcome to Skylight Pages.</h3>
 
 <p>Skylight is the easiest, simplest SDK to create bots in <a href="http://everybodyedits.com/">Everybody Edits</a>. It supports quickly connecting to EE via Kongregate, Facebook, or EverybodyEdits; joining levels; receiving information from levels through a simple event system; and performing actions in a level. It is written in C# and supports any .NET language in the 4.0 or higher framework.</p>
 
-<pre><code>Room R = new Room("PWjThDaofKbEI");
-Bot B = new Bot(R);
-public static void main()
+<pre><code>static Room R = new Room("PWjThDaofKbEI");
+static Bot B = new Bot(R);
+static void main()
 {
     B.LogIn();
     B.Join();
+    Console.Read();
 }
 
 // Wow that was too easy.
@@ -52,7 +58,7 @@ public static void main()
 
 <p>Creator: <a href="https://github.com/Seist" class="user-mention">@Seist</a> (TakoMan02)<br>
 Additional collaborators: <a href="https://github.com/Jojatekok" class="user-mention">@Jojatekok</a><br>
-Minor help from: Bass5098, and BuzzerBee</p>
+Minor help from: Bass5098, gustav9797</p>
 
 <h3>
 <a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
@@ -60,18 +66,26 @@ Minor help from: Bass5098, and BuzzerBee</p>
 <p>Need help using Skylight? Check out the <a href="http://ee.forumify.com/viewtopic.php?pid=460969#p460969">forum page</a> to see a quick guide and some FAQs.</p>
 
 <p>You can also email me at <a href="mailto:takoman02.ee@gmail.com">takoman02.ee@gmail.com</a> or contact me via <a href="http://takoman02.tumblr.com/ask">tumblr</a>.</p>
-      </section>
+        </article>
+      </div>
     </div>
+    <footer>
+      <div class="owner">
+      <p><a href="https://github.com/Seist" class="avatar"><img src="https://avatars3.githubusercontent.com/u/4269051?s=60" width="48" height="48"/></a> <a href="https://github.com/Seist">Seist</a> maintains <a href="https://github.com/Seist/Skylight">Skylight</a></p>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Skylight maintained by <a href="https://github.com/Seist">Seist</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
 
-    
+      </div>
+      <div class="creds">
+        <small>This page generated using <a href="http://pages.github.com/">GitHub Pages</a><br/>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
+      </div>
+    </footer>
+  </div>
+  <div class="current-section">
+    <a href="#top">Scroll to top</a>
+    <a href="https://github.com/Seist/Skylight/tarball/master" class="tar">tar</a><a href="https://github.com/Seist/Skylight/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
+    <p class="name"></p>
+  </div>
 
-  </body>
+  
+</body>
 </html>
