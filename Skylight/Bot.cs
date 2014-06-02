@@ -17,7 +17,7 @@
             blockDelay  = 10, 
             speechDelay = 1000;
 
-        private string chatPrefix;
+        private string chatPrefix = "";
 
         private readonly string
             emailOrToken,
