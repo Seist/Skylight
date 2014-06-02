@@ -880,14 +880,13 @@ namespace Skylight
             double xLocation = m.GetDouble(1),
                 yLocation = m.GetDouble(2),
                 horizontalSpeed = m.GetDouble(3),
-                verticalSpeed = m.GetDouble(4),
-                horizontalModifier = m.GetDouble(5),
-                verticalModifier = m.GetDouble(6),
-                horizontalDirection = m.GetDouble(7),
-                verticalDirection = m.GetDouble(8);
+                verticalSpeed = m.GetDouble(4);
 
             int id = m.GetInteger(0),
-                coins = m.GetInteger(9);
+                coins = m.GetInteger(9), horizontalModifier = m.GetInteger(5),
+                verticalModifier = m.GetInteger(6),
+                horizontalDirection = m.GetInteger(7),
+                verticalDirection = m.GetInteger(8);
 
             bool hasGravityModifier = m.GetBoolean(10),
                 spaceDown = m.GetBoolean(11);
@@ -901,8 +900,8 @@ namespace Skylight
                 subject.IsHoldingSpace = true;
 
                 // If they are simply switching between keys whilst holding space, ignore it
-                if ((subject.VerticalDirection == verticalDirection) &&
-                    (subject.HorizontalDirection == horizontalDirection))
+                if (subject.vertical == verticalDirection &&
+                    subject.horizontal == horizontalDirection)
                 {
                     // Fire the jump event.
                     PlayerEventArgs jumpEventArgs = new PlayerEventArgs(subject, this.Source, m);
@@ -913,12 +912,16 @@ namespace Skylight
 
             subject.x = xLocation;
             subject.y = yLocation;
-            subject.HorizontalSpeed = horizontalSpeed;
-            subject.VerticalSpeed = verticalSpeed;
-            subject.HorizontalModifier = horizontalModifier;
-            subject.VerticalModifier = verticalModifier;
-            subject.HorizontalDirection = horizontalDirection;
-            subject.VerticalDirection = verticalDirection;
+
+            subject.speedX = horizontalSpeed;
+            subject.speedY = verticalSpeed;
+
+            subject.modifierX = horizontalModifier;
+            subject.modifierY = verticalModifier;
+
+            subject.horizontal = horizontalDirection;
+            subject.vertical = verticalDirection;
+
             subject.HasGravityModifier = hasGravityModifier;
 
             subject.IsHoldingUp = false;
