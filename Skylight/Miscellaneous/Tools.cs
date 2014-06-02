@@ -199,9 +199,9 @@ namespace Skylight
                 //// Praise him. (this is mainly due to my laziness)
 
                 // First, fill the entire map with blank blocks (so that you don't get null exceptions).
-                for (int x = 0; x < 1000; x++)
+                for (int x = 0; x <= 400; x++)
                 {
-                    for (int y = 0; y < 1000; y++)
+                    for (int y = 0; y <= 200; y++)
                     {
                         for (int z = 0; z < 2; z++)
                         {

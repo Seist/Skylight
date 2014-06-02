@@ -86,6 +86,7 @@ namespace Skylight
             PotionEvent          = delegate { },
             RedWizardEvent       = delegate { },
             TeleportEvent        = delegate { },
+            TickEvent            = delegate { },
             TrophyEvent          = delegate { },
             WitchEvent           = delegate { },
             WizardEvent          = delegate { },
@@ -356,8 +357,6 @@ namespace Skylight
             Player subject = new Player(this.Source, id, name, smiley, x, y, isGod, isMod, true, coins, hasBoost, isFriend, xplevel);
 
             this.Source.OnlinePlayers.Add(subject);
-
-            Tools.SkylightMessage("Added player id:" + id);
 
             // Fire the event.
             PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
@@ -669,8 +668,6 @@ namespace Skylight
 
         private void OnInit(Message m)
         {
-            Tools.SkylightMessage("Received init message");
-
             // Extract data
             string owner = m.GetString(0),
                 name = m.GetString(1),
@@ -728,7 +725,6 @@ namespace Skylight
             this.Source.IsInitialized = true;
 
             // Load the blocks
-            Tools.SkylightMessage("Began the LoadBlocks thread.");
             Thread loadBlocks = new Thread(LoadBlocks);
             loadBlocks.Start();
 
@@ -1298,14 +1294,14 @@ namespace Skylight
 
         private void LoadBlocks()
         {
-            Tools.SkylightMessage("Began loading blocks.");
+            Tools.SkylightMessage("Began loading blocks for \"" + this.Source.Name + "\"...");
 
             foreach (Block b in Tools.ConvertMessageToBlockList(InitMessage, 18, this.Source))
             {
                 this.Source.Map[b.X, b.Y, b.Z] = b;
             }
 
-            Tools.SkylightMessage("Loaded blocks for \"" + this.Source.Name + "\".");
+            Tools.SkylightMessage("Finished loading blocks for \"" + this.Source.Name + "\".");
 
             Thread.Sleep(1000);
 
@@ -1315,8 +1311,6 @@ namespace Skylight
 
         private void UpdatePhysics()
         {
-            Tools.SkylightMessage("Updating physics...");
-
             playerPhysicsStopwatch.Start();
             while (true)
             {
@@ -1326,6 +1320,9 @@ namespace Skylight
                     foreach (Player player in this.Source.OnlinePlayers)
                     {
                         player.tick();
+
+                        PlayerEventArgs e = new PlayerEventArgs(player, this.Source, null);
+                        this.Source.Pull.TickEvent(e);
                     }
                 }
             }

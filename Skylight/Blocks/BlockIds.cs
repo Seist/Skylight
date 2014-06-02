@@ -137,7 +137,7 @@ namespace Skylight
                 public static class Oneway
                 {
                     public const int
-                        ONEWAYPINK = 61,
+                        PINK = 61,
                         RED = 62,
                         CYAN = 63,
                         GREEN = 64;

@@ -46,7 +46,7 @@ namespace Skylight
         private List<KeyValuePair<string, Player>> chatLog = new List<KeyValuePair<string, Player>>();
 
 
-        private Block[, ,] map = new Block[1000, 1000, 2];
+        private Block[, ,] map = new Block[400, 200, 2];
 
 
         private Bot receiver;
