@@ -12,6 +12,8 @@ namespace Skylight
     {
         public static class Blocks
         {
+            public const int LAYER = 0;
+
             public static class Basic
             {
                 public const int
@@ -388,6 +390,8 @@ namespace Skylight
 
         public static class Action
         {
+            public const int LAYER = 0;
+
             public static class Keys
             {
                 public const int
@@ -470,7 +474,7 @@ namespace Skylight
                 public const int
                     SPAWN = 255,
                     CHECKPOINT = 360,
-                    TROPHY = 122;
+                    TROPHY = 121;
             }
 
             public static class Hazards
@@ -507,12 +511,14 @@ namespace Skylight
             public static class Cake
             {
                 public const int
-                    CAKE = 141;
+                    CAKE = 337;
             }
         }
 
         public static class Decorative
         {
+            public const int LAYER = 0;
+
             public static class Christmas2010
             {
                 public const int
@@ -745,11 +751,11 @@ namespace Skylight
             public static class Monster
             { 
                 public const int 
-                    BIGTOOTHBOTTOM = 337,
-                    SMALLTEETHBOTTOM = 338,
-                    SMALLTEETHTOP = 339,
-                    ORANGEEYE = 340,
-                    BLUEEYE = 341;
+                    BIGTOOTHBOTTOM = 338,
+                    SMALLTEETHBOTTOM = 339,
+                    SMALLTEETHTOP = 340,
+                    ORANGEEYE = 341,
+                    BLUEEYE = 342;
             }
 
             public static class Fog
@@ -835,6 +841,8 @@ namespace Skylight
 
         public static class Background
         {
+            public const int LAYER = 1;
+
             public static class Basic
             {
                 public const int

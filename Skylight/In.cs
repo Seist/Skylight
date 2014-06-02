@@ -14,6 +14,26 @@ namespace Skylight
 
         private Bot bot;
         
+        /// <summary>
+        /// These IDs do not have an associated Player id when sent.
+        /// </summary>
+        private List<int> specialBlockIds = new List<int>() 
+        { 
+            BlockIds.Action.Switches.SWITCH,
+            BlockIds.Action.Tools.TROPHY,
+            BlockIds.Action.Doors.TIME,
+            BlockIds.Action.Gates.TIME,
+            BlockIds.Action.Doors.SWITCH,
+            BlockIds.Action.Gates.SWITCH,
+            BlockIds.Action.Doors.ZOMBIE,
+            BlockIds.Action.Gates.ZOMBIE,
+            BlockIds.Blocks.Secrets.NONSOLID,
+            BlockIds.Action.Tools.SPAWN,
+            BlockIds.Action.Cake.CAKE,
+            BlockIds.Action.Tools.CHECKPOINT,
+            BlockIds.Action.Hazards.FIRE
+        };
+
         private List<Message> prematureMessages = new List<Message>();
 
         private Room source;
@@ -337,6 +357,8 @@ namespace Skylight
 
             this.Source.OnlinePlayers.Add(subject);
 
+            Tools.SkylightMessage("Added player id:" + id);
+
             // Fire the event.
             PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
 
@@ -360,10 +382,12 @@ namespace Skylight
         private void OnAutotext(Message m)
         {
             // Extract data.
+            int id = m.GetInteger(0);
+
             string message = m.GetString(1);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayerById(m.GetInteger(0), this.Source);
+            Player subject = Tools.GetPlayerById(id, this.Source);
 
             this.Source.ChatLog.Add(new KeyValuePair<string, Player>(message, subject));
 
@@ -375,32 +399,31 @@ namespace Skylight
 
         private void OnB(Message m)
         {
-            try
-            {
-                // Extract data.
-                int z = m.GetInteger(0),
-                    x = m.GetInteger(1),
-                    y = m.GetInteger(2),
-                    blockId = m.GetInteger(3),
-                    playerId = m.GetInteger(4);
+            // Extract data.
+            int z = m.GetInteger(0),
+                x = m.GetInteger(1),
+                y = m.GetInteger(2),
+                blockId = m.GetInteger(3);
 
-                // Update relevant objects.
+            // Update relevant objects.
+            Block b = new Block(blockId, x, y, z);
+
+            if (!specialBlockIds.Contains(blockId))
+            {
+                int playerId = m.GetInteger(4);
+
                 Player subject = Tools.GetPlayerById(playerId, this.Source);
 
-                Block b = new Block(blockId, x, y, z);
                 b.Placer = subject;
-
-                this.Source.Map[x, y, z] = b;
-
-                // Fire the event.
-                BlockEventArgs e = new BlockEventArgs(b, this.Source);
-
-                this.Source.Pull.NormalBlockEvent(e);
             }
-            catch (Exception ex)
-            {
-                Tools.SkylightMessage(ex.ToString());
-            }
+
+            this.Source.Map[x, y, z] = b;
+
+            // Fire the event.
+            BlockEventArgs e = new BlockEventArgs(b, this.Source);
+
+            this.Source.Pull.NormalBlockEvent(e);
+
         }
 
         private void OnBc(Message m)
@@ -631,7 +654,7 @@ namespace Skylight
                 body = m.GetString(1);
 
             // Update relevant objects.
-            Tools.SkylightMessage("Bot " + this.Bot.Name + " received a pop-up window:\n" + title + "\n" + body);
+            Tools.SkylightMessage("Bot " + this.Bot.Name + " received a pop-up window:\n   " + title + "\n    " + body);
 
             if (title == "Limit reached")
             {
@@ -646,6 +669,8 @@ namespace Skylight
 
         private void OnInit(Message m)
         {
+            Tools.SkylightMessage("Received init message");
+
             // Extract data
             string owner = m.GetString(0),
                 name = m.GetString(1),
@@ -688,7 +713,7 @@ namespace Skylight
             }
 
             // Update the room data.
-            this.Source.Owner.Name = owner;
+            this.Source.Owner = Tools.GetPlayerByName(owner, this.Source);
             this.Source.Name = name;
             this.Source.Plays = plays;
             this.Source.Woots = woots;
@@ -703,6 +728,7 @@ namespace Skylight
             this.Source.IsInitialized = true;
 
             // Load the blocks
+            Tools.SkylightMessage("Began the LoadBlocks thread.");
             Thread loadBlocks = new Thread(LoadBlocks);
             loadBlocks.Start();
 
@@ -1277,6 +1303,8 @@ namespace Skylight
             }
 
             Tools.SkylightMessage("Loaded blocks for \"" + this.Source.Name + "\".");
+
+            Thread.Sleep(1000);
 
             playerPhysicsThread = new Thread(UpdatePhysics);
             playerPhysicsThread.Start();

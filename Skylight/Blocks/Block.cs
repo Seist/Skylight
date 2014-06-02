@@ -26,7 +26,6 @@ namespace Skylight
         private Player 
             placer;
         
-        
         public Block(
             int id,
             int x,

@@ -503,7 +503,6 @@ namespace Skylight
 
         /* --------------------------- GUSTAVIAN PHYSICS --------------------------- */
 
-        private int _id;
         public bool isme;
         private Bitmap crown;
         private Bitmap crown_silver;
@@ -624,7 +623,7 @@ namespace Skylight
             this.Smiley = smiley;
             this.isgod = isGod;
             this.ismod = isMod;
-            this._id = id;
+            this.Id = id;
             this.hasChat = hasChat;
             this.Coins = coins;
             this.purple = purple;
@@ -719,7 +718,10 @@ namespace Skylight
                                 if (hitTest((int)(xTest + _loc_2.x + xx * 16), (int)(yTest + _loc_2.y + yy * 16)))
                                 {
                                     double _loc_9 = _loc_4;
-                                    Block currentBlock = this.PlayingIn.Map[0, (int)(((xx * 16) + _loc_2.x + xTest) / 16), (int)(((yy * 16) + _loc_2.y + yTest) / 16)];
+                                    Block currentBlock = this.PlayingIn.Map[
+                                        (int)(((xx * 16) + _loc_2.x + xTest) / 16), 
+                                        (int)(((yy * 16) + _loc_2.y + yTest) / 16),
+                                        0];
                                     _loc_11 = currentBlock.Id;
                                     if (ItemId.isSolid(_loc_11))
                                     {
@@ -950,7 +952,6 @@ namespace Skylight
                 donex = true;
             }
 
-            Tools.SkylightMessage("Done stepping.");
             return;
         }
 
@@ -986,8 +987,7 @@ namespace Skylight
                     currentSY = 0;
                 }
             }
-            //if (hitmap != null)
-            //{
+
             if (overlaps(that) != 0)
             {
                 y = oy;
@@ -995,10 +995,6 @@ namespace Skylight
                 currentSY = osy;
                 doney = true;
             }
-            //}
-            return;
-
-            Tools.SkylightMessage("Done stepping y.");
         }
 
         void processPortals()
@@ -1014,7 +1010,7 @@ namespace Skylight
             double _loc_9 = 0;
             int _loc_10 = 0;
             double _loc_11 = 0;
-            current = this.PlayingIn.Map[0, cx, cy].Id;
+            current = this.PlayingIn.Map[cx, cy, 0].Id;
             if (!isgodmod && current == ItemId.WORLD_PORTAL)
             {
                 if (spacejustdown && !worldportalsend)
@@ -1027,7 +1023,7 @@ namespace Skylight
                 {
                     lastPortal = new Point(cx << 4, cy << 4);
 
-                    Block currentBlock = this.PlayingIn.Map[0, cx, cy];
+                    Block currentBlock = this.PlayingIn.Map[cx, cy, 0];
                     PortalBlock currentPortalBlock = (PortalBlock)currentBlock;
                     int currentTarget = currentPortalBlock.PortalDestination;
 
@@ -1035,7 +1031,7 @@ namespace Skylight
                     {
                         for (int y = 1; y < this.PlayingIn.Height; y++)
                         {
-                            Block block = this.PlayingIn.Map[0, x, y];
+                            Block block = this.PlayingIn.Map[x, y, 0];
                             if (block is PortalBlock && ((PortalBlock)block).PortalId == currentTarget)
                             {
                                 targetPortalList.Add(new Point(x << 4, y << 4));
@@ -1045,14 +1041,14 @@ namespace Skylight
                     loopIterator = 0;
                     while (loopIterator < targetPortalList.Count)
                     {
-                        //Console.WriteLine("iter: " + loopIterator);
+                        //Tools.SkylightMessage("iter: " + loopIterator);
                         currentLoopPortal = targetPortalList[loopIterator];
                         //_loc_4 = world.getPortal(lastPortal.x >> 4, lastPortal.y >> 4).rotation;
-                        _loc_4 = ((PortalBlock)this.PlayingIn.Map[0, lastPortal.X >> 4, lastPortal.Y >> 4]).Direction;
-                        //Console.WriteLine("1: " + _loc_4);
+                        _loc_4 = ((PortalBlock)this.PlayingIn.Map[lastPortal.X >> 4, lastPortal.Y >> 4, 0]).Direction;
+                        //Tools.SkylightMessage("1: " + _loc_4);
                         //_loc_5 = world.getPortal(currentLoopPortal.x >> 4, currentLoopPortal.y >> 4).rotation;
-                        _loc_5 = ((PortalBlock)this.PlayingIn.Map[0, currentLoopPortal.X >> 4, currentLoopPortal.Y >> 4]).Direction;
-                        //Console.WriteLine("2: " + _loc_5);
+                        _loc_5 = ((PortalBlock)this.PlayingIn.Map[currentLoopPortal.X >> 4, currentLoopPortal.Y >> 4, 0]).Direction;
+                        //Tools.SkylightMessage("2: " + _loc_5);
                         if (_loc_4 < _loc_5)
                         {
                             _loc_4 = _loc_4 + 4;
@@ -1063,7 +1059,7 @@ namespace Skylight
                         _loc_9 = modifierY;
                         _loc_10 = _loc_4 - _loc_5;
                         _loc_11 = 1.42;
-                        //Console.WriteLine("entering switch " + _loc_10);
+                        //Tools.SkylightMessage("entering switch " + _loc_10);
                         switch (_loc_10)
                         {
                             case 1:
@@ -1107,7 +1103,7 @@ namespace Skylight
                         {
                             state.offset(x - currentLoopPortal.x, y - currentLoopPortal.y);
                         }*/
-                        //Console.WriteLine(currentLoopPortal + "  --------  " + x + " " + y);
+                        //Tools.SkylightMessage(currentLoopPortal + "  --------  " + x + " " + y);
                         x = currentLoopPortal.X;
                         y = currentLoopPortal.Y;
                         lastPortal = currentLoopPortal;
@@ -1164,7 +1160,7 @@ namespace Skylight
             {
                 delayed = this.queue.Dequeue();
             }
-            this.current = this.PlayingIn.Map[0, cx, cy].Id;
+            this.current = this.PlayingIn.Map[cx, cy, 0].Id;
             this.queue.Enqueue(this.current);
             if (this.current == 4 || ItemId.isClimbable(this.current))
             {
@@ -1433,8 +1429,6 @@ namespace Skylight
                 osy = currentSY;
                 this.stepx();
                 this.stepy();
-
-                Tools.SkylightMessage("Stepped.");
             }
 
             if (this.Levitation)

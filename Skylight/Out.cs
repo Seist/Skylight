@@ -91,7 +91,7 @@ namespace Skylight
                 
                 Thread.Sleep(this.Bot.BlockDelay);
             }
-            catch (NullReferenceException)
+            catch (Exception)
             {
                 Tools.SkylightMessage("Error: attempted to use Out.Build before connecting");
             }
@@ -114,7 +114,7 @@ namespace Skylight
             {
                 this.C.Send("clear");
             }
-            catch (NullReferenceException)
+            catch (Exception)
             {
                 Tools.SkylightMessage("Error: attempted to use Out.Clear before connecting");
             }
@@ -202,7 +202,7 @@ namespace Skylight
             {
                 this.C.Send("access", editKey);
             }
-            catch (NullReferenceException)
+            catch (Exception)
             {
                 Tools.SkylightMessage("Error: attempted to use Out.InputCode before connecting");
             }
@@ -241,7 +241,7 @@ namespace Skylight
             {
                 this.C.Send("m", args);
             }
-            catch (NullReferenceException)
+            catch (Exception)
             {
                 Tools.SkylightMessage("Error: attempted to use Out.Move before connecting");
             }
@@ -265,7 +265,7 @@ namespace Skylight
                     m.GetBoolean(10),
                     m.GetBoolean(11));
             }
-            catch (NullReferenceException)
+            catch (Exception)
             {
                 Tools.SkylightMessage("Error: attempted to use Out.Move before connecting");
             }
@@ -332,7 +332,7 @@ namespace Skylight
                     }
                 }
             }
-            catch (NullReferenceException)
+            catch (Exception)
             {
                 Tools.SkylightMessage("Error: attempted to use Out.Say before connecting");
             }
@@ -347,7 +347,7 @@ namespace Skylight
                     this.C.Send("name", s);
                 }
             }
-            catch (NullReferenceException)
+            catch (Exception)
             {
                 Tools.SkylightMessage("Error: attempted to use Out.SetTitle before connecting");
             }
@@ -402,7 +402,7 @@ namespace Skylight
                     this.C.Send("save");
                 }
             }
-            catch (NullReferenceException)
+            catch (Exception)
             {
                 Tools.SkylightMessage("Error: attempted to use Out.Save before connecting");
             }
@@ -417,7 +417,7 @@ namespace Skylight
                     this.C.Send("allowpotions", value);
                 }
             }
-            catch (NullReferenceException)
+            catch (Exception)
             {
                 Tools.SkylightMessage("Error: attempted to use Out.SetAllPotionBans before connecting");
             }
@@ -474,7 +474,7 @@ namespace Skylight
             {
                 this.C.Send(this.R.RoomKey + "f", smileyId);
             }
-            catch (NullReferenceException)
+            catch (Exception)
             {
                 Tools.SkylightMessage("Error: attempted to use Out.SetSmiley before connecting");
             }

@@ -260,8 +260,8 @@
                 }
 
                 // Once everything is internal settled, send the init.
-                this.Connection.Send("init");
                 this.Connection.Send("init2");
+                this.Connection.Send("init");
 
                 this.R.OnlinePlayers.Add(this);
                 
