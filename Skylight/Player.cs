@@ -1,5 +1,5 @@
 ﻿// <author>TakoMan02</author>
-// <summary>Playethis.PlayingIn.cs describes a singular player in an EE world.</summary>
+// <summary>Player.cs describes a singular player in an EE world.</summary>
 namespace Skylight
 {
     using System;
@@ -7,7 +7,7 @@ namespace Skylight
     using System.Drawing;
     using Skylight.Physics;
 
-    public class Player : SynchronizedSprite
+    public class Player
     {
         // Private instance fields
         private bool
@@ -425,68 +425,170 @@ namespace Skylight
 
         /* --------------------------- GUSTAVIAN PHYSICS --------------------------- */
 
+        public double x = 0;
+        public double y = 0;
+        public int width = 1;
+        public int height = 1;
+        public bool moving = false;
+        protected int size;
+        public bool hitTest(int param1, int param2)
+        {
+            return param1 >= x && param2 >= y && param1 <= x + this.size && param2 <= y + this.size;
+        }
+        protected double _speedX = 0;
+        protected double _speedY = 0;
+        protected double _modifierX = 0;
+        protected double _modifierY = 0;
+        protected double _baseDragX;
+        protected double _baseDragY;
+        protected double _no_modifier_dragX;
+        protected double _no_modifier_dragY;
+        protected double _water_drag;
+        protected double _water_buoyancy;
+        protected double _mud_drag;
+        protected double _mud_buoyancy;
+        protected double _boost;
+        protected double _gravity;
+        public double mox = 0;
+        public double moy = 0;
+        public double mx = 0;
+        public double my = 0;
+        public DateTime last;
+        protected double offset = 0;
+        private double mult;
+        protected int blockX
+        {
+            get
+            {
+                return (int)Math.Round(((this.x) / 16.0));
+            }
+        }
+        protected int blockY
+        {
+            get
+            {
+                return (int)Math.Round((this.y) / 16.0);
+            }
+        }
+        protected double posX
+        {
+            get
+            {
+                return (this.x + 8);
+            }
+        }
+        protected double posY
+        {
+            get
+            {
+                return (this.y + 8);
+            }
+        }
+        public double speedX
+        {
+            get
+            {
+                return this._speedX * this.mult;
+            }
+            set
+            {
+                this._speedX = value / this.mult;
+            }
+        }
+        public double speedY
+        {
+            get
+            {
+                return this._speedY * this.mult;
+            }
+            set
+            {
+                this._speedY = value / this.mult;
+            }
+        }
+        public double modifierX
+        {
+            get
+            {
+                return this._modifierX * this.mult;
+            }
+            set
+            {
+                this._modifierX = value / this.mult;
+            }
+        }
+        public double modifierY
+        {
+            get
+            {
+                return this._modifierY * this.mult;
+            }
+            set
+            {
+                this._modifierY = value / this.mult;
+            }
+        }
+
         public bool isme;
-        private Bitmap crown;
-        private Bitmap crown_silver;
-        private Bitmap aura;
-        private Bitmap modaura;
-        private Bitmap fireAura;
-        private Bitmap invulnerableAura;
-        private Bitmap levitationAnimaitonBitmapData;
-        private Bitmap clubaura;
-        private Bitmap deadAnim;
+        // private Bitmap crown;
+        // private Bitmap crown_silver;
+        // private Bitmap aura;
+        // private Bitmap modaura;
+        // private Bitmap fireAura;
+        // private Bitmap invulnerableAura;
+        // private Bitmap levitationAnimaitonBitmapData;
+        // private Bitmap clubaura;
+        // private Bitmap deadAnim;
         public bool isDead = false;
         private bool deathsend = false;
         private bool worldportalsend = false;
         private bool _isInvulnerable = false;
         // public string name;
-        private uint textcolor;
+        // private uint textcolor;
         private int morx = 0;
         private int mory = 0;
-        public int woots = 0;
+        // public int woots = 0;
         // public int coins = 0;
         public int level = 1;
         public int bcoins = 0;
-        public bool hascrown = false;
-        public bool hascrownsilver = false;
-        public bool isgod = false;
-        public bool ismod = false;
+        // public bool hascrown = false;
+        // public bool hascrownsilver = false;
         public bool isclubmember = false;
         public int current = 0;
-        public int current_bg = 0;
+        // public int current_bg = 0;
         // public bool purple = false;
         public int checkpoint_x = -1;
         public int checkpoint_y = -1;
         public int overlapy = 0;
         // public double gravityMultiplier = 1;
         private double last_respawn = 0;
-        private bool _tagged = false;
+        // private bool _tagged = false;
         private bool _canTag = false;
         private Rectangle rect2;
-        public double aura_color = 4.29497e+009;
-        public int aura_offset = 0;
+        // public double aura_color = 4.29497e+009;
+        // public int aura_offset = 0;
         private bool _hasLevitation = false;
         private bool _isFlaunting = false;
-        private double total = 0;
-        private int pastx = 0;
-        private int pasty = 0;
+        // private double total = 0;
+        // private int pastx = 0;
+        // private int pasty = 0;
         private Queue<int> queue = new Queue<int>();
         private DateTime lastJump;
-        private bool changed = false;
-        private int leftdown = 0;
-        private int rightdown = 0;
-        private int updown = 0;
-        private int downdown = 0;
+        // private bool changed = false;
+        // private int leftdown = 0;
+        // private int rightdown = 0;
+        // private int updown = 0;
+        // private int downdown = 0;
         private bool spacedown = false;
         private bool spacejustdown = false;
         // public int horizontal = 0;
         // public int vertical = 0;
-        public int oh = 0;
-        public int ov = 0;
+        // public int oh = 0;
+        // public int ov = 0;
         private Point lastPortal;
-        private int lastOverlap = 0;
-        private SynchronizedObject that;
-        private double bbest = 0;
+        // private int lastOverlap = 0;
+        private Player that;
+        // private double bbest = 0;
         private bool donex = false;
         private bool doney = false;
         private double animoffset = 0;
@@ -496,7 +598,7 @@ namespace Skylight
         private Rectangle clubrect;
         private double deadoffset = 0;
         public bool jump_boost = false;
-        public bool fire_aura = false;
+        // public bool fire_aura = false;
         private bool _zombie = false;
         private bool _cursed = false;
         private Dictionary<string, int> touchpotions = new Dictionary<string, int>();
@@ -505,7 +607,7 @@ namespace Skylight
         private double _thrustBurnOff = 0.01;
         private double _currentThrust;
         private static List<string> admins = new List<string> { "benjaminsen", "cyclone", "toby", "rpgmaster2000", "mrshoe", "mrvoid" };
-        public static bool HasSolitude = false;
+        // public static bool HasSolitude = false;
 
         // public int smiley;
         public bool hasChat;
@@ -539,12 +641,11 @@ namespace Skylight
         public bool Moved { get { return BlockX != OldBlockX || BlockY != OldBlockY; } }
 
         public Player(Room room, int id, string name, int smiley, double xPos, double yPos, bool isGod, bool isMod, bool hasChat, int coins, bool purple, bool isFriend, int level)
-            : base(null, 16)
         {
             this.PlayingIn = room;
             this.Smiley = smiley;
-            this.isgod = isGod;
-            this.ismod = isMod;
+            this.IsGod= isGod;
+            this.IsMod= isMod;
             this.Id = id;
             this.hasChat = hasChat;
             this.Coins = coins;
@@ -555,7 +656,7 @@ namespace Skylight
             this.queue = new Queue<int>(Config.physics_queue_length);
             this.lastJump = new DateTime();
             this.lastPortal = new Point();
-            this.that = this as SynchronizedObject;
+            this.that = this as Player;
             this.modrect = new Rectangle(0, 0, 64, 64);
             this.clubrect = new Rectangle(0, 0, 64, 64);
             this._currentThrust = this._maxThrust;
@@ -566,6 +667,18 @@ namespace Skylight
             size = 16;
             width = 16;
             height = 16;
+            this._baseDragX = Config.physics_base_drag;
+            this._baseDragY = Config.physics_base_drag;
+            this._no_modifier_dragX = Config.physics_no_modifier_drag;
+            this._no_modifier_dragY = Config.physics_no_modifier_drag;
+            this._water_drag = Config.physics_water_drag;
+            this._water_buoyancy = Config.physics_water_buoyancy;
+            this._mud_drag = Config.physics_mud_drag;
+            this._mud_buoyancy = Config.physics_mud_buoyancy;
+            this._boost = Config.physics_boost;
+            this._gravity = Config.physics_gravity;
+            this.mult = Config.physics_variable_multiplyer;
+            this.last = DateTime.Now;
             return;
         }
 
@@ -609,7 +722,7 @@ namespace Skylight
             return _mud_drag;
         }
 
-        public int overlaps(SynchronizedObject param1)
+        public int overlaps(Player param1)
         {
             List<int> _loc_8 = new List<int>();
 
@@ -620,7 +733,7 @@ namespace Skylight
             }
             Player _loc_2 = this;
 
-            if (_loc_2.isgod || _loc_2.ismod)
+            if (_loc_2.IsGod|| _loc_2.IsMod)
             {
                 return 0;
             }
@@ -641,7 +754,7 @@ namespace Skylight
                                 {
                                     double _loc_9 = _loc_4;
                                     Block currentBlock = this.PlayingIn.Map[
-                                        (int)(((xx * 16) + _loc_2.x + xTest) / 16), 
+                                        (int)(((xx * 16) + _loc_2.x + xTest) / 16),
                                         (int)(((yy * 16) + _loc_2.y + yTest) / 16),
                                         0];
                                     _loc_11 = currentBlock.Id;
@@ -1041,13 +1154,13 @@ namespace Skylight
             return;
         }
 
-        override public void tick()
+        public void tick()
         {
             oldX = this.x;
             oldY = this.y;
 
             this.animoffset = this.animoffset + 0.2;
-            if (this.ismod && !this.isgod)
+            if (this.IsMod&& !this.IsGod)
             {
                 this.modoffset = this.modoffset + 0.2;
                 if (this.modoffset >= 16)
@@ -1096,7 +1209,7 @@ namespace Skylight
                 this.spacejustdown = false;
                 this.spacedown = false;
             }
-            isgodmod = this.isgod || this.ismod;
+            isgodmod = this.IsGod || this.IsMod;
             if (isgodmod)
             {
                 this.morx = 0;
@@ -1427,7 +1540,7 @@ namespace Skylight
             return;
         }
 
-        override public void update()
+        public void update()
         {
             return;
         }
@@ -1498,13 +1611,13 @@ namespace Skylight
             return;
         }
 
-        override public void frame(int param1)
+        public void frame(int param1)
         {
             this.rect2.X = param1 * 16;
             return;
         }
 
-        override public int frame()
+        public int frame()
         {
             return this.rect2.X / 16;
         }
@@ -1538,7 +1651,7 @@ namespace Skylight
 
         public bool zombie()
         {
-            if (this.isgod || this.ismod)
+            if (this.IsGod|| this.IsMod)
             {
                 return false;
             }
@@ -1586,7 +1699,7 @@ namespace Skylight
 
         public bool getCanTag()
         {
-            if (this.isgod || this.ismod || this.isDead)
+            if (this.IsGod|| this.IsMod|| this.isDead)
             {
                 return false;
             }
@@ -1595,7 +1708,7 @@ namespace Skylight
 
         public bool getCanBeTagged()
         {
-            if (this.isgod || this.ismod || this.isDead)
+            if (this.IsGod|| this.IsMod|| this.isDead)
             {
                 return false;
             }

@@ -74,11 +74,8 @@
     <Compile Include="Miscellaneous\SmileyIds.cs" />
     <Compile Include="Out.cs" />
     <Compile Include="Player.cs" />
-    <Compile Include="Physics\BlObject.cs" />
     <Compile Include="Physics\Config.cs" />
     <Compile Include="Physics\ItemId.cs" />
-    <Compile Include="Physics\SynchronizedObject.cs" />
-    <Compile Include="Physics\SynchronizedSprite.cs" />
     <Compile Include="Blocks\PortalBlock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
