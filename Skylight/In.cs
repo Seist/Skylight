@@ -695,8 +695,8 @@ namespace Skylight
 
             this.Bot.Name = botName;
             this.Bot.Id = botId;
-            this.Bot.x = botX;
-            this.Bot.y = botY;
+            this.Bot.X = botX;
+            this.Bot.Y = botY;
             this.Bot.HasAccess = hasAccess;
             this.Bot.IsOwner = isOwner;
             this.Bot.PlayingIn = this.Source;
@@ -906,8 +906,8 @@ namespace Skylight
                 }
             }
 
-            subject.x = xLocation;
-            subject.y = yLocation;
+            subject.X = xLocation;
+            subject.Y = yLocation;
 
             subject.speedX = horizontalSpeed;
             subject.speedY = verticalSpeed;
@@ -1107,8 +1107,8 @@ namespace Skylight
             // Update relevant objects.
             Player subject = Tools.GetPlayerById(id, this.Source);
 
-            subject.x = x;
-            subject.y = y;
+            subject.X = x;
+            subject.Y = y;
 
             // Fire the event.
             PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
@@ -1134,8 +1134,8 @@ namespace Skylight
                         y = m.GetInteger(index + 2);
 
                     Player tempSubject = Tools.GetPlayerById(id, this.Source);
-                    tempSubject.x = x;
-                    tempSubject.y = y;
+                    tempSubject.X = x;
+                    tempSubject.Y = y;
                     
                     index += 3;
                 }
@@ -1156,8 +1156,8 @@ namespace Skylight
                 // Update relevant objects.
                 Player subject = Tools.GetPlayerById(id, this.Source);
 
-                subject.x = x;
-                subject.y = y;
+                subject.X = x;
+                subject.Y = y;
 
                 // Fire the event.
                 PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);

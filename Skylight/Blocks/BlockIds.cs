@@ -392,6 +392,18 @@ namespace Skylight
         {
             public const int LAYER = 0;
 
+            public static class DIAMOND
+            {
+                public const int
+                    DIAMONDBLOCK = 241;
+            }
+
+            public static class SIGN
+            {
+                public const int 
+                    TEXTSIGN = 385;
+            }
+
             public static class Keys
             {
                 public const int
@@ -415,7 +427,9 @@ namespace Skylight
                     COIN = 165,
                     TIME = 157,
                     SWITCH = 185,
+                    CLUB = 201,
                     ZOMBIE = 206;
+
             }
 
             public static class Doors
@@ -427,6 +441,7 @@ namespace Skylight
                     COIN = 43,
                     TIME = 156,
                     SWITCH = 184,
+                    CLUB = 200,
                     ZOMBIE = 207;
             }
 
