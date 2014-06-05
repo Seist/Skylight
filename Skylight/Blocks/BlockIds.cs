@@ -896,6 +896,7 @@ namespace Skylight
             public static class Dark
             {
                 public const int
+                    GRAY = 520,
                     BLUE = 521,
                     PURPLE = 522,
                     RED = 523,
