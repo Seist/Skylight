@@ -1303,6 +1303,8 @@ namespace Skylight
 
             Tools.SkylightMessage("Finished loading blocks for \"" + this.Source.Name + "\".");
 
+            this.Source.BlocksLoaded = true;
+
             Thread.Sleep(1000);
 
             playerPhysicsThread = new Thread(UpdatePhysics);

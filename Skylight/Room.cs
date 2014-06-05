@@ -18,7 +18,8 @@ namespace Skylight
             timeDoorsVisible,
             blueActivated,
             redActivated,
-            greenActivated;
+            greenActivated,
+            blocksLoaded;
 
         private double
             gravityMultiplier;
@@ -59,7 +60,6 @@ namespace Skylight
             this.Id = id;
         }
 
-
         public static List<Room> JoinedRooms
         {
             get
@@ -73,7 +73,6 @@ namespace Skylight
             }
         }
 
-
         public Block[, ,] Map
         {
             get
@@ -84,6 +83,18 @@ namespace Skylight
             internal set
             {
                 this.map = value;
+            }
+        }
+
+        public bool BlocksLoaded
+        {
+            get
+            {
+                return this.blocksLoaded;
+            }
+            internal set
+            {
+                this.blocksLoaded = value;
             }
         }
 
