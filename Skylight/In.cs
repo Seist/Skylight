@@ -156,6 +156,10 @@ namespace Skylight
                     {
                         this.OnInit(m);
                     }
+                    else if (m.Type == "add")
+                    {
+                        this.OnAdd(m);
+                    }
                     else
                     {
                         this.prematureMessages.Add(m);
@@ -710,8 +714,8 @@ namespace Skylight
             }
 
             // Update the room data.
-            this.Source.Owner = Tools.GetPlayerByName(owner, this.Source);
             this.Source.Name = name;
+            this.Source.Owner = Tools.GetPlayerByName(owner, this.Source);
             this.Source.Plays = plays;
             this.Source.Woots = woots;
             this.Source.TotalWoots = totalWoots;
@@ -1316,16 +1320,23 @@ namespace Skylight
             playerPhysicsStopwatch.Start();
             while (true)
             {
-                if (playerPhysicsStopwatch.ElapsedMilliseconds >= Physics.Config.physics_ms_per_tick)
+                try
                 {
-                    playerPhysicsStopwatch.Restart();
-                    foreach (Player player in this.Source.OnlinePlayers)
+                    if (playerPhysicsStopwatch.ElapsedMilliseconds >= Physics.Config.physics_ms_per_tick)
                     {
-                        player.tick();
+                        playerPhysicsStopwatch.Restart();
+                        foreach (Player player in this.Source.OnlinePlayers)
+                        {
+                            player.tick();
 
-                        PlayerEventArgs e = new PlayerEventArgs(player, this.Source, null);
-                        this.Source.Pull.TickEvent(e);
+                            PlayerEventArgs e = new PlayerEventArgs(player, this.Source, null);
+                            this.Source.Pull.TickEvent(e);
+                        }
                     }
+                }
+                catch (Exception e)
+                {
+                    Tools.SkylightMessage(e.ToString());
                 }
             }
         }
