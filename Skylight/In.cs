@@ -759,9 +759,11 @@ namespace Skylight
             // Update relevant objects.
             Player subject = Tools.GetPlayerById(id, this.Source);
 
-            // Take the crown from the current holder.
+            // Take the crown from the current holder (if one exists)
             Player crownHolder = Tools.GetCrownHolder(this.Source);
-            crownHolder.HasCrown = false;
+
+            if (crownHolder != null)
+                crownHolder.HasCrown = false;
 
             // Give it to the subject.
             subject.HasCrown = true;
