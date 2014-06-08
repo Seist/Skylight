@@ -148,181 +148,189 @@ namespace Skylight
             // The order in which things are sent is jacked up, so we need to reorder them.
             // Until we get the init message (ie until the room is initialized), don't do anything.
             // Then, when the room is initialized, parse the messages.
-            if (!this.Source.IsInitialized)
+
+            try
             {
-                if (!this.IsPersonal)
+                if (!this.Source.IsInitialized)
                 {
-                    if (m.Type == "init")
+                    if (!this.IsPersonal)
                     {
-                        this.OnInit(m);
-                    }
-                    else if (m.Type == "add")
-                    {
-                        this.OnAdd(m);
-                    }
-                    else
-                    {
-                        this.prematureMessages.Add(m);
-                    }
-                }
-            }
-            else
-            {
-                if (!this.IsPersonal)
-                {
-                    switch (Convert.ToString(m.Type))
-                    {
-                        case "add": this.OnAdd(m);
-                            break;
-
-                        case "allowpotions": this.OnAllowPotions(m);
-                            break;
-
-                        case "autotext": this.OnAutotext(m);
-                            break;
-
-                        case "b": this.OnB(m);
-                            break;
-
-                        case "bc": this.OnBc(m);
-                            break;
-
-                        case "br": this.OnBr(m);
-                            break;
-
-                        case "bs": this.OnBs(m);
-                            break;
-
-                        case "c": this.OnC(m);
-                            break;
-
-                        case "clear": this.OnClear(m);
-                            break;
-
-                        case "face": this.OnFace(m);
-                            break;
-
-                        case "givegrinch": this.OnGiveGrinch(m);
-                            break;
-
-                        case "givewitch": this.OnGiveWitch(m);
-                            break;
-
-                        case "givewizard": this.OnGiveWizard(m);
-                            break;
-
-                        case "givewizard2": this.OnGiveWizard2(m);
-                            break;
-
-                        case "god": this.OnGod(m);
-                            break;
-
-                        case "hide": this.OnHide(m);
-                            break;
-
-                        case "k": this.OnK(m);
-                            break;
-
-                        case "kill": this.OnKill(m);
-                            break;
-
-                        case "ks": this.OnKs(m);
-                            break;
-
-                        case "lb": this.OnLb(m);
-                            break;
-
-                        case "left": this.OnLeft(m);
-                            break;
-
-                        case "levelup": this.OnLevelUp(m);
-                            break;
-
-                        case "m": this.OnM(m);
-                            break;
-
-                        case "mod": this.OnMod(m);
-                            break;
-
-                        case "p": this.OnP(m);
-                            break;
-
-                        case "pt": this.OnPt(m);
-                            break;
-
-                        case "refreshshop": this.OnRefreshShop(m);
-                            break;
-
-                        case "reset": this.OnReset(m);
-                            break;
-
-                        case "say": this.OnSay(m);
-                            break;
-
-                        case "say_old": this.OnSayOld(m);
-                            break;
-
-                        case "saved": this.OnSaved(m);
-                            break;
-
-                        case "show": this.OnShow(m);
-                            break;
-
-                        case "tele": this.OnTele(m);
-                            break;
-
-                        case "teleport": this.OnTeleport(m);
-                            break;
-
-                        case "ts": this.OnTs(m);
-                            break;
-
-                        case "updatemeta": this.OnUpdateMeta(m);
-                            break;
-
-                        case "upgrade": this.OnUpgrade(m);
-                            break;
-
-                        case "wp": this.OnWp(m);
-                            break;
-
-                        case "write": this.OnWrite(m);
-                            break;
-
-                        case "w": this.OnW(m);
-                            break;
-
-                        case "wu": this.OnWu(m);
-                            break;
-
-                        default:
-                            break;
+                        if (m.Type == "init")
+                        {
+                            this.OnInit(m);
+                        }
+                        else if (m.Type == "add")
+                        {
+                            this.OnAdd(m);
+                        }
+                        else
+                        {
+                            this.prematureMessages.Add(m);
+                        }
                     }
                 }
                 else
                 {
-                    switch (m.Type)
+                    if (!this.IsPersonal)
                     {
-                        case "access":
-                            this.OnAccess(m);
-                            break;
+                        switch (Convert.ToString(m.Type))
+                        {
+                            case "add": this.OnAdd(m);
+                                break;
 
-                        case "lostaccess":
-                            this.OnLostAccess(m);
-                            break;
+                            case "allowpotions": this.OnAllowPotions(m);
+                                break;
 
-                        case "init": 
-                            this.OnInit(m);
-                            break;
+                            case "autotext": this.OnAutotext(m);
+                                break;
 
-                        case "info":
-                            this.OnInfo(m);
-                            break;
+                            case "b": this.OnB(m);
+                                break;
 
-                        default:
-                            break;
+                            case "bc": this.OnBc(m);
+                                break;
+
+                            case "br": this.OnBr(m);
+                                break;
+
+                            case "bs": this.OnBs(m);
+                                break;
+
+                            case "c": this.OnC(m);
+                                break;
+
+                            case "clear": this.OnClear(m);
+                                break;
+
+                            case "face": this.OnFace(m);
+                                break;
+
+                            case "givegrinch": this.OnGiveGrinch(m);
+                                break;
+
+                            case "givewitch": this.OnGiveWitch(m);
+                                break;
+
+                            case "givewizard": this.OnGiveWizard(m);
+                                break;
+
+                            case "givewizard2": this.OnGiveWizard2(m);
+                                break;
+
+                            case "god": this.OnGod(m);
+                                break;
+
+                            case "hide": this.OnHide(m);
+                                break;
+
+                            case "k": this.OnK(m);
+                                break;
+
+                            case "kill": this.OnKill(m);
+                                break;
+
+                            case "ks": this.OnKs(m);
+                                break;
+
+                            case "lb": this.OnLb(m);
+                                break;
+
+                            case "left": this.OnLeft(m);
+                                break;
+
+                            case "levelup": this.OnLevelUp(m);
+                                break;
+
+                            case "m": this.OnM(m);
+                                break;
+
+                            case "mod": this.OnMod(m);
+                                break;
+
+                            case "p": this.OnP(m);
+                                break;
+
+                            case "pt": this.OnPt(m);
+                                break;
+
+                            case "refreshshop": this.OnRefreshShop(m);
+                                break;
+
+                            case "reset": this.OnReset(m);
+                                break;
+
+                            case "say": this.OnSay(m);
+                                break;
+
+                            case "say_old": this.OnSayOld(m);
+                                break;
+
+                            case "saved": this.OnSaved(m);
+                                break;
+
+                            case "show": this.OnShow(m);
+                                break;
+
+                            case "tele": this.OnTele(m);
+                                break;
+
+                            case "teleport": this.OnTeleport(m);
+                                break;
+
+                            case "ts": this.OnTs(m);
+                                break;
+
+                            case "updatemeta": this.OnUpdateMeta(m);
+                                break;
+
+                            case "upgrade": this.OnUpgrade(m);
+                                break;
+
+                            case "wp": this.OnWp(m);
+                                break;
+
+                            case "write": this.OnWrite(m);
+                                break;
+
+                            case "w": this.OnW(m);
+                                break;
+
+                            case "wu": this.OnWu(m);
+                                break;
+
+                            default:
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        switch (m.Type)
+                        {
+                            case "access":
+                                this.OnAccess(m);
+                                break;
+
+                            case "lostaccess":
+                                this.OnLostAccess(m);
+                                break;
+
+                            case "init":
+                                this.OnInit(m);
+                                break;
+
+                            case "info":
+                                this.OnInfo(m);
+                                break;
+
+                            default:
+                                break;
+                        }
                     }
                 }
+            }
+            catch (Exception e)
+            {
+                Tools.SkylightMessage(e.ToString());
             }
         }
 
@@ -766,7 +774,8 @@ namespace Skylight
                 crownHolder.HasCrown = false;
 
             // Give it to the subject.
-            subject.HasCrown = true;
+            if (subject != null)
+                subject.HasCrown = true;
 
             // Fire the event.
             PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);

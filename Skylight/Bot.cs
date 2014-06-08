@@ -8,8 +8,9 @@
     public partial class Bot : Player
     {
         private bool
-            isConnected;
-        
+            isConnected,
+            joined;
+
         private Client client;
 
         // In milliseconds.
@@ -53,6 +54,18 @@
             internal set
             {
                 this.isConnected = value;
+            }
+        }
+
+        public bool Joined
+        {
+            get
+            {
+                return this.joined;
+            }
+            internal set
+            {
+                this.joined = value;
             }
         }
         
@@ -201,7 +214,7 @@
             this.IsConnected = true;
         }
 
-        public void Join()
+        public void Join(bool createRoom = true)
         {
             if (!this.IsConnected)
             {
@@ -220,14 +233,22 @@
 
             try
             {
-                // Join room
-                this.Connection = this.Client.Multiplayer.CreateJoinRoom(
-                    this.R.Id,                         // RoomId   (URL)
-                    GameVersion.Value(),               // RoomType (Server)
-                    true,                              // Visible
-                    new Dictionary<string, string>(),  // RoomData
-                    new Dictionary<string, string>()); // JoinData
-
+                if (createRoom)
+                {
+                    // Join room
+                    this.Connection = this.Client.Multiplayer.CreateJoinRoom(
+                        this.R.Id,                         // RoomId   (URL)
+                        GameVersion.Value(),               // RoomType (Server)
+                        true,                              // Visible
+                        new Dictionary<string, string>(),  // RoomData
+                        new Dictionary<string, string>()); // JoinData
+                }
+                else
+                {
+                    this.Connection = this.Client.Multiplayer.JoinRoom(
+                        this.R.Id,
+                        new Dictionary<string, string>());
+                }
                 // Update room data
                 Room.JoinedRooms.Add(this.R);
             
@@ -264,7 +285,9 @@
                 this.Connection.Send("init");
 
                 this.R.OnlinePlayers.Add(this);
-                
+
+                this.Joined = true;
+
                 // Delay a couple seconds so that the bot has time to join.
                 Thread.Sleep(1000);
 
@@ -287,6 +310,7 @@
             this.Connection = null;
             this.Push = null;
             this.IsConnected = false;
+            this.Joined = false;
         }
 
         public enum AccountType : sbyte
