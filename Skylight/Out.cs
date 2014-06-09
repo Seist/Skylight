@@ -438,6 +438,21 @@ namespace Skylight
             }
         }
 
+        public void SetGod(bool value)
+        {
+            if (this.Bot.HasAccess)
+            {
+                if (value)
+                {
+                    this.C.Send("god", true);
+                }
+                else
+                {
+                    this.C.Send("god", false);
+                }
+            }
+        }
+
         public void SetMute(Player p, bool value)
         {
             if (this.Bot.Name == this.R.Owner.Name)
