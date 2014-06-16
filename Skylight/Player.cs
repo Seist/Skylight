@@ -401,11 +401,11 @@ namespace Skylight
         }
 
         public bool SwitchOpened = false;
-        public double gravityMultiplier = 1;
-        public int horizontal = 0;
-        public int vertical = 0;
+        private double gravityMultiplier = 1;
+        internal int horizontal = 0;
+        internal int vertical = 0;
 
-        public void ResetCoins()
+        private void ResetCoins()
         {
             this.Coins = 0;
             this.BlueCoins = 0;
@@ -416,9 +416,9 @@ namespace Skylight
 
         public double X = 0;
         public double Y = 0;
-        public bool moving = false;
+        private bool moving = false;
         protected int size;
-        public bool hitTest(int param1, int param2)
+        private bool hitTest(int param1, int param2)
         {
             return param1 >= X && param2 >= Y && param1 <= X + this.size && param2 <= Y + this.size;
         }
@@ -434,10 +434,10 @@ namespace Skylight
         protected double _mud_buoyancy;
         protected double _boost;
         protected double _gravity;
-        public double OldHorizontalAcceleration = 0;
-        public double OldVerticalAcceleration = 0;
-        public double HorizontalAcceleration = 0;
-        public double VerticalAcceleration = 0;
+        private double OldHorizontalAcceleration = 0;
+        private double OldVerticalAcceleration = 0;
+        private double HorizontalAcceleration = 0;
+        private double VerticalAcceleration = 0;
 
         private double mult;
         protected int blockX
@@ -454,21 +454,21 @@ namespace Skylight
                 return (int)Math.Round((this.Y) / 16.0);
             }
         }
-        protected double posX
+        internal double posX
         {
             get
             {
                 return (this.X + 8);
             }
         }
-        protected double posY
+        internal double posY
         {
             get
             {
                 return (this.Y + 8);
             }
         }
-        public double speedX
+        internal double speedX
         {
             get
             {
@@ -479,7 +479,7 @@ namespace Skylight
                 this._speedX = value / this.mult;
             }
         }
-        public double speedY
+        internal double speedY
         {
             get
             {
@@ -490,7 +490,7 @@ namespace Skylight
                 this._speedY = value / this.mult;
             }
         }
-        public double modifierX
+        internal double modifierX
         {
             get
             {
@@ -501,7 +501,7 @@ namespace Skylight
                 this._modifierX = value / this.mult;
             }
         }
-        public double modifierY
+        internal double modifierY
         {
             get
             {
@@ -513,18 +513,18 @@ namespace Skylight
             }
         }
 
-        public bool isDead = false;
+        private bool isDead = false;
         private bool worldportalsend = false;
         private bool _isInvulnerable = false;
         private int morx = 0;
         private int mory = 0;
-        public int level = 1;
-        public int bcoins = 0;
+        private int level = 1;
+        private int bcoins = 0;
         public bool isclubmember = false;
         public int currentBlockId = 0;
         public int checkpoint_x = -1;
         public int checkpoint_y = -1;
-        public int overlapy = 0;
+        private int overlapy = 0;
         private double last_respawn = 0;
         private bool _hasLevitation = false;
         private bool _isFlaunting = false;
@@ -535,7 +535,7 @@ namespace Skylight
 
         private Point lastPortal;
 
-        private Player that;
+        // private Player that;
 
         private bool donex = false;
         private bool doney = false;
@@ -545,7 +545,7 @@ namespace Skylight
         private double cluboffset = 0;
         private Rectangle clubrect;
         private double deadoffset = 0;
-        public bool jump_boost = false;
+        private bool jump_boost = false;
         private bool isZombie = false;
         private bool isCursed = false;
         private Dictionary<string, int> touchpotions = new Dictionary<string, int>();
@@ -554,33 +554,33 @@ namespace Skylight
         private double _thrustBurnOff = 0.01;
         private double _currentThrust;
         private static List<string> admins = new List<string> { "benjaminsen", "cyclone", "toby", "rpgmaster2000", "mrshoe", "mrvoid" };
-        public bool hasChat;
+        private bool hasChat;
 
         private double oldX = -1;
         private double oldY = -1;
 
-        public int cx = 0;
-        public int cy = 0;
-        public bool isgodmod = false;
-        public double reminderX = 0;
-        public double currentSX = 0;
-        public double reminderY = 0;
-        public double currentSY = 0;
-        public double osx = 0;
-        public double osy = 0;
-        public double ox = 0;
-        public double oy = 0;
-        public int mod = 0;
-        public bool injump = false;
-        public bool cchanged = false;
-        public double tx = 0;
-        public double ty = 0;
+        private int cx = 0;
+        private int cy = 0;
+        private bool isgodmod = false;
+        private double reminderX = 0;
+        private double currentSX = 0;
+        private double reminderY = 0;
+        private double currentSY = 0;
+        private double osx = 0;
+        private double osy = 0;
+        private double ox = 0;
+        private double oy = 0;
+        private int mod = 0;
+        private bool injump = false;
+        private bool cchanged = false;
+        private double tx = 0;
+        private double ty = 0;
 
         public int BlockX { get { return blockX; } set { X = value * 16; } }
         public int BlockY { get { return blockY; } set { Y = value * 16; } }
-        public int OldBlockX { get { return (int)Math.Round(((this.oldX) / 16.0)); } }
-        public int OldBlockY { get { return (int)Math.Round(((this.oldY) / 16.0)); } }
-        public bool Moved { get { return BlockX != OldBlockX || BlockY != OldBlockY; } }
+        private int OldBlockX { get { return (int)Math.Round(((this.oldX) / 16.0)); } }
+        private int OldBlockY { get { return (int)Math.Round(((this.oldY) / 16.0)); } }
+        private bool Moved { get { return BlockX != OldBlockX || BlockY != OldBlockY; } }
 
         public Player(Room room, int id, string name, int smiley, double xPos, double yPos, bool isGod, bool isMod, bool hasChat, int coins, bool purple, bool isFriend, int level)
         {
@@ -596,7 +596,6 @@ namespace Skylight
             this.level = level;
             this.queue = new Queue<int>(Config.physics_queue_length);
             this.lastPortal = new Point();
-            this.that = this as Player;
             this.modrect = new Rectangle(0, 0, 64, 64);
             this.clubrect = new Rectangle(0, 0, 64, 64);
             this._currentThrust = this._maxThrust;
@@ -617,7 +616,7 @@ namespace Skylight
             return;
         }
 
-        public double jumpMultiplier()
+        private double jumpMultiplier()
         {
             double _loc_1 = 1;
             if (this.jump_boost)
@@ -631,7 +630,7 @@ namespace Skylight
             return _loc_1;
         }
 
-        public double speedMultiplier()
+        private double speedMultiplier()
         {
             double _loc_1 = 1;
             if (this.zombie())
@@ -641,20 +640,22 @@ namespace Skylight
             return _loc_1;
         }
 
-        public double dragMud()
+        private double dragMud()
         {
             return _mud_drag;
         }
 
-        public int overlaps(Player param1)
+        private int overlaps(Player player)
         {
             List<int> _loc_8 = new List<int>();
 
             int _loc_11 = 0;
-            if (param1.X < 0 || param1.Y < 0 || param1.X >= this.PlayingIn.Width * 16 - 8 || param1.Y >= this.PlayingIn.Height * 16 - 8)
+            if (player.X < 0 || player.Y < 0 || player.X >= this.PlayingIn.Width * 16 - 8 || 
+                player.Y >= this.PlayingIn.Height * 16 - 8)
             {
                 return 1;
             }
+
             Player _loc_2 = this;
 
             if (_loc_2.IsGod|| _loc_2.IsMod)
@@ -668,7 +669,8 @@ namespace Skylight
             {
                 for (int yy = -2; yy < 1; yy++)
                 {
-                    if (_loc_3 + xx > 0 && _loc_3 + xx < this.PlayingIn.Width && _loc_4 + yy > 0 && _loc_4 + yy <= this.PlayingIn.Height)
+                    if (_loc_3 + xx > 0 && _loc_3 + xx < this.PlayingIn.Width && _loc_4 + yy > 0 && 
+                        _loc_4 + yy <= this.PlayingIn.Height)
                     {
                         for (int xTest = 0; xTest < 16; xTest++)
                         {
@@ -870,7 +872,7 @@ namespace Skylight
             return 0;
         }
 
-        void stepx()
+        private void stepx()
         {
             if (currentSX > 0)
             {
@@ -903,7 +905,7 @@ namespace Skylight
                 }
             }
 
-            if (overlaps(that) != 0)
+            if (overlaps(this) != 0)
             {
                 X = ox;
                 _speedX = 0;
@@ -914,7 +916,7 @@ namespace Skylight
             return;
         }
 
-        void stepy()
+        private void stepy()
         {
             if (currentSY > 0)
             {
@@ -947,7 +949,7 @@ namespace Skylight
                 }
             }
 
-            if (overlaps(that) != 0)
+            if (overlaps(this) != 0)
             {
                 Y = oy;
                 _speedY = 0;
@@ -956,7 +958,7 @@ namespace Skylight
             }
         }
 
-        void processPortals()
+        private void processPortals()
         {
             List<Point> targetPortalList = new List<Point>();
             int loopIterator = 0;
@@ -1454,48 +1456,48 @@ namespace Skylight
             return;
         }
 
-        public void update()
+        private void update()
         {
             return;
         }
 
-        public void showBadge(bool param1)
+        private void showBadge(bool param1)
         {
             return;
         }
 
-        public void drawBadge(Bitmap param1, double param2, double param3, bool param4)
+        private void drawBadge(Bitmap param1, double param2, double param3, bool param4)
         {
             return;
         }
 
-        public void flauntLevelBadge(bool param1)
+        private void flauntLevelBadge(bool param1)
         {
             return;
         }
 
-        public void drawChat(Bitmap param1, double param2, double param3, bool param4)
+        private void drawChat(Bitmap param1, double param2, double param3, bool param4)
         {
             return;
         }
 
-        public void enterChat()
+        private void enterChat()
         {
             return;
         }
 
-        public void say(string param1)
+        private void say(string param1)
         {
             return;
         }
 
-        public void killPlayer()
+        private void killPlayer()
         {
             this.isDead = true;
             return;
         }
 
-        public void respawn()
+        private void respawn()
         {
             _modifierX = 0;
             _modifierY = 0;
@@ -1511,48 +1513,48 @@ namespace Skylight
             return;
         }
 
-        public void resetCoins()
+        private void resetCoins()
         {
             this.coins = 0;
             this.bcoins = 0;
             return;
         }
 
-        public void resetCheckpoint()
+        private void resetCheckpoint()
         {
             this.checkpoint_x = -1;
             this.checkpoint_y = -1;
             return;
         }
 
-        public void nameColor(int param1)
+        private void nameColor(int param1)
         {
             return;
         }
 
-        public uint minimapColor()
+        private uint minimapColor()
         {
             return 0;
         }
 
-        public void cursed(bool param1)
+        private void cursed(bool param1)
         {
             this.isCursed = param1;
             return;
         }
 
-        public bool cursed()
+        private bool cursed()
         {
             return this.isCursed;
         }
 
-        public void zombie(bool param1)
+        private void zombie(bool param1)
         {
             this.isZombie = param1;
             return;
         }
 
-        public bool zombie()
+        private bool zombie()
         {
             if (this.IsGod|| this.IsMod)
             {
@@ -1561,19 +1563,19 @@ namespace Skylight
             return this.isZombie;
         }
 
-        public void addTouchPotion(string param1, double param2 = 1)
+        private void addTouchPotion(string param1, double param2 = 1)
         {
             this.touchpotions.Add(param1, DateTime.Now.Millisecond + (int)param2 * 1000);
             return;
         }
 
-        public void removeTouchPotion(string param1)
+        private void removeTouchPotion(string param1)
         {
             this.touchpotions.Remove(param1);
             return;
         }
 
-        public bool hasActivePotion(string param1)
+        private bool hasActivePotion(string param1)
         {
             if (!this.touchpotions.ContainsKey(param1))
             {
@@ -1582,12 +1584,12 @@ namespace Skylight
             return (DateTime.Now.Millisecond - this.touchpotions[param1]) > 0;
         }
 
-        public bool hasPotion(string param1)
+        private bool hasPotion(string param1)
         {
             return this.touchpotions.ContainsKey(param1);
         }
 
-        public List<string> getActivePotions()
+        private List<string> getActivePotions()
         {
             List<string> _loc_1 = new List<string>();
             foreach (string _loc_2 in this.touchpotions.Keys)
@@ -1600,7 +1602,7 @@ namespace Skylight
             return _loc_1;
         }
 
-        public bool getCanTag()
+        private bool getCanTag()
         {
             if (this.IsGod|| this.IsMod|| this.isDead)
             {
@@ -1609,7 +1611,7 @@ namespace Skylight
             return this.getActivePotions().Count > 0;
         }
 
-        public bool getCanBeTagged()
+        private bool getCanBeTagged()
         {
             if (this.IsGod|| this.IsMod|| this.isDead)
             {
@@ -1618,25 +1620,25 @@ namespace Skylight
             return (DateTime.Now.Millisecond - this.last_respawn) > 1000;
         }
 
-        public void setPosition(double param1, double param2)
+        private void setPosition(double param1, double param2)
         {
             X = param1;
             Y = param2;
             return;
         }
 
-        public void isInvulnerable(bool param1)
+        private void isInvulnerable(bool param1)
         {
             this._isInvulnerable = param1;
             return;
         }
 
-        public bool isInvulnerable()
+        private bool isInvulnerable()
         {
             return this._isInvulnerable;
         }
 
-        public bool Levitation
+        private bool Levitation
         {
             get
             {
@@ -1648,13 +1650,13 @@ namespace Skylight
             }
         }
 
-        public void hasLevitation(bool param1)
+        private void hasLevitation(bool param1)
         {
             this._hasLevitation = param1;
             return;
         }
 
-        public void updateThrust()
+        private void updateThrust()
         {
             if (this.mory != 0)
             {
@@ -1678,35 +1680,35 @@ namespace Skylight
             return;
         }
 
-        public bool isThrusting()
+        private bool isThrusting()
         {
             return this._isThrusting;
         }
 
-        public void isThrusting(bool param1)
+        private void isThrusting(bool param1)
         {
             this._isThrusting = param1;
             return;
         }
 
-        public void applyThrust()
+        private void applyThrust()
         {
             this._currentThrust = this._maxThrust;
             return;
         }
 
-        public bool isFlaunting()
+        private bool isFlaunting()
         {
             return this._isFlaunting;
         }
 
-        public void isFlaunting(bool param1)
+        private void isFlaunting(bool param1)
         {
             this._isFlaunting = param1;
             return;
         }
 
-        public static bool isAdmin(string param1)
+        private static bool isAdmin(string param1)
         {
             return admins.Contains(param1);
         }

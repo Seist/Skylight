@@ -177,9 +177,7 @@
                         break;
 
                     default: //case AccountType.ArmorGames:
-                        var c = Tools.GuestClient.Value.Multiplayer.CreateJoinRoom("",
-                                                                                   GameVersion.Value(false, Tools.AuthRoom),
-                                                                                   false, null, null);
+                        var c = Tools.GuestClient.Value.Multiplayer.JoinRoom("", null);
                         c.OnMessage += (sender, message) =>
                             {
                                 if (message.Type != "auth") return;
@@ -216,6 +214,9 @@
 
         public void Join(bool createRoom = true)
         {
+            // Update the game version.
+            Refresh();
+
             if (!this.IsConnected)
             {
                 // Log in
@@ -238,7 +239,7 @@
                     // Join room
                     this.Connection = this.Client.Multiplayer.CreateJoinRoom(
                         this.R.Id,                         // RoomId   (URL)
-                        GameVersion.Value(),               // RoomType (Server)
+                        storedVersion,               // RoomType (Server)
                         true,                              // Visible
                         new Dictionary<string, string>(),  // RoomData
                         new Dictionary<string, string>()); // JoinData
@@ -288,8 +289,7 @@
 
                 this.Joined = true;
 
-                // Delay a couple seconds so that the bot has time to join.
-                Thread.Sleep(1000);
+                while (!this.R.BlocksLoaded) { }
 
                 Tools.SkylightMessage("Joined room.");
             }
@@ -311,6 +311,22 @@
             this.Push = null;
             this.IsConnected = false;
             this.Joined = false;
+        }
+
+        private static string storedVersion;
+
+        private string Version(bool cached = true, string prefix = Tools.NormalRoom)
+        {
+            if (!cached || storedVersion == null)
+                return prefix + Refresh();
+
+            return prefix + storedVersion;
+        }
+
+        private string Refresh()
+        {
+            storedVersion = Convert.ToString(this.Client.BigDB.Load("config", "config")["version"]);
+            return storedVersion;
         }
 
         public enum AccountType : sbyte

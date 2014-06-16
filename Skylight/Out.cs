@@ -45,6 +45,11 @@ namespace Skylight
             }
         }
 
+        public void Build(int id, int x, int y)
+        {
+            this.Build(new Block(id, x, y));
+        }
+
         public void Build(Block b)
         {
             try
@@ -289,11 +294,11 @@ namespace Skylight
             this.Move(holdArgs);
         }
 
-        public void Say(string s)
+        public void Say(string s, bool useChatPrefix = true)
         {
             try
             {
-                if (s.StartsWith("/"))
+                if (s.StartsWith("/") || !useChatPrefix)
                 {
                     if (s.Length <= 80 && s.Length > 0)
                     {
@@ -353,6 +358,14 @@ namespace Skylight
             }
         }
 
+        public void Kick(string name, string reason = "")
+        {
+            if (this.Bot.Name == this.R.Owner.Name)
+            {
+                this.Say("/kick " + name + " " + reason);
+            }
+        }
+
         public void Kick(Player p, string reason = "")
         {
             if (this.Bot.Name == this.R.Owner.Name)
@@ -366,6 +379,14 @@ namespace Skylight
             if (this.Bot.Name == this.R.Owner.Name)
             {
                 this.Say("/loadlevel");
+            }
+        }
+
+        public void Respawn(string name)
+        {
+            if (this.Bot.Name == this.R.Owner.Name)
+            {
+                this.Say("/kill " + name);
             }
         }
 
@@ -423,6 +444,21 @@ namespace Skylight
             }
         }
 
+        public void SetEdit(string name, bool value)
+        {
+            if (this.Bot.Name == this.R.Owner.Name)
+            {
+                if (value)
+                {
+                    this.Say("/giveedit " + name);
+                }
+                else
+                {
+                    this.Say("/removeedit " + name);
+                }
+            }
+        }
+
         public void SetEdit(Player p, bool value)
         {
             if (this.Bot.Name == this.R.Owner.Name)
@@ -449,6 +485,21 @@ namespace Skylight
                 else
                 {
                     this.C.Send("god", false);
+                }
+            }
+        }
+
+        public void SetMute(string name, bool value)
+        {
+            if (this.Bot.Name == this.R.Owner.Name)
+            {
+                if (value)
+                {
+                    this.Say("/mute " + name);
+                }
+                else
+                {
+                    this.Say("/unmute " + name);
                 }
             }
         }
@@ -503,6 +554,21 @@ namespace Skylight
             }
         }
 
+        public void Teleport(int newXLocation, int newYLocation, string name = "")
+        {
+            if (this.Bot.Name == this.R.Owner.Name)
+            {
+                if (name != "")
+                {
+                    this.Say("/teleport " + name + " " + newXLocation + " " + newYLocation);
+                }
+                else
+                {
+                    this.Say("/teleport " + this.Bot.Name + " " + newXLocation + " " + newYLocation);
+                }
+            }
+        }
+
         public void Teleport(int newXLocation, int newYLocation, Player p = null)
         {
             if (this.Bot.Name == this.R.Owner.Name)
@@ -527,13 +593,6 @@ namespace Skylight
                     this.Teleport(newXLocation, newYLocation, p);
                 }
             }
-        }
-
-        public List<Room> ListLevels()
-        {
-            List<Room> roomList = new List<Room>();
-
-            return roomList;
         }
     }
 }
