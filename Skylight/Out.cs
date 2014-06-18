@@ -327,10 +327,10 @@ namespace Skylight
                     else
                     {
                         // Say what you can.
-                        this.Say(s.Substring(0, 80));
+                        this.Say(s.Substring(0, 80 - this.Bot.ChatPrefix.Length));
 
                         // Delete what you just said.
-                        s = s.Substring(80);
+                        s = s.Substring(80 - this.Bot.ChatPrefix.Length);
 
                         // Repeat the process.
                         this.Say(s);

@@ -853,7 +853,7 @@ namespace Skylight
                                             case 83:
                                             case 77:
                                                 {
-                                                    break;
+                                                    continue;
                                                 }
                                             default:
                                                 {
