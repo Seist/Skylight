@@ -186,7 +186,7 @@ namespace Skylight
             return id;
         }
         
-        internal static List<Block> ConvertMessageToBlockList(Message m, uint start, Room r)
+        internal static List<Block> DeserializeInit(Message m, uint start, Room r)
         {
             List<Block> list = new List<Block>();
             try
@@ -384,7 +384,8 @@ namespace Skylight
             {
                 SkylightMessage("Error loading existing blocks:\n" + e);
             }
-            
+
+            SkylightMessage("Done loading blocks");
             return list;
         }
 

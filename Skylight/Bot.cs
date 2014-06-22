@@ -42,6 +42,7 @@
             this.passwordOrToken = passwordOrToken;
             this.R = r;
             this.accType = accType;
+            this.ShouldTick = true;
         }
 
         public bool IsConnected
@@ -67,6 +68,12 @@
             {
                 this.joined = value;
             }
+        }
+
+        public bool ShouldTick
+        {
+            get;
+            set;
         }
         
         public Client Client
@@ -189,7 +196,6 @@
                                     this.Client = PlayerIOClient.PlayerIO.Connect(Tools.GameID, "secure", 
                                                                                   message.GetString(0), message.GetString(1), 
                                                                                   "armorgames");
-                                    Tools.SkylightMessage("Logged in.");
                                 }
 
                                 c.Disconnect();
@@ -198,9 +204,6 @@
                         c.Send("auth", this.emailOrToken, this.passwordOrToken);
                         break;
                 }
-
-                if (this.accType != AccountType.ArmorGames)
-                    Tools.SkylightMessage("Logged in.");
             }
             catch (PlayerIOError e)
             {
@@ -282,16 +285,14 @@
                 }
 
                 // Once everything is internal settled, send the init.
-                this.Connection.Send("init2");
                 this.Connection.Send("init");
+                this.Connection.Send("init2");
 
                 this.R.OnlinePlayers.Add(this);
 
                 this.Joined = true;
 
                 while (!this.R.BlocksLoaded) { }
-
-                Tools.SkylightMessage("Joined room.");
             }
             catch (Exception e)
             {
