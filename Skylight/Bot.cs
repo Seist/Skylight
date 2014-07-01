@@ -12,6 +12,7 @@
             joined;
 
         private Client client;
+        private Client vers_Client;
 
         // In milliseconds.
         private int 
@@ -326,7 +327,8 @@
 
         private string Refresh()
         {
-            storedVersion = Convert.ToString(this.Client.BigDB.Load("config", "config")["version"]);
+            this.vers_Client = PlayerIO.QuickConnect.SimpleConnect(Tools.GameID, "guest", "guest");
+            storedVersion = Convert.ToString(this.vers_Client.BigDB.Load("config", "config")["version"]);
             return storedVersion;
         }
 
