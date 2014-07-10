@@ -62,375 +62,185 @@ namespace Skylight
 
         public static List<Room> JoinedRooms
         {
-            get
-            {
-                return joinedRooms;
-            }
-
-            internal set
-            {
-                joinedRooms = value;
-            }
+            get;
+            internal set;
         }
 
         public Block[, ,] Map
         {
-            get
-            {
-                return this.map;
-            }
-
-            internal set
-            {
-                this.map = value;
-            }
+            get;
+            internal set;
         }
 
         public bool BlocksLoaded
         {
-            get
-            {
-                return this.blocksLoaded;
-            }
-            internal set
-            {
-                this.blocksLoaded = value;
-            }
+            get;
+            internal set;
         }
 
         public bool HasPull
         {
-            get
-            {
-                return this.hasPull;
-            }
-
-            internal set
-            {
-                this.hasPull = value;
-            }
+            get;
+            internal set;
         }
 
         public bool IsInitialized
         {
-            get
-            {
-                return this.isInitialized;
-            }
-
-            internal set
-            {
-                this.isInitialized = value;
-            }
+            get;
+            internal set;
         }
 
         public bool IsTutorialRoom
         {
-            get
-            {
-                return this.isTutorialRoom;
-            }
-
-            internal set
-            {
-                this.isTutorialRoom = value;
-            }
+            get;
+            internal set;
         }
 
         public bool PotionsAllowed
         {
-            get
-            {
-                return this.potionsAllowed;
-            }
-
-            internal set
-            {
-                this.potionsAllowed = value;
-            }
+            get;
+            internal set;
         }
 
         public bool TimeDoorsVisible
         {
-            get
-            {
-                return this.timeDoorsVisible;
-            }
-
-            internal set
-            {
-                this.timeDoorsVisible = value;
-            }
+            get;
+            internal set;
         }
 
         public Bot Receiver
         {
-            get
-            {
-                return this.receiver;
-            }
-
-            internal set
-            {
-                this.receiver = value;
-            }
+            get;
+            internal set;
         }
 
         public double GravityMultiplier
         {
-            get
-            {
-                return this.gravityMultiplier;
-            }
-
-            internal set
-            {
-                this.gravityMultiplier = value;
-            }
+            get;
+            internal set;
         }
 
         public In Pull
         {
-            get
-            {
-                return this.pull;
-            }
-
-            internal set
-            {
-                this.pull = value;
-            }
+            get;
+            internal set;
         }
 
         public int Height
         {
-            get
-            {
-                return this.height;
-            }
-
-            internal set
-            {
-                this.height = value;
-            }
+            get;
+            internal set;
         }
 
         public int Plays
         {
-            get
-            {
-                return this.plays;
-            }
-
-            internal set
-            {
-                this.plays = value;
-            }
+            get;
+            internal set;
         }
 
         public int TotalWoots
         {
-            get
-            {
-                return this.totalWoots;
-            }
-
-            internal set
-            {
-                this.totalWoots = value;
-            }
+            get;
+            internal set;
         }
 
         public int Width
         {
-            get
-            {
-                return this.width;
-            }
-
-            internal set
-            {
-                this.width = value;
-            }
+            get;
+            internal set;
         }
 
         public int Woots
         {
-            get
-            {
-                return this.woots;
-            }
+            get;
 
-            internal set
-            {
-                this.woots = value;
-            }
+            internal set;
         }
 
         public List<In> Pulls
         {
-            get
-            {
-                return this.pulls;
-            }
-
-            internal set
-            {
-                this.pulls = value;
-            }
+            get;
+            internal set;
         }
 
         public List<KeyValuePair<string, Player>> ChatLog
         {
-            get
-            {
-                return this.chatLog;
-            }
-
-            internal set
-            {
-                this.chatLog = value;
-            }
+            get;
+            internal set;
         }
 
         public List<Player> OnlinePlayers
         {
-            get
-            {
-                return this.onlinePlayers;
-            }
+            get;
 
-            internal set
-            {
-                this.onlinePlayers = value;
-            }
+            internal set;
         }
 
         public List<Bot> OnlineBots
         {
-            get
-            {
-                return this.onlineBots;
-            }
+            get;
 
-            internal set
-            {
-                this.onlineBots = value;
-            }
+            internal set;
         }
 
         public Player Owner
         {
-            get
-            {
-                return this.owner;
-            }
+            get;
 
-            internal set
-            {
-                this.owner = value;
-            }
+            internal set;
         }
 
         public string EditKey
         {
-            get
-            {
-                return this.editKey;
-            }
+            get;
 
-            internal set
-            {
-                this.editKey = value;
-            }
+            internal set;
         }
 
         public string Id
         {
-            get
-            {
-                return this.id;
-            }
+            get;
 
-            internal set
-            {
-                this.id = value;
-            }
+            internal set;
         }
 
         public string Name
         {
-            get
-            {
-                return this.name;
-            }
+            get;
 
-            internal set
-            {
-                this.name = value;
-            }
+            internal set;
         }
 
         public string RoomKey
         {
-            get
-            {
-                return this.worldKey;
-            }
+            get;
 
-            internal set
-            {
-                this.worldKey = value;
-            }
+            internal set;
         }
 
         internal bool ShouldTick = true;
 
         internal List<Connection> Connections
         {
-            get
-            {
-                return this.connections;
-            }
+            get;
 
-            set
-            {
-                this.connections = value;
-            }
+            set;
         }
 
         public bool RedActivated
         {
-            get
-            {
-                return this.redActivated;
-            }
-            set
-            {
-                this.redActivated = value;
-            }
+            get;
+            set;
         }
         public bool GreenActivated
         {
-            get
-            {
-                return this.greenActivated;
-            }
-            set
-            {
-                this.greenActivated = value;
-            }
+            get;
+            set;
         }
         public bool BlueActivated
         {
-            get
-            {
-                return this.blueActivated;
-            }
-            set
-            {
-                this.blueActivated = value;
-            }
+            get;
+            set;
         }
     }
 }
