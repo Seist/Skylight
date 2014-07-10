@@ -239,10 +239,7 @@ namespace Skylight
 
         public void SetCode(string newCode)
         {
-            if (this.Bot.Name == this.R.Owner.Name)
-            {
                 this.C.Send("key", newCode);
-            }
         }
 
         public void Jump(double startX, double startY)

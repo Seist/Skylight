@@ -99,7 +99,10 @@
 
             set
             {
-                this.blockDelay = value;
+                if (this.blockDelay > 0)
+                {
+                    this.blockDelay = value;
+                }
             }
         }
         
@@ -112,7 +115,10 @@
 
             set
             {
-                this.speechDelay = value;
+                if (this.speechDelay > 0)
+                {
+                    this.speechDelay = value;
+                }
             }
         }
 

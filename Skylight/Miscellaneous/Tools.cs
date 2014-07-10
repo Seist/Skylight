@@ -63,16 +63,12 @@ namespace Skylight
                 if (p.Id == id)
                 {
                     // If value is false, return the first match.
-                    if (!onlyReturnBots)
+                    if (!onlyReturnBots || p.IsBot)
                     {
                         return p;
                     }
 
-                    // Otherwise, only return a bot.
-                    if (p.IsBot)
-                    {
-                        return p;
-                    }
+            
                 }
             }
 

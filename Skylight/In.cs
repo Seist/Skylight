@@ -306,20 +306,16 @@ namespace Skylight
                     {
                         switch (m.Type)
                         {
-                            case "access":
-                                this.OnAccess(m);
+                            case "access": this.OnAccess(m);
                                 break;
 
-                            case "lostaccess":
-                                this.OnLostAccess(m);
+                            case "lostaccess": this.OnLostAccess(m);
                                 break;
 
-                            case "init":
-                                this.OnInit(m);
+                            case "init": this.OnInit(m);
                                 break;
 
-                            case "info":
-                                this.OnInfo(m);
+                            case "info": this.OnInfo(m);
                                 break;
 
                             default:
