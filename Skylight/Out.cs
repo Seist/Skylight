@@ -327,51 +327,54 @@ namespace Skylight
 
         public void Say(string s, bool useChatPrefix = true)
         {
-            try
+            if (this.Bot.Name == this.R.Owner.Name)
             {
-                if (s.StartsWith("/") || !useChatPrefix)
+                try
                 {
-                    if (s.Length <= 80 && s.Length > 0)
+                    if (s.StartsWith("/") || !useChatPrefix)
                     {
-                        this.C.Send("say", s);
-                        Thread.Sleep(this.Bot.SpeechDelay);
+                        if (s.Length <= 80 && s.Length > 0)
+                        {
+                            this.C.Send("say", s);
+                            Thread.Sleep(this.Bot.SpeechDelay);
+                        }
+                        else
+                        {
+                            // Say what you can.
+                            this.Say(s.Substring(0, 80));
+
+                            // Delete what you just said.
+                            s = s.Substring(80);
+
+                            // Repeat the process.
+                            this.Say(s);
+                        }
                     }
                     else
                     {
-                        // Say what you can.
-                        this.Say(s.Substring(0, 80));
+                        if (s.Length + this.Bot.ChatPrefix.Length <= 80)
+                        {
+                            this.C.Send("say", this.Bot.ChatPrefix + s);
+                            Thread.Sleep(this.Bot.SpeechDelay);
+                        }
+                        else
+                        {
+                            // Say what you can.
+                            this.Say(s.Substring(0, 80 - this.Bot.ChatPrefix.Length));
 
-                        // Delete what you just said.
-                        s = s.Substring(80);
+                            // Delete what you just said.
+                            s = s.Substring(80 - this.Bot.ChatPrefix.Length);
 
-                        // Repeat the process.
-                        this.Say(s);
+                            // Repeat the process.
+                            this.Say(s);
+                        }
                     }
                 }
-                else
+                catch (Exception)
                 {
-                    if (s.Length + this.Bot.ChatPrefix.Length <= 80)
-                    {
-                        this.C.Send("say", this.Bot.ChatPrefix + s);
-                        Thread.Sleep(this.Bot.SpeechDelay);
-                    }
-                    else
-                    {
-                        // Say what you can.
-                        this.Say(s.Substring(0, 80 - this.Bot.ChatPrefix.Length));
-
-                        // Delete what you just said.
-                        s = s.Substring(80 - this.Bot.ChatPrefix.Length);
-
-                        // Repeat the process.
-                        this.Say(s);
-                    }
+                    Tools.SkylightMessage("Error: attempted to use Out.Say before connecting");
                 }
-            }
-            catch (Exception)
-            {
-                Tools.SkylightMessage("Error: attempted to use Out.Say before connecting");
-            }
+            } // end on.this.say if statement
         }
 
         public void SetTitle(string s)
@@ -391,68 +394,55 @@ namespace Skylight
 
         public void Kick(string name, string reason = "")
         {
-            if (this.Bot.Name == this.R.Owner.Name)
-            {
                 this.Say("/kick " + name + " " + reason);
-            }
         }
 
         public void Kick(Player p, string reason = "")
         {
-            if (this.Bot.Name == this.R.Owner.Name)
-            {
                 this.Say("/kick " + p.Name + " " + reason);
-            }
         }
 
         public void Loadlevel()
         {
-            if (this.Bot.Name == this.R.Owner.Name)
-            {
                 this.Say("/loadlevel");
-            }
+         
         }
 
         public void Respawn(string name)
         {
-            if (this.Bot.Name == this.R.Owner.Name)
-            {
+
                 this.Say("/kill " + name);
-            }
+          
         }
 
         public void Respawn(Player p)
         {
-            if (this.Bot.Name == this.R.Owner.Name)
-            {
+
                 this.Say("/kill " + p.Name);
-            }
+            
         }
 
         public void RespawnAll()
         {
-            if (this.Bot.Name == this.R.Owner.Name)
-            {
+            
                 this.Say("/respawnall");
-            }
+            
         }
 
         public void Reset()
         {
-            if (this.Bot.Name == this.R.Owner.Name)
-            {
+           
                 this.Say("/reset");
-            }
+            
         }
 
         public void Save()
         {
             try
             {
-                if (this.Bot.Name == this.R.Owner.Name)
-                {
+                
                     this.C.Send("save");
-                }
+                
             }
             catch (Exception)
             {
@@ -464,10 +454,9 @@ namespace Skylight
         {
             try
             {
-                if (this.Bot.Name == this.R.Owner.Name)
-                {
+               
                     this.C.Send("allowpotions", value);
-                }
+                
             }
             catch (Exception)
             {
@@ -477,8 +466,7 @@ namespace Skylight
 
         public void SetEdit(string name, bool value)
         {
-            if (this.Bot.Name == this.R.Owner.Name)
-            {
+           
                 if (value)
                 {
                     this.Say("/giveedit " + name);
@@ -487,13 +475,12 @@ namespace Skylight
                 {
                     this.Say("/removeedit " + name);
                 }
-            }
+            
         }
 
         public void SetEdit(Player p, bool value)
         {
-            if (this.Bot.Name == this.R.Owner.Name)
-            {
+            
                 if (value)
                 {
                     this.Say("/giveedit " + p.Name);
@@ -502,28 +489,20 @@ namespace Skylight
                 {
                     this.Say("/removeedit " + p.Name);
                 }
-            }
+            
         }
 
-        public void SetGod(bool value)
+        public void SetGod(bool isGod)
         {
             if (this.Bot.HasAccess)
             {
-                if (value)
-                {
-                    this.C.Send("god", true);
-                }
-                else
-                {
-                    this.C.Send("god", false);
-                }
+                this.C.Send("god", isGod);
             }
         }
 
         public void SetMute(string name, bool value)
         {
-            if (this.Bot.Name == this.R.Owner.Name)
-            {
+            
                 if (value)
                 {
                     this.Say("/mute " + name);
@@ -532,13 +511,12 @@ namespace Skylight
                 {
                     this.Say("/unmute " + name);
                 }
-            }
+            
         }
 
         public void SetMute(Player p, bool value)
         {
-            if (this.Bot.Name == this.R.Owner.Name)
-            {
+            
                 if (value)
                 {
                     this.Say("/mute " + p.Name);
@@ -547,13 +525,12 @@ namespace Skylight
                 {
                     this.Say("/unmute " + p.Name);
                 }
-            }
+            
         }
 
         public void SetPotionBan(int potionId, bool value)
         {
-            if (this.Bot.Name == this.R.Owner.Name)
-            {
+            
                 if (value)
                 {
                     this.Say("/potionson " + potionId);
@@ -562,7 +539,7 @@ namespace Skylight
                 {
                     this.Say("/potionsoff " + potionId);
                 }
-            }
+            
         }
 
         public void SetSmiley(int smileyId)
@@ -579,51 +556,34 @@ namespace Skylight
 
         public void SetVisibility(bool value)
         {
-            if (this.Bot.Name == this.R.Owner.Name)
-            {
+           
                 this.Say("/visible " + value);
-            }
+            
         }
 
-        public void Teleport(int newXLocation, int newYLocation, string name = "")
+        public void Teleport(int newXLocation, int newYLocation, string name = null)
         {
-            if (this.Bot.Name == this.R.Owner.Name)
-            {
-                if (name != "")
-                {
-                    this.Say("/teleport " + name + " " + newXLocation + " " + newYLocation);
-                }
-                else
-                {
-                    this.Say("/teleport " + this.Bot.Name + " " + newXLocation + " " + newYLocation);
-                }
-            }
+             
+               this.Say("/teleport " + (name ?? this.Bot.Name) + " " + newXLocation + " " + newYLocation);
+            
         }
 
         public void Teleport(int newXLocation, int newYLocation, Player p = null)
         {
-            if (this.Bot.Name == this.R.Owner.Name)
-            {
-                if (p != null)
-                {
-                    this.Say("/teleport " + p.Name + " " + newXLocation + " " + newYLocation);
-                }
-                else
-                {
-                    this.Say("/teleport " + this.Bot.Name + " " + newXLocation + " " + newYLocation);
-                }
-            }
+           
+                this.Say("/teleport " + (p.Name ?? this.Bot.Name) + " " + newXLocation + " " + newYLocation);
+            
         }
 
         public void TeleportAll(int newXLocation, int newYLocation)
         {
-            if (this.Bot.Name == this.R.Owner.Name)
-            {
+            
+            
                 foreach (Player p in this.R.OnlinePlayers)
                 {
                     this.Teleport(newXLocation, newYLocation, p);
                 }
-            }
+           
         }
     }
 }
