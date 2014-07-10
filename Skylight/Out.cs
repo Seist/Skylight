@@ -50,10 +50,12 @@ namespace Skylight
             this.Build(new Block(id, x, y));
         }
 
+
         public void Build(Block b)
         {
             try
             {
+
                 if (b is CoinBlock)
                 {
                     CoinBlock c = b as CoinBlock;
@@ -99,7 +101,14 @@ namespace Skylight
             }
             catch (Exception)
             {
-                Tools.SkylightMessage("Error: attempted to use Out.Build before connecting");
+                if (this.C == null)
+                {
+                    Tools.SkylightMessage("Error: attempted to use Out.Build before connecting");
+                }
+                else
+                {
+                    Tools.SkylightMessage("Error: one or more of the specified parameters in Out.Build was invalid");
+                }
             }
         }
 
@@ -122,7 +131,14 @@ namespace Skylight
             }
             catch (Exception)
             {
-                Tools.SkylightMessage("Error: attempted to use Out.Clear before connecting");
+                if (this.C == null)
+                {
+                    Tools.SkylightMessage("Error: attempted to use Out.Clear before connecting");
+                }
+                else
+                {
+                    Tools.SkylightMessage("Error: could not clear world because of an unknown error");
+                }
             }
         }
 
@@ -210,7 +226,14 @@ namespace Skylight
             }
             catch (Exception)
             {
-                Tools.SkylightMessage("Error: attempted to use Out.InputCode before connecting");
+                if (this.C == null)
+                {
+                    Tools.SkylightMessage("Error: attempted to use Out.InputCode before connecting");
+                }
+                else
+                {
+                    Tools.SkylightMessage("Error: access key '" + editKey + "' is invalid");
+                }
             }
         }
 
@@ -249,7 +272,14 @@ namespace Skylight
             }
             catch (Exception)
             {
-                Tools.SkylightMessage("Error: attempted to use Out.Move before connecting");
+                if (this.C == null)
+                {
+                    Tools.SkylightMessage("Error: attempted to use Out.Move before connecting");
+                }
+                else {
+                    Tools.SkylightMessage("Error: invalid arguments specified to Out.Move");
+
+                }
             }
         }
 

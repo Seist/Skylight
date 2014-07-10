@@ -27,7 +27,7 @@
 
         private readonly AccountType accType;
 
-        private Connection connection;
+        private Connection connection =  null;
 
         private Out push = new Out();
 
@@ -243,7 +243,7 @@
                     // Join room
                     this.Connection = this.Client.Multiplayer.CreateJoinRoom(
                         this.R.Id,                         // RoomId   (URL)
-                        storedVersion,               // RoomType (Server)
+                        storedVersion,                     // RoomType (Server)
                         true,                              // Visible
                         new Dictionary<string, string>(),  // RoomData
                         new Dictionary<string, string>()); // JoinData

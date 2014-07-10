@@ -13,9 +13,9 @@
             return param1 >= 9 && param1 <= 97 || param1 >= 122 && param1 <= 217;
         }// end function
 
-        public static bool isClimbable(int param1)
+        public static bool isClimbable(int block_id)
         {
-            switch(param1)
+            switch (block_id)
             {
                 case BlockIds.Action.Ladders.LADDER:
                 case BlockIds.Action.Ladders.CHAIN:
@@ -26,20 +26,20 @@
                 }
                 default:
                 {
+                    return false;
                     break;
                 }
             }
-            return false;
         }// end function
 
-        public static bool isBackgroundRotateable(int param1)
+        public static bool isBackgroundRotateable()
         {
             return false;
         }// end function
 
-        public static bool isDecorationRotateable(int param1)
+        public static bool isDecorationRotateable(int block_id)
         {
-            switch(param1)
+            switch (block_id)
             {
                 case BlockIds.Decorative.SciFi2013.BLUESTRAIGHT:
                 case BlockIds.Decorative.SciFi2013.BLUEBEND:
@@ -52,10 +52,10 @@
                 }
                 default:
                 {
+                    return false;
                     break;
                 }
             }
-            return false;
         }// end function
 
     }
