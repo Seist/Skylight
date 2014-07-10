@@ -27,7 +27,6 @@
                 default:
                 {
                     return false;
-                    break;
                 }
             }
         }// end function
@@ -53,7 +52,6 @@
                 default:
                 {
                     return false;
-                    break;
                 }
             }
         }// end function

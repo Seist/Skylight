@@ -553,7 +553,7 @@ namespace Skylight
         private double _maxThrust = 0.2;
         private double _thrustBurnOff = 0.01;
         private double _currentThrust;
-        private static List<string> admins = new List<string> { "benjaminsen", "cyclone", "toby", "rpgmaster2000", "mrshoe", "mrvoid" };
+        private static List<string> admins = new List<string> { "benjaminsen", "cyclone", "toby", "rpgmaster2000", "mrshoe", "mrvoid", "atilla", "meredith1999" };
         private bool hasChat;
 
         private double oldX = -1;
@@ -1713,5 +1713,6 @@ namespace Skylight
             return admins.Contains(param1);
         }
 
+        
     }
 }
