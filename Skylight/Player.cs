@@ -535,8 +535,6 @@ namespace Skylight
 
         private Point lastPortal;
 
-        // private Player that;
-
         private bool donex = false;
         private bool doney = false;
         private double animoffset = 0;
