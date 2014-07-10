@@ -330,7 +330,7 @@ namespace Skylight
                 {
                     if (s.StartsWith("/") || !useChatPrefix)
                     {
-                        if (s.Length <= 80 && s.Length > 0)
+                        if (s.Length <= 80 && s.Length != 0)
                         {
                             this.C.Send("say", s);
                             Thread.Sleep(this.Bot.SpeechDelay);

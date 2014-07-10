@@ -36,7 +36,7 @@ namespace Skylight
 
         private List<Message> prematureMessages = new List<Message>();
 
-        private Room source;
+        public static Room source;
 
         private Stopwatch playerPhysicsStopwatch = new Stopwatch();
 
