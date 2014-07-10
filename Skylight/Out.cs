@@ -277,7 +277,7 @@ namespace Skylight
                     Tools.SkylightMessage("Error: attempted to use Out.Move before connecting");
                 }
                 else {
-                    Tools.SkylightMessage("Error: invalid arguments specified to Out.Move");
+                    Tools.SkylightMessage("Error: invalid arguments specified to Out.Move. 11 arguments should have been specified");
 
                 }
             }
@@ -385,10 +385,19 @@ namespace Skylight
                 {
                     this.C.Send("name", s);
                 }
+                else
+                {
+                    Tools.SkylightMessage("The room title cannot be empty");
+                }
             }
             catch (Exception)
             {
-                Tools.SkylightMessage("Error: attempted to use Out.SetTitle before connecting");
+                if (this.C == null)
+                {
+                    Tools.SkylightMessage("Error: attempted to use Out.SetTitle before connecting");
+                } else {
+                    Tools.SkylightMessage("Error: an unknown error occured while using Out.SetTitle");
+                }
             }
         }
 

@@ -602,11 +602,8 @@ namespace Skylight
             // Extract data
             int id = m.GetInteger(0);
 
-            // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, this.Source);
-
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
+            PlayerEventArgs e = new PlayerEventArgs(id, this.Source, m);
 
             this.Source.Pull.WizardEvent(e);
         }
@@ -616,11 +613,8 @@ namespace Skylight
             // Extract data
             int id = m.GetInteger(0);
 
-            // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, this.Source);
-
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
+            PlayerEventArgs e = new PlayerEventArgs(id, this.Source, m);
 
             this.Source.Pull.RedWizardEvent(e);
         }
@@ -668,6 +662,7 @@ namespace Skylight
             if (title == "Limit reached")
             {
                 this.Bot.Disconnect();
+                Tools.SkylightMessage("The bot has disconnected because the limit was reached.");
             }
 
             // Fire the event.
@@ -933,34 +928,51 @@ namespace Skylight
 
             subject.HasGravityModifier = hasGravityModifier;
 
-            subject.IsHoldingUp = false;
+            
             if (verticalDirection == -1)
             {
                 subject.IsHoldingUp = true;
             }
+            else
+            {
+                subject.IsHoldingUp = false;
+            }
 
-            subject.IsHoldingDown = false;
+            
             if (verticalDirection == 1)
             {
                 subject.IsHoldingDown = true;
             }
+            else
+            {
+                subject.IsHoldingDown = false;
+            }
 
-            subject.IsHoldingLeft = false;
+            
             if (horizontalDirection == -1)
             {
                 subject.IsHoldingLeft = true;
             }
+            else
+            {
+                subject.IsHoldingLeft = false;
+            }
 
-            subject.IsHoldingRight = false;
+            
             if (horizontalDirection == 1)
             {
                 subject.IsHoldingRight = true;
             }
+            else
+            {
+                subject.IsHoldingRight = false;
+            }
 
             // Fire the event.
-            PlayerEventArgs movementEventArgs = new PlayerEventArgs(subject, this.Source, m);
 
-            this.Source.Pull.MovementEvent(movementEventArgs);
+            this.Source.Pull.MovementEvent(
+                new PlayerEventArgs(subject, this.Source, m)
+                );
         }
 
         private void OnMod(Message m)
@@ -976,9 +988,10 @@ namespace Skylight
             subject.IsMod = isMod;
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
 
-            this.Source.Pull.ModModeEvent(e);
+            this.Source.Pull.ModModeEvent(
+                new PlayerEventArgs(subject, this.Source, m)
+                );
         }
 
         private void OnP(Message m)
@@ -1002,9 +1015,10 @@ namespace Skylight
             }
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
 
-            this.Source.Pull.PotionEvent(e);
+            this.Source.Pull.PotionEvent(
+                new PlayerEventArgs(subject, this.Source, m)
+                );
         }
 
         private void OnPt(Message m)
@@ -1030,9 +1044,10 @@ namespace Skylight
             this.Source.Map[x, y, 1] = b;
 
             // Fire the event.
-            BlockEventArgs e = new BlockEventArgs(b, this.Source);
 
-            this.Source.Pull.PortalBlockEvent(e);
+            this.Source.Pull.PortalBlockEvent(
+                new BlockEventArgs(b, this.Source)
+                );
         }
 
         private void OnRefreshShop(Message m)
@@ -1040,9 +1055,10 @@ namespace Skylight
             // Nothing to extract.
             // Nothing to update.
             // Fire the event.
-            RoomEventArgs e = new RoomEventArgs(this.Source);
 
-            this.Source.Pull.RefreshshopEvent(e);
+            this.Source.Pull.RefreshshopEvent(
+                new RoomEventArgs(this.Source)
+                );
         }
 
         private void OnReset(Message m)
@@ -1058,9 +1074,8 @@ namespace Skylight
             // Nothing to extract from message.
             // Nothing to update because I have no idea what it is.
             // Fire the event.
-            RoomEventArgs e = new RoomEventArgs(this.Source);
 
-            this.Source.Pull.SavedEvent(e);
+            this.Source.Pull.SavedEvent(new RoomEventArgs(this.Source));
         }
 
         private void OnSay(Message m)
@@ -1086,9 +1101,6 @@ namespace Skylight
             // Extract data.
             string message = m.GetString(1),
                 name = m.GetString(0);
-
-            // Update relevant objects.
-            // Player subject = new Player() { Name = name };
 
             this.Source.ChatLog.Add(new KeyValuePair<string, Player>(message, null));
 
@@ -1162,20 +1174,19 @@ namespace Skylight
             {
                 // On death (or whatever else isn't a reset).
                 // Extract data.
-                int id = m.GetInteger(1),
-                    x = m.GetInteger(2),
-                    y = m.GetInteger(3);
+                int id = m.GetInteger(1);
+                
 
                 // Update relevant objects.
                 Player subject = Tools.GetPlayerById(id, this.Source);
 
-                subject.X = x;
-                subject.Y = y;
+                subject.X = m.GetInteger(2);
+                subject.Y = m.GetInteger(3);
 
                 // Fire the event.
-                PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
-
-                this.Source.Pull.DeathEvent(e);
+                this.Source.Pull.DeathEvent(
+                    new PlayerEventArgs(subject, this.Source, m)
+                    );
             }
         }
         
@@ -1194,9 +1205,10 @@ namespace Skylight
             this.Source.Map[x, y, 0] = b;
 
             // Fire the event.
-            BlockEventArgs e = new BlockEventArgs(b, this.Source);
 
-            this.Source.Pull.CoinBlockEvent(e);
+            this.Source.Pull.CoinBlockEvent(
+                new BlockEventArgs(b, this.Source)
+                );
         }
 
         private void OnUpdateMeta(Message m)
@@ -1218,9 +1230,10 @@ namespace Skylight
             this.Source.TotalWoots = totalWoots;
 
             // Fire the event.
-            RoomEventArgs e = new RoomEventArgs(this.Source);
 
-            this.Source.Pull.UpdateMetaEvent(e);
+            this.Source.Pull.UpdateMetaEvent(
+                new RoomEventArgs(this.Source)
+                );
         }
 
         private void OnUpgrade(Message m)
@@ -1228,9 +1241,10 @@ namespace Skylight
             // Nothing to extract from message.
             // Nothing to update.
             // Fire the event.
-            RoomEventArgs e = new RoomEventArgs(this.Source);
 
-            this.UpdateEvent(e);
+            this.UpdateEvent(
+                new RoomEventArgs(this.Source)
+                );
         }
 
         private void OnW(Message m)
@@ -1245,9 +1259,10 @@ namespace Skylight
             subject.CollectedMagic++;
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
 
-            this.Source.Pull.MagicCoinEvent(e);
+            this.Source.Pull.MagicCoinEvent(
+                new PlayerEventArgs(subject, this.Source, m)
+                );
         }
 
         private void OnWp(Message m)
@@ -1265,25 +1280,25 @@ namespace Skylight
             this.Source.Map[x, y, 0] = b;
 
             // Fire the event
-            BlockEventArgs e = new BlockEventArgs(b, this.Source);
 
-            this.Source.Pull.RoomPortalBlockEvent(e);
+            this.Source.Pull.RoomPortalBlockEvent(
+                new BlockEventArgs(b, this.Source)
+                );
         }
         
         private void OnWrite(Message m)
         {
             // Extract data.
-            string prefix = m.GetString(0),
-                message = m.GetString(1);
+            string prefix  = m.GetString(0),
+                   message = m.GetString(1);
 
             // Update relevant objects.
-            // Player system = new Player() { Name = prefix };
             this.Source.ChatLog.Add(new KeyValuePair<string, Player>(message, null));
 
             // Fire the event.
-            ChatEventArgs e = new ChatEventArgs(null, this.Source);
-
-            this.Source.Pull.SystemMessageEvent(e);
+            this.Source.Pull.SystemMessageEvent(
+                new ChatEventArgs(null, this.Source)
+                );
         }
 
         private void OnWu(Message m)
@@ -1291,16 +1306,14 @@ namespace Skylight
             // Extract data.
             int id = m.GetInteger(0);
 
-            // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, this.Source);
-
             this.Source.TotalWoots++;
             this.Source.Woots++;
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
 
-            this.Source.Pull.WootEvent(e);
+            this.Source.Pull.WootEvent(
+                new PlayerEventArgs(id, this.Source, m)
+                );
         }
 
         private Message InitMessage;

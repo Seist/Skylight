@@ -229,6 +229,7 @@
                 // If you didn't connect, it must have failed.
                 if (!this.IsConnected)
                 {
+                    Tools.SkylightMessage("Error: connection failed!");
                     return;
                 }
             }
@@ -285,7 +286,7 @@
                     this.R.Pull.Source = this.R;
                 }
 
-                // Once everything is internal settled, send the init.
+                // Once everything is internal settled, send the inits.
                 this.Connection.Send("init");
                 this.Connection.Send("init2");
 
@@ -334,8 +335,8 @@
 
         public enum AccountType : sbyte
         {
-            Regular = 0, 
-            Facebook = 1, 
+            Regular    = 0, 
+            Facebook   = 1, 
             Kongregate = 2, 
             ArmorGames = 3
         }
