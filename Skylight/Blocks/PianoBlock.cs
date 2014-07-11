@@ -43,15 +43,9 @@
 
         public int PianoId
         {
-            get
-            {
-                return this.pianoId;
-            }
+            get;
 
-            internal set
-            {
-                this.pianoId = value;
-            }
+            internal set;
         }
     }
 }

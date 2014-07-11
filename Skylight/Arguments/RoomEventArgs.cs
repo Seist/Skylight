@@ -1,7 +1,6 @@
 ﻿namespace Skylight
 {
     using System;
-    using System.Text;
 
     public class RoomEventArgs : EventArgs
     {        
@@ -14,10 +13,7 @@
 
         public Room ChangedRoom
         {
-            get
-            {
-                return this.changedRoom;
-            }
+            get;
         }
     }
 }

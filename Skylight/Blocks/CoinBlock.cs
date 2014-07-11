@@ -24,28 +24,16 @@
 
         public bool IsGate
         {
-            get
-            {
-                return this.isGate;
-            }
+            get;
 
-            internal set
-            {
-                this.isGate = value;
-            }
+            internal set;
         }
 
         public int CoinsRequired
         {
-            get
-            {
-                return this.coinsRequired;
-            }
+            get;
 
-            internal set
-            {
-                this.coinsRequired = value;
-            }
+            internal set;
         }
     }
 }

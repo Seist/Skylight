@@ -2,12 +2,9 @@
 
 namespace Skylight
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-
+    // TODO: should inherit from the Block class or vice-versa
+    // turn this class into an enum because the class isn't really doing anything
+    // besides storing data.
     public static class BlockIds
     {
         public static class Blocks

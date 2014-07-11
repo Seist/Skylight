@@ -26,12 +26,12 @@ namespace Skylight
 
         public Room Origin
         {
-            get { return this.origin; }
+            get;
         }
 
         public Player Speaker
         {
-            get { return this.speaker; }
+            get;
         }
     }
 }

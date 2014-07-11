@@ -2,9 +2,8 @@
 
 namespace Skylight
 {
-    using System;
-    using System.Collections.Generic;
     using PlayerIOClient;
+    using System.Collections.Generic;
 
     public class Room
     {

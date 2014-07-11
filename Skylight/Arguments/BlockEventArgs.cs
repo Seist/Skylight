@@ -21,17 +21,17 @@ namespace Skylight
 
         public Room Origin
         {
-            get { return this.origin; }
+            get;
         }
-        
+
         public Block Placed
         {
-            get { return this.placed; }
+            get;
         }
 
         public Player Placer
         {
-            get { return this.placer; }
+            get;
         }
     }
 }

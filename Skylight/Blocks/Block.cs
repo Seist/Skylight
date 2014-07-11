@@ -51,49 +51,31 @@ namespace Skylight
 
         public int Direction
         {
-            get
-            {
-                return this.direction;
-            }
-            
-            set
-            {
-                this.direction = value;
-            }
+            get;
+
+            set;
         }
-        
+
         public int Id
         {
-            get
-            {
-                return this.id;
-            }
+            get;
 
-            internal set
-            {
-                this.id = value;
-            }
+            internal set;
         }
 
         public int Z
         {
             get
             {
-                
-                
-                if (this.Id == 0)
+                switch (this.Id)
                 {
-                    return this.z;
-                }
-
-                
-                if (this.Id >= 500)
-                {
-                    return 1;
-                }
-                else
-                {
-                    return 0;
+                    case 0:
+                        return this.z;
+                    case (this.Id >= 500):
+                        return 1;
+                        break;
+                    default:
+                        return 0;
                 }
             }
 
@@ -108,41 +90,23 @@ namespace Skylight
 
         public int X
         {
-            get
-            {
-                return this.x;
-            }
+            get;
 
-            internal set
-            {
-                this.x = value;
-            }
+            internal set;
         }
 
         public int Y
         {
-            get
-            {
-                return this.y;
-            }
+            get;
 
-            internal set
-            {
-                this.y = value;
-            }
+            internal set;
         }
 
         public Player Placer
         {
-            get
-            {
-                return this.placer;
-            }
+            get;
 
-            internal set
-            {
-                this.placer = value;
-            }
+            internal set;
         }
     }
 }

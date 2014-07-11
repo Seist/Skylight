@@ -67,12 +67,10 @@ namespace Skylight
                     {
                         return p;
                     }
-
-                    
                 }
             }
 
-            SkylightMessage("Could not find player " + id + " in " + r.Name);
+            SkylightMessage("Could not find player " + id.ToString() + " in " + r.Name);
             return null;
         }
 
@@ -246,11 +244,8 @@ namespace Skylight
                         destination = m.GetInteger(messageIndex);
                         messageIndex++;
 
-                        isVisible = true;
-                        if (blockId == BlockIds.Action.Portals.INVISIBLE)
-                        {
-                            isVisible = false;
-                        }
+                        isVisible = !(blockId == BlockIds.Action.Portals.INVISIBLE);
+                        
                     }
                     else if (blockId == BlockIds.Action.Portals.WORLD)
                     {
@@ -263,11 +258,8 @@ namespace Skylight
                         coins = m.GetInteger(messageIndex);
                         messageIndex++;
 
-                        isGate = false;
-                        if (blockId == BlockIds.Action.Gates.COIN)
-                        {
-                            isGate = true;
-                        }
+                        isGate = (blockId == BlockIds.Action.Gates.COIN);
+                        
                     }
                     else if (blockId == BlockIds.Action.Music.PERCUSSION)
                     {

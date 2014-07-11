@@ -2,10 +2,10 @@
 // <summary>Player.cs describes a singular player in an EE world.</summary>
 namespace Skylight
 {
+    using Skylight.Physics;
     using System;
     using System.Collections.Generic;
     using System.Drawing;
-    using Skylight.Physics;
 
     public class Player
     {
@@ -46,93 +46,51 @@ namespace Skylight
         // Public instance properties.
         public bool HasAccess
         {
-            get
-            {
-                return this.hasAccess;
-            }
+            get;
 
-            internal set
-            {
-                this.hasAccess = value;
-            }
+            internal set;
         }
 
         public bool HasBoost
         {
-            get
-            {
-                return this.hasBoost;
-            }
+            get;
 
-            internal set
-            {
-                this.hasBoost = value;
-            }
+            internal set;
         }
 
         public bool HasClub
         {
-            get
-            {
-                return this.hasClub;
-            }
+            get;
 
-            internal set
-            {
-                this.hasClub = value;
-            }
+            internal set;
         }
 
         public bool HasCommandAccess
         {
-            get
-            {
-                return this.hasCommandAccess;
-            }
+            get;
 
-            internal set
-            {
-                this.hasCommandAccess = value;
-            }
+            internal set;
         }
 
         public bool HasCrown
         {
-            get
-            {
-                return this.hasCrown;
-            }
+            get;
 
-            internal set
-            {
-                this.hasCrown = value;
-            }
+            internal set;
         }
 
         public bool HasGravityModifier
         {
-            get
-            {
-                return this.hasGravityModifier;
-            }
+            get;
 
-            internal set
-            {
-                this.hasGravityModifier = value;
-            }
+            internal set;
         }
 
         public bool HasSilverCrown
         {
-            get
-            {
-                return this.hasSilverCrown;
-            }
+            get;
 
-            internal set
-            {
-                this.hasSilverCrown = value;
-            }
+            internal set;
         }
 
         public bool IsBot
@@ -156,247 +114,136 @@ namespace Skylight
 
         public bool IsFriend
         {
-            get
-            {
-                return this.isFriend;
-            }
+            get;
 
-            internal set
-            {
-                this.isFriend = value;
-            }
+            internal set;
         }
 
         public bool IsGod
         {
-            get
-            {
-                return this.isGod;
-            }
+            get;
 
-            internal set
-            {
-                this.isGod = value;
-            }
+            internal set;
         }
 
         public bool IsMod
         {
-            get
-            {
-                return this.isMod;
-            }
+            get;
 
-            internal set
-            {
-                this.isMod = value;
-            }
+            internal set;
         }
 
         public bool IsHoldingLeft
         {
-            get
-            {
-                return this.isHoldingLeft;
-            }
+            get;
 
-            internal set
-            {
-                this.isHoldingLeft = value;
-            }
+            internal set;
         }
 
         public bool IsHoldingRight
         {
-            get
-            {
-                return this.isHoldingRight;
-            }
+            get;
 
-            internal set
-            {
-                this.isHoldingRight = value;
-            }
+            internal set;
         }
 
         public bool IsHoldingUp
         {
-            get
-            {
-                return this.isHoldingUp;
-            }
+            get;
 
-            internal set
-            {
-                this.isHoldingUp = value;
-            }
+            internal set;
         }
 
         public bool IsHoldingDown
         {
-            get
-            {
-                return this.isHoldingDown;
-            }
+            get;
 
-            internal set
-            {
-                this.isHoldingDown = value;
-            }
+            internal set;
         }
 
         public bool IsHoldingSpace
         {
-            get
-            {
-                return this.isHoldingSpace;
-            }
+            get;
 
-            internal set
-            {
-                this.isHoldingSpace = value;
-            }
+            internal set;
         }
 
         public bool IsOwner
         {
             get
             {
-                if (this.PlayingIn.Owner == this)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return (this.PlayingIn.Owner == this);
+
             }
 
-            internal set
-            {
-                this.isOwner = value;
-            }
+            internal set;
         }
 
         public int Coins
         {
-            get
-            {
-                return this.coins;
-            }
+            get;
 
-            internal set
-            {
-                this.coins = value;
-            }
+            internal set;
         }
 
         public int BlueCoins
         {
-            get
-            {
-                return this.blueCoins;
-            }
-            internal set
-            {
-                this.blueCoins = value;
-            }
+            get;
+            internal set;
         }
 
         public int CollectedMagic
         {
-            get
-            {
-                return this.collectedMagic;
-            }
+            get;
 
-            internal set
-            {
-                this.collectedMagic = value;
-            }
+            internal set;
         }
 
         public int DeathCount
         {
-            get
-            {
-                return this.deathCount;
-            }
+            get;
 
-            internal set
-            {
-                this.deathCount = value;
-            }
+            internal set;
         }
 
         public int Id
         {
-            get
-            {
-                return this.id;
-            }
+            get;
 
-            internal set
-            {
-                this.id = value;
-            }
+            internal set;
         }
 
         public int Smiley
         {
-            get
-            {
-                return this.smiley;
-            }
+            get;
 
-            internal set
-            {
-                this.smiley = value;
-            }
+            internal set;
         }
 
         public int XpLevel
         {
-            get
-            {
-                return this.xpLevel;
-            }
+            get;
 
-            internal set
-            {
-                this.xpLevel = value;
-            }
+            internal set;
         }
 
         public List<int> PotionEffects
         {
-            get
-            {
-                return this.potionEffects;
-            }
+            get;
 
-            internal set
-            {
-                this.potionEffects = value;
-            }
+            internal set;
         }
 
         public Room PlayingIn
         {
-            get
-            {
-                return this.playingIn;
-            }
+            get;
 
-            internal set
-            {
-                this.playingIn = value;
-            }
+            internal set;
         }
 
         public string Name
         {
-            get { return this.name; }
+            get;
             internal set { this.name = value.ToLower(); }
         }
 
@@ -574,8 +421,8 @@ namespace Skylight
         private double tx = 0;
         private double ty = 0;
 
-        public int BlockX { get { return blockX; } set { X = value * 16; } }
-        public int BlockY { get { return blockY; } set { Y = value * 16; } }
+        public int BlockX { get; set { X = value * 16; } }
+        public int BlockY { get; set { Y = value * 16; } }
         private int OldBlockX { get { return (int)Math.Round(((this.oldX) / 16.0)); } }
         private int OldBlockY { get { return (int)Math.Round(((this.oldY) / 16.0)); } }
         private bool Moved { get { return BlockX != OldBlockX || BlockY != OldBlockY; } }
@@ -961,21 +808,16 @@ namespace Skylight
             List<Point> targetPortalList = new List<Point>();
             int loopIterator = 0;
             Point currentLoopPortal = new Point(0, 0);
-            int _loc_4 = 0;
-            int _loc_5 = 0;
-            double _loc_6 = 0;
-            double _loc_7 = 0;
-            double _loc_8 = 0;
-            double _loc_9 = 0;
-            int _loc_10 = 0;
-            double _loc_11 = 0;
+            int _loc_4,
+            _loc_5,
+            _loc_10;
+            double _loc_6,
+            _loc_7,
+            _loc_8,
+            _loc_9,
+            _loc_11 = 0;
             currentBlockId = this.PlayingIn.Map[cx, cy, 0].Id;
-            if (!isgodmod && currentBlockId == BlockIds.Action.Portals.WORLD)
-            {
-                if (spacejustdown && !worldportalsend)
-                {
-                }
-            }
+            
             if (!isgodmod && currentBlockId == 242)
             {
                 if (lastPortal.X == 0 && lastPortal.Y == 0)

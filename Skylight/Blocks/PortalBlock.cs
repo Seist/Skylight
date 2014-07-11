@@ -4,24 +4,25 @@
 
     public partial class PortalBlock : Block
     {
-        private const int
+        private static const int
             MINPORTALID = 0,
             MAXPORTALID = 99;
 
-        private bool 
+        private bool
             visible = false;
 
         private int
             portalDestination = -1,
             portalId = -1;
-        
+
         public PortalBlock(
-            int x, 
+            int x,
             int y,
             int direction,
-            int portalId, 
-            int portalDestination, 
-            bool visible) : base(Tools.PortalIdByVisible(visible), x, y, 0)
+            int portalId,
+            int portalDestination,
+            bool visible)
+            : base(Tools.PortalIdByVisible(visible), x, y, 0)
         {
             this.PortalDestination = portalDestination;
             this.PortalId = portalId;
@@ -30,47 +31,39 @@
 
         public int PortalDestination
         {
-            get
-            {
-                return this.portalDestination;
-            }
+            get;
 
             internal set
             {
-                if (value > MINPORTALID && value < MAXPORTALID)
+                if (isValidPortal(value))
                 {
                     this.portalDestination = value;
                 }
             }
         }
-        
+
         public int PortalId
         {
-            get
-            {
-                return this.portalId;
-            }
+            get;
 
             internal set
             {
-                if (value < MAXPORTALID && value > MINPORTALID)
+                if (isValidPortal(value))
                 {
                     this.portalId = value;
                 }
             }
         }
+        public bool isValidPortal(int b_id)
+        {
+            return (b_id < MAXPORTALID && b_id > MINPORTALID);
 
+        }
         public bool Visible
         {
-            get
-            {
-                return this.visible;
-            }
+            get;
 
-            internal set
-            {
-                this.visible = value;
-            }
+            internal set;
         }
     }
 }

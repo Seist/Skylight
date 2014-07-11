@@ -2,10 +2,10 @@
 // <summary>Out.cs is the methods that can be used to edit the world it is in.</summary>
 namespace Skylight
 {
+    using PlayerIOClient;
     using System;
     using System.Collections.Generic;
     using System.Threading;
-    using PlayerIOClient;
 
     public class Out
     {
@@ -239,7 +239,7 @@ namespace Skylight
 
         public void SetCode(string newCode)
         {
-                this.C.Send("key", newCode);
+            this.C.Send("key", newCode);
         }
 
         public void Jump(double startX, double startY)
@@ -273,7 +273,8 @@ namespace Skylight
                 {
                     Tools.SkylightMessage("Error: attempted to use Out.Move before connecting");
                 }
-                else {
+                else
+                {
                     Tools.SkylightMessage("Error: invalid arguments specified to Out.Move. 11 arguments should have been specified");
 
                 }
@@ -392,7 +393,9 @@ namespace Skylight
                 if (this.C == null)
                 {
                     Tools.SkylightMessage("Error: attempted to use Out.SetTitle before connecting");
-                } else {
+                }
+                else
+                {
                     Tools.SkylightMessage("Error: an unknown error occured while using Out.SetTitle");
                 }
             }
@@ -400,55 +403,55 @@ namespace Skylight
 
         public void Kick(string name, string reason = "")
         {
-                this.Say("/kick " + name + " " + reason);
+            this.Say("/kick " + name + " " + reason);
         }
 
         public void Kick(Player p, string reason = "")
         {
-                this.Say("/kick " + p.Name + " " + reason);
+            this.Say("/kick " + p.Name + " " + reason);
         }
 
         public void Loadlevel()
         {
-                this.Say("/loadlevel");
-         
+            this.Say("/loadlevel");
+
         }
 
         public void Respawn(string name)
         {
 
-                this.Say("/kill " + name);
-          
+            this.Say("/kill " + name);
+
         }
 
         public void Respawn(Player p)
         {
 
-                this.Say("/kill " + p.Name);
-            
+            this.Say("/kill " + p.Name);
+
         }
 
         public void RespawnAll()
         {
-            
-                this.Say("/respawnall");
-            
+
+            this.Say("/respawnall");
+
         }
 
         public void Reset()
         {
-           
-                this.Say("/reset");
-            
+
+            this.Say("/reset");
+
         }
 
         public void Save()
         {
             try
             {
-                
-                    this.C.Send("save");
-                
+
+                this.C.Send("save");
+
             }
             catch (Exception)
             {
@@ -460,9 +463,9 @@ namespace Skylight
         {
             try
             {
-               
-                    this.C.Send("allowpotions", value);
-                
+
+                this.C.Send("allowpotions", value);
+
             }
             catch (Exception)
             {
@@ -472,30 +475,30 @@ namespace Skylight
 
         public void SetEdit(string name, bool value)
         {
-           
-                if (value)
-                {
-                    this.Say("/giveedit " + name);
-                }
-                else
-                {
-                    this.Say("/removeedit " + name);
-                }
-            
+
+            if (value)
+            {
+                this.Say("/giveedit " + name);
+            }
+            else
+            {
+                this.Say("/removeedit " + name);
+            }
+
         }
 
         public void SetEdit(Player p, bool value)
         {
-            
-                if (value)
-                {
-                    this.Say("/giveedit " + p.Name);
-                }
-                else
-                {
-                    this.Say("/removeedit " + p.Name);
-                }
-            
+
+            if (value)
+            {
+                this.Say("/giveedit " + p.Name);
+            }
+            else
+            {
+                this.Say("/removeedit " + p.Name);
+            }
+
         }
 
         public void SetGod(bool isGod)
@@ -508,44 +511,44 @@ namespace Skylight
 
         public void SetMute(string name, bool value)
         {
-            
-                if (value)
-                {
-                    this.Say("/mute " + name);
-                }
-                else
-                {
-                    this.Say("/unmute " + name);
-                }
-            
+
+            if (value)
+            {
+                this.Say("/mute " + name);
+            }
+            else
+            {
+                this.Say("/unmute " + name);
+            }
+
         }
 
         public void SetMute(Player p, bool value)
         {
-            
-                if (value)
-                {
-                    this.Say("/mute " + p.Name);
-                }
-                else
-                {
-                    this.Say("/unmute " + p.Name);
-                }
-            
+
+            if (value)
+            {
+                this.Say("/mute " + p.Name);
+            }
+            else
+            {
+                this.Say("/unmute " + p.Name);
+            }
+
         }
 
         public void SetPotionBan(int potionId, bool value)
         {
-            
-                if (value)
-                {
-                    this.Say("/potionson " + potionId);
-                }
-                else
-                {
-                    this.Say("/potionsoff " + potionId);
-                }
-            
+
+            if (value)
+            {
+                this.Say("/potionson " + potionId.ToString());
+            }
+            else
+            {
+                this.Say("/potionsoff " + potionId.ToString());
+            }
+
         }
 
         public void SetSmiley(int smileyId)
@@ -562,34 +565,34 @@ namespace Skylight
 
         public void SetVisibility(bool value)
         {
-           
-                this.Say("/visible " + value);
-            
+
+            this.Say("/visible " + value.ToString());
+
         }
 
         public void Teleport(int newXLocation, int newYLocation, string name = null)
         {
-             
-               this.Say("/teleport " + (name ?? this.Bot.Name) + " " + newXLocation + " " + newYLocation);
-            
+
+            this.Say("/teleport " + (name ?? this.Bot.Name) + " " + newXLocation.ToString() + " " + newYLocation.ToString());
+
         }
 
         public void Teleport(int newXLocation, int newYLocation, Player p = null)
         {
-           
-                this.Say("/teleport " + (p.Name ?? this.Bot.Name) + " " + newXLocation + " " + newYLocation);
-            
+
+            this.Say("/teleport " + (p.Name ?? this.Bot.Name) + " " + newXLocation.ToString() + " " + newYLocation.ToString());
+
         }
 
         public void TeleportAll(int newXLocation, int newYLocation)
         {
-            
-            
-                foreach (Player p in this.R.OnlinePlayers)
-                {
-                    this.Teleport(newXLocation, newYLocation, p);
-                }
-           
+
+
+            foreach (Player p in this.R.OnlinePlayers)
+            {
+                this.Teleport(newXLocation, newYLocation, p);
+            }
+
         }
     }
 }

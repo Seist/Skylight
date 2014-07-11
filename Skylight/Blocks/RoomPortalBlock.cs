@@ -1,6 +1,5 @@
 ﻿namespace Skylight
 {
-    using System;
     using System.Text.RegularExpressions;
 
     public partial class RoomPortalBlock : Block
@@ -17,10 +16,7 @@
 
         public string PortalDestination
         {
-            get
-            {
-                return this.portalDestination;
-            }
+            get;
 
             internal set
             {
