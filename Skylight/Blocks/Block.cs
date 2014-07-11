@@ -67,13 +67,12 @@ namespace Skylight
         {
             get
             {
+                // kinda messy.
+                if (this.Id >= 500) { return 1; }
                 switch (this.Id)
                 {
                     case 0:
                         return this.z;
-                    case (this.Id >= 500):
-                        return 1;
-                        break;
                     default:
                         return 0;
                 }

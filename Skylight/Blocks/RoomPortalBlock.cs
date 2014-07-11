@@ -16,7 +16,7 @@
 
         public string PortalDestination
         {
-            get;
+            get { return this.portalDestination; }
 
             internal set
             {

@@ -176,7 +176,10 @@ namespace Skylight
 
             }
 
-            internal set;
+            internal set
+            {
+                this.isOwner = value;
+            }
         }
 
         public int Coins
@@ -243,7 +246,7 @@ namespace Skylight
 
         public string Name
         {
-            get;
+            get { return this.name; }
             internal set { this.name = value.ToLower(); }
         }
 
@@ -421,8 +424,8 @@ namespace Skylight
         private double tx = 0;
         private double ty = 0;
 
-        public int BlockX { get; set { X = value * 16; } }
-        public int BlockY { get; set { Y = value * 16; } }
+        public int BlockX { get { return blockX; } set { X = value * 16; } }
+        public int BlockY { get { return blockY; } set { Y = value * 16; } }
         private int OldBlockX { get { return (int)Math.Round(((this.oldX) / 16.0)); } }
         private int OldBlockY { get { return (int)Math.Round(((this.oldY) / 16.0)); } }
         private bool Moved { get { return BlockX != OldBlockX || BlockY != OldBlockY; } }
@@ -867,16 +870,6 @@ namespace Skylight
                                     currentSY = -currentSY;
                                     break;
                                 }
-                            case 3:
-                                {
-                                    speedX = (-_loc_7) * _loc_11;
-                                    speedY = _loc_6 * _loc_11;
-                                    modifierX = (-_loc_9) * _loc_11;
-                                    modifierY = _loc_8 * _loc_11;
-                                    reminderX = -reminderX;
-                                    currentSX = -currentSX;
-                                    break;
-                                }
                             case 2:
                                 {
                                     speedX = (-_loc_6) * _loc_11;
@@ -889,6 +882,17 @@ namespace Skylight
                                     currentSX = -currentSX;
                                     break;
                                 }
+                            case 3:
+                                {
+                                    speedX = (-_loc_7) * _loc_11;
+                                    speedY = _loc_6 * _loc_11;
+                                    modifierX = (-_loc_9) * _loc_11;
+                                    modifierY = _loc_8 * _loc_11;
+                                    reminderX = -reminderX;
+                                    currentSX = -currentSX;
+                                    break;
+                                }
+                            
                             default:
                                 {
                                     break;
@@ -1146,7 +1150,7 @@ namespace Skylight
                     _speedX = 0;
                 }
             }
-            if (_speedY != 0 || _modifierY != 0)
+            if (_speedY != 0 || _modifierY != 0) // this is very similar to the previous block with speedx
             {
                 _speedY = _speedY + _modifierY;
                 _speedY = _speedY * Config.physics_base_drag;

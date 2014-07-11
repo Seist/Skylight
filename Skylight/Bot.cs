@@ -1,9 +1,8 @@
 ﻿namespace Skylight
 {
+    using PlayerIOClient;
     using System;
     using System.Collections.Generic;
-    using System.Threading;
-    using PlayerIOClient;
 
     public partial class Bot : Player
     {
@@ -48,27 +47,15 @@
 
         public bool IsConnected
         {
-            get
-            {
-                return this.isConnected;
-            }
+            get;
 
-            internal set
-            {
-                this.isConnected = value;
-            }
+            internal set;
         }
 
         public bool Joined
         {
-            get
-            {
-                return this.joined;
-            }
-            internal set
-            {
-                this.joined = value;
-            }
+            get;
+            internal set;
         }
 
         public bool ShouldTick
@@ -76,26 +63,17 @@
             get;
             set;
         }
-        
+
         public Client Client
         {
-            get
-            {
-                return this.client;
-            }
+            get;
 
-            internal set
-            {
-                this.client = value;
-            }
+            internal set;
         }
-        
+
         public int BlockDelay
         {
-            get
-            {
-                return this.blockDelay;
-            }
+            get { return this.BlockDelay; }
 
             set
             {
@@ -105,13 +83,10 @@
                 }
             }
         }
-        
+
         public int SpeechDelay
         {
-            get
-            {
-                return this.speechDelay;
-            }
+            get { return this.SpeechDelay; }
 
             set
             {
@@ -124,28 +99,16 @@
 
         public string ChatPrefix
         {
-            get
-            {
-                return this.chatPrefix;
-            }
+            get;
 
-            set
-            {
-                this.chatPrefix = value;
-            }
+            set;
         }
 
         public Out Push
         {
-            get
-            {
-                return this.push;
-            }
+            get;
 
-            internal set
-            {
-                this.push = value;
-            }
+            internal set;
         }
 
         public Room R
@@ -154,18 +117,12 @@
 
             internal set;
         }
-       
+
         public Connection Connection
         {
-            get
-            {
-                return this.connection;
-            }
+            get;
 
-            internal set
-            {
-                this.connection = value;
-            }
+            internal set;
         }
 
         // Public methods

@@ -31,17 +31,17 @@ namespace Skylight
 
         public Player Subject
         {
-            get;
+            get { return this.subject; }
         }
 
         public Room Origin
         {
-            get;
+            get {return this.Origin;}
         }
 
         public Message RawMessage
         {
-            get;
+            get { return this.RawMessage; }
         }
     }
 }

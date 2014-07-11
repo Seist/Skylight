@@ -2,11 +2,11 @@
 // <summary>In.cs is s receiver and processor for every event that happens in the world it is in.</summary>
 namespace Skylight
 {
+    using PlayerIOClient;
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Threading;
-    using PlayerIOClient;
 
     public class In
     {

@@ -13,7 +13,7 @@
 
         public Room ChangedRoom
         {
-            get;
+            get { return this.changedRoom; }
         }
     }
 }

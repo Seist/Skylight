@@ -4,7 +4,7 @@
 
     public partial class PortalBlock : Block
     {
-        private static const int
+        private static readonly int
             MINPORTALID = 0,
             MAXPORTALID = 99;
 
@@ -31,7 +31,7 @@
 
         public int PortalDestination
         {
-            get;
+            get { return this.portalDestination; }
 
             internal set
             {
@@ -44,7 +44,7 @@
 
         public int PortalId
         {
-            get;
+            get { return this.PortalId; }
 
             internal set
             {

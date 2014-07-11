@@ -3,7 +3,6 @@
 namespace Skylight
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
 
     public class ChatEventArgs : EventArgs
@@ -26,12 +25,12 @@ namespace Skylight
 
         public Room Origin
         {
-            get;
+            get { return this.Origin; }
         }
 
         public Player Speaker
         {
-            get;
+            get { return this.Speaker; }
         }
     }
 }
