@@ -174,7 +174,7 @@ namespace Skylight
             return id;
         }
 
-        
+
 
         // Return the correct portal ID based on whether or not the portal is visible or invisible.
         internal static int PortalIdByVisible(bool visible)

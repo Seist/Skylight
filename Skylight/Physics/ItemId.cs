@@ -21,13 +21,13 @@
                 case BlockIds.Action.Ladders.CHAIN:
                 case BlockIds.Action.Ladders.HORIZONTALVINE:
                 case BlockIds.Action.Ladders.VERTICALVINE:
-                {
-                    return true;
-                }
+                    {
+                        return true;
+                    }
                 default:
-                {
-                    return false;
-                }
+                    {
+                        return false;
+                    }
             }
         }
 
@@ -46,13 +46,13 @@
                 case BlockIds.Decorative.SciFi2013.GREENBEND:
                 case BlockIds.Decorative.SciFi2013.ORANGESTRAIGHT:
                 case BlockIds.Decorative.SciFi2013.ORANGEBEND:
-                {
-                    return true;
-                }
+                    {
+                        return true;
+                    }
                 default:
-                {
-                    return false;
-                }
+                    {
+                        return false;
+                    }
             }
         }
 

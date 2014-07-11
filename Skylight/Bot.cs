@@ -14,8 +14,8 @@
         private Client vers_Client;
 
         // In milliseconds.
-        private int 
-            blockDelay  = 10, 
+        private int
+            blockDelay = 10,
             speechDelay = 1000;
 
         private string chatPrefix = "";
@@ -26,7 +26,7 @@
 
         private readonly AccountType accType;
 
-        private Connection connection =  null;
+        private Connection connection = null;
 
         private Out push = new Out();
 
@@ -36,7 +36,8 @@
         public Bot(Room r,
                    string emailOrToken = Tools.GuestEmail,
                    string passwordOrToken = Tools.GuestPassword,
-                   AccountType accType = AccountType.Regular) : base (r, 0, "", 0, 0.0, 0.0, false, false, true, 0, false, false, 0)
+                   AccountType accType = AccountType.Regular)
+            : base(r, 0, "", 0, 0.0, 0.0, false, false, true, 0, false, false, 0)
         {
             this.emailOrToken = emailOrToken;
             this.passwordOrToken = passwordOrToken;
@@ -45,13 +46,13 @@
             this.ShouldTick = true;
         }
 
-        public bool IsConnected {get;internal set;}
+        public bool IsConnected { get; internal set; }
 
-        public bool Joined {get;internal set;}
+        public bool Joined { get; internal set; }
 
-        public bool ShouldTick {get;set;}
+        public bool ShouldTick { get; set; }
 
-        public Client Client {get;internal set;}
+        public Client Client { get; internal set; }
 
         public int BlockDelay
         {
@@ -79,13 +80,13 @@
             }
         }
 
-        public string ChatPrefix {get;set;}
+        public string ChatPrefix { get; set; }
 
-        public Out Push {get;internal set;}
+        public Out Push { get; internal set; }
 
-        public Room R{get;internal set;}
+        public Room R { get; internal set; }
 
-        public Connection Connection{get;internal set;}
+        public Connection Connection { get; internal set; }
 
         // Public methods
         public void LogIn()
@@ -119,8 +120,8 @@
                                     Tools.SkylightMessage("Cannot log in using ArmorGames. The response from the auth server is wrong.");
                                 else
                                 {
-                                    this.Client = PlayerIOClient.PlayerIO.Connect(Tools.GameID, "secure", 
-                                                                                  message.GetString(0), message.GetString(1), 
+                                    this.Client = PlayerIOClient.PlayerIO.Connect(Tools.GameID, "secure",
+                                                                                  message.GetString(0), message.GetString(1),
                                                                                   "armorgames");
                                 }
 
@@ -158,7 +159,7 @@
                     return;
                 }
             }
-            
+
             // Parse the level ID (because some people like to put full URLs in).
             this.R.Id = Tools.ParseURL(this.R.Id);
 
@@ -182,7 +183,7 @@
                 }
                 // Update room data
                 Room.JoinedRooms.Add(this.R);
-            
+
                 // Everyone gets a connection.
                 this.R.Connections.Add(this.Connection);
 
@@ -260,9 +261,9 @@
 
         public enum AccountType : sbyte
         {
-            Regular    = 0, 
-            Facebook   = 1, 
-            Kongregate = 2, 
+            Regular = 0,
+            Facebook = 1,
+            Kongregate = 2,
             ArmorGames = 3
         }
     }

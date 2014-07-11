@@ -36,7 +36,7 @@ namespace Skylight
 
         public Room Origin
         {
-            get {return this.Origin;}
+            get { return this.Origin; }
         }
 
         public Message RawMessage

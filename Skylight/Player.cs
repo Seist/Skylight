@@ -44,7 +44,7 @@ namespace Skylight
         private string name;
 
         // Public instance properties.
-        public bool HasAccess{get;internal set;}
+        public bool HasAccess { get; internal set; }
 
         public bool HasBoost
         {
@@ -430,8 +430,8 @@ namespace Skylight
         {
             this.PlayingIn = room;
             this.Smiley = smiley;
-            this.IsGod= isGod;
-            this.IsMod= isMod;
+            this.IsGod = isGod;
+            this.IsMod = isMod;
             this.Id = id;
             this.hasChat = hasChat;
             this.Coins = coins;
@@ -494,7 +494,7 @@ namespace Skylight
             List<int> _loc_8 = new List<int>();
 
             int _loc_11 = 0;
-            if (player.X < 0 || player.Y < 0 || player.X >= this.PlayingIn.Width * 16 - 8 || 
+            if (player.X < 0 || player.Y < 0 || player.X >= this.PlayingIn.Width * 16 - 8 ||
                 player.Y >= this.PlayingIn.Height * 16 - 8)
             {
                 return 1;
@@ -502,7 +502,7 @@ namespace Skylight
 
             Player _loc_2 = this;
 
-            if (_loc_2.IsGod|| _loc_2.IsMod)
+            if (_loc_2.IsGod || _loc_2.IsMod)
             {
                 return 0;
             }
@@ -513,7 +513,7 @@ namespace Skylight
             {
                 for (int yy = -2; yy < 1; yy++)
                 {
-                    if (_loc_3 + xx > 0 && _loc_3 + xx < this.PlayingIn.Width && _loc_4 + yy > 0 && 
+                    if (_loc_3 + xx > 0 && _loc_3 + xx < this.PlayingIn.Width && _loc_4 + yy > 0 &&
                         _loc_4 + yy <= this.PlayingIn.Height)
                     {
                         for (int xTest = 0; xTest < 16; xTest++)
@@ -816,7 +816,7 @@ namespace Skylight
             _loc_9,
             _loc_11 = 0;
             currentBlockId = this.PlayingIn.Map[cx, cy, 0].Id;
-            
+
             if (!isgodmod && currentBlockId == 242)
             {
                 if (lastPortal.X == 0 && lastPortal.Y == 0)
@@ -888,7 +888,7 @@ namespace Skylight
                                     currentSX = -currentSX;
                                     break;
                                 }
-                            
+
                             default:
                                 {
                                     break;
@@ -916,7 +916,7 @@ namespace Skylight
             oldY = this.Y;
 
             this.animoffset = this.animoffset + 0.2;
-            if (this.IsMod&& !this.IsGod)
+            if (this.IsMod && !this.IsGod)
             {
                 this.modoffset = this.modoffset + 0.2;
                 if (this.modoffset >= 16)
@@ -1001,7 +1001,7 @@ namespace Skylight
                     case BlockIds.Action.Ladders.CHAIN:
                     case BlockIds.Action.Ladders.LADDER:
                     case BlockIds.Action.Ladders.HORIZONTALVINE:
-                    case BlockIds.Action.Ladders.VERTICALVINE:              
+                    case BlockIds.Action.Ladders.VERTICALVINE:
                     case BlockIds.Action.Gravity.ZERO:
                         {
                             this.morx = 0;
@@ -1397,7 +1397,7 @@ namespace Skylight
 
         private bool zombie()
         {
-            if (this.IsGod|| this.IsMod)
+            if (this.IsGod || this.IsMod)
             {
                 return false;
             }
@@ -1445,7 +1445,7 @@ namespace Skylight
 
         private bool getCanTag()
         {
-            if (this.IsGod|| this.IsMod|| this.isDead)
+            if (this.IsGod || this.IsMod || this.isDead)
             {
                 return false;
             }
@@ -1454,7 +1454,7 @@ namespace Skylight
 
         private bool getCanBeTagged()
         {
-            if (this.IsGod|| this.IsMod|| this.isDead)
+            if (this.IsGod || this.IsMod || this.isDead)
             {
                 return false;
             }
@@ -1554,6 +1554,6 @@ namespace Skylight
             return admins.Contains(param1);
         }
 
-        
+
     }
 }

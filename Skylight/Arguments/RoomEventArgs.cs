@@ -3,7 +3,7 @@
     using System;
 
     public class RoomEventArgs : EventArgs
-    {        
+    {
         private Room changedRoom;
 
         public RoomEventArgs(Room changedRoom)
