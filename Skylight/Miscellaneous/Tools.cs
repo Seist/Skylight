@@ -26,7 +26,7 @@ namespace Skylight
         public delegate void ProgramEvent(string message);
 
         public static event ProgramEvent ProgramMessage = delegate { };
-        
+
         public static List<Player> GetWinners(Room r)
         {
             List<Player> winners = new List<Player>();
@@ -85,7 +85,7 @@ namespace Skylight
                     {
                         return p;
                     }
-                   
+
                 }
             }
 
@@ -174,7 +174,7 @@ namespace Skylight
 
             return id;
         }
-        
+
         internal static List<Block> DeserializeInit(Message m, uint start, Room r)
         {
             List<Block> list = new List<Block>();
@@ -222,7 +222,7 @@ namespace Skylight
                     // Then the list of all X coordinates of given block
                     byte[] xa = m.GetByteArray(messageIndex);
                     messageIndex++;
-                    
+
                     // Then the list of all Y coordinates of given block
                     byte[] ya = m.GetByteArray(messageIndex);
                     messageIndex++;
@@ -232,58 +232,65 @@ namespace Skylight
                     string roomDestination = "";
 
                     // Get the variables that are unique to the current block
-                    if (blockId == BlockIds.Action.Portals.NORMAL ||
-                        blockId == BlockIds.Action.Portals.INVISIBLE)
+                    switch (blockId)
                     {
-                        rotation = m.GetInteger(messageIndex);
-                        messageIndex++;
+                        case BlockIds.Action.Portals.NORMAL:
+                        case BlockIds.Action.Portals.INVISIBLE:
+                            {
+                                rotation = m.GetInteger(messageIndex);
+                                messageIndex++;
 
-                        portalId = m.GetInteger(messageIndex);
-                        messageIndex++;
+                                portalId = m.GetInteger(messageIndex);
+                                messageIndex++;
 
-                        destination = m.GetInteger(messageIndex);
-                        messageIndex++;
+                                destination = m.GetInteger(messageIndex);
+                                messageIndex++;
 
-                        isVisible = !(blockId == BlockIds.Action.Portals.INVISIBLE);
-                        
-                    }
-                    else if (blockId == BlockIds.Action.Portals.WORLD)
-                    {
-                        roomDestination = m.GetString(messageIndex);
-                        messageIndex++;
-                    }
-                    else if (blockId == BlockIds.Action.Doors.COIN ||
-                        blockId == BlockIds.Action.Gates.COIN)
-                    {
-                        coins = m.GetInteger(messageIndex);
-                        messageIndex++;
+                                isVisible = !(blockId == BlockIds.Action.Portals.INVISIBLE);
+                                break;
+                            }
+                        case BlockIds.Action.Portals.WORLD:
+                            {
+                                roomDestination = m.GetString(messageIndex);
+                                messageIndex++;
+                                break;
+                            }
+                        case BlockIds.Action.Doors.COIN:
+                        case BlockIds.Action.Gates.COIN:
+                            {
+                                coins = m.GetInteger(messageIndex);
+                                messageIndex++;
 
-                        isGate = (blockId == BlockIds.Action.Gates.COIN);
-                        
-                    }
-                    else if (blockId == BlockIds.Action.Music.PERCUSSION)
-                    {
-                        type = m.GetInteger(messageIndex);
-                        messageIndex++;
-                    }
-                    else if (blockId == BlockIds.Action.Music.PIANO)
-                    {
-                        note = m.GetInteger(messageIndex);
-                        messageIndex++;
-                    }
-                    else if (blockId == BlockIds.Decorative.SciFi2013.BLUEBEND ||
-                        blockId == BlockIds.Decorative.SciFi2013.BLUESTRAIGHT ||
-                        blockId == BlockIds.Decorative.SciFi2013.GREENBEND ||
-                        blockId == BlockIds.Decorative.SciFi2013.GREENSTRAIGHT ||
-                        blockId == BlockIds.Decorative.SciFi2013.ORANGEBEND ||
-                        blockId == BlockIds.Decorative.SciFi2013.ORANGESTRAIGHT ||
-                        blockId == BlockIds.Action.Hazards.SPIKE)
-                    {
-                        rotation = m.GetInteger(messageIndex);
-                        messageIndex++;
-                    }
-                    
+                                isGate = (blockId == BlockIds.Action.Gates.COIN);
+                                break;
 
+                            }
+                        case BlockIds.Action.Music.PERCUSSION:
+                            {
+                                type = m.GetInteger(messageIndex);
+                                messageIndex++;
+                                break;
+                            }
+                        case BlockIds.Action.Music.PIANO:
+                            {
+                                note = m.GetInteger(messageIndex);
+                                messageIndex++;
+                                break;
+                            }
+                        case BlockIds.Decorative.SciFi2013.BLUEBEND:
+                        case BlockIds.Decorative.SciFi2013.BLUESTRAIGHT:
+                        case BlockIds.Decorative.SciFi2013.GREENBEND:
+                        case BlockIds.Decorative.SciFi2013.GREENSTRAIGHT:
+                        case BlockIds.Decorative.SciFi2013.ORANGEBEND:
+                        case BlockIds.Decorative.SciFi2013.ORANGESTRAIGHT:
+                        case BlockIds.Action.Hazards.SPIKE:
+                            {
+                                rotation = m.GetInteger(messageIndex);
+                                messageIndex++;
+                                break;
+                            }
+
+                    }
 
                     // Some variables to simplify things.
                     int x = 0, y = 0;
@@ -296,70 +303,80 @@ namespace Skylight
 
                         // Ascertain the block from the ID.
                         // Add block accordingly.
-                        if (blockId == BlockIds.Action.Portals.NORMAL ||
-                            blockId == BlockIds.Action.Portals.INVISIBLE)
+                        switch (blockId)
                         {
-                            list.Add(new PortalBlock(
-                                x,
-                                y,
-                                rotation,
-                                portalId,
-                                destination,
-                                isVisible));
-                        }
-                        else if (blockId == BlockIds.Action.Portals.WORLD)
-                        {                            
-                            list.Add(new RoomPortalBlock(
-                                x,
-                                y,
-                                roomDestination));
-                        }
-                        else if (blockId == BlockIds.Action.Doors.COIN ||
-                            blockId == BlockIds.Action.Gates.COIN)
-                        {
-                            list.Add(new CoinBlock(
-                                x,
-                                y,
-                                coins,
-                                isGate));
-                        }
-                        else if (blockId == BlockIds.Action.Music.PERCUSSION)
-                        {
-                            list.Add(new PercussionBlock(
-                                x,
-                                y,
-                                type));
-                        }
-                        else if (blockId == BlockIds.Action.Music.PIANO)
-                        {
-                            list.Add(new PianoBlock(
-                                x,
-                                y,
-                                note));
-                        }
-                        else if (blockId == BlockIds.Decorative.SciFi2013.BLUEBEND ||
-                            blockId == BlockIds.Decorative.SciFi2013.BLUESTRAIGHT ||
-                            blockId == BlockIds.Decorative.SciFi2013.GREENBEND ||
-                            blockId == BlockIds.Decorative.SciFi2013.GREENSTRAIGHT ||
-                            blockId == BlockIds.Decorative.SciFi2013.ORANGEBEND ||
-                            blockId == BlockIds.Decorative.SciFi2013.ORANGESTRAIGHT ||
-                            blockId == BlockIds.Action.Hazards.SPIKE)
-                        {
-                            list.Add(new Block(
-                                blockId,
-                                x,
-                                y,
-                                0,
-                                rotation));
-                        }
-                        else
-                        {
-                            list.Add(new Block(
-                            blockId,
-                            x,
-                            y,
-                            z));
-                        }
+                            case BlockIds.Action.Portals.NORMAL:
+                            case BlockIds.Action.Portals.INVISIBLE:
+                                {
+                                    list.Add(new PortalBlock(
+                                        x,
+                                        y,
+                                        rotation,
+                                        portalId,
+                                        destination,
+                                        isVisible));
+                                    break;
+                                }
+                            case BlockIds.Action.Portals.WORLD:
+                                {
+                                    list.Add(new RoomPortalBlock(
+                                        x,
+                                        y,
+                                        roomDestination));
+                                    break;
+                                }
+                            case BlockIds.Action.Doors.COIN:
+                            case BlockIds.Action.Gates.COIN:
+                                {
+                                    list.Add(new CoinBlock(
+                                        x,
+                                        y,
+                                        coins,
+                                        isGate));
+                                    break;
+                                }
+                            case BlockIds.Action.Music.PERCUSSION:
+                                {
+                                    list.Add(new PercussionBlock(
+                                        x,
+                                        y,
+                                        type));
+                                    break;
+                                }
+                            case BlockIds.Action.Music.PIANO:
+                                {
+                                    list.Add(new PianoBlock(
+                                        x,
+                                        y,
+                                        note));
+                                    break;
+                                }
+                            case BlockIds.Decorative.SciFi2013.BLUEBEND:
+                            case BlockIds.Decorative.SciFi2013.BLUESTRAIGHT:
+                            case BlockIds.Decorative.SciFi2013.GREENBEND:
+                            case BlockIds.Decorative.SciFi2013.GREENSTRAIGHT:
+                            case BlockIds.Decorative.SciFi2013.ORANGEBEND:
+                            case BlockIds.Decorative.SciFi2013.ORANGESTRAIGHT:
+                            case BlockIds.Action.Hazards.SPIKE:
+                                {
+                                    list.Add(new Block(
+                                        blockId,
+                                        x,
+                                        y,
+                                        0,
+                                        rotation));
+                                    break;
+                                }
+                            default:
+                                {
+                                    list.Add(new Block(
+                                    blockId,
+                                    x,
+                                    y,
+                                    z));
+                                    break;
+                                }
+                        } // end switch
                     }
                 }
             }

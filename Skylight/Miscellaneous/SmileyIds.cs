@@ -5,7 +5,7 @@ namespace Skylight
 
     public class SmileyIds
     {
-        public class Free
+        public class Default
         {
             public const int
                 SMILE = 0,
