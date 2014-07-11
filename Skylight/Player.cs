@@ -44,12 +44,7 @@ namespace Skylight
         private string name;
 
         // Public instance properties.
-        public bool HasAccess
-        {
-            get;
-
-            internal set;
-        }
+        public bool HasAccess{get;internal set;}
 
         public bool HasBoost
         {
@@ -264,6 +259,7 @@ namespace Skylight
 
         /* --------------------------- GUSTAVIAN PHYSICS --------------------------- */
 
+        #region physics
         public double X = 0;
         public double Y = 0;
         private bool moving = false;
@@ -1299,6 +1295,7 @@ namespace Skylight
             }
             return;
         }
+        #endregion
 
         private void update()
         {

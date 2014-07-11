@@ -45,31 +45,13 @@
             this.ShouldTick = true;
         }
 
-        public bool IsConnected
-        {
-            get;
+        public bool IsConnected {get;internal set;}
 
-            internal set;
-        }
+        public bool Joined {get;internal set;}
 
-        public bool Joined
-        {
-            get;
-            internal set;
-        }
+        public bool ShouldTick {get;set;}
 
-        public bool ShouldTick
-        {
-            get;
-            set;
-        }
-
-        public Client Client
-        {
-            get;
-
-            internal set;
-        }
+        public Client Client {get;internal set;}
 
         public int BlockDelay
         {
@@ -97,33 +79,13 @@
             }
         }
 
-        public string ChatPrefix
-        {
-            get;
+        public string ChatPrefix {get;set;}
 
-            set;
-        }
+        public Out Push {get;internal set;}
 
-        public Out Push
-        {
-            get;
+        public Room R{get;internal set;}
 
-            internal set;
-        }
-
-        public Room R
-        {
-            get;
-
-            internal set;
-        }
-
-        public Connection Connection
-        {
-            get;
-
-            internal set;
-        }
+        public Connection Connection{get;internal set;}
 
         // Public methods
         public void LogIn()

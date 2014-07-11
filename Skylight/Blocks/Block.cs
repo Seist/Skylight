@@ -2,7 +2,6 @@
 
 namespace Skylight
 {
-    using System;
 
     public class Block
     {
@@ -43,69 +42,37 @@ namespace Skylight
         
         public bool IsSolid
         {
-            get
-            {
-                return (this.Id >= 9 && this.Id <= 97) || (this.Id >= 122 && this.Id <= 217);
-            }
+            get { return (this.Id >= 9 && this.Id <= 97) || (this.Id >= 122 && this.Id <= 217); }
         }
 
         public int Direction
         {
-            get;
-
-            set;
+            get;set;
         }
 
         public int Id
         {
-            get;
-
-            internal set;
+            get;internal set;
         }
 
         public int Z
         {
             get
             {
-                // kinda messy.
                 if (this.Id >= 500) { return 1; }
-                switch (this.Id)
-                {
-                    case 0:
-                        return this.z;
-                    default:
-                        return 0;
-                }
+                if (this.Id == 0) { return this.z; } else { return 0; }
             }
 
             internal set
             {
-                if (value == 0 || value == 1)
-                {
-                    this.z = value;
-                }
+                if (value == 0 || value == 1){this.z = value;}
             }
         }
 
-        public int X
-        {
-            get;
+        public int X {get;internal set;}
 
-            internal set;
-        }
+        public int Y{get;internal set;}
 
-        public int Y
-        {
-            get;
-
-            internal set;
-        }
-
-        public Player Placer
-        {
-            get;
-
-            internal set;
-        }
+        public Player Placer{get;internal set;}
     }
 }

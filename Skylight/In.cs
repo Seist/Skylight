@@ -1,5 +1,5 @@
 ﻿// <author>TakoMan02</author>
-// <summary>In.cs is s receiver and processor for every event that happens in the world it is in.</summary>
+// <summary>In.cs is a receiver and processor for every event that happens in the world it is in.</summary>
 namespace Skylight
 {
     using PlayerIOClient;
@@ -374,6 +374,7 @@ namespace Skylight
             this.Source.Pull.AddEvent(e);
         }
 
+
         private void OnAllowPotions(Message m)
         {
             // Extract data.
@@ -443,10 +444,8 @@ namespace Skylight
             // Update relevant objects.
             CoinBlock b = new CoinBlock(x, y, coinsRequired, false);
 
-            if (id == BlockIds.Action.Gates.COIN)
-            {
-                b.IsGate = true;
-            }
+            b.IsGate = (id == BlockIds.Action.Gates.COIN);
+            
 
             this.Source.Map[x, y, 0] = b;
 
@@ -1019,7 +1018,7 @@ namespace Skylight
 
         private void OnReset(Message m)
         {
-            foreach (Block b in Tools.DeserializeInit(m, 1, this.Source))
+            foreach (Block b in World.DeserializeInit(m, 1, this.Source))
             {
                 this.Source.Map[b.X, b.Y, b.Z] = b;
             }
@@ -1274,7 +1273,7 @@ namespace Skylight
 
         private void LoadBlocks()
         {
-            foreach (Block b in Tools.DeserializeInit(InitMessage, 18, this.Source))
+            foreach (Block b in World.DeserializeInit(InitMessage, 18, this.Source))
             {
                 this.Source.Map[b.X, b.Y, b.Z] = b;
             }

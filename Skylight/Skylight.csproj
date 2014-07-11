@@ -86,6 +86,7 @@
     <Compile Include="Blocks\TextBlock.cs" />
     <Compile Include="Miscellaneous\Tools.cs" />
     <Compile Include="Room.cs" />
+    <Compile Include="World.core.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\Settings.settings">
