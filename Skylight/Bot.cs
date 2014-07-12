@@ -119,7 +119,7 @@
             }
             catch (PlayerIOError e)
             {
-                Tools.SkylightMessage("Cannot log in: " + e.Message);
+                Logging.SkylightMessage("Cannot log in: " + e.Message);
                 this.IsConnected = false;
                 return;
             }
@@ -135,7 +135,7 @@
                 if (message.Type != "auth") return;
 
                 if (message.Count == 0)
-                    Tools.SkylightMessage("Cannot log in using ArmorGames. The response from the auth server is wrong.");
+                    Logging.SkylightMessage("Cannot log in using ArmorGames. The response from the auth server is wrong.");
                 else
                 {
                     this.Client = PlayerIOClient.PlayerIO.Connect(Tools.GameID, "secure",
@@ -162,7 +162,7 @@
                 // If you didn't connect, it must have failed.
                 if (!this.IsConnected)
                 {
-                    Tools.SkylightMessage("Error: connection failed!");
+                    Logging.SkylightMessage("Error: connection failed!");
                     return;
                 }
             }
@@ -236,7 +236,7 @@
             }
             catch (Exception e)
             {
-                Tools.SkylightMessage("Unable to join room \"" + this.R.Id + "\": " + e.Message);
+                Logging.SkylightMessage("Unable to join room \"" + this.R.Id + "\": " + e.Message);
 
                 return;
             }

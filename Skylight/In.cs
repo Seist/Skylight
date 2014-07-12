@@ -159,7 +159,7 @@ namespace Skylight
             }
             catch (Exception e)
             {
-                Tools.SkylightMessage(e.ToString());
+                Logging.SkylightMessage(e.ToString());
             }
         }
 
@@ -402,7 +402,7 @@ namespace Skylight
             string message = m.GetString(1);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, this.Source);
+            Player subject = Tools.GetPlayerById(id);
 
             this.Source.ChatLog.Add(new KeyValuePair<string, Player>(message, subject));
 
@@ -426,7 +426,7 @@ namespace Skylight
 
             if (!specialBlockIds.Contains(blockId))
             {
-                Player subject = Tools.GetPlayerById(playerId, this.Source);
+                Player subject = Tools.GetPlayerById(playerId);
 
                 b.Placer = subject;
             }
@@ -524,7 +524,7 @@ namespace Skylight
                     totalCoins = m.GetInteger(1);
 
                 // Update relevant objects.
-                Player subject = Tools.GetPlayerById(id, this.Source);
+                Player subject = Tools.GetPlayerById(id);
 
                 subject.Coins = totalCoins;
 
@@ -535,7 +535,7 @@ namespace Skylight
             }
             catch (Exception ex)
             {
-                Tools.SkylightMessage(ex.ToString());
+                Logging.SkylightMessage(ex.ToString());
             }
         }
 
@@ -567,7 +567,7 @@ namespace Skylight
                 smileyId = m.GetInteger(1);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayerById(playerId, this.Source);
+            Player subject = Tools.GetPlayerById(playerId);
 
             subject.Smiley = smileyId;
 
@@ -625,7 +625,7 @@ namespace Skylight
             int id = m.GetInteger(0);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, this.Source);
+            Player subject = Tools.GetPlayerById(id);
 
             subject.IsGod = isGod;
 
@@ -655,12 +655,12 @@ namespace Skylight
                 body = m.GetString(1);
 
             // Update relevant objects.
-            Tools.SkylightMessage("Bot " + this.Bot.Name + " received a pop-up window:\n   " + title + "\n    " + body);
+            Logging.SkylightMessage("Bot " + this.Bot.Name + " received a pop-up window:\n   " + title + "\n    " + body);
 
             if (title == "Limit reached")
             {
                 this.Bot.Disconnect();
-                Tools.SkylightMessage("The bot has disconnected because the limit was reached.");
+                Logging.SkylightMessage("The bot has disconnected because the limit was reached.");
             }
 
             // Fire the event.
@@ -756,7 +756,7 @@ namespace Skylight
             }
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, this.Source);
+            Player subject = Tools.GetPlayerById(id);
 
             // Take the crown from the current holder (if one exists)
             Player crownHolder = Tools.GetCrownHolder(this.Source);
@@ -780,7 +780,7 @@ namespace Skylight
             int id = m.GetInteger(0);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, this.Source);
+            Player subject = Tools.GetPlayerById(id);
 
             subject.DeathCount++;
 
@@ -796,7 +796,7 @@ namespace Skylight
             int id = m.GetInteger(0);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, this.Source);
+            Player subject = Tools.GetPlayerById(id);
 
             subject.HasSilverCrown = true;
 
@@ -832,7 +832,7 @@ namespace Skylight
             int id = m.GetInteger(0);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, this.Source);
+            Player subject = Tools.GetPlayerById(id);
             for (int i = 0; i < this.Source.OnlinePlayers.Count; i++)
             {
                 if (this.Source.OnlinePlayers[i] == subject)
@@ -855,7 +855,7 @@ namespace Skylight
                 level = m.GetInteger(1);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, this.Source);
+            Player subject = Tools.GetPlayerById(id);
             subject.XpLevel++;
 
             // Fire the event.
@@ -894,7 +894,7 @@ namespace Skylight
                 spaceDown = m.GetBoolean(11);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, this.Source);
+            Player subject = Tools.GetPlayerById(id);
 
             subject.IsHoldingSpace = false;
             if (spaceDown)
@@ -946,7 +946,7 @@ namespace Skylight
             bool isMod = m.GetBoolean(1);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, this.Source);
+            Player subject = Tools.GetPlayerById(id);
 
             subject.IsMod = isMod;
 
@@ -966,7 +966,7 @@ namespace Skylight
             bool isActive = m.GetBoolean(2);
 
             // Update relevant objects
-            Player subject = Tools.GetPlayerById(id, this.Source);
+            Player subject = Tools.GetPlayerById(id);
 
             if (isActive)
             {
@@ -1043,7 +1043,7 @@ namespace Skylight
             string message = m.GetString(1);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, this.Source);
+            Player subject = Tools.GetPlayerById(id);
 
             this.Source.ChatLog.Add(new KeyValuePair<string, Player>(message, subject));
 
@@ -1087,7 +1087,7 @@ namespace Skylight
                 y = m.GetInteger(2);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, this.Source);
+            Player subject = Tools.GetPlayerById(id);
 
             subject.X = x;
             subject.Y = y;
@@ -1115,7 +1115,7 @@ namespace Skylight
                         x = m.GetInteger(index + 1),
                         y = m.GetInteger(index + 2);
 
-                    Player tempSubject = Tools.GetPlayerById(id, this.Source);
+                    Player tempSubject = Tools.GetPlayerById(id);
                     tempSubject.X = x;
                     tempSubject.Y = y;
 
@@ -1135,7 +1135,7 @@ namespace Skylight
 
 
                 // Update relevant objects.
-                Player subject = Tools.GetPlayerById(id, this.Source);
+                Player subject = Tools.GetPlayerById(id);
 
                 subject.X = m.GetInteger(2);
                 subject.Y = m.GetInteger(3);
@@ -1211,7 +1211,7 @@ namespace Skylight
             int id = m.GetInteger(0);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, this.Source);
+            Player subject = Tools.GetPlayerById(id);
 
             subject.CollectedMagic++;
 
@@ -1310,7 +1310,7 @@ namespace Skylight
                 }
                 catch (Exception e)
                 {
-                    Tools.SkylightMessage(e.ToString());
+                    Logging.SkylightMessage(e.ToString());
                 }
             }
         }

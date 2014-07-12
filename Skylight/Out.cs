@@ -103,11 +103,11 @@ namespace Skylight
             {
                 if (this.C == null)
                 {
-                    Tools.SkylightMessage("Error: attempted to use Out.Build before connecting");
+                    Logging.SkylightMessage("Error: attempted to use Out.Build before connecting");
                 }
                 else
                 {
-                    Tools.SkylightMessage("Error: one or more of the specified parameters in Out.Build was invalid");
+                    Logging.SkylightMessage("Error: one or more of the specified parameters in Out.Build was invalid");
                 }
             }
         }
@@ -133,11 +133,11 @@ namespace Skylight
             {
                 if (this.C == null)
                 {
-                    Tools.SkylightMessage("Error: attempted to use Out.Clear before connecting");
+                    Logging.SkylightMessage("Error: attempted to use Out.Clear before connecting");
                 }
                 else
                 {
-                    Tools.SkylightMessage("Error: could not clear world because of an unknown error");
+                    Logging.SkylightMessage("Error: could not clear world because of an unknown error");
                 }
             }
         }
@@ -228,11 +228,11 @@ namespace Skylight
             {
                 if (this.C == null)
                 {
-                    Tools.SkylightMessage("Error: attempted to use Out.InputCode before connecting");
+                    Logging.SkylightMessage("Error: attempted to use Out.InputCode before connecting");
                 }
                 else
                 {
-                    Tools.SkylightMessage("Error: access key '" + editKey + "' is invalid");
+                    Logging.SkylightMessage("Error: access key '" + editKey + "' is invalid");
                 }
             }
         }
@@ -271,11 +271,11 @@ namespace Skylight
             {
                 if (this.C == null)
                 {
-                    Tools.SkylightMessage("Error: attempted to use Out.Move before connecting");
+                    Logging.SkylightMessage("Error: attempted to use Out.Move before connecting");
                 }
                 else
                 {
-                    Tools.SkylightMessage("Error: invalid arguments specified to Out.Move. 11 arguments should have been specified");
+                    Logging.SkylightMessage("Error: invalid arguments specified to Out.Move. 11 arguments should have been specified");
 
                 }
             }
@@ -301,7 +301,7 @@ namespace Skylight
             }
             catch (Exception)
             {
-                Tools.SkylightMessage("Error: attempted to use Out.Move before connecting");
+                Logging.SkylightMessage("Error: attempted to use Out.Move before connecting");
             }
         }
 
@@ -370,7 +370,7 @@ namespace Skylight
                 }
                 catch (Exception)
                 {
-                    Tools.SkylightMessage("Error: attempted to use Out.Say before connecting");
+                    Logging.SkylightMessage("Error: attempted to use Out.Say before connecting");
                 }
             } // end on.this.say if statement
         }
@@ -385,18 +385,18 @@ namespace Skylight
                 }
                 else
                 {
-                    Tools.SkylightMessage("The room title cannot be empty");
+                    Logging.SkylightMessage("The room title cannot be empty");
                 }
             }
             catch (Exception)
             {
                 if (this.C == null)
                 {
-                    Tools.SkylightMessage("Error: attempted to use Out.SetTitle before connecting");
+                    Logging.SkylightMessage("Error: attempted to use Out.SetTitle before connecting");
                 }
                 else
                 {
-                    Tools.SkylightMessage("Error: an unknown error occured while using Out.SetTitle");
+                    Logging.SkylightMessage("Error: an unknown error occured while using Out.SetTitle");
                 }
             }
         }
@@ -455,7 +455,7 @@ namespace Skylight
             }
             catch (Exception)
             {
-                Tools.SkylightMessage("Error: attempted to use Out.Save before connecting");
+                Logging.SkylightMessage("Error: attempted to use Out.Save before connecting");
             }
         }
 
@@ -469,7 +469,7 @@ namespace Skylight
             }
             catch (Exception)
             {
-                Tools.SkylightMessage("Error: attempted to use Out.SetAllPotionBans before connecting");
+                Logging.SkylightMessage("Error: attempted to use Out.SetAllPotionBans before connecting");
             }
         }
 
@@ -559,7 +559,7 @@ namespace Skylight
             }
             catch (Exception)
             {
-                Tools.SkylightMessage("Error: attempted to use Out.SetSmiley before connecting");
+                Logging.SkylightMessage("Error: attempted to use Out.SetSmiley before connecting");
             }
         }
 

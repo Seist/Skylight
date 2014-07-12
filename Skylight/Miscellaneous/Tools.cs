@@ -6,6 +6,7 @@ namespace Skylight
     using System;
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
+    using System.Linq;
 
     public static class Tools
     {
@@ -21,10 +22,6 @@ namespace Skylight
 
         public const string NormalRoom = "Everybodyedits";
         public const string AuthRoom = "Auth";
-
-        public delegate void ProgramEvent(string message);
-
-        public static event ProgramEvent ProgramMessage = delegate { };
 
         public static List<Player> GetWinners(Room r)
         {
@@ -51,12 +48,16 @@ namespace Skylight
                 }
             }
 
-            SkylightMessage("Could not find crown holder.");
+            Logging.SkylightMessage("Could not find crown holder.");
             return null;
         }
 
-        public static Player GetPlayerById(int id, Room r, bool onlyReturnBots = false)
+        public static Player GetPlayerById(int id, Room r = null, bool onlyReturnBots = false)
         {
+            if (r == null)
+            {
+                r = Bot.currentRoom; // grab it from the global if not passed
+            }
             foreach (Player p in r.OnlinePlayers)
             {
                 if (p.Id == id)
@@ -69,7 +70,7 @@ namespace Skylight
                 }
             }
 
-            SkylightMessage("Could not find player " + id.ToString() + " in " + r.Name);
+            Logging.SkylightMessage("Could not find player " + id.ToString() + " in " + r.Name);
             return null;
         }
 
@@ -88,7 +89,7 @@ namespace Skylight
                 }
             }
 
-            SkylightMessage("Could not find player " + name + " in " + r.Name);
+            Logging.SkylightMessage("Could not find player " + name + " in " + r.Name);
             return null;
         }
 
@@ -102,27 +103,9 @@ namespace Skylight
                 }
             }
 
-            SkylightMessage("Could not find room \"" + name + "\"");
+            Logging.SkylightMessage("Could not find room \"" + name + "\"");
             return null;
-        }
-
-        public static void Shuffle<T>(this IList<T> list)
-        {
-            int n = list.Count;
-            while (n > 1)
-            {
-                n--;
-                int k = Ran.Next(n + 1);
-                T value = list[k];
-                list[k] = list[n];
-                list[n] = value;
-            }
-        }
-
-        public static void SkylightMessage(string m)
-        {
-            ProgramMessage(m);
-        }
+        } 
 
         internal static string Derot(string worldKey)
         {
@@ -179,27 +162,13 @@ namespace Skylight
         // Return the correct portal ID based on whether or not the portal is visible or invisible.
         internal static int PortalIdByVisible(bool visible)
         {
-            if (visible)
-            {
-                return BlockIds.Action.Portals.NORMAL;
-            }
-            else
-            {
-                return BlockIds.Action.Portals.INVISIBLE;
-            }
+            return visible ? BlockIds.Action.Portals.NORMAL : BlockIds.Action.Portals.INVISIBLE;
         }
 
         // Return the correct coin ID based based on whether or not the block is gate or door
         internal static int CoinIdByGate(bool isGate)
         {
-            if (isGate)
-            {
-                return BlockIds.Action.Gates.COIN;
-            }
-            else
-            {
-                return BlockIds.Action.Doors.COIN;
-            }
+            return isGate ? BlockIds.Action.Gates.COIN : BlockIds.Action.Doors.COIN;
         }
     }
 }
