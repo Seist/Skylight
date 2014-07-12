@@ -6,9 +6,9 @@
     {
         private Room changedRoom;
 
-        public RoomEventArgs(Room changedRoom)
+        public RoomEventArgs(Room changedRoom = null)
         {
-            this.changedRoom = changedRoom;
+            this.changedRoom = (changedRoom ?? Bot.currentRoom);
         }
 
         public Room ChangedRoom

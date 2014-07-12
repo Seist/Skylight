@@ -390,7 +390,7 @@ namespace Skylight
             this.Source.PotionsAllowed = potions;
 
             // Fire the event.
-            RoomEventArgs e = new RoomEventArgs(this.Source);
+            RoomEventArgs e = new RoomEventArgs();
 
             this.Source.Pull.PotionToggleEvent(e);
         }
@@ -555,7 +555,7 @@ namespace Skylight
             }
 
             // Fire the event.
-            RoomEventArgs e = new RoomEventArgs(this.Source);
+            RoomEventArgs e = new RoomEventArgs();
 
             this.Source.Pull.ClearEvent(e);
         }
@@ -642,7 +642,7 @@ namespace Skylight
             this.Source.TimeDoorsVisible = false;
 
             // Fire the event.
-            RoomEventArgs e = new RoomEventArgs(this.Source);
+            RoomEventArgs e = new RoomEventArgs();
 
             this.Source.Pull.HideEvent(e);
         }
@@ -740,7 +740,7 @@ namespace Skylight
             this.prematureMessages.Clear();
 
             // Fire the event.
-            RoomEventArgs e = new RoomEventArgs(this.Source);
+            RoomEventArgs e = new RoomEventArgs();
 
             this.Source.Pull.InitEvent(e);
         }
@@ -1015,7 +1015,7 @@ namespace Skylight
             // Fire the event.
 
             this.Source.Pull.RefreshshopEvent(
-                new RoomEventArgs(this.Source)
+                new RoomEventArgs()
                 );
         }
 
@@ -1033,7 +1033,7 @@ namespace Skylight
             // Nothing to update because I have no idea what it is.
             // Fire the event.
 
-            this.Source.Pull.SavedEvent(new RoomEventArgs(this.Source));
+            this.Source.Pull.SavedEvent(new RoomEventArgs());
         }
 
         private void OnSay(Message m)
@@ -1074,7 +1074,7 @@ namespace Skylight
             this.Source.TimeDoorsVisible = true; // Be careful. Could be a red, blue or green key.
 
             // Fire the event.
-            RoomEventArgs e = new RoomEventArgs(this.Source);
+            RoomEventArgs e = new RoomEventArgs();
 
             this.Source.Pull.ShowEvent(e);
         }
@@ -1123,7 +1123,7 @@ namespace Skylight
                 }
 
                 // Fire the event.
-                RoomEventArgs e = new RoomEventArgs(this.Source);
+                RoomEventArgs e = new RoomEventArgs();
 
                 this.Source.Pull.ResetEvent(e);
             }
@@ -1189,7 +1189,7 @@ namespace Skylight
             // Fire the event.
 
             this.Source.Pull.UpdateMetaEvent(
-                new RoomEventArgs(this.Source)
+                new RoomEventArgs()
                 );
         }
 
@@ -1200,7 +1200,7 @@ namespace Skylight
             // Fire the event.
 
             this.UpdateEvent(
-                new RoomEventArgs(this.Source)
+                new RoomEventArgs()
                 );
         }
 
