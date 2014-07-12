@@ -3,7 +3,7 @@
     using PlayerIOClient;
     using System;
     using System.Collections.Generic;
-
+    using System.Threading;
     public partial class Bot : Player
     {
         private bool
@@ -113,24 +113,7 @@
                         break;
 
                     default: //case AccountType.ArmorGames:
-                        var c = Tools.GuestClient.Value.Multiplayer.JoinRoom("", null);
-                        c.OnMessage += (sender, message) =>
-                            {
-                                if (message.Type != "auth") return;
-
-                                if (message.Count == 0)
-                                    Tools.SkylightMessage("Cannot log in using ArmorGames. The response from the auth server is wrong.");
-                                else
-                                {
-                                    this.Client = PlayerIOClient.PlayerIO.Connect(Tools.GameID, "secure",
-                                                                                  message.GetString(0), message.GetString(1),
-                                                                                  "armorgames");
-                                }
-
-                                c.Disconnect();
-                            };
-
-                        c.Send("auth", this.emailOrToken, this.passwordOrToken);
+                        ArmorGamesConnect();
                         break;
                 }
             }
@@ -142,6 +125,28 @@
             }
 
             this.IsConnected = true;
+        }
+
+        private void ArmorGamesConnect()
+        {
+            var c = Tools.GuestClient.Value.Multiplayer.JoinRoom("", null);
+            c.OnMessage += (sender, message) =>
+            {
+                if (message.Type != "auth") return;
+
+                if (message.Count == 0)
+                    Tools.SkylightMessage("Cannot log in using ArmorGames. The response from the auth server is wrong.");
+                else
+                {
+                    this.Client = PlayerIOClient.PlayerIO.Connect(Tools.GameID, "secure",
+                                                                  message.GetString(0), message.GetString(1),
+                                                                  "armorgames");
+                }
+
+                c.Disconnect();
+            };
+
+            c.Send("auth", this.emailOrToken, this.passwordOrToken);
         }
 
         public void Join(bool createRoom = true)
@@ -181,7 +186,8 @@
                 {
                     this.Connection = this.Client.Multiplayer.JoinRoom(
                         this.R.Id,
-                        new Dictionary<string, string>());
+                        new Dictionary<string, string>()
+                        );
                 }
                 // Update room data
                 Room.JoinedRooms.Add(this.R);
@@ -189,7 +195,7 @@
                 // Everyone gets a connection.
                 this.R.Connections.Add(this.Connection);
 
-                // The following 25 lines deal with filtering messages from the client.
+                // The following section deals with filtering messages from the client.
                 // Every bot receives info from the room, because some of it is exclusive to the bot.
                 // We call those "personal" pulls.
                 // They are exactly the same as the main pull, except In.IsPersonal = true.
@@ -223,7 +229,10 @@
 
                 this.Joined = true;
 
-                while (!this.R.BlocksLoaded) { }
+                while (!this.R.BlocksLoaded) {
+                    Thread.Sleep(50); //http://stackoverflow.com/questions/11809277/
+
+                }
             }
             catch (Exception e)
             {
@@ -250,9 +259,13 @@
         private string Version(bool cached = true, string prefix = Tools.NormalRoom)
         {
             if (!cached || storedVersion == null)
+            {
                 return prefix + Refresh();
-
-            return prefix + storedVersion;
+            }
+            else
+            {
+                return prefix + storedVersion;
+            }
         }
 
         private string Refresh()
