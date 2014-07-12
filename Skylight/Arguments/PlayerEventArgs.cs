@@ -22,11 +22,17 @@ namespace Skylight
             this.rawMessage = rawMessage;
         }
 
-        public PlayerEventArgs(Player subject, Room origin, Message rawMessage)
+        public PlayerEventArgs(Player subject, Room origin = null, Message rawMessage = null)
         {
+            if (origin == null)
+            {
+                origin = Bot.currentRoom; // grab it from the global if not passed
+            }
             this.subject = subject;
             this.origin = origin;
             this.rawMessage = rawMessage;
+            
+
         }
 
         public Player Subject
@@ -34,6 +40,12 @@ namespace Skylight
             get { return this.subject; }
         }
 
+        public Message formattedMessage
+        {
+
+            get;
+            set;
+        }
         public Room Origin
         {
             get { return this.Origin; }

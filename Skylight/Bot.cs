@@ -32,6 +32,7 @@
 
         private Room r = new Room(null);
 
+        public static Room currentRoom { get; set; }
         /// <param name="password">Make this field null if it isn't needed for your log-in method.</param>
         public Bot(Room r,
                    string emailOrToken = Tools.GuestEmail,
@@ -42,6 +43,7 @@
             this.emailOrToken = emailOrToken;
             this.passwordOrToken = passwordOrToken;
             this.R = r;
+            currentRoom = r;
             this.accType = accType;
             this.ShouldTick = true;
         }
@@ -200,6 +202,7 @@
 
                 // However, everything else only needs one bot to handle. Things like chat and movement.
                 // We don't need five bots firing an event every time someone chats.
+                // except when they are located in different rooms, which would be an exception.
                 if (!this.R.HasPull)
                 {
                     this.R.HasPull = true;

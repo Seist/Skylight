@@ -7,6 +7,7 @@ namespace Skylight
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Threading;
+    using System.Drawing;
 
     public class In
     {
@@ -339,14 +340,13 @@ namespace Skylight
             this.Bot.HasAccess = true;
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(this.Bot, this.Source, m);
+            PlayerEventArgs e = new PlayerEventArgs(this.Bot);
 
             this.Source.Pull.GainAccessEvent(e);
         }
 
         private void OnAdd(Message m)
         {
-            // Extract data.
             string name = m.GetString(1);
 
             int id = m.GetInteger(0),
@@ -361,7 +361,8 @@ namespace Skylight
                 isMod = m.GetBoolean(6),
                 hasBoost = m.GetBoolean(9),
                 isFriend = m.GetBoolean(10),
-                hasClub = m.GetBoolean(12);
+                hasClub = m.GetBoolean(12),
+                hasChat = m.GetBoolean(7); // added seven
 
             // Update relevant objects.
             Player subject = new Player(this.Source, id, name, smiley, x, y, isGod, isMod, true, coins, hasBoost, isFriend, xplevel);
@@ -369,7 +370,7 @@ namespace Skylight
             this.Source.OnlinePlayers.Add(subject);
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
+            PlayerEventArgs e = new PlayerEventArgs(subject);
 
             this.Source.Pull.AddEvent(e);
         }
@@ -379,6 +380,11 @@ namespace Skylight
         {
             // Extract data.
             bool potions = m.GetBoolean(0);
+
+            var formattedMessage = new Dictionary<string, string>()
+            {
+                { "potions", potions.ToString()},
+            };
 
             // Update relevant objects.
             this.Source.PotionsAllowed = potions;
@@ -482,7 +488,13 @@ namespace Skylight
                 y = m.GetInteger(1),
                 id = m.GetInteger(2),
                 note = m.GetInteger(3);
-
+            var formattedMessage = new Dictionary<string, string>()
+            {
+                { "x", x.ToString()},
+                { "y", y.ToString()},
+                { "id", id.ToString()},
+                { "note", note.ToString()}
+            };
             // Update relevant objects.
             Block b = null;
 
@@ -517,7 +529,7 @@ namespace Skylight
                 subject.Coins = totalCoins;
 
                 // Fire the event.
-                PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
+                PlayerEventArgs e = new PlayerEventArgs(subject);
 
                 this.Source.Pull.CoinCollectedEvent(e);
             }
@@ -560,7 +572,7 @@ namespace Skylight
             subject.Smiley = smileyId;
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
+            PlayerEventArgs e = new PlayerEventArgs(subject);
 
             this.Source.Pull.FaceEvent(e);
         }
@@ -618,7 +630,7 @@ namespace Skylight
             subject.IsGod = isGod;
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
+            PlayerEventArgs e = new PlayerEventArgs(subject);
 
             this.Source.Pull.GodEvent(e);
         }
@@ -652,7 +664,7 @@ namespace Skylight
             }
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(this.Bot, this.Source, m);
+            PlayerEventArgs e = new PlayerEventArgs(this.Bot);
 
             this.Source.Pull.InfoEvent(e);
         }
@@ -757,7 +769,7 @@ namespace Skylight
                 subject.HasCrown = true;
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
+            PlayerEventArgs e = new PlayerEventArgs(subject);
 
             this.Source.Pull.CrownEvent(e);
         }
@@ -773,7 +785,7 @@ namespace Skylight
             subject.DeathCount++;
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
+            PlayerEventArgs e = new PlayerEventArgs(subject);
 
             this.Source.Pull.DeathEvent(e);
         }
@@ -789,7 +801,7 @@ namespace Skylight
             subject.HasSilverCrown = true;
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
+            PlayerEventArgs e = new PlayerEventArgs(subject);
 
             this.Source.Pull.TrophyEvent(e);
         }
@@ -831,7 +843,7 @@ namespace Skylight
             }
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
+            PlayerEventArgs e = new PlayerEventArgs(subject);
 
             this.Source.Pull.LeaveEvent(e);
         }
@@ -847,7 +859,7 @@ namespace Skylight
             subject.XpLevel++;
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
+            PlayerEventArgs e = new PlayerEventArgs(subject);
 
             this.Source.Pull.LevelUpEvent(e);
         }
@@ -859,7 +871,7 @@ namespace Skylight
             this.Bot.HasAccess = false;
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(this.Bot, this.Source, m);
+            PlayerEventArgs e = new PlayerEventArgs(this.Bot);
 
             this.Source.Pull.LoseAccessEvent(e);
         }
@@ -894,7 +906,7 @@ namespace Skylight
                     subject.horizontal == horizontalDirection)
                 {
                     // Fire the jump event.
-                    PlayerEventArgs jumpEventArgs = new PlayerEventArgs(subject, this.Source, m);
+                    PlayerEventArgs jumpEventArgs = new PlayerEventArgs(subject);
 
                     this.Source.Pull.JumpEvent(jumpEventArgs);
                 }
@@ -923,7 +935,7 @@ namespace Skylight
             // Fire the event.
 
             this.Source.Pull.MovementEvent(
-                new PlayerEventArgs(subject, this.Source, m)
+                new PlayerEventArgs(subject)
                 );
         }
 
@@ -941,7 +953,7 @@ namespace Skylight
             // Fire the event.
 
             this.Source.Pull.ModModeEvent(
-                new PlayerEventArgs(subject, this.Source, m)
+                new PlayerEventArgs(subject)
                 );
         }
 
@@ -968,7 +980,7 @@ namespace Skylight
             // Fire the event.
 
             this.Source.Pull.PotionEvent(
-                new PlayerEventArgs(subject, this.Source, m)
+                new PlayerEventArgs(subject)
                 );
         }
 
@@ -1081,7 +1093,7 @@ namespace Skylight
             subject.Y = y;
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
+            PlayerEventArgs e = new PlayerEventArgs(subject);
 
             this.Source.Pull.TeleportEvent(e);
         }
@@ -1130,7 +1142,7 @@ namespace Skylight
 
                 // Fire the event.
                 this.Source.Pull.DeathEvent(
-                    new PlayerEventArgs(subject, this.Source, m)
+                    new PlayerEventArgs(subject)
                     );
             }
         }
@@ -1206,7 +1218,7 @@ namespace Skylight
             // Fire the event.
 
             this.Source.Pull.MagicCoinEvent(
-                new PlayerEventArgs(subject, this.Source, m)
+                new PlayerEventArgs(subject)
                 );
         }
 
@@ -1291,7 +1303,7 @@ namespace Skylight
                         {
                             player.tick();
 
-                            PlayerEventArgs e = new PlayerEventArgs(player, this.Source, null);
+                            PlayerEventArgs e = new PlayerEventArgs(player);
                             this.Source.Pull.TickEvent(e);
                         }
                     }
