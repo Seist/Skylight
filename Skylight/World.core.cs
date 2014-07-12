@@ -20,6 +20,7 @@ namespace Skylight
                 //// Praise him. (this is mainly due to my laziness)
 
                 // First, fill the entire map with blank blocks (so that you don't get null exceptions).
+				// Is the world always 700x400 or am I missing something?
                 for (int x = 0; x < 700; x++)
                 {
                     for (int y = 0; y < 400; y++)
