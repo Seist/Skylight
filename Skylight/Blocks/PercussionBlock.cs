@@ -28,15 +28,9 @@
 
         public int PercussionId
         {
-            get
-            {
-                return this.percussionId;
-            }
+            get;
 
-            internal set
-            {
-                this.percussionId = value;
-            }
+            internal set;
         }
     }
 }

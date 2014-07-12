@@ -1,9 +1,8 @@
 ﻿namespace Skylight
 {
+    using PlayerIOClient;
     using System;
     using System.Collections.Generic;
-    using System.Threading;
-    using PlayerIOClient;
 
     public partial class Bot : Player
     {
@@ -15,8 +14,8 @@
         private Client vers_Client;
 
         // In milliseconds.
-        private int 
-            blockDelay  = 10, 
+        private int
+            blockDelay = 10,
             speechDelay = 1000;
 
         private string chatPrefix = "";
@@ -27,7 +26,7 @@
 
         private readonly AccountType accType;
 
-        private Connection connection;
+        private Connection connection = null;
 
         private Out push = new Out();
 
@@ -37,7 +36,8 @@
         public Bot(Room r,
                    string emailOrToken = Tools.GuestEmail,
                    string passwordOrToken = Tools.GuestPassword,
-                   AccountType accType = AccountType.Regular) : base (r, 0, "", 0, 0.0, 0.0, false, false, true, 0, false, false, 0)
+                   AccountType accType = AccountType.Regular)
+            : base(r, 0, "", 0, 0.0, 0.0, false, false, true, 0, false, false, 0)
         {
             this.emailOrToken = emailOrToken;
             this.passwordOrToken = passwordOrToken;
@@ -46,121 +46,47 @@
             this.ShouldTick = true;
         }
 
-        public bool IsConnected
-        {
-            get
-            {
-                return this.isConnected;
-            }
+        public bool IsConnected { get; internal set; }
 
-            internal set
-            {
-                this.isConnected = value;
-            }
-        }
+        public bool Joined { get; internal set; }
 
-        public bool Joined
-        {
-            get
-            {
-                return this.joined;
-            }
-            internal set
-            {
-                this.joined = value;
-            }
-        }
+        public bool ShouldTick { get; set; }
 
-        public bool ShouldTick
-        {
-            get;
-            set;
-        }
-        
-        public Client Client
-        {
-            get
-            {
-                return this.client;
-            }
+        public Client Client { get; internal set; }
 
-            internal set
-            {
-                this.client = value;
-            }
-        }
-        
         public int BlockDelay
         {
-            get
-            {
-                return this.blockDelay;
-            }
+            get { return this.BlockDelay; }
 
             set
             {
-                this.blockDelay = value;
+                if (this.blockDelay > 0)
+                {
+                    this.blockDelay = value;
+                }
             }
         }
-        
+
         public int SpeechDelay
         {
-            get
-            {
-                return this.speechDelay;
-            }
+            get { return this.SpeechDelay; }
 
             set
             {
-                this.speechDelay = value;
+                if (this.speechDelay > 0)
+                {
+                    this.speechDelay = value;
+                }
             }
         }
 
-        public string ChatPrefix
-        {
-            get
-            {
-                return this.chatPrefix;
-            }
+        public string ChatPrefix { get; set; }
 
-            set
-            {
-                this.chatPrefix = value;
-            }
-        }
+        public Out Push { get; internal set; }
 
-        public Out Push
-        {
-            get
-            {
-                return this.push;
-            }
+        public Room R { get; internal set; }
 
-            internal set
-            {
-                this.push = value;
-            }
-        }
-
-        public Room R
-        {
-            get;
-
-            internal set;
-        }
-       
-        public Connection Connection
-        {
-            get
-            {
-                return this.connection;
-            }
-
-            internal set
-            {
-                this.connection = value;
-            }
-        }
+        public Connection Connection { get; internal set; }
 
         // Public methods
         public void LogIn()
@@ -194,8 +120,8 @@
                                     Tools.SkylightMessage("Cannot log in using ArmorGames. The response from the auth server is wrong.");
                                 else
                                 {
-                                    this.Client = PlayerIOClient.PlayerIO.Connect(Tools.GameID, "secure", 
-                                                                                  message.GetString(0), message.GetString(1), 
+                                    this.Client = PlayerIOClient.PlayerIO.Connect(Tools.GameID, "secure",
+                                                                                  message.GetString(0), message.GetString(1),
                                                                                   "armorgames");
                                 }
 
@@ -229,10 +155,11 @@
                 // If you didn't connect, it must have failed.
                 if (!this.IsConnected)
                 {
+                    Tools.SkylightMessage("Error: connection failed!");
                     return;
                 }
             }
-            
+
             // Parse the level ID (because some people like to put full URLs in).
             this.R.Id = Tools.ParseURL(this.R.Id);
 
@@ -243,7 +170,7 @@
                     // Join room
                     this.Connection = this.Client.Multiplayer.CreateJoinRoom(
                         this.R.Id,                         // RoomId   (URL)
-                        storedVersion,               // RoomType (Server)
+                        storedVersion,                     // RoomType (Server)
                         true,                              // Visible
                         new Dictionary<string, string>(),  // RoomData
                         new Dictionary<string, string>()); // JoinData
@@ -256,7 +183,7 @@
                 }
                 // Update room data
                 Room.JoinedRooms.Add(this.R);
-            
+
                 // Everyone gets a connection.
                 this.R.Connections.Add(this.Connection);
 
@@ -285,7 +212,7 @@
                     this.R.Pull.Source = this.R;
                 }
 
-                // Once everything is internal settled, send the init.
+                // Once everything is internal settled, send the inits.
                 this.Connection.Send("init");
                 this.Connection.Send("init2");
 
@@ -334,9 +261,9 @@
 
         public enum AccountType : sbyte
         {
-            Regular = 0, 
-            Facebook = 1, 
-            Kongregate = 2, 
+            Regular = 0,
+            Facebook = 1,
+            Kongregate = 2,
             ArmorGames = 3
         }
     }

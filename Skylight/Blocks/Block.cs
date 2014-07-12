@@ -2,7 +2,6 @@
 
 namespace Skylight
 {
-    using System;
 
     public class Block
     {
@@ -43,106 +42,37 @@ namespace Skylight
         
         public bool IsSolid
         {
-            get
-            {
-                return (this.Id >= 9 && this.Id <= 97) || (this.Id >= 122 && this.Id <= 217);
-            }
+            get { return (this.Id >= 9 && this.Id <= 97) || (this.Id >= 122 && this.Id <= 217); }
         }
 
         public int Direction
         {
-            get
-            {
-                return this.direction;
-            }
-            
-            set
-            {
-                this.direction = value;
-            }
+            get;set;
         }
-        
+
         public int Id
         {
-            get
-            {
-                return this.id;
-            }
-
-            internal set
-            {
-                this.id = value;
-            }
+            get;internal set;
         }
 
         public int Z
         {
             get
             {
-                
-                
-                if (this.Id == 0)
-                {
-                    return this.z;
-                }
-
-                
-                if (this.Id >= 500)
-                {
-                    return 1;
-                }
-                else
-                {
-                    return 0;
-                }
+                if (this.Id >= 500) { return 1; }
+                if (this.Id == 0) { return this.z; } else { return 0; }
             }
 
             internal set
             {
-                if (value == 0 || value == 1)
-                {
-                    this.z = value;
-                }
+                if (value == 0 || value == 1){this.z = value;}
             }
         }
 
-        public int X
-        {
-            get
-            {
-                return this.x;
-            }
+        public int X {get;internal set;}
 
-            internal set
-            {
-                this.x = value;
-            }
-        }
+        public int Y{get;internal set;}
 
-        public int Y
-        {
-            get
-            {
-                return this.y;
-            }
-
-            internal set
-            {
-                this.y = value;
-            }
-        }
-
-        public Player Placer
-        {
-            get
-            {
-                return this.placer;
-            }
-
-            internal set
-            {
-                this.placer = value;
-            }
-        }
+        public Player Placer{get;internal set;}
     }
 }
