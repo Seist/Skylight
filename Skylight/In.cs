@@ -19,19 +19,19 @@ namespace Skylight
         /// </summary>
         private List<int> specialBlockIds = new List<int>() 
         { 
-            BlockIds.Switches.SWITCH,
-            BlockIds.Tools.TROPHY,
-            BlockIds.Doors.TIME,
-            BlockIds.Gates.TIME,
-            BlockIds.Doors.SWITCH,
-            BlockIds.Gates.SWITCH,
-            BlockIds.Doors.ZOMBIE,
-            BlockIds.Gates.ZOMBIE,
-            BlockIds.Secrets.NONSOLID,
-            BlockIds.Tools.SPAWN,
-            BlockIds.Cake.CAKE,
-            BlockIds.Tools.CHECKPOINT,
-            BlockIds.Hazards.FIRE
+            (int)BlockIds.Switches.SWITCH,
+            (int)BlockIds.Tools.TROPHY,
+            (int)BlockIds.Doors.TIME,
+            (int)BlockIds.Gates.TIME,
+            (int)BlockIds.Doors.SWITCH,
+            (int)BlockIds.Gates.SWITCH,
+            (int)BlockIds.Doors.ZOMBIE,
+            (int)BlockIds.Gates.ZOMBIE,
+            (int)BlockIds.Secrets.NONSOLID,
+            (int)BlockIds.Tools.SPAWN,
+            (int)BlockIds.Cake.CAKE,
+            (int)BlockIds.Tools.CHECKPOINT,
+            (int)BlockIds.Hazards.FIRE
         };
 
         private List<Message> prematureMessages = new List<Message>();
@@ -444,7 +444,7 @@ namespace Skylight
             // Update relevant objects.
             var b = new CoinBlock(x, y, coinsRequired, false);
 
-            b.IsGate = (id == BlockIds.Action.Gates.COIN);
+            b.IsGate = (id == (int)BlockIds.Gates.COIN);
 
 
             this.Source.Map[x, y, 0] = b;
@@ -486,11 +486,11 @@ namespace Skylight
             // Update relevant objects.
             Block b = null;
 
-            if (id == BlockIds.Action.Music.PERCUSSION)
+            if (id == (int)BlockIds.Music.PERCUSSION)
             {
                 b = new PercussionBlock(x, y, note);
             }
-            else if (id == BlockIds.Action.Music.PIANO)
+            else if (id == (int)BlockIds.Music.PIANO)
             {
                 b = new PianoBlock(x, y, note);
             }
@@ -987,7 +987,7 @@ namespace Skylight
                 portalDestination = m.GetInteger(5);
 
             // Update relevant objects.
-            bool isVisible = (blockId == BlockIds.Action.Portals.NORMAL);
+            bool isVisible = (blockId == (int)BlockIds.Portals.NORMAL);
 
             var b = new PortalBlock(x, y, rotation, portalId, portalDestination, isVisible);
 

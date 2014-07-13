@@ -67,8 +67,8 @@ namespace Skylight
                     // Get the variables that are unique to the current block
                     switch (blockId)
                     {
-                        case BlockIds.Action.Portals.NORMAL:
-                        case BlockIds.Action.Portals.INVISIBLE:
+                        case (int)BlockIds.Portals.NORMAL:
+                        case (int)BlockIds.Portals.INVISIBLE:
                             {
                                 rotation = m.GetInteger(messageIndex);
                                 messageIndex++;
@@ -79,44 +79,44 @@ namespace Skylight
                                 destination = m.GetInteger(messageIndex);
                                 messageIndex++;
 
-                                isVisible = !(blockId == BlockIds.Action.Portals.INVISIBLE);
+                                isVisible = !(blockId == (int)BlockIds.Portals.INVISIBLE);
                                 break;
                             }
-                        case BlockIds.Action.Portals.WORLD:
+                        case (int)BlockIds.Portals.WORLD:
                             {
                                 roomDestination = m.GetString(messageIndex);
                                 messageIndex++;
                                 break;
                             }
-                        case BlockIds.Action.Doors.COIN:
-                        case BlockIds.Action.Gates.COIN:
+                        case (int)BlockIds.Doors.COIN:
+                        case (int)BlockIds.Gates.COIN:
                             {
                                 coins = m.GetInteger(messageIndex);
                                 messageIndex++;
 
-                                isGate = (blockId == BlockIds.Action.Gates.COIN);
+                                isGate = (blockId == (int)BlockIds.Gates.COIN);
                                 break;
 
                             }
-                        case BlockIds.Action.Music.PERCUSSION:
+                        case (int)BlockIds.Music.PERCUSSION:
                             {
                                 type = m.GetInteger(messageIndex);
                                 messageIndex++;
                                 break;
                             }
-                        case BlockIds.Action.Music.PIANO:
+                        case (int)BlockIds.Music.PIANO:
                             {
                                 note = m.GetInteger(messageIndex);
                                 messageIndex++;
                                 break;
                             }
-                        case BlockIds.Decorative.SciFi2013.BLUEBEND:
-                        case BlockIds.Decorative.SciFi2013.BLUESTRAIGHT:
-                        case BlockIds.Decorative.SciFi2013.GREENBEND:
-                        case BlockIds.Decorative.SciFi2013.GREENSTRAIGHT:
-                        case BlockIds.Decorative.SciFi2013.ORANGEBEND:
-                        case BlockIds.Decorative.SciFi2013.ORANGESTRAIGHT:
-                        case BlockIds.Action.Hazards.SPIKE:
+                        case (int)BlockIds.SciFi2013.BLUEBEND:
+                        case (int)BlockIds.SciFi2013.BLUESTRAIGHT:
+                        case (int)BlockIds.SciFi2013.GREENBEND:
+                        case (int)BlockIds.SciFi2013.GREENSTRAIGHT:
+                        case (int)BlockIds.SciFi2013.ORANGEBEND:
+                        case (int)BlockIds.SciFi2013.ORANGESTRAIGHT:
+                        case (int)BlockIds.Hazards.SPIKE:
                             {
                                 rotation = m.GetInteger(messageIndex);
                                 messageIndex++;
@@ -138,8 +138,8 @@ namespace Skylight
                         // Add block accordingly.
                         switch (blockId)
                         {
-                            case BlockIds.Action.Portals.NORMAL:
-                            case BlockIds.Action.Portals.INVISIBLE:
+                            case (int)BlockIds.Portals.NORMAL:
+                            case (int)BlockIds.Portals.INVISIBLE:
                                 {
                                     list.Add(new PortalBlock(
                                         x,
@@ -150,7 +150,7 @@ namespace Skylight
                                         isVisible));
                                     break;
                                 }
-                            case BlockIds.Action.Portals.WORLD:
+                            case (int)BlockIds.Portals.WORLD:
                                 {
                                     list.Add(new RoomPortalBlock(
                                         x,
@@ -158,8 +158,8 @@ namespace Skylight
                                         roomDestination));
                                     break;
                                 }
-                            case BlockIds.Action.Doors.COIN:
-                            case BlockIds.Action.Gates.COIN:
+                            case (int)BlockIds.Doors.COIN:
+                            case (int)BlockIds.Gates.COIN:
                                 {
                                     list.Add(new CoinBlock(
                                         x,
@@ -168,7 +168,7 @@ namespace Skylight
                                         isGate));
                                     break;
                                 }
-                            case BlockIds.Action.Music.PERCUSSION:
+                            case (int)BlockIds.Music.PERCUSSION:
                                 {
                                     list.Add(new PercussionBlock(
                                         x,
@@ -176,7 +176,7 @@ namespace Skylight
                                         type));
                                     break;
                                 }
-                            case BlockIds.Action.Music.PIANO:
+                            case (int)BlockIds.Music.PIANO:
                                 {
                                     list.Add(new PianoBlock(
                                         x,
@@ -184,13 +184,13 @@ namespace Skylight
                                         note));
                                     break;
                                 }
-                            case BlockIds.Decorative.SciFi2013.BLUEBEND:
-                            case BlockIds.Decorative.SciFi2013.BLUESTRAIGHT:
-                            case BlockIds.Decorative.SciFi2013.GREENBEND:
-                            case BlockIds.Decorative.SciFi2013.GREENSTRAIGHT:
-                            case BlockIds.Decorative.SciFi2013.ORANGEBEND:
-                            case BlockIds.Decorative.SciFi2013.ORANGESTRAIGHT:
-                            case BlockIds.Action.Hazards.SPIKE:
+                            case (int)BlockIds.SciFi2013.BLUEBEND:
+                            case (int)BlockIds.SciFi2013.BLUESTRAIGHT:
+                            case (int)BlockIds.SciFi2013.GREENBEND:
+                            case (int)BlockIds.SciFi2013.GREENSTRAIGHT:
+                            case (int)BlockIds.SciFi2013.ORANGEBEND:
+                            case (int)BlockIds.SciFi2013.ORANGESTRAIGHT:
+                            case (int)BlockIds.Hazards.SPIKE:
                                 {
                                     list.Add(new Block(
                                         blockId,

@@ -35,8 +35,9 @@
         
         public PianoBlock( 
             int x, 
-            int y, 
-            int key) : base(BlockIds.Action.Music.PIANO, x, y, 0)
+            int y,
+            int key)
+            : base((int)BlockIds.Music.PIANO, x, y, 0)
         {
             this.PianoId = key;
         }

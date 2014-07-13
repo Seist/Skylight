@@ -128,7 +128,7 @@ namespace Skylight
             ONEWAY_GREEN = 64,
 
             TOPPING = 227,
-            PINK = 539,
+            PINK_TWO = 539,
             BLUE = 540,
 
         }
@@ -246,7 +246,7 @@ namespace Skylight
             YELLOW = 198,
             POT = 199,
 
-            GRAY = 194,
+            GRAY_THREE = 194,
 
             GRAY_TWO = 617,
             RED_TWO = 618,
@@ -381,7 +381,7 @@ namespace Skylight
             MUD = 173,
         }
 
-        public enum Portals
+        public enum Portals : int
         {
 
             INVISIBLE = 381,
@@ -480,7 +480,7 @@ namespace Skylight
             WINDOW = 551,
             BARS_TWO = 552, //conflict!
             BROKENBARS = 553,
-            BRICK = 92,
+            BRICK_TWO = 92,
         }
 
         public enum Windows
@@ -669,9 +669,9 @@ namespace Skylight
             RED = 604,
 
             WHITE = 172,
-            BLUE = 173,
-            GREEN = 174,
-            RED = 175,
+            BLUE_TWO = 173,
+            GREEN_TWO = 174,
+            RED_TWO = 175,
         }
 
 

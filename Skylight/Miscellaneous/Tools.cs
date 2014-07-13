@@ -163,13 +163,13 @@ namespace Skylight
         // Return the correct portal ID based on whether or not the portal is visible or invisible.
         internal static int PortalIdByVisible(bool visible)
         {
-            return visible ? BlockIds.Portals.NORMAL : BlockIds.Portals.INVISIBLE;
+            return visible ? (int)BlockIds.Portals.NORMAL : (int)BlockIds.Portals.INVISIBLE;
         }
 
         // Return the correct coin ID based based on whether or not the block is gate or door
         internal static int CoinIdByGate(bool isGate)
         {
-            return isGate ? BlockIds.Gates.COIN : BlockIds.Doors.COIN;
+            return isGate ? (int)BlockIds.Gates.COIN : (int)BlockIds.Doors.COIN;
         }
     }
 }

@@ -17,10 +17,10 @@
         {
             switch (block_id)
             {
-                case BlockIds.Action.Ladders.LADDER:
-                case BlockIds.Action.Ladders.CHAIN:
-                case BlockIds.Action.Ladders.HORIZONTALVINE:
-                case BlockIds.Action.Ladders.VERTICALVINE:
+                case (int)BlockIds.Ladders.LADDER:
+                case (int)BlockIds.Ladders.CHAIN:
+                case (int)BlockIds.Ladders.HORIZONTALVINE:
+                case (int)BlockIds.Ladders.VERTICALVINE:
                     {
                         return true;
                     }
@@ -35,12 +35,12 @@
         {
             switch (block_id)
             {
-                case BlockIds.Decorative.SciFi2013.BLUESTRAIGHT:
-                case BlockIds.Decorative.SciFi2013.BLUEBEND:
-                case BlockIds.Decorative.SciFi2013.GREENSTRAIGHT:
-                case BlockIds.Decorative.SciFi2013.GREENBEND:
-                case BlockIds.Decorative.SciFi2013.ORANGESTRAIGHT:
-                case BlockIds.Decorative.SciFi2013.ORANGEBEND:
+                case (int)BlockIds.SciFi2013.BLUESTRAIGHT:
+                case (int)BlockIds.SciFi2013.BLUEBEND:
+                case (int)BlockIds.SciFi2013.GREENSTRAIGHT:
+                case (int)BlockIds.SciFi2013.GREENBEND:
+                case (int)BlockIds.SciFi2013.ORANGESTRAIGHT:
+                case (int)BlockIds.SciFi2013.ORANGEBEND:
                     {
                         return true;
                     }

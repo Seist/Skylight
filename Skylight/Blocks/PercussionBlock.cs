@@ -21,7 +21,7 @@
         public PercussionBlock(
             int x,
             int y,
-            int percussionId) : base(BlockIds.Action.Music.PERCUSSION, x, y, 0)
+            int percussionId) : base((int)BlockIds.Music.PERCUSSION, x, y, 0)
         {
             this.PercussionId = percussionId;
         }
