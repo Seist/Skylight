@@ -7,7 +7,6 @@ namespace Skylight
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Threading;
-    using System.Drawing;
 
     public class In
     {

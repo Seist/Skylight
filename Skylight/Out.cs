@@ -414,7 +414,6 @@ namespace Skylight
         public void Loadlevel()
         {
             this.Say("/loadlevel");
-
         }
 
         public void Respawn(string name)
@@ -439,29 +438,17 @@ namespace Skylight
 
         public void Save()
         {
-            try
+            if (this.Bot.HasAccess)
             {
-
                 this.C.Send("save");
-
-            }
-            catch (Exception)
-            {
-                Logging.SkylightMessage("Error: attempted to use Out.Save before connecting");
             }
         }
 
         public void SetAllPotionBans(bool shouldAllowPotions)
         {
-            try
+            if (this.Bot.HasAccess)
             {
-
                 this.C.Send("allowpotions", shouldAllowPotions.ToString());
-
-            }
-            catch (Exception)
-            {
-                Logging.SkylightMessage("Error: attempted to use Out.SetAllPotionBans before connecting");
             }
         }
 

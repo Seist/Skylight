@@ -221,7 +221,7 @@ namespace Skylight
         public int XpLevel
         {
             get;
-
+            // should only be able to increment it, never decrement it.
             internal set;
         }
 
@@ -1297,40 +1297,7 @@ namespace Skylight
         }
         #endregion
 
-        private void update()
-        {
-            return;
-        }
-
-        private void showBadge(bool param1)
-        {
-            return;
-        }
-
-        private void drawBadge(Bitmap param1, double param2, double param3, bool param4)
-        {
-            return;
-        }
-
-        private void flauntLevelBadge(bool param1)
-        {
-            return;
-        }
-
-        private void drawChat(Bitmap param1, double param2, double param3, bool param4)
-        {
-            return;
-        }
-
-        private void enterChat()
-        {
-            return;
-        }
-
-        private void say(string param1)
-        {
-            return;
-        }
+        
 
         private void killPlayer()
         {
