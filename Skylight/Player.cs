@@ -596,7 +596,7 @@ namespace Skylight
                                                     }
                                                     break;
                                                 }
-                                            case BlockIds.Action.Doors.SWITCH:
+                                            case BlockIds.Doors.SWITCH:
                                                 {
                                                     if (this.SwitchOpened)
                                                     {
@@ -604,7 +604,7 @@ namespace Skylight
                                                     }
                                                     break;
                                                 }
-                                            case BlockIds.Action.Gates.SWITCH:
+                                            case BlockIds.SWITCH:
                                                 {
                                                     if (!this.SwitchOpened)
                                                     {
@@ -612,7 +612,7 @@ namespace Skylight
                                                     }
                                                     break;
                                                 }
-                                            case BlockIds.Action.Doors.CLUB:
+                                            case BlockIds.Doors.CLUB:
                                                 {
                                                     if (isclubmember)
                                                     {

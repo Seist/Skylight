@@ -19,19 +19,19 @@ namespace Skylight
         /// </summary>
         private List<int> specialBlockIds = new List<int>() 
         { 
-            BlockIds.Action.Switches.SWITCH,
-            BlockIds.Action.Tools.TROPHY,
-            BlockIds.Action.Doors.TIME,
-            BlockIds.Action.Gates.TIME,
-            BlockIds.Action.Doors.SWITCH,
-            BlockIds.Action.Gates.SWITCH,
-            BlockIds.Action.Doors.ZOMBIE,
-            BlockIds.Action.Gates.ZOMBIE,
-            BlockIds.Blocks.Secrets.NONSOLID,
-            BlockIds.Action.Tools.SPAWN,
-            BlockIds.Action.Cake.CAKE,
-            BlockIds.Action.Tools.CHECKPOINT,
-            BlockIds.Action.Hazards.FIRE
+            BlockIds.Switches.SWITCH,
+            BlockIds.Tools.TROPHY,
+            BlockIds.Doors.TIME,
+            BlockIds.Gates.TIME,
+            BlockIds.Doors.SWITCH,
+            BlockIds.Gates.SWITCH,
+            BlockIds.Doors.ZOMBIE,
+            BlockIds.Gates.ZOMBIE,
+            BlockIds.Secrets.NONSOLID,
+            BlockIds.Tools.SPAWN,
+            BlockIds.Cake.CAKE,
+            BlockIds.Tools.CHECKPOINT,
+            BlockIds.Hazards.FIRE
         };
 
         private List<Message> prematureMessages = new List<Message>();

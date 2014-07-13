@@ -9,7 +9,7 @@ namespace Skylight
     {
         public const int LAYER = 0;
 
-        enum Basic
+        public enum Basic
         {
             GRAY = 9,
             BLUE = 10,
@@ -21,7 +21,7 @@ namespace Skylight
             DARKGRAY = 182,
         }
 
-        enum Beta
+        public enum Beta
         {
             PURPLE = 37,
             GREEN = 38,
@@ -31,7 +31,7 @@ namespace Skylight
             GRAY = 42,
         }
 
-        enum Brick
+        public enum Brick
         {
             ORANGE = 16,
             TEAL = 17,
@@ -41,21 +41,21 @@ namespace Skylight
             TAN = 21,
         }
 
-        enum Metal
+        public enum Metal
         {
             SILVER = 29,
             BRONZE = 30,
             GOLD = 31,
         }
 
-        enum Grass
+        public enum Grass
         {
             LEFT = 34,
             MIDDLE = 35,
             RIGHT = 36,
         }
 
-        enum Special
+        public enum Special
         {
             STRIPED = 22,
             FACE = 32,
@@ -63,7 +63,7 @@ namespace Skylight
             FULLYBLACK = 44,
         }
 
-        enum Factory
+        public enum Factory
         {
             TANCROSS = 45,
             PLANKS = 46,
@@ -72,14 +72,14 @@ namespace Skylight
             FISHSCALES = 49,
         }
 
-        enum Secrets
+        public enum Secrets
         {
 
             SOLID = 50,
             NONSOLID = 243
         }
 
-        enum Glass
+        public enum Glass
         {
 
             RED = 51,
@@ -92,7 +92,7 @@ namespace Skylight
             ORANGE = 58,
         }
 
-        enum Minerals
+        public enum Minerals
         {
 
             RED = 70,
@@ -104,7 +104,7 @@ namespace Skylight
             ORANGE = 76,
         }
 
-        enum Christmas
+        public enum Christmas
         {
 
             YELLOW = 78,
@@ -114,7 +114,7 @@ namespace Skylight
             GREEN = 82,
         }
 
-        enum Candy
+        public enum Candy
         {
 
             PINK = 60,
@@ -134,14 +134,14 @@ namespace Skylight
         }
 
 
-        enum Halloween
+        public enum Halloween
         {
 
             BLOOD = 68,
             BRICK = 69,
         }
 
-        enum Scifi
+        public enum Scifi
         {
 
             RED = 84,
@@ -156,14 +156,7 @@ namespace Skylight
         }
 
 
-        enum Pirate
-        {
-
-            PLANKS = 93,
-            CHEST = 94,
-        }
-
-        enum Viking
+        public enum Viking
         {
 
             GRAY = 95,
@@ -171,7 +164,7 @@ namespace Skylight
 
 
 
-        enum Plastic
+        public enum Plastic
         {
 
             LIME = 128,
@@ -185,15 +178,7 @@ namespace Skylight
         }
 
 
-
-        enum PlateIron
-        {
-
-            PLATEIRON = 144,
-            WIRES = 145,
-        }
-
-        enum Industrial
+        public enum Industrial
         {
 
             CROSSSUPPORT = 147,
@@ -209,15 +194,10 @@ namespace Skylight
 
         }
 
-        enum Timbered
-        {
-            TIMBERED = 154,
-
-        }
 
 
 
-        enum Pipes
+        public enum Pipes
         {
 
             LEFT = 166,
@@ -228,7 +208,7 @@ namespace Skylight
             DOWN = 171,
         }
 
-        enum Mars
+        public enum Mars
         {
 
             SAND = 176,
@@ -237,9 +217,14 @@ namespace Skylight
             PATTERN3 = 179,
             ROCK1 = 180,
             ROCK2 = 181,
+
+            BLUE = 605,
+            LITTLESTAR = 606,
+            BIGSTAR = 607,
+            ROCK = 336,
         }
 
-        enum Checker
+        public enum Checker
         {
 
             GRAY = 186,
@@ -251,7 +236,7 @@ namespace Skylight
             CYAN = 192,
         }
 
-        enum JungleRuins
+        public enum JungleRuins
         {
 
             HEAD = 193,
@@ -263,45 +248,29 @@ namespace Skylight
 
             GRAY = 194,
 
-        }
+            GRAY_TWO = 617,
+            RED_TWO = 618,
+            BLUE_TWO = 619,
+            YELLOW_TWO = 620,
 
-        enum Lava
-        {
-
-            YELLOW = 202,
-            ORANGE = 203,
-            DARKORANGE = 204,
-        }
-
-        enum Sparta
-        {
-
-            BLUE = 208,
-            GREEN = 209,
-            RED = 210,
-            PILLAR = 211,
-        }
-
-        enum Farm
-        {
-
-            HAY = 212,
         }
 
 
-        enum Action
+
+
+        public enum Action
         {
             LAYER = 0,
             DIAMONDBLOCK = 241,
         }
 
-        enum SIGN
+        public enum SIGN
         {
 
             TEXTSIGN = 385,
         }
 
-        enum Keys
+        public enum Keys
         {
 
             RED = 6,
@@ -309,13 +278,13 @@ namespace Skylight
             BLUE = 8,
         }
 
-        enum Switches
+        public enum Switches
         {
 
             SWITCH = 113,
         }
 
-        enum Gates
+        public enum Gates
         {
 
             RED = 26,
@@ -329,7 +298,7 @@ namespace Skylight
 
         }
 
-        enum Doors
+        public enum Doors
         {
 
             RED = 23,
@@ -342,7 +311,7 @@ namespace Skylight
             ZOMBIE = 207,
         }
 
-        enum Gravity
+        public enum Gravity
         {
 
             DOWN = 0,
@@ -352,7 +321,7 @@ namespace Skylight
             ZERO = 4,
         }
 
-        enum Boost
+        public enum Boost
         {
 
             LEFT = 114,
@@ -361,27 +330,27 @@ namespace Skylight
             DOWN = 117,
         }
 
-        enum Music
+        public enum Music
         {
 
             PIANO = 77,
             PERCUSSION = 83,
         }
 
-        enum Coins
+        public enum Coins
         {
 
             GOLD = 100,
             BLUE = 101,
         }
 
-        enum Crowns
+        public enum Crowns
         {
 
             GOLD = 5,
         }
 
-        enum Tools
+        public enum Tools
         {
 
             SPAWN = 255,
@@ -389,14 +358,14 @@ namespace Skylight
             TROPHY = 121,
         }
 
-        enum Hazards
+        public enum Hazards
         {
 
             SPIKE = 361,
             FIRE = 368,
         }
 
-        enum Ladders
+        public enum Ladders
         {
 
             CHAIN = 118,
@@ -405,14 +374,14 @@ namespace Skylight
             HORIZONTALVINE = 99,
         }
 
-        enum Liquids
+        public enum Liquids
         {
 
             WATER = 119,
             MUD = 173,
         }
 
-        enum Portals
+        public enum Portals
         {
 
             INVISIBLE = 381,
@@ -420,14 +389,14 @@ namespace Skylight
             WORLD = 374,
         }
 
-        enum Cake
+        public enum Cake
         {
 
             CAKE = 337,
         }
 
 
-        enum Christmas2010
+        public enum Christmas2010
         {
             RIGHTCORNERSNOW = 249,
             LEFTCORNERSNOW = 250,
@@ -437,7 +406,7 @@ namespace Skylight
             FENCE = 254,
         }
 
-        enum NewYear2010
+        public enum NewYear2010
         {
 
             PURPLE = 244,
@@ -447,7 +416,7 @@ namespace Skylight
             GREEN = 248,
         }
 
-        enum Spring2011
+        public enum Spring2011
         {
 
             LEFTGRASS = 233,
@@ -460,7 +429,7 @@ namespace Skylight
             SHRUB = 240,
         }
 
-        enum Easter2012
+        public enum Easter2012
         {
 
             BLUEEGG = 256,
@@ -470,7 +439,7 @@ namespace Skylight
             GREENEGG = 260,
         }
 
-        enum Summer2011
+        public enum Summer2011
         {
 
             UMBRELLA = 228,
@@ -481,7 +450,7 @@ namespace Skylight
             SAND = 59,
         }
 
-        enum Halloween2011
+        public enum Halloween2011
         {
 
             TOMBSTONE = 224,
@@ -493,7 +462,7 @@ namespace Skylight
             RIGHTCORNERSTAIR = 544,
         }
 
-        enum Christmas2011
+        public enum Christmas2011
         {
 
             REDORNAMENT = 218,
@@ -503,7 +472,7 @@ namespace Skylight
             STAR = 222,
         }
 
-        enum Prison
+        public enum Prison
         {
 
             BARS = 261,
@@ -514,7 +483,7 @@ namespace Skylight
             BRICK = 92,
         }
 
-        enum Windows
+        public enum Windows
         {
 
             CLEAR = 262,
@@ -528,14 +497,14 @@ namespace Skylight
             YELLOW = 270,
         }
 
-        enum Priate
+        public enum Priate
         {
 
             CANONCOVER = 271,
             SKULL = 272,
         }
 
-        enum Vikings
+        public enum Vikings
         {
 
             REDSHIELD = 273,
@@ -546,7 +515,7 @@ namespace Skylight
             REDWHITESTRIPES = 563,
         }
 
-        enum Ninja
+        public enum Ninja
         {
 
             LEFTBRIGHTROOFTOP = 276,
@@ -567,7 +536,7 @@ namespace Skylight
             GRAYSHINGLES = 97,
         }
 
-        enum Cowboy
+        public enum Cowboy
         {
 
             WHITEBAR = 285,
@@ -603,7 +572,7 @@ namespace Skylight
         }
 
 
-        enum Sand
+        public enum Sand
         {
 
             WHITE = 301,
@@ -628,7 +597,7 @@ namespace Skylight
             BROWN = 142,*/
         }
 
-        enum Summer2012
+        public enum Summer2012
         {
 
             BALL = 307,
@@ -637,7 +606,7 @@ namespace Skylight
             MARTINI = 310,
         }
 
-        enum Cloud
+        public enum Cloud
         {
 
             BOTTOM = 311,
@@ -651,7 +620,7 @@ namespace Skylight
             WHITE = 143,
         }
 
-        enum Signs
+        public enum Signs
         {
 
             FLAME = 319,
@@ -662,7 +631,7 @@ namespace Skylight
             VERTICALBAR = 324,
         }
 
-        enum Castle
+        public enum Castle
         {
 
             ROOFSUPPORT = 325,
@@ -674,7 +643,7 @@ namespace Skylight
             ONEWAY_GRAY = 158,
         }
 
-        enum Medieval
+        public enum Medieval
         {
 
             BLUEFLAG = 327,
@@ -687,7 +656,7 @@ namespace Skylight
             BARREL = 163,
         }
 
-        enum Rocket
+        public enum Rocket
         {
 
             COMPUTERSCREEN = 332,
@@ -706,7 +675,7 @@ namespace Skylight
         }
 
 
-        enum Monster
+        public enum Monster
         {
 
             BIGTOOTHBOTTOM = 338,
@@ -720,7 +689,7 @@ namespace Skylight
 
         }
 
-        enum Fog
+        public enum Fog
         {
 
             FULL = 343,
@@ -734,7 +703,7 @@ namespace Skylight
             TOPLEFTCORNER = 351,
         }
 
-        enum Halloween2012
+        public enum Halloween2012
         {
 
             TESLACAP = 352,
@@ -746,7 +715,7 @@ namespace Skylight
 
 
 
-        enum Christmas2012
+        public enum Christmas2012
         {
 
             BLUEVERTICALRIBBON = 362,
@@ -762,7 +731,7 @@ namespace Skylight
 
         }
 
-        enum Swamp
+        public enum Swamp
         {
 
             MUDBUBBLES = 370,
@@ -772,7 +741,7 @@ namespace Skylight
             UNDERBRUSH = 630,
         }
 
-        enum SciFi2013
+        public enum SciFi2013
         {
 
             BLUEBEND = 375,
@@ -784,17 +753,18 @@ namespace Skylight
             TILE = 637,
         }
 
-        enum Farm
+        public enum Farm
         {
 
             HAY = 386,
             CORN = 387,
             LEFTFENCE = 388,
             RIGHTFENCE = 389,
+            HAY_TWO = 212,
         }
 
 
-        enum Background
+        public enum Background
         {
             LAYER = 1,
 
@@ -807,7 +777,7 @@ namespace Skylight
             CYAN = 506,
         }
 
-        enum Brick
+        public enum BG_Brick
         {
 
             ORANGE = 507,
@@ -818,7 +788,7 @@ namespace Skylight
             TAN = 512,
         }
 
-        enum Checker
+        public enum BG_Checker
         {
 
             GRAY = 513,
@@ -830,7 +800,7 @@ namespace Skylight
             CYAN = 519,
         }
 
-        enum Dark
+        public enum Dark
         {
 
             GRAY = 520,
@@ -842,7 +812,7 @@ namespace Skylight
             CYAN = 526,
         }
 
-        enum Normal
+        public enum Normal
         {
 
             GRAY = 610,
@@ -854,7 +824,7 @@ namespace Skylight
             CYAN = 616,
         }
 
-        enum Pastel
+        public enum Pastel
         {
 
             ORANGE = 527,
@@ -865,7 +835,7 @@ namespace Skylight
             RED = 532,
         }
 
-        enum Canvas
+        public enum Canvas
         {
 
             RED = 533,
@@ -876,7 +846,7 @@ namespace Skylight
             GRAY = 538,
         }
 
-        enum Carnival
+        public enum Carnival
         {
 
             REDSTRIPE = 545,
@@ -888,7 +858,7 @@ namespace Skylight
 
 
 
-        enum Pirate
+        public enum Pirate
         {
 
             DARKPLANK = 554,
@@ -898,12 +868,14 @@ namespace Skylight
             WINDOW = 558,
             CANNON = 559,
             FLAG = 560,
+            PLANKS = 93,
+            CHEST = 94,
         }
 
 
 
 
-        enum Water
+        public enum Water
         {
 
             PLAIN = 574,
@@ -915,7 +887,7 @@ namespace Skylight
         }
 
 
-        enum PlateIron
+        public enum PlateIron
         {
 
             PLAIN = 585,
@@ -923,9 +895,12 @@ namespace Skylight
             BLUEPLATE = 587,
             GREENPLATE = 588,
             ORANGEPLATE = 589,
+
+            PLATEIRON = 144,
+            WIRES = 145,
         }
 
-        enum Timbered
+        public enum Timbered
         {
 
             THATCHROOF = 590,
@@ -937,29 +912,13 @@ namespace Skylight
             HORIZONTALSUPPORT = 596,
             TSUPPORT = 597,
             CLOSEDWINDOW = 598,
+
+            TIMBERED = 154,
         }
 
 
-        enum Mars
-        {
 
-            BLUE = 605,
-            LITTLESTAR = 606,
-            BIGSTAR = 607,
-            ROCK = 336,
-        }
-
-
-        enum JungleRuins
-        {
-
-            GRAY = 617,
-            RED = 618,
-            BLUE = 619,
-            YELLOW = 620,
-        }
-
-        enum Jungle
+        public enum Jungle
         {
 
             BRIGHTPLANTS = 621,
@@ -971,16 +930,20 @@ namespace Skylight
         }
 
 
-        enum Lava
+        public enum Lava
         {
 
             YELLOW = 627,
             ORANGE = 628,
             RED = 629,
+
+            YELLOW_TWO = 202,
+            ORANGE_TWO = 203,
+            DARKORANGE = 204,
         }
 
 
-        enum Sparta
+        public enum Sparta
         {
 
             BLUEBRICK = 638,
@@ -989,6 +952,12 @@ namespace Skylight
             CAPITAL = 382,
             SHAFT = 383,
             BASE = 384,
+
+            BLUE = 208,
+            GREEN = 209,
+            RED = 210,
+            PILLAR = 211,
+
         }
     }
 }
