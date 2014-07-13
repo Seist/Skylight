@@ -396,7 +396,7 @@ namespace Skylight
             string message = m.GetString(1);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id);
+            var subject = Utilities.GetPlayerById(id);
 
             this.Source.ChatLog.Add(new KeyValuePair<string, Player>(message, subject));
 
@@ -420,7 +420,7 @@ namespace Skylight
 
             if (!specialBlockIds.Contains(blockId))
             {
-                var subject = Tools.GetPlayerById(playerId);
+                var subject = Utilities.GetPlayerById(playerId);
 
                 b.Placer = subject;
             }
@@ -512,7 +512,7 @@ namespace Skylight
                     totalCoins = m.GetInteger(1);
 
                 // Update relevant objects.
-                var subject = Tools.GetPlayerById(id);
+                var subject = Utilities.GetPlayerById(id);
 
                 subject.Coins = totalCoins;
 
@@ -555,7 +555,7 @@ namespace Skylight
                 smileyId = m.GetInteger(1);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(playerId);
+            var subject = Utilities.GetPlayerById(playerId);
 
             subject.Smiley = smileyId;
 
@@ -613,7 +613,7 @@ namespace Skylight
             int id = m.GetInteger(0);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id);
+            var subject = Utilities.GetPlayerById(id);
 
             subject.IsGod = isGod;
 
@@ -662,7 +662,7 @@ namespace Skylight
             // Extract data
             string owner = m.GetString(0),
                 name = m.GetString(1),
-                worldKey = Tools.Derot(m.GetString(5)),
+                worldKey = Utilities.Derot(m.GetString(5)),
                 botName = m.GetString(9);
 
             int plays = m.GetInteger(2),
@@ -702,7 +702,7 @@ namespace Skylight
 
             // Update the room data.
             this.Source.Name = name;
-            this.Source.Owner = Tools.GetPlayerByName(owner, this.Source);
+            this.Source.Owner = Utilities.GetPlayerByName(owner, this.Source);
             this.Source.Plays = plays;
             this.Source.Woots = woots;
             this.Source.TotalWoots = totalWoots;
@@ -744,10 +744,10 @@ namespace Skylight
             }
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id);
+            var subject = Utilities.GetPlayerById(id);
 
             // Take the crown from the current holder (if one exists)
-            var crownHolder = Tools.GetCrownHolder(this.Source);
+            var crownHolder = Utilities.GetCrownHolder(this.Source);
 
             if (crownHolder != null)
             {
@@ -772,7 +772,7 @@ namespace Skylight
             int id = m.GetInteger(0);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id);
+            var subject = Utilities.GetPlayerById(id);
 
             subject.DeathCount++;
 
@@ -788,7 +788,7 @@ namespace Skylight
             int id = m.GetInteger(0);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id);
+            var subject = Utilities.GetPlayerById(id);
 
             subject.HasSilverCrown = true;
 
@@ -824,7 +824,7 @@ namespace Skylight
             int id = m.GetInteger(0);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id);
+            var subject = Utilities.GetPlayerById(id);
             for (int i = 0; i < this.Source.OnlinePlayers.Count; i++)
             {
                 if (this.Source.OnlinePlayers[i] == subject)
@@ -847,7 +847,7 @@ namespace Skylight
                 level = m.GetInteger(1);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id);
+            var subject = Utilities.GetPlayerById(id);
             subject.XpLevel++;
 
             // Fire the event.
@@ -886,7 +886,7 @@ namespace Skylight
                 spaceDown = m.GetBoolean(11);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id);
+            var subject = Utilities.GetPlayerById(id);
 
             subject.IsHoldingSpace = false;
             if (spaceDown)
@@ -938,7 +938,7 @@ namespace Skylight
             bool isMod = m.GetBoolean(1);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id);
+            var subject = Utilities.GetPlayerById(id);
 
             subject.IsMod = isMod;
 
@@ -958,7 +958,7 @@ namespace Skylight
             bool isActive = m.GetBoolean(2);
 
             // Update relevant objects
-            var subject = Tools.GetPlayerById(id);
+            var subject = Utilities.GetPlayerById(id);
 
             if (isActive)
             {
@@ -1035,7 +1035,7 @@ namespace Skylight
             string message = m.GetString(1);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id);
+            var subject = Utilities.GetPlayerById(id);
 
             this.Source.ChatLog.Add(new KeyValuePair<string, Player>(message, subject));
 
@@ -1079,7 +1079,7 @@ namespace Skylight
                 y = m.GetInteger(2);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id);
+            var subject = Utilities.GetPlayerById(id);
 
             subject.X = x;
             subject.Y = y;
@@ -1107,7 +1107,7 @@ namespace Skylight
                         x = m.GetInteger(index + 1),
                         y = m.GetInteger(index + 2);
 
-                    var tempSubject = Tools.GetPlayerById(id);
+                    var tempSubject = Utilities.GetPlayerById(id);
                     tempSubject.X = x;
                     tempSubject.Y = y;
 
@@ -1127,7 +1127,7 @@ namespace Skylight
 
 
                 // Update relevant objects.
-                var subject = Tools.GetPlayerById(id);
+                var subject = Utilities.GetPlayerById(id);
 
                 subject.X = m.GetInteger(2);
                 subject.Y = m.GetInteger(3);
@@ -1203,7 +1203,7 @@ namespace Skylight
             int id = m.GetInteger(0);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id);
+            var subject = Utilities.GetPlayerById(id);
 
             subject.CollectedMagic++;
 

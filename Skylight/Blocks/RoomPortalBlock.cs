@@ -21,7 +21,7 @@
             internal set
             {
                 string s = value;
-                Tools.ParseURL(s);
+                Utilities.ParseURL(s);
                 if (Regex.IsMatch(s, "[A-Za-z0-9-_]{13}"))
                 {
                     this.portalDestination = s;

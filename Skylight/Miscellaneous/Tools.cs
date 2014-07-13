@@ -8,7 +8,7 @@ namespace Skylight
     using System.Text.RegularExpressions;
     using System.Linq;
 
-    public static class Tools
+    public static class Utilities
     {
         public static readonly Random
             Ran = new Random();
@@ -162,13 +162,13 @@ namespace Skylight
         // Return the correct portal ID based on whether or not the portal is visible or invisible.
         internal static int PortalIdByVisible(bool visible)
         {
-            return visible ? BlockIds.Action.Portals.NORMAL : BlockIds.Action.Portals.INVISIBLE;
+            return visible ? BlockIds.Portals.NORMAL : BlockIds.Portals.INVISIBLE;
         }
 
         // Return the correct coin ID based based on whether or not the block is gate or door
         internal static int CoinIdByGate(bool isGate)
         {
-            return isGate ? BlockIds.Action.Gates.COIN : BlockIds.Action.Doors.COIN;
+            return isGate ? BlockIds.Gates.COIN : BlockIds.Doors.COIN;
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Skylight
         // Overload for PlayerEventArgs that accepts a player id and subsequently converts it into a player object
         public PlayerEventArgs(int player_id, Room origin, Message rawMessage)
         {
-            Player subject = Tools.GetPlayerById(player_id);
+            Player subject = Utilities.GetPlayerById(player_id);
             this.subject = subject;
             this.origin = origin;
             this.rawMessage = rawMessage;

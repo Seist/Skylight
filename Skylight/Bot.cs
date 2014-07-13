@@ -35,8 +35,8 @@
         public static Room currentRoom { get; set; }
         /// <param name="password">Make this field null if it isn't needed for your log-in method.</param>
         public Bot(Room r,
-                   string emailOrToken = Tools.GuestEmail,
-                   string passwordOrToken = Tools.GuestPassword,
+                   string emailOrToken = Utilities.GuestEmail,
+                   string passwordOrToken = Utilities.GuestPassword,
                    AccountType accType = AccountType.Regular)
             : base(r, 0, "", 0, 0.0, 0.0, false, false, true, 0, false, false, 0)
         {
@@ -98,18 +98,18 @@
                 switch (this.accType)
                 {
                     case AccountType.Regular:
-                        if (this.emailOrToken == Tools.GuestEmail && this.passwordOrToken == Tools.GuestPassword)
-                            this.Client = Tools.GuestClient.Value;
+                        if (this.emailOrToken == Utilities.GuestEmail && this.passwordOrToken == Utilities.GuestPassword)
+                            this.Client = Utilities.GuestClient.Value;
                         else
-                            this.Client = PlayerIO.QuickConnect.SimpleConnect(Tools.GameID, this.emailOrToken, this.passwordOrToken);
+                            this.Client = PlayerIO.QuickConnect.SimpleConnect(Utilities.GameID, this.emailOrToken, this.passwordOrToken);
                         break;
 
                     case AccountType.Facebook:
-                        this.Client = PlayerIO.QuickConnect.FacebookOAuthConnect(Tools.GameID, this.emailOrToken, null);
+                        this.Client = PlayerIO.QuickConnect.FacebookOAuthConnect(Utilities.GameID, this.emailOrToken, null);
                         break;
 
                     case AccountType.Kongregate:
-                        this.Client = PlayerIO.QuickConnect.KongregateConnect(Tools.GameID, this.emailOrToken, this.passwordOrToken);
+                        this.Client = PlayerIO.QuickConnect.KongregateConnect(Utilities.GameID, this.emailOrToken, this.passwordOrToken);
                         break;
 
                     default: //case AccountType.ArmorGames:
@@ -129,7 +129,7 @@
 
         private void ArmorGamesConnect()
         {
-            var c = Tools.GuestClient.Value.Multiplayer.JoinRoom("", null);
+            var c = Utilities.GuestClient.Value.Multiplayer.JoinRoom("", null);
             c.OnMessage += (sender, message) =>
             {
                 if (message.Type != "auth") return;
@@ -138,7 +138,7 @@
                     Logging.SkylightMessage("Cannot log in using ArmorGames. The response from the auth server is wrong.");
                 else
                 {
-                    this.Client = PlayerIOClient.PlayerIO.Connect(Tools.GameID, "secure",
+                    this.Client = PlayerIOClient.PlayerIO.Connect(Utilities.GameID, "secure",
                                                                   message.GetString(0), message.GetString(1),
                                                                   "armorgames");
                 }
@@ -168,7 +168,7 @@
             }
 
             // Parse the level ID (because some people like to put full URLs in).
-            this.R.Id = Tools.ParseURL(this.R.Id);
+            this.R.Id = Utilities.ParseURL(this.R.Id);
 
             try
             {
@@ -256,7 +256,7 @@
 
         private static string storedVersion;
 
-        private string Version(bool cached = true, string prefix = Tools.NormalRoom)
+        private string Version(bool cached = true, string prefix = Utilities.NormalRoom)
         {
             if (!cached || storedVersion == null)
             {
@@ -270,7 +270,7 @@
 
         private string Refresh()
         {
-            this.vers_Client = PlayerIO.QuickConnect.SimpleConnect(Tools.GameID, "guest", "guest");
+            this.vers_Client = PlayerIO.QuickConnect.SimpleConnect(Utilities.GameID, "guest", "guest");
             storedVersion = Convert.ToString(this.vers_Client.BigDB.Load("config", "config")["version"]);
             return storedVersion;
         }
