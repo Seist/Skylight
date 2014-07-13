@@ -202,7 +202,7 @@ namespace Skylight
                 case "bc": this.OnBuildCoinBlock(m);
                     break;
 
-                case "br": this.OnBr(m);
+                case "br": this.OnAddSpikes(m);
                     break;
 
                 case "bs": this.OnBuildSoundBlock(m);
@@ -241,10 +241,10 @@ namespace Skylight
                 case "kill": this.OnKill(m);
                     break;
 
-                case "ks": this.OnKs(m);
+                case "ks": this.OnGetSilverCrown(m);
                     break;
 
-                case "lb": this.OnLb(m);
+                case "lb": this.OnAddText(m);
                     break;
 
                 case "left": this.OnLeft(m);
@@ -253,7 +253,7 @@ namespace Skylight
                 case "levelup": this.OnLevelUp(m);
                     break;
 
-                case "m": this.OnM(m);
+                case "m": this.OnMove(m);
                     break;
 
                 case "mod": this.OnMod(m);
@@ -262,7 +262,7 @@ namespace Skylight
                 case "p": this.OnPotion(m);
                     break;
 
-                case "pt": this.OnPt(m);
+                case "pt": this.OnAddPortal(m);
                     break;
 
                 case "refreshshop": this.OnRefreshShop(m);
@@ -289,7 +289,7 @@ namespace Skylight
                 case "teleport": this.OnTeleport(m);
                     break;
 
-                case "ts": this.OnTs(m);
+                case "ts": this.OnAddSign(m);
                     break;
 
                 case "updatemeta": this.OnUpdateMeta(m);
@@ -455,7 +455,7 @@ namespace Skylight
             this.Source.Pull.CoinBlockEvent(e);
         }
 
-        private void OnBr(Message m)
+        private void OnAddSpikes(Message m)
         {
             // Extract data.
             int x = m.GetInteger(0),
@@ -531,16 +531,7 @@ namespace Skylight
         {
             // There is data, but it's kind of irrelevant.
             // Update relevant objects.
-            for (int x = 0; x < this.Source.Width; x++)
-            {
-                for (int y = 0; y < this.Source.Height; y++)
-                {
-                    Block blankBlock = new Block(0, x, y);
-
-                    this.Source.Map[x, y, 0] = blankBlock;
-                    this.Source.Map[x, y, 1] = blankBlock;
-                }
-            }
+            World.clearWorld(this.Source);
 
             // Fire the event.
             var e = new RoomEventArgs();
@@ -782,7 +773,7 @@ namespace Skylight
             this.Source.Pull.DeathEvent(e);
         }
 
-        private void OnKs(Message m)
+        private void OnGetSilverCrown(Message m)
         {
             // Extract data.
             int id = m.GetInteger(0);
@@ -798,7 +789,7 @@ namespace Skylight
             this.Source.Pull.TrophyEvent(e);
         }
 
-        private void OnLb(Message m)
+        private void OnAddText(Message m)
         {
             // Extract data.
             int id = m.GetInteger(0),
@@ -868,7 +859,7 @@ namespace Skylight
             this.Source.Pull.LoseAccessEvent(e);
         }
 
-        private void OnM(Message m)
+        private void OnMove(Message m)
         {
             // Extract data.
             double xLocation = m.GetDouble(1),
@@ -976,7 +967,7 @@ namespace Skylight
                 );
         }
 
-        private void OnPt(Message m)
+        private void OnAddPortal(Message m)
         {
             // Extract data.
             int x = m.GetInteger(0),
@@ -1139,7 +1130,7 @@ namespace Skylight
             }
         }
 
-        private void OnTs(Message m)
+        private void OnAddSign(Message m)
         {
             // Extract data.
             int id = m.GetInteger(0),

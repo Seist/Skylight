@@ -21,16 +21,7 @@ namespace Skylight
 
                 // First, fill the entire map with blank blocks (so that you don't get null exceptions).
 				// Is the world always 700x400 or am I missing something?
-                for (int x = 0; x < 700; x++)
-                {
-                    for (int y = 0; y < 400; y++)
-                    {
-                        for (int z = 0; z < 2; z++)
-                        {
-                            r.Map[x, y, z] = new Block(0, x, y, z);
-                        }
-                    }
-                }
+                clearWorld(r);
 
                 // And now replace empty blocks with the ones that already exist.
                 uint messageIndex = start;
@@ -220,6 +211,20 @@ namespace Skylight
 
             //SkylightMessage("Done loading blocks");
             return list;
+        }
+
+        public static void clearWorld(Room r)
+        {
+            for (int x = 0; x < 700; x++)
+            {
+                for (int y = 0; y < 400; y++)
+                {
+                    for (int z = 0; z < 2; z++)
+                    {
+                        r.Map[x, y, z] = new Block(0, x, y, z);
+                    }
+                }
+            }
         }
 
     }
