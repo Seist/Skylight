@@ -147,7 +147,7 @@ namespace Skylight
             object[] holdArgs = new object[11];
 
             holdArgs[0] = startX;
-            holdArgs[1] = startY;
+            holdArgs[1] = (startY*(double)16.00);
             holdArgs[2] = 0;
             holdArgs[3] = 0;
             holdArgs[4] = 0;
@@ -166,7 +166,7 @@ namespace Skylight
             object[] holdArgs = new object[11];
 
             holdArgs[0] = startX;
-            holdArgs[1] = startY;
+            holdArgs[1] = startY*(double)16.00;
             holdArgs[2] = 0;
             holdArgs[3] = 0;
             holdArgs[4] = -1;
@@ -185,7 +185,7 @@ namespace Skylight
             object[] holdArgs = new object[11];
 
             holdArgs[0] = startX;
-            holdArgs[1] = startY;
+            holdArgs[1] = startY*(double)16.00;
             holdArgs[2] = 0;
             holdArgs[3] = 0;
             holdArgs[4] = 1;
@@ -204,7 +204,7 @@ namespace Skylight
             object[] holdArgs = new object[11];
 
             holdArgs[0] = startX;
-            holdArgs[1] = startY;
+            holdArgs[1] = startY*(double)16.00;
             holdArgs[2] = 0;
             holdArgs[3] = 0;
             holdArgs[4] = 0;
