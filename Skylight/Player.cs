@@ -1385,7 +1385,7 @@ namespace Skylight
 
         private bool hasActivePotion(string param1)
         {
-            if (!this.touchpotions.ContainsKey(param1))
+            if (!hasPotion(param1))
             {
                 return false;
             }
