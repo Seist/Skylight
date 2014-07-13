@@ -45,7 +45,7 @@ namespace Skylight
 
         private List<KeyValuePair<string, Player>> chatLog = new List<KeyValuePair<string, Player>>();
 
-
+        // is this how large the largest room is?
         private Block[, ,] map = new Block[700, 400, 2];
 
 

@@ -24,12 +24,8 @@ namespace Skylight
         
         public PlayerEventArgs(Player subject, Room origin = null, Message rawMessage = null)
         {
-            if (origin == null)
-            {
-                origin = Bot.currentRoom; // grab it from the global if not passed
-            }
             this.subject = subject;
-            this.origin = origin;
+            this.origin = (origin ?? Bot.currentRoom);
             this.rawMessage = rawMessage;
             
 

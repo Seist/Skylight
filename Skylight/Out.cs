@@ -419,30 +419,22 @@ namespace Skylight
 
         public void Respawn(string name)
         {
-
             this.Say("/kill " + name);
-
         }
 
         public void Respawn(Player p)
         {
-
             this.Say("/kill " + p.Name);
-
         }
 
         public void RespawnAll()
         {
-
             this.Say("/respawnall");
-
         }
 
         public void Reset()
         {
-
             this.Say("/reset");
-
         }
 
         public void Save()
@@ -459,12 +451,12 @@ namespace Skylight
             }
         }
 
-        public void SetAllPotionBans(bool value)
+        public void SetAllPotionBans(bool shouldAllowPotions)
         {
             try
             {
 
-                this.C.Send("allowpotions", value);
+                this.C.Send("allowpotions", shouldAllowPotions.ToString());
 
             }
             catch (Exception)
@@ -473,10 +465,10 @@ namespace Skylight
             }
         }
 
-        public void SetEdit(string name, bool value)
+        public void SetEdit(string name, bool shouldHaveEdit)
         {
 
-            if (value)
+            if (shouldHaveEdit)
             {
                 this.Say("/giveedit " + name);
             }
@@ -487,10 +479,9 @@ namespace Skylight
 
         }
 
-        public void SetEdit(Player p, bool value)
+        public void SetEdit(Player p, bool shouldHaveEdit)
         {
-
-            if (value)
+            if (shouldHaveEdit)
             {
                 this.Say("/giveedit " + p.Name);
             }
@@ -509,10 +500,10 @@ namespace Skylight
             }
         }
 
-        public void SetMute(string name, bool value)
+        public void SetMute(string name, bool shouldMute)
         {
 
-            if (value)
+            if (shouldMute)
             {
                 this.Say("/mute " + name);
             }
@@ -523,10 +514,10 @@ namespace Skylight
 
         }
 
-        public void SetMute(Player p, bool value)
+        public void SetMute(Player p, bool shouldMute)
         {
 
-            if (value)
+            if (shouldMute)
             {
                 this.Say("/mute " + p.Name);
             }
@@ -537,10 +528,10 @@ namespace Skylight
 
         }
 
-        public void SetPotionBan(int potionId, bool value)
+        public void SetPotionBan(int potionId, bool shouldBanPotion)
         {
 
-            if (value)
+            if (shouldBanPotion)
             {
                 this.Say("/potionson " + potionId.ToString());
             }
@@ -555,7 +546,7 @@ namespace Skylight
         {
             try
             {
-                this.C.Send(this.R.RoomKey + "f", smileyId);
+                this.C.Send(this.R.RoomKey + "f", smileyId.ToString());
             }
             catch (Exception)
             {
@@ -565,29 +556,21 @@ namespace Skylight
 
         public void SetVisibility(bool value)
         {
-
             this.Say("/visible " + value.ToString());
-
         }
 
         public void Teleport(int newXLocation, int newYLocation, string name = null)
         {
-
             this.Say("/teleport " + (name ?? this.Bot.Name) + " " + newXLocation.ToString() + " " + newYLocation.ToString());
-
         }
 
         public void Teleport(int newXLocation, int newYLocation, Player p = null)
         {
-
             this.Say("/teleport " + (p.Name ?? this.Bot.Name) + " " + newXLocation.ToString() + " " + newYLocation.ToString());
-
         }
 
         public void TeleportAll(int newXLocation, int newYLocation)
         {
-
-
             foreach (Player p in this.R.OnlinePlayers)
             {
                 this.Teleport(newXLocation, newYLocation, p);

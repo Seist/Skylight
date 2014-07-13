@@ -308,7 +308,7 @@ namespace Skylight
                 case "w": this.OnW(m);
                     break;
 
-                case "wu": this.OnWu(m);
+                case "wu": this.OnWoot(m);
                     break;
 
                 default:
@@ -434,7 +434,7 @@ namespace Skylight
             this.Source.Map[x, y, z] = b;
 
             // Fire the event.
-            BlockEventArgs e = new BlockEventArgs(b, this.Source);
+            BlockEventArgs e = new BlockEventArgs(b);
 
             this.Source.Pull.NormalBlockEvent(e);
         }
@@ -456,7 +456,7 @@ namespace Skylight
             this.Source.Map[x, y, 0] = b;
 
             // Fire the event.
-            BlockEventArgs e = new BlockEventArgs(b, this.Source);
+            BlockEventArgs e = new BlockEventArgs(b);
 
             this.Source.Pull.CoinBlockEvent(e);
         }
@@ -476,7 +476,7 @@ namespace Skylight
             this.Source.Map[x, y, z] = b;
 
             // Fire the event.
-            BlockEventArgs e = new BlockEventArgs(b, this.Source);
+            BlockEventArgs e = new BlockEventArgs(b);
 
             this.Source.Pull.RotateEvent(e);
         }
@@ -510,7 +510,7 @@ namespace Skylight
             this.Source.Map[x, y, 0] = b;
 
             // Fire the event.
-            BlockEventArgs e = new BlockEventArgs(b, this.Source);
+            BlockEventArgs e = new BlockEventArgs(b);
 
             this.Source.Pull.SoundBlockEvent(e);
         }
@@ -821,7 +821,7 @@ namespace Skylight
             this.Source.Map[x, y, 0] = b;
 
             // Fire the event.
-            BlockEventArgs e = new BlockEventArgs(b, this.Source);
+            BlockEventArgs e = new BlockEventArgs(b);
 
             this.Source.Pull.CoinBlockEvent(e);
         }
@@ -1004,7 +1004,7 @@ namespace Skylight
             // Fire the event.
 
             this.Source.Pull.PortalBlockEvent(
-                new BlockEventArgs(b, this.Source)
+                new BlockEventArgs(b)
                 );
         }
 
@@ -1164,7 +1164,7 @@ namespace Skylight
             // Fire the event.
 
             this.Source.Pull.CoinBlockEvent(
-                new BlockEventArgs(b, this.Source)
+                new BlockEventArgs(b)
                 );
         }
 
@@ -1238,7 +1238,7 @@ namespace Skylight
 
             // Fire the event
             this.Source.Pull.RoomPortalBlockEvent(
-                new BlockEventArgs(b, this.Source)
+                new BlockEventArgs(b)
                 );
         }
 
@@ -1257,7 +1257,7 @@ namespace Skylight
                 );
         }
 
-        private void OnWu(Message m)
+        private void OnWoot(Message m)
         {
             // Extract data.
             int id = m.GetInteger(0);
