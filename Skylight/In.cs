@@ -1322,14 +1322,16 @@ namespace Skylight
 
         private void UpdatePhysics()
         {
+            
             playerPhysicsStopwatch.Start();
+            long accumulator = 0;
             while (this.Bot.ShouldTick)
             {
                 try
                 {
-                    if (playerPhysicsStopwatch.ElapsedMilliseconds >= Physics.Config.physics_ms_per_tick)
+                    if (playerPhysicsStopwatch.ElapsedMilliseconds >= accumulator + Physics.Config.physics_ms_per_tick)
                     {
-                        playerPhysicsStopwatch.Restart();
+                        accumulator += Physics.Config.physics_ms_per_tick;
                         foreach (Player player in this.Source.OnlinePlayers)
                         {
                             player.tick();
@@ -1337,6 +1339,12 @@ namespace Skylight
                             PlayerEventArgs e = new PlayerEventArgs(player, this.Source, null);
                             this.Source.Pull.TickEvent(e);
                         }
+                    }
+                    else
+                    {
+                        //Since the timescales dealt with here should be subsecond, explicit unchecked casts to int should never overflow.
+                        int difference = (int)(playerPhysicsStopwatch.ElapsedMilliseconds - accumulator);
+                        System.Threading.Thread.Sleep( difference );
                     }
                 }
                 catch (Exception e)
