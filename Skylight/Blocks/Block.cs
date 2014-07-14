@@ -1,19 +1,11 @@
-﻿
-
-namespace Skylight
+﻿namespace Skylight
 {
 
-	// <remarks>
-	// Use the block object for adding blocks to your world. The block object is returned from
-	// Skylight when a new block is added.
-	// </remarks>
-	// <param name="id">The id of the block (block id).</param>
-	// <param name="x">The x coordinate of the block.</param>
-	// <param name="y">The y coordinate of the block.</param>
-	// <param name="z">The z coordinate of the block. Also known as the layer (background or foreground).
-	// Default is foreground (0).</param>
-	// <param name="direction">The direction of the block (if applicable). Default is normal.</param>
-	// <param name="placer">If applicable, a Player object will be returned for the author of that block.</param>
+	/// <summary>
+    /// Use the block object for adding blocks to your world. The block object is returned from
+    ///  Skylight when a new block is added.
+	/// </summary>
+    /// 
     public class Block
     {
         
