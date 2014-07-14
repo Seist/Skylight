@@ -1297,7 +1297,7 @@ namespace Skylight
         }
         #endregion
 
-        
+
 
         private void killPlayer()
         {

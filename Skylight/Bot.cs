@@ -95,9 +95,11 @@
         // Public methods
         public void LogIn()
         {
-            if (this.isConnected) {
+            if (this.isConnected)
+            {
                 Logging.SkylightMessage("You are already connected. Please run Bot.Disconnect() to change the connection.");
-                return; }
+                return;
+            }
             try
             {
                 switch (this.accType)
@@ -125,7 +127,7 @@
                         ArmorGamesConnect();
                         break;
                     default:
-                        throw new PlayerIOError(0,"Unknown account type");
+                        throw new PlayerIOError(0, "Unknown account type");
                 }
                 updateGameVersion();
             }
@@ -244,7 +246,8 @@
 
                 this.Joined = true;
 
-                while (!this.R.BlocksLoaded) {
+                while (!this.R.BlocksLoaded)
+                {
                     Thread.Sleep(50); //http://stackoverflow.com/questions/11809277/
 
                 }
@@ -270,7 +273,7 @@
         }
 
 
-      
+
 
         public enum AccountType : sbyte
         {

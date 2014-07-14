@@ -20,7 +20,7 @@ namespace Skylight
                 //// Praise him. (this is mainly due to my laziness)
 
                 // First, fill the entire map with blank blocks (so that you don't get null exceptions).
-				// Is the world always 700x400 or am I missing something?
+                // Is the world always 700x400 or am I missing something?
                 clearWorld(r);
 
                 // And now replace empty blocks with the ones that already exist.

@@ -482,7 +482,7 @@ namespace Skylight
                 y = m.GetInteger(1),
                 id = m.GetInteger(2),
                 note = m.GetInteger(3);
-            
+
             // Update relevant objects.
             Block b = null;
 

@@ -11,7 +11,7 @@ namespace Skylight
         private Block placed;
 
         private Player placer;
-        
+
         public BlockEventArgs(Block b, Room origin = null)
         {
             this.origin = (origin ?? Bot.currentRoom);
@@ -26,7 +26,7 @@ namespace Skylight
 
         public Block Placed
         {
-            get {return this.Placed;}
+            get { return this.Placed; }
         }
 
         public Player Placer

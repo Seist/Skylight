@@ -4,7 +4,7 @@ namespace Skylight
     using System;
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
-    
+
     public static class Logging
     {
         public delegate void ProgramEvent(string message);
