@@ -56,6 +56,8 @@
 
         public Client Client { get; internal set; }
 
+        public string gameVersion { get; internal set; }
+
         public int BlockDelay
         {
             get { return this.BlockDelay; }
@@ -100,25 +102,32 @@
                 {
                     case AccountType.Regular:
                         if (this.emailOrToken == Utilities.GuestEmail && this.passwordOrToken == Utilities.GuestPassword)
+                        {
                             this.Client = Utilities.GuestClient.Value;
+                        }
                         else
+                        {
                             this.Client = PlayerIO.QuickConnect.SimpleConnect(Utilities.GameID, this.emailOrToken, this.passwordOrToken);
+                        }
+                        updateGameVersion();
                         break;
 
                     case AccountType.Facebook:
                         this.Client = PlayerIO.QuickConnect.FacebookOAuthConnect(Utilities.GameID, this.emailOrToken, null);
+                        updateGameVersion();
                         break;
 
                     case AccountType.Kongregate:
                         this.Client = PlayerIO.QuickConnect.KongregateConnect(Utilities.GameID, this.emailOrToken, this.passwordOrToken);
+                        updateGameVersion();
                         break;
 
                     case AccountType.ArmorGames:
                         ArmorGamesConnect();
+                        updateGameVersion();
                         break;
                     default:
                         throw new PlayerIOError(0,"Unknown account type");
-                        break;
                 }
             }
             catch (PlayerIOError e)
@@ -129,6 +138,11 @@
             }
 
             this.IsConnected = true;
+        }
+
+        private void updateGameVersion()
+        {
+            this.gameVersion = (Utilities.NormalRoom + Convert.ToString(this.Client.BigDB.Load("config", "config")["version"])).ToString();
         }
 
         private void ArmorGamesConnect()
@@ -155,8 +169,6 @@
 
         public void Join(bool createRoom = true)
         {
-            // Update the game version.
-            Refresh();
 
             if (!this.IsConnected)
             {
@@ -181,7 +193,7 @@
                     // Join room
                     this.Connection = this.Client.Multiplayer.CreateJoinRoom(
                         this.R.Id,                         // RoomId   (URL)
-                        storedVersion,                     // RoomType (Server)
+                        this.gameVersion,                // RoomType (Server)
                         true,                              // Visible
                         new Dictionary<string, string>(),  // RoomData
                         new Dictionary<string, string>()); // JoinData
@@ -258,26 +270,8 @@
             this.Joined = false;
         }
 
-        private static string storedVersion;
 
-        private string Version(bool cached = true, string prefix = Utilities.NormalRoom)
-        {
-            if (!cached || storedVersion == null)
-            {
-                return prefix + Refresh();
-            }
-            else
-            {
-                return prefix + storedVersion;
-            }
-        }
-
-        private string Refresh()
-        {
-            this.vers_Client = PlayerIO.QuickConnect.SimpleConnect(Utilities.GameID, "guest", "guest");
-            storedVersion = Convert.ToString(this.vers_Client.BigDB.Load("config", "config")["version"]);
-            return storedVersion;
-        }
+      
 
         public enum AccountType : sbyte
         {
