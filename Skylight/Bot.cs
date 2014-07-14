@@ -26,13 +26,14 @@
 
         private readonly AccountType accType;
 
+        public Room currentRoom { get; internal set; }
+
         private Connection connection = null;
 
         private Out push = new Out();
 
-        private Room r = new Room(null);
+        //currentRoom = new Room(null);
 
-        public static Room currentRoom { get; set; }
         /// <param name="password">Make this field null if it isn't needed for your log-in method.</param>
         public Bot(Room r,
                    string emailOrToken = Utilities.GuestEmail,
@@ -42,8 +43,8 @@
         {
             this.emailOrToken = emailOrToken;
             this.passwordOrToken = passwordOrToken;
-            this.R = r;
-            currentRoom = r;
+            Logging.SkylightMessage("CURRENT ROOM VAR VALUE: " + r.ToString());
+            this.currentRoom = r;
             this.accType = accType;
             this.ShouldTick = true;
         }
@@ -88,7 +89,7 @@
 
         public Out Push { get; internal set; }
 
-        public Room R { get; internal set; }
+        
 
         static public In i = new In();
 
@@ -188,7 +189,7 @@
             }
 
             // Parse the level ID (because some people like to put full URLs in).
-            this.R.Id = Utilities.ParseURL(this.R.Id);
+            this.currentRoom.Id = Utilities.ParseURL(this.currentRoom.Id);
 
             try
             {
@@ -196,7 +197,7 @@
                 {
                     // Join room
                     this.Connection = this.Client.Multiplayer.CreateJoinRoom(
-                        this.R.Id,                         // RoomId   (URL)
+                        this.currentRoom.Id,                         // RoomId   (URL)
                         this.gameVersion,                // RoomType (Server)
                         true,                              // Visible
                         new Dictionary<string, string>(),  // RoomData
@@ -205,16 +206,17 @@
                 else
                 {
                     this.Connection = this.Client.Multiplayer.JoinRoom(
-                        this.R.Id,
+                        this.currentRoom.Id,
                         new Dictionary<string, string>()
                         );
                 }
                 // Update room data
-                Room.JoinedRooms.Add(this.R);
+                Room.JoinedRooms.Add(this.currentRoom);
 
                 Logging.SkylightMessage("CONNECTING VALUE: " + Convert.ToString(this.Connection));
+
                 // Everyone gets a connection.
-                this.R.Connections.Add(this.Connection);
+                this.currentRoom.Connections.Add(this.Connection);
 
                 // The following section deals with filtering messages from the client.
                 // Every bot receives info from the room, because some of it is exclusive to the bot.
@@ -222,24 +224,24 @@
                 // They are exactly the same as the main pull, except In.IsPersonal = true.
                 
                 i.IsPersonal = true;
-                i.Source = this.R;
+                i.Source = this.currentRoom;
                 i.Bot = this;
                 this.Connection.OnMessage += i.OnMessage;
-                this.R.Pulls.Add(i);
+                this.currentRoom.Pulls.Add(i);
 
                 // However, everything else only needs one bot to handle. Things like chat and movement.
                 // We don't need five bots firing an event every time someone chats.
                 // except when they are located in different rooms, which would be an exception.
-                if (!this.R.HasPull)
+                if (!this.currentRoom.HasPull)
                 {
-                    this.R.HasPull = true;
+                    this.currentRoom.HasPull = true;
 
-                    this.R.Receiver = this;
+                    this.currentRoom.Receiver = this;
 
-                    this.Connection.OnMessage += this.R.Pull.OnMessage;
-                    this.R.Pull.IsPersonal = false;
-                    this.R.Pull.Bot = this;
-                    this.R.Pull.Source = this.R;
+                    this.Connection.OnMessage += this.currentRoom.Pull.OnMessage;
+                    this.currentRoom.Pull.IsPersonal = false;
+                    this.currentRoom.Pull.Bot = this;
+                    this.currentRoom.Pull.Source = this.currentRoom;
                 }
 
                 // Once everything is internal settled, send the inits.
@@ -247,11 +249,11 @@
                 this.Connection.Send("init2");
 
                 // this.connection is null so... hmm...?
-                this.R.OnlinePlayers.Add(this);
+                this.currentRoom.OnlinePlayers.Add(this);
 
                 this.Joined = true;
 
-                while (!this.R.BlocksLoaded)
+                while (!this.currentRoom.BlocksLoaded)
                 {
                     Thread.Sleep(50); //http://stackoverflow.com/questions/11809277/
 
@@ -259,7 +261,7 @@
             }
             catch (Exception e)
             {
-                Logging.SkylightMessage("Unable to join room \"" + this.R.Id + "\": " + e.Message);
+                Logging.SkylightMessage("Unable to join room \"" + this.currentRoom.Id + "\": " + e.Message);
                 Logging.SkylightMessage("R ID: " + Convert.ToString(i.Source));
                 return;
             }

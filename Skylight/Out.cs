@@ -41,7 +41,7 @@ namespace Skylight
         {
             get
             {
-                return this.Bot.R;
+                return this.Bot.currentRoom;
             }
         }
 
