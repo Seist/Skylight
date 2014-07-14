@@ -33,7 +33,7 @@ namespace Skylight
         {
             get
             {
-                return this.Bot.Connection;
+                return Bot.Connection;
             }
         }
 
@@ -41,7 +41,7 @@ namespace Skylight
         {
             get
             {
-                return this.Bot.currentRoom;
+                return Bot.currentRoom;
             }
         }
 
