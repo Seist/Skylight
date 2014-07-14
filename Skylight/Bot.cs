@@ -93,6 +93,7 @@
         // Public methods
         public void LogIn()
         {
+            if (this.isConnected) { return; }
             try
             {
                 switch (this.accType)
@@ -112,8 +113,11 @@
                         this.Client = PlayerIO.QuickConnect.KongregateConnect(Utilities.GameID, this.emailOrToken, this.passwordOrToken);
                         break;
 
-                    default: //case AccountType.ArmorGames:
+                    case AccountType.ArmorGames:
                         ArmorGamesConnect();
+                        break;
+                    default:
+                        throw new PlayerIOError(0,"Unknown account type");
                         break;
                 }
             }
