@@ -90,6 +90,8 @@
 
         public Room R { get; internal set; }
 
+        static public In i = new In();
+
         public Connection Connection { get; internal set; }
 
         // Public methods
@@ -127,7 +129,8 @@
                         ArmorGamesConnect();
                         break;
                     default:
-                        throw new PlayerIOError(0, "Unknown account type");
+                        Logging.SkylightMessage("UNKNOWN ACCOUNT TYPE");
+                        break;
                 }
                 updateGameVersion();
             }
@@ -209,6 +212,7 @@
                 // Update room data
                 Room.JoinedRooms.Add(this.R);
 
+                Logging.SkylightMessage("CONNECTING VALUE: " + Convert.ToString(this.Connection));
                 // Everyone gets a connection.
                 this.R.Connections.Add(this.Connection);
 
@@ -216,7 +220,7 @@
                 // Every bot receives info from the room, because some of it is exclusive to the bot.
                 // We call those "personal" pulls.
                 // They are exactly the same as the main pull, except In.IsPersonal = true.
-                In i = new In();
+                
                 i.IsPersonal = true;
                 i.Source = this.R;
                 i.Bot = this;
@@ -242,6 +246,7 @@
                 this.Connection.Send("init");
                 this.Connection.Send("init2");
 
+                // this.connection is null so... hmm...?
                 this.R.OnlinePlayers.Add(this);
 
                 this.Joined = true;
@@ -255,7 +260,7 @@
             catch (Exception e)
             {
                 Logging.SkylightMessage("Unable to join room \"" + this.R.Id + "\": " + e.Message);
-
+                Logging.SkylightMessage("R ID: " + Convert.ToString(i.Source));
                 return;
             }
         }

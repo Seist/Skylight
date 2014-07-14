@@ -113,9 +113,15 @@ namespace Skylight
 
         internal Room Source
         {
-            get;
+            get
+            {
+                return this.source;
+            }
 
-            set;
+            set
+            {
+                this.source = value;
+            }
         }
 
         internal bool IsPersonal

@@ -12,6 +12,8 @@ namespace Skylight
 
         public static void SkylightMessage(string m)
         {
+            Console.WriteLine(m);
+            System.Diagnostics.Debug.Write(m);
             ProgramMessage(m);
         }
 
