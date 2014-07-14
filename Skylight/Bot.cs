@@ -95,7 +95,9 @@
         // Public methods
         public void LogIn()
         {
-            if (this.isConnected) { return; }
+            if (this.isConnected) {
+                Logging.SkylightMessage("You are already connected. Please run Bot.Disconnect() to change the connection.");
+                return; }
             try
             {
                 switch (this.accType)
@@ -109,26 +111,23 @@
                         {
                             this.Client = PlayerIO.QuickConnect.SimpleConnect(Utilities.GameID, this.emailOrToken, this.passwordOrToken);
                         }
-                        updateGameVersion();
                         break;
 
                     case AccountType.Facebook:
                         this.Client = PlayerIO.QuickConnect.FacebookOAuthConnect(Utilities.GameID, this.emailOrToken, null);
-                        updateGameVersion();
                         break;
 
                     case AccountType.Kongregate:
                         this.Client = PlayerIO.QuickConnect.KongregateConnect(Utilities.GameID, this.emailOrToken, this.passwordOrToken);
-                        updateGameVersion();
                         break;
 
                     case AccountType.ArmorGames:
                         ArmorGamesConnect();
-                        updateGameVersion();
                         break;
                     default:
                         throw new PlayerIOError(0,"Unknown account type");
                 }
+                updateGameVersion();
             }
             catch (PlayerIOError e)
             {
