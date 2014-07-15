@@ -134,6 +134,7 @@
 
 
             // Everyone gets a connection.
+            // This throws another NullReferenceException though.
             Bot.currentRoom.Connections.Add(this.Connection);
 
             // The following section deals with filtering messages from the client.
