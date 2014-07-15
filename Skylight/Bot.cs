@@ -46,38 +46,18 @@
             this.passwordOrToken = passwordOrToken;
             Bot.currentRoom = r;
             this.accType = accType;
+            this.ShouldTick = true;
         }
 
         public bool IsConnected { get; internal set; }
 
         public bool Joined { get; internal set; }
 
-<<<<<<< HEAD
         public bool ShouldTick { get; set; }
 
         public Client Client { get; internal set; }
 
         public string gameVersion { get; internal set; }
-=======
-        public bool Joined
-        {
-            get
-            {
-                return this.joined;
-            }
-            internal set
-            {
-                this.joined = value;
-            }
-        }
-        
-        public Client Client
-        {
-            get
-            {
-                return this.client;
-            }
->>>>>>> parent of d8a8469... Fixed BID:0 layering bug; fixed ticking defaults
 
         public int BlockDelay
         {
@@ -135,54 +115,9 @@
 
             try
             {
-<<<<<<< HEAD
                 // leave passwordOrToken as null (prefered) or empty string if non-applicable.
                 this.Connection = new Rabbit.Auth().LogIn(this.emailOrToken, this.passwordOrToken, Bot.currentRoom.Id, createRoom);
                 updateGameVersion();
-=======
-                switch (this.accType)
-                {
-                    case AccountType.Regular:
-                        if (this.emailOrToken == Tools.GuestEmail && this.passwordOrToken == Tools.GuestPassword)
-                            this.Client = Tools.GuestClient.Value;
-                        else
-                            this.Client = PlayerIO.QuickConnect.SimpleConnect(Tools.GameID, this.emailOrToken, this.passwordOrToken);
-                        break;
-
-                    case AccountType.Facebook:
-                        this.Client = PlayerIO.QuickConnect.FacebookOAuthConnect(Tools.GameID, this.emailOrToken, null);
-                        break;
-
-                    case AccountType.Kongregate:
-                        this.Client = PlayerIO.QuickConnect.KongregateConnect(Tools.GameID, this.emailOrToken, this.passwordOrToken);
-                        break;
-
-                    default: //case AccountType.ArmorGames:
-                        var c = Tools.GuestClient.Value.Multiplayer.JoinRoom("", null);
-                        c.OnMessage += (sender, message) =>
-                            {
-                                if (message.Type != "auth") return;
-
-                                if (message.Count == 0)
-                                    Tools.SkylightMessage("Cannot log in using ArmorGames. The response from the auth server is wrong.");
-                                else
-                                {
-                                    this.Client = PlayerIOClient.PlayerIO.Connect(Tools.GameID, "secure", 
-                                                                                  message.GetString(0), message.GetString(1), 
-                                                                                  "armorgames");
-                                    Tools.SkylightMessage("Logged in.");
-                                }
-
-                                c.Disconnect();
-                            };
-
-                        c.Send("auth", this.emailOrToken, this.passwordOrToken);
-                        break;
-                }
-
-                if (this.accType != AccountType.ArmorGames)
-                    Tools.SkylightMessage("Logged in.");
->>>>>>> parent of d8a8469... Fixed BID:0 layering bug; fixed ticking defaults
             }
             catch (PlayerIOError e)
             {
@@ -269,15 +204,9 @@
                 Bot.currentRoom.Pull.Source = Bot.currentRoom;
             }
 
-<<<<<<< HEAD
             // Once everything is internal settled, send the inits.
             this.Connection.Send("init");
             this.Connection.Send("init2");
-=======
-                // Once everything is internal settled, send the init.
-                this.Connection.Send("init2");
-                this.Connection.Send("init");
->>>>>>> parent of d8a8469... Fixed BID:0 layering bug; fixed ticking defaults
 
             // this.connection is null so... hmm...?
             Bot.currentRoom.OnlinePlayers.Add(this);
@@ -285,13 +214,7 @@
             this.Joined = true;
 
 <<<<<<< HEAD
-<<<<<<< HEAD
                 while (!this.R.BlocksLoaded) { Thread.Sleep(100); }
-=======
-                while (!this.R.BlocksLoaded) { }
-
-                Tools.SkylightMessage("Joined room.");
->>>>>>> parent of d8a8469... Fixed BID:0 layering bug; fixed ticking defaults
             }
             catch (Exception e)
 =======

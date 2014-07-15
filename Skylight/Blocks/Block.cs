@@ -10,10 +10,10 @@
     {
         
         public const int
-            RIGHT = 0,
-            DOWN  = 1,
-            LEFT  = 2,
-            UP    = 3,
+            RIGHT = 1,
+            DOWN  = 2,
+            LEFT  = 3,
+            UP    = 0,
             FOREGROUNDLAYER = 0,
             BACKGROUNDLAYER = 1;
 
@@ -68,14 +68,7 @@
 
             internal set
             {
-<<<<<<< HEAD
                 if (value == 0 || value == 1){this.z = value;}
-=======
-                if (value == 0 && value == 1)
-                {
-                    this.z = value;
-                }
->>>>>>> parent of d8a8469... Fixed BID:0 layering bug; fixed ticking defaults
             }
         }
 
