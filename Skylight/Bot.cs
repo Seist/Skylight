@@ -40,7 +40,7 @@
         {
             this.emailOrToken = emailOrToken;
             this.passwordOrToken = passwordOrToken;
-            this.R = r;
+            this.R = r; //
             this.accType = accType;
             this.ShouldTick = true;
         }
