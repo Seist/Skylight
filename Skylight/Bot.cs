@@ -95,18 +95,7 @@
 
         public Connection Connection { get; internal set; }
 
-        // Public methods
-        public void LogIn()
-        {
-            if (this.isConnected)
-            {
-                Logging.SkylightMessage("You are already connected. Please run Bot.Disconnect() to change the connection.");
-                return;
-            }
-
-
-            this.IsConnected = true;
-        }
+        
 
         private void updateGameVersion()
         {
@@ -118,15 +107,12 @@
         public void Join(bool createRoom = true)
         {
 
-
-
             // Parse the level ID (because some people like to put full URLs in).
             Bot.currentRoom.Id = Utilities.ParseURL(Bot.currentRoom.Id);
 
-
-            
             try
             {
+                // leave passwordOrToken as null (prefered) or empty string if non-applicable.
                 this.Connection = new Rabbit.Auth().LogIn(this.emailOrToken, this.passwordOrToken, Bot.currentRoom.Id, createRoom);
                 updateGameVersion();
             }
@@ -137,15 +123,6 @@
                 return;
             }
 
-
-            // Update room data
-            // BUG: this line is throwing a NullReferenceException.
-            // "Object reference not set to an instance of an object"
-
-
-            Logging.SkylightMessage("Bot.currentRoom: " + Convert.ToString(Bot.currentRoom));
-            // TEST:
-            Room.JoinedRooms.Add(new Room("HELLOOOO"));
 
             Room.JoinedRooms.Add(
                 Bot.currentRoom
