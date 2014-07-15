@@ -95,8 +95,7 @@ namespace Skylight
                 {
                     this.C.Send(this.R.RoomKey, b.Z, b.X, b.Y, b.Id, b.Direction);
                 }
-
-
+                
                 Thread.Sleep(this.Bot.BlockDelay);
             }
             catch (Exception)

@@ -157,8 +157,206 @@ namespace Skylight
 
             return id;
         }
+<<<<<<< HEAD
+=======
+        
+        internal static List<Block> ConvertMessageToBlockList(Message m, uint start, Room r)
+        {
+            List<Block> list = new List<Block>();
+            try
+            {
+                //// FULL CREDIT TO BASS5098 FOR THE FOLLOWING CODE
+                //// I wrote it in my own way in C# but Bass5098 made the original.
+                //// Without it I would not know how to do this.
+                //// https://github.com/kevin-brown/ee-level-editor/blob/master/LevelEditor/WorldConverter.vb
+                //// Lines 438-507
+                //// Praise him. (this is mainly due to my laziness)
+
+                // First, fill the entire map with blank blocks (so that you don't get null exceptions).
+                for (int x = 0; x < 700; x++)
+                {
+                    for (int y = 0; y < 400; y++)
+                    {
+                        for (int z = 0; z < 2; z++)
+                        {
+                            r.Map[x, y, z] = new Block(0, x, y, z);
+                        }
+                    }
+                }
+
+                // And now replace empty blocks with the ones that already exist.
+                uint messageIndex = start;
+>>>>>>> parent of d8a8469... Fixed BID:0 layering bug; fixed ticking defaults
 
 
+<<<<<<< HEAD
+=======
+                    // The ID is first.
+                    int blockId = m.GetInteger(messageIndex);
+                    messageIndex++;
+
+                    // Then the z.
+                    int z = m.GetInteger(messageIndex);
+                    messageIndex++;
+
+                    // Then the list of all X coordinates of given block
+                    byte[] xa = m.GetByteArray(messageIndex);
+                    messageIndex++;
+                    
+                    // Then the list of all Y coordinates of given block
+                    byte[] ya = m.GetByteArray(messageIndex);
+                    messageIndex++;
+
+                    int rotation = 0, note = 0, type = 0, portalId = 0, destination = 0, coins = 0;
+                    bool isVisible = false, isGate = false;
+                    string roomDestination = "";
+
+                    // Get the variables that are unique to the current block
+                    if (blockId == BlockIds.Action.Portals.NORMAL ||
+                        blockId == BlockIds.Action.Portals.INVISIBLE)
+                    {
+                        rotation = m.GetInteger(messageIndex);
+                        messageIndex++;
+
+                        portalId = m.GetInteger(messageIndex);
+                        messageIndex++;
+
+                        destination = m.GetInteger(messageIndex);
+                        messageIndex++;
+
+                        isVisible = true;
+                        if (blockId == BlockIds.Action.Portals.INVISIBLE)
+                        {
+                            isVisible = false;
+                        }
+                    }
+                    else if (blockId == BlockIds.Action.Portals.WORLD)
+                    {
+                        roomDestination = m.GetString(messageIndex);
+                        messageIndex++;
+                    }
+                    else if (blockId == BlockIds.Action.Doors.COIN ||
+                        blockId == BlockIds.Action.Gates.COIN)
+                    {
+                        coins = m.GetInteger(messageIndex);
+                        messageIndex++;
+
+                        isGate = false;
+                        if (blockId == BlockIds.Action.Gates.COIN)
+                        {
+                            isGate = true;
+                        }
+                    }
+                    else if (blockId == BlockIds.Action.Music.PERCUSSION)
+                    {
+                        type = m.GetInteger(messageIndex);
+                        messageIndex++;
+                    }
+                    else if (blockId == BlockIds.Action.Music.PIANO)
+                    {
+                        note = m.GetInteger(messageIndex);
+                        messageIndex++;
+                    }
+                    else if (blockId == BlockIds.Decorative.SciFi2013.BLUEBEND ||
+                        blockId == BlockIds.Decorative.SciFi2013.BLUESTRAIGHT ||
+                        blockId == BlockIds.Decorative.SciFi2013.GREENBEND ||
+                        blockId == BlockIds.Decorative.SciFi2013.GREENSTRAIGHT ||
+                        blockId == BlockIds.Decorative.SciFi2013.ORANGEBEND ||
+                        blockId == BlockIds.Decorative.SciFi2013.ORANGESTRAIGHT ||
+                        blockId == BlockIds.Action.Hazards.SPIKE)
+                    {
+                        rotation = m.GetInteger(messageIndex);
+                        messageIndex++;
+                    }
+                    
+
+
+                    // Some variables to simplify things.
+                    int x = 0, y = 0;
+
+                    for (int pos = 0; pos < ya.Length; pos += 2)
+                    {
+                        // Extract the X and Y positions from the array.
+                        x = (xa[pos] * 256) + xa[pos + 1];
+                        y = (ya[pos] * 256) + ya[pos + 1];
+
+                        // Ascertain the block from the ID.
+                        // Add block accordingly.
+                        if (blockId == BlockIds.Action.Portals.NORMAL ||
+                            blockId == BlockIds.Action.Portals.INVISIBLE)
+                        {
+                            list.Add(new PortalBlock(
+                                x,
+                                y,
+                                rotation,
+                                portalId,
+                                destination,
+                                isVisible));
+                        }
+                        else if (blockId == BlockIds.Action.Portals.WORLD)
+                        {                            
+                            list.Add(new RoomPortalBlock(
+                                x,
+                                y,
+                                roomDestination));
+                        }
+                        else if (blockId == BlockIds.Action.Doors.COIN ||
+                            blockId == BlockIds.Action.Gates.COIN)
+                        {
+                            list.Add(new CoinBlock(
+                                x,
+                                y,
+                                coins,
+                                isGate));
+                        }
+                        else if (blockId == BlockIds.Action.Music.PERCUSSION)
+                        {
+                            list.Add(new PercussionBlock(
+                                x,
+                                y,
+                                type));
+                        }
+                        else if (blockId == BlockIds.Action.Music.PIANO)
+                        {
+                            list.Add(new PianoBlock(
+                                x,
+                                y,
+                                note));
+                        }
+                        else if (blockId == BlockIds.Decorative.SciFi2013.BLUEBEND ||
+                            blockId == BlockIds.Decorative.SciFi2013.BLUESTRAIGHT ||
+                            blockId == BlockIds.Decorative.SciFi2013.GREENBEND ||
+                            blockId == BlockIds.Decorative.SciFi2013.GREENSTRAIGHT ||
+                            blockId == BlockIds.Decorative.SciFi2013.ORANGEBEND ||
+                            blockId == BlockIds.Decorative.SciFi2013.ORANGESTRAIGHT ||
+                            blockId == BlockIds.Action.Hazards.SPIKE)
+                        {
+                            list.Add(new Block(
+                                blockId,
+                                x,
+                                y,
+                                0,
+                                rotation));
+                        }
+                        else
+                        {
+                            list.Add(new Block(
+                            blockId,
+                            x,
+                            y,
+                            z));
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                SkylightMessage("Error loading existing blocks:\n" + e);
+            }
+            
+            return list;
+        }
+>>>>>>> parent of d8a8469... Fixed BID:0 layering bug; fixed ticking defaults
 
         // Return the correct portal ID based on whether or not the portal is visible or invisible.
         internal static int PortalIdByVisible(bool visible)

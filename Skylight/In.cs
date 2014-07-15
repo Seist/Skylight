@@ -1015,7 +1015,11 @@ namespace Skylight
 
         private void OnReset(Message m)
         {
+<<<<<<< HEAD
             foreach (Block b in World.DeserializeInit(m, 1, this.Source))
+=======
+            foreach (Block b in Tools.ConvertMessageToBlockList(m, 1, this.Source))
+>>>>>>> parent of d8a8469... Fixed BID:0 layering bug; fixed ticking defaults
             {
                 this.Source.Map[b.X, b.Y, b.Z] = b;
             }
@@ -1270,10 +1274,18 @@ namespace Skylight
 
         private void LoadBlocks()
         {
+<<<<<<< HEAD
             foreach (Block b in World.DeserializeInit(InitMessage, 18, this.Source))
+=======
+            Tools.SkylightMessage("Began loading blocks for \"" + this.Source.Name + "\"...");
+
+            foreach (Block b in Tools.ConvertMessageToBlockList(InitMessage, 18, this.Source))
+>>>>>>> parent of d8a8469... Fixed BID:0 layering bug; fixed ticking defaults
             {
                 this.Source.Map[b.X, b.Y, b.Z] = b;
             }
+
+            Tools.SkylightMessage("Finished loading blocks for \"" + this.Source.Name + "\".");
 
             this.Source.BlocksLoaded = true;
 
@@ -1286,7 +1298,7 @@ namespace Skylight
         private void UpdatePhysics()
         {
             playerPhysicsStopwatch.Start();
-            while (this.Bot.ShouldTick)
+            while (true)
             {
                 try
                 {
