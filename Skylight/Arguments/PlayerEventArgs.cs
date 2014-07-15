@@ -2,8 +2,8 @@
 
 namespace Skylight
 {
-    using System;
     using PlayerIOClient;
+    using System;
 
     public class PlayerEventArgs : EventArgs
     {
@@ -13,11 +13,22 @@ namespace Skylight
 
         private Message rawMessage;
 
-        public PlayerEventArgs(Player subject, Room origin, Message rawMessage)
+        // Overload for PlayerEventArgs that accepts a player id and subsequently converts it into a player object
+        public PlayerEventArgs(int player_id, Room origin, Message rawMessage)
         {
+            Player subject = Utilities.GetPlayerById(player_id);
             this.subject = subject;
             this.origin = origin;
             this.rawMessage = rawMessage;
+        }
+        
+        public PlayerEventArgs(Player subject, Room origin = null, Message rawMessage = null)
+        {
+            this.subject = subject;
+            this.origin = (origin ?? Bot.currentRoom);
+            this.rawMessage = rawMessage;
+            
+
         }
 
         public Player Subject
@@ -25,14 +36,20 @@ namespace Skylight
             get { return this.subject; }
         }
 
+        public Message formattedMessage
+        {
+
+            get;
+            set;
+        }
         public Room Origin
         {
-            get { return this.origin; }
+            get { return this.Origin; }
         }
 
         public Message RawMessage
         {
-            get { return this.rawMessage; }
+            get { return this.RawMessage; }
         }
     }
 }

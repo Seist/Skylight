@@ -6,57 +6,50 @@
         public ItemId()
         {
             return;
-        }// end function
+        }
 
-        public static bool isSolid(int param1)
+        public static bool isSolid(int block_id)
         {
-            return param1 >= 9 && param1 <= 97 || param1 >= 122 && param1 <= 217;
-        }// end function
+            return (block_id >= 9 && block_id <= 97) || (block_id >= 122 && block_id <= 217);
+        }
 
-        public static bool isClimbable(int param1)
+        public static bool isClimbable(int block_id)
         {
-            switch(param1)
+            switch (block_id)
             {
-                case BlockIds.Action.Ladders.LADDER:
-                case BlockIds.Action.Ladders.CHAIN:
-                case BlockIds.Action.Ladders.HORIZONTALVINE:
-                case BlockIds.Action.Ladders.VERTICALVINE:
-                {
-                    return true;
-                }
+                case (int)BlockIds.Ladders.LADDER:
+                case (int)BlockIds.Ladders.CHAIN:
+                case (int)BlockIds.Ladders.HORIZONTALVINE:
+                case (int)BlockIds.Ladders.VERTICALVINE:
+                    {
+                        return true;
+                    }
                 default:
-                {
-                    break;
-                }
+                    {
+                        return false;
+                    }
             }
-            return false;
-        }// end function
+        }
 
-        public static bool isBackgroundRotateable(int param1)
+        public static bool isRotateable(int block_id)
         {
-            return false;
-        }// end function
-
-        public static bool isDecorationRotateable(int param1)
-        {
-            switch(param1)
+            switch (block_id)
             {
-                case BlockIds.Decorative.SciFi2013.BLUESTRAIGHT:
-                case BlockIds.Decorative.SciFi2013.BLUEBEND:
-                case BlockIds.Decorative.SciFi2013.GREENSTRAIGHT:
-                case BlockIds.Decorative.SciFi2013.GREENBEND:
-                case BlockIds.Decorative.SciFi2013.ORANGESTRAIGHT:
-                case BlockIds.Decorative.SciFi2013.ORANGEBEND:
-                {
-                    return true;
-                }
+                case (int)BlockIds.SciFi2013.BLUESTRAIGHT:
+                case (int)BlockIds.SciFi2013.BLUEBEND:
+                case (int)BlockIds.SciFi2013.GREENSTRAIGHT:
+                case (int)BlockIds.SciFi2013.GREENBEND:
+                case (int)BlockIds.SciFi2013.ORANGESTRAIGHT:
+                case (int)BlockIds.SciFi2013.ORANGEBEND:
+                    {
+                        return true;
+                    }
                 default:
-                {
-                    break;
-                }
+                    {
+                        return false;
+                    }
             }
-            return false;
-        }// end function
+        }
 
     }
 }
