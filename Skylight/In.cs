@@ -414,14 +414,15 @@ namespace Skylight
             int z = m.GetInteger(0),
                 x = m.GetInteger(1),
                 y = m.GetInteger(2),
-                blockId = m.GetInteger(3),
-                playerId = m.GetInteger(4);
+                blockId = m.GetInteger(3);
 
             // Update relevant objects.
             Block b = new Block(blockId, x, y, z);
 
             if (!specialBlockIds.Contains(blockId))
             {
+                int playerId = m.GetInteger(4);
+
                 Player subject = Tools.GetPlayerById(playerId, this.Source);
 
                 b.Placer = subject;

@@ -242,7 +242,7 @@
                     // Join room
                     this.Connection = this.Client.Multiplayer.CreateJoinRoom(
                         this.R.Id,                         // RoomId   (URL)
-                        storedVersion,               // RoomType (Server)
+                        storedVersion,                     // RoomType (Server)
                         true,                              // Visible
                         new Dictionary<string, string>(),  // RoomData
                         new Dictionary<string, string>()); // JoinData
@@ -292,7 +292,7 @@
 
                 this.Joined = true;
 
-                while (!this.R.BlocksLoaded) { }
+                while (!this.R.BlocksLoaded) { Thread.Sleep(100); }
             }
             catch (Exception e)
             {
