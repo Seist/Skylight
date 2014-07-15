@@ -8,6 +8,7 @@
 
 # Build results
 [Rr]elease/
+[Dd]ebug/
 *_i.c
 *_p.c
 *.ilk

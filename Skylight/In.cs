@@ -1,37 +1,37 @@
 ﻿// <author>TakoMan02</author>
-// <summary>In.cs is s receiver and processor for every event that happens in the world it is in.</summary>
+// <summary>In.cs is a receiver and processor for every event that happens in the world it is in.</summary>
 namespace Skylight
 {
+    using PlayerIOClient;
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Threading;
-    using PlayerIOClient;
 
     public class In
     {
         private bool isPersonal;
 
         private Bot bot;
-        
+
         /// <summary>
         /// These IDs do not have an associated Player id when sent.
         /// </summary>
         private List<int> specialBlockIds = new List<int>() 
         { 
-            BlockIds.Action.Switches.SWITCH,
-            BlockIds.Action.Tools.TROPHY,
-            BlockIds.Action.Doors.TIME,
-            BlockIds.Action.Gates.TIME,
-            BlockIds.Action.Doors.SWITCH,
-            BlockIds.Action.Gates.SWITCH,
-            BlockIds.Action.Doors.ZOMBIE,
-            BlockIds.Action.Gates.ZOMBIE,
-            BlockIds.Blocks.Secrets.NONSOLID,
-            BlockIds.Action.Tools.SPAWN,
-            BlockIds.Action.Cake.CAKE,
-            BlockIds.Action.Tools.CHECKPOINT,
-            BlockIds.Action.Hazards.FIRE
+            (int)BlockIds.Switches.SWITCH,
+            (int)BlockIds.Tools.TROPHY,
+            (int)BlockIds.Doors.TIME,
+            (int)BlockIds.Gates.TIME,
+            (int)BlockIds.Doors.SWITCH,
+            (int)BlockIds.Gates.SWITCH,
+            (int)BlockIds.Doors.ZOMBIE,
+            (int)BlockIds.Gates.ZOMBIE,
+            (int)BlockIds.Secrets.NONSOLID,
+            (int)BlockIds.Tools.SPAWN,
+            (int)BlockIds.Cake.CAKE,
+            (int)BlockIds.Tools.CHECKPOINT,
+            (int)BlockIds.Hazards.FIRE
         };
 
         private List<Message> prematureMessages = new List<Message>();
@@ -45,76 +45,70 @@ namespace Skylight
         public delegate void BlockEvent(BlockEventArgs e);
 
         public delegate void ChatEvent(ChatEventArgs e);
-        
+
         public delegate void RoomEvent(RoomEventArgs e);
 
         public delegate void PlayerEvent(PlayerEventArgs e);
 
         public event BlockEvent
-            CoinBlockEvent       = delegate { },
-            NormalBlockEvent     = delegate { },
-            PortalBlockEvent     = delegate { },
+            CoinBlockEvent = delegate { },
+            NormalBlockEvent = delegate { },
+            PortalBlockEvent = delegate { },
             RoomPortalBlockEvent = delegate { },
-            RotateEvent          = delegate { },
-            SignBlockEvent       = delegate { },
-            SoundBlockEvent      = delegate { };
-            
+            RotateEvent = delegate { },
+            SignBlockEvent = delegate { },
+            SoundBlockEvent = delegate { };
+
         public event ChatEvent
-            AutotextEvent        = delegate { },
-            LabelEvent           = delegate { },
-            NormalChatEvent      = delegate { },
-            SayOldEvent          = delegate { },
-            SystemMessageEvent   = delegate { };
-        
+            AutotextEvent = delegate { },
+            LabelEvent = delegate { },
+            NormalChatEvent = delegate { },
+            SayOldEvent = delegate { },
+            SystemMessageEvent = delegate { };
+
         public event PlayerEvent
-            AddEvent             = delegate { },
-            CoinCollectedEvent   = delegate { },
-            CrownEvent           = delegate { },
-            DeathEvent           = delegate { },
-            FaceEvent            = delegate { },
-            GainAccessEvent      = delegate { },
-            GodEvent             = delegate { },
-            GrinchEvent          = delegate { },
-            InfoEvent            = delegate { },
-            JumpEvent            = delegate { },
-            LeaveEvent           = delegate { },
-            LevelUpEvent         = delegate { },
-            LoseAccessEvent      = delegate { },
-            MagicCoinEvent       = delegate { },
-            ModModeEvent         = delegate { },
-            MovementEvent        = delegate { },
-            PotionEvent          = delegate { },
-            RedWizardEvent       = delegate { },
-            TeleportEvent        = delegate { },
-            TickEvent            = delegate { },
-            TrophyEvent          = delegate { },
-            WitchEvent           = delegate { },
-            WizardEvent          = delegate { },
-            WootEvent            = delegate { };
-            
+            AddEvent = delegate { },
+            CoinCollectedEvent = delegate { },
+            CrownEvent = delegate { },
+            DeathEvent = delegate { },
+            FaceEvent = delegate { },
+            GainAccessEvent = delegate { },
+            GodEvent = delegate { },
+            GrinchEvent = delegate { },
+            InfoEvent = delegate { },
+            JumpEvent = delegate { },
+            LeaveEvent = delegate { },
+            LevelUpEvent = delegate { },
+            LoseAccessEvent = delegate { },
+            MagicCoinEvent = delegate { },
+            ModModeEvent = delegate { },
+            MovementEvent = delegate { },
+            PotionEvent = delegate { },
+            RedWizardEvent = delegate { },
+            TeleportEvent = delegate { },
+            TickEvent = delegate { },
+            TrophyEvent = delegate { },
+            WitchEvent = delegate { },
+            WizardEvent = delegate { },
+            WootEvent = delegate { };
+
         public event RoomEvent
-            ClearEvent           = delegate { },
-            HideEvent            = delegate { },
-            InitEvent            = delegate { },
-            PotionToggleEvent    = delegate { },
-            RefreshshopEvent     = delegate { },
-            ResetEvent           = delegate { },
-            SavedEvent           = delegate { },
-            ShowEvent            = delegate { },
-            UpdateEvent          = delegate { },
-            UpdateMetaEvent      = delegate { };
+            ClearEvent = delegate { },
+            HideEvent = delegate { },
+            InitEvent = delegate { },
+            PotionToggleEvent = delegate { },
+            RefreshshopEvent = delegate { },
+            ResetEvent = delegate { },
+            SavedEvent = delegate { },
+            ShowEvent = delegate { },
+            UpdateEvent = delegate { },
+            UpdateMetaEvent = delegate { };
 
         internal Bot Bot
         {
-            get
-            {
-                return this.bot;
-            }
+            get;
 
-            set
-            {
-                this.bot = value;
-            }
+            set;
         }
 
         internal Room Source
@@ -124,7 +118,7 @@ namespace Skylight
                 return this.source;
             }
 
-            set 
+            set
             {
                 this.source = value;
             }
@@ -132,15 +126,9 @@ namespace Skylight
 
         internal bool IsPersonal
         {
-            get
-            {
-                return this.isPersonal;
-            }
+            get;
 
-            set
-            {
-                this.isPersonal = value;
-            }
+            set;
         }
 
         internal void OnMessage(object sender, Message m)
@@ -151,187 +139,203 @@ namespace Skylight
 
             try
             {
-                if (!this.Source.IsInitialized)
+
+
+                if (this.Source.IsInitialized)
                 {
                     if (!this.IsPersonal)
                     {
-                        if (m.Type == "init")
-                        {
-                            this.OnInit(m);
-                        }
-                        else if (m.Type == "add")
-                        {
-                            this.OnAdd(m);
-                        }
-                        else
-                        {
-                            this.prematureMessages.Add(m);
-                        }
+                        messageToWorld(m);
+                    }
+                    else
+                    {
+                        messageToBot(m);
                     }
                 }
                 else
                 {
                     if (!this.IsPersonal)
                     {
-                        switch (Convert.ToString(m.Type))
-                        {
-                            case "add": this.OnAdd(m);
-                                break;
-
-                            case "allowpotions": this.OnAllowPotions(m);
-                                break;
-
-                            case "autotext": this.OnAutotext(m);
-                                break;
-
-                            case "b": this.OnB(m);
-                                break;
-
-                            case "bc": this.OnBc(m);
-                                break;
-
-                            case "br": this.OnBr(m);
-                                break;
-
-                            case "bs": this.OnBs(m);
-                                break;
-
-                            case "c": this.OnC(m);
-                                break;
-
-                            case "clear": this.OnClear(m);
-                                break;
-
-                            case "face": this.OnFace(m);
-                                break;
-
-                            case "givegrinch": this.OnGiveGrinch(m);
-                                break;
-
-                            case "givewitch": this.OnGiveWitch(m);
-                                break;
-
-                            case "givewizard": this.OnGiveWizard(m);
-                                break;
-
-                            case "givewizard2": this.OnGiveWizard2(m);
-                                break;
-
-                            case "god": this.OnGod(m);
-                                break;
-
-                            case "hide": this.OnHide(m);
-                                break;
-
-                            case "k": this.OnK(m);
-                                break;
-
-                            case "kill": this.OnKill(m);
-                                break;
-
-                            case "ks": this.OnKs(m);
-                                break;
-
-                            case "lb": this.OnLb(m);
-                                break;
-
-                            case "left": this.OnLeft(m);
-                                break;
-
-                            case "levelup": this.OnLevelUp(m);
-                                break;
-
-                            case "m": this.OnM(m);
-                                break;
-
-                            case "mod": this.OnMod(m);
-                                break;
-
-                            case "p": this.OnP(m);
-                                break;
-
-                            case "pt": this.OnPt(m);
-                                break;
-
-                            case "refreshshop": this.OnRefreshShop(m);
-                                break;
-
-                            case "reset": this.OnReset(m);
-                                break;
-
-                            case "say": this.OnSay(m);
-                                break;
-
-                            case "say_old": this.OnSayOld(m);
-                                break;
-
-                            case "saved": this.OnSaved(m);
-                                break;
-
-                            case "show": this.OnShow(m);
-                                break;
-
-                            case "tele": this.OnTele(m);
-                                break;
-
-                            case "teleport": this.OnTeleport(m);
-                                break;
-
-                            case "ts": this.OnTs(m);
-                                break;
-
-                            case "updatemeta": this.OnUpdateMeta(m);
-                                break;
-
-                            case "upgrade": this.OnUpgrade(m);
-                                break;
-
-                            case "wp": this.OnWp(m);
-                                break;
-
-                            case "write": this.OnWrite(m);
-                                break;
-
-                            case "w": this.OnW(m);
-                                break;
-
-                            case "wu": this.OnWu(m);
-                                break;
-
-                            default:
-                                break;
-                        }
-                    }
-                    else
-                    {
-                        switch (m.Type)
-                        {
-                            case "access":
-                                this.OnAccess(m);
-                                break;
-
-                            case "lostaccess":
-                                this.OnLostAccess(m);
-                                break;
-
-                            case "init":
-                                this.OnInit(m);
-                                break;
-
-                            case "info":
-                                this.OnInfo(m);
-                                break;
-
-                            default:
-                                break;
-                        }
+                        sourceNotInitialized(m);
                     }
                 }
+
+
             }
             catch (Exception e)
             {
-                Tools.SkylightMessage(e.ToString());
+                Logging.SkylightMessage(e.ToString());
             }
+        }
+
+        private void messageToBot(Message m)
+        {
+            switch (m.Type)
+            {
+                case "access": this.OnAccess(m);
+                    break;
+
+                case "lostaccess": this.OnLostAccess(m);
+                    break;
+
+                case "init": this.OnInit(m);
+                    break;
+
+                case "info": this.OnInfo(m);
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        private void messageToWorld(Message m)
+        {
+            switch (m.Type.ToString())
+            {
+                case "add": this.OnAdd(m);
+                    break;
+
+                case "allowpotions": this.OnAllowPotions(m);
+                    break;
+
+                case "autotext": this.OnAutotext(m);
+                    break;
+
+                case "b": this.OnBlock(m);
+                    break;
+
+                case "bc": this.OnBuildCoinBlock(m);
+                    break;
+
+                case "br": this.OnAddSpikes(m);
+                    break;
+
+                case "bs": this.OnBuildSoundBlock(m);
+                    break;
+
+                case "c": this.OnCoinCollected(m);
+                    break;
+
+                case "clear": this.OnClear(m);
+                    break;
+
+                case "face": this.OnSmileyChange(m);
+                    break;
+
+                case "givegrinch": this.OnGiveGrinch(m);
+                    break;
+
+                case "givewitch": this.OnGiveWitch(m);
+                    break;
+
+                case "givewizard": this.OnGiveWizard(m);
+                    break;
+
+                case "givewizard2": this.OnGiveWizard2(m);
+                    break;
+
+                case "god": this.OnGod(m);
+                    break;
+
+                case "hide": this.OnHide(m);
+                    break;
+
+                case "k": this.OnGetCrown(m);
+                    break;
+
+                case "kill": this.OnKill(m);
+                    break;
+
+                case "ks": this.OnGetSilverCrown(m);
+                    break;
+
+                case "lb": this.OnAddText(m);
+                    break;
+
+                case "left": this.OnLeft(m);
+                    break;
+
+                case "levelup": this.OnLevelUp(m);
+                    break;
+
+                case "m": this.OnMove(m);
+                    break;
+
+                case "mod": this.OnMod(m);
+                    break;
+
+                case "p": this.OnPotion(m);
+                    break;
+
+                case "pt": this.OnAddPortal(m);
+                    break;
+
+                case "refreshshop": this.OnRefreshShop(m);
+                    break;
+
+                case "reset": this.OnReset(m);
+                    break;
+
+                case "say": this.OnSay(m);
+                    break;
+
+                case "say_old": this.OnSayOld(m);
+                    break;
+
+                case "saved": this.OnSaved(m);
+                    break;
+
+                case "show": this.OnShow(m);
+                    break;
+
+                case "tele": this.OnTele(m);
+                    break;
+
+                case "teleport": this.OnTeleport(m);
+                    break;
+
+                case "ts": this.OnAddSign(m);
+                    break;
+
+                case "updatemeta": this.OnUpdateMeta(m);
+                    break;
+
+                case "upgrade": this.OnUpgrade(m);
+                    break;
+
+                case "wp": this.OnWp(m);
+                    break;
+
+                case "write": this.OnWrite(m);
+                    break;
+
+                case "w": this.OnW(m);
+                    break;
+
+                case "wu": this.OnWoot(m);
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        private void sourceNotInitialized(Message m)
+        {
+            switch (m.Type.ToString())
+            {
+                case "init":
+                    this.OnInit(m);
+                    break;
+                case "add":
+                    this.OnAdd(m);
+                    break;
+                default:
+                    this.prematureMessages.Add(m);
+                    break;
+            }
+
         }
 
         private void OnAccess(Message m)
@@ -341,14 +345,13 @@ namespace Skylight
             this.Bot.HasAccess = true;
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(this.Bot, this.Source, m);
+            var e = new PlayerEventArgs(this.Bot);
 
             this.Source.Pull.GainAccessEvent(e);
         }
 
         private void OnAdd(Message m)
         {
-            // Extract data.
             string name = m.GetString(1);
 
             int id = m.GetInteger(0),
@@ -363,18 +366,20 @@ namespace Skylight
                 isMod = m.GetBoolean(6),
                 hasBoost = m.GetBoolean(9),
                 isFriend = m.GetBoolean(10),
-                hasClub = m.GetBoolean(12);
+                hasClub = m.GetBoolean(12),
+                hasChat = m.GetBoolean(7); // added seven
 
             // Update relevant objects.
-            Player subject = new Player(this.Source, id, name, smiley, x, y, isGod, isMod, true, coins, hasBoost, isFriend, xplevel);
+            var subject = new Player(this.Source, id, name, smiley, x, y, isGod, isMod, true, coins, hasBoost, isFriend, xplevel);
 
             this.Source.OnlinePlayers.Add(subject);
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
+            var e = new PlayerEventArgs(subject);
 
             this.Source.Pull.AddEvent(e);
         }
+
 
         private void OnAllowPotions(Message m)
         {
@@ -385,7 +390,7 @@ namespace Skylight
             this.Source.PotionsAllowed = potions;
 
             // Fire the event.
-            RoomEventArgs e = new RoomEventArgs(this.Source);
+            var e = new RoomEventArgs();
 
             this.Source.Pull.PotionToggleEvent(e);
         }
@@ -394,21 +399,20 @@ namespace Skylight
         {
             // Extract data.
             int id = m.GetInteger(0);
-
             string message = m.GetString(1);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, this.Source);
+            var subject = Utilities.GetPlayerById(id);
 
             this.Source.ChatLog.Add(new KeyValuePair<string, Player>(message, subject));
 
             // Fire the event.
-            ChatEventArgs e = new ChatEventArgs(subject, this.Source);
+            var e = new ChatEventArgs(subject, this.Source);
 
             this.Source.Pull.AutotextEvent(e);
         }
 
-        private void OnB(Message m)
+        private void OnBlock(Message m)
         {
             // Extract data.
             int z = m.GetInteger(0),
@@ -418,11 +422,11 @@ namespace Skylight
                 playerId = m.GetInteger(4);
 
             // Update relevant objects.
-            Block b = new Block(blockId, x, y, z);
+            var b = new Block(blockId, x, y, z);
 
             if (!specialBlockIds.Contains(blockId))
             {
-                Player subject = Tools.GetPlayerById(playerId, this.Source);
+                var subject = Utilities.GetPlayerById(playerId);
 
                 b.Placer = subject;
             }
@@ -430,12 +434,12 @@ namespace Skylight
             this.Source.Map[x, y, z] = b;
 
             // Fire the event.
-            BlockEventArgs e = new BlockEventArgs(b, this.Source);
+            var e = new BlockEventArgs(b);
 
             this.Source.Pull.NormalBlockEvent(e);
         }
 
-        private void OnBc(Message m)
+        private void OnBuildCoinBlock(Message m)
         {
             // Extract data.
             int x = m.GetInteger(0),
@@ -444,22 +448,20 @@ namespace Skylight
                 coinsRequired = m.GetInteger(3);
 
             // Update relevant objects.
-            CoinBlock b = new CoinBlock(x, y, coinsRequired, false);
+            var b = new CoinBlock(x, y, coinsRequired, false);
 
-            if (id == BlockIds.Action.Gates.COIN)
-            {
-                b.IsGate = true;
-            }
+            b.IsGate = (id == (int)BlockIds.Gates.COIN);
+
 
             this.Source.Map[x, y, 0] = b;
 
             // Fire the event.
-            BlockEventArgs e = new BlockEventArgs(b, this.Source);
+            var e = new BlockEventArgs(b);
 
             this.Source.Pull.CoinBlockEvent(e);
         }
 
-        private void OnBr(Message m)
+        private void OnAddSpikes(Message m)
         {
             // Extract data.
             int x = m.GetInteger(0),
@@ -469,17 +471,17 @@ namespace Skylight
                 z = m.GetInteger(4);
 
             // Update relevant objects.
-            Block b = new Block(id, x, y, 0, rotation);
+            var b = new Block(id, x, y, 0, rotation);
 
             this.Source.Map[x, y, z] = b;
 
             // Fire the event.
-            BlockEventArgs e = new BlockEventArgs(b, this.Source);
+            var e = new BlockEventArgs(b);
 
             this.Source.Pull.RotateEvent(e);
         }
 
-        private void OnBs(Message m)
+        private void OnBuildSoundBlock(Message m)
         {
             // Extract data.
             int x = m.GetInteger(0),
@@ -489,12 +491,12 @@ namespace Skylight
 
             // Update relevant objects.
             Block b = null;
-            
-            if (id == BlockIds.Action.Music.PERCUSSION)
+
+            if (id == (int)BlockIds.Music.PERCUSSION)
             {
                 b = new PercussionBlock(x, y, note);
             }
-            else if (id == BlockIds.Action.Music.PIANO)
+            else if (id == (int)BlockIds.Music.PIANO)
             {
                 b = new PianoBlock(x, y, note);
             }
@@ -502,12 +504,12 @@ namespace Skylight
             this.Source.Map[x, y, 0] = b;
 
             // Fire the event.
-            BlockEventArgs e = new BlockEventArgs(b, this.Source);
+            var e = new BlockEventArgs(b);
 
             this.Source.Pull.SoundBlockEvent(e);
         }
 
-        private void OnC(Message m)
+        private void OnCoinCollected(Message m)
         {
             try
             {
@@ -516,18 +518,18 @@ namespace Skylight
                     totalCoins = m.GetInteger(1);
 
                 // Update relevant objects.
-                Player subject = Tools.GetPlayerById(id, this.Source);
+                var subject = Utilities.GetPlayerById(id);
 
                 subject.Coins = totalCoins;
 
                 // Fire the event.
-                PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
-                
+                var e = new PlayerEventArgs(subject);
+
                 this.Source.Pull.CoinCollectedEvent(e);
             }
             catch (Exception ex)
             {
-                Tools.SkylightMessage(ex.ToString());
+                Logging.SkylightMessage(ex.ToString());
             }
         }
 
@@ -535,94 +537,69 @@ namespace Skylight
         {
             // There is data, but it's kind of irrelevant.
             // Update relevant objects.
-            for (int x = 0; x < this.Source.Width; x++)
-            {
-                for (int y = 0; y < this.Source.Height; y++)
-                {
-                    Block blankBlock = new Block(0, x, y);
-
-                    this.Source.Map[x, y, 0] = blankBlock;
-                    this.Source.Map[x, y, 1] = blankBlock;
-                }
-            }
+            World.clearWorld(this.Source);
 
             // Fire the event.
-            RoomEventArgs e = new RoomEventArgs(this.Source);
+            var e = new RoomEventArgs();
 
             this.Source.Pull.ClearEvent(e);
         }
 
-        private void OnFace(Message m)
+        private void OnSmileyChange(Message m)
         {
             // Extract data.
             int playerId = m.GetInteger(0),
                 smileyId = m.GetInteger(1);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayerById(playerId, this.Source);
+            var subject = Utilities.GetPlayerById(playerId);
 
             subject.Smiley = smileyId;
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
+            var e = new PlayerEventArgs(subject);
 
             this.Source.Pull.FaceEvent(e);
         }
 
         private void OnGiveGrinch(Message m)
-        {            
-            // Extract data
-            int id = m.GetInteger(0);
+        {
 
-            // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, this.Source);
-
-            // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
-
-            this.Source.Pull.GrinchEvent(e);
+            this.Source.Pull.GrinchEvent(
+                preparePlayerWithId(m)
+                );
         }
 
         private void OnGiveWitch(Message m)
         {
-            // Extract data
-            int id = m.GetInteger(0);
 
-            // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, this.Source);
-
-            // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
-
-            this.Source.Pull.WitchEvent(e);
+            this.Source.Pull.WitchEvent(
+                preparePlayerWithId(m)
+                );
         }
 
         private void OnGiveWizard(Message m)
         {
-            // Extract data
-            int id = m.GetInteger(0);
-
-            // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, this.Source);
-
-            // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
+            var e = preparePlayerWithId(m);
 
             this.Source.Pull.WizardEvent(e);
         }
 
-        private void OnGiveWizard2(Message m)
+        private PlayerEventArgs preparePlayerWithId(Message m)
         {
             // Extract data
             int id = m.GetInteger(0);
 
-            // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, this.Source);
-
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
+            return new PlayerEventArgs(id, this.Source, m);
+        }
 
-            this.Source.Pull.RedWizardEvent(e);
+        private void OnGiveWizard2(Message m)
+        {
+
+            this.Source.Pull.RedWizardEvent(
+                preparePlayerWithId(m)
+                );
         }
 
         private void OnGod(Message m)
@@ -633,16 +610,16 @@ namespace Skylight
             int id = m.GetInteger(0);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, this.Source);
+            var subject = Utilities.GetPlayerById(id);
 
             subject.IsGod = isGod;
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
+            var e = new PlayerEventArgs(subject);
 
             this.Source.Pull.GodEvent(e);
         }
-        
+
         private void OnHide(Message m)
         {
             // Like with "clear", there is data but it is irrelevant.
@@ -650,7 +627,7 @@ namespace Skylight
             this.Source.TimeDoorsVisible = false;
 
             // Fire the event.
-            RoomEventArgs e = new RoomEventArgs(this.Source);
+            var e = new RoomEventArgs();
 
             this.Source.Pull.HideEvent(e);
         }
@@ -658,20 +635,21 @@ namespace Skylight
         private void OnInfo(Message m)
         {
             // Extract data.
-            string 
+            string
                 title = m.GetString(0),
                 body = m.GetString(1);
 
             // Update relevant objects.
-            Tools.SkylightMessage("Bot " + this.Bot.Name + " received a pop-up window:\n   " + title + "\n    " + body);
+            Logging.SkylightMessage("Bot " + this.Bot.Name + " received a pop-up window:\n   " + title + "\n    " + body);
 
             if (title == "Limit reached")
             {
                 this.Bot.Disconnect();
+                Logging.SkylightMessage("The bot has disconnected because the limit was reached.");
             }
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(this.Bot, this.Source, m);
+            var e = new PlayerEventArgs(this.Bot);
 
             this.Source.Pull.InfoEvent(e);
         }
@@ -681,7 +659,7 @@ namespace Skylight
             // Extract data
             string owner = m.GetString(0),
                 name = m.GetString(1),
-                worldKey = Tools.Derot(m.GetString(5)),
+                worldKey = Utilities.Derot(m.GetString(5)),
                 botName = m.GetString(9);
 
             int plays = m.GetInteger(2),
@@ -721,7 +699,7 @@ namespace Skylight
 
             // Update the room data.
             this.Source.Name = name;
-            this.Source.Owner = Tools.GetPlayerByName(owner, this.Source);
+            this.Source.Owner = Utilities.GetPlayerByName(owner, this.Source);
             this.Source.Plays = plays;
             this.Source.Woots = woots;
             this.Source.TotalWoots = totalWoots;
@@ -747,12 +725,12 @@ namespace Skylight
             this.prematureMessages.Clear();
 
             // Fire the event.
-            RoomEventArgs e = new RoomEventArgs(this.Source);
+            var e = new RoomEventArgs();
 
             this.Source.Pull.InitEvent(e);
         }
 
-        private void OnK(Message m)
+        private void OnGetCrown(Message m)
         {
             // Extract data.
             int id = m.GetInteger(0);
@@ -763,57 +741,61 @@ namespace Skylight
             }
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, this.Source);
+            var subject = Utilities.GetPlayerById(id);
 
             // Take the crown from the current holder (if one exists)
-            Player crownHolder = Tools.GetCrownHolder(this.Source);
+            var crownHolder = Utilities.GetCrownHolder(this.Source);
 
             if (crownHolder != null)
+            {
                 crownHolder.HasCrown = false;
+            }
 
             // Give it to the subject.
             if (subject != null)
+            {
                 subject.HasCrown = true;
+            }
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
+            var e = new PlayerEventArgs(subject);
 
             this.Source.Pull.CrownEvent(e);
         }
-        
+
         private void OnKill(Message m)
         {
             // Extract data.
             int id = m.GetInteger(0);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, this.Source);
+            var subject = Utilities.GetPlayerById(id);
 
             subject.DeathCount++;
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
+            var e = new PlayerEventArgs(subject);
 
             this.Source.Pull.DeathEvent(e);
         }
 
-        private void OnKs(Message m)
+        private void OnGetSilverCrown(Message m)
         {
             // Extract data.
             int id = m.GetInteger(0);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, this.Source);
+            var subject = Utilities.GetPlayerById(id);
 
             subject.HasSilverCrown = true;
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
+            var e = new PlayerEventArgs(subject);
 
             this.Source.Pull.TrophyEvent(e);
         }
-        
-        private void OnLb(Message m)
+
+        private void OnAddText(Message m)
         {
             // Extract data.
             int id = m.GetInteger(0),
@@ -823,23 +805,23 @@ namespace Skylight
             string text = m.GetString(3);
 
             // Update relevant objects.
-            TextBlock b = new TextBlock(id, x, y, text);
+            var b = new TextBlock(id, x, y, text);
 
             this.Source.Map[x, y, 0] = b;
 
             // Fire the event.
-            BlockEventArgs e = new BlockEventArgs(b, this.Source);
+            var e = new BlockEventArgs(b);
 
             this.Source.Pull.CoinBlockEvent(e);
         }
-        
+
         private void OnLeft(Message m)
         {
             // Extract data.
             int id = m.GetInteger(0);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, this.Source);
+            var subject = Utilities.GetPlayerById(id);
             for (int i = 0; i < this.Source.OnlinePlayers.Count; i++)
             {
                 if (this.Source.OnlinePlayers[i] == subject)
@@ -850,7 +832,7 @@ namespace Skylight
             }
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
+            var e = new PlayerEventArgs(subject);
 
             this.Source.Pull.LeaveEvent(e);
         }
@@ -862,11 +844,11 @@ namespace Skylight
                 level = m.GetInteger(1);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, this.Source);
+            var subject = Utilities.GetPlayerById(id);
             subject.XpLevel++;
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
+            var e = new PlayerEventArgs(subject);
 
             this.Source.Pull.LevelUpEvent(e);
         }
@@ -878,12 +860,12 @@ namespace Skylight
             this.Bot.HasAccess = false;
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(this.Bot, this.Source, m);
+            var e = new PlayerEventArgs(this.Bot);
 
             this.Source.Pull.LoseAccessEvent(e);
         }
 
-        private void OnM(Message m)
+        private void OnMove(Message m)
         {
             // Extract data.
             double xLocation = m.GetDouble(1),
@@ -901,7 +883,7 @@ namespace Skylight
                 spaceDown = m.GetBoolean(11);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, this.Source);
+            var subject = Utilities.GetPlayerById(id);
 
             subject.IsHoldingSpace = false;
             if (spaceDown)
@@ -913,7 +895,7 @@ namespace Skylight
                     subject.horizontal == horizontalDirection)
                 {
                     // Fire the jump event.
-                    PlayerEventArgs jumpEventArgs = new PlayerEventArgs(subject, this.Source, m);
+                    var jumpEventArgs = new PlayerEventArgs(subject);
 
                     this.Source.Pull.JumpEvent(jumpEventArgs);
                 }
@@ -933,55 +915,38 @@ namespace Skylight
 
             subject.HasGravityModifier = hasGravityModifier;
 
-            subject.IsHoldingUp = false;
-            if (verticalDirection == -1)
-            {
-                subject.IsHoldingUp = true;
-            }
+            subject.IsHoldingUp = (bool)(verticalDirection == -1);
+            subject.IsHoldingDown = (bool)(verticalDirection == 1);
 
-            subject.IsHoldingDown = false;
-            if (verticalDirection == 1)
-            {
-                subject.IsHoldingDown = true;
-            }
-
-            subject.IsHoldingLeft = false;
-            if (horizontalDirection == -1)
-            {
-                subject.IsHoldingLeft = true;
-            }
-
-            subject.IsHoldingRight = false;
-            if (horizontalDirection == 1)
-            {
-                subject.IsHoldingRight = true;
-            }
+            subject.IsHoldingLeft = (bool)(horizontalDirection == -1);
+            subject.IsHoldingRight = (bool)(horizontalDirection == 1);
 
             // Fire the event.
-            PlayerEventArgs movementEventArgs = new PlayerEventArgs(subject, this.Source, m);
 
-            this.Source.Pull.MovementEvent(movementEventArgs);
+            this.Source.Pull.MovementEvent(
+                new PlayerEventArgs(subject)
+                );
         }
 
         private void OnMod(Message m)
         {
             // Extract data.
+            int id = m.GetInteger(0);
             bool isMod = m.GetBoolean(1);
 
-            int id = m.GetInteger(0);
-
             // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, this.Source);
+            var subject = Utilities.GetPlayerById(id);
 
             subject.IsMod = isMod;
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
 
-            this.Source.Pull.ModModeEvent(e);
+            this.Source.Pull.ModModeEvent(
+                new PlayerEventArgs(subject)
+                );
         }
 
-        private void OnP(Message m)
+        private void OnPotion(Message m)
         {
             // Extract data.
             int id = m.GetInteger(0),
@@ -990,7 +955,7 @@ namespace Skylight
             bool isActive = m.GetBoolean(2);
 
             // Update relevant objects
-            Player subject = Tools.GetPlayerById(id, this.Source);
+            var subject = Utilities.GetPlayerById(id);
 
             if (isActive)
             {
@@ -1002,12 +967,13 @@ namespace Skylight
             }
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
 
-            this.Source.Pull.PotionEvent(e);
+            this.Source.Pull.PotionEvent(
+                new PlayerEventArgs(subject)
+                );
         }
 
-        private void OnPt(Message m)
+        private void OnAddPortal(Message m)
         {
             // Extract data.
             int x = m.GetInteger(0),
@@ -1018,21 +984,17 @@ namespace Skylight
                 portalDestination = m.GetInteger(5);
 
             // Update relevant objects.
-            bool isVisible = false;
+            bool isVisible = (blockId == (int)BlockIds.Portals.NORMAL);
 
-            if (blockId == BlockIds.Action.Portals.NORMAL)
-            {
-                isVisible = true;
-            }
+            var b = new PortalBlock(x, y, rotation, portalId, portalDestination, isVisible);
 
-            PortalBlock b = new PortalBlock(x, y, rotation, portalId, portalDestination, isVisible);
-            
             this.Source.Map[x, y, 1] = b;
 
             // Fire the event.
-            BlockEventArgs e = new BlockEventArgs(b, this.Source);
 
-            this.Source.Pull.PortalBlockEvent(e);
+            this.Source.Pull.PortalBlockEvent(
+                new BlockEventArgs(b)
+                );
         }
 
         private void OnRefreshShop(Message m)
@@ -1040,14 +1002,15 @@ namespace Skylight
             // Nothing to extract.
             // Nothing to update.
             // Fire the event.
-            RoomEventArgs e = new RoomEventArgs(this.Source);
 
-            this.Source.Pull.RefreshshopEvent(e);
+            this.Source.Pull.RefreshshopEvent(
+                new RoomEventArgs()
+                );
         }
 
         private void OnReset(Message m)
         {
-            foreach (Block b in Tools.DeserializeInit(m, 1, this.Source))
+            foreach (Block b in World.DeserializeInit(m, 1, this.Source))
             {
                 this.Source.Map[b.X, b.Y, b.Z] = b;
             }
@@ -1058,25 +1021,23 @@ namespace Skylight
             // Nothing to extract from message.
             // Nothing to update because I have no idea what it is.
             // Fire the event.
-            RoomEventArgs e = new RoomEventArgs(this.Source);
 
-            this.Source.Pull.SavedEvent(e);
+            this.Source.Pull.SavedEvent(new RoomEventArgs());
         }
 
         private void OnSay(Message m)
         {
             // Extract data.
             int id = m.GetInteger(0);
-
             string message = m.GetString(1);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, this.Source);
+            var subject = Utilities.GetPlayerById(id);
 
             this.Source.ChatLog.Add(new KeyValuePair<string, Player>(message, subject));
 
             // Fire the event.
-            ChatEventArgs e = new ChatEventArgs(subject, this.Source);
+            var e = new ChatEventArgs(subject, this.Source);
 
             this.Source.Pull.NormalChatEvent(e);
         }
@@ -1087,13 +1048,10 @@ namespace Skylight
             string message = m.GetString(1),
                 name = m.GetString(0);
 
-            // Update relevant objects.
-            // Player subject = new Player() { Name = name };
-
             this.Source.ChatLog.Add(new KeyValuePair<string, Player>(message, null));
 
             // Fire the event.
-            ChatEventArgs e = new ChatEventArgs(null, this.Source);
+            var e = new ChatEventArgs(null, this.Source);
 
             this.Source.Pull.SayOldEvent(e);
         }
@@ -1102,10 +1060,10 @@ namespace Skylight
         {
             // Like with "hide", there is data but it is irrelevant.
             // Update relevant objects.
-            this.Source.TimeDoorsVisible = true;
+            this.Source.TimeDoorsVisible = true; // Be careful. Could be a red, blue or green key.
 
             // Fire the event.
-            RoomEventArgs e = new RoomEventArgs(this.Source);
+            var e = new RoomEventArgs();
 
             this.Source.Pull.ShowEvent(e);
         }
@@ -1118,13 +1076,13 @@ namespace Skylight
                 y = m.GetInteger(2);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, this.Source);
+            var subject = Utilities.GetPlayerById(id);
 
             subject.X = x;
             subject.Y = y;
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
+            var e = new PlayerEventArgs(subject);
 
             this.Source.Pull.TeleportEvent(e);
         }
@@ -1146,15 +1104,15 @@ namespace Skylight
                         x = m.GetInteger(index + 1),
                         y = m.GetInteger(index + 2);
 
-                    Player tempSubject = Tools.GetPlayerById(id, this.Source);
+                    var tempSubject = Utilities.GetPlayerById(id);
                     tempSubject.X = x;
                     tempSubject.Y = y;
-                    
+
                     index += 3;
                 }
 
                 // Fire the event.
-                RoomEventArgs e = new RoomEventArgs(this.Source);
+                var e = new RoomEventArgs();
 
                 this.Source.Pull.ResetEvent(e);
             }
@@ -1162,24 +1120,23 @@ namespace Skylight
             {
                 // On death (or whatever else isn't a reset).
                 // Extract data.
-                int id = m.GetInteger(1),
-                    x = m.GetInteger(2),
-                    y = m.GetInteger(3);
+                int id = m.GetInteger(1);
+
 
                 // Update relevant objects.
-                Player subject = Tools.GetPlayerById(id, this.Source);
+                var subject = Utilities.GetPlayerById(id);
 
-                subject.X = x;
-                subject.Y = y;
+                subject.X = m.GetInteger(2);
+                subject.Y = m.GetInteger(3);
 
                 // Fire the event.
-                PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
-
-                this.Source.Pull.DeathEvent(e);
+                this.Source.Pull.DeathEvent(
+                    new PlayerEventArgs(subject)
+                    );
             }
         }
-        
-        private void OnTs(Message m)
+
+        private void OnAddSign(Message m)
         {
             // Extract data.
             int id = m.GetInteger(0),
@@ -1189,14 +1146,15 @@ namespace Skylight
             string text = m.GetString(3);
 
             // Update relevant objects.
-            TextBlock b = new TextBlock(id, x, y, text);
+            var b = new TextBlock(id, x, y, text);
 
             this.Source.Map[x, y, 0] = b;
 
             // Fire the event.
-            BlockEventArgs e = new BlockEventArgs(b, this.Source);
 
-            this.Source.Pull.CoinBlockEvent(e);
+            this.Source.Pull.CoinBlockEvent(
+                new BlockEventArgs(b)
+                );
         }
 
         private void OnUpdateMeta(Message m)
@@ -1218,9 +1176,10 @@ namespace Skylight
             this.Source.TotalWoots = totalWoots;
 
             // Fire the event.
-            RoomEventArgs e = new RoomEventArgs(this.Source);
 
-            this.Source.Pull.UpdateMetaEvent(e);
+            this.Source.Pull.UpdateMetaEvent(
+                new RoomEventArgs()
+                );
         }
 
         private void OnUpgrade(Message m)
@@ -1228,9 +1187,10 @@ namespace Skylight
             // Nothing to extract from message.
             // Nothing to update.
             // Fire the event.
-            RoomEventArgs e = new RoomEventArgs(this.Source);
 
-            this.UpdateEvent(e);
+            this.UpdateEvent(
+                new RoomEventArgs()
+                );
         }
 
         private void OnW(Message m)
@@ -1240,14 +1200,15 @@ namespace Skylight
             int id = m.GetInteger(0);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, this.Source);
+            var subject = Utilities.GetPlayerById(id);
 
             subject.CollectedMagic++;
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
 
-            this.Source.Pull.MagicCoinEvent(e);
+            this.Source.Pull.MagicCoinEvent(
+                new PlayerEventArgs(subject)
+                );
         }
 
         private void OnWp(Message m)
@@ -1260,54 +1221,51 @@ namespace Skylight
             string destination = m.GetString(3);
 
             // Update relevant objects.
-            Block b = new RoomPortalBlock(x, y, destination);
+            var b = new RoomPortalBlock(x, y, destination);
 
             this.Source.Map[x, y, 0] = b;
 
             // Fire the event
-            BlockEventArgs e = new BlockEventArgs(b, this.Source);
-
-            this.Source.Pull.RoomPortalBlockEvent(e);
+            this.Source.Pull.RoomPortalBlockEvent(
+                new BlockEventArgs(b)
+                );
         }
-        
+
         private void OnWrite(Message m)
         {
             // Extract data.
             string prefix = m.GetString(0),
-                message = m.GetString(1);
+                   message = m.GetString(1);
 
             // Update relevant objects.
-            // Player system = new Player() { Name = prefix };
             this.Source.ChatLog.Add(new KeyValuePair<string, Player>(message, null));
 
             // Fire the event.
-            ChatEventArgs e = new ChatEventArgs(null, this.Source);
-
-            this.Source.Pull.SystemMessageEvent(e);
+            this.Source.Pull.SystemMessageEvent(
+                new ChatEventArgs(null, this.Source)
+                );
         }
 
-        private void OnWu(Message m)
-        { 
+        private void OnWoot(Message m)
+        {
             // Extract data.
             int id = m.GetInteger(0);
-
-            // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, this.Source);
 
             this.Source.TotalWoots++;
             this.Source.Woots++;
 
             // Fire the event.
-            PlayerEventArgs e = new PlayerEventArgs(subject, this.Source, m);
 
-            this.Source.Pull.WootEvent(e);
+            this.Source.Pull.WootEvent(
+                new PlayerEventArgs(id, this.Source, m)
+                );
         }
 
         private Message InitMessage;
 
         private void LoadBlocks()
         {
-            foreach (Block b in Tools.DeserializeInit(InitMessage, 18, this.Source))
+            foreach (Block b in World.DeserializeInit(InitMessage, 18, this.Source))
             {
                 this.Source.Map[b.X, b.Y, b.Z] = b;
             }
@@ -1334,14 +1292,14 @@ namespace Skylight
                         {
                             player.tick();
 
-                            PlayerEventArgs e = new PlayerEventArgs(player, this.Source, null);
+                            var e = new PlayerEventArgs(player);
                             this.Source.Pull.TickEvent(e);
                         }
                     }
                 }
                 catch (Exception e)
                 {
-                    Tools.SkylightMessage(e.ToString());
+                    Logging.SkylightMessage(e.ToString());
                 }
             }
         }
