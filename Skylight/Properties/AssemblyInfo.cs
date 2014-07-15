@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Resources;
 
 
 
@@ -11,7 +10,7 @@ using System.Resources;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("TakoMan02")]
 [assembly: AssemblyProduct("Skylight")]
-[assembly: AssemblyCopyright("Copyright © TakoMan02 2014")]
+[assembly: AssemblyCopyright("Copyright © TakoMan02 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: InternalsVisibleTo("Skylight")]
@@ -36,4 +35,3 @@ using System.Resources;
 
 [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-[assembly: NeutralResourcesLanguageAttribute("en")]

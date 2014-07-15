@@ -2,10 +2,10 @@
 // <summary>Player.cs describes a singular player in an EE world.</summary>
 namespace Skylight
 {
-    using Skylight.Physics;
     using System;
     using System.Collections.Generic;
     using System.Drawing;
+    using Skylight.Physics;
 
     public class Player
     {
@@ -44,48 +44,95 @@ namespace Skylight
         private string name;
 
         // Public instance properties.
-        public bool HasAccess { get; internal set; }
+        public bool HasAccess
+        {
+            get
+            {
+                return this.hasAccess;
+            }
+
+            internal set
+            {
+                this.hasAccess = value;
+            }
+        }
 
         public bool HasBoost
         {
-            get;
+            get
+            {
+                return this.hasBoost;
+            }
 
-            internal set;
+            internal set
+            {
+                this.hasBoost = value;
+            }
         }
 
         public bool HasClub
         {
-            get;
+            get
+            {
+                return this.hasClub;
+            }
 
-            internal set;
+            internal set
+            {
+                this.hasClub = value;
+            }
         }
 
         public bool HasCommandAccess
         {
-            get;
+            get
+            {
+                return this.hasCommandAccess;
+            }
 
-            internal set;
+            internal set
+            {
+                this.hasCommandAccess = value;
+            }
         }
 
         public bool HasCrown
         {
-            get;
+            get
+            {
+                return this.hasCrown;
+            }
 
-            internal set;
+            internal set
+            {
+                this.hasCrown = value;
+            }
         }
 
         public bool HasGravityModifier
         {
-            get;
+            get
+            {
+                return this.hasGravityModifier;
+            }
 
-            internal set;
+            internal set
+            {
+                this.hasGravityModifier = value;
+            }
         }
 
         public bool HasSilverCrown
         {
-            get;
+            get
+            {
+                return this.hasSilverCrown;
+            }
 
-            internal set;
+            internal set
+            {
+                this.hasSilverCrown = value;
+            }
         }
 
         public bool IsBot
@@ -109,66 +156,120 @@ namespace Skylight
 
         public bool IsFriend
         {
-            get;
+            get
+            {
+                return this.isFriend;
+            }
 
-            internal set;
+            internal set
+            {
+                this.isFriend = value;
+            }
         }
 
         public bool IsGod
         {
-            get;
+            get
+            {
+                return this.isGod;
+            }
 
-            internal set;
+            internal set
+            {
+                this.isGod = value;
+            }
         }
 
         public bool IsMod
         {
-            get;
+            get
+            {
+                return this.isMod;
+            }
 
-            internal set;
+            internal set
+            {
+                this.isMod = value;
+            }
         }
 
         public bool IsHoldingLeft
         {
-            get;
+            get
+            {
+                return this.isHoldingLeft;
+            }
 
-            internal set;
+            internal set
+            {
+                this.isHoldingLeft = value;
+            }
         }
 
         public bool IsHoldingRight
         {
-            get;
+            get
+            {
+                return this.isHoldingRight;
+            }
 
-            internal set;
+            internal set
+            {
+                this.isHoldingRight = value;
+            }
         }
 
         public bool IsHoldingUp
         {
-            get;
+            get
+            {
+                return this.isHoldingUp;
+            }
 
-            internal set;
+            internal set
+            {
+                this.isHoldingUp = value;
+            }
         }
 
         public bool IsHoldingDown
         {
-            get;
+            get
+            {
+                return this.isHoldingDown;
+            }
 
-            internal set;
+            internal set
+            {
+                this.isHoldingDown = value;
+            }
         }
 
         public bool IsHoldingSpace
         {
-            get;
+            get
+            {
+                return this.isHoldingSpace;
+            }
 
-            internal set;
+            internal set
+            {
+                this.isHoldingSpace = value;
+            }
         }
 
         public bool IsOwner
         {
             get
             {
-                return (this.PlayingIn.Owner == this);
-
+                if (this.PlayingIn.Owner == this)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
 
             internal set
@@ -179,64 +280,118 @@ namespace Skylight
 
         public int Coins
         {
-            get;
+            get
+            {
+                return this.coins;
+            }
 
-            internal set;
+            internal set
+            {
+                this.coins = value;
+            }
         }
 
         public int BlueCoins
         {
-            get;
-            internal set;
+            get
+            {
+                return this.blueCoins;
+            }
+            internal set
+            {
+                this.blueCoins = value;
+            }
         }
 
         public int CollectedMagic
         {
-            get;
+            get
+            {
+                return this.collectedMagic;
+            }
 
-            internal set;
+            internal set
+            {
+                this.collectedMagic = value;
+            }
         }
 
         public int DeathCount
         {
-            get;
+            get
+            {
+                return this.deathCount;
+            }
 
-            internal set;
+            internal set
+            {
+                this.deathCount = value;
+            }
         }
 
         public int Id
         {
-            get;
+            get
+            {
+                return this.id;
+            }
 
-            internal set;
+            internal set
+            {
+                this.id = value;
+            }
         }
 
         public int Smiley
         {
-            get;
+            get
+            {
+                return this.smiley;
+            }
 
-            internal set;
+            internal set
+            {
+                this.smiley = value;
+            }
         }
 
         public int XpLevel
         {
-            get;
-            // should only be able to increment it, never decrement it.
-            internal set;
+            get
+            {
+                return this.xpLevel;
+            }
+
+            internal set
+            {
+                this.xpLevel = value;
+            }
         }
 
         public List<int> PotionEffects
         {
-            get;
+            get
+            {
+                return this.potionEffects;
+            }
 
-            internal set;
+            internal set
+            {
+                this.potionEffects = value;
+            }
         }
 
         public Room PlayingIn
         {
-            get;
+            get
+            {
+                return this.playingIn;
+            }
 
-            internal set;
+            internal set
+            {
+                this.playingIn = value;
+            }
         }
 
         public string Name
@@ -259,7 +414,6 @@ namespace Skylight
 
         /* --------------------------- GUSTAVIAN PHYSICS --------------------------- */
 
-        #region physics
         public double X = 0;
         public double Y = 0;
         private bool moving = false;
@@ -381,6 +535,8 @@ namespace Skylight
 
         private Point lastPortal;
 
+        // private Player that;
+
         private bool donex = false;
         private bool doney = false;
         private double animoffset = 0;
@@ -397,7 +553,7 @@ namespace Skylight
         private double _maxThrust = 0.2;
         private double _thrustBurnOff = 0.01;
         private double _currentThrust;
-        private static List<string> admins = new List<string> { "benjaminsen", "cyclone", "toby", "rpgmaster2000", "mrshoe", "mrvoid", "atilla", "meredith1999" };
+        private static List<string> admins = new List<string> { "benjaminsen", "cyclone", "toby", "rpgmaster2000", "mrshoe", "mrvoid" };
         private bool hasChat;
 
         private double oldX = -1;
@@ -430,8 +586,8 @@ namespace Skylight
         {
             this.PlayingIn = room;
             this.Smiley = smiley;
-            this.IsGod = isGod;
-            this.IsMod = isMod;
+            this.IsGod= isGod;
+            this.IsMod= isMod;
             this.Id = id;
             this.hasChat = hasChat;
             this.Coins = coins;
@@ -494,7 +650,7 @@ namespace Skylight
             List<int> _loc_8 = new List<int>();
 
             int _loc_11 = 0;
-            if (player.X < 0 || player.Y < 0 || player.X >= this.PlayingIn.Width * 16 - 8 ||
+            if (player.X < 0 || player.Y < 0 || player.X >= this.PlayingIn.Width * 16 - 8 || 
                 player.Y >= this.PlayingIn.Height * 16 - 8)
             {
                 return 1;
@@ -502,7 +658,7 @@ namespace Skylight
 
             Player _loc_2 = this;
 
-            if (_loc_2.IsGod || _loc_2.IsMod)
+            if (_loc_2.IsGod|| _loc_2.IsMod)
             {
                 return 0;
             }
@@ -513,7 +669,7 @@ namespace Skylight
             {
                 for (int yy = -2; yy < 1; yy++)
                 {
-                    if (_loc_3 + xx > 0 && _loc_3 + xx < this.PlayingIn.Width && _loc_4 + yy > 0 &&
+                    if (_loc_3 + xx > 0 && _loc_3 + xx < this.PlayingIn.Width && _loc_4 + yy > 0 && 
                         _loc_4 + yy <= this.PlayingIn.Height)
                     {
                         for (int xTest = 0; xTest < 16; xTest++)
@@ -596,7 +752,7 @@ namespace Skylight
                                                     }
                                                     break;
                                                 }
-                                            case (int)BlockIds.Doors.SWITCH:
+                                            case BlockIds.Action.Doors.SWITCH:
                                                 {
                                                     if (this.SwitchOpened)
                                                     {
@@ -604,7 +760,7 @@ namespace Skylight
                                                     }
                                                     break;
                                                 }
-                                            case (int)BlockIds.Switches.SWITCH:
+                                            case BlockIds.Action.Gates.SWITCH:
                                                 {
                                                     if (!this.SwitchOpened)
                                                     {
@@ -612,7 +768,7 @@ namespace Skylight
                                                     }
                                                     break;
                                                 }
-                                            case (int)BlockIds.Doors.CLUB:
+                                            case BlockIds.Action.Doors.CLUB:
                                                 {
                                                     if (isclubmember)
                                                     {
@@ -620,7 +776,7 @@ namespace Skylight
                                                     }
                                                     break;
                                                 }
-                                            case (int)BlockIds.Gates.CLUB:
+                                            case BlockIds.Action.Gates.CLUB:
                                                 {
                                                     if (!isclubmember)
                                                     {
@@ -628,7 +784,7 @@ namespace Skylight
                                                     }
                                                     break;
                                                 }
-                                            case (int)BlockIds.Doors.COIN:
+                                            case BlockIds.Action.Doors.COIN:
                                                 {
                                                     if (currentBlock is CoinBlock && ((CoinBlock)currentBlock).CoinsRequired <= coins)
                                                     {
@@ -636,7 +792,7 @@ namespace Skylight
                                                     }
                                                     break;
                                                 }
-                                            case (int)BlockIds.Gates.COIN:
+                                            case BlockIds.Action.Gates.COIN:
                                                 {
                                                     if (currentBlock is CoinBlock && ((CoinBlock)currentBlock).CoinsRequired > coins)
                                                     {
@@ -644,7 +800,7 @@ namespace Skylight
                                                     }
                                                     break;
                                                 }
-                                            case (int)BlockIds.Gates.ZOMBIE:
+                                            case BlockIds.Action.Gates.ZOMBIE:
                                                 {
                                                     if (isZombie)
                                                     {
@@ -652,7 +808,7 @@ namespace Skylight
                                                     }
                                                     break;
                                                 }
-                                            case (int)BlockIds.Doors.ZOMBIE:
+                                            case BlockIds.Action.Doors.ZOMBIE:
                                                 {
                                                     if (!isZombie)
                                                     {
@@ -807,16 +963,21 @@ namespace Skylight
             List<Point> targetPortalList = new List<Point>();
             int loopIterator = 0;
             Point currentLoopPortal = new Point(0, 0);
-            int _loc_4,
-            _loc_5,
-            _loc_10;
-            double _loc_6,
-            _loc_7,
-            _loc_8,
-            _loc_9,
-            _loc_11 = 0;
+            int _loc_4 = 0;
+            int _loc_5 = 0;
+            double _loc_6 = 0;
+            double _loc_7 = 0;
+            double _loc_8 = 0;
+            double _loc_9 = 0;
+            int _loc_10 = 0;
+            double _loc_11 = 0;
             currentBlockId = this.PlayingIn.Map[cx, cy, 0].Id;
-
+            if (!isgodmod && currentBlockId == BlockIds.Action.Portals.WORLD)
+            {
+                if (spacejustdown && !worldportalsend)
+                {
+                }
+            }
             if (!isgodmod && currentBlockId == 242)
             {
                 if (lastPortal.X == 0 && lastPortal.Y == 0)
@@ -866,6 +1027,16 @@ namespace Skylight
                                     currentSY = -currentSY;
                                     break;
                                 }
+                            case 3:
+                                {
+                                    speedX = (-_loc_7) * _loc_11;
+                                    speedY = _loc_6 * _loc_11;
+                                    modifierX = (-_loc_9) * _loc_11;
+                                    modifierY = _loc_8 * _loc_11;
+                                    reminderX = -reminderX;
+                                    currentSX = -currentSX;
+                                    break;
+                                }
                             case 2:
                                 {
                                     speedX = (-_loc_6) * _loc_11;
@@ -878,17 +1049,6 @@ namespace Skylight
                                     currentSX = -currentSX;
                                     break;
                                 }
-                            case 3:
-                                {
-                                    speedX = (-_loc_7) * _loc_11;
-                                    speedY = _loc_6 * _loc_11;
-                                    modifierX = (-_loc_9) * _loc_11;
-                                    modifierY = _loc_8 * _loc_11;
-                                    reminderX = -reminderX;
-                                    currentSX = -currentSX;
-                                    break;
-                                }
-
                             default:
                                 {
                                     break;
@@ -916,7 +1076,7 @@ namespace Skylight
             oldY = this.Y;
 
             this.animoffset = this.animoffset + 0.2;
-            if (this.IsMod && !this.IsGod)
+            if (this.IsMod&& !this.IsGod)
             {
                 this.modoffset = this.modoffset + 0.2;
                 if (this.modoffset >= 16)
@@ -994,34 +1154,34 @@ namespace Skylight
                             this.mory = 0;
                             break;
                         }
-                    case (int)BlockIds.Boost.LEFT:
-                    case (int)BlockIds.Boost.RIGHT:
-                    case (int)BlockIds.Boost.UP:
-                    case (int)BlockIds.Boost.DOWN:
-                    case (int)BlockIds.Ladders.CHAIN:
-                    case (int)BlockIds.Ladders.LADDER:
-                    case (int)BlockIds.Ladders.HORIZONTALVINE:
-                    case (int)BlockIds.Ladders.VERTICALVINE:
-                    case (int)BlockIds.Gravity.ZERO:
+                    case BlockIds.Action.Boost.LEFT:
+                    case BlockIds.Action.Boost.RIGHT:
+                    case BlockIds.Action.Boost.UP:
+                    case BlockIds.Action.Boost.DOWN:
+                    case BlockIds.Action.Ladders.CHAIN:
+                    case BlockIds.Action.Ladders.LADDER:
+                    case BlockIds.Action.Ladders.HORIZONTALVINE:
+                    case BlockIds.Action.Ladders.VERTICALVINE:              
+                    case BlockIds.Action.Gravity.ZERO:
                         {
                             this.morx = 0;
                             this.mory = 0;
                             break;
                         }
-                    case (int)BlockIds.Liquids.WATER:
+                    case BlockIds.Action.Liquids.WATER:
                         {
                             this.morx = 0;
                             this.mory = (int)_water_buoyancy;
                             break;
                         }
-                    case (int)BlockIds.Liquids.MUD:
+                    case BlockIds.Action.Liquids.MUD:
                         {
                             this.morx = 0;
                             this.mory = (int)_mud_buoyancy;
                             break;
                         }
-                    case (int)BlockIds.Hazards.FIRE:
-                    case (int)BlockIds.Hazards.SPIKE:
+                    case BlockIds.Action.Hazards.FIRE:
+                    case BlockIds.Action.Hazards.SPIKE:
                         {
                             if (!this.isDead && !this._isInvulnerable)
                             {
@@ -1056,27 +1216,27 @@ namespace Skylight
                             this.OldVerticalAcceleration = 0;
                             break;
                         }
-                    case (int)BlockIds.Boost.LEFT:
-                    case (int)BlockIds.Boost.RIGHT:
-                    case (int)BlockIds.Boost.UP:
-                    case (int)BlockIds.Boost.DOWN:
-                    case (int)BlockIds.Ladders.CHAIN:
-                    case (int)BlockIds.Ladders.LADDER:
-                    case (int)BlockIds.Ladders.HORIZONTALVINE:
-                    case (int)BlockIds.Ladders.VERTICALVINE:
-                    case (int)BlockIds.Gravity.ZERO:
+                    case BlockIds.Action.Boost.LEFT:
+                    case BlockIds.Action.Boost.RIGHT:
+                    case BlockIds.Action.Boost.UP:
+                    case BlockIds.Action.Boost.DOWN:
+                    case BlockIds.Action.Ladders.CHAIN:
+                    case BlockIds.Action.Ladders.LADDER:
+                    case BlockIds.Action.Ladders.HORIZONTALVINE:
+                    case BlockIds.Action.Ladders.VERTICALVINE:
+                    case BlockIds.Action.Gravity.ZERO:
                         {
                             this.OldHorizontalAcceleration = 0;
                             this.OldVerticalAcceleration = 0;
                             break;
                         }
-                    case (int)BlockIds.Liquids.WATER:
+                    case BlockIds.Action.Liquids.WATER:
                         {
                             this.OldHorizontalAcceleration = 0;
                             this.OldVerticalAcceleration = _water_buoyancy;
                             break;
                         }
-                    case (int)BlockIds.Liquids.MUD:
+                    case BlockIds.Action.Liquids.MUD:
                         {
                             this.OldHorizontalAcceleration = 0;
                             this.OldVerticalAcceleration = _mud_buoyancy;
@@ -1125,11 +1285,11 @@ namespace Skylight
                 {
                     _speedX = _speedX * _no_modifier_dragX;
                 }
-                else if (this.currentBlockId == (int)BlockIds.Liquids.WATER && !isgodmod)
+                else if (this.currentBlockId == BlockIds.Action.Liquids.WATER && !isgodmod)
                 {
                     _speedX = _speedX * _water_drag;
                 }
-                else if (this.currentBlockId == (int)BlockIds.Liquids.MUD && !isgodmod)
+                else if (this.currentBlockId == BlockIds.Action.Liquids.MUD && !isgodmod)
                 {
                     _speedX = _speedX * this.dragMud();
                 }
@@ -1146,7 +1306,7 @@ namespace Skylight
                     _speedX = 0;
                 }
             }
-            if (_speedY != 0 || _modifierY != 0) // this is very similar to the previous block with speedx
+            if (_speedY != 0 || _modifierY != 0)
             {
                 _speedY = _speedY + _modifierY;
                 _speedY = _speedY * Config.physics_base_drag;
@@ -1154,11 +1314,11 @@ namespace Skylight
                 {
                     _speedY = _speedY * _no_modifier_dragY;
                 }
-                else if (this.currentBlockId == (int)BlockIds.Liquids.WATER && !isgodmod)
+                else if (this.currentBlockId == BlockIds.Action.Liquids.WATER && !isgodmod)
                 {
                     _speedY = _speedY * _water_drag;
                 }
-                else if (this.currentBlockId == (int)BlockIds.Liquids.MUD && !isgodmod)
+                else if (this.currentBlockId == BlockIds.Action.Liquids.MUD && !isgodmod)
                 {
                     _speedY = _speedY * this.dragMud();
                 }
@@ -1179,22 +1339,22 @@ namespace Skylight
             {
                 switch (this.currentBlockId)
                 {
-                    case (int)BlockIds.Boost.LEFT:
+                    case BlockIds.Action.Boost.LEFT:
                         {
                             _speedX = -_boost;
                             break;
                         }
-                    case (int)BlockIds.Boost.RIGHT:
+                    case BlockIds.Action.Boost.RIGHT:
                         {
                             _speedX = _boost;
                             break;
                         }
-                    case (int)BlockIds.Boost.UP:
+                    case BlockIds.Action.Boost.UP:
                         {
                             _speedY = -_boost;
                             break;
                         }
-                    case (int)BlockIds.Boost.DOWN:
+                    case BlockIds.Action.Boost.DOWN:
                         {
                             _speedY = _boost;
                             break;
@@ -1229,7 +1389,7 @@ namespace Skylight
             var imx = _speedX * 256;
             var imy = _speedY * 256;
             moving = false;
-            if (imx != 0 || this.currentBlockId == (int)BlockIds.Liquids.WATER || this.currentBlockId == (int)BlockIds.Liquids.MUD)
+            if (imx != 0 || this.currentBlockId == BlockIds.Action.Liquids.WATER || this.currentBlockId == BlockIds.Action.Liquids.MUD)
             {
                 moving = true;
             }
@@ -1261,7 +1421,7 @@ namespace Skylight
                     }
                 }
             }
-            if (imy != 0 || this.currentBlockId == (int)BlockIds.Liquids.WATER || this.currentBlockId == (int)BlockIds.Liquids.MUD)
+            if (imy != 0 || this.currentBlockId == BlockIds.Action.Liquids.WATER || this.currentBlockId == BlockIds.Action.Liquids.MUD)
             {
                 moving = true;
             }
@@ -1295,9 +1455,41 @@ namespace Skylight
             }
             return;
         }
-        #endregion
 
+        private void update()
+        {
+            return;
+        }
 
+        private void showBadge(bool param1)
+        {
+            return;
+        }
+
+        private void drawBadge(Bitmap param1, double param2, double param3, bool param4)
+        {
+            return;
+        }
+
+        private void flauntLevelBadge(bool param1)
+        {
+            return;
+        }
+
+        private void drawChat(Bitmap param1, double param2, double param3, bool param4)
+        {
+            return;
+        }
+
+        private void enterChat()
+        {
+            return;
+        }
+
+        private void say(string param1)
+        {
+            return;
+        }
 
         private void killPlayer()
         {
@@ -1364,7 +1556,7 @@ namespace Skylight
 
         private bool zombie()
         {
-            if (this.IsGod || this.IsMod)
+            if (this.IsGod|| this.IsMod)
             {
                 return false;
             }
@@ -1385,7 +1577,7 @@ namespace Skylight
 
         private bool hasActivePotion(string param1)
         {
-            if (!hasPotion(param1))
+            if (!this.touchpotions.ContainsKey(param1))
             {
                 return false;
             }
@@ -1412,7 +1604,7 @@ namespace Skylight
 
         private bool getCanTag()
         {
-            if (this.IsGod || this.IsMod || this.isDead)
+            if (this.IsGod|| this.IsMod|| this.isDead)
             {
                 return false;
             }
@@ -1421,7 +1613,7 @@ namespace Skylight
 
         private bool getCanBeTagged()
         {
-            if (this.IsGod || this.IsMod || this.isDead)
+            if (this.IsGod|| this.IsMod|| this.isDead)
             {
                 return false;
             }
@@ -1520,7 +1712,6 @@ namespace Skylight
         {
             return admins.Contains(param1);
         }
-
 
     }
 }

@@ -2,10 +2,15 @@
 
 namespace Skylight
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
 
     public class SmileyIds
     {
-        public class Default
+        public class Free
         {
             public const int
                 SMILE = 0,

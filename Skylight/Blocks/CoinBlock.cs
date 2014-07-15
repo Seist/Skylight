@@ -16,7 +16,7 @@
             int x,
             int y,
             int coinsRequired,
-            bool isGate) : base(Utilities.CoinIdByGate(isGate), x, y, 0)
+            bool isGate) : base(Tools.CoinIdByGate(isGate), x, y, 0)
         {
             this.CoinsRequired = coinsRequired;
             this.IsGate = isGate;
@@ -24,16 +24,28 @@
 
         public bool IsGate
         {
-            get;
+            get
+            {
+                return this.isGate;
+            }
 
-            internal set;
+            internal set
+            {
+                this.isGate = value;
+            }
         }
 
         public int CoinsRequired
         {
-            get;
+            get
+            {
+                return this.coinsRequired;
+            }
 
-            internal set;
+            internal set
+            {
+                this.coinsRequired = value;
+            }
         }
     }
 }

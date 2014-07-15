@@ -17,9 +17,15 @@
 
         public string Text
         {
-            get;
+            get
+            {
+                return this.text;
+            }
 
-            internal set;
+            internal set
+            {
+                this.text = value;
+            }
         }
     }
 }

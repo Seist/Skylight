@@ -1,7 +1,5 @@
 Everybody Edits Software Development Kit by TakoMan02<br>
 
-[![Build Status](https://travis-ci.org/Decagon/Skylight.svg?branch=master)](https://travis-ci.org/Decagon/Skylight)
-
 http://www.everybodyedits.com/</br>
 
 Skylight is designed to make your EE-based bot much easier to develop and understand.<br>
