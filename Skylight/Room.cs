@@ -7,7 +7,7 @@ namespace Skylight
 
     public class Room
     {
-        private static List<Room> joinedRooms = new List<Room>();
+        //private static List<Room> joinedRooms = new List<Room>();
 
         private bool
             hasPull,

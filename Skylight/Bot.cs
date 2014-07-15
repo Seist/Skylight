@@ -43,7 +43,6 @@
         {
             this.emailOrToken = emailOrToken;
             this.passwordOrToken = passwordOrToken;
-            Logging.SkylightMessage("CURRENT ROOM VAR VALUE: " + r.ToString());
             Bot.currentRoom = r;
             this.accType = accType;
             this.ShouldTick = true;
@@ -191,8 +190,7 @@
             // Parse the level ID (because some people like to put full URLs in).
             Bot.currentRoom.Id = Utilities.ParseURL(Bot.currentRoom.Id);
 
-            try
-            {
+           
                 if (createRoom)
                 {
                     // Join room
@@ -211,9 +209,18 @@
                         );
                 }
                 // Update room data
-                Room.JoinedRooms.Add(Bot.currentRoom);
+                // BUG: this line is throwing a NullReferenceException.
+                // "Object reference not set to an instance of an object"
 
-                Logging.SkylightMessage("CONNECTING VALUE: " + Convert.ToString(this.Connection));
+
+                Logging.SkylightMessage("Bot.currentRoom: " + Convert.ToString(Bot.currentRoom));
+                // TEST:
+                Room.JoinedRooms.Add(new Room("HELLOOOO"));
+
+                Room.JoinedRooms.Add(
+                    Bot.currentRoom
+                    );
+
 
                 // Everyone gets a connection.
                 Bot.currentRoom.Connections.Add(this.Connection);
@@ -258,13 +265,8 @@
                     Thread.Sleep(50); //http://stackoverflow.com/questions/11809277/
 
                 }
-            }
-            catch (Exception e)
-            {
-                Logging.SkylightMessage("Unable to join room \"" + Bot.currentRoom.Id + "\": " + e.Message);
-                Logging.SkylightMessage("R ID: " + Convert.ToString(i.Source));
-                return;
-            }
+            
+            
         }
 
         public void Disconnect()
