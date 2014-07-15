@@ -1,26 +1,19 @@
 ﻿namespace Skylight
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     public class RoomEventArgs : EventArgs
-    {        
+    {
         private Room changedRoom;
 
-        public RoomEventArgs(Room changedRoom)
+        public RoomEventArgs(Room changedRoom = null)
         {
-            this.changedRoom = changedRoom;
+            this.changedRoom = (changedRoom ?? Bot.currentRoom);
         }
 
         public Room ChangedRoom
         {
-            get
-            {
-                return this.changedRoom;
-            }
+            get { return this.changedRoom; }
         }
     }
 }
