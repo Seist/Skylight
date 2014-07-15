@@ -33,7 +33,7 @@
 
         private Out push = new Out();
 
-        //currentRoom = new Room(null);
+        
 
         /// <param name="password">Make this field null if it isn't needed for your log-in method.</param>
         public Bot(Room r,
@@ -99,7 +99,9 @@
 
         private void updateGameVersion()
         {
-            this.gameVersion = (Utilities.NormalRoom + Convert.ToString(this.Client.BigDB.Load("config", "config")["version"])).ToString();
+            // For now because this was throwing a NullReferenceException and I'll have to debug it later.
+            string unparsedGameVersion =  new System.Net.WebClient().DownloadString("http://capasha.com/bots/version.txt");
+            this.gameVersion = unparsedGameVersion;
         }
 
 
@@ -109,6 +111,7 @@
 
             // Parse the level ID (because some people like to put full URLs in).
             Bot.currentRoom.Id = Utilities.ParseURL(Bot.currentRoom.Id);
+            Bot.currentRoom = new Room(Bot.currentRoom.Id);
 
             try
             {
@@ -123,10 +126,11 @@
                 return;
             }
 
-
+            /*
             Room.JoinedRooms.Add(
                 Bot.currentRoom
-                );
+                );*/
+            
 
 
             // Everyone gets a connection.
