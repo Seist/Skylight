@@ -30,7 +30,7 @@ namespace Skylight.Arguments
         {
             _origin = origin;
             var room = this._origin;
-            if (!(room == null)) {room.ChatLog = origin.ChatLog;}
+            if (room != null) {room.ChatLog = origin.ChatLog;}
             _speaker = speaker;
         }
 
