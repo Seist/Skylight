@@ -1,19 +1,19 @@
-﻿namespace Skylight
+﻿using System;
+using System.Linq;
+
+namespace Skylight
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     public class ChatEventArgs : EventArgs
     {
         /// <summary>
-        /// The player who sent the message.
+        ///     The room where the message originated from.
         /// </summary>
-        private Player speaker;
+        private readonly Room origin;
 
         /// <summary>
-        /// The room where the message originated from.
+        ///     The player who sent the message.
         /// </summary>
-        private Room origin;
+        private readonly Player speaker;
 
         public ChatEventArgs(Player speaker, Room origin)
         {
@@ -24,17 +24,17 @@
 
         public string Message
         {
-            get { return this.Origin.ChatLog.Last().Key; }
+            get { return Origin.ChatLog.Last().Key; }
         }
 
         public Room Origin
         {
-            get { return this.origin; }
+            get { return origin; }
         }
 
         public Player Speaker
         {
-            get { return this.speaker; }
+            get { return speaker; }
         }
     }
 }

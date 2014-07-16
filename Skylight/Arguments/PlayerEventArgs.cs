@@ -1,15 +1,14 @@
-﻿namespace Skylight
-{
-    using System;
-    using PlayerIOClient;
+﻿using System;
+using PlayerIOClient;
 
+namespace Skylight
+{
     public class PlayerEventArgs : EventArgs
     {
-        private Player subject;
+        private readonly Room origin;
 
-        private Room origin;
-
-        private Message rawMessage;
+        private readonly Message rawMessage;
+        private readonly Player subject;
 
         public PlayerEventArgs(Player subject, Room origin, Message rawMessage)
         {
@@ -20,17 +19,17 @@
 
         public Player Subject
         {
-            get { return this.subject; }
+            get { return subject; }
         }
 
         public Room Origin
         {
-            get { return this.origin; }
+            get { return origin; }
         }
 
         public Message RawMessage
         {
-            get { return this.rawMessage; }
+            get { return rawMessage; }
         }
     }
 }

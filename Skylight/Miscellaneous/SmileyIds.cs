@@ -1,15 +1,27 @@
-﻿
-
-namespace Skylight
+﻿namespace Skylight
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-
     public class SmileyIds
     {
+        public class Beta
+        {
+            public const int
+                TEAR = 6,
+                WINK = 7,
+                SUPERFRUSTRATED = 8,
+                SHADES = 9,
+                DEVIL = 10,
+                BEWILDERED = 11;
+        }
+
+        public class Contest
+        {
+            public const int
+                BIRD = 29,
+                BUNNY = 30,
+                PUMPKIN = 44,
+                LITPUMPKIN = 45;
+        }
+
         public class Free
         {
             public const int
@@ -20,17 +32,6 @@ namespace Skylight
                 FRUSTRATED = 4,
                 FROWN = 5,
                 INDIFFERENT = 18;
-        }
-
-        public class Beta
-        {
-            public const int
-                TEAR = 6,
-                WINK = 7,
-                SUPERFRUSTRATED = 8,
-                SHADES = 9,
-                DEVIL = 10,
-                BEWILDERED = 11;
         }
 
         public class Shop
@@ -99,15 +100,6 @@ namespace Skylight
                 HELEN = 91,
                 COW = 92,
                 FARMER = 93;
-        }
-
-        public class Contest
-        {
-            public const int
-                BIRD = 29,
-                BUNNY = 30,
-                PUMPKIN = 44,
-                LITPUMPKIN = 45;
         }
 
         public class Special

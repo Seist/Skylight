@@ -1,20 +1,18 @@
 ﻿namespace Skylight
 {
-    using System;
-
     public class PercussionBlock : Block
     {
         public const int
-            BASE1   = 0,
-            BASE2   = 1,
-            SNARE1  = 2,
-            SNARE2  = 3,
+            BASE1 = 0,
+            BASE2 = 1,
+            SNARE1 = 2,
+            SNARE2 = 3,
             CYMBAL1 = 4,
             CYMBAL2 = 5,
             CYMBAL3 = 6,
-            CLAP    = 7,
+            CLAP = 7,
             CYMBAL4 = 8,
-            MARACA  = 9;
+            MARACA = 9;
 
         private int percussionId = -1;
 
@@ -23,20 +21,14 @@
             int y,
             int percussionId) : base(BlockIds.Action.Music.PERCUSSION, x, y, 0)
         {
-            this.PercussionId = percussionId;
+            PercussionId = percussionId;
         }
 
         public int PercussionId
         {
-            get
-            {
-                return this.percussionId;
-            }
+            get { return percussionId; }
 
-            internal set
-            {
-                this.percussionId = value;
-            }
+            internal set { percussionId = value; }
         }
     }
 }

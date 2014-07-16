@@ -1,17 +1,16 @@
 ﻿// <author>TakoMan02</author>
 // <summary>Tools.cs is the tools that belong to no specific class or are not related to EE.</summary>
+
+using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using PlayerIOClient;
+
 namespace Skylight
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text.RegularExpressions;
-    using System.Threading;
-    using PlayerIOClient;
-
     public static class Tools
     {
-        public static readonly Random
-            Ran = new Random();
+        public delegate void ProgramEvent(string message);
 
         internal const string GameID = "everybody-edits-su9rn58o40itdbnw69plyw";
         internal const string GuestEmail = "guest";
@@ -19,19 +18,20 @@ namespace Skylight
 
         // Compiler seems to choke on this line, saying that Lazy isn't supported in library.
 
-        internal static readonly Lazy<PlayerIOClient.Client> GuestClient =
-            new Lazy<PlayerIOClient.Client>(() => PlayerIO.QuickConnect.SimpleConnect(GameID, GuestEmail, GuestPassword));
-
         public const string NormalRoom = "Everybodyedits";
         public const string AuthRoom = "Auth";
 
-        public delegate void ProgramEvent(string message);
+        public static readonly Random
+            Ran = new Random();
+
+        internal static readonly Lazy<Client> GuestClient =
+            new Lazy<Client>(() => PlayerIO.QuickConnect.SimpleConnect(GameID, GuestEmail, GuestPassword));
 
         public static event ProgramEvent ProgramMessage = delegate { };
-        
+
         public static List<Player> GetWinners(Room r)
         {
-            List<Player> winners = new List<Player>();
+            var winners = new List<Player>();
 
             foreach (Player p in r.OnlinePlayers)
             {
@@ -93,7 +93,7 @@ namespace Skylight
                     {
                         return p;
                     }
-                    
+
                     // Otherwise, only return a bot.
                     if (p.IsBot)
                     {
@@ -169,7 +169,7 @@ namespace Skylight
                     }
                 }
 
-                array[i] = (char)number;
+                array[i] = (char) number;
             }
 
             return new string(array);
@@ -187,10 +187,10 @@ namespace Skylight
 
             return id;
         }
-        
+
         internal static List<Block> DeserializeInit(Message m, uint start, Room r)
         {
-            List<Block> list = new List<Block>();
+            var list = new List<Block>();
             try
             {
                 //// FULL CREDIT TO BASS5098 FOR THE FOLLOWING CODE
@@ -235,7 +235,7 @@ namespace Skylight
                     // Then the list of all X coordinates of given block
                     byte[] xa = m.GetByteArray(messageIndex);
                     messageIndex++;
-                    
+
                     // Then the list of all Y coordinates of given block
                     byte[] ya = m.GetByteArray(messageIndex);
                     messageIndex++;
@@ -269,7 +269,7 @@ namespace Skylight
                         messageIndex++;
                     }
                     else if (blockId == BlockIds.Action.Doors.COIN ||
-                        blockId == BlockIds.Action.Gates.COIN)
+                             blockId == BlockIds.Action.Gates.COIN)
                     {
                         coins = m.GetInteger(messageIndex);
                         messageIndex++;
@@ -291,17 +291,16 @@ namespace Skylight
                         messageIndex++;
                     }
                     else if (blockId == BlockIds.Decorative.SciFi2013.BLUEBEND ||
-                        blockId == BlockIds.Decorative.SciFi2013.BLUESTRAIGHT ||
-                        blockId == BlockIds.Decorative.SciFi2013.GREENBEND ||
-                        blockId == BlockIds.Decorative.SciFi2013.GREENSTRAIGHT ||
-                        blockId == BlockIds.Decorative.SciFi2013.ORANGEBEND ||
-                        blockId == BlockIds.Decorative.SciFi2013.ORANGESTRAIGHT ||
-                        blockId == BlockIds.Action.Hazards.SPIKE)
+                             blockId == BlockIds.Decorative.SciFi2013.BLUESTRAIGHT ||
+                             blockId == BlockIds.Decorative.SciFi2013.GREENBEND ||
+                             blockId == BlockIds.Decorative.SciFi2013.GREENSTRAIGHT ||
+                             blockId == BlockIds.Decorative.SciFi2013.ORANGEBEND ||
+                             blockId == BlockIds.Decorative.SciFi2013.ORANGESTRAIGHT ||
+                             blockId == BlockIds.Action.Hazards.SPIKE)
                     {
                         rotation = m.GetInteger(messageIndex);
                         messageIndex++;
                     }
-                    
 
 
                     // Some variables to simplify things.
@@ -310,8 +309,8 @@ namespace Skylight
                     for (int pos = 0; pos < ya.Length; pos += 2)
                     {
                         // Extract the X and Y positions from the array.
-                        x = (xa[pos] * 256) + xa[pos + 1];
-                        y = (ya[pos] * 256) + ya[pos + 1];
+                        x = (xa[pos]*256) + xa[pos + 1];
+                        y = (ya[pos]*256) + ya[pos + 1];
 
                         // Ascertain the block from the ID.
                         // Add block accordingly.
@@ -327,14 +326,14 @@ namespace Skylight
                                 isVisible));
                         }
                         else if (blockId == BlockIds.Action.Portals.WORLD)
-                        {                            
+                        {
                             list.Add(new RoomPortalBlock(
                                 x,
                                 y,
                                 roomDestination));
                         }
                         else if (blockId == BlockIds.Action.Doors.COIN ||
-                            blockId == BlockIds.Action.Gates.COIN)
+                                 blockId == BlockIds.Action.Gates.COIN)
                         {
                             list.Add(new CoinBlock(
                                 x,
@@ -357,12 +356,12 @@ namespace Skylight
                                 note));
                         }
                         else if (blockId == BlockIds.Decorative.SciFi2013.BLUEBEND ||
-                            blockId == BlockIds.Decorative.SciFi2013.BLUESTRAIGHT ||
-                            blockId == BlockIds.Decorative.SciFi2013.GREENBEND ||
-                            blockId == BlockIds.Decorative.SciFi2013.GREENSTRAIGHT ||
-                            blockId == BlockIds.Decorative.SciFi2013.ORANGEBEND ||
-                            blockId == BlockIds.Decorative.SciFi2013.ORANGESTRAIGHT ||
-                            blockId == BlockIds.Action.Hazards.SPIKE)
+                                 blockId == BlockIds.Decorative.SciFi2013.BLUESTRAIGHT ||
+                                 blockId == BlockIds.Decorative.SciFi2013.GREENBEND ||
+                                 blockId == BlockIds.Decorative.SciFi2013.GREENSTRAIGHT ||
+                                 blockId == BlockIds.Decorative.SciFi2013.ORANGEBEND ||
+                                 blockId == BlockIds.Decorative.SciFi2013.ORANGESTRAIGHT ||
+                                 blockId == BlockIds.Action.Hazards.SPIKE)
                         {
                             list.Add(new Block(
                                 blockId,
@@ -374,10 +373,10 @@ namespace Skylight
                         else
                         {
                             list.Add(new Block(
-                            blockId,
-                            x,
-                            y,
-                            z));
+                                blockId,
+                                x,
+                                y,
+                                z));
                         }
                     }
                 }
@@ -398,10 +397,7 @@ namespace Skylight
             {
                 return BlockIds.Action.Portals.NORMAL;
             }
-            else
-            {
-                return BlockIds.Action.Portals.INVISIBLE;
-            }
+            return BlockIds.Action.Portals.INVISIBLE;
         }
 
         // Return the correct coin ID based based on whether or not the block is gate or door
@@ -411,10 +407,7 @@ namespace Skylight
             {
                 return BlockIds.Action.Gates.COIN;
             }
-            else
-            {
-                return BlockIds.Action.Doors.COIN;
-            }
+            return BlockIds.Action.Doors.COIN;
         }
     }
 }

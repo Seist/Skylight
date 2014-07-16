@@ -1,31 +1,28 @@
-﻿
-
-namespace Skylight
+﻿namespace Skylight
 {
-    using System;
-
     public class Block
     {
-        
         public const int
             RIGHT = 1,
-            DOWN  = 2,
-            LEFT  = 3,
-            UP    = 0,
+            DOWN = 2,
+            LEFT = 3,
+            UP = 0,
             FOREGROUNDLAYER = 0,
             BACKGROUNDLAYER = 1;
 
-        
-        private int 
+
+        private int
             direction,
-            id,
+            id;
+
+        private Player
+            placer;
+
+        private int
             x,
             y,
             z;
-            
-        private Player 
-            placer;
-        
+
         public Block(
             int id,
             int x,
@@ -33,116 +30,78 @@ namespace Skylight
             int z = 0,
             int direction = UP)
         {
-            this.X = x;
-            this.Y = y;
-            this.Z = z;
-            this.Id = id;
-            this.Direction = direction;
+            X = x;
+            Y = y;
+            Z = z;
+            Id = id;
+            Direction = direction;
         }
 
-        
+
         public bool IsSolid
         {
-            get
-            {
-                return (this.Id >= 9 && this.Id <= 97) || (this.Id >= 122 && this.Id <= 217);
-            }
+            get { return (Id >= 9 && Id <= 97) || (Id >= 122 && Id <= 217); }
         }
 
         public int Direction
         {
-            get
-            {
-                return this.direction;
-            }
-            
-            set
-            {
-                this.direction = value;
-            }
+            get { return direction; }
+
+            set { direction = value; }
         }
-        
+
         public int Id
         {
-            get
-            {
-                return this.id;
-            }
+            get { return id; }
 
-            internal set
-            {
-                this.id = value;
-            }
+            internal set { id = value; }
         }
 
         public int Z
         {
             get
             {
-                
-                
-                if (this.Id == 0)
+                if (Id == 0)
                 {
-                    return this.z;
+                    return z;
                 }
 
-                
-                if (this.Id >= 500)
+
+                if (Id >= 500)
                 {
                     return 1;
                 }
-                else
-                {
-                    return 0;
-                }
+                return 0;
             }
 
             internal set
             {
                 if (value == 0 || value == 1)
                 {
-                    this.z = value;
+                    z = value;
                 }
             }
         }
 
         public int X
         {
-            get
-            {
-                return this.x;
-            }
+            get { return x; }
 
-            internal set
-            {
-                this.x = value;
-            }
+            internal set { x = value; }
         }
 
         public int Y
         {
-            get
-            {
-                return this.y;
-            }
+            get { return y; }
 
-            internal set
-            {
-                this.y = value;
-            }
+            internal set { y = value; }
         }
 
         public Player Placer
         {
-            get
-            {
-                return this.placer;
-            }
+            get { return placer; }
 
-            internal set
-            {
-                this.placer = value;
-            }
+            internal set { placer = value; }
         }
     }
 }

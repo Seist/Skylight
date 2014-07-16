@@ -1,7 +1,5 @@
 ﻿namespace Skylight
 {
-    using System;
-
     public class TextBlock : Block
     {
         private string text = string.Empty;
@@ -12,20 +10,14 @@
             int y,
             string text) : base(id, x, y, 0)
         {
-            this.Text = text;
+            Text = text;
         }
 
         public string Text
         {
-            get
-            {
-                return this.text;
-            }
+            get { return text; }
 
-            internal set
-            {
-                this.text = value;
-            }
+            internal set { text = value; }
         }
     }
 }

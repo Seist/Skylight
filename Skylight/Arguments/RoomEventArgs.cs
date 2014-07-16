@@ -1,14 +1,10 @@
-﻿namespace Skylight
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+﻿using System;
 
+namespace Skylight
+{
     public class RoomEventArgs : EventArgs
-    {        
-        private Room changedRoom;
+    {
+        private readonly Room changedRoom;
 
         public RoomEventArgs(Room changedRoom)
         {
@@ -17,10 +13,7 @@
 
         public Room ChangedRoom
         {
-            get
-            {
-                return this.changedRoom;
-            }
+            get { return changedRoom; }
         }
     }
 }

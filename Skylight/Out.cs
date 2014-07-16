@@ -1,12 +1,13 @@
 ﻿// <author>TakoMan02</author>
 // <summary>Out.cs is the methods that can be used to edit the world it is in.</summary>
+
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using PlayerIOClient;
+
 namespace Skylight
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading;
-    using PlayerIOClient;
-
     public class Out
     {
         public Bot Bot
@@ -31,23 +32,17 @@ namespace Skylight
 
         public Connection C
         {
-            get
-            {
-                return this.Bot.Connection;
-            }
+            get { return Bot.Connection; }
         }
 
         public Room R
         {
-            get
-            {
-                return this.Bot.R;
-            }
+            get { return Bot.R; }
         }
 
         public void Build(int id, int x, int y)
         {
-            this.Build(new Block(id, x, y));
+            Build(new Block(id, x, y));
         }
 
         public void Build(Block b)
@@ -56,46 +51,46 @@ namespace Skylight
             {
                 if (b is CoinBlock)
                 {
-                    CoinBlock c = b as CoinBlock;
+                    var c = b as CoinBlock;
 
-                    this.C.Send(this.R.RoomKey, c.Z, c.X, c.Y, c.Id, c.CoinsRequired);
+                    C.Send(R.RoomKey, c.Z, c.X, c.Y, c.Id, c.CoinsRequired);
                 }
                 else if (b is PercussionBlock)
                 {
-                    PercussionBlock p = b as PercussionBlock;
+                    var p = b as PercussionBlock;
 
-                    this.C.Send(this.R.RoomKey, p.Z, p.X, p.Y, p.Id, p.PercussionId);
+                    C.Send(R.RoomKey, p.Z, p.X, p.Y, p.Id, p.PercussionId);
                 }
                 else if (b is PianoBlock)
                 {
-                    PianoBlock p = b as PianoBlock;
+                    var p = b as PianoBlock;
 
-                    this.C.Send(this.R.RoomKey, p.Z, p.X, p.Y, p.Id, p.PianoId);
+                    C.Send(R.RoomKey, p.Z, p.X, p.Y, p.Id, p.PianoId);
                 }
                 else if (b is PortalBlock)
                 {
-                    PortalBlock p = b as PortalBlock;
+                    var p = b as PortalBlock;
 
-                    this.C.Send(this.R.RoomKey, p.Z, p.X, p.Y, p.Id, p.Direction, p.PortalId, p.PortalDestination);
+                    C.Send(R.RoomKey, p.Z, p.X, p.Y, p.Id, p.Direction, p.PortalId, p.PortalDestination);
                 }
                 else if (b is RoomPortalBlock)
                 {
-                    RoomPortalBlock r = b as RoomPortalBlock;
+                    var r = b as RoomPortalBlock;
 
-                    this.C.Send(this.R.RoomKey, r.Z, r.X, r.Y, r.Id, r.PortalDestination);
+                    C.Send(R.RoomKey, r.Z, r.X, r.Y, r.Id, r.PortalDestination);
                 }
                 else if (b is TextBlock)
                 {
-                    TextBlock t = b as TextBlock;
-                    this.C.Send(this.R.RoomKey, t.Z, t.X, t.Y, t.Id, t.Text);
+                    var t = b as TextBlock;
+                    C.Send(R.RoomKey, t.Z, t.X, t.Y, t.Id, t.Text);
                 }
                 else
                 {
-                    this.C.Send(this.R.RoomKey, b.Z, b.X, b.Y, b.Id, b.Direction);
+                    C.Send(R.RoomKey, b.Z, b.X, b.Y, b.Id, b.Direction);
                 }
 
 
-                Thread.Sleep(this.Bot.BlockDelay);
+                Thread.Sleep(Bot.BlockDelay);
             }
             catch (Exception)
             {
@@ -105,12 +100,12 @@ namespace Skylight
 
         public void Build(List<Block> blockList)
         {
-            List<Block> tempList = new List<Block>();
+            var tempList = new List<Block>();
             tempList.AddRange(blockList);
 
             foreach (Block b in tempList)
             {
-                this.Build(b);
+                Build(b);
             }
         }
 
@@ -118,7 +113,7 @@ namespace Skylight
         {
             try
             {
-                this.C.Send("clear");
+                C.Send("clear");
             }
             catch (Exception)
             {
@@ -128,7 +123,7 @@ namespace Skylight
 
         public void HoldDown(double startX, double startY)
         {
-            object[] holdArgs = new object[11];
+            var holdArgs = new object[11];
 
             holdArgs[0] = startX;
             holdArgs[1] = startY;
@@ -142,12 +137,12 @@ namespace Skylight
             holdArgs[9] = false;
             holdArgs[10] = false;
 
-            this.Move(holdArgs);
+            Move(holdArgs);
         }
 
         public void HoldLeft(double startX, double startY)
         {
-            object[] holdArgs = new object[11];
+            var holdArgs = new object[11];
 
             holdArgs[0] = startX;
             holdArgs[1] = startY;
@@ -161,12 +156,12 @@ namespace Skylight
             holdArgs[9] = false;
             holdArgs[10] = false;
 
-            this.Move(holdArgs);
+            Move(holdArgs);
         }
 
         public void HoldRight(double startX, double startY)
         {
-            object[] holdArgs = new object[11];
+            var holdArgs = new object[11];
 
             holdArgs[0] = startX;
             holdArgs[1] = startY;
@@ -180,12 +175,12 @@ namespace Skylight
             holdArgs[9] = false;
             holdArgs[10] = false;
 
-            this.Move(holdArgs);
+            Move(holdArgs);
         }
 
         public void HoldUp(double startX, double startY)
         {
-            object[] holdArgs = new object[11];
+            var holdArgs = new object[11];
 
             holdArgs[0] = startX;
             holdArgs[1] = startY;
@@ -199,14 +194,14 @@ namespace Skylight
             holdArgs[9] = false;
             holdArgs[10] = false;
 
-            this.Move(holdArgs);
+            Move(holdArgs);
         }
 
         public void InputCode(string editKey)
         {
             try
             {
-                this.C.Send("access", editKey);
+                C.Send("access", editKey);
             }
             catch (Exception)
             {
@@ -216,15 +211,15 @@ namespace Skylight
 
         public void SetCode(string newCode)
         {
-            if (this.Bot.Name == this.R.Owner.Name)
+            if (Bot.Name == R.Owner.Name)
             {
-                this.C.Send("key", newCode);
+                C.Send("key", newCode);
             }
         }
 
         public void Jump(double startX, double startY)
         {
-            object[] holdArgs = new object[11];
+            var holdArgs = new object[11];
 
             holdArgs[0] = startX;
             holdArgs[1] = startY;
@@ -238,14 +233,14 @@ namespace Skylight
             holdArgs[9] = false;
             holdArgs[10] = true;
 
-            this.Move(holdArgs);
+            Move(holdArgs);
         }
 
         public void Move(object[] args)
         {
             try
             {
-                this.C.Send("m", args);
+                C.Send("m", args);
             }
             catch (Exception)
             {
@@ -257,7 +252,7 @@ namespace Skylight
         {
             try
             {
-                this.C.Send(
+                C.Send(
                     "m",
                     m.GetDouble(1),
                     m.GetDouble(2),
@@ -279,7 +274,7 @@ namespace Skylight
 
         public void Release(double startX, double startY)
         {
-            object[] holdArgs = new object[11];
+            var holdArgs = new object[11];
             holdArgs[0] = startX;
             holdArgs[1] = startY;
             holdArgs[2] = 0;
@@ -292,7 +287,7 @@ namespace Skylight
             holdArgs[9] = false;
             holdArgs[10] = false;
 
-            this.Move(holdArgs);
+            Move(holdArgs);
         }
 
         public void Say(string s, bool useChatPrefix = true)
@@ -303,38 +298,38 @@ namespace Skylight
                 {
                     if (s.Length <= 80 && s.Length > 0)
                     {
-                        this.C.Send("say", s);
-                        Thread.Sleep(this.Bot.SpeechDelay);
+                        C.Send("say", s);
+                        Thread.Sleep(Bot.SpeechDelay);
                     }
                     else
                     {
                         // Say what you can.
-                        this.Say(s.Substring(0, 80));
+                        Say(s.Substring(0, 80));
 
                         // Delete what you just said.
                         s = s.Substring(80);
 
                         // Repeat the process.
-                        this.Say(s);
+                        Say(s);
                     }
                 }
                 else
                 {
-                    if (s.Length + this.Bot.ChatPrefix.Length <= 80)
+                    if (s.Length + Bot.ChatPrefix.Length <= 80)
                     {
-                        this.C.Send("say", this.Bot.ChatPrefix + s);
-                        Thread.Sleep(this.Bot.SpeechDelay);
+                        C.Send("say", Bot.ChatPrefix + s);
+                        Thread.Sleep(Bot.SpeechDelay);
                     }
                     else
                     {
                         // Say what you can.
-                        this.Say(s.Substring(0, 80 - this.Bot.ChatPrefix.Length));
+                        Say(s.Substring(0, 80 - Bot.ChatPrefix.Length));
 
                         // Delete what you just said.
-                        s = s.Substring(80 - this.Bot.ChatPrefix.Length);
+                        s = s.Substring(80 - Bot.ChatPrefix.Length);
 
                         // Repeat the process.
-                        this.Say(s);
+                        Say(s);
                     }
                 }
             }
@@ -350,7 +345,7 @@ namespace Skylight
             {
                 if (s != string.Empty)
                 {
-                    this.C.Send("name", s);
+                    C.Send("name", s);
                 }
             }
             catch (Exception)
@@ -361,57 +356,57 @@ namespace Skylight
 
         public void Kick(string name, string reason = "")
         {
-            if (this.Bot.Name == this.R.Owner.Name)
+            if (Bot.Name == R.Owner.Name)
             {
-                this.Say("/kick " + name + " " + reason);
+                Say("/kick " + name + " " + reason);
             }
         }
 
         public void Kick(Player p, string reason = "")
         {
-            if (this.Bot.Name == this.R.Owner.Name)
+            if (Bot.Name == R.Owner.Name)
             {
-                this.Say("/kick " + p.Name + " " + reason);
+                Say("/kick " + p.Name + " " + reason);
             }
         }
 
         public void Loadlevel()
         {
-            if (this.Bot.Name == this.R.Owner.Name)
+            if (Bot.Name == R.Owner.Name)
             {
-                this.Say("/loadlevel");
+                Say("/loadlevel");
             }
         }
 
         public void Respawn(string name)
         {
-            if (this.Bot.Name == this.R.Owner.Name)
+            if (Bot.Name == R.Owner.Name)
             {
-                this.Say("/kill " + name);
+                Say("/kill " + name);
             }
         }
 
         public void Respawn(Player p)
         {
-            if (this.Bot.Name == this.R.Owner.Name)
+            if (Bot.Name == R.Owner.Name)
             {
-                this.Say("/kill " + p.Name);
+                Say("/kill " + p.Name);
             }
         }
 
         public void RespawnAll()
         {
-            if (this.Bot.Name == this.R.Owner.Name)
+            if (Bot.Name == R.Owner.Name)
             {
-                this.Say("/respawnall");
+                Say("/respawnall");
             }
         }
 
         public void Reset()
         {
-            if (this.Bot.Name == this.R.Owner.Name)
+            if (Bot.Name == R.Owner.Name)
             {
-                this.Say("/reset");
+                Say("/reset");
             }
         }
 
@@ -419,9 +414,9 @@ namespace Skylight
         {
             try
             {
-                if (this.Bot.Name == this.R.Owner.Name)
+                if (Bot.Name == R.Owner.Name)
                 {
-                    this.C.Send("save");
+                    C.Send("save");
                 }
             }
             catch (Exception)
@@ -434,9 +429,9 @@ namespace Skylight
         {
             try
             {
-                if (this.Bot.Name == this.R.Owner.Name)
+                if (Bot.Name == R.Owner.Name)
                 {
-                    this.C.Send("allowpotions", value);
+                    C.Send("allowpotions", value);
                 }
             }
             catch (Exception)
@@ -447,90 +442,90 @@ namespace Skylight
 
         public void SetEdit(string name, bool value)
         {
-            if (this.Bot.Name == this.R.Owner.Name)
+            if (Bot.Name == R.Owner.Name)
             {
                 if (value)
                 {
-                    this.Say("/giveedit " + name);
+                    Say("/giveedit " + name);
                 }
                 else
                 {
-                    this.Say("/removeedit " + name);
+                    Say("/removeedit " + name);
                 }
             }
         }
 
         public void SetEdit(Player p, bool value)
         {
-            if (this.Bot.Name == this.R.Owner.Name)
+            if (Bot.Name == R.Owner.Name)
             {
                 if (value)
                 {
-                    this.Say("/giveedit " + p.Name);
+                    Say("/giveedit " + p.Name);
                 }
                 else
                 {
-                    this.Say("/removeedit " + p.Name);
+                    Say("/removeedit " + p.Name);
                 }
             }
         }
 
         public void SetGod(bool value)
         {
-            if (this.Bot.HasAccess)
+            if (Bot.HasAccess)
             {
                 if (value)
                 {
-                    this.C.Send("god", true);
+                    C.Send("god", true);
                 }
                 else
                 {
-                    this.C.Send("god", false);
+                    C.Send("god", false);
                 }
             }
         }
 
         public void SetMute(string name, bool value)
         {
-            if (this.Bot.Name == this.R.Owner.Name)
+            if (Bot.Name == R.Owner.Name)
             {
                 if (value)
                 {
-                    this.Say("/mute " + name);
+                    Say("/mute " + name);
                 }
                 else
                 {
-                    this.Say("/unmute " + name);
+                    Say("/unmute " + name);
                 }
             }
         }
 
         public void SetMute(Player p, bool value)
         {
-            if (this.Bot.Name == this.R.Owner.Name)
+            if (Bot.Name == R.Owner.Name)
             {
                 if (value)
                 {
-                    this.Say("/mute " + p.Name);
+                    Say("/mute " + p.Name);
                 }
                 else
                 {
-                    this.Say("/unmute " + p.Name);
+                    Say("/unmute " + p.Name);
                 }
             }
         }
 
         public void SetPotionBan(int potionId, bool value)
         {
-            if (this.Bot.Name == this.R.Owner.Name)
+            if (Bot.Name == R.Owner.Name)
             {
                 if (value)
                 {
-                    this.Say("/potionson " + potionId);
+                    Say("/potionson " + potionId);
                 }
                 else
                 {
-                    this.Say("/potionsoff " + potionId);
+                    Say("/potionsoff " + potionId);
                 }
             }
         }
@@ -539,7 +534,7 @@ namespace Skylight
         {
             try
             {
-                this.C.Send(this.R.RoomKey + "f", smileyId);
+                C.Send(R.RoomKey + "f", smileyId);
             }
             catch (Exception)
             {
@@ -549,49 +544,49 @@ namespace Skylight
 
         public void SetVisibility(bool value)
         {
-            if (this.Bot.Name == this.R.Owner.Name)
+            if (Bot.Name == R.Owner.Name)
             {
-                this.Say("/visible " + value);
+                Say("/visible " + value);
             }
         }
 
         public void Teleport(int newXLocation, int newYLocation, string name = "")
         {
-            if (this.Bot.Name == this.R.Owner.Name)
+            if (Bot.Name == R.Owner.Name)
             {
                 if (name != "")
                 {
-                    this.Say("/teleport " + name + " " + newXLocation + " " + newYLocation);
+                    Say("/teleport " + name + " " + newXLocation + " " + newYLocation);
                 }
                 else
                 {
-                    this.Say("/teleport " + this.Bot.Name + " " + newXLocation + " " + newYLocation);
+                    Say("/teleport " + Bot.Name + " " + newXLocation + " " + newYLocation);
                 }
             }
         }
 
         public void Teleport(int newXLocation, int newYLocation, Player p = null)
         {
-            if (this.Bot.Name == this.R.Owner.Name)
+            if (Bot.Name == R.Owner.Name)
             {
                 if (p != null)
                 {
-                    this.Say("/teleport " + p.Name + " " + newXLocation + " " + newYLocation);
+                    Say("/teleport " + p.Name + " " + newXLocation + " " + newYLocation);
                 }
                 else
                 {
-                    this.Say("/teleport " + this.Bot.Name + " " + newXLocation + " " + newYLocation);
+                    Say("/teleport " + Bot.Name + " " + newXLocation + " " + newYLocation);
                 }
             }
         }
 
         public void TeleportAll(int newXLocation, int newYLocation)
         {
-            if (this.Bot.Name == this.R.Owner.Name)
+            if (Bot.Name == R.Owner.Name)
             {
-                foreach (Player p in this.R.OnlinePlayers)
+                foreach (Player p in R.OnlinePlayers)
                 {
-                    this.Teleport(newXLocation, newYLocation, p);
+                    Teleport(newXLocation, newYLocation, p);
                 }
             }
         }
