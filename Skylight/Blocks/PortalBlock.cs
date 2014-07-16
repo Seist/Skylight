@@ -43,10 +43,16 @@ namespace Skylight.Blocks
             int portalDestination,
             bool visible) : base(Tools.PortalIdByVisible(visible), x, y, 0)
         {
+            Direction = direction;
             PortalDestination = portalDestination;
             PortalId = portalId;
             Visible = visible;
         }
+
+        /// <summary>
+        /// The direction of the portal.
+        /// </summary>
+        public new int Direction { get; set; }
 
         /// <summary>
         /// Gets the portal destination.
