@@ -431,7 +431,7 @@ namespace Skylight
 
             // Update relevant objects.
             var subject = new Player(Source, id, name, smiley, x, y, isGod, isMod, true, coins, hasBoost, isFriend,
-                xplevel, hasClub);
+                xplevel, hasClub, false, false, false, false);
 
             Source.OnlinePlayers.Add(subject);
 

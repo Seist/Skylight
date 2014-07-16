@@ -588,6 +588,7 @@ namespace Skylight
                 return false;
             }
 
+            set { throw new NotImplementedException(); }
         }
 
         /// <summary>
