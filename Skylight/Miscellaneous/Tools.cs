@@ -11,35 +11,73 @@ using Skylight.Blocks;
 namespace Skylight.Miscellaneous
 {
     /// <summary>
-    ///     Tools that are available to the core of the program (converting a player id or name into
-    ///     a player object) and internal methods are mostly stored here.
+    /// Tools that are available to the core of the program (converting a player id or name into
+    /// a player object) and internal methods are mostly stored here.
     /// </summary>
     public static class Tools
     {
+        /// <summary>
+        /// Delegate ProgramEvent
+        /// </summary>
+        /// <param name="message">The message.</param>
         public delegate void ProgramEvent(string message);
 
+        /// <summary>
+        /// The game identifier
+        /// </summary>
         internal const string GameId = "everybody-edits-su9rn58o40itdbnw69plyw";
+        /// <summary>
+        /// The guest email
+        /// </summary>
         internal const string GuestEmail = "guest";
+        /// <summary>
+        /// The guest password
+        /// </summary>
         internal const string GuestPassword = "guest";
 
         // Compiler seems to choke on this line, saying that Lazy isn't supported in library.
 
+        /// <summary>
+        /// The normal room name
+        /// </summary>
         public const string NormalRoom = "Everybodyedits";
+        /// <summary>
+        /// The authentication room (temp)
+        /// </summary>
         public const string AuthRoom = "Auth";
 
+        /// <summary>
+        /// The random seed used in all random based generations.
+        /// </summary>
         public static readonly Random
             Ran = new Random();
 
+        /// <summary>
+        /// The guest client
+        /// </summary>
         internal static readonly Lazy<Client> GuestClient =
             new Lazy<Client>(() => PlayerIO.QuickConnect.SimpleConnect(GameId, GuestEmail, GuestPassword));
 
+        /// <summary>
+        /// Occurs when a program message is sent.
+        /// </summary>
         public static event ProgramEvent ProgramMessage = delegate { };
 
+        /// <summary>
+        /// Gets the winners.
+        /// </summary>
+        /// <param name="r">The room.</param>
+        /// <returns>A list of Players who have touched the trophy</returns>
         public static List<Player> GetWinners(Room r)
         {
             return r.OnlinePlayers.Where(p => p.HasSilverCrown).ToList();
         }
 
+        /// <summary>
+        /// Gets the crown holder.
+        /// </summary>
+        /// <param name="r">The room.</param>
+        /// <returns>The Player who holds the crown (if there is one).</returns>
         public static Player GetCrownHolder(Room r)
         {
             foreach (Player p in r.OnlinePlayers)
@@ -54,6 +92,13 @@ namespace Skylight.Miscellaneous
             return null;
         }
 
+        /// <summary>
+        /// Gets the player by identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="r">The room.</param>
+        /// <param name="onlyReturnBots">if set to <c>true</c> [only return bots].</param>
+        /// <returns>Player.</returns>
         public static Player GetPlayerById(int id, Room r, bool onlyReturnBots = false)
         {
             foreach (Player p in r.OnlinePlayers)
@@ -78,6 +123,13 @@ namespace Skylight.Miscellaneous
             return null;
         }
 
+        /// <summary>
+        /// Gets the name of the player by.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="r">The room.</param>
+        /// <param name="onlyReturnBots">if set to <c>true</c> [only return bots].</param>
+        /// <returns>Player.</returns>
         public static Player GetPlayerByName(string name, Room r, bool onlyReturnBots = false)
         {
             foreach (Player p in r.OnlinePlayers)
@@ -102,6 +154,11 @@ namespace Skylight.Miscellaneous
             return null;
         }
 
+        /// <summary>
+        /// Gets the room.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns>Room.</returns>
         public static Room GetRoom(string name)
         {
             foreach (Room r in Room.JoinedRooms)
@@ -116,6 +173,11 @@ namespace Skylight.Miscellaneous
             return null;
         }
 
+        /// <summary>
+        /// Shuffles the specified list.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list">The list.</param>
         public static void Shuffle<T>(this IList<T> list)
         {
             int n = list.Count;
@@ -129,11 +191,20 @@ namespace Skylight.Miscellaneous
             }
         }
 
+        /// <summary>
+        /// Main logging method.
+        /// </summary>
+        /// <param name="m">The message.</param>
         internal static void SkylightMessage(string m)
         {
             ProgramMessage(m);
         }
 
+        /// <summary>
+        /// Derots the specified world key.
+        /// </summary>
+        /// <param name="worldKey">The world key.</param>
+        /// <returns>Derotted world key</returns>
         internal static string Derot(string worldKey)
         {
             char[] array = worldKey.ToCharArray();
@@ -171,6 +242,11 @@ namespace Skylight.Miscellaneous
             return new string(array);
         }
 
+        /// <summary>
+        /// Parses the URL.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>A parsed room id</returns>
         internal static string ParseUrl(string id)
         {
             // If it matches any type of URL and has 13 characters at the end, return the last 13 characters.
@@ -184,6 +260,13 @@ namespace Skylight.Miscellaneous
             return id;
         }
 
+        /// <summary>
+        /// Deserializes the initialize.
+        /// </summary>
+        /// <param name="m">The message</param>
+        /// <param name="start">The start.</param>
+        /// <param name="r">The room.</param>
+        /// <returns>A list of blocks which is the room.</returns>
         internal static List<Block> DeserializeInit(Message m, uint start, Room r)
         {
             var list = new List<Block>();
@@ -382,6 +465,11 @@ namespace Skylight.Miscellaneous
         }
 
         // Return the correct portal ID based on whether or not the portal is visible or invisible.
+        /// <summary>
+        /// Portals the identifier by visible.
+        /// </summary>
+        /// <param name="visible">if set to <c>true</c> [visible].</param>
+        /// <returns>System.Int32.</returns>
         internal static int PortalIdByVisible(bool visible)
         {
             if (visible)
@@ -392,6 +480,11 @@ namespace Skylight.Miscellaneous
         }
 
         // Return the correct coin ID based based on whether or not the block is gate or door
+        /// <summary>
+        /// Coins the identifier by gate.
+        /// </summary>
+        /// <param name="isGate">if set to <c>true</c> [is gate].</param>
+        /// <returns>System.Int32.</returns>
         internal static int CoinIdByGate(bool isGate)
         {
             if (isGate)
