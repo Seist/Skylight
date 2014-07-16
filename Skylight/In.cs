@@ -297,7 +297,7 @@ namespace Skylight
                                 break;
 
                             case "saved":
-                                OnSaved(m);
+                                OnSaved();
                                 break;
 
                             case "show":
@@ -1070,7 +1070,7 @@ namespace Skylight
             }
         }
 
-        private void OnSaved(Message m)
+        private void OnSaved()
         {
             // Nothing to extract from message.
             // Nothing to update because I have no idea what it is.
@@ -1102,7 +1102,7 @@ namespace Skylight
         {
             // Extract data.
             string message = m.GetString(1),
-                name = m.GetString(0);
+                name = m.GetString(0); // never used.
 
             // Update relevant objects.
             // Player subject = new Player() { Name = name };
