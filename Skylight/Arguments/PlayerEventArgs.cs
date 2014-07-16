@@ -22,10 +22,19 @@ namespace Skylight.Arguments
             RawMessage = rawMessage;
         }
 
+        /// <summary>
+        /// The username of the player.
+        /// </summary>
         public Player Subject { get; private set; }
 
+        /// <summary>
+        /// The room that the player is originating in.
+        /// </summary>
         public Room Origin { get; private set; }
 
+        /// <summary>
+        /// The raw, unparsed message from the server.
+        /// </summary>
         public Message RawMessage { get; private set; }
     }
 }
