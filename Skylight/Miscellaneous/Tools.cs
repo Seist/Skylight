@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using PlayerIOClient;
 using Skylight.Blocks;
@@ -32,17 +33,7 @@ namespace Skylight.Miscellaneous
 
         public static List<Player> GetWinners(Room r)
         {
-            var winners = new List<Player>();
-
-            foreach (Player p in r.OnlinePlayers)
-            {
-                if (p.HasSilverCrown)
-                {
-                    winners.Add(p);
-                }
-            }
-
-            return winners;
+            return r.OnlinePlayers.Where(p => p.HasSilverCrown).ToList();
         }
 
         public static Player GetCrownHolder(Room r)
@@ -301,13 +292,12 @@ namespace Skylight.Miscellaneous
 
 
                     // Some variables to simplify things.
-                    int y;
 
                     for (int pos = 0; pos < ya.Length; pos += 2)
                     {
                         // Extract the X and Y positions from the array.
                         int x = (xa[pos]*256) + xa[pos + 1];
-                        y = (ya[pos]*256) + ya[pos + 1];
+                        int y = (ya[pos]*256) + ya[pos + 1];
 
                         // Ascertain the block from the ID.
                         // Add block accordingly.

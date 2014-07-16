@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using PlayerIOClient;
 using Skylight.Blocks;
@@ -17,18 +18,7 @@ namespace Skylight
             get
             {
                 // Scan every bot for the match.
-                foreach (Room r in Room.JoinedRooms)
-                {
-                    foreach (Bot b in r.OnlineBots)
-                    {
-                        if (b.Push == this)
-                        {
-                            return b;
-                        }
-                    }
-                }
-
-                return null;
+                return Room.JoinedRooms.SelectMany(r => r.OnlineBots).FirstOrDefault(b => b.Push == this);
             }
         }
 

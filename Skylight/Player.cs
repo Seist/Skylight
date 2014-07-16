@@ -861,7 +861,7 @@ namespace Skylight
                         double _loc_8 = modifierX;
                         double _loc_9 = modifierY;
                         int _loc_10 = _loc_4 - _loc_5;
-                        double _loc_11 = 1.42;
+                        const double _loc_11 = 1.42;
                         switch (_loc_10)
                         {
                             case 1:
