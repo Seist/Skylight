@@ -4,6 +4,8 @@ namespace Skylight.Blocks
 {
     public class PortalBlock : Block
     {
+        private readonly int _direction;
+
         private const int
             Minportalid = 0,
             Maxportalid = 99;
@@ -23,6 +25,7 @@ namespace Skylight.Blocks
             int portalDestination,
             bool visible) : base(Tools.PortalIdByVisible(visible), x, y, 0)
         {
+            _direction = direction;
             PortalDestination = portalDestination;
             PortalId = portalId;
             Visible = visible;
