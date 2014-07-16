@@ -24,22 +24,9 @@ namespace Skylight.Blocks
 
 
         /// <summary>
-        /// The direction of the blocks and the id.
-        /// </summary>
-        private int
-            _direction, _id;
-
-        /// <summary>
-        /// The _placer
-        /// </summary>
-        private Player
-            _placer;
-
-        /// <summary>
         /// The _x
         /// </summary>
-        private int
-            _x, _y, _z;
+        private int _z;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Block"/> class.
@@ -77,23 +64,13 @@ namespace Skylight.Blocks
         /// Gets or sets the direction.
         /// </summary>
         /// <value>The direction.</value>
-        public int Direction
-        {
-            get { return _direction; }
-
-            set { _direction = value; }
-        }
+        public int Direction { get; set; }
 
         /// <summary>
         /// Gets the identifier.
         /// </summary>
         /// <value>The identifier.</value>
-        public int Id
-        {
-            get { return _id; }
-
-            internal set { _id = value; }
-        }
+        public int Id { get; internal set; }
 
         /// <summary>
         /// Gets the z coordinate (background or foreground)
@@ -129,33 +106,18 @@ namespace Skylight.Blocks
         /// Gets the x coordinate
         /// </summary>
         /// <value>The x.</value>
-        public int X
-        {
-            get { return _x; }
-
-            internal set { _x = value; }
-        }
+        public int X { get; internal set; }
 
         /// <summary>
         /// Gets the y coordinate
         /// </summary>
         /// <value>The y.</value>
-        public int Y
-        {
-            get { return _y; }
-
-            internal set { _y = value; }
-        }
+        public int Y { get; internal set; }
 
         /// <summary>
         /// Gets the placer (the Player who placed the block).
         /// </summary>
         /// <value>The placer.</value>
-        public Player Placer
-        {
-            get { return _placer; }
-
-            internal set { _placer = value; }
-        }
+        public Player Placer { get; internal set; }
     }
 }
