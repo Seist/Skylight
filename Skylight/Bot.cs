@@ -67,10 +67,10 @@ namespace Skylight
             AccountType accType = AccountType.Regular)
             : base(r, 0, "", 0, 0.0, 0.0, false, false, true, 0, false, false, 0)
         {
-            this._emailOrToken = emailOrToken;
-            this._passwordOrToken = passwordOrToken;
+            _emailOrToken = emailOrToken;
+            _passwordOrToken = passwordOrToken;
             R = r; //
-            this._accType = accType;
+            _accType = accType;
             ShouldTick = true;
         }
 

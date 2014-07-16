@@ -8,7 +8,7 @@ namespace Skylight.Arguments
 
         public RoomEventArgs(Room changedRoom)
         {
-            this._changedRoom = changedRoom;
+            _changedRoom = changedRoom;
         }
 
         public Room ChangedRoom

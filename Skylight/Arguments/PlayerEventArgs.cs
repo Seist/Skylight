@@ -12,9 +12,9 @@ namespace Skylight.Arguments
 
         public PlayerEventArgs(Player subject, Room origin, Message rawMessage)
         {
-            this._subject = subject;
-            this._origin = origin;
-            this._rawMessage = rawMessage;
+            _subject = subject;
+            _origin = origin;
+            _rawMessage = rawMessage;
         }
 
         public Player Subject
