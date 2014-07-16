@@ -237,7 +237,7 @@ namespace Skylight
                                 break;
 
                             case "hide":
-                                OnHide(m);
+                                OnHide();
                                 break;
 
                             case "k":
@@ -680,7 +680,7 @@ namespace Skylight
             Source.Pull.GodEvent(e);
         }
 
-        private void OnHide(Message m)
+        private void OnHide()
         {
             // Like with "clear", there is data but it is irrelevant.
             // Update relevant objects.
