@@ -281,7 +281,7 @@ namespace Skylight
                                 break;
 
                             case "refreshshop":
-                                OnRefreshShop(m);
+                                OnRefreshShop();
                                 break;
 
                             case "reset":
@@ -1057,7 +1057,7 @@ namespace Skylight
             Source.Pull.PortalBlockEvent(e);
         }
 
-        private void OnRefreshShop(Message m)
+        private void OnRefreshShop()
         {
             // Nothing to extract.
             // Nothing to update.
