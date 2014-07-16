@@ -1110,7 +1110,7 @@ namespace Skylight
             }
             else if (_currentSx < 0)
             {
-                if (_reminderX != 0 && _reminderX + _currentSx < 0)
+                if (Math.Abs(_reminderX) > 0.00000001 && _reminderX + _currentSx < 0)
                 {
                     _currentSx = _currentSx + _reminderX;
                     X = X - _reminderX;
@@ -1155,7 +1155,7 @@ namespace Skylight
             }
             else if (_currentSy < 0)
             {
-                if (_reminderY != 0 && _reminderY + _currentSy < 0)
+                if (Math.Abs(_reminderY) > 0.00000001 && _reminderY + _currentSy < 0)
                 {
                     Y = Y - _reminderY;
                     Y = Math.Floor(Y);
@@ -1284,7 +1284,7 @@ namespace Skylight
         /// <summary>
         ///     Ticks this instance.
         /// </summary>
-        public void tick()
+        public void Tick()
         {
             _oldX = X;
             _oldY = Y;
@@ -1464,17 +1464,17 @@ namespace Skylight
                     }
                 }
             }
-            if (_oldVerticalAcceleration == WaterBuoyancy || _oldVerticalAcceleration == MudBuoyancy)
+            if (Math.Abs(_oldVerticalAcceleration - WaterBuoyancy) < 0.00000001 || Math.Abs(_oldVerticalAcceleration - MudBuoyancy) < 0.00000001)
             {
                 _horizontalAcceleration = Horizontal;
                 _verticalAcceleration = Vertical;
             }
-            else if (_oldVerticalAcceleration != 0)
+            else if (Math.Abs(_oldVerticalAcceleration) > 0.00000001)
             {
                 _horizontalAcceleration = Horizontal;
                 _verticalAcceleration = 0;
             }
-            else if (_oldHorizontalAcceleration != 0)
+            else if (Math.Abs(_oldHorizontalAcceleration) > 0.00000001)
             {
                 _horizontalAcceleration = 0;
                 _verticalAcceleration = Vertical;
@@ -1491,11 +1491,11 @@ namespace Skylight
             modifierX = _oldHorizontalAcceleration + _horizontalAcceleration;
 
             modifierY = _oldVerticalAcceleration + _verticalAcceleration;
-            if (SpeedX != 0 || ModifierX != 0)
+            if (Math.Abs(SpeedX) > 0.00000001 || Math.Abs(ModifierX) > 0.00000001)
             {
                 SpeedX = SpeedX + ModifierX;
                 SpeedX = SpeedX*Config.physics_base_drag;
-                if (_horizontalAcceleration == 0 && _oldVerticalAcceleration != 0 ||
+                if (Math.Abs(_horizontalAcceleration) < 0.00000001 && Math.Abs(_oldVerticalAcceleration) > 0.00000001 ||
                     SpeedX < 0 && _horizontalAcceleration > 0 || SpeedX > 0 && _horizontalAcceleration < 0 ||
                     ItemId.isClimbable(CurrentBlockId) && !_isgodmod)
                 {
@@ -1522,11 +1522,11 @@ namespace Skylight
                     SpeedX = 0;
                 }
             }
-            if (SpeedY != 0 || ModifierY != 0)
+            if (Math.Abs(SpeedY) > 0.00000001 || Math.Abs(ModifierY) > 0.00000001)
             {
                 SpeedY = SpeedY + ModifierY;
                 SpeedY = SpeedY*Config.physics_base_drag;
-                if (_verticalAcceleration == 0 && _oldHorizontalAcceleration != 0 ||
+                if (Math.Abs(_verticalAcceleration) < 0.00000001 && Math.Abs(_oldHorizontalAcceleration) > 0.00000001 ||
                     SpeedY < 0 && _verticalAcceleration > 0 || SpeedY > 0 && _verticalAcceleration < 0 ||
                     ItemId.isClimbable(CurrentBlockId) && !_isgodmod)
                 {
@@ -1589,7 +1589,7 @@ namespace Skylight
             _currentSy = SpeedY;
             _donex = false;
             _doney = false;
-            while (_currentSx != 0 && !_donex || _currentSy != 0 && !_doney)
+            while (Math.Abs(_currentSx) > 0.00000001 && !_donex || Math.Abs(_currentSy) > 0.00000001 && !_doney)
             {
                 ProcessPortals();
                 _ox = X;
@@ -1606,7 +1606,7 @@ namespace Skylight
             }
             double imx = SpeedX*256;
             double imy = SpeedY*256;
-            if (imx != 0 || CurrentBlockId == BlockIds.Action.Liquids.WATER ||
+            if (Math.Abs(imx) > 0.00000001 || CurrentBlockId == BlockIds.Action.Liquids.WATER ||
                 CurrentBlockId == BlockIds.Action.Liquids.MUD)
             {
             }
@@ -1638,7 +1638,7 @@ namespace Skylight
                     }
                 }
             }
-            if (imy != 0 || CurrentBlockId == BlockIds.Action.Liquids.WATER ||
+            if (Math.Abs(imy) > 0.00000001 || CurrentBlockId == BlockIds.Action.Liquids.WATER ||
                 CurrentBlockId == BlockIds.Action.Liquids.MUD)
             {
             }
