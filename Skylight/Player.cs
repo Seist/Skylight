@@ -412,10 +412,9 @@ namespace Skylight
         /// <param name="isFriend">if set to <c>true</c> [is friend].</param>
         /// <param name="level">The level.</param>
         /// <param name="hasClub">If the player has builder's club or not.</param>
-        /// <param name="isInvulnerable"></param>
-        /// <param name="isThrusting"></param>
-        /// <param name="isZombie"></param>
-        /// <param name="isZombie"></param>
+        /// <param name="isInvulnerable">The player can die.</param>
+        /// <param name="isThrusting">Player is using boost potion</param>
+        /// <param name="isZombie">Player is a zombie</param>
         public Player(Room room, int id, string name, int smiley, double xPos, double yPos, bool isGod, bool isMod,
             bool hasChat, int coins, bool purple, bool isFriend, int level, bool hasClub, bool isInvulnerable, bool isThrusting, bool isZombie)
         {
