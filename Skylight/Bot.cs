@@ -52,11 +52,7 @@ namespace Skylight
         private string _chatPrefix = "";
         private Client _client;
 
-        private Connection _connection;
-
         private bool _joined;
-
-        private Out _push = new Out();
 
         private int
             _speechDelay = 1000;
@@ -68,6 +64,7 @@ namespace Skylight
             AccountType accType = AccountType.Regular)
             : base(r, 0, "", 0, 0.0, 0.0, false, false, true, 0, false, false, 0, false, false, false, false)
         {
+            Push = new Out();
             _emailOrToken = emailOrToken;
             _passwordOrToken = passwordOrToken;
             R = r; //
@@ -134,12 +131,7 @@ namespace Skylight
             set { _chatPrefix = value; }
         }
 
-        public Out Push
-        {
-            get { return _push; }
-
-            internal set { _push = value; }
-        }
+        public Out Push { get; internal set; }
 
         /// <summary>
         /// The current room object.
@@ -149,17 +141,12 @@ namespace Skylight
         /// <summary>
         /// The active connection object to the room.
         /// </summary>
-        public Connection Connection
-        {
-            get { return _connection; }
-
-            internal set { _connection = value; }
-        }
+        public Connection Connection { get; internal set; }
 
         /// <summary>
         /// The current room that the bot is in.
         /// </summary>
-        public static Room currentRoom { get; set; }
+        public static Room CurrentRoom { get; set; }
 
         // Public methods
         /// <summary>
