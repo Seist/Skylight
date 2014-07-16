@@ -27,12 +27,7 @@ namespace Skylight
         /// A player object containing who was the author of the block.
         /// </summary>
         private Player placer;
-<<<<<<< HEAD
-        
-        public BlockEventArgs(Block b, Room origin)
-        {
-            this.origin = origin;
-=======
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BlockEventArgs" />. Send a block changed event.
@@ -42,7 +37,6 @@ namespace Skylight
         public BlockEventArgs(Block b, Room origin = null)
         {
             this.origin = origin ?? Bot.currentRoom;
->>>>>>> origin/master
             this.placed = b;
             this.placer = b.Placer;
         }

@@ -161,6 +161,8 @@
             }
         }
 
+        public static Room currentRoom { get; set; }
+
         // Public methods
         public void LogIn()
         {
