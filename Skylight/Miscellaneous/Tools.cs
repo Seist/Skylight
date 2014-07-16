@@ -274,11 +274,7 @@ namespace Skylight
                         coins = m.GetInteger(messageIndex);
                         messageIndex++;
 
-                        isGate = false;
-                        if (blockId == BlockIds.Action.Gates.COIN)
-                        {
-                            isGate = true;
-                        }
+                        isGate = false || blockId == BlockIds.Action.Gates.COIN;
                     }
                     else if (blockId == BlockIds.Action.Music.PERCUSSION)
                     {
@@ -304,12 +300,12 @@ namespace Skylight
 
 
                     // Some variables to simplify things.
-                    int x = 0, y = 0;
+                    int y;
 
                     for (int pos = 0; pos < ya.Length; pos += 2)
                     {
                         // Extract the X and Y positions from the array.
-                        x = (xa[pos]*256) + xa[pos + 1];
+                        int x = (xa[pos]*256) + xa[pos + 1];
                         y = (ya[pos]*256) + ya[pos + 1];
 
                         // Ascertain the block from the ID.
