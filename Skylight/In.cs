@@ -896,7 +896,7 @@ namespace Skylight
         {
             // Extract data.
             int id = m.GetInteger(0),
-                level = m.GetInteger(1);
+                level = m.GetInteger(1); // never used.
 
             // Update relevant objects.
             Player subject = Tools.GetPlayerById(id, Source);
@@ -929,7 +929,7 @@ namespace Skylight
                 verticalSpeed = m.GetDouble(4);
 
             int id = m.GetInteger(0),
-                coins = m.GetInteger(9),
+                coins = m.GetInteger(9),                // never used.
                 horizontalModifier = m.GetInteger(5),
                 verticalModifier = m.GetInteger(6),
                 horizontalDirection = m.GetInteger(7),
