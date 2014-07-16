@@ -1356,9 +1356,9 @@ namespace Skylight
             {
                 try
                 {
-                    if (_playerPhysicsStopwatch.ElapsedMilliseconds >= accumulator + Config.physics_ms_per_tick)
+                    if (_playerPhysicsStopwatch.ElapsedMilliseconds >= accumulator + Config.PhysicsMsPerTick)
                     {
-                        accumulator += Config.physics_ms_per_tick;
+                        accumulator += Config.PhysicsMsPerTick;
 
                         foreach (Player player in Source.OnlinePlayers)
                         {

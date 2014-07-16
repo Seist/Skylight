@@ -432,7 +432,7 @@ namespace Skylight
             _isInvulnerable = isInvulnerable;
             _isThrusting = isThrusting;
             _isZombie = isZombie;
-            _queue = new Queue<int>(Config.physics_queue_length);
+            _queue = new Queue<int>(Config.PhysicsQueueLength);
             _lastPortal = new Point();
 
             _currentThrust = MaxThrust;
@@ -440,15 +440,15 @@ namespace Skylight
             Y = yPos;
             Name = name;
             Size = 16;
-            NoModifierDragX = Config.physics_no_modifier_drag;
-            NoModifierDragY = Config.physics_no_modifier_drag;
-            WaterDrag = Config.physics_water_drag;
-            WaterBuoyancy = Config.physics_water_buoyancy;
-            MudDrag = Config.physics_mud_drag;
-            MudBuoyancy = Config.physics_mud_buoyancy;
-            Boost = Config.physics_boost;
-            Gravity = Config.physics_gravity;
-            _mult = Config.physics_variable_multiplyer;
+            NoModifierDragX = Config.PhysicsNoModifierDrag;
+            NoModifierDragY = Config.PhysicsNoModifierDrag;
+            WaterDrag = Config.PhysicsWaterDrag;
+            WaterBuoyancy = Config.PhysicsWaterBuoyancy;
+            MudDrag = Config.PhysicsMudDrag;
+            MudBuoyancy = Config.PhysicsMudBuoyancy;
+            Boost = Config.PhysicsBoost;
+            Gravity = Config.PhysicsGravity;
+            _mult = Config.PhysicsVariableMultiplyer;
         }
 
         // Public instance properties.
@@ -1494,7 +1494,7 @@ namespace Skylight
             if (Math.Abs(SpeedX) > 0.00000001 || Math.Abs(ModifierX) > 0.00000001)
             {
                 SpeedX = SpeedX + ModifierX;
-                SpeedX = SpeedX*Config.physics_base_drag;
+                SpeedX = SpeedX*Config.PhysicsBaseDrag;
                 if (Math.Abs(_horizontalAcceleration) < 0.00000001 && Math.Abs(_oldVerticalAcceleration) > 0.00000001 ||
                     SpeedX < 0 && _horizontalAcceleration > 0 || SpeedX > 0 && _horizontalAcceleration < 0 ||
                     ItemId.isClimbable(CurrentBlockId) && !_isgodmod)
@@ -1525,7 +1525,7 @@ namespace Skylight
             if (Math.Abs(SpeedY) > 0.00000001 || Math.Abs(ModifierY) > 0.00000001)
             {
                 SpeedY = SpeedY + ModifierY;
-                SpeedY = SpeedY*Config.physics_base_drag;
+                SpeedY = SpeedY*Config.PhysicsBaseDrag;
                 if (Math.Abs(_verticalAcceleration) < 0.00000001 && Math.Abs(_oldHorizontalAcceleration) > 0.00000001 ||
                     SpeedY < 0 && _verticalAcceleration > 0 || SpeedY > 0 && _verticalAcceleration < 0 ||
                     ItemId.isClimbable(CurrentBlockId) && !_isgodmod)
@@ -1903,11 +1903,11 @@ namespace Skylight
         {
             if (_mory != 0)
             {
-                speedY = speedY - _currentThrust*(Config.physics_jump_height/2)*(_mory*0.5);
+                speedY = speedY - _currentThrust*(Config.PhysicsJumpHeight/2)*(_mory*0.5);
             }
             if (_morx != 0)
             {
-                speedX = speedX - _currentThrust*(Config.physics_jump_height/2)*(_morx*0.5);
+                speedX = speedX - _currentThrust*(Config.PhysicsJumpHeight/2)*(_morx*0.5);
             }
             if (!_isThrusting)
             {
