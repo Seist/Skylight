@@ -54,7 +54,6 @@ namespace Skylight
         private int
             _speechDelay = 1000;
 
-        /// <param name="password">Make this field null if it isn't needed for your log-in method.</param>
         public Bot(Room r,
             string emailOrToken = Tools.GuestEmail,
             string passwordOrToken = Tools.GuestPassword,
@@ -64,7 +63,7 @@ namespace Skylight
             Push = new Out();
             _emailOrToken = emailOrToken;
             _passwordOrToken = passwordOrToken;
-            R = r; //
+            R = r;
             _accType = accType;
             ShouldTick = true;
         }
