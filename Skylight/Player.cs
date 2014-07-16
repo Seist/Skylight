@@ -149,6 +149,8 @@ namespace Skylight
         /// </summary>
         public bool SwitchOpened = false;
 
+        private readonly bool _hasClub;
+
         /// <summary>
         ///     The vertical
         /// </summary>
@@ -173,6 +175,8 @@ namespace Skylight
         ///     The y
         /// </summary>
         public double Y = 0;
+
+        private readonly bool _hasChat;
 
         /// <summary>
         ///     The _animoffset
@@ -417,8 +421,9 @@ namespace Skylight
         /// <param name="purple">if set to <c>true</c> [purple].</param>
         /// <param name="isFriend">if set to <c>true</c> [is friend].</param>
         /// <param name="level">The level.</param>
+        /// <param name="hasClub">If the player has builder's club or not.</param>
         public Player(Room room, int id, string name, int smiley, double xPos, double yPos, bool isGod, bool isMod,
-            bool hasChat, int coins, bool purple, bool isFriend, int level)
+            bool hasChat, int coins, bool purple, bool isFriend, int level, bool hasClub)
         {
             PlayingIn = room;
             Smiley = smiley;
@@ -427,6 +432,7 @@ namespace Skylight
             Id = id;
             Coins = coins;
             SwitchOpened = purple;
+            _hasClub = hasClub;
             IsFriend = isFriend;
             _queue = new Queue<int>(Config.physics_queue_length);
             _lastPortal = new Point();
@@ -434,6 +440,7 @@ namespace Skylight
             _currentThrust = MaxThrust;
             X = xPos;
             Y = yPos;
+            _hasChat = hasChat;
             Name = name;
             Size = 16;
             NoModifierDragX = Config.physics_no_modifier_drag;
