@@ -263,17 +263,17 @@ namespace Skylight
         /// <summary>
         ///     The _is invulnerable
         /// </summary>
-        private bool _isInvulnerable;
+        private readonly bool _isInvulnerable;
 
         /// <summary>
         ///     The _is thrusting
         /// </summary>
-        private bool _isThrusting;
+        private readonly bool _isThrusting;
 
         /// <summary>
         ///     The _is zombie
         /// </summary>
-        private bool _isZombie;
+        private readonly bool _isZombie;
 
         /// <summary>
         ///     The _isgodmod
@@ -418,7 +418,7 @@ namespace Skylight
         /// <param name="level">The level.</param>
         /// <param name="hasClub">If the player has builder's club or not.</param>
         public Player(Room room, int id, string name, int smiley, double xPos, double yPos, bool isGod, bool isMod,
-            bool hasChat, int coins, bool purple, bool isFriend, int level, bool hasClub)
+            bool hasChat, int coins, bool purple, bool isFriend, int level, bool hasClub, bool isInvulnerable, bool isThrusting, bool isZombie)
         {
             PlayingIn = room;
             Smiley = smiley;
@@ -428,6 +428,9 @@ namespace Skylight
             Coins = coins;
             SwitchOpened = purple;
             IsFriend = isFriend;
+            _isInvulnerable = isInvulnerable;
+            _isThrusting = isThrusting;
+            _isZombie = isZombie;
             _queue = new Queue<int>(Config.physics_queue_length);
             _lastPortal = new Point();
 
