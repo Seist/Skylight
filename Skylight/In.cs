@@ -1040,12 +1040,7 @@ namespace Skylight
                 portalDestination = m.GetInteger(5);
 
             // Update relevant objects.
-            bool isVisible = false;
-
-            if (blockId == BlockIds.Action.Portals.NORMAL)
-            {
-                isVisible = true;
-            }
+            bool isVisible = blockId == BlockIds.Action.Portals.NORMAL;
 
             var b = new PortalBlock(x, y, rotation, portalId, portalDestination, isVisible);
 
