@@ -57,11 +57,11 @@ namespace Skylight
 
         public int checkpoint_x = -1;
         public int checkpoint_y = -1;
-        private double cluboffset;
+        private double _cluboffset;
 
         private int
-            coins,
-            collectedMagic;
+            _coins,
+            _collectedMagic;
 
         public int currentBlockId = 0;
         private double _currentSx;
@@ -75,83 +75,82 @@ namespace Skylight
 
         private bool _donex;
         private bool _doney;
-        private const double gravityMultiplier = 1;
+        private const double GravityMultiplier = 1;
 
         private bool
             _hasAccess,
             _hasBoost;
 
         private bool
-            hasClub,
-            hasCommandAccess,
-            hasCrown,
-            hasGravityModifier,
-            hasSilverCrown;
+            _hasClub,
+            _hasCommandAccess,
+            _hasCrown,
+            _hasGravityModifier,
+            _hasSilverCrown;
 
-        internal int horizontal = 0;
+        internal int Horizontal = 0;
 
         private int
-            id = -1;
+            _id = -1;
 
         private bool injump = false;
-        private bool isCursed;
-        private bool isDead;
+        private bool _isCursed;
+        private bool _isDead;
 
         private bool
-            isFriend,
-            isGod,
-            isHoldingDown,
-            isHoldingLeft,
-            isHoldingRight;
+            _isFriend,
+            _isGod,
+            _isHoldingDown,
+            _isHoldingLeft,
+            _isHoldingRight;
 
         private bool
-            isHoldingSpace;
+            _isHoldingSpace;
 
         private bool
-            isHoldingUp;
+            _isHoldingUp;
 
         private bool
-            isMod,
+            _isMod,
             isOwner;
 
-        private bool isZombie;
+        private bool _isZombie;
         public bool isclubmember = false;
-        private bool isgodmod;
-        private bool jump_boost = false;
-        private Point lastPortal;
-        private double last_respawn;
+        private bool _isgodmod;
+        private const bool jump_boost = false;
+        private Point _lastPortal;
+        private double _lastRespawn;
         private int level = 1;
         private int mod = 0;
         private double modoffset;
-        private Rectangle modrect;
-        private int morx;
-        private int mory;
+        private int _morx;
+        private int _mory;
         private bool moving;
-        private string name;
-        private double oldX = -1;
-        private double oldY = -1;
-        private double osx;
-        private double osy;
-        private int overlapy;
-        private double ox;
-        private double oy;
-        private Room playingIn;
-        private List<int> potionEffects = new List<int>();
-        private double reminderX;
-        private double reminderY;
-        protected int size;
+        private string _name;
+        private double _oldX = -1;
+        private double _oldY = -1;
+        private double _osx;
+        private double _osy;
+        private int _overlapy;
+        private double _ox;
+        private double _oy;
+        private Room _playingIn;
+        private List<int> _potionEffects = new List<int>();
+        private double _reminderX;
+        private double _reminderY;
+        protected int Size;
 
         private int
-            smiley;
+            _smiley;
 
-        private bool spacejustdown;
-        private double tx;
-        private double ty;
-        internal int vertical = 0;
-        private bool worldportalsend = false;
+        private bool _spacejustdown;
+        private double _tx;
+        private double _ty;
+        internal int Vertical = 0;
+        private const bool worldportalsend = false;
 
         private int
-            xpLevel;
+            _xpLevel;
 
         public Player(Room room, int id, string name, int smiley, double xPos, double yPos, bool isGod, bool isMod,
             bool hasChat, int coins, bool purple, bool isFriend, int level)
@@ -163,17 +162,16 @@ namespace Skylight
             Id = id;
             Coins = coins;
             SwitchOpened = purple;
-            this.isFriend = isFriend;
+            this._isFriend = isFriend;
             this.level = level;
             _queue = new Queue<int>(Config.physics_queue_length);
-            lastPortal = new Point();
-            modrect = new Rectangle(0, 0, 64, 64);
-            new Rectangle(0, 0, 64, 64);
+            _lastPortal = new Point();
+            var rectangle = new Rectangle(0, 0, 64, 64);
             _currentThrust = MaxThrust;
             X = xPos;
             Y = yPos;
             Name = name;
-            size = 16;
+            Size = 16;
             NoModifierDragX = Config.physics_no_modifier_drag;
             NoModifierDragY = Config.physics_no_modifier_drag;
             WaterDrag = Config.physics_water_drag;
@@ -202,37 +200,37 @@ namespace Skylight
 
         public bool HasClub
         {
-            get { return hasClub; }
+            get { return _hasClub; }
 
-            internal set { hasClub = value; }
+            internal set { _hasClub = value; }
         }
 
         public bool HasCommandAccess
         {
-            get { return hasCommandAccess; }
+            get { return _hasCommandAccess; }
 
-            internal set { hasCommandAccess = value; }
+            internal set { _hasCommandAccess = value; }
         }
 
         public bool HasCrown
         {
-            get { return hasCrown; }
+            get { return _hasCrown; }
 
-            internal set { hasCrown = value; }
+            internal set { _hasCrown = value; }
         }
 
         public bool HasGravityModifier
         {
-            get { return hasGravityModifier; }
+            get { return _hasGravityModifier; }
 
-            internal set { hasGravityModifier = value; }
+            internal set { _hasGravityModifier = value; }
         }
 
         public bool HasSilverCrown
         {
-            get { return hasSilverCrown; }
+            get { return _hasSilverCrown; }
 
-            internal set { hasSilverCrown = value; }
+            internal set { _hasSilverCrown = value; }
         }
 
         public bool IsBot
@@ -256,58 +254,58 @@ namespace Skylight
 
         public bool IsFriend
         {
-            get { return isFriend; }
+            get { return _isFriend; }
 
-            internal set { isFriend = value; }
+            internal set { _isFriend = value; }
         }
 
         public bool IsGod
         {
-            get { return isGod; }
+            get { return _isGod; }
 
-            internal set { isGod = value; }
+            internal set { _isGod = value; }
         }
 
         public bool IsMod
         {
-            get { return isMod; }
+            get { return _isMod; }
 
-            internal set { isMod = value; }
+            internal set { _isMod = value; }
         }
 
         public bool IsHoldingLeft
         {
-            get { return isHoldingLeft; }
+            get { return _isHoldingLeft; }
 
-            internal set { isHoldingLeft = value; }
+            internal set { _isHoldingLeft = value; }
         }
 
         public bool IsHoldingRight
         {
-            get { return isHoldingRight; }
+            get { return _isHoldingRight; }
 
-            internal set { isHoldingRight = value; }
+            internal set { _isHoldingRight = value; }
         }
 
         public bool IsHoldingUp
         {
-            get { return isHoldingUp; }
+            get { return _isHoldingUp; }
 
-            internal set { isHoldingUp = value; }
+            internal set { _isHoldingUp = value; }
         }
 
         public bool IsHoldingDown
         {
-            get { return isHoldingDown; }
+            get { return _isHoldingDown; }
 
-            internal set { isHoldingDown = value; }
+            internal set { _isHoldingDown = value; }
         }
 
         public bool IsHoldingSpace
         {
-            get { return isHoldingSpace; }
+            get { return _isHoldingSpace; }
 
-            internal set { isHoldingSpace = value; }
+            internal set { _isHoldingSpace = value; }
         }
 
         public bool IsOwner
@@ -326,9 +324,9 @@ namespace Skylight
 
         public int Coins
         {
-            get { return coins; }
+            get { return _coins; }
 
-            internal set { coins = value; }
+            internal set { _coins = value; }
         }
 
         public int BlueCoins
@@ -339,9 +337,9 @@ namespace Skylight
 
         public int CollectedMagic
         {
-            get { return collectedMagic; }
+            get { return _collectedMagic; }
 
-            internal set { collectedMagic = value; }
+            internal set { _collectedMagic = value; }
         }
 
         public int DeathCount
@@ -353,43 +351,43 @@ namespace Skylight
 
         public int Id
         {
-            get { return id; }
+            get { return _id; }
 
-            internal set { id = value; }
+            internal set { _id = value; }
         }
 
         public int Smiley
         {
-            get { return smiley; }
+            get { return _smiley; }
 
-            internal set { smiley = value; }
+            internal set { _smiley = value; }
         }
 
         public int XpLevel
         {
-            get { return xpLevel; }
+            get { return _xpLevel; }
 
-            internal set { xpLevel = value; }
+            internal set { _xpLevel = value; }
         }
 
         public List<int> PotionEffects
         {
-            get { return potionEffects; }
+            get { return _potionEffects; }
 
-            internal set { potionEffects = value; }
+            internal set { _potionEffects = value; }
         }
 
         public Room PlayingIn
         {
-            get { return playingIn; }
+            get { return _playingIn; }
 
-            internal set { playingIn = value; }
+            internal set { _playingIn = value; }
         }
 
         public string Name
         {
-            get { return name; }
-            internal set { name = value.ToLower(); }
+            get { return _name; }
+            internal set { _name = value.ToLower(); }
         }
 
         protected int blockX
@@ -450,12 +448,12 @@ namespace Skylight
 
         private int OldBlockX
         {
-            get { return (int) Math.Round(((oldX)/16.0)); }
+            get { return (int) Math.Round(((_oldX)/16.0)); }
         }
 
         private int OldBlockY
         {
-            get { return (int) Math.Round(((oldY)/16.0)); }
+            get { return (int) Math.Round(((_oldY)/16.0)); }
         }
 
         private bool Moved
@@ -477,7 +475,7 @@ namespace Skylight
 
         private bool hitTest(int param1, int param2)
         {
-            return param1 >= X && param2 >= Y && param1 <= X + size && param2 <= Y + size;
+            return param1 >= X && param2 >= Y && param1 <= X + Size && param2 <= Y + Size;
         }
 
         private double jumpMultiplier()
@@ -513,7 +511,6 @@ namespace Skylight
         {
             var _loc_8 = new List<int>();
 
-            int _loc_11 = 0;
             if (player.X < 0 || player.Y < 0 || player.X >= PlayingIn.Width*16 - 8 ||
                 player.Y >= PlayingIn.Height*16 - 8)
             {
@@ -547,7 +544,7 @@ namespace Skylight
                                         (int) (((xx*16) + _loc_2.X + xTest)/16),
                                         (int) (((yy*16) + _loc_2.Y + yTest)/16),
                                         0];
-                                    _loc_11 = currentBlock.Id;
+                                    int _loc_11 = currentBlock.Id;
                                     if (ItemId.isSolid(_loc_11))
                                     {
                                         switch (_loc_11)
@@ -651,7 +648,7 @@ namespace Skylight
                                             case BlockIds.Action.Doors.COIN:
                                             {
                                                 if (currentBlock is CoinBlock &&
-                                                    ((CoinBlock) currentBlock).CoinsRequired <= coins)
+                                                    ((CoinBlock) currentBlock).CoinsRequired <= _coins)
                                                 {
                                                     continue;
                                                 }
@@ -660,7 +657,7 @@ namespace Skylight
                                             case BlockIds.Action.Gates.COIN:
                                             {
                                                 if (currentBlock is CoinBlock &&
-                                                    ((CoinBlock) currentBlock).CoinsRequired > coins)
+                                                    ((CoinBlock) currentBlock).CoinsRequired > _coins)
                                                 {
                                                     continue;
                                                 }
@@ -668,7 +665,7 @@ namespace Skylight
                                             }
                                             case BlockIds.Action.Gates.ZOMBIE:
                                             {
-                                                if (isZombie)
+                                                if (_isZombie)
                                                 {
                                                     continue;
                                                 }
@@ -676,7 +673,7 @@ namespace Skylight
                                             }
                                             case BlockIds.Action.Doors.ZOMBIE:
                                             {
-                                                if (!isZombie)
+                                                if (!_isZombie)
                                                 {
                                                     continue;
                                                 }
@@ -706,11 +703,11 @@ namespace Skylight
                                             case 158:
                                             case 194:
                                             {
-                                                if (_loc_2.speedY < 0 || _loc_9 <= _loc_2.overlapy)
+                                                if (_loc_2.speedY < 0 || _loc_9 <= _loc_2._overlapy)
                                                 {
-                                                    if (_loc_9 != _loc_4 || _loc_2.overlapy == -1)
+                                                    if (_loc_9 != _loc_4 || _loc_2._overlapy == -1)
                                                     {
-                                                        _loc_2.overlapy = (int) _loc_9;
+                                                        _loc_2._overlapy = (int) _loc_9;
                                                     }
                                                 }
                                                 break;
@@ -741,12 +738,12 @@ namespace Skylight
         {
             if (_currentSx > 0)
             {
-                if (_currentSx + reminderX >= 1)
+                if (_currentSx + _reminderX >= 1)
                 {
-                    X = X + (1 - reminderX);
+                    X = X + (1 - _reminderX);
                     X = Math.Floor(X);
-                    _currentSx = _currentSx - (1 - reminderX);
-                    reminderX = 0;
+                    _currentSx = _currentSx - (1 - _reminderX);
+                    _reminderX = 0;
                 }
                 else
                 {
@@ -756,12 +753,12 @@ namespace Skylight
             }
             else if (_currentSx < 0)
             {
-                if (reminderX != 0 && reminderX + _currentSx < 0)
+                if (_reminderX != 0 && _reminderX + _currentSx < 0)
                 {
-                    _currentSx = _currentSx + reminderX;
-                    X = X - reminderX;
+                    _currentSx = _currentSx + _reminderX;
+                    X = X - _reminderX;
                     X = Math.Floor(X);
-                    reminderX = 1;
+                    _reminderX = 1;
                 }
                 else
                 {
@@ -772,9 +769,9 @@ namespace Skylight
 
             if (overlaps(this) != 0)
             {
-                X = ox;
+                X = _ox;
                 SpeedX = 0;
-                _currentSx = osx;
+                _currentSx = _osx;
                 _donex = true;
             }
         }
@@ -783,12 +780,12 @@ namespace Skylight
         {
             if (_currentSy > 0)
             {
-                if (_currentSy + reminderY >= 1)
+                if (_currentSy + _reminderY >= 1)
                 {
-                    Y = Y + (1 - reminderY);
+                    Y = Y + (1 - _reminderY);
                     Y = Math.Floor(Y);
-                    _currentSy = _currentSy - (1 - reminderY);
-                    reminderY = 0;
+                    _currentSy = _currentSy - (1 - _reminderY);
+                    _reminderY = 0;
                 }
                 else
                 {
@@ -798,12 +795,12 @@ namespace Skylight
             }
             else if (_currentSy < 0)
             {
-                if (reminderY != 0 && reminderY + _currentSy < 0)
+                if (_reminderY != 0 && _reminderY + _currentSy < 0)
                 {
-                    Y = Y - reminderY;
+                    Y = Y - _reminderY;
                     Y = Math.Floor(Y);
-                    _currentSy = _currentSy + reminderY;
-                    reminderY = 1;
+                    _currentSy = _currentSy + _reminderY;
+                    _reminderY = 1;
                 }
                 else
                 {
@@ -814,9 +811,9 @@ namespace Skylight
 
             if (overlaps(this) != 0)
             {
-                Y = oy;
+                Y = _oy;
                 SpeedY = 0;
-                _currentSy = osy;
+                _currentSy = _osy;
                 _doney = true;
             }
         }
@@ -835,17 +832,17 @@ namespace Skylight
             int _loc_10 = 0;
             double _loc_11 = 0;
             currentBlockId = PlayingIn.Map[_cx, _cy, 0].Id;
-            if (!isgodmod && currentBlockId == BlockIds.Action.Portals.WORLD)
+            if (!_isgodmod && currentBlockId == BlockIds.Action.Portals.WORLD)
             {
-                if (spacejustdown && !worldportalsend)
+                if (_spacejustdown && !worldportalsend)
                 {
                 }
             }
-            if (!isgodmod && currentBlockId == 242)
+            if (!_isgodmod && currentBlockId == 242)
             {
-                if (lastPortal.X == 0 && lastPortal.Y == 0)
+                if (_lastPortal.X == 0 && _lastPortal.Y == 0)
                 {
-                    lastPortal = new Point(_cx << 4, _cy << 4);
+                    _lastPortal = new Point(_cx << 4, _cy << 4);
 
                     Block currentBlock = PlayingIn.Map[_cx, _cy, 0];
                     var currentPortalBlock = (PortalBlock) currentBlock;
@@ -866,7 +863,7 @@ namespace Skylight
                     while (loopIterator < targetPortalList.Count)
                     {
                         currentLoopPortal = targetPortalList[loopIterator];
-                        _loc_4 = PlayingIn.Map[lastPortal.X >> 4, lastPortal.Y >> 4, 0].Direction;
+                        _loc_4 = PlayingIn.Map[_lastPortal.X >> 4, _lastPortal.Y >> 4, 0].Direction;
                         _loc_5 = PlayingIn.Map[currentLoopPortal.X >> 4, currentLoopPortal.Y >> 4, 0].Direction;
                         if (_loc_4 < _loc_5)
                         {
@@ -886,7 +883,7 @@ namespace Skylight
                                 speedY = (-_loc_6)*_loc_11;
                                 modifierX = _loc_9*_loc_11;
                                 modifierY = (-_loc_8)*_loc_11;
-                                reminderY = -reminderY;
+                                _reminderY = -_reminderY;
                                 _currentSy = -_currentSy;
                                 break;
                             }
@@ -896,7 +893,7 @@ namespace Skylight
                                 speedY = _loc_6*_loc_11;
                                 modifierX = (-_loc_9)*_loc_11;
                                 modifierY = _loc_8*_loc_11;
-                                reminderX = -reminderX;
+                                _reminderX = -_reminderX;
                                 _currentSx = -_currentSx;
                                 break;
                             }
@@ -906,9 +903,9 @@ namespace Skylight
                                 speedY = (-_loc_7)*_loc_11;
                                 modifierX = (-_loc_8)*_loc_11;
                                 modifierY = (-_loc_9)*_loc_11;
-                                reminderY = -reminderY;
+                                _reminderY = -_reminderY;
                                 _currentSy = -_currentSy;
-                                reminderX = -reminderX;
+                                _reminderX = -_reminderX;
                                 _currentSx = -_currentSx;
                                 break;
                             }
@@ -920,7 +917,7 @@ namespace Skylight
 
                         X = currentLoopPortal.X;
                         Y = currentLoopPortal.Y;
-                        lastPortal = currentLoopPortal;
+                        _lastPortal = currentLoopPortal;
                         loopIterator++;
                         break;
                     }
@@ -928,14 +925,14 @@ namespace Skylight
             }
             else
             {
-                lastPortal = new Point(0, 0);
+                _lastPortal = new Point(0, 0);
             }
         }
 
         public void tick()
         {
-            oldX = X;
-            oldY = Y;
+            _oldX = X;
+            _oldY = Y;
 
             _animoffset = _animoffset + 0.2;
             if (IsMod && !IsGod)
@@ -948,17 +945,17 @@ namespace Skylight
             }
             else if (isclubmember)
             {
-                cluboffset = cluboffset + 0.2;
-                if (cluboffset >= 14)
+                _cluboffset = _cluboffset + 0.2;
+                if (_cluboffset >= 14)
                 {
-                    cluboffset = 0;
+                    _cluboffset = 0;
                 }
             }
             else
             {
                 modoffset = 0;
             }
-            if (isDead)
+            if (_isDead)
             {
                 _deadoffset = _deadoffset + 0.3;
             }
@@ -980,17 +977,17 @@ namespace Skylight
                 delayed = _queue.Dequeue();
                 _queue.Enqueue(currentBlockId);
             }
-            if (isDead)
+            if (_isDead)
             {
-                horizontal = 0;
-                vertical = 0;
-                spacejustdown = false;
+                Horizontal = 0;
+                Vertical = 0;
+                _spacejustdown = false;
             }
-            isgodmod = IsGod || IsMod;
-            if (isgodmod)
+            _isgodmod = IsGod || IsMod;
+            if (_isgodmod)
             {
-                morx = 0;
-                mory = 0;
+                _morx = 0;
+                _mory = 0;
                 _oldHorizontalAcceleration = 0;
                 _oldVerticalAcceleration = 0;
             }
@@ -1000,20 +997,20 @@ namespace Skylight
                 {
                     case 1:
                     {
-                        morx = -(int) Gravity;
-                        mory = 0;
+                        _morx = -(int) Gravity;
+                        _mory = 0;
                         break;
                     }
                     case 2:
                     {
-                        morx = 0;
-                        mory = -(int) Gravity;
+                        _morx = 0;
+                        _mory = -(int) Gravity;
                         break;
                     }
                     case 3:
                     {
-                        morx = (int) Gravity;
-                        mory = 0;
+                        _morx = (int) Gravity;
+                        _mory = 0;
                         break;
                     }
                     case BlockIds.Action.Boost.LEFT:
@@ -1026,26 +1023,26 @@ namespace Skylight
                     case BlockIds.Action.Ladders.VERTICALVINE:
                     case BlockIds.Action.Gravity.ZERO:
                     {
-                        morx = 0;
-                        mory = 0;
+                        _morx = 0;
+                        _mory = 0;
                         break;
                     }
                     case BlockIds.Action.Liquids.WATER:
                     {
-                        morx = 0;
-                        mory = (int) WaterBuoyancy;
+                        _morx = 0;
+                        _mory = (int) WaterBuoyancy;
                         break;
                     }
                     case BlockIds.Action.Liquids.MUD:
                     {
-                        morx = 0;
-                        mory = (int) MudBuoyancy;
+                        _morx = 0;
+                        _mory = (int) MudBuoyancy;
                         break;
                     }
                     case BlockIds.Action.Hazards.FIRE:
                     case BlockIds.Action.Hazards.SPIKE:
                     {
-                        if (!isDead && !_isInvulnerable)
+                        if (!_isDead && !_isInvulnerable)
                         {
                             killPlayer();
                         }
@@ -1053,8 +1050,8 @@ namespace Skylight
                     }
                     default:
                     {
-                        morx = 0;
-                        mory = (int) Gravity;
+                        _morx = 0;
+                        _mory = (int) Gravity;
                         break;
                     }
                 }
@@ -1114,28 +1111,28 @@ namespace Skylight
             }
             if (_oldVerticalAcceleration == WaterBuoyancy || _oldVerticalAcceleration == MudBuoyancy)
             {
-                _horizontalAcceleration = horizontal;
-                _verticalAcceleration = vertical;
+                _horizontalAcceleration = Horizontal;
+                _verticalAcceleration = Vertical;
             }
             else if (_oldVerticalAcceleration != 0)
             {
-                _horizontalAcceleration = horizontal;
+                _horizontalAcceleration = Horizontal;
                 _verticalAcceleration = 0;
             }
             else if (_oldHorizontalAcceleration != 0)
             {
                 _horizontalAcceleration = 0;
-                _verticalAcceleration = vertical;
+                _verticalAcceleration = Vertical;
             }
             else
             {
-                _horizontalAcceleration = horizontal;
-                _verticalAcceleration = vertical;
+                _horizontalAcceleration = Horizontal;
+                _verticalAcceleration = Vertical;
             }
             _horizontalAcceleration = _horizontalAcceleration*speedMultiplier();
             _verticalAcceleration = _verticalAcceleration*speedMultiplier();
-            _oldHorizontalAcceleration = _oldHorizontalAcceleration*gravityMultiplier;
-            _oldVerticalAcceleration = _oldVerticalAcceleration*gravityMultiplier;
+            _oldHorizontalAcceleration = _oldHorizontalAcceleration*GravityMultiplier;
+            _oldVerticalAcceleration = _oldVerticalAcceleration*GravityMultiplier;
             modifierX = _oldHorizontalAcceleration + _horizontalAcceleration;
 
             modifierY = _oldVerticalAcceleration + _verticalAcceleration;
@@ -1145,15 +1142,15 @@ namespace Skylight
                 SpeedX = SpeedX*Config.physics_base_drag;
                 if (_horizontalAcceleration == 0 && _oldVerticalAcceleration != 0 ||
                     SpeedX < 0 && _horizontalAcceleration > 0 || SpeedX > 0 && _horizontalAcceleration < 0 ||
-                    ItemId.isClimbable(currentBlockId) && !isgodmod)
+                    ItemId.isClimbable(currentBlockId) && !_isgodmod)
                 {
                     SpeedX = SpeedX*NoModifierDragX;
                 }
-                else if (currentBlockId == BlockIds.Action.Liquids.WATER && !isgodmod)
+                else if (currentBlockId == BlockIds.Action.Liquids.WATER && !_isgodmod)
                 {
                     SpeedX = SpeedX*WaterDrag;
                 }
-                else if (currentBlockId == BlockIds.Action.Liquids.MUD && !isgodmod)
+                else if (currentBlockId == BlockIds.Action.Liquids.MUD && !_isgodmod)
                 {
                     SpeedX = SpeedX*dragMud();
                 }
@@ -1176,15 +1173,15 @@ namespace Skylight
                 SpeedY = SpeedY*Config.physics_base_drag;
                 if (_verticalAcceleration == 0 && _oldHorizontalAcceleration != 0 ||
                     SpeedY < 0 && _verticalAcceleration > 0 || SpeedY > 0 && _verticalAcceleration < 0 ||
-                    ItemId.isClimbable(currentBlockId) && !isgodmod)
+                    ItemId.isClimbable(currentBlockId) && !_isgodmod)
                 {
                     SpeedY = SpeedY*NoModifierDragY;
                 }
-                else if (currentBlockId == BlockIds.Action.Liquids.WATER && !isgodmod)
+                else if (currentBlockId == BlockIds.Action.Liquids.WATER && !_isgodmod)
                 {
                     SpeedY = SpeedY*WaterDrag;
                 }
-                else if (currentBlockId == BlockIds.Action.Liquids.MUD && !isgodmod)
+                else if (currentBlockId == BlockIds.Action.Liquids.MUD && !_isgodmod)
                 {
                     SpeedY = SpeedY*dragMud();
                 }
@@ -1201,7 +1198,7 @@ namespace Skylight
                     SpeedY = 0;
                 }
             }
-            if (!isgodmod)
+            if (!_isgodmod)
             {
                 switch (currentBlockId)
                 {
@@ -1231,19 +1228,19 @@ namespace Skylight
                     }
                 }
             }
-            reminderX = X%1;
+            _reminderX = X%1;
             _currentSx = SpeedX;
-            reminderY = Y%1;
+            _reminderY = Y%1;
             _currentSy = SpeedY;
             _donex = false;
             _doney = false;
             while (_currentSx != 0 && !_donex || _currentSy != 0 && !_doney)
             {
                 processPortals();
-                ox = X;
-                oy = Y;
-                osx = _currentSx;
-                osy = _currentSy;
+                _ox = X;
+                _oy = Y;
+                _osx = _currentSx;
+                _osy = _currentSy;
                 stepx();
                 stepy();
             }
@@ -1262,21 +1259,21 @@ namespace Skylight
             }
             else if (ModifierX < 0.1 && ModifierX > -0.1)
             {
-                tx = X%16;
-                if (tx < 2)
+                _tx = X%16;
+                if (_tx < 2)
                 {
-                    if (tx < 0.2)
+                    if (_tx < 0.2)
                     {
                         X = Math.Floor(X);
                     }
                     else
                     {
-                        X = X - tx/15;
+                        X = X - _tx/15;
                     }
                 }
-                else if (tx > 14)
+                else if (_tx > 14)
                 {
-                    if (tx > 15.8)
+                    if (_tx > 15.8)
                     {
                         X = Math.Floor(X);
                         double _loc_3 = X + 1;
@@ -1284,7 +1281,7 @@ namespace Skylight
                     }
                     else
                     {
-                        X = X + (tx - 14)/15;
+                        X = X + (_tx - 14)/15;
                     }
                 }
             }
@@ -1295,21 +1292,21 @@ namespace Skylight
             }
             else if (ModifierY < 0.1 && ModifierY > -0.1)
             {
-                ty = Y%16;
-                if (ty < 2)
+                _ty = Y%16;
+                if (_ty < 2)
                 {
-                    if (ty < 0.2)
+                    if (_ty < 0.2)
                     {
                         Y = Math.Floor(Y);
                     }
                     else
                     {
-                        Y = Y - ty/15;
+                        Y = Y - _ty/15;
                     }
                 }
-                else if (ty > 14)
+                else if (_ty > 14)
                 {
-                    if (ty > 15.8)
+                    if (_ty > 15.8)
                     {
                         Y = Math.Floor(Y);
                         double _loc_3 = Y + 1;
@@ -1317,7 +1314,7 @@ namespace Skylight
                     }
                     else
                     {
-                        Y = Y + (ty - 14)/15;
+                        Y = Y + (_ty - 14)/15;
                     }
                 }
             }
@@ -1353,7 +1350,7 @@ namespace Skylight
 
         private void killPlayer()
         {
-            isDead = true;
+            _isDead = true;
         }
 
         private void respawn()
@@ -1366,14 +1363,14 @@ namespace Skylight
             SpeedY = 0;
             speedX = 0;
             speedY = 0;
-            isDead = false;
+            _isDead = false;
 
-            last_respawn = DateTime.Now.Millisecond;
+            _lastRespawn = DateTime.Now.Millisecond;
         }
 
         private void resetCoins()
         {
-            coins = 0;
+            _coins = 0;
         }
 
         private void resetCheckpoint()
@@ -1393,17 +1390,17 @@ namespace Skylight
 
         private void cursed(bool param1)
         {
-            isCursed = param1;
+            _isCursed = param1;
         }
 
         private bool cursed()
         {
-            return isCursed;
+            return _isCursed;
         }
 
         private void zombie(bool param1)
         {
-            isZombie = param1;
+            _isZombie = param1;
         }
 
         private bool zombie()
@@ -1412,7 +1409,7 @@ namespace Skylight
             {
                 return false;
             }
-            return isZombie;
+            return _isZombie;
         }
 
         private void addTouchPotion(string param1, double param2 = 1)
@@ -1454,7 +1451,7 @@ namespace Skylight
 
         private bool getCanTag()
         {
-            if (IsGod || IsMod || isDead)
+            if (IsGod || IsMod || _isDead)
             {
                 return false;
             }
@@ -1463,11 +1460,11 @@ namespace Skylight
 
         private bool getCanBeTagged()
         {
-            if (IsGod || IsMod || isDead)
+            if (IsGod || IsMod || _isDead)
             {
                 return false;
             }
-            return (DateTime.Now.Millisecond - last_respawn) > 1000;
+            return (DateTime.Now.Millisecond - _lastRespawn) > 1000;
         }
 
         private void setPosition(double param1, double param2)
@@ -1493,13 +1490,13 @@ namespace Skylight
 
         private void updateThrust()
         {
-            if (mory != 0)
+            if (_mory != 0)
             {
-                speedY = speedY - _currentThrust*(Config.physics_jump_height/2)*(mory*0.5);
+                speedY = speedY - _currentThrust*(Config.physics_jump_height/2)*(_mory*0.5);
             }
-            if (morx != 0)
+            if (_morx != 0)
             {
-                speedX = speedX - _currentThrust*(Config.physics_jump_height/2)*(morx*0.5);
+                speedX = speedX - _currentThrust*(Config.physics_jump_height/2)*(_morx*0.5);
             }
             if (!_isThrusting)
             {

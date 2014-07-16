@@ -949,7 +949,7 @@ namespace Skylight
 
                 // If they are simply switching between keys whilst holding space, ignore it
                 if (subject.vertical == verticalDirection &&
-                    subject.horizontal == horizontalDirection)
+                    subject.Horizontal == horizontalDirection)
                 {
                     // Fire the jump event.
                     var jumpEventArgs = new PlayerEventArgs(subject, Source, m);
@@ -967,7 +967,7 @@ namespace Skylight
             subject.modifierX = horizontalModifier;
             subject.modifierY = verticalModifier;
 
-            subject.horizontal = horizontalDirection;
+            subject.Horizontal = horizontalDirection;
             subject.vertical = verticalDirection;
 
             subject.HasGravityModifier = hasGravityModifier;
