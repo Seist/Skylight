@@ -301,7 +301,7 @@ namespace Skylight
                                 break;
 
                             case "show":
-                                OnShow(m);
+                                OnShow();
                                 break;
 
                             case "tele":
@@ -321,7 +321,7 @@ namespace Skylight
                                 break;
 
                             case "upgrade":
-                                OnUpgrade(m);
+                                OnUpgrade();
                                 break;
 
                             case "wp":
@@ -1115,7 +1115,7 @@ namespace Skylight
             Source.Pull.SayOldEvent(e);
         }
 
-        private void OnShow(Message m)
+        private void OnShow()
         {
             // Like with "hide", there is data but it is irrelevant.
             // Update relevant objects.
@@ -1240,7 +1240,7 @@ namespace Skylight
             Source.Pull.UpdateMetaEvent(e);
         }
 
-        private void OnUpgrade(Message m)
+        private void OnUpgrade()
         {
             // Nothing to extract from message.
             // Nothing to update.
@@ -1272,7 +1272,7 @@ namespace Skylight
             // Extract data.
             int x = m.GetInteger(0),
                 y = m.GetInteger(1),
-                id = m.GetInteger(2);
+                id = m.GetInteger(2); // unused
 
             var destination = m.GetString(3);
 
@@ -1290,7 +1290,7 @@ namespace Skylight
         private void OnWrite(Message m)
         {
             // Extract data.
-            string prefix = m.GetString(0),
+            string prefix = m.GetString(0), // unused
                 message = m.GetString(1);
 
             // Update relevant objects.
