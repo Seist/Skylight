@@ -178,6 +178,8 @@ namespace Skylight
         /// </summary>
         public double Y = 0;
 
+        private readonly bool _hasChat;
+
         /// <summary>
         ///     The _animoffset
         /// </summary>
@@ -396,11 +398,6 @@ namespace Skylight
         private double _verticalAcceleration;
 
         /// <summary>
-        ///     The _is mod
-        /// </summary>
-        private bool isOwner; // never used
-
-        /// <summary>
         ///     Initializes a new instance of the <see cref="Player" /> class.
         /// </summary>
         /// <param name="room">The room.</param>
@@ -437,6 +434,7 @@ namespace Skylight
             _currentThrust = MaxThrust;
             X = xPos;
             Y = yPos;
+            _hasChat = hasChat;
             Name = name;
             Size = 16;
             NoModifierDragX = Config.physics_no_modifier_drag;
@@ -573,7 +571,7 @@ namespace Skylight
                 return false;
             }
 
-            internal set { isOwner = value; }
+            internal set { }
         }
 
         /// <summary>
