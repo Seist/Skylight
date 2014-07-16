@@ -95,6 +95,12 @@ namespace Skylight
             SayOldEvent = delegate { } ,
             SystemMessageEvent = delegate { };
 
+        /// <summary>
+        /// All events that concern the player. This includes many messages that the player
+        /// gets from the world (such as server information and leveling up). Mostly these
+        /// events are shown from the server directly to the user in the form of a dialog
+        /// box or by prefixing a chat message with *SYSTEM.
+        /// </summary>
         public event PlayerEvent
             AddEvent = delegate { } ,
             CoinCollectedEvent = delegate { } ,
