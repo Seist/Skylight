@@ -97,11 +97,9 @@ namespace Skylight
             string the_text = m.GetString(3);
             int id = m.GetInteger(4);
 
-            // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, Source);
-
             // Fire the event.
             var b = new TextBlock(385,x,y,the_text);
+            Source.Map[x, y, 0] = b;
             var e = new BlockEventArgs(b);
 
             Source.Pull.SignBlockEvent(e);
