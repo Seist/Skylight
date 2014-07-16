@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace Skylight
+namespace Skylight.Arguments
 {
     public class ChatEventArgs : EventArgs
     {
