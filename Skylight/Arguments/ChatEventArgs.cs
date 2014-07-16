@@ -1,15 +1,18 @@
-﻿
-
-namespace Skylight
+﻿namespace Skylight
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-
     public class ChatEventArgs : EventArgs
     {
+        /// <summary>
+        /// The player who sent the message.
+        /// </summary>
         private Player speaker;
 
+        /// <summary>
+        /// The room where the message originated from.
+        /// </summary>
         private Room origin;
 
         public ChatEventArgs(Player speaker, Room origin)

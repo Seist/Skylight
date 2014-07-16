@@ -17,6 +17,8 @@ namespace Skylight
         internal const string GuestEmail = "guest";
         internal const string GuestPassword = "guest";
 
+        // Compiler seems to choke on this line, saying that Lazy isn't supported in library.
+
         internal static readonly Lazy<PlayerIOClient.Client> GuestClient =
             new Lazy<PlayerIOClient.Client>(() => PlayerIO.QuickConnect.SimpleConnect(GameID, GuestEmail, GuestPassword));
 

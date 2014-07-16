@@ -1,6 +1,4 @@
-﻿
-
-namespace Skylight
+﻿namespace Skylight
 {
     using System;
     using PlayerIOClient;
