@@ -518,6 +518,9 @@ namespace Skylight
         /// <value><c>true</c> if this instance is friend; otherwise, <c>false</c>.</value>
         public bool IsFriend { get; internal set; }
 
+        /// <summary>
+        /// The level of the player (in terms of xp).
+        /// </summary>
         public int Level { get; set; }
 
         /// <summary>
@@ -532,6 +535,10 @@ namespace Skylight
         /// <value><c>true</c> if this instance is mod; otherwise, <c>false</c>.</value>
         public bool IsMod { get; internal set; }
 
+        /// <summary>
+        /// Whether or not the player is able to use the chat box for
+        /// free form chat messages.
+        /// </summary>
         public bool HasChat { get; set; }
 
         /// <summary>
