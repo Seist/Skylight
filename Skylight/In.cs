@@ -14,6 +14,10 @@ namespace Skylight
     {
         public delegate void BlockEvent(BlockEventArgs e);
 
+        /// <summary>
+        /// A chat event (when the player sends a message).
+        /// </summary>
+        /// <param name="e">The ChatEventArgs event.</param>
         public delegate void ChatEvent(ChatEventArgs e);
 
         public delegate void PlayerEvent(PlayerEventArgs e);
@@ -938,29 +942,13 @@ namespace Skylight
 
             subject.HasGravityModifier = hasGravityModifier;
 
-            subject.IsHoldingUp = false;
-            if (verticalDirection == -1)
-            {
-                subject.IsHoldingUp = true;
-            }
+            subject.IsHoldingUp = false || verticalDirection == -1;
 
-            subject.IsHoldingDown = false;
-            if (verticalDirection == 1)
-            {
-                subject.IsHoldingDown = true;
-            }
+            subject.IsHoldingDown = false || verticalDirection == 1;
 
-            subject.IsHoldingLeft = false;
-            if (horizontalDirection == -1)
-            {
-                subject.IsHoldingLeft = true;
-            }
+            subject.IsHoldingLeft = false || horizontalDirection == -1;
 
-            subject.IsHoldingRight = false;
-            if (horizontalDirection == 1)
-            {
-                subject.IsHoldingRight = true;
-            }
+            subject.IsHoldingRight = false || horizontalDirection == 1;
 
             // Fire the event.
             var movementEventArgs = new PlayerEventArgs(subject, Source, m);
