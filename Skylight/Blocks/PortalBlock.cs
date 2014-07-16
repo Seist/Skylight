@@ -1,22 +1,40 @@
-﻿using Skylight.Miscellaneous;
+﻿// ***********************************************************************
+// <copyright file="PortalBlock.cs" company="">
+//     Copyright 2014 (c) . All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+using Skylight.Miscellaneous;
 
 namespace Skylight.Blocks
 {
+    /// <summary>
+    /// Class PortalBlock.
+    /// </summary>
     public class PortalBlock : Block
     {
-        private readonly int _direction;
-
+        /// <summary>
+        /// The minportalid
+        /// </summary>
         private const int
             Minportalid = 0,
             Maxportalid = 99;
 
+        /// <summary>
+        /// The _portal destination
+        /// </summary>
         private int
-            _portalDestination = -1,
-            _portalId = -1;
+            _portalDestination = -1, _portalId = -1;
 
-        private bool
-            _visible;
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PortalBlock"/> class.
+        /// </summary>
+        /// <param name="x">The x coordinate.</param>
+        /// <param name="y">The y coordiante.</param>
+        /// <param name="direction">The direction.</param>
+        /// <param name="portalId">The portal identifier.</param>
+        /// <param name="portalDestination">The portal destination.</param>
+        /// <param name="visible">if set to <c>true</c> then the portal is active.</param>
         public PortalBlock(
             int x,
             int y,
@@ -25,12 +43,15 @@ namespace Skylight.Blocks
             int portalDestination,
             bool visible) : base(Tools.PortalIdByVisible(visible), x, y, 0)
         {
-            _direction = direction;
             PortalDestination = portalDestination;
             PortalId = portalId;
             Visible = visible;
         }
 
+        /// <summary>
+        /// Gets the portal destination.
+        /// </summary>
+        /// <value>The portal destination.</value>
         public int PortalDestination
         {
             get { return _portalDestination; }
@@ -44,6 +65,10 @@ namespace Skylight.Blocks
             }
         }
 
+        /// <summary>
+        /// Gets the portal identifier.
+        /// </summary>
+        /// <value>The portal identifier.</value>
         public int PortalId
         {
             get { return _portalId; }
@@ -57,11 +82,10 @@ namespace Skylight.Blocks
             }
         }
 
-        public bool Visible
-        {
-            get { return _visible; }
-
-            internal set { _visible = value; }
-        }
+        /// <summary>
+        /// Gets a value indicating whether this <see cref="PortalBlock"/> is visible.
+        /// </summary>
+        /// <value><c>true</c> if visible; otherwise, <c>false</c>.</value>
+        public bool Visible { get; internal set; }
     }
 }
