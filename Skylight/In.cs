@@ -94,11 +94,11 @@ namespace Skylight
             // Extract data
             int x = m.GetInteger(0);
             int y = m.GetInteger(1);
-            string the_text = m.GetString(3);
+            string theText = m.GetString(3);
             int id = m.GetInteger(4);
 
             // Fire the event.
-            var b = new TextBlock(385,x,y,the_text);
+            var b = new TextBlock(385,x,y,theText);
             Source.Map[x, y, 0] = b;
             var e = new BlockEventArgs(b);
 
