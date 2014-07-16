@@ -17,10 +17,6 @@ namespace Skylight.Blocks
         /// The coins required to open the coinblock door.
         /// </summary>
         private int _coinsRequired = -1;
-        /// <summary>
-        /// Whether or not it is a gate or a block.
-        /// </summary>
-        private bool _isGate;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CoinBlock"/> class.
@@ -43,12 +39,7 @@ namespace Skylight.Blocks
         /// Gets a value indicating whether this instance is a gate.
         /// </summary>
         /// <value><c>true</c> if this instance is gate; otherwise, <c>false</c>.</value>
-        public bool IsGate
-        {
-            get { return _isGate; }
-
-            internal set { _isGate = value; }
-        }
+        public bool IsGate { get; internal set; }
 
         /// <summary>
         /// Gets the coins required to open the gate (or close the door).
