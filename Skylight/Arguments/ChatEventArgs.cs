@@ -19,6 +19,13 @@ namespace Skylight.Arguments
         /// </summary>
         private readonly Player _speaker;
 
+        /// <summary>
+        /// The main method where the chat messages are sent. This method sets the properties in
+        /// this class to the speaker and origin of the message, where it is handed off to a delegate
+        /// later.
+        /// </summary>
+        /// <param name="speaker">The player who said the message.</param>
+        /// <param name="origin">The room where the message originated.</param>
         public ChatEventArgs(Player speaker, Room origin)
         {
             this._origin = origin;
@@ -26,16 +33,25 @@ namespace Skylight.Arguments
             this._speaker = speaker;
         }
 
+        /// <summary>
+        /// The message object containing the message content.
+        /// </summary>
         public string Message
         {
             get { return Origin.ChatLog.Last().Key; }
         }
 
+        /// <summary>
+        /// The origin (room) where the message came from.
+        /// </summary>
         public Room Origin
         {
             get { return _origin; }
         }
 
+        /// <summary>
+        /// Who said the message (player).
+        /// </summary>
         public Player Speaker
         {
             get { return _speaker; }
