@@ -15,12 +15,12 @@ namespace Skylight.Blocks
         /// The directions of the block.
         /// </summary>
         public const int
-            RIGHT = 1,
-            DOWN = 2,
-            LEFT = 3,
-            UP = 0,
-            FOREGROUNDLAYER = 0,
-            BACKGROUNDLAYER = 1;
+            Right = 1,
+            Down = 2,
+            Left = 3,
+            Up = 0,
+            Foregroundlayer = 0,
+            Backgroundlayer = 1;
 
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Skylight.Blocks
             int x,
             int y,
             int z = 0,
-            int direction = UP)
+            int direction = Up)
         {
             X = x;
             Y = y;
