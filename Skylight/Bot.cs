@@ -50,9 +50,6 @@ namespace Skylight
             _blockDelay = 10;
 
         private string _chatPrefix = "";
-        private Client _client;
-
-        private bool _joined;
 
         private int
             _speechDelay = 1000;
@@ -80,11 +77,7 @@ namespace Skylight
         /// <summary>
         /// The room the bot is joined to.
         /// </summary>
-        public bool Joined
-        {
-            get { return _joined; }
-            internal set { _joined = value; }
-        }
+        public bool Joined { get; internal set; }
 
         /// <summary>
         /// If the physics clock should tick or not.
@@ -94,12 +87,7 @@ namespace Skylight
         /// <summary>
         /// The PlayerIO client class.
         /// </summary>
-        public Client Client
-        {
-            get { return _client; }
-
-            internal set { _client = value; }
-        }
+        public Client Client { get; internal set; }
 
         /// <summary>
         /// The delay between block messages to the server in milliseconds.
