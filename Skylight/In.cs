@@ -339,9 +339,6 @@ namespace Skylight
                             case "wu":
                                 OnWu(m);
                                 break;
-
-                            default:
-                                break;
                         }
                     }
                     else
@@ -362,9 +359,6 @@ namespace Skylight
 
                             case "info":
                                 OnInfo(m);
-                                break;
-
-                            default:
                                 break;
                         }
                     }
