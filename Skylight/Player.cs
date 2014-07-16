@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using Skylight.Blocks;
 using Skylight.Physics;
 
@@ -240,13 +241,7 @@ namespace Skylight
             {
                 if (PlayingIn != null)
                 {
-                    foreach (Bot bt in PlayingIn.OnlineBots)
-                    {
-                        if (bt.Id == Id)
-                        {
-                            return true;
-                        }
-                    }
+                    return PlayingIn.OnlineBots.Any(bt => bt.Id == Id);
                 }
 
                 return false;
@@ -1430,15 +1425,7 @@ namespace Skylight
 
         private List<string> getActivePotions()
         {
-            var _loc_1 = new List<string>();
-            foreach (string _loc_2 in _touchpotions.Keys)
-            {
-                if (hasActivePotion(_loc_2))
-                {
-                    _loc_1.Add(_loc_2);
-                }
-            }
-            return _loc_1;
+            return _touchpotions.Keys.Where(_loc_2 => hasActivePotion(_loc_2)).ToList();
         }
 
         private bool getCanTag()
