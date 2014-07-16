@@ -274,11 +274,7 @@ namespace Skylight
         /// The _is mod
         /// </summary>
         private bool
-            _isMod,
-            /// <summary>
-            /// The is owner
-            /// </summary>
-            isOwner; // never used
+            _isMod, isOwner; // never used
 
         /// <summary>
         /// The _is zombie
@@ -287,7 +283,7 @@ namespace Skylight
         /// <summary>
         /// The isclubmember
         /// </summary>
-        public bool isclubmember = false;
+        public bool Isclubmember = false;
         /// <summary>
         /// The _isgodmod
         /// </summary>
@@ -300,14 +296,12 @@ namespace Skylight
         /// The _last portal
         /// </summary>
         private Point _lastPortal;
+/*
         /// <summary>
         /// The _last respawn
         /// </summary>
         private double _lastRespawn;
-        /// <summary>
-        /// The level
-        /// </summary>
-        private int level = 1; // never used
+*/
 /*
         private int mod = 0;
 */
@@ -323,10 +317,7 @@ namespace Skylight
         /// The _mory
         /// </summary>
         private int _mory;
-        /// <summary>
-        /// The moving
-        /// </summary>
-        private bool moving; // never used
+
         /// <summary>
         /// The _name
         /// </summary>
@@ -402,10 +393,6 @@ namespace Skylight
         /// The vertical
         /// </summary>
         internal int Vertical = 0;
-        /// <summary>
-        /// The worldportalsend
-        /// </summary>
-        private const bool worldportalsend = false; // never used
 
         /// <summary>
         /// The _XP level
@@ -440,10 +427,9 @@ namespace Skylight
             Coins = coins;
             SwitchOpened = purple;
             _isFriend = isFriend;
-            this.level = level;
             _queue = new Queue<int>(Config.physics_queue_length);
             _lastPortal = new Point();
-            var rectangle = new Rectangle(0, 0, 64, 64);
+           
             _currentThrust = MaxThrust;
             X = xPos;
             Y = yPos;
@@ -776,6 +762,7 @@ namespace Skylight
         protected int blockX
         {
             get { return (int) Math.Round(((X)/16.0)); }
+            set { throw new NotImplementedException(); }
         }
 
         /// <summary>
@@ -785,6 +772,7 @@ namespace Skylight
         protected int blockY
         {
             get { return (int) Math.Round((Y)/16.0); }
+            set { throw new NotImplementedException(); }
         }
 
         /// <summary>
@@ -1086,7 +1074,7 @@ namespace Skylight
                                             }
                                             case BlockIds.Action.Doors.CLUB:
                                             {
-                                                if (isclubmember)
+                                                if (Isclubmember)
                                                 {
                                                     continue;
                                                 }
@@ -1094,7 +1082,7 @@ namespace Skylight
                                             }
                                             case BlockIds.Action.Gates.CLUB:
                                             {
-                                                if (!isclubmember)
+                                                if (!Isclubmember)
                                                 {
                                                     continue;
                                                 }
@@ -1399,7 +1387,7 @@ namespace Skylight
                     _modoffset = 10;
                 }
             }
-            else if (isclubmember)
+            else if (Isclubmember)
             {
                 _cluboffset = _cluboffset + 0.2;
                 if (_cluboffset >= 14)
@@ -1707,11 +1695,9 @@ namespace Skylight
             }
             double imx = SpeedX*256;
             double imy = SpeedY*256;
-            moving = false;
             if (imx != 0 || CurrentBlockId == BlockIds.Action.Liquids.WATER ||
                 CurrentBlockId == BlockIds.Action.Liquids.MUD)
             {
-                moving = true;
             }
             else if (ModifierX < 0.1 && ModifierX > -0.1)
             {
@@ -1744,7 +1730,6 @@ namespace Skylight
             if (imy != 0 || CurrentBlockId == BlockIds.Action.Liquids.WATER ||
                 CurrentBlockId == BlockIds.Action.Liquids.MUD)
             {
-                moving = true;
             }
             else if (ModifierY < 0.1 && ModifierY > -0.1)
             {
