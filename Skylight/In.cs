@@ -883,25 +883,6 @@ namespace Skylight
             Source.Pull.TrophyEvent(e);
         }
 
-        private void OnLb(Message m)
-        {
-            // Extract data.
-            int id = m.GetInteger(0),
-                x = m.GetInteger(1),
-                y = m.GetInteger(2);
-
-            string text = m.GetString(3);
-
-            // Update relevant objects.
-            var b = new TextBlock(id, x, y, text);
-
-            Source.Map[x, y, 0] = b;
-
-            // Fire the event.
-            var e = new BlockEventArgs(b, Source);
-
-            Source.Pull.CoinBlockEvent(e);
-        }
 
         private void OnLeft(Message m)
         {
