@@ -266,7 +266,7 @@ namespace Skylight.Miscellaneous
                         coins = m.GetInteger(messageIndex);
                         messageIndex++;
 
-                        isGate = false || blockId == BlockIds.Action.Gates.COIN;
+                        isGate = blockId == BlockIds.Action.Gates.COIN;
                     }
                     else if (blockId == BlockIds.Action.Music.PERCUSSION)
                     {
