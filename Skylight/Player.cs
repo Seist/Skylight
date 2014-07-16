@@ -1836,15 +1836,6 @@ namespace Skylight
         }
 */
 
-        /// <summary>
-        ///     Gets the active potions.
-        /// </summary>
-        /// <returns>List&lt;System.String&gt;.</returns>
-        private List<string> GetActivePotions()
-        {
-            return _touchpotions.Keys.Where(HasActivePotion).ToList();
-        }
-
 /*
         private bool getCanTag()
         {
