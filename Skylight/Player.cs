@@ -899,7 +899,7 @@ namespace Skylight
                                         (int) (((yy*16) + loc2.Y + yTest)/16),
                                         0];
                                     int loc11 = currentBlock.Id;
-                                    if (ItemId.isSolid(loc11))
+                                    if (ItemId.IsSolid(loc11))
                                     {
                                         switch (loc11)
                                         {
@@ -1327,7 +1327,7 @@ namespace Skylight
             }
             CurrentBlockId = PlayingIn.Map[_cx, _cy, 0].Id;
             _queue.Enqueue(CurrentBlockId);
-            if (CurrentBlockId == 4 || ItemId.isClimbable(CurrentBlockId))
+            if (CurrentBlockId == 4 || ItemId.IsClimbable(CurrentBlockId))
             {
                 delayed = _queue.Dequeue();
                 _queue.Enqueue(CurrentBlockId);
@@ -1497,7 +1497,7 @@ namespace Skylight
                 SpeedX = SpeedX*Config.PhysicsBaseDrag;
                 if (Math.Abs(_horizontalAcceleration) < 0.00000001 && Math.Abs(_oldVerticalAcceleration) > 0.00000001 ||
                     SpeedX < 0 && _horizontalAcceleration > 0 || SpeedX > 0 && _horizontalAcceleration < 0 ||
-                    ItemId.isClimbable(CurrentBlockId) && !_isgodmod)
+                    ItemId.IsClimbable(CurrentBlockId) && !_isgodmod)
                 {
                     SpeedX = SpeedX*NoModifierDragX;
                 }
@@ -1528,7 +1528,7 @@ namespace Skylight
                 SpeedY = SpeedY*Config.PhysicsBaseDrag;
                 if (Math.Abs(_verticalAcceleration) < 0.00000001 && Math.Abs(_oldHorizontalAcceleration) > 0.00000001 ||
                     SpeedY < 0 && _verticalAcceleration > 0 || SpeedY > 0 && _verticalAcceleration < 0 ||
-                    ItemId.isClimbable(CurrentBlockId) && !_isgodmod)
+                    ItemId.IsClimbable(CurrentBlockId) && !_isgodmod)
                 {
                     SpeedY = SpeedY*NoModifierDragY;
                 }
