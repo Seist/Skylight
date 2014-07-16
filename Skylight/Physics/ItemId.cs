@@ -19,7 +19,7 @@ namespace Skylight.Physics
         /// </summary>
         /// <param name="param1">The param1.</param>
         /// <returns><c>true</c> if the specified block is solid; otherwise, <c>false</c>.</returns>
-        public static bool isSolid(int param1)
+        public static bool IsSolid(int param1)
         {
             return param1 >= 9 && param1 <= 97 || param1 >= 122 && param1 <= 217;
         } // end function
@@ -29,7 +29,7 @@ namespace Skylight.Physics
         /// </summary>
         /// <param name="param1">The block.</param>
         /// <returns><c>true</c> if the specified block is climbable; otherwise, <c>false</c>.</returns>
-        public static bool isClimbable(int param1)
+        public static bool IsClimbable(int param1)
         {
             switch (param1)
             {
@@ -53,7 +53,7 @@ namespace Skylight.Physics
         /// </summary>
         /// <param name="param1">The param1.</param>
         /// <returns><c>true</c> if [is background rotateable] [the specified block]; otherwise, <c>false</c>.</returns>
-        public static bool isBackgroundRotateable(int param1)
+        public static bool IsBackgroundRotateable(int param1)
         {
             return false;
         } // end function
@@ -63,7 +63,7 @@ namespace Skylight.Physics
         /// </summary>
         /// <param name="param1">The param1.</param>
         /// <returns><c>true</c> if [is decoration rotateable] [the specified block]; otherwise, <c>false</c>.</returns>
-        public static bool isDecorationRotateable(int param1)
+        public static bool IsDecorationRotateable(int param1)
         {
             switch (param1)
             {
