@@ -5,31 +5,31 @@ namespace Skylight
 {
     public class PlayerEventArgs : EventArgs
     {
-        private readonly Room origin;
+        private readonly Room _origin;
 
-        private readonly Message rawMessage;
-        private readonly Player subject;
+        private readonly Message _rawMessage;
+        private readonly Player _subject;
 
         public PlayerEventArgs(Player subject, Room origin, Message rawMessage)
         {
-            this.subject = subject;
-            this.origin = origin;
-            this.rawMessage = rawMessage;
+            this._subject = subject;
+            this._origin = origin;
+            this._rawMessage = rawMessage;
         }
 
         public Player Subject
         {
-            get { return subject; }
+            get { return _subject; }
         }
 
         public Room Origin
         {
-            get { return origin; }
+            get { return _origin; }
         }
 
         public Message RawMessage
         {
-            get { return rawMessage; }
+            get { return _rawMessage; }
         }
     }
 }

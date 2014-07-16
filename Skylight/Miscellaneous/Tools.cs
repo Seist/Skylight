@@ -12,7 +12,7 @@ namespace Skylight
     {
         public delegate void ProgramEvent(string message);
 
-        internal const string GameID = "everybody-edits-su9rn58o40itdbnw69plyw";
+        internal const string GameId = "everybody-edits-su9rn58o40itdbnw69plyw";
         internal const string GuestEmail = "guest";
         internal const string GuestPassword = "guest";
 
@@ -25,7 +25,7 @@ namespace Skylight
             Ran = new Random();
 
         internal static readonly Lazy<Client> GuestClient =
-            new Lazy<Client>(() => PlayerIO.QuickConnect.SimpleConnect(GameID, GuestEmail, GuestPassword));
+            new Lazy<Client>(() => PlayerIO.QuickConnect.SimpleConnect(GameId, GuestEmail, GuestPassword));
 
         public static event ProgramEvent ProgramMessage = delegate { };
 
@@ -175,14 +175,14 @@ namespace Skylight
             return new string(array);
         }
 
-        internal static string ParseURL(string id)
+        internal static string ParseUrl(string id)
         {
             // If it matches any type of URL and has 13 characters at the end, return the last 13 characters.
             // Supports haphazard copy/pasting.
             if (Regex.IsMatch(id, "[htp:/w.evrybodis.comga]{0,36}[a-zA-Z0-9_-]{13}"))
             {
-                string parsedURL = id.Substring(id.ToCharArray().Length - 13, 13);
-                return parsedURL;
+                string parsedUrl = id.Substring(id.ToCharArray().Length - 13, 13);
+                return parsedUrl;
             }
 
             return id;

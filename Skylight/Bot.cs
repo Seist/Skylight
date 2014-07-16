@@ -4,6 +4,10 @@ using PlayerIOClient;
 
 namespace Skylight
 {
+    /// <summary>
+    /// The entire bot (main core). This is what the user instantiates when they want
+    /// a new bot.
+    /// </summary>
     public class Bot : Player
     {
         /// <summary>
