@@ -10,9 +10,15 @@ using Skylight.Physics;
 
 namespace Skylight
 {
+    /// <summary>
+    /// Class Player.
+    /// </summary>
     public class Player
     {
         // Private instance fields
+        /// <summary>
+        /// The admins
+        /// </summary>
         private static readonly List<string> Admins = new List<string>
         {
             "benjaminsen",
@@ -23,140 +29,444 @@ namespace Skylight
             "mrvoid"
         };
 
+        /// <summary>
+        /// The _mult
+        /// </summary>
         private readonly double _mult;
+        /// <summary>
+        /// The _queue
+        /// </summary>
         private readonly Queue<int> _queue = new Queue<int>();
+        /// <summary>
+        /// The _touchpotions
+        /// </summary>
         private readonly Dictionary<string, int> _touchpotions = new Dictionary<string, int>();
+        /// <summary>
+        /// The _horizontal acceleration
+        /// </summary>
         private double _horizontalAcceleration;
+        /// <summary>
+        /// The _old horizontal acceleration
+        /// </summary>
         private double _oldHorizontalAcceleration;
+        /// <summary>
+        /// The _old vertical acceleration
+        /// </summary>
         private double _oldVerticalAcceleration;
+        /// <summary>
+        /// The switch opened
+        /// </summary>
         public bool SwitchOpened = false;
+        /// <summary>
+        /// The _vertical acceleration
+        /// </summary>
         private double _verticalAcceleration;
+        /// <summary>
+        /// The x
+        /// </summary>
         public double X = 0;
+        /// <summary>
+        /// The y
+        /// </summary>
         public double Y = 0;
+        /// <summary>
+        /// The boost
+        /// </summary>
         protected double Boost;
+        /// <summary>
+        /// The _current thrust
+        /// </summary>
         private double _currentThrust;
+        /// <summary>
+        /// The gravity
+        /// </summary>
         protected double Gravity;
+        /// <summary>
+        /// The _is flaunting
+        /// </summary>
         private bool _isFlaunting;
+        /// <summary>
+        /// The _is invulnerable
+        /// </summary>
         private bool _isInvulnerable;
+        /// <summary>
+        /// The _is thrusting
+        /// </summary>
         private bool _isThrusting;
+        /// <summary>
+        /// The maximum thrust
+        /// </summary>
         private const double MaxThrust = 0.2;
+        /// <summary>
+        /// The modifier x
+        /// </summary>
         protected double ModifierX = 0;
+        /// <summary>
+        /// The modifier y
+        /// </summary>
         protected double ModifierY = 0;
+        /// <summary>
+        /// The mud buoyancy
+        /// </summary>
         protected double MudBuoyancy;
+        /// <summary>
+        /// The mud drag
+        /// </summary>
         protected double MudDrag;
+        /// <summary>
+        /// The no modifier drag x
+        /// </summary>
         protected double NoModifierDragX;
+        /// <summary>
+        /// The no modifier drag y
+        /// </summary>
         protected double NoModifierDragY;
+        /// <summary>
+        /// The speed x
+        /// </summary>
         protected double SpeedX = 0;
+        /// <summary>
+        /// The speed y
+        /// </summary>
         protected double SpeedY = 0;
+        /// <summary>
+        /// The thrust burn off
+        /// </summary>
         private const double ThrustBurnOff = 0.01;
+        /// <summary>
+        /// The water buoyancy
+        /// </summary>
         protected double WaterBuoyancy;
+        /// <summary>
+        /// The water drag
+        /// </summary>
         protected double WaterDrag;
+        /// <summary>
+        /// The _animoffset
+        /// </summary>
         private double _animoffset;
 
+        /// <summary>
+        /// The _blue coins
+        /// </summary>
         private int
             _blueCoins;
 
+        /// <summary>
+        /// The checkpoint_x
+        /// </summary>
         public int checkpoint_x = -1;
+        /// <summary>
+        /// The checkpoint_y
+        /// </summary>
         public int checkpoint_y = -1;
+        /// <summary>
+        /// The _cluboffset
+        /// </summary>
         private double _cluboffset;
 
+        /// <summary>
+        /// The _coins
+        /// </summary>
         private int
             _coins,
+            /// <summary>
+            /// The _collected magic
+            /// </summary>
             _collectedMagic;
 
+        /// <summary>
+        /// The current block identifier
+        /// </summary>
         public int currentBlockId = 0;
+        /// <summary>
+        /// The _current sx
+        /// </summary>
         private double _currentSx;
+        /// <summary>
+        /// The _current sy
+        /// </summary>
         private double _currentSy;
+        /// <summary>
+        /// The _CX
+        /// </summary>
         private int _cx;
+        /// <summary>
+        /// The _cy
+        /// </summary>
         private int _cy;
+        /// <summary>
+        /// The _deadoffset
+        /// </summary>
         private double _deadoffset;
 
+        /// <summary>
+        /// The _death count
+        /// </summary>
         private int
             _deathCount;
 
+        /// <summary>
+        /// The _donex
+        /// </summary>
         private bool _donex;
+        /// <summary>
+        /// The _doney
+        /// </summary>
         private bool _doney;
+        /// <summary>
+        /// The gravity multiplier
+        /// </summary>
         private const double GravityMultiplier = 1;
 
+        /// <summary>
+        /// The _has access
+        /// </summary>
         private bool
             _hasAccess,
+            /// <summary>
+            /// The _has boost
+            /// </summary>
             _hasBoost;
 
+        /// <summary>
+        /// The _has club
+        /// </summary>
         private bool
             _hasClub,
+            /// <summary>
+            /// The _has command access
+            /// </summary>
             _hasCommandAccess,
+            /// <summary>
+            /// The _has crown
+            /// </summary>
             _hasCrown,
+            /// <summary>
+            /// The _has gravity modifier
+            /// </summary>
             _hasGravityModifier,
+            /// <summary>
+            /// The _has silver crown
+            /// </summary>
             _hasSilverCrown;
 
+        /// <summary>
+        /// The horizontal
+        /// </summary>
         internal int Horizontal = 0;
 
+        /// <summary>
+        /// The _id
+        /// </summary>
         private int
             _id = -1;
 
 /*
         private bool injump = false;
 */
+        /// <summary>
+        /// The _is cursed
+        /// </summary>
         private bool _isCursed;
+        /// <summary>
+        /// The _is dead
+        /// </summary>
         private bool _isDead;
 
+        /// <summary>
+        /// The _is friend
+        /// </summary>
         private bool
             _isFriend,
+            /// <summary>
+            /// The _is god
+            /// </summary>
             _isGod,
+            /// <summary>
+            /// The _is holding down
+            /// </summary>
             _isHoldingDown,
+            /// <summary>
+            /// The _is holding left
+            /// </summary>
             _isHoldingLeft,
+            /// <summary>
+            /// The _is holding right
+            /// </summary>
             _isHoldingRight;
 
+        /// <summary>
+        /// The _is holding space
+        /// </summary>
         private bool
             _isHoldingSpace;
 
+        /// <summary>
+        /// The _is holding up
+        /// </summary>
         private bool
             _isHoldingUp;
 
+        /// <summary>
+        /// The _is mod
+        /// </summary>
         private bool
             _isMod,
+            /// <summary>
+            /// The is owner
+            /// </summary>
             isOwner; // never used
 
+        /// <summary>
+        /// The _is zombie
+        /// </summary>
         private bool _isZombie;
+        /// <summary>
+        /// The isclubmember
+        /// </summary>
         public bool isclubmember = false;
+        /// <summary>
+        /// The _isgodmod
+        /// </summary>
         private bool _isgodmod;
+        /// <summary>
+        /// The jump boost
+        /// </summary>
         private const bool JumpBoost = false;
+        /// <summary>
+        /// The _last portal
+        /// </summary>
         private Point _lastPortal;
+        /// <summary>
+        /// The _last respawn
+        /// </summary>
         private double _lastRespawn;
+        /// <summary>
+        /// The level
+        /// </summary>
         private int level = 1; // never used
 /*
         private int mod = 0;
 */
+        /// <summary>
+        /// The _modoffset
+        /// </summary>
         private double _modoffset;
+        /// <summary>
+        /// The _morx
+        /// </summary>
         private int _morx;
+        /// <summary>
+        /// The _mory
+        /// </summary>
         private int _mory;
+        /// <summary>
+        /// The moving
+        /// </summary>
         private bool moving; // never used
+        /// <summary>
+        /// The _name
+        /// </summary>
         private string _name;
+        /// <summary>
+        /// The _old x
+        /// </summary>
         private double _oldX = -1;
+        /// <summary>
+        /// The _old y
+        /// </summary>
         private double _oldY = -1;
+        /// <summary>
+        /// The _osx
+        /// </summary>
         private double _osx;
+        /// <summary>
+        /// The _osy
+        /// </summary>
         private double _osy;
+        /// <summary>
+        /// The _overlapy
+        /// </summary>
         private int _overlapy;
+        /// <summary>
+        /// The _ox
+        /// </summary>
         private double _ox;
+        /// <summary>
+        /// The _oy
+        /// </summary>
         private double _oy;
+        /// <summary>
+        /// The _playing in
+        /// </summary>
         private Room _playingIn;
+        /// <summary>
+        /// The _potion effects
+        /// </summary>
         private List<int> _potionEffects = new List<int>();
+        /// <summary>
+        /// The _reminder x
+        /// </summary>
         private double _reminderX;
+        /// <summary>
+        /// The _reminder y
+        /// </summary>
         private double _reminderY;
+        /// <summary>
+        /// The size
+        /// </summary>
         protected int Size;
 
+        /// <summary>
+        /// The _smiley
+        /// </summary>
         private int
             _smiley;
 
+        /// <summary>
+        /// The _spacejustdown
+        /// </summary>
         private bool _spacejustdown;
+        /// <summary>
+        /// The _TX
+        /// </summary>
         private double _tx;
+        /// <summary>
+        /// The _ty
+        /// </summary>
         private double _ty;
+        /// <summary>
+        /// The vertical
+        /// </summary>
         internal int Vertical = 0;
+        /// <summary>
+        /// The worldportalsend
+        /// </summary>
         private const bool worldportalsend = false; // never used
 
+        /// <summary>
+        /// The _XP level
+        /// </summary>
         private int
             _xpLevel;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Player"/> class.
+        /// </summary>
+        /// <param name="room">The room.</param>
+        /// <param name="id">The identifier.</param>
+        /// <param name="name">The name.</param>
+        /// <param name="smiley">The smiley.</param>
+        /// <param name="xPos">The x position.</param>
+        /// <param name="yPos">The y position.</param>
+        /// <param name="isGod">if set to <c>true</c> [is god].</param>
+        /// <param name="isMod">if set to <c>true</c> [is mod].</param>
+        /// <param name="hasChat">if set to <c>true</c> [has chat].</param>
+        /// <param name="coins">The coins.</param>
+        /// <param name="purple">if set to <c>true</c> [purple].</param>
+        /// <param name="isFriend">if set to <c>true</c> [is friend].</param>
+        /// <param name="level">The level.</param>
         public Player(Room room, int id, string name, int smiley, double xPos, double yPos, bool isGod, bool isMod,
             bool hasChat, int coins, bool purple, bool isFriend, int level)
         {
@@ -189,6 +499,10 @@ namespace Skylight
         }
 
         // Public instance properties.
+        /// <summary>
+        /// Gets a value indicating whether this instance has access.
+        /// </summary>
+        /// <value><c>true</c> if this instance has access; otherwise, <c>false</c>.</value>
         public bool HasAccess
         {
             get { return _hasAccess; }
@@ -196,6 +510,10 @@ namespace Skylight
             internal set { _hasAccess = value; }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this instance has boost.
+        /// </summary>
+        /// <value><c>true</c> if this instance has boost; otherwise, <c>false</c>.</value>
         public bool HasBoost
         {
             get { return _hasBoost; }
@@ -203,6 +521,10 @@ namespace Skylight
             internal set { _hasBoost = value; }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this instance has club.
+        /// </summary>
+        /// <value><c>true</c> if this instance has club; otherwise, <c>false</c>.</value>
         public bool HasClub
         {
             get { return _hasClub; }
@@ -210,6 +532,10 @@ namespace Skylight
             internal set { _hasClub = value; }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this instance has command access.
+        /// </summary>
+        /// <value><c>true</c> if this instance has command access; otherwise, <c>false</c>.</value>
         public bool HasCommandAccess
         {
             get { return _hasCommandAccess; }
@@ -217,6 +543,10 @@ namespace Skylight
             internal set { _hasCommandAccess = value; }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this instance has crown.
+        /// </summary>
+        /// <value><c>true</c> if this instance has crown; otherwise, <c>false</c>.</value>
         public bool HasCrown
         {
             get { return _hasCrown; }
@@ -224,6 +554,10 @@ namespace Skylight
             internal set { _hasCrown = value; }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this instance has gravity modifier.
+        /// </summary>
+        /// <value><c>true</c> if this instance has gravity modifier; otherwise, <c>false</c>.</value>
         public bool HasGravityModifier
         {
             get { return _hasGravityModifier; }
@@ -231,6 +565,10 @@ namespace Skylight
             internal set { _hasGravityModifier = value; }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this instance has silver crown.
+        /// </summary>
+        /// <value><c>true</c> if this instance has silver crown; otherwise, <c>false</c>.</value>
         public bool HasSilverCrown
         {
             get { return _hasSilverCrown; }
@@ -238,6 +576,10 @@ namespace Skylight
             internal set { _hasSilverCrown = value; }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this instance is bot.
+        /// </summary>
+        /// <value><c>true</c> if this instance is bot; otherwise, <c>false</c>.</value>
         public bool IsBot
         {
             get
@@ -251,6 +593,10 @@ namespace Skylight
             }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this instance is friend.
+        /// </summary>
+        /// <value><c>true</c> if this instance is friend; otherwise, <c>false</c>.</value>
         public bool IsFriend
         {
             get { return _isFriend; }
@@ -258,6 +604,10 @@ namespace Skylight
             internal set { _isFriend = value; }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this instance is god.
+        /// </summary>
+        /// <value><c>true</c> if this instance is god; otherwise, <c>false</c>.</value>
         public bool IsGod
         {
             get { return _isGod; }
@@ -265,6 +615,10 @@ namespace Skylight
             internal set { _isGod = value; }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this instance is mod.
+        /// </summary>
+        /// <value><c>true</c> if this instance is mod; otherwise, <c>false</c>.</value>
         public bool IsMod
         {
             get { return _isMod; }
@@ -272,6 +626,10 @@ namespace Skylight
             internal set { _isMod = value; }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this instance is holding left.
+        /// </summary>
+        /// <value><c>true</c> if this instance is holding left; otherwise, <c>false</c>.</value>
         public bool IsHoldingLeft
         {
             get { return _isHoldingLeft; }
@@ -279,6 +637,10 @@ namespace Skylight
             internal set { _isHoldingLeft = value; }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this instance is holding right.
+        /// </summary>
+        /// <value><c>true</c> if this instance is holding right; otherwise, <c>false</c>.</value>
         public bool IsHoldingRight
         {
             get { return _isHoldingRight; }
@@ -286,6 +648,10 @@ namespace Skylight
             internal set { _isHoldingRight = value; }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this instance is holding up.
+        /// </summary>
+        /// <value><c>true</c> if this instance is holding up; otherwise, <c>false</c>.</value>
         public bool IsHoldingUp
         {
             get { return _isHoldingUp; }
@@ -293,6 +659,10 @@ namespace Skylight
             internal set { _isHoldingUp = value; }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this instance is holding down.
+        /// </summary>
+        /// <value><c>true</c> if this instance is holding down; otherwise, <c>false</c>.</value>
         public bool IsHoldingDown
         {
             get { return _isHoldingDown; }
@@ -300,6 +670,10 @@ namespace Skylight
             internal set { _isHoldingDown = value; }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this instance is holding space.
+        /// </summary>
+        /// <value><c>true</c> if this instance is holding space; otherwise, <c>false</c>.</value>
         public bool IsHoldingSpace
         {
             get { return _isHoldingSpace; }
@@ -307,6 +681,10 @@ namespace Skylight
             internal set { _isHoldingSpace = value; }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this instance is owner.
+        /// </summary>
+        /// <value><c>true</c> if this instance is owner; otherwise, <c>false</c>.</value>
         public bool IsOwner
         {
             get
@@ -321,6 +699,10 @@ namespace Skylight
             internal set { isOwner = value; }
         }
 
+        /// <summary>
+        /// Gets the coins.
+        /// </summary>
+        /// <value>The coins.</value>
         public int Coins
         {
             get { return _coins; }
@@ -328,12 +710,20 @@ namespace Skylight
             internal set { _coins = value; }
         }
 
+        /// <summary>
+        /// Gets the blue coins.
+        /// </summary>
+        /// <value>The blue coins.</value>
         public int BlueCoins
         {
             get { return _blueCoins; }
             internal set { _blueCoins = value; }
         }
 
+        /// <summary>
+        /// Gets the collected magic.
+        /// </summary>
+        /// <value>The collected magic.</value>
         public int CollectedMagic
         {
             get { return _collectedMagic; }
@@ -341,6 +731,10 @@ namespace Skylight
             internal set { _collectedMagic = value; }
         }
 
+        /// <summary>
+        /// Gets the death count.
+        /// </summary>
+        /// <value>The death count.</value>
         public int DeathCount
         {
             get { return _deathCount; }
@@ -348,6 +742,10 @@ namespace Skylight
             internal set { _deathCount = value; }
         }
 
+        /// <summary>
+        /// Gets the identifier.
+        /// </summary>
+        /// <value>The identifier.</value>
         public int Id
         {
             get { return _id; }
@@ -355,6 +753,10 @@ namespace Skylight
             internal set { _id = value; }
         }
 
+        /// <summary>
+        /// Gets the smiley.
+        /// </summary>
+        /// <value>The smiley.</value>
         public int Smiley
         {
             get { return _smiley; }
@@ -362,6 +764,10 @@ namespace Skylight
             internal set { _smiley = value; }
         }
 
+        /// <summary>
+        /// Gets the xp level.
+        /// </summary>
+        /// <value>The xp level.</value>
         public int XpLevel
         {
             get { return _xpLevel; }
@@ -369,6 +775,10 @@ namespace Skylight
             internal set { _xpLevel = value; }
         }
 
+        /// <summary>
+        /// Gets the potion effects.
+        /// </summary>
+        /// <value>The potion effects.</value>
         public List<int> PotionEffects
         {
             get { return _potionEffects; }
@@ -376,6 +786,10 @@ namespace Skylight
             internal set { _potionEffects = value; }
         }
 
+        /// <summary>
+        /// Gets the playing in.
+        /// </summary>
+        /// <value>The playing in.</value>
         public Room PlayingIn
         {
             get { return _playingIn; }
@@ -383,91 +797,160 @@ namespace Skylight
             internal set { _playingIn = value; }
         }
 
+        /// <summary>
+        /// Gets the name.
+        /// </summary>
+        /// <value>The name.</value>
         public string Name
         {
             get { return _name; }
             internal set { _name = value.ToLower(); }
         }
 
+        /// <summary>
+        /// Gets the block x.
+        /// </summary>
+        /// <value>The block x.</value>
         protected int blockX
         {
             get { return (int) Math.Round(((X)/16.0)); }
         }
 
+        /// <summary>
+        /// Gets the block y.
+        /// </summary>
+        /// <value>The block y.</value>
         protected int blockY
         {
             get { return (int) Math.Round((Y)/16.0); }
         }
 
+        /// <summary>
+        /// Gets the position x.
+        /// </summary>
+        /// <value>The position x.</value>
         internal double PosX
         {
             get { return (X + 8); }
         }
 
+        /// <summary>
+        /// Gets the position y.
+        /// </summary>
+        /// <value>The position y.</value>
         internal double PosY
         {
             get { return (Y + 8); }
         }
 
+        /// <summary>
+        /// Gets or sets the speed x.
+        /// </summary>
+        /// <value>The speed x.</value>
         internal double speedX
         {
             get { return SpeedX*_mult; }
             set { SpeedX = value/_mult; }
         }
 
+        /// <summary>
+        /// Gets or sets the speed y.
+        /// </summary>
+        /// <value>The speed y.</value>
         internal double speedY
         {
             get { return SpeedY*_mult; }
             set { SpeedY = value/_mult; }
         }
 
+        /// <summary>
+        /// Gets or sets the modifier x.
+        /// </summary>
+        /// <value>The modifier x.</value>
         internal double modifierX
         {
             get { return ModifierX*_mult; }
             set { ModifierX = value/_mult; }
         }
 
+        /// <summary>
+        /// Gets or sets the modifier y.
+        /// </summary>
+        /// <value>The modifier y.</value>
         internal double modifierY
         {
             get { return ModifierY*_mult; }
             set { ModifierY = value/_mult; }
         }
 
+        /// <summary>
+        /// Gets or sets the block x.
+        /// </summary>
+        /// <value>The block x.</value>
         public int BlockX
         {
             get { return blockX; }
             set { X = value*16; }
         }
 
+        /// <summary>
+        /// Gets or sets the block y.
+        /// </summary>
+        /// <value>The block y.</value>
         public int BlockY
         {
             get { return blockY; }
             set { Y = value*16; }
         }
 
+        /// <summary>
+        /// Gets the old block x.
+        /// </summary>
+        /// <value>The old block x.</value>
         private int OldBlockX
         {
             get { return (int) Math.Round(((_oldX)/16.0)); }
         }
 
+        /// <summary>
+        /// Gets the old block y.
+        /// </summary>
+        /// <value>The old block y.</value>
         private int OldBlockY
         {
             get { return (int) Math.Round(((_oldY)/16.0)); }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this <see cref="Player"/> is moved.
+        /// </summary>
+        /// <value><c>true</c> if moved; otherwise, <c>false</c>.</value>
         private bool Moved
         {
             get { return BlockX != OldBlockX || BlockY != OldBlockY; }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="Player"/> is levitation.
+        /// </summary>
+        /// <value><c>true</c> if levitation; otherwise, <c>false</c>.</value>
         private bool Levitation { get; set; }
 
+        /// <summary>
+        /// Resets the coins.
+        /// </summary>
         private void ResetCoins()
         {
             Coins = 0;
             BlueCoins = 0;
         }
 
+        /// <summary>
+        /// Hits the test.
+        /// </summary>
+        /// <param name="param1">The param1.</param>
+        /// <param name="param2">The param2.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         private bool HitTest(int param1, int param2)
         {
             return param1 >= X && param2 >= Y && param1 <= X + Size && param2 <= Y + Size;
@@ -489,6 +972,10 @@ namespace Skylight
         }
 */
 
+        /// <summary>
+        /// Speeds the multiplier.
+        /// </summary>
+        /// <returns>System.Double.</returns>
         private double SpeedMultiplier()
         {
             double loc1 = 1;
@@ -499,11 +986,20 @@ namespace Skylight
             return loc1;
         }
 
+        /// <summary>
+        /// Drags the mud.
+        /// </summary>
+        /// <returns>System.Double.</returns>
         private double DragMud()
         {
             return MudDrag;
         }
 
+        /// <summary>
+        /// Overlapses the specified player.
+        /// </summary>
+        /// <param name="player">The player.</param>
+        /// <returns>System.Int32.</returns>
         private int Overlaps(Player player)
         {
             var _loc_8 = new List<int>();
@@ -731,6 +1227,9 @@ namespace Skylight
             return 0;
         }
 
+        /// <summary>
+        /// Stepxes this instance.
+        /// </summary>
         private void Stepx()
         {
             if (_currentSx > 0)
@@ -773,6 +1272,9 @@ namespace Skylight
             }
         }
 
+        /// <summary>
+        /// Stepies this instance.
+        /// </summary>
         private void Stepy()
         {
             if (_currentSy > 0)
@@ -815,6 +1317,9 @@ namespace Skylight
             }
         }
 
+        /// <summary>
+        /// Processes the portals.
+        /// </summary>
         private void ProcessPortals()
         {
             var targetPortalList = new List<Point>();
@@ -915,6 +1420,9 @@ namespace Skylight
             }
         }
 
+        /// <summary>
+        /// Ticks this instance.
+        /// </summary>
         public void tick()
         {
             _oldX = X;
@@ -1348,6 +1856,9 @@ namespace Skylight
         }
 */
 
+        /// <summary>
+        /// Kills the player.
+        /// </summary>
         private void KillPlayer()
         {
             _isDead = true;
@@ -1419,6 +1930,10 @@ namespace Skylight
         }
 */
 
+        /// <summary>
+        /// Zombies this instance.
+        /// </summary>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         private bool Zombie()
         {
             if (IsGod || IsMod)
@@ -1442,6 +1957,11 @@ namespace Skylight
         }
 */
 
+        /// <summary>
+        /// Determines whether [has active potion] [the specified param1].
+        /// </summary>
+        /// <param name="param1">The param1.</param>
+        /// <returns><c>true</c> if [has active potion] [the specified param1]; otherwise, <c>false</c>.</returns>
         private bool HasActivePotion(string param1)
         {
             if (!_touchpotions.ContainsKey(param1))
@@ -1458,6 +1978,10 @@ namespace Skylight
         }
 */
 
+        /// <summary>
+        /// Gets the active potions.
+        /// </summary>
+        /// <returns>List&lt;System.String&gt;.</returns>
         private List<string> GetActivePotions()
         {
             return _touchpotions.Keys.Where(HasActivePotion).ToList();
@@ -1514,6 +2038,9 @@ namespace Skylight
         }
 */
 
+        /// <summary>
+        /// Updates the thrust.
+        /// </summary>
         private void UpdateThrust()
         {
             if (_mory != 0)
