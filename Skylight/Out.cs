@@ -9,10 +9,20 @@ using PlayerIOClient;
 using Skylight.Blocks;
 using Skylight.Miscellaneous;
 
+/// <summary>
+/// The Skylight namespace.
+/// </summary>
 namespace Skylight
 {
+    /// <summary>
+    /// Class Out.
+    /// </summary>
     public class Out
     {
+        /// <summary>
+        /// Gets the bot.
+        /// </summary>
+        /// <value>The bot.</value>
         public Bot Bot
         {
             get
@@ -22,21 +32,39 @@ namespace Skylight
             }
         }
 
+        /// <summary>
+        /// Gets the c.
+        /// </summary>
+        /// <value>The c.</value>
         public Connection C
         {
             get { return Bot.Connection; }
         }
 
+        /// <summary>
+        /// Gets the r.
+        /// </summary>
+        /// <value>The r.</value>
         public Room R
         {
             get { return Bot.R; }
         }
 
+        /// <summary>
+        /// Builds the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="x">The x.</param>
+        /// <param name="y">The y.</param>
         public void Build(int id, int x, int y)
         {
             Build(new Block(id, x, y));
         }
 
+        /// <summary>
+        /// Builds the specified b.
+        /// </summary>
+        /// <param name="b">The b.</param>
         public void Build(Block b)
         {
             try
@@ -90,6 +118,10 @@ namespace Skylight
             }
         }
 
+        /// <summary>
+        /// Builds the specified block list.
+        /// </summary>
+        /// <param name="blockList">The block list.</param>
         public void Build(List<Block> blockList)
         {
             var tempList = new List<Block>();
@@ -101,6 +133,9 @@ namespace Skylight
             }
         }
 
+        /// <summary>
+        /// Clears this instance.
+        /// </summary>
         public void Clear()
         {
             try
@@ -113,6 +148,11 @@ namespace Skylight
             }
         }
 
+        /// <summary>
+        /// Holds down.
+        /// </summary>
+        /// <param name="startX">The start x.</param>
+        /// <param name="startY">The start y.</param>
         public void HoldDown(double startX, double startY)
         {
             var holdArgs = new object[11];
@@ -132,6 +172,11 @@ namespace Skylight
             Move(holdArgs);
         }
 
+        /// <summary>
+        /// Holds the left.
+        /// </summary>
+        /// <param name="startX">The start x.</param>
+        /// <param name="startY">The start y.</param>
         public void HoldLeft(double startX, double startY)
         {
             var holdArgs = new object[11];
@@ -151,6 +196,11 @@ namespace Skylight
             Move(holdArgs);
         }
 
+        /// <summary>
+        /// Holds the right.
+        /// </summary>
+        /// <param name="startX">The start x.</param>
+        /// <param name="startY">The start y.</param>
         public void HoldRight(double startX, double startY)
         {
             var holdArgs = new object[11];
@@ -170,6 +220,11 @@ namespace Skylight
             Move(holdArgs);
         }
 
+        /// <summary>
+        /// Holds up.
+        /// </summary>
+        /// <param name="startX">The start x.</param>
+        /// <param name="startY">The start y.</param>
         public void HoldUp(double startX, double startY)
         {
             var holdArgs = new object[11];
@@ -189,6 +244,10 @@ namespace Skylight
             Move(holdArgs);
         }
 
+        /// <summary>
+        /// Inputs the code.
+        /// </summary>
+        /// <param name="editKey">The edit key.</param>
         public void InputCode(string editKey)
         {
             try
@@ -201,6 +260,10 @@ namespace Skylight
             }
         }
 
+        /// <summary>
+        /// Sets the code.
+        /// </summary>
+        /// <param name="newCode">The new code.</param>
         public void SetCode(string newCode)
         {
             if (Bot.Name == R.Owner.Name)
@@ -209,6 +272,11 @@ namespace Skylight
             }
         }
 
+        /// <summary>
+        /// Jumps the specified start x.
+        /// </summary>
+        /// <param name="startX">The start x.</param>
+        /// <param name="startY">The start y.</param>
         public void Jump(double startX, double startY)
         {
             var holdArgs = new object[11];
@@ -228,6 +296,10 @@ namespace Skylight
             Move(holdArgs);
         }
 
+        /// <summary>
+        /// Moves the specified arguments.
+        /// </summary>
+        /// <param name="args">The arguments.</param>
         public void Move(object[] args)
         {
             try
@@ -240,6 +312,10 @@ namespace Skylight
             }
         }
 
+        /// <summary>
+        /// Moves the specified m.
+        /// </summary>
+        /// <param name="m">The m.</param>
         public void Move(Message m)
         {
             try
@@ -264,6 +340,11 @@ namespace Skylight
             }
         }
 
+        /// <summary>
+        /// Releases the specified start x.
+        /// </summary>
+        /// <param name="startX">The start x.</param>
+        /// <param name="startY">The start y.</param>
         public void Release(double startX, double startY)
         {
             var holdArgs = new object[11];
@@ -282,6 +363,11 @@ namespace Skylight
             Move(holdArgs);
         }
 
+        /// <summary>
+        /// Says the specified s.
+        /// </summary>
+        /// <param name="s">The s.</param>
+        /// <param name="useChatPrefix">if set to <c>true</c> [use chat prefix].</param>
         public void Say(string s, bool useChatPrefix = true)
         {
             try
@@ -331,6 +417,10 @@ namespace Skylight
             }
         }
 
+        /// <summary>
+        /// Sets the title.
+        /// </summary>
+        /// <param name="s">The s.</param>
         public void SetTitle(string s)
         {
             try
@@ -346,6 +436,11 @@ namespace Skylight
             }
         }
 
+        /// <summary>
+        /// Kicks the specified name.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="reason">The reason.</param>
         public void Kick(string name, string reason = "")
         {
             if (Bot.Name == R.Owner.Name)
@@ -354,6 +449,11 @@ namespace Skylight
             }
         }
 
+        /// <summary>
+        /// Kicks the specified p.
+        /// </summary>
+        /// <param name="p">The p.</param>
+        /// <param name="reason">The reason.</param>
         public void Kick(Player p, string reason = "")
         {
             if (Bot.Name == R.Owner.Name)
@@ -362,6 +462,9 @@ namespace Skylight
             }
         }
 
+        /// <summary>
+        /// Loadlevels this instance.
+        /// </summary>
         public void Loadlevel()
         {
             if (Bot.Name == R.Owner.Name)
@@ -370,6 +473,10 @@ namespace Skylight
             }
         }
 
+        /// <summary>
+        /// Respawns the specified name.
+        /// </summary>
+        /// <param name="name">The name.</param>
         public void Respawn(string name)
         {
             if (Bot.Name == R.Owner.Name)
@@ -378,6 +485,10 @@ namespace Skylight
             }
         }
 
+        /// <summary>
+        /// Respawns the specified p.
+        /// </summary>
+        /// <param name="p">The p.</param>
         public void Respawn(Player p)
         {
             if (Bot.Name == R.Owner.Name)
@@ -386,6 +497,9 @@ namespace Skylight
             }
         }
 
+        /// <summary>
+        /// Respawns all.
+        /// </summary>
         public void RespawnAll()
         {
             if (Bot.Name == R.Owner.Name)
@@ -394,6 +508,9 @@ namespace Skylight
             }
         }
 
+        /// <summary>
+        /// Resets this instance.
+        /// </summary>
         public void Reset()
         {
             if (Bot.Name == R.Owner.Name)
@@ -402,6 +519,9 @@ namespace Skylight
             }
         }
 
+        /// <summary>
+        /// Saves this instance.
+        /// </summary>
         public void Save()
         {
             try
@@ -417,6 +537,10 @@ namespace Skylight
             }
         }
 
+        /// <summary>
+        /// Sets all potion bans.
+        /// </summary>
+        /// <param name="value">if set to <c>true</c> [value].</param>
         public void SetAllPotionBans(bool value)
         {
             try
@@ -432,6 +556,11 @@ namespace Skylight
             }
         }
 
+        /// <summary>
+        /// Sets the edit.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="value">if set to <c>true</c> [value].</param>
         public void SetEdit(string name, bool value)
         {
             if (Bot.Name == R.Owner.Name)
@@ -447,6 +576,11 @@ namespace Skylight
             }
         }
 
+        /// <summary>
+        /// Sets the edit.
+        /// </summary>
+        /// <param name="p">The p.</param>
+        /// <param name="value">if set to <c>true</c> [value].</param>
         public void SetEdit(Player p, bool value)
         {
             if (Bot.Name == R.Owner.Name)
@@ -462,6 +596,10 @@ namespace Skylight
             }
         }
 
+        /// <summary>
+        /// Sets the god.
+        /// </summary>
+        /// <param name="value">if set to <c>true</c> [value].</param>
         public void SetGod(bool value)
         {
             if (Bot.HasAccess)
@@ -470,6 +608,11 @@ namespace Skylight
             }
         }
 
+        /// <summary>
+        /// Sets the mute.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="value">if set to <c>true</c> [value].</param>
         public void SetMute(string name, bool value)
         {
             if (Bot.Name == R.Owner.Name)
@@ -485,6 +628,11 @@ namespace Skylight
             }
         }
 
+        /// <summary>
+        /// Sets the mute.
+        /// </summary>
+        /// <param name="p">The p.</param>
+        /// <param name="value">if set to <c>true</c> [value].</param>
         public void SetMute(Player p, bool value)
         {
             if (Bot.Name == R.Owner.Name)
@@ -500,6 +648,11 @@ namespace Skylight
             }
         }
 
+        /// <summary>
+        /// Sets the potion ban.
+        /// </summary>
+        /// <param name="potionId">The potion identifier.</param>
+        /// <param name="value">if set to <c>true</c> [value].</param>
         public void SetPotionBan(int potionId, bool value)
         {
             if (Bot.Name == R.Owner.Name)
@@ -515,6 +668,10 @@ namespace Skylight
             }
         }
 
+        /// <summary>
+        /// Sets the smiley.
+        /// </summary>
+        /// <param name="smileyId">The smiley identifier.</param>
         public void SetSmiley(int smileyId)
         {
             try
@@ -527,6 +684,10 @@ namespace Skylight
             }
         }
 
+        /// <summary>
+        /// Sets the visibility.
+        /// </summary>
+        /// <param name="value">if set to <c>true</c> [value].</param>
         public void SetVisibility(bool value)
         {
             if (Bot.Name == R.Owner.Name)
@@ -535,6 +696,12 @@ namespace Skylight
             }
         }
 
+        /// <summary>
+        /// Teleports the specified new x location.
+        /// </summary>
+        /// <param name="newXLocation">The new x location.</param>
+        /// <param name="newYLocation">The new y location.</param>
+        /// <param name="name">The name.</param>
         public void Teleport(int newXLocation, int newYLocation, string name = "")
         {
             if (Bot.Name == R.Owner.Name)
@@ -550,6 +717,12 @@ namespace Skylight
             }
         }
 
+        /// <summary>
+        /// Teleports the specified new x location.
+        /// </summary>
+        /// <param name="newXLocation">The new x location.</param>
+        /// <param name="newYLocation">The new y location.</param>
+        /// <param name="p">The p.</param>
         public void Teleport(int newXLocation, int newYLocation, Player p = null)
         {
             if (Bot.Name == R.Owner.Name)
@@ -565,6 +738,11 @@ namespace Skylight
             }
         }
 
+        /// <summary>
+        /// Teleports all.
+        /// </summary>
+        /// <param name="newXLocation">The new x location.</param>
+        /// <param name="newYLocation">The new y location.</param>
         public void TeleportAll(int newXLocation, int newYLocation)
         {
             if (Bot.Name == R.Owner.Name)
