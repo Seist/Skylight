@@ -1,12 +1,34 @@
-﻿using Skylight.Miscellaneous;
+﻿// ***********************************************************************
+// <copyright file="CoinBlock.cs" company="">
+//     Copyright 2014 (c) . All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+using Skylight.Miscellaneous;
 
 namespace Skylight.Blocks
 {
+    /// <summary>
+    /// Class CoinBlock.
+    /// </summary>
     public class CoinBlock : Block
     {
+        /// <summary>
+        /// The coins required to open the coinblock door.
+        /// </summary>
         private int _coinsRequired = -1;
+        /// <summary>
+        /// Whether or not it is a gate or a block.
+        /// </summary>
         private bool _isGate;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CoinBlock"/> class.
+        /// </summary>
+        /// <param name="x">The x coordinate.</param>
+        /// <param name="y">The y coordinate.</param>
+        /// <param name="coinsRequired">The coins required to open the gate if applicable.</param>
+        /// <param name="isGate">if set to <c>true</c> [is gate].</param>
         public CoinBlock(
             int x,
             int y,
@@ -17,6 +39,10 @@ namespace Skylight.Blocks
             IsGate = isGate;
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this instance is a gate.
+        /// </summary>
+        /// <value><c>true</c> if this instance is gate; otherwise, <c>false</c>.</value>
         public bool IsGate
         {
             get { return _isGate; }
@@ -24,6 +50,10 @@ namespace Skylight.Blocks
             internal set { _isGate = value; }
         }
 
+        /// <summary>
+        /// Gets the coins required to open the gate (or close the door).
+        /// </summary>
+        /// <value>The coins required.</value>
         public int CoinsRequired
         {
             get { return _coinsRequired; }
