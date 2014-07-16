@@ -8,6 +8,7 @@
       <IgnoreFile>.\Blocks\PortalBlock.cs</IgnoreFile>
       <IgnoreFile>.\Bot.cs</IgnoreFile>
       <IgnoreFile>.\In.cs</IgnoreFile>
+      <IgnoreFile>.\Miscellaneous\PotionIds.cs</IgnoreFile>
       <IgnoreFile>.\Player.cs</IgnoreFile>
     </IgnoreFiles>
   </SpellChecker>
