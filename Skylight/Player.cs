@@ -670,7 +670,7 @@ namespace Skylight
         ///     Gets the block x.
         /// </summary>
         /// <value>The block x.</value>
-        protected int blockX
+        internal int blockX
         {
             get { return (int) Math.Round(X/16.0); }
             set { throw new NotImplementedException(); }
@@ -680,7 +680,7 @@ namespace Skylight
         ///     Gets the block y.
         /// </summary>
         /// <value>The block y.</value>
-        protected int blockY
+        internal int blockY
         {
             get { return (int) Math.Round((Y)/16.0); }
             set { throw new NotImplementedException(); }
@@ -1059,7 +1059,7 @@ namespace Skylight
                                             {
                                                 if (loc2.speedY < 0 || loc9 <= loc2._overlapy)
                                                 {
-                                                    if (loc9 != loc4 || loc2._overlapy == -1)
+                                                    if (Math.Abs(loc9 - loc4) > 0.00000001 || loc2._overlapy == -1)
                                                     {
                                                         loc2._overlapy = (int) loc9;
                                                     }
