@@ -821,16 +821,7 @@ namespace Skylight
         private void processPortals()
         {
             var targetPortalList = new List<Point>();
-            int loopIterator = 0;
             var currentLoopPortal = new Point(0, 0);
-            int _loc_4 = 0;
-            int _loc_5 = 0;
-            double _loc_6 = 0;
-            double _loc_7 = 0;
-            double _loc_8 = 0;
-            double _loc_9 = 0;
-            int _loc_10 = 0;
-            double _loc_11 = 0;
             currentBlockId = PlayingIn.Map[_cx, _cy, 0].Id;
             if (!_isgodmod && currentBlockId == BlockIds.Action.Portals.WORLD)
             {
@@ -859,22 +850,22 @@ namespace Skylight
                             }
                         }
                     }
-                    loopIterator = 0;
+                    int loopIterator = 0;
                     while (loopIterator < targetPortalList.Count)
                     {
                         currentLoopPortal = targetPortalList[loopIterator];
-                        _loc_4 = PlayingIn.Map[_lastPortal.X >> 4, _lastPortal.Y >> 4, 0].Direction;
-                        _loc_5 = PlayingIn.Map[currentLoopPortal.X >> 4, currentLoopPortal.Y >> 4, 0].Direction;
+                        int _loc_4 = PlayingIn.Map[_lastPortal.X >> 4, _lastPortal.Y >> 4, 0].Direction;
+                        int _loc_5 = PlayingIn.Map[currentLoopPortal.X >> 4, currentLoopPortal.Y >> 4, 0].Direction;
                         if (_loc_4 < _loc_5)
                         {
                             _loc_4 = _loc_4 + 4;
                         }
-                        _loc_6 = speedX;
-                        _loc_7 = speedY;
-                        _loc_8 = modifierX;
-                        _loc_9 = modifierY;
-                        _loc_10 = _loc_4 - _loc_5;
-                        _loc_11 = 1.42;
+                        double _loc_6 = speedX;
+                        double _loc_7 = speedY;
+                        double _loc_8 = modifierX;
+                        double _loc_9 = modifierY;
+                        int _loc_10 = _loc_4 - _loc_5;
+                        double _loc_11 = 1.42;
                         switch (_loc_10)
                         {
                             case 1:
