@@ -595,9 +595,9 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Sets the god.
+        /// Sets the god mode for the bot.
         /// </summary>
-        /// <param name="value">if set to <c>true</c> [value].</param>
+        /// <param name="value">if set to <c>true</c> then the bot will go into god mode.</param>
         public void SetGod(bool value)
         {
             if (Bot.HasAccess)
@@ -607,10 +607,11 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Sets the mute.
+        /// Sets the mute for a player by their username. This will prevent chat messages from being
+        /// sent from that player to the server.
         /// </summary>
-        /// <param name="name">The name.</param>
-        /// <param name="value">if set to <c>true</c> [value].</param>
+        /// <param name="name">The username.</param>
+        /// <param name="value">if set to <c>true</c> then that username will be muted.</param>
         public void SetMute(string name, bool value)
         {
             if (Bot.Name == R.Owner.Name)
@@ -627,10 +628,10 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Sets the mute.
+        /// Sets the mute for a Player object.
         /// </summary>
-        /// <param name="p">The p.</param>
-        /// <param name="value">if set to <c>true</c> [value].</param>
+        /// <param name="p">The Player.</param>
+        /// <param name="value">if set to <c>true</c> then that Player.subject object will be muted.</param>
         public void SetMute(Player p, bool value)
         {
             if (Bot.Name == R.Owner.Name)
@@ -649,8 +650,8 @@ namespace Skylight
         /// <summary>
         /// Sets the potion ban.
         /// </summary>
-        /// <param name="potionId">The potion identifier.</param>
-        /// <param name="value">if set to <c>true</c> [value].</param>
+        /// <param name="potionId">The potion id.</param>
+        /// <param name="value">if set to <c>true</c> then potions will be turned on for that potion.</param>
         public void SetPotionBan(int potionId, bool value)
         {
             if (Bot.Name == R.Owner.Name)
@@ -669,7 +670,7 @@ namespace Skylight
         /// <summary>
         /// Sets the smiley.
         /// </summary>
-        /// <param name="smileyId">The smiley identifier.</param>
+        /// <param name="smileyId">The smiley id.</param>
         public void SetSmiley(int smileyId)
         {
             try
@@ -683,9 +684,9 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Sets the visibility.
+        /// Sets the visibility of the bot.
         /// </summary>
-        /// <param name="value">if set to <c>true</c> [value].</param>
+        /// <param name="value">if set to <c>true</c> then the bot will become visible.</param>
         public void SetVisibility(bool value)
         {
             if (Bot.Name == R.Owner.Name)
