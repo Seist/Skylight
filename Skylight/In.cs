@@ -45,7 +45,7 @@ namespace Skylight
         /// <summary>
         ///     These IDs do not have an associated Player id when sent.
         /// </summary>
-        private readonly List<int> specialBlockIds = new List<int>
+        private readonly List<int> _specialBlockIds = new List<int>
         {
             BlockIds.Action.Switches.SWITCH,
             BlockIds.Action.Tools.TROPHY,
@@ -62,8 +62,8 @@ namespace Skylight
             BlockIds.Action.Hazards.FIRE
         };
 
-        private Message InitMessage;
-        private Thread playerPhysicsThread;
+        private Message _initMessage;
+        private Thread _playerPhysicsThread;
         internal Bot Bot { get; set; }
 
         internal Room Source { get; set; }
@@ -443,7 +443,7 @@ namespace Skylight
             // Update relevant objects.
             var b = new Block(blockId, x, y, z);
 
-            if (!specialBlockIds.Contains(blockId))
+            if (!_specialBlockIds.Contains(blockId))
             {
                 Player subject = Tools.GetPlayerById(playerId, Source);
 
@@ -724,7 +724,7 @@ namespace Skylight
                 isOwner = m.GetBoolean(11);
 
             // Update relevant objects
-            InitMessage = m;
+            _initMessage = m;
 
             Bot.Name = botName;
             Bot.Id = botId;
@@ -1313,7 +1313,7 @@ namespace Skylight
 
         private void LoadBlocks()
         {
-            foreach (Block b in Tools.DeserializeInit(InitMessage, 18, Source))
+            foreach (Block b in Tools.DeserializeInit(_initMessage, 18, Source))
             {
                 Source.Map[b.X, b.Y, b.Z] = b;
             }
@@ -1322,8 +1322,8 @@ namespace Skylight
 
             Thread.Sleep(1000);
 
-            playerPhysicsThread = new Thread(UpdatePhysics);
-            playerPhysicsThread.Start();
+            _playerPhysicsThread = new Thread(UpdatePhysics);
+            _playerPhysicsThread.Start();
         }
 
         private void UpdatePhysics()
