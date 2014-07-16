@@ -149,6 +149,8 @@ namespace Skylight
         /// </summary>
         public bool SwitchOpened = false;
 
+        private readonly int _level;
+
         private readonly bool _hasClub;
 
         /// <summary>
@@ -432,6 +434,7 @@ namespace Skylight
             Id = id;
             Coins = coins;
             SwitchOpened = purple;
+            _level = level;
             _hasClub = hasClub;
             IsFriend = isFriend;
             _queue = new Queue<int>(Config.physics_queue_length);
