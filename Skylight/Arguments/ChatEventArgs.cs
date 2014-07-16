@@ -28,9 +28,10 @@ namespace Skylight.Arguments
         /// <param name="origin">The room where the message originated.</param>
         public ChatEventArgs(Player speaker, Room origin)
         {
-            this._origin = origin;
-            this._origin.ChatLog = origin.ChatLog;
-            this._speaker = speaker;
+            _origin = origin;
+            var room = this._origin;
+            if (!(room == null)) {room.ChatLog = origin.ChatLog;}
+            _speaker = speaker;
         }
 
         /// <summary>
