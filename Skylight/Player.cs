@@ -164,7 +164,7 @@ namespace Skylight
             Id = id;
             Coins = coins;
             SwitchOpened = purple;
-            this._isFriend = isFriend;
+            _isFriend = isFriend;
             this.level = level;
             _queue = new Queue<int>(Config.physics_queue_length);
             _lastPortal = new Point();
@@ -817,11 +817,10 @@ namespace Skylight
         private void processPortals()
         {
             var targetPortalList = new List<Point>();
-            var currentLoopPortal = new Point(0, 0);
             currentBlockId = PlayingIn.Map[_cx, _cy, 0].Id;
             if (!_isgodmod && currentBlockId == BlockIds.Action.Portals.WORLD)
             {
-                if (_spacejustdown && !worldportalsend)
+                if (_spacejustdown)
                 {
                 }
             }
@@ -849,7 +848,7 @@ namespace Skylight
                     int loopIterator = 0;
                     while (loopIterator < targetPortalList.Count)
                     {
-                        currentLoopPortal = targetPortalList[loopIterator];
+                        Point currentLoopPortal = targetPortalList[loopIterator];
                         int _loc_4 = PlayingIn.Map[_lastPortal.X >> 4, _lastPortal.Y >> 4, 0].Direction;
                         int _loc_5 = PlayingIn.Map[currentLoopPortal.X >> 4, currentLoopPortal.Y >> 4, 0].Direction;
                         if (_loc_4 < _loc_5)
@@ -905,7 +904,6 @@ namespace Skylight
                         X = currentLoopPortal.X;
                         Y = currentLoopPortal.Y;
                         _lastPortal = currentLoopPortal;
-                        loopIterator++;
                         break;
                     }
                 }
