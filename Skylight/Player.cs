@@ -36,7 +36,6 @@ namespace Skylight
         protected double Boost;
         private double _currentThrust;
         protected double Gravity;
-        private bool _hasLevitation;
         private bool _isFlaunting;
         private bool _isInvulnerable;
         private bool _isThrusting;
@@ -461,11 +460,7 @@ namespace Skylight
             get { return BlockX != OldBlockX || BlockY != OldBlockY; }
         }
 
-        private bool Levitation
-        {
-            get { return _hasLevitation; }
-            set { _hasLevitation = value; }
-        }
+        private bool Levitation { get; set; }
 
         private void ResetCoins()
         {

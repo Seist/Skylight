@@ -40,7 +40,7 @@ namespace Skylight
             _isInitialized,
             _isTutorialRoom;
 
-        private Block[,,] map = new Block[700, 400, 2];
+        private Block[,,] _map = new Block[700, 400, 2];
 
         private string
             _name;
@@ -87,9 +87,9 @@ namespace Skylight
 
         public Block[,,] Map
         {
-            get { return map; }
+            get { return _map; }
 
-            internal set { map = value; }
+            internal set { _map = value; }
         }
 
         public bool BlocksLoaded
