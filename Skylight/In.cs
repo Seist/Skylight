@@ -1362,7 +1362,7 @@ namespace Skylight
 
                         foreach (Player player in Source.OnlinePlayers)
                         {
-                            player.tick();
+                            player.Tick();
 
                             var e = new PlayerEventArgs(player, Source, null);
                             Source.Pull.TickEvent(e);
