@@ -178,8 +178,6 @@ namespace Skylight
         /// </summary>
         public double Y = 0;
 
-        private readonly bool _hasChat;
-
         /// <summary>
         ///     The _animoffset
         /// </summary>
@@ -261,11 +259,6 @@ namespace Skylight
         ///     The _is dead
         /// </summary>
         private bool _isDead;
-
-        /// <summary>
-        ///     The _is flaunting
-        /// </summary>
-        private bool _isFlaunting;
 
         /// <summary>
         ///     The _is invulnerable
@@ -441,7 +434,6 @@ namespace Skylight
             _currentThrust = MaxThrust;
             X = xPos;
             Y = yPos;
-            _hasChat = hasChat;
             Name = name;
             Size = 16;
             NoModifierDragX = Config.physics_no_modifier_drag;
