@@ -31,10 +31,14 @@ namespace Skylight
         /// </summary>
         private const double GravityMultiplier = 1;
 
+/*
         /// <summary>
         ///     The jump boost
         /// </summary>
+ *      Before this is re-initialized the potion id that concerns this has
+ *      to be looked up. Only then can JumpBoost be true.
         private const bool JumpBoost = false;
+*/
 
         /// <summary>
         ///     The admins
