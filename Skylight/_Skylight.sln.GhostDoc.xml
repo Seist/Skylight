@@ -9,6 +9,7 @@
       <IgnoreFile>.\Bot.cs</IgnoreFile>
       <IgnoreFile>.\In.cs</IgnoreFile>
       <IgnoreFile>.\Miscellaneous\PotionIds.cs</IgnoreFile>
+      <IgnoreFile>.\Physics\Config.cs</IgnoreFile>
       <IgnoreFile>.\Player.cs</IgnoreFile>
     </IgnoreFiles>
   </SpellChecker>
