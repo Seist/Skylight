@@ -209,7 +209,7 @@ namespace Skylight
                                 break;
 
                             case "clear":
-                                OnClear(m);
+                                OnClear();
                                 break;
 
                             case "face":
@@ -568,7 +568,7 @@ namespace Skylight
             }
         }
 
-        private void OnClear(Message m)
+        private void OnClear()
         {
             // There is data, but it's kind of irrelevant.
             // Update relevant objects.
