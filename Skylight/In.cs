@@ -70,18 +70,27 @@ namespace Skylight
 
         internal bool IsPersonal { get; set; }
 
+        /// <summary>
+        /// All of the delegates for BlockEvent. These fire when events occur
+        /// (such as when a block was added or updated).
+        /// </summary>
         public event BlockEvent
             CoinBlockEvent = delegate { } ,
             NormalBlockEvent = delegate { } ,
             PortalBlockEvent = delegate { } ,
             RoomPortalBlockEvent = delegate { } ,
             RotateEvent = delegate { } ,
-            SignBlockEvent = delegate { } ,
+            SignBlockEvent = delegate { } , // never invoked... hmm..
             SoundBlockEvent = delegate { };
 
+        /// <summary>
+        /// All of the delegates for ChatEvent. Chat events are when the player
+        /// says something, and distinguishes between auto text and system messages
+        /// and much more.
+        /// </summary>
         public event ChatEvent
             AutotextEvent = delegate { } ,
-            LabelEvent = delegate { } ,
+            LabelEvent = delegate { } , // never invoked.
             NormalChatEvent = delegate { } ,
             SayOldEvent = delegate { } ,
             SystemMessageEvent = delegate { };
