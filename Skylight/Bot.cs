@@ -80,14 +80,23 @@ namespace Skylight
         /// </summary>
         public bool IsConnected { get; internal set; }
 
+        /// <summary>
+        /// The room the bot is joined to.
+        /// </summary>
         public bool Joined
         {
             get { return _joined; }
             internal set { _joined = value; }
         }
 
+        /// <summary>
+        /// If the physics clock should tick or not.
+        /// </summary>
         public bool ShouldTick { get; set; }
 
+        /// <summary>
+        /// The PlayerIO client class.
+        /// </summary>
         public Client Client
         {
             get { return _client; }
@@ -95,6 +104,9 @@ namespace Skylight
             internal set { _client = value; }
         }
 
+        /// <summary>
+        /// The delay between block messages to the server in milliseconds.
+        /// </summary>
         public int BlockDelay
         {
             get { return _blockDelay; }
@@ -102,6 +114,9 @@ namespace Skylight
             set { _blockDelay = value; }
         }
 
+        /// <summary>
+        /// The delay between speech messages to the server in milliseconds.
+        /// </summary>
         public int SpeechDelay
         {
             get { return _speechDelay; }
@@ -109,6 +124,9 @@ namespace Skylight
             set { _speechDelay = value; }
         }
 
+        /// <summary>
+        /// The prefix to add to all outgoing chat messages.
+        /// </summary>
         public string ChatPrefix
         {
             get { return _chatPrefix; }
@@ -123,8 +141,14 @@ namespace Skylight
             internal set { _push = value; }
         }
 
+        /// <summary>
+        /// The current room object.
+        /// </summary>
         public Room R { get; internal set; }
 
+        /// <summary>
+        /// The active connection object to the room.
+        /// </summary>
         public Connection Connection
         {
             get { return _connection; }
@@ -132,9 +156,15 @@ namespace Skylight
             internal set { _connection = value; }
         }
 
+        /// <summary>
+        /// The current room that the bot is in.
+        /// </summary>
         public static Room currentRoom { get; set; }
 
         // Public methods
+        /// <summary>
+        /// The main method to login the bot with the credentials already specified.
+        /// </summary>
         public void LogIn()
         {
             try
@@ -189,6 +219,10 @@ namespace Skylight
             IsConnected = true;
         }
 
+        /// <summary>
+        /// Join the room that was already set.
+        /// </summary>
+        /// <param name="createRoom"></param>
         public void Join(bool createRoom = true)
         {
             // Update the game version.
@@ -273,6 +307,9 @@ namespace Skylight
             }
         }
 
+        /// <summary>
+        /// Disconnect the bot.
+        /// </summary>
         public void Disconnect()
         {
             // Basically undo everything you already did.
