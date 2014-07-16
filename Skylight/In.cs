@@ -14,30 +14,30 @@ using Skylight.Physics;
 namespace Skylight
 {
     /// <summary>
-    /// The main class that takes in events from the playerio client.
+    ///     The main class that takes in events from the playerio client.
     /// </summary>
     public class In
     {
         /// <summary>
-        /// The block event compiled from the message from the server.
+        ///     The block event compiled from the message from the server.
         /// </summary>
         /// <param name="e">The block object.</param>
         public delegate void BlockEvent(BlockEventArgs e);
 
         /// <summary>
-        /// A chat event (when the player sends a message).
+        ///     A chat event (when the player sends a message).
         /// </summary>
         /// <param name="e">The ChatEventArgs event.</param>
         public delegate void ChatEvent(ChatEventArgs e);
 
         /// <summary>
-        /// An event that concerns the player.
+        ///     An event that concerns the player.
         /// </summary>
         /// <param name="e">The player object.</param>
         public delegate void PlayerEvent(PlayerEventArgs e);
 
         /// <summary>
-        /// Something changed in the room (for example the title).
+        ///     Something changed in the room (for example the title).
         /// </summary>
         /// <param name="e">The room object.</param>
         public delegate void RoomEvent(RoomEventArgs e);
@@ -74,8 +74,8 @@ namespace Skylight
         internal bool IsPersonal { get; set; }
 
         /// <summary>
-        /// All of the delegates for BlockEvent. These fire when events occur
-        /// (such as when a block was added or updated).
+        ///     All of the delegates for BlockEvent. These fire when events occur
+        ///     (such as when a block was added or updated).
         /// </summary>
         public event BlockEvent
             CoinBlockEvent = delegate { } ,
@@ -83,26 +83,28 @@ namespace Skylight
             PortalBlockEvent = delegate { } ,
             RoomPortalBlockEvent = delegate { } ,
             RotateEvent = delegate { } ,
-            SignBlockEvent = delegate { } , // never invoked... hmm..
+            SignBlockEvent = delegate { } ,
+            // never invoked... hmm..
             SoundBlockEvent = delegate { };
 
         /// <summary>
-        /// All of the delegates for ChatEvent. Chat events are when the player
-        /// says something, and distinguishes between auto text and system messages
-        /// and much more.
+        ///     All of the delegates for ChatEvent. Chat events are when the player
+        ///     says something, and distinguishes between auto text and system messages
+        ///     and much more.
         /// </summary>
         public event ChatEvent
             AutotextEvent = delegate { } ,
-            LabelEvent = delegate { } , // never invoked.
+            LabelEvent = delegate { } ,
+            // never invoked.
             NormalChatEvent = delegate { } ,
             SayOldEvent = delegate { } ,
             SystemMessageEvent = delegate { };
 
         /// <summary>
-        /// All events that concern the player. This includes many messages that the player
-        /// gets from the world (such as server information and leveling up). Mostly these
-        /// events are shown from the server directly to the user in the form of a dialog
-        /// box or by prefixing a chat message with *SYSTEM.
+        ///     All events that concern the player. This includes many messages that the player
+        ///     gets from the world (such as server information and leveling up). Mostly these
+        ///     events are shown from the server directly to the user in the form of a dialog
+        ///     box or by prefixing a chat message with *SYSTEM.
         /// </summary>
         public event PlayerEvent
             AddEvent = delegate { } ,
@@ -131,9 +133,9 @@ namespace Skylight
             WootEvent = delegate { };
 
         /// <summary>
-        /// Delegates for RoomEvent. Are only invoked when commands that concern
-        /// the room's state (such as global clear, potion toggling and saved) for just
-        /// a few examples.
+        ///     Delegates for RoomEvent. Are only invoked when commands that concern
+        ///     the room's state (such as global clear, potion toggling and saved) for just
+        ///     a few examples.
         /// </summary>
         public event RoomEvent
             ClearEvent = delegate { } ,
@@ -388,7 +390,7 @@ namespace Skylight
         private void OnAdd(Message m)
         {
             // Extract data.
-            var name = m.GetString(1);
+            string name = m.GetString(1);
 
             int id = m.GetInteger(0),
                 smiley = m.GetInteger(2),
@@ -419,7 +421,7 @@ namespace Skylight
         private void OnAllowPotions(Message m)
         {
             // Extract data.
-            var potions = m.GetBoolean(0);
+            bool potions = m.GetBoolean(0);
 
             // Update relevant objects.
             Source.PotionsAllowed = potions;
@@ -433,12 +435,12 @@ namespace Skylight
         private void OnAutotext(Message m)
         {
             // Extract data.
-            var id = m.GetInteger(0);
+            int id = m.GetInteger(0);
 
-            var message = m.GetString(1);
+            string message = m.GetString(1);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, Source);
+            Player subject = Tools.GetPlayerById(id, Source);
 
             Source.ChatLog.Add(new KeyValuePair<string, Player>(message, subject));
 
@@ -462,7 +464,7 @@ namespace Skylight
 
             if (!_specialBlockIds.Contains(blockId))
             {
-                var subject = Tools.GetPlayerById(playerId, Source);
+                Player subject = Tools.GetPlayerById(playerId, Source);
 
                 b.Placer = subject;
             }
@@ -556,7 +558,7 @@ namespace Skylight
                     totalCoins = m.GetInteger(1);
 
                 // Update relevant objects.
-                var subject = Tools.GetPlayerById(id, Source);
+                Player subject = Tools.GetPlayerById(id, Source);
 
                 subject.Coins = totalCoins;
 
@@ -575,9 +577,9 @@ namespace Skylight
         {
             // There is data, but it's kind of irrelevant.
             // Update relevant objects.
-            for (var x = 0; x < Source.Width; x++)
+            for (int x = 0; x < Source.Width; x++)
             {
-                for (var y = 0; y < Source.Height; y++)
+                for (int y = 0; y < Source.Height; y++)
                 {
                     var blankBlock = new Block(0, x, y);
 
@@ -599,7 +601,7 @@ namespace Skylight
                 smileyId = m.GetInteger(1);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(playerId, Source);
+            Player subject = Tools.GetPlayerById(playerId, Source);
 
             subject.Smiley = smileyId;
 
@@ -612,10 +614,10 @@ namespace Skylight
         private void OnGiveGrinch(Message m)
         {
             // Extract data
-            var id = m.GetInteger(0);
+            int id = m.GetInteger(0);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, Source);
+            Player subject = Tools.GetPlayerById(id, Source);
 
             // Fire the event.
             var e = new PlayerEventArgs(subject, Source, m);
@@ -626,10 +628,10 @@ namespace Skylight
         private void OnGiveWitch(Message m)
         {
             // Extract data
-            var id = m.GetInteger(0);
+            int id = m.GetInteger(0);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, Source);
+            Player subject = Tools.GetPlayerById(id, Source);
 
             // Fire the event.
             var e = new PlayerEventArgs(subject, Source, m);
@@ -640,10 +642,10 @@ namespace Skylight
         private void OnGiveWizard(Message m)
         {
             // Extract data
-            var id = m.GetInteger(0);
+            int id = m.GetInteger(0);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, Source);
+            Player subject = Tools.GetPlayerById(id, Source);
 
             // Fire the event.
             var e = new PlayerEventArgs(subject, Source, m);
@@ -654,10 +656,10 @@ namespace Skylight
         private void OnGiveWizard2(Message m)
         {
             // Extract data
-            var id = m.GetInteger(0);
+            int id = m.GetInteger(0);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, Source);
+            Player subject = Tools.GetPlayerById(id, Source);
 
             // Fire the event.
             var e = new PlayerEventArgs(subject, Source, m);
@@ -668,12 +670,12 @@ namespace Skylight
         private void OnGod(Message m)
         {
             // Extract data.
-            var isGod = m.GetBoolean(1);
+            bool isGod = m.GetBoolean(1);
 
-            var id = m.GetInteger(0);
+            int id = m.GetInteger(0);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, Source);
+            Player subject = Tools.GetPlayerById(id, Source);
 
             subject.IsGod = isGod;
 
@@ -779,7 +781,7 @@ namespace Skylight
             loadBlocks.Start();
 
             // Execute the messages that came prematurely.
-            foreach (var msg in _prematureMessages)
+            foreach (Message msg in _prematureMessages)
             {
                 OnMessage(this, msg);
             }
@@ -795,7 +797,7 @@ namespace Skylight
         private void OnK(Message m)
         {
             // Extract data.
-            var id = m.GetInteger(0);
+            int id = m.GetInteger(0);
 
             if (id == -1)
             {
@@ -803,10 +805,10 @@ namespace Skylight
             }
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, Source);
+            Player subject = Tools.GetPlayerById(id, Source);
 
             // Take the crown from the current holder (if one exists)
-            var crownHolder = Tools.GetCrownHolder(Source);
+            Player crownHolder = Tools.GetCrownHolder(Source);
 
             if (crownHolder != null)
                 crownHolder.HasCrown = false;
@@ -824,10 +826,10 @@ namespace Skylight
         private void OnKill(Message m)
         {
             // Extract data.
-            var id = m.GetInteger(0);
+            int id = m.GetInteger(0);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, Source);
+            Player subject = Tools.GetPlayerById(id, Source);
 
             subject.DeathCount++;
 
@@ -840,10 +842,10 @@ namespace Skylight
         private void OnKs(Message m)
         {
             // Extract data.
-            var id = m.GetInteger(0);
+            int id = m.GetInteger(0);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, Source);
+            Player subject = Tools.GetPlayerById(id, Source);
 
             subject.HasSilverCrown = true;
 
@@ -860,7 +862,7 @@ namespace Skylight
                 x = m.GetInteger(1),
                 y = m.GetInteger(2);
 
-            var text = m.GetString(3);
+            string text = m.GetString(3);
 
             // Update relevant objects.
             var b = new TextBlock(id, x, y, text);
@@ -876,11 +878,11 @@ namespace Skylight
         private void OnLeft(Message m)
         {
             // Extract data.
-            var id = m.GetInteger(0);
+            int id = m.GetInteger(0);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, Source);
-            for (var i = 0; i < Source.OnlinePlayers.Count; i++)
+            Player subject = Tools.GetPlayerById(id, Source);
+            for (int i = 0; i < Source.OnlinePlayers.Count; i++)
             {
                 if (Source.OnlinePlayers[i] == subject)
                 {
@@ -902,7 +904,7 @@ namespace Skylight
                 level = m.GetInteger(1); // never used.
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, Source);
+            Player subject = Tools.GetPlayerById(id, Source);
             subject.XpLevel++;
 
             // Fire the event.
@@ -932,7 +934,8 @@ namespace Skylight
                 verticalSpeed = m.GetDouble(4);
 
             int id = m.GetInteger(0),
-                coins = m.GetInteger(9),                // never used.
+                coins = m.GetInteger(9),
+                // never used.
                 horizontalModifier = m.GetInteger(5),
                 verticalModifier = m.GetInteger(6),
                 horizontalDirection = m.GetInteger(7),
@@ -942,7 +945,7 @@ namespace Skylight
                 spaceDown = m.GetBoolean(11);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, Source);
+            Player subject = Tools.GetPlayerById(id, Source);
 
             subject.IsHoldingSpace = false;
             if (spaceDown)
@@ -991,12 +994,12 @@ namespace Skylight
         private void OnMod(Message m)
         {
             // Extract data.
-            var isMod = m.GetBoolean(1);
+            bool isMod = m.GetBoolean(1);
 
-            var id = m.GetInteger(0);
+            int id = m.GetInteger(0);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, Source);
+            Player subject = Tools.GetPlayerById(id, Source);
 
             subject.IsMod = isMod;
 
@@ -1012,10 +1015,10 @@ namespace Skylight
             int id = m.GetInteger(0),
                 potionId = m.GetInteger(1);
 
-            var isActive = m.GetBoolean(2);
+            bool isActive = m.GetBoolean(2);
 
             // Update relevant objects
-            var subject = Tools.GetPlayerById(id, Source);
+            Player subject = Tools.GetPlayerById(id, Source);
 
             if (isActive)
             {
@@ -1043,7 +1046,7 @@ namespace Skylight
                 portalDestination = m.GetInteger(5);
 
             // Update relevant objects.
-            var isVisible = blockId == BlockIds.Action.Portals.NORMAL;
+            bool isVisible = blockId == BlockIds.Action.Portals.NORMAL;
 
             var b = new PortalBlock(x, y, rotation, portalId, portalDestination, isVisible);
 
@@ -1067,7 +1070,7 @@ namespace Skylight
 
         private void OnReset(Message m)
         {
-            foreach (var b in Tools.DeserializeInit(m, 1, Source))
+            foreach (Block b in Tools.DeserializeInit(m, 1, Source))
             {
                 Source.Map[b.X, b.Y, b.Z] = b;
             }
@@ -1086,12 +1089,12 @@ namespace Skylight
         private void OnSay(Message m)
         {
             // Extract data.
-            var id = m.GetInteger(0);
+            int id = m.GetInteger(0);
 
-            var message = m.GetString(1);
+            string message = m.GetString(1);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, Source);
+            Player subject = Tools.GetPlayerById(id, Source);
 
             Source.ChatLog.Add(new KeyValuePair<string, Player>(message, subject));
 
@@ -1138,7 +1141,7 @@ namespace Skylight
                 y = m.GetInteger(2);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, Source);
+            Player subject = Tools.GetPlayerById(id, Source);
 
             subject.X = x;
             subject.Y = y;
@@ -1152,7 +1155,7 @@ namespace Skylight
         private void OnTele(Message m)
         {
             // Extract some of the data.
-            var isReset = m.GetBoolean(0);
+            bool isReset = m.GetBoolean(0);
 
             // On reset
             if (isReset)
@@ -1166,7 +1169,7 @@ namespace Skylight
                         x = m.GetInteger(index + 1),
                         y = m.GetInteger(index + 2);
 
-                    var tempSubject = Tools.GetPlayerById(id, Source);
+                    Player tempSubject = Tools.GetPlayerById(id, Source);
                     tempSubject.X = x;
                     tempSubject.Y = y;
 
@@ -1187,7 +1190,7 @@ namespace Skylight
                     y = m.GetInteger(3);
 
                 // Update relevant objects.
-                var subject = Tools.GetPlayerById(id, Source);
+                Player subject = Tools.GetPlayerById(id, Source);
 
                 subject.X = x;
                 subject.Y = y;
@@ -1206,7 +1209,7 @@ namespace Skylight
                 x = m.GetInteger(1),
                 y = m.GetInteger(2);
 
-            var text = m.GetString(3);
+            string text = m.GetString(3);
 
             // Update relevant objects.
             var b = new TextBlock(id, x, y, text);
@@ -1257,10 +1260,10 @@ namespace Skylight
         {
             // "W" stands for "woot" which is the old name for magic.
             // Extract data.
-            var id = m.GetInteger(0);
+            int id = m.GetInteger(0);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, Source);
+            Player subject = Tools.GetPlayerById(id, Source);
 
             subject.CollectedMagic++;
 
@@ -1277,7 +1280,7 @@ namespace Skylight
                 y = m.GetInteger(1),
                 id = m.GetInteger(2); // unused
 
-            var destination = m.GetString(3);
+            string destination = m.GetString(3);
 
             // Update relevant objects.
             Block b = new RoomPortalBlock(x, y, destination);
@@ -1293,7 +1296,8 @@ namespace Skylight
         private void OnWrite(Message m)
         {
             // Extract data.
-            string prefix = m.GetString(0), // unused
+            string prefix = m.GetString(0),
+                // unused
                 message = m.GetString(1);
 
             // Update relevant objects.
@@ -1309,10 +1313,10 @@ namespace Skylight
         private void OnWu(Message m)
         {
             // Extract data.
-            var id = m.GetInteger(0);
+            int id = m.GetInteger(0);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, Source);
+            Player subject = Tools.GetPlayerById(id, Source);
 
             Source.TotalWoots++;
             Source.Woots++;
@@ -1325,7 +1329,7 @@ namespace Skylight
 
         private void LoadBlocks()
         {
-            foreach (var b in Tools.DeserializeInit(_initMessage, 18, Source))
+            foreach (Block b in Tools.DeserializeInit(_initMessage, 18, Source))
             {
                 Source.Map[b.X, b.Y, b.Z] = b;
             }
@@ -1352,7 +1356,7 @@ namespace Skylight
                     {
                         accumulator += Config.physics_ms_per_tick;
 
-                        foreach (var player in Source.OnlinePlayers)
+                        foreach (Player player in Source.OnlinePlayers)
                         {
                             player.tick();
 

@@ -38,12 +38,12 @@ namespace Skylight.Arguments
         }
 
         /// <summary>
-        /// The room object (with room id).
+        ///     The room object (with room id).
         /// </summary>
         public Room Origin { get; private set; }
 
         /// <summary>
-        /// A placed block.
+        ///     A placed block.
         /// </summary>
         public Block Placed
         {
@@ -51,7 +51,7 @@ namespace Skylight.Arguments
         }
 
         /// <summary>
-        /// The player who placed the block (see Placed).
+        ///     The player who placed the block (see Placed).
         /// </summary>
         public Player Placer
         {

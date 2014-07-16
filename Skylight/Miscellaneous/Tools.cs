@@ -11,8 +11,8 @@ using Skylight.Blocks;
 namespace Skylight.Miscellaneous
 {
     /// <summary>
-    /// Tools that are available to the core of the program (converting a player id or name into
-    /// a player object) and internal methods are mostly stored here.
+    ///     Tools that are available to the core of the program (converting a player id or name into
+    ///     a player object) and internal methods are mostly stored here.
     /// </summary>
     public static class Tools
     {

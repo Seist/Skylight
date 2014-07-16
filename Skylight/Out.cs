@@ -12,13 +12,13 @@ using Skylight.Miscellaneous;
 namespace Skylight
 {
     /// <summary>
-    /// Class Out. This class sends information to the server.
+    ///     Class Out. This class sends information to the server.
     /// </summary>
     public class Out
     {
         /// <summary>
-        /// Gets the bot. This is what the developer will instantiate when they need
-        /// to communicate with the bot.
+        ///     Gets the bot. This is what the developer will instantiate when they need
+        ///     to communicate with the bot.
         /// </summary>
         /// <value>The bot.</value>
         public Bot Bot
@@ -31,7 +31,7 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Gets the connection.
+        ///     Gets the connection.
         /// </summary>
         /// <value>The current connection.</value>
         public Connection C
@@ -40,7 +40,7 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Gets the room.
+        ///     Gets the room.
         /// </summary>
         /// <value>The room.</value>
         public Room R
@@ -49,7 +49,7 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Builds the specified block.
+        ///     Builds the specified block.
         /// </summary>
         /// <param name="id">The id of the block.</param>
         /// <param name="x">The x coordinate of the block (in block units).</param>
@@ -60,7 +60,7 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Builds the specified block object.
+        ///     Builds the specified block object.
         /// </summary>
         /// <param name="b">The block.</param>
         public void Build(Block b)
@@ -117,7 +117,7 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Builds the specified block list.
+        ///     Builds the specified block list.
         /// </summary>
         /// <param name="blockList">The block list.</param>
         public void Build(List<Block> blockList)
@@ -132,7 +132,7 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Clears the entire world.
+        ///     Clears the entire world.
         /// </summary>
         public void Clear()
         {
@@ -147,7 +147,7 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Holds the down arrow key, causing the bot to move downward.
+        ///     Holds the down arrow key, causing the bot to move downward.
         /// </summary>
         /// <param name="startX">The start x coordinate.</param>
         /// <param name="startY">The start y coordinate.</param>
@@ -171,7 +171,7 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Holds the left arrow key.
+        ///     Holds the left arrow key.
         /// </summary>
         /// <param name="startX">The start x coordinate.</param>
         /// <param name="startY">The start y coordinate.</param>
@@ -195,7 +195,7 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Holds the right arrow key.
+        ///     Holds the right arrow key.
         /// </summary>
         /// <param name="startX">The start x coordinate.</param>
         /// <param name="startY">The start y coordinate.</param>
@@ -219,7 +219,7 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Holds the up arrow key.
+        ///     Holds the up arrow key.
         /// </summary>
         /// <param name="startX">The start x coordinate.</param>
         /// <param name="startY">The start y coordinate.</param>
@@ -243,7 +243,7 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Inputs the edit key.
+        ///     Inputs the edit key.
         /// </summary>
         /// <param name="editKey">The edit key.</param>
         public void InputCode(string editKey)
@@ -259,7 +259,7 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Sets the edit key for the current room.
+        ///     Sets the edit key for the current room.
         /// </summary>
         /// <param name="newCode">The new code.</param>
         public void SetCode(string newCode)
@@ -271,7 +271,7 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Tells the bot to jump from the specified coordinates.
+        ///     Tells the bot to jump from the specified coordinates.
         /// </summary>
         /// <param name="startX">The start x coordinate.</param>
         /// <param name="startY">The start y coordinate.</param>
@@ -295,7 +295,7 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Moves the specified bot.
+        ///     Moves the specified bot.
         /// </summary>
         /// <param name="args">The raw message where to move.</param>
         public void Move(object[] args)
@@ -311,7 +311,7 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Overload for Move. Moves using the Message object.
+        ///     Overload for Move. Moves using the Message object.
         /// </summary>
         /// <param name="m">The movement Message Object.</param>
         public void Move(Message m)
@@ -339,7 +339,7 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Releases the arrow key.
+        ///     Releases the arrow key.
         /// </summary>
         /// <param name="startX">The start x.</param>
         /// <param name="startY">The start y.</param>
@@ -362,7 +362,7 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Says the specified message.
+        ///     Says the specified message.
         /// </summary>
         /// <param name="s">The message.</param>
         /// <param name="useChatPrefix">if set to <c>true</c> then [use chat prefix].</param>
@@ -416,7 +416,7 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Sets the title of the room.
+        ///     Sets the title of the room.
         /// </summary>
         /// <param name="s">The new title.</param>
         public void SetTitle(string s)
@@ -435,7 +435,7 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Kicks the specified player by their username.
+        ///     Kicks the specified player by their username.
         /// </summary>
         /// <param name="name">The username.</param>
         /// <param name="reason">The reason.</param>
@@ -448,7 +448,7 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Kicks the specified Player object.
+        ///     Kicks the specified Player object.
         /// </summary>
         /// <param name="p">The player object.</param>
         /// <param name="reason">The reason.</param>
@@ -461,7 +461,7 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Resets the level to its state when it was last saved.
+        ///     Resets the level to its state when it was last saved.
         /// </summary>
         public void Loadlevel()
         {
@@ -472,7 +472,7 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Respawns the specified player by their username.
+        ///     Respawns the specified player by their username.
         /// </summary>
         /// <param name="name">The username.</param>
         public void Respawn(string name)
@@ -484,7 +484,7 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Respawns the specified Player object.
+        ///     Respawns the specified Player object.
         /// </summary>
         /// <param name="p">The player.</param>
         public void Respawn(Player p)
@@ -496,7 +496,7 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Respawns everyone in the room.
+        ///     Respawns everyone in the room.
         /// </summary>
         public void RespawnAll()
         {
@@ -507,7 +507,7 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Clears the entire world.
+        ///     Clears the entire world.
         /// </summary>
         public void Reset()
         {
@@ -518,7 +518,7 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Saves the world.
+        ///     Saves the world.
         /// </summary>
         public void Save()
         {
@@ -536,7 +536,7 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Toggle all potion bans.
+        ///     Toggle all potion bans.
         /// </summary>
         /// <param name="value">if set to <c>true</c> then turn on potions.</param>
         public void SetAllPotionBans(bool value)
@@ -555,7 +555,7 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Sets the edit of a player.
+        ///     Sets the edit of a player.
         /// </summary>
         /// <param name="name">The username of the player.</param>
         /// <param name="value">if set to <c>true</c> then the player will receive edit privileges.</param>
@@ -575,7 +575,7 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Sets the edit for a Player object.
+        ///     Sets the edit for a Player object.
         /// </summary>
         /// <param name="p">The Player object.</param>
         /// <param name="value">if set to <c>true</c> then the Player object recieves edit.</param>
@@ -595,7 +595,7 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Sets the god mode for the bot.
+        ///     Sets the god mode for the bot.
         /// </summary>
         /// <param name="value">if set to <c>true</c> then the bot will go into god mode.</param>
         public void SetGod(bool value)
@@ -607,8 +607,8 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Sets the mute for a player by their username. This will prevent chat messages from being
-        /// sent from that player to the server.
+        ///     Sets the mute for a player by their username. This will prevent chat messages from being
+        ///     sent from that player to the server.
         /// </summary>
         /// <param name="name">The username.</param>
         /// <param name="value">if set to <c>true</c> then that username will be muted.</param>
@@ -628,7 +628,7 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Sets the mute for a Player object.
+        ///     Sets the mute for a Player object.
         /// </summary>
         /// <param name="p">The Player.</param>
         /// <param name="value">if set to <c>true</c> then that Player.subject object will be muted.</param>
@@ -648,7 +648,7 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Sets the potion ban.
+        ///     Sets the potion ban.
         /// </summary>
         /// <param name="potionId">The potion id.</param>
         /// <param name="value">if set to <c>true</c> then potions will be turned on for that potion.</param>
@@ -668,7 +668,7 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Sets the smiley.
+        ///     Sets the smiley.
         /// </summary>
         /// <param name="smileyId">The smiley id.</param>
         public void SetSmiley(int smileyId)
@@ -684,7 +684,7 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Sets the visibility of the bot.
+        ///     Sets the visibility of the bot.
         /// </summary>
         /// <param name="value">if set to <c>true</c> then the bot will become visible.</param>
         public void SetVisibility(bool value)
@@ -696,7 +696,7 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Teleports the specified new x location.
+        ///     Teleports the specified new x location.
         /// </summary>
         /// <param name="newXLocation">The new x location.</param>
         /// <param name="newYLocation">The new y location.</param>
@@ -717,7 +717,7 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Teleports the specified new x location.
+        ///     Teleports the specified new x location.
         /// </summary>
         /// <param name="newXLocation">The new x location.</param>
         /// <param name="newYLocation">The new y location.</param>
@@ -738,7 +738,7 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Teleports all.
+        ///     Teleports all.
         /// </summary>
         /// <param name="newXLocation">The new x location.</param>
         /// <param name="newYLocation">The new y location.</param>

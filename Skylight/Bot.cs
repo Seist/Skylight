@@ -6,32 +6,35 @@ using Skylight.Miscellaneous;
 namespace Skylight
 {
     /// <summary>
-    /// The entire bot (main core). This is what the user instantiates when they want
-    /// a new bot.
+    ///     The entire bot (main core). This is what the user instantiates when they want
+    ///     a new bot.
     /// </summary>
     public class Bot : Player
     {
         /// <summary>
-        /// All of the possible account types. Defaults to Regular if unknown.
+        ///     All of the possible account types. Defaults to Regular if unknown.
         /// </summary>
         public enum AccountType : sbyte
         {
             /// <summary>
-            /// The regular login method via email and password on the official
-            /// everybodyedits.com website.
+            ///     The regular login method via email and password on the official
+            ///     everybodyedits.com website.
             /// </summary>
             Regular = 0,
+
             /// <summary>
-            /// Facebook login using an auth token.
+            ///     Facebook login using an auth token.
             /// </summary>
             Facebook = 1,
+
             /// <summary>
-            /// Kongregate login using a kongregate user id (an integer) and an auth token.
+            ///     Kongregate login using a kongregate user id (an integer) and an auth token.
             /// </summary>
             Kongregate = 2,
+
             /// <summary>
-            /// ArmorGames login using a user token and a password token, both of which are 32
-            /// chars long and hex.
+            ///     ArmorGames login using a user token and a password token, both of which are 32
+            ///     chars long and hex.
             /// </summary>
             ArmorGames = 3
         }
@@ -289,7 +292,6 @@ namespace Skylight
         private void Refresh()
         {
             _storedVersion = Convert.ToString(Client.BigDB.Load("config", "config")["version"]);
-            return;
         }
     }
 }
