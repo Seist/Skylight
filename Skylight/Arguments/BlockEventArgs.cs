@@ -6,7 +6,7 @@
 
 using System;
 
-namespace Skylight
+namespace Skylight.Arguments
 {
     /// <summary>
     ///     Sends the delegate an event based on the content of the block.
