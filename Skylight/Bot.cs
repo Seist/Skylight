@@ -289,14 +289,6 @@ namespace Skylight
             Joined = false;
         }
 
-        private string Version(bool cached = true, string prefix = Tools.NormalRoom)
-        {
-            if (!cached || _storedVersion == null)
-                return prefix + Refresh();
-
-            return prefix + _storedVersion;
-        }
-
         private string Refresh()
         {
             _storedVersion = Convert.ToString(Client.BigDB.Load("config", "config")["version"]);
