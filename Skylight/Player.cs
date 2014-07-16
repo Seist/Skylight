@@ -178,8 +178,6 @@ namespace Skylight
         /// </summary>
         public double Y = 0;
 
-        private readonly bool _hasChat;
-
         /// <summary>
         ///     The _animoffset
         /// </summary>
@@ -421,6 +419,7 @@ namespace Skylight
             Smiley = smiley;
             IsGod = isGod;
             IsMod = isMod;
+            HasChat = hasChat;
             Id = id;
             Coins = coins;
             SwitchOpened = purple;
@@ -434,7 +433,6 @@ namespace Skylight
             _currentThrust = MaxThrust;
             X = xPos;
             Y = yPos;
-            _hasChat = hasChat;
             Name = name;
             Size = 16;
             NoModifierDragX = Config.physics_no_modifier_drag;
@@ -525,6 +523,8 @@ namespace Skylight
         /// </summary>
         /// <value><c>true</c> if this instance is mod; otherwise, <c>false</c>.</value>
         public bool IsMod { get; internal set; }
+
+        public bool HasChat { get; set; }
 
         /// <summary>
         ///     Gets a value indicating whether this instance is holding left.
