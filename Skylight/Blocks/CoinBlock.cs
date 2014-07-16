@@ -2,12 +2,8 @@
 {
     public class CoinBlock : Block
     {
-        private const int
-            MINCOINSREQUIRED = 1,
-            MAXCOINSREQUIRED = 99;
-
-        private int coinsRequired = -1;
-        private bool isGate;
+        private int _coinsRequired = -1;
+        private bool _isGate;
 
         public CoinBlock(
             int x,
@@ -21,16 +17,16 @@
 
         public bool IsGate
         {
-            get { return isGate; }
+            get { return _isGate; }
 
-            internal set { isGate = value; }
+            internal set { _isGate = value; }
         }
 
         public int CoinsRequired
         {
-            get { return coinsRequired; }
+            get { return _coinsRequired; }
 
-            internal set { coinsRequired = value; }
+            internal set { _coinsRequired = value; }
         }
     }
 }

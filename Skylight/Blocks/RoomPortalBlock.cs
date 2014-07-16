@@ -4,7 +4,7 @@ namespace Skylight
 {
     public class RoomPortalBlock : Block
     {
-        private string portalDestination;
+        private string _portalDestination;
 
         public RoomPortalBlock(
             int x,
@@ -16,15 +16,15 @@ namespace Skylight
 
         public string PortalDestination
         {
-            get { return portalDestination; }
+            get { return _portalDestination; }
 
             internal set
             {
                 string s = value;
-                Tools.ParseURL(s);
+                Tools.ParseUrl(s);
                 if (Regex.IsMatch(s, "[A-Za-z0-9-_]{13}"))
                 {
-                    portalDestination = s;
+                    _portalDestination = s;
                 }
             }
         }

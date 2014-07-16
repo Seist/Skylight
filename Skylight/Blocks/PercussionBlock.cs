@@ -14,7 +14,7 @@
             CYMBAL4 = 8,
             MARACA = 9;
 
-        private int percussionId = -1;
+        private int _percussionId = -1;
 
         public PercussionBlock(
             int x,
@@ -26,9 +26,9 @@
 
         public int PercussionId
         {
-            get { return percussionId; }
+            get { return _percussionId; }
 
-            internal set { percussionId = value; }
+            internal set { _percussionId = value; }
         }
     }
 }

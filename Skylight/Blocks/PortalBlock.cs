@@ -3,15 +3,15 @@
     public class PortalBlock : Block
     {
         private const int
-            MINPORTALID = 0,
-            MAXPORTALID = 99;
+            Minportalid = 0,
+            Maxportalid = 99;
 
         private int
-            portalDestination = -1,
-            portalId = -1;
+            _portalDestination = -1,
+            _portalId = -1;
 
         private bool
-            visible;
+            _visible;
 
         public PortalBlock(
             int x,
@@ -28,35 +28,35 @@
 
         public int PortalDestination
         {
-            get { return portalDestination; }
+            get { return _portalDestination; }
 
             internal set
             {
-                if (value > MINPORTALID && value < MAXPORTALID)
+                if (value > Minportalid && value < Maxportalid)
                 {
-                    portalDestination = value;
+                    _portalDestination = value;
                 }
             }
         }
 
         public int PortalId
         {
-            get { return portalId; }
+            get { return _portalId; }
 
             internal set
             {
-                if (value < MAXPORTALID && value > MINPORTALID)
+                if (value < Maxportalid && value > Minportalid)
                 {
-                    portalId = value;
+                    _portalId = value;
                 }
             }
         }
 
         public bool Visible
         {
-            get { return visible; }
+            get { return _visible; }
 
-            internal set { visible = value; }
+            internal set { _visible = value; }
         }
     }
 }

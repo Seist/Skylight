@@ -29,7 +29,7 @@
             B2 = 24,
             C3 = 25;
 
-        private int pianoId = -1;
+        private int _pianoId = -1;
 
         public PianoBlock(
             int x,
@@ -41,9 +41,9 @@
 
         public int PianoId
         {
-            get { return pianoId; }
+            get { return _pianoId; }
 
-            internal set { pianoId = value; }
+            internal set { _pianoId = value; }
         }
     }
 }

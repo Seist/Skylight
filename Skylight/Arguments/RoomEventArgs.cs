@@ -4,16 +4,16 @@ namespace Skylight
 {
     public class RoomEventArgs : EventArgs
     {
-        private readonly Room changedRoom;
+        private readonly Room _changedRoom;
 
         public RoomEventArgs(Room changedRoom)
         {
-            this.changedRoom = changedRoom;
+            this._changedRoom = changedRoom;
         }
 
         public Room ChangedRoom
         {
-            get { return changedRoom; }
+            get { return _changedRoom; }
         }
     }
 }

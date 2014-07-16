@@ -64,24 +64,22 @@ namespace Skylight
             collectedMagic;
 
         public int currentBlockId = 0;
-        private double currentSX;
-        private double currentSY;
-        private int cx;
-        private int cy;
-        private double deadoffset;
+        private double _currentSx;
+        private double _currentSy;
+        private int _cx;
+        private int _cy;
+        private double _deadoffset;
 
         private int
-            deathCount;
+            _deathCount;
 
-        private bool donex;
-        private bool doney;
-        private double gravityMultiplier = 1;
+        private bool _donex;
+        private bool _doney;
+        private const double gravityMultiplier = 1;
 
         private bool
-            hasAccess,
-            hasBoost;
-
-        private bool hasChat;
+            _hasAccess,
+            _hasBoost;
 
         private bool
             hasClub,
@@ -163,7 +161,6 @@ namespace Skylight
             IsGod = isGod;
             IsMod = isMod;
             Id = id;
-            this.hasChat = hasChat;
             Coins = coins;
             SwitchOpened = purple;
             this.isFriend = isFriend;
@@ -191,16 +188,16 @@ namespace Skylight
         // Public instance properties.
         public bool HasAccess
         {
-            get { return hasAccess; }
+            get { return _hasAccess; }
 
-            internal set { hasAccess = value; }
+            internal set { _hasAccess = value; }
         }
 
         public bool HasBoost
         {
-            get { return hasBoost; }
+            get { return _hasBoost; }
 
-            internal set { hasBoost = value; }
+            internal set { _hasBoost = value; }
         }
 
         public bool HasClub
@@ -349,9 +346,9 @@ namespace Skylight
 
         public int DeathCount
         {
-            get { return deathCount; }
+            get { return _deathCount; }
 
-            internal set { deathCount = value; }
+            internal set { _deathCount = value; }
         }
 
         public int Id
@@ -742,34 +739,34 @@ namespace Skylight
 
         private void stepx()
         {
-            if (currentSX > 0)
+            if (_currentSx > 0)
             {
-                if (currentSX + reminderX >= 1)
+                if (_currentSx + reminderX >= 1)
                 {
                     X = X + (1 - reminderX);
                     X = Math.Floor(X);
-                    currentSX = currentSX - (1 - reminderX);
+                    _currentSx = _currentSx - (1 - reminderX);
                     reminderX = 0;
                 }
                 else
                 {
-                    X = X + currentSX;
-                    currentSX = 0;
+                    X = X + _currentSx;
+                    _currentSx = 0;
                 }
             }
-            else if (currentSX < 0)
+            else if (_currentSx < 0)
             {
-                if (reminderX != 0 && reminderX + currentSX < 0)
+                if (reminderX != 0 && reminderX + _currentSx < 0)
                 {
-                    currentSX = currentSX + reminderX;
+                    _currentSx = _currentSx + reminderX;
                     X = X - reminderX;
                     X = Math.Floor(X);
                     reminderX = 1;
                 }
                 else
                 {
-                    X = X + currentSX;
-                    currentSX = 0;
+                    X = X + _currentSx;
+                    _currentSx = 0;
                 }
             }
 
@@ -777,41 +774,41 @@ namespace Skylight
             {
                 X = ox;
                 SpeedX = 0;
-                currentSX = osx;
-                donex = true;
+                _currentSx = osx;
+                _donex = true;
             }
         }
 
         private void stepy()
         {
-            if (currentSY > 0)
+            if (_currentSy > 0)
             {
-                if (currentSY + reminderY >= 1)
+                if (_currentSy + reminderY >= 1)
                 {
                     Y = Y + (1 - reminderY);
                     Y = Math.Floor(Y);
-                    currentSY = currentSY - (1 - reminderY);
+                    _currentSy = _currentSy - (1 - reminderY);
                     reminderY = 0;
                 }
                 else
                 {
-                    Y = Y + currentSY;
-                    currentSY = 0;
+                    Y = Y + _currentSy;
+                    _currentSy = 0;
                 }
             }
-            else if (currentSY < 0)
+            else if (_currentSy < 0)
             {
-                if (reminderY != 0 && reminderY + currentSY < 0)
+                if (reminderY != 0 && reminderY + _currentSy < 0)
                 {
                     Y = Y - reminderY;
                     Y = Math.Floor(Y);
-                    currentSY = currentSY + reminderY;
+                    _currentSy = _currentSy + reminderY;
                     reminderY = 1;
                 }
                 else
                 {
-                    Y = Y + currentSY;
-                    currentSY = 0;
+                    Y = Y + _currentSy;
+                    _currentSy = 0;
                 }
             }
 
@@ -819,8 +816,8 @@ namespace Skylight
             {
                 Y = oy;
                 SpeedY = 0;
-                currentSY = osy;
-                doney = true;
+                _currentSy = osy;
+                _doney = true;
             }
         }
 
@@ -837,7 +834,7 @@ namespace Skylight
             double _loc_9 = 0;
             int _loc_10 = 0;
             double _loc_11 = 0;
-            currentBlockId = PlayingIn.Map[cx, cy, 0].Id;
+            currentBlockId = PlayingIn.Map[_cx, _cy, 0].Id;
             if (!isgodmod && currentBlockId == BlockIds.Action.Portals.WORLD)
             {
                 if (spacejustdown && !worldportalsend)
@@ -848,9 +845,9 @@ namespace Skylight
             {
                 if (lastPortal.X == 0 && lastPortal.Y == 0)
                 {
-                    lastPortal = new Point(cx << 4, cy << 4);
+                    lastPortal = new Point(_cx << 4, _cy << 4);
 
-                    Block currentBlock = PlayingIn.Map[cx, cy, 0];
+                    Block currentBlock = PlayingIn.Map[_cx, _cy, 0];
                     var currentPortalBlock = (PortalBlock) currentBlock;
                     int currentTarget = currentPortalBlock.PortalDestination;
 
@@ -890,7 +887,7 @@ namespace Skylight
                                 modifierX = _loc_9*_loc_11;
                                 modifierY = (-_loc_8)*_loc_11;
                                 reminderY = -reminderY;
-                                currentSY = -currentSY;
+                                _currentSy = -_currentSy;
                                 break;
                             }
                             case 3:
@@ -900,7 +897,7 @@ namespace Skylight
                                 modifierX = (-_loc_9)*_loc_11;
                                 modifierY = _loc_8*_loc_11;
                                 reminderX = -reminderX;
-                                currentSX = -currentSX;
+                                _currentSx = -_currentSx;
                                 break;
                             }
                             case 2:
@@ -910,9 +907,9 @@ namespace Skylight
                                 modifierX = (-_loc_8)*_loc_11;
                                 modifierY = (-_loc_9)*_loc_11;
                                 reminderY = -reminderY;
-                                currentSY = -currentSY;
+                                _currentSy = -_currentSy;
                                 reminderX = -reminderX;
-                                currentSX = -currentSX;
+                                _currentSx = -_currentSx;
                                 break;
                             }
                             default:
@@ -963,20 +960,20 @@ namespace Skylight
             }
             if (isDead)
             {
-                deadoffset = deadoffset + 0.3;
+                _deadoffset = _deadoffset + 0.3;
             }
             else
             {
-                deadoffset = 0;
+                _deadoffset = 0;
             }
-            cx = (int) ((X + 8)/16);
-            cy = (int) ((Y + 8)/16);
+            _cx = (int) ((X + 8)/16);
+            _cy = (int) ((Y + 8)/16);
             int delayed = 0;
             if (_queue.Count >= 1)
             {
                 delayed = _queue.Dequeue();
             }
-            currentBlockId = PlayingIn.Map[cx, cy, 0].Id;
+            currentBlockId = PlayingIn.Map[_cx, _cy, 0].Id;
             _queue.Enqueue(currentBlockId);
             if (currentBlockId == 4 || ItemId.isClimbable(currentBlockId))
             {
@@ -1235,18 +1232,18 @@ namespace Skylight
                 }
             }
             reminderX = X%1;
-            currentSX = SpeedX;
+            _currentSx = SpeedX;
             reminderY = Y%1;
-            currentSY = SpeedY;
-            donex = false;
-            doney = false;
-            while (currentSX != 0 && !donex || currentSY != 0 && !doney)
+            _currentSy = SpeedY;
+            _donex = false;
+            _doney = false;
+            while (_currentSx != 0 && !_donex || _currentSy != 0 && !_doney)
             {
                 processPortals();
                 ox = X;
                 oy = Y;
-                osx = currentSX;
-                osy = currentSY;
+                osx = _currentSx;
+                osy = _currentSy;
                 stepx();
                 stepy();
             }

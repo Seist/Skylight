@@ -12,16 +12,16 @@
 
 
         private int
-            direction,
-            id;
+            _direction,
+            _id;
 
         private Player
-            placer;
+            _placer;
 
         private int
-            x,
-            y,
-            z;
+            _x,
+            _y,
+            _z;
 
         public Block(
             int id,
@@ -45,16 +45,16 @@
 
         public int Direction
         {
-            get { return direction; }
+            get { return _direction; }
 
-            set { direction = value; }
+            set { _direction = value; }
         }
 
         public int Id
         {
-            get { return id; }
+            get { return _id; }
 
-            internal set { id = value; }
+            internal set { _id = value; }
         }
 
         public int Z
@@ -63,7 +63,7 @@
             {
                 if (Id == 0)
                 {
-                    return z;
+                    return _z;
                 }
 
 
@@ -78,30 +78,30 @@
             {
                 if (value == 0 || value == 1)
                 {
-                    z = value;
+                    _z = value;
                 }
             }
         }
 
         public int X
         {
-            get { return x; }
+            get { return _x; }
 
-            internal set { x = value; }
+            internal set { _x = value; }
         }
 
         public int Y
         {
-            get { return y; }
+            get { return _y; }
 
-            internal set { y = value; }
+            internal set { _y = value; }
         }
 
         public Player Placer
         {
-            get { return placer; }
+            get { return _placer; }
 
-            internal set { placer = value; }
+            internal set { _placer = value; }
         }
     }
 }

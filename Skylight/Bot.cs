@@ -35,31 +35,29 @@ namespace Skylight
             ArmorGames = 3
         }
 
-        private static string storedVersion;
-        private readonly AccountType accType;
+        private static string _storedVersion;
+        private readonly AccountType _accType;
 
         private readonly string
-            emailOrToken,
-            passwordOrToken;
+            _emailOrToken,
+            _passwordOrToken;
 
         private int
-            blockDelay = 10;
+            _blockDelay = 10;
 
-        private string chatPrefix = "";
-        private Client client;
+        private string _chatPrefix = "";
+        private Client _client;
 
-        private Connection connection;
+        private Connection _connection;
 
         private bool
-            isConnected,
-            joined;
+            _isConnected,
+            _joined;
 
-        private Out push = new Out();
-
-        private Room r = new Room(null);
+        private Out _push = new Out();
 
         private int
-            speechDelay = 1000;
+            _speechDelay = 1000;
 
         /// <param name="password">Make this field null if it isn't needed for your log-in method.</param>
         public Bot(Room r,
@@ -68,70 +66,70 @@ namespace Skylight
             AccountType accType = AccountType.Regular)
             : base(r, 0, "", 0, 0.0, 0.0, false, false, true, 0, false, false, 0)
         {
-            this.emailOrToken = emailOrToken;
-            this.passwordOrToken = passwordOrToken;
+            this._emailOrToken = emailOrToken;
+            this._passwordOrToken = passwordOrToken;
             R = r; //
-            this.accType = accType;
+            this._accType = accType;
             ShouldTick = true;
         }
 
         public bool IsConnected
         {
-            get { return isConnected; }
+            get { return _isConnected; }
 
-            internal set { isConnected = value; }
+            internal set { _isConnected = value; }
         }
 
         public bool Joined
         {
-            get { return joined; }
-            internal set { joined = value; }
+            get { return _joined; }
+            internal set { _joined = value; }
         }
 
         public bool ShouldTick { get; set; }
 
         public Client Client
         {
-            get { return client; }
+            get { return _client; }
 
-            internal set { client = value; }
+            internal set { _client = value; }
         }
 
         public int BlockDelay
         {
-            get { return blockDelay; }
+            get { return _blockDelay; }
 
-            set { blockDelay = value; }
+            set { _blockDelay = value; }
         }
 
         public int SpeechDelay
         {
-            get { return speechDelay; }
+            get { return _speechDelay; }
 
-            set { speechDelay = value; }
+            set { _speechDelay = value; }
         }
 
         public string ChatPrefix
         {
-            get { return chatPrefix; }
+            get { return _chatPrefix; }
 
-            set { chatPrefix = value; }
+            set { _chatPrefix = value; }
         }
 
         public Out Push
         {
-            get { return push; }
+            get { return _push; }
 
-            internal set { push = value; }
+            internal set { _push = value; }
         }
 
         public Room R { get; internal set; }
 
         public Connection Connection
         {
-            get { return connection; }
+            get { return _connection; }
 
-            internal set { connection = value; }
+            internal set { _connection = value; }
         }
 
         public static Room currentRoom { get; set; }
@@ -141,21 +139,21 @@ namespace Skylight
         {
             try
             {
-                switch (accType)
+                switch (_accType)
                 {
                     case AccountType.Regular:
-                        if (emailOrToken == Tools.GuestEmail && passwordOrToken == Tools.GuestPassword)
+                        if (_emailOrToken == Tools.GuestEmail && _passwordOrToken == Tools.GuestPassword)
                             Client = Tools.GuestClient.Value;
                         else
-                            Client = PlayerIO.QuickConnect.SimpleConnect(Tools.GameID, emailOrToken, passwordOrToken);
+                            Client = PlayerIO.QuickConnect.SimpleConnect(Tools.GameId, _emailOrToken, _passwordOrToken);
                         break;
 
                     case AccountType.Facebook:
-                        Client = PlayerIO.QuickConnect.FacebookOAuthConnect(Tools.GameID, emailOrToken, null);
+                        Client = PlayerIO.QuickConnect.FacebookOAuthConnect(Tools.GameId, _emailOrToken, null);
                         break;
 
                     case AccountType.Kongregate:
-                        Client = PlayerIO.QuickConnect.KongregateConnect(Tools.GameID, emailOrToken, passwordOrToken);
+                        Client = PlayerIO.QuickConnect.KongregateConnect(Tools.GameId, _emailOrToken, _passwordOrToken);
                         break;
 
                     default: //case AccountType.ArmorGames:
@@ -169,7 +167,7 @@ namespace Skylight
                                     "Cannot log in using ArmorGames. The response from the auth server is wrong.");
                             else
                             {
-                                Client = PlayerIO.Connect(Tools.GameID, "secure",
+                                Client = PlayerIO.Connect(Tools.GameId, "secure",
                                     message.GetString(0), message.GetString(1),
                                     "armorgames");
                             }
@@ -177,7 +175,7 @@ namespace Skylight
                             c.Disconnect();
                         };
 
-                        c.Send("auth", emailOrToken, passwordOrToken);
+                        c.Send("auth", _emailOrToken, _passwordOrToken);
                         break;
                 }
             }
@@ -209,7 +207,7 @@ namespace Skylight
             }
 
             // Parse the level ID (because some people like to put full URLs in).
-            R.Id = Tools.ParseURL(R.Id);
+            R.Id = Tools.ParseUrl(R.Id);
 
             try
             {
@@ -218,7 +216,7 @@ namespace Skylight
                     // Join room
                     Connection = Client.Multiplayer.CreateJoinRoom(
                         R.Id, // RoomId   (URL)
-                        storedVersion, // RoomType (Server)
+                        _storedVersion, // RoomType (Server)
                         true, // Visible
                         new Dictionary<string, string>(), // RoomData
                         new Dictionary<string, string>()); // JoinData
@@ -292,16 +290,16 @@ namespace Skylight
 
         private string Version(bool cached = true, string prefix = Tools.NormalRoom)
         {
-            if (!cached || storedVersion == null)
+            if (!cached || _storedVersion == null)
                 return prefix + Refresh();
 
-            return prefix + storedVersion;
+            return prefix + _storedVersion;
         }
 
         private string Refresh()
         {
-            storedVersion = Convert.ToString(Client.BigDB.Load("config", "config")["version"]);
-            return storedVersion;
+            _storedVersion = Convert.ToString(Client.BigDB.Load("config", "config")["version"]);
+            return _storedVersion;
         }
     }
 }

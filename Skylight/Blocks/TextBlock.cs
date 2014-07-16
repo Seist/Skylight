@@ -2,7 +2,7 @@
 {
     public class TextBlock : Block
     {
-        private string text = string.Empty;
+        private string _text = string.Empty;
 
         public TextBlock(
             int id,
@@ -15,9 +15,9 @@
 
         public string Text
         {
-            get { return text; }
+            get { return _text; }
 
-            internal set { text = value; }
+            internal set { _text = value; }
         }
     }
 }
