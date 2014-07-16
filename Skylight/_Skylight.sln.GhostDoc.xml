@@ -5,6 +5,7 @@
     <IgnoreExtensions>
     </IgnoreExtensions>
     <IgnoreFiles>
+      <IgnoreFile>.\In.cs</IgnoreFile>
       <IgnoreFile>.\Player.cs</IgnoreFile>
     </IgnoreFiles>
   </SpellChecker>

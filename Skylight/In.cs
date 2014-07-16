@@ -83,7 +83,35 @@ namespace Skylight
             PortalBlockEvent = delegate { } ,
             RoomPortalBlockEvent = delegate { } ,
             RotateEvent = delegate { } ,
-            SignBlockEvent = delegate { } ,
+            SignBlockEvent = delegate { };
+
+        /// <summary>
+        /// When a sign block is placed in the world.
+        /// </summary>
+        /// <param name="e"></param>
+        protected virtual void OnSignBlockEvent(Message m)
+        {
+            // Extract data
+            int x = m.GetInteger(0);
+            int y = m.GetInteger(1);
+            string the_text = m.GetString(3);
+            int id = m.GetInteger(4);
+
+            // Update relevant objects.
+            Player subject = Tools.GetPlayerById(id, Source);
+
+            // Fire the event.
+            var b = new TextBlock(385,x,y,the_text);
+            var e = new BlockEventArgs(b);
+
+            Source.Pull.SignBlockEvent(e);
+        }
+
+        /// <summary>
+        ///     All of the delegates for BlockEvent. These fire when events occur
+        ///     (such as when a block was added or updated).
+        /// </summary>
+        public event BlockEvent
             // never invoked... hmm..
             SoundBlockEvent = delegate { };
 
@@ -258,7 +286,7 @@ namespace Skylight
                                 break;
 
                             case "lb":
-                                OnLb(m);
+                                OnSignBlockEvent(m);
                                 break;
 
                             case "left":
