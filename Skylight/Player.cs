@@ -41,9 +41,9 @@ namespace Skylight
 */
 
         /// <summary>
-        ///     The admins
+        ///     The admins. This is never used.
         /// </summary>
-        private static readonly List<string> Admins = new List<string>
+        public static readonly List<string> Admins = new List<string>
         {
             "benjaminsen",
             "cyclone",
