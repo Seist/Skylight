@@ -6,11 +6,28 @@ namespace Skylight
 {
     public class Bot : Player
     {
+        /// <summary>
+        /// All of the possible account types. Defaults to Regular if unknown.
+        /// </summary>
         public enum AccountType : sbyte
         {
+            /// <summary>
+            /// The regular login method via email and password on the official
+            /// everybodyedits.com website.
+            /// </summary>
             Regular = 0,
+            /// <summary>
+            /// Facebook login using an auth token.
+            /// </summary>
             Facebook = 1,
+            /// <summary>
+            /// Kongregate login using a kongregate user id (an integer) and an auth token.
+            /// </summary>
             Kongregate = 2,
+            /// <summary>
+            /// ArmorGames login using a user token and a password token, both of which are 32
+            /// chars long and hex.
+            /// </summary>
             ArmorGames = 3
         }
 
