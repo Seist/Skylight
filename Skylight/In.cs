@@ -399,7 +399,7 @@ namespace Skylight
                 isMod = m.GetBoolean(6),
                 hasBoost = m.GetBoolean(9),
                 isFriend = m.GetBoolean(10),
-                hasClub = m.GetBoolean(12);
+                hasClub = m.GetBoolean(12); // never used.
 
             // Update relevant objects.
             var subject = new Player(Source, id, name, smiley, x, y, isGod, isMod, true, coins, hasBoost, isFriend,
