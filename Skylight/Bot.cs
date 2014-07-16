@@ -286,10 +286,10 @@ namespace Skylight
             Joined = false;
         }
 
-        private string Refresh()
+        private void Refresh()
         {
             _storedVersion = Convert.ToString(Client.BigDB.Load("config", "config")["version"]);
-            return _storedVersion;
+            return;
         }
     }
 }
