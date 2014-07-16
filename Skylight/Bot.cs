@@ -54,6 +54,14 @@ namespace Skylight
         private int
             _speechDelay = 1000;
 
+        /// <summary>
+        /// The main bot class.
+        /// </summary>
+        /// <param name="r">The room object that the bot will join.</param>
+        /// <param name="emailOrToken">The email or token.</param>
+        /// <param name="passwordOrToken">The password or token.</param>
+        /// <param name="accType">The account type. Default is regular but it automatically
+        /// guesses.</param>
         public Bot(Room r,
             string emailOrToken = Tools.GuestEmail,
             string passwordOrToken = Tools.GuestPassword,
