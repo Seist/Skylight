@@ -586,7 +586,6 @@ namespace Skylight
                 return false;
             }
 
-            internal set { }
         }
 
         /// <summary>
