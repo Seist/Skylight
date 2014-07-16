@@ -32,7 +32,7 @@ namespace Skylight.Arguments
         /// <param name="origin">The room where the block originated from.</param>
         public BlockEventArgs(Block b, Room origin = null)
         {
-            Origin = origin ?? Bot.currentRoom;
+            Origin = origin ?? Bot.CurrentRoom;
             _placed = b;
             _placer = b.Placer;
         }
