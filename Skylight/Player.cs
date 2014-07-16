@@ -1425,7 +1425,7 @@ namespace Skylight
 
         private List<string> getActivePotions()
         {
-            return _touchpotions.Keys.Where(_loc_2 => hasActivePotion(_loc_2)).ToList();
+            return _touchpotions.Keys.Where(hasActivePotion).ToList();
         }
 
         private bool getCanTag()

@@ -466,14 +466,7 @@ namespace Skylight
         {
             if (Bot.HasAccess)
             {
-                if (value)
-                {
-                    C.Send("god", true);
-                }
-                else
-                {
-                    C.Send("god", false);
-                }
+                C.Send("god", value);
             }
         }
 
