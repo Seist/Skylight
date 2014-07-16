@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using Skylight.Blocks;
 using Skylight.Physics;
 
 namespace Skylight

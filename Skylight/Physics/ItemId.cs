@@ -1,4 +1,6 @@
-﻿namespace Skylight.Physics
+﻿using Skylight.Blocks;
+
+namespace Skylight.Physics
 {
     public class ItemId : object
     {

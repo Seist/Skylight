@@ -5,6 +5,7 @@
 //-----------------------------------------------------------------------
 
 using System;
+using Skylight.Blocks;
 
 namespace Skylight.Arguments
 {

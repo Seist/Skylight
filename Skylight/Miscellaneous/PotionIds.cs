@@ -1,4 +1,4 @@
-﻿namespace Skylight
+﻿namespace Skylight.Miscellaneous
 {
     public static class PotionIds
     {

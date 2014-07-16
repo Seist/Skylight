@@ -5,8 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using PlayerIOClient;
+using Skylight.Blocks;
 
-namespace Skylight
+namespace Skylight.Miscellaneous
 {
     public static class Tools
     {

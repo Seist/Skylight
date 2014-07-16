@@ -1,4 +1,6 @@
-﻿namespace Skylight
+﻿using Skylight.Miscellaneous;
+
+namespace Skylight.Blocks
 {
     public class CoinBlock : Block
     {

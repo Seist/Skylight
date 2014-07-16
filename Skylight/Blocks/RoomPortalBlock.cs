@@ -1,6 +1,7 @@
 ﻿using System.Text.RegularExpressions;
+using Skylight.Miscellaneous;
 
-namespace Skylight
+namespace Skylight.Blocks
 {
     public class RoomPortalBlock : Block
     {

@@ -7,6 +7,8 @@ using System.Diagnostics;
 using System.Threading;
 using PlayerIOClient;
 using Skylight.Arguments;
+using Skylight.Blocks;
+using Skylight.Miscellaneous;
 using Skylight.Physics;
 
 namespace Skylight
@@ -948,7 +950,7 @@ namespace Skylight
                 subject.IsHoldingSpace = true;
 
                 // If they are simply switching between keys whilst holding space, ignore it
-                if (subject.vertical == verticalDirection &&
+                if (subject.Vertical == verticalDirection &&
                     subject.Horizontal == horizontalDirection)
                 {
                     // Fire the jump event.
@@ -968,7 +970,7 @@ namespace Skylight
             subject.modifierY = verticalModifier;
 
             subject.Horizontal = horizontalDirection;
-            subject.vertical = verticalDirection;
+            subject.Vertical = verticalDirection;
 
             subject.HasGravityModifier = hasGravityModifier;
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Skylight
+namespace Skylight.Arguments
 {
     public class RoomEventArgs : EventArgs
     {

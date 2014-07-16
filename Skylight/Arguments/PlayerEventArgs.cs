@@ -1,7 +1,7 @@
 ﻿using System;
 using PlayerIOClient;
 
-namespace Skylight
+namespace Skylight.Arguments
 {
     public class PlayerEventArgs : EventArgs
     {

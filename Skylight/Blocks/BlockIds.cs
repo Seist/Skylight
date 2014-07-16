@@ -1,4 +1,4 @@
-﻿namespace Skylight
+﻿namespace Skylight.Blocks
 {
     public static class BlockIds
     {
