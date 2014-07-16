@@ -54,9 +54,7 @@ namespace Skylight
 
         private Connection _connection;
 
-        private bool
-            _isConnected,
-            _joined;
+        private bool _joined;
 
         private Out _push = new Out();
 
@@ -77,12 +75,10 @@ namespace Skylight
             ShouldTick = true;
         }
 
-        public bool IsConnected
-        {
-            get { return _isConnected; }
-
-            internal set { _isConnected = value; }
-        }
+        /// <summary>
+        /// Whether or not the bot is connected to the world.
+        /// </summary>
+        public bool IsConnected { get; internal set; }
 
         public bool Joined
         {
