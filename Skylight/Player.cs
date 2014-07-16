@@ -155,11 +155,11 @@ namespace Skylight
         /// <summary>
         /// The checkpoint_x
         /// </summary>
-        public int checkpoint_x = -1;
+        public int CheckpointX = -1;
         /// <summary>
         /// The checkpoint_y
         /// </summary>
-        public int checkpoint_y = -1;
+        public int CheckpointY = -1;
         /// <summary>
         /// The _cluboffset
         /// </summary>
@@ -169,16 +169,12 @@ namespace Skylight
         /// The _coins
         /// </summary>
         private int
-            _coins,
-            /// <summary>
-            /// The _collected magic
-            /// </summary>
-            _collectedMagic;
+            _coins, _collectedMagic;
 
         /// <summary>
         /// The current block identifier
         /// </summary>
-        public int currentBlockId = 0;
+        public int CurrentBlockId = 0;
         /// <summary>
         /// The _current sx
         /// </summary>
@@ -223,33 +219,13 @@ namespace Skylight
         /// The _has access
         /// </summary>
         private bool
-            _hasAccess,
-            /// <summary>
-            /// The _has boost
-            /// </summary>
-            _hasBoost;
+            _hasAccess, _hasBoost;
 
         /// <summary>
         /// The _has club
         /// </summary>
         private bool
-            _hasClub,
-            /// <summary>
-            /// The _has command access
-            /// </summary>
-            _hasCommandAccess,
-            /// <summary>
-            /// The _has crown
-            /// </summary>
-            _hasCrown,
-            /// <summary>
-            /// The _has gravity modifier
-            /// </summary>
-            _hasGravityModifier,
-            /// <summary>
-            /// The _has silver crown
-            /// </summary>
-            _hasSilverCrown;
+            _hasClub, _hasCommandAccess, _hasCrown, _hasGravityModifier, _hasSilverCrown;
 
         /// <summary>
         /// The horizontal
@@ -265,10 +241,12 @@ namespace Skylight
 /*
         private bool injump = false;
 */
+/*
         /// <summary>
         /// The _is cursed
         /// </summary>
         private bool _isCursed;
+*/
         /// <summary>
         /// The _is dead
         /// </summary>
@@ -278,23 +256,7 @@ namespace Skylight
         /// The _is friend
         /// </summary>
         private bool
-            _isFriend,
-            /// <summary>
-            /// The _is god
-            /// </summary>
-            _isGod,
-            /// <summary>
-            /// The _is holding down
-            /// </summary>
-            _isHoldingDown,
-            /// <summary>
-            /// The _is holding left
-            /// </summary>
-            _isHoldingLeft,
-            /// <summary>
-            /// The _is holding right
-            /// </summary>
-            _isHoldingRight;
+            _isFriend, _isGod, _isHoldingDown, _isHoldingLeft, _isHoldingRight;
 
         /// <summary>
         /// The _is holding space
@@ -1323,14 +1285,14 @@ namespace Skylight
         private void ProcessPortals()
         {
             var targetPortalList = new List<Point>();
-            currentBlockId = PlayingIn.Map[_cx, _cy, 0].Id;
-            if (!_isgodmod && currentBlockId == BlockIds.Action.Portals.WORLD)
+            CurrentBlockId = PlayingIn.Map[_cx, _cy, 0].Id;
+            if (!_isgodmod && CurrentBlockId == BlockIds.Action.Portals.WORLD)
             {
                 if (_spacejustdown)
                 {
                 }
             }
-            if (!_isgodmod && currentBlockId == 242)
+            if (!_isgodmod && CurrentBlockId == 242)
             {
                 if (_lastPortal.X == 0 && _lastPortal.Y == 0)
                 {
@@ -1464,12 +1426,12 @@ namespace Skylight
             {
                 delayed = _queue.Dequeue();
             }
-            currentBlockId = PlayingIn.Map[_cx, _cy, 0].Id;
-            _queue.Enqueue(currentBlockId);
-            if (currentBlockId == 4 || ItemId.isClimbable(currentBlockId))
+            CurrentBlockId = PlayingIn.Map[_cx, _cy, 0].Id;
+            _queue.Enqueue(CurrentBlockId);
+            if (CurrentBlockId == 4 || ItemId.isClimbable(CurrentBlockId))
             {
                 delayed = _queue.Dequeue();
-                _queue.Enqueue(currentBlockId);
+                _queue.Enqueue(CurrentBlockId);
             }
             if (_isDead)
             {
@@ -1487,7 +1449,7 @@ namespace Skylight
             }
             else
             {
-                switch (currentBlockId)
+                switch (CurrentBlockId)
                 {
                     case 1:
                     {
@@ -1636,15 +1598,15 @@ namespace Skylight
                 SpeedX = SpeedX*Config.physics_base_drag;
                 if (_horizontalAcceleration == 0 && _oldVerticalAcceleration != 0 ||
                     SpeedX < 0 && _horizontalAcceleration > 0 || SpeedX > 0 && _horizontalAcceleration < 0 ||
-                    ItemId.isClimbable(currentBlockId) && !_isgodmod)
+                    ItemId.isClimbable(CurrentBlockId) && !_isgodmod)
                 {
                     SpeedX = SpeedX*NoModifierDragX;
                 }
-                else if (currentBlockId == BlockIds.Action.Liquids.WATER && !_isgodmod)
+                else if (CurrentBlockId == BlockIds.Action.Liquids.WATER && !_isgodmod)
                 {
                     SpeedX = SpeedX*WaterDrag;
                 }
-                else if (currentBlockId == BlockIds.Action.Liquids.MUD && !_isgodmod)
+                else if (CurrentBlockId == BlockIds.Action.Liquids.MUD && !_isgodmod)
                 {
                     SpeedX = SpeedX*DragMud();
                 }
@@ -1667,15 +1629,15 @@ namespace Skylight
                 SpeedY = SpeedY*Config.physics_base_drag;
                 if (_verticalAcceleration == 0 && _oldHorizontalAcceleration != 0 ||
                     SpeedY < 0 && _verticalAcceleration > 0 || SpeedY > 0 && _verticalAcceleration < 0 ||
-                    ItemId.isClimbable(currentBlockId) && !_isgodmod)
+                    ItemId.isClimbable(CurrentBlockId) && !_isgodmod)
                 {
                     SpeedY = SpeedY*NoModifierDragY;
                 }
-                else if (currentBlockId == BlockIds.Action.Liquids.WATER && !_isgodmod)
+                else if (CurrentBlockId == BlockIds.Action.Liquids.WATER && !_isgodmod)
                 {
                     SpeedY = SpeedY*WaterDrag;
                 }
-                else if (currentBlockId == BlockIds.Action.Liquids.MUD && !_isgodmod)
+                else if (CurrentBlockId == BlockIds.Action.Liquids.MUD && !_isgodmod)
                 {
                     SpeedY = SpeedY*DragMud();
                 }
@@ -1694,7 +1656,7 @@ namespace Skylight
             }
             if (!_isgodmod)
             {
-                switch (currentBlockId)
+                switch (CurrentBlockId)
                 {
                     case BlockIds.Action.Boost.LEFT:
                     {
@@ -1746,8 +1708,8 @@ namespace Skylight
             double imx = SpeedX*256;
             double imy = SpeedY*256;
             moving = false;
-            if (imx != 0 || currentBlockId == BlockIds.Action.Liquids.WATER ||
-                currentBlockId == BlockIds.Action.Liquids.MUD)
+            if (imx != 0 || CurrentBlockId == BlockIds.Action.Liquids.WATER ||
+                CurrentBlockId == BlockIds.Action.Liquids.MUD)
             {
                 moving = true;
             }
@@ -1779,8 +1741,8 @@ namespace Skylight
                     }
                 }
             }
-            if (imy != 0 || currentBlockId == BlockIds.Action.Liquids.WATER ||
-                currentBlockId == BlockIds.Action.Liquids.MUD)
+            if (imy != 0 || CurrentBlockId == BlockIds.Action.Liquids.WATER ||
+                CurrentBlockId == BlockIds.Action.Liquids.MUD)
             {
                 moving = true;
             }
