@@ -5,72 +5,72 @@ namespace Skylight
 {
     public class Room
     {
-        private static List<Room> joinedRooms = new List<Room>();
+        private static List<Room> _joinedRooms = new List<Room>();
         internal bool ShouldTick = true;
 
         private bool
-            blocksLoaded;
+            _blocksLoaded;
 
         private bool
-            blueActivated;
+            _blueActivated;
 
-        private List<KeyValuePair<string, Player>> chatLog = new List<KeyValuePair<string, Player>>();
-        private List<Connection> connections = new List<Connection>();
+        private List<KeyValuePair<string, Player>> _chatLog = new List<KeyValuePair<string, Player>>();
+        private List<Connection> _connections = new List<Connection>();
 
         private string
-            editKey;
+            _editKey;
 
         private double
-            gravityMultiplier;
+            _gravityMultiplier;
 
         private bool
-            greenActivated;
+            _greenActivated;
 
         private bool
-            hasPull;
+            _hasPull;
 
         private int
-            height;
+            _height;
 
         private string
-            id;
+            _id;
 
         private bool
-            isInitialized,
-            isTutorialRoom;
+            _isInitialized,
+            _isTutorialRoom;
 
         private Block[,,] map = new Block[700, 400, 2];
 
         private string
-            name;
+            _name;
 
-        private List<Bot> onlineBots = new List<Bot>();
-        private List<Player> onlinePlayers = new List<Player>();
-        private Player owner;
-
-        private int
-            plays;
-
-        private bool
-            potionsAllowed;
-
-        private In pull = new In();
-        private List<In> pulls = new List<In>();
-        private Bot receiver;
-
-        private bool
-            redActivated;
-
-        private bool
-            timeDoorsVisible;
+        private List<Bot> _onlineBots = new List<Bot>();
+        private List<Player> _onlinePlayers = new List<Player>();
+        private Player _owner;
 
         private int
-            totalWoots,
-            width,
-            woots;
+            _plays;
+
+        private bool
+            _potionsAllowed;
+
+        private In _pull = new In();
+        private List<In> _pulls = new List<In>();
+        private Bot _receiver;
+
+        private bool
+            _redActivated;
+
+        private bool
+            _timeDoorsVisible;
+
+        private int
+            _totalWoots,
+            _width,
+            _woots;
 
         private string
-            worldKey;
+            _worldKey;
 
         public Room(string id)
         {
@@ -79,9 +79,9 @@ namespace Skylight
 
         public static List<Room> JoinedRooms
         {
-            get { return joinedRooms; }
+            get { return _joinedRooms; }
 
-            internal set { joinedRooms = value; }
+            internal set { _joinedRooms = value; }
         }
 
         public Block[,,] Map
@@ -93,187 +93,187 @@ namespace Skylight
 
         public bool BlocksLoaded
         {
-            get { return blocksLoaded; }
-            internal set { blocksLoaded = value; }
+            get { return _blocksLoaded; }
+            internal set { _blocksLoaded = value; }
         }
 
         public bool HasPull
         {
-            get { return hasPull; }
+            get { return _hasPull; }
 
-            internal set { hasPull = value; }
+            internal set { _hasPull = value; }
         }
 
         public bool IsInitialized
         {
-            get { return isInitialized; }
+            get { return _isInitialized; }
 
-            internal set { isInitialized = value; }
+            internal set { _isInitialized = value; }
         }
 
         public bool IsTutorialRoom
         {
-            get { return isTutorialRoom; }
+            get { return _isTutorialRoom; }
 
-            internal set { isTutorialRoom = value; }
+            internal set { _isTutorialRoom = value; }
         }
 
         public bool PotionsAllowed
         {
-            get { return potionsAllowed; }
+            get { return _potionsAllowed; }
 
-            internal set { potionsAllowed = value; }
+            internal set { _potionsAllowed = value; }
         }
 
         public bool TimeDoorsVisible
         {
-            get { return timeDoorsVisible; }
+            get { return _timeDoorsVisible; }
 
-            internal set { timeDoorsVisible = value; }
+            internal set { _timeDoorsVisible = value; }
         }
 
         public Bot Receiver
         {
-            get { return receiver; }
+            get { return _receiver; }
 
-            internal set { receiver = value; }
+            internal set { _receiver = value; }
         }
 
         public double GravityMultiplier
         {
-            get { return gravityMultiplier; }
+            get { return _gravityMultiplier; }
 
-            internal set { gravityMultiplier = value; }
+            internal set { _gravityMultiplier = value; }
         }
 
         public In Pull
         {
-            get { return pull; }
+            get { return _pull; }
 
-            internal set { pull = value; }
+            internal set { _pull = value; }
         }
 
         public int Height
         {
-            get { return height; }
+            get { return _height; }
 
-            internal set { height = value; }
+            internal set { _height = value; }
         }
 
         public int Plays
         {
-            get { return plays; }
+            get { return _plays; }
 
-            internal set { plays = value; }
+            internal set { _plays = value; }
         }
 
         public int TotalWoots
         {
-            get { return totalWoots; }
+            get { return _totalWoots; }
 
-            internal set { totalWoots = value; }
+            internal set { _totalWoots = value; }
         }
 
         public int Width
         {
-            get { return width; }
+            get { return _width; }
 
-            internal set { width = value; }
+            internal set { _width = value; }
         }
 
         public int Woots
         {
-            get { return woots; }
+            get { return _woots; }
 
-            internal set { woots = value; }
+            internal set { _woots = value; }
         }
 
         public List<In> Pulls
         {
-            get { return pulls; }
+            get { return _pulls; }
 
-            internal set { pulls = value; }
+            internal set { _pulls = value; }
         }
 
         public List<KeyValuePair<string, Player>> ChatLog
         {
-            get { return chatLog; }
+            get { return _chatLog; }
 
-            internal set { chatLog = value; }
+            internal set { _chatLog = value; }
         }
 
         public List<Player> OnlinePlayers
         {
-            get { return onlinePlayers; }
+            get { return _onlinePlayers; }
 
-            internal set { onlinePlayers = value; }
+            internal set { _onlinePlayers = value; }
         }
 
         public List<Bot> OnlineBots
         {
-            get { return onlineBots; }
+            get { return _onlineBots; }
 
-            internal set { onlineBots = value; }
+            internal set { _onlineBots = value; }
         }
 
         public Player Owner
         {
-            get { return owner; }
+            get { return _owner; }
 
-            internal set { owner = value; }
+            internal set { _owner = value; }
         }
 
         public string EditKey
         {
-            get { return editKey; }
+            get { return _editKey; }
 
-            internal set { editKey = value; }
+            internal set { _editKey = value; }
         }
 
         public string Id
         {
-            get { return id; }
+            get { return _id; }
 
-            internal set { id = value; }
+            internal set { _id = value; }
         }
 
         public string Name
         {
-            get { return name; }
+            get { return _name; }
 
-            internal set { name = value; }
+            internal set { _name = value; }
         }
 
         public string RoomKey
         {
-            get { return worldKey; }
+            get { return _worldKey; }
 
-            internal set { worldKey = value; }
+            internal set { _worldKey = value; }
         }
 
         internal List<Connection> Connections
         {
-            get { return connections; }
+            get { return _connections; }
 
-            set { connections = value; }
+            set { _connections = value; }
         }
 
         public bool RedActivated
         {
-            get { return redActivated; }
-            set { redActivated = value; }
+            get { return _redActivated; }
+            set { _redActivated = value; }
         }
 
         public bool GreenActivated
         {
-            get { return greenActivated; }
-            set { greenActivated = value; }
+            get { return _greenActivated; }
+            set { _greenActivated = value; }
         }
 
         public bool BlueActivated
         {
-            get { return blueActivated; }
-            set { blueActivated = value; }
+            get { return _blueActivated; }
+            set { _blueActivated = value; }
         }
     }
 }
