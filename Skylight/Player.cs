@@ -967,7 +967,7 @@ namespace Skylight
                                                 }
                                                 break;
                                             }
-                                            case BlockIds.Action.Doors.SWITCH:
+                                            case BlockIds.Action.Doors.Switch:
                                             {
                                                 if (SwitchOpened)
                                                 {
@@ -983,7 +983,7 @@ namespace Skylight
                                                 }
                                                 break;
                                             }
-                                            case BlockIds.Action.Doors.CLUB:
+                                            case BlockIds.Action.Doors.Club:
                                             {
                                                 if (Isclubmember)
                                                 {
@@ -999,7 +999,7 @@ namespace Skylight
                                                 }
                                                 break;
                                             }
-                                            case BlockIds.Action.Doors.COIN:
+                                            case BlockIds.Action.Doors.Coin:
                                             {
                                                 if (currentBlock is CoinBlock &&
                                                     ((CoinBlock) currentBlock).CoinsRequired <= _coins)
@@ -1025,7 +1025,7 @@ namespace Skylight
                                                 }
                                                 break;
                                             }
-                                            case BlockIds.Action.Doors.ZOMBIE:
+                                            case BlockIds.Action.Doors.Zombie:
                                             {
                                                 if (!_isZombie)
                                                 {
@@ -1368,10 +1368,10 @@ namespace Skylight
                         _mory = 0;
                         break;
                     }
-                    case BlockIds.Action.Boost.LEFT:
-                    case BlockIds.Action.Boost.RIGHT:
-                    case BlockIds.Action.Boost.UP:
-                    case BlockIds.Action.Boost.DOWN:
+                    case BlockIds.Action.Boost.Left:
+                    case BlockIds.Action.Boost.Right:
+                    case BlockIds.Action.Boost.Up:
+                    case BlockIds.Action.Boost.Down:
                     case BlockIds.Action.Ladders.CHAIN:
                     case BlockIds.Action.Ladders.LADDER:
                     case BlockIds.Action.Ladders.HORIZONTALVINE:
@@ -1430,10 +1430,10 @@ namespace Skylight
                         _oldVerticalAcceleration = 0;
                         break;
                     }
-                    case BlockIds.Action.Boost.LEFT:
-                    case BlockIds.Action.Boost.RIGHT:
-                    case BlockIds.Action.Boost.UP:
-                    case BlockIds.Action.Boost.DOWN:
+                    case BlockIds.Action.Boost.Left:
+                    case BlockIds.Action.Boost.Right:
+                    case BlockIds.Action.Boost.Up:
+                    case BlockIds.Action.Boost.Down:
                     case BlockIds.Action.Ladders.CHAIN:
                     case BlockIds.Action.Ladders.LADDER:
                     case BlockIds.Action.Ladders.HORIZONTALVINE:
@@ -1557,22 +1557,22 @@ namespace Skylight
             {
                 switch (CurrentBlockId)
                 {
-                    case BlockIds.Action.Boost.LEFT:
+                    case BlockIds.Action.Boost.Left:
                     {
                         SpeedX = -Boost;
                         break;
                     }
-                    case BlockIds.Action.Boost.RIGHT:
+                    case BlockIds.Action.Boost.Right:
                     {
                         SpeedX = Boost;
                         break;
                     }
-                    case BlockIds.Action.Boost.UP:
+                    case BlockIds.Action.Boost.Up:
                     {
                         SpeedY = -Boost;
                         break;
                     }
-                    case BlockIds.Action.Boost.DOWN:
+                    case BlockIds.Action.Boost.Down:
                     {
                         SpeedY = Boost;
                         break;

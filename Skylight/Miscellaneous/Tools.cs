@@ -264,7 +264,7 @@ namespace Skylight.Miscellaneous
                         roomDestination = m.GetString(messageIndex);
                         messageIndex++;
                     }
-                    else if (blockId == BlockIds.Action.Doors.COIN ||
+                    else if (blockId == BlockIds.Action.Doors.Coin ||
                              blockId == BlockIds.Action.Gates.COIN)
                     {
                         coins = m.GetInteger(messageIndex);
@@ -323,7 +323,7 @@ namespace Skylight.Miscellaneous
                                 y,
                                 roomDestination));
                         }
-                        else if (blockId == BlockIds.Action.Doors.COIN ||
+                        else if (blockId == BlockIds.Action.Doors.Coin ||
                                  blockId == BlockIds.Action.Gates.COIN)
                         {
                             list.Add(new CoinBlock(
@@ -398,7 +398,7 @@ namespace Skylight.Miscellaneous
             {
                 return BlockIds.Action.Gates.COIN;
             }
-            return BlockIds.Action.Doors.COIN;
+            return BlockIds.Action.Doors.Coin;
         }
     }
 }

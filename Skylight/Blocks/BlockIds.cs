@@ -29,10 +29,10 @@ namespace Skylight.Blocks
                 /// The left
                 /// </summary>
                 public const int
-                    LEFT = 114,
-                    RIGHT = 115,
-                    UP = 116,
-                    DOWN = 117;
+                    Left = 114,
+                    Right = 115,
+                    Up = 116,
+                    Down = 117;
             }
 
             /// <summary>
@@ -56,8 +56,8 @@ namespace Skylight.Blocks
                 /// The gold
                 /// </summary>
                 public const int
-                    GOLD = 100,
-                    BLUE = 101;
+                    Gold = 100,
+                    Blue = 101;
             }
 
             /// <summary>
@@ -69,19 +69,19 @@ namespace Skylight.Blocks
                 /// The gold
                 /// </summary>
                 public const int
-                    GOLD = 5;
+                    Gold = 5;
             }
 
             /// <summary>
             /// Class DIAMOND.
             /// </summary>
-            public static class DIAMOND
+            public static class Diamond
             {
                 /// <summary>
                 /// The diamondblock
                 /// </summary>
                 public const int
-                    DIAMONDBLOCK = 241;
+                    Diamondblock = 241;
             }
 
             /// <summary>
@@ -93,14 +93,14 @@ namespace Skylight.Blocks
                 /// The red
                 /// </summary>
                 public const int
-                    RED = 23,
-                    GREEN = 24,
-                    BLUE = 25,
-                    COIN = 43,
-                    TIME = 156,
-                    SWITCH = 184,
-                    CLUB = 200,
-                    ZOMBIE = 207;
+                    Red = 23,
+                    Green = 24,
+                    Blue = 25,
+                    Coin = 43,
+                    Time = 156,
+                    Switch = 184,
+                    Club = 200,
+                    Zombie = 207;
             }
 
             /// <summary>
