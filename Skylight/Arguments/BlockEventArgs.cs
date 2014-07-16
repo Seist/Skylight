@@ -14,11 +14,6 @@ namespace Skylight.Arguments
     public class BlockEventArgs : EventArgs
     {
         /// <summary>
-        ///     The originating room
-        /// </summary>
-        private readonly Room _origin;
-
-        /// <summary>
         ///     The block.
         /// </summary>
         private readonly Block _placed;
@@ -36,21 +31,27 @@ namespace Skylight.Arguments
         /// <param name="origin">The room where the block originated from.</param>
         public BlockEventArgs(Block b, Room origin = null)
         {
-            this._origin = origin ?? Bot.currentRoom;
+            Origin = origin ?? Bot.currentRoom;
             _placed = b;
             _placer = b.Placer;
         }
 
-        public Room Origin
-        {
-            get { return _origin; }
-        }
+        /// <summary>
+        /// The room object (with room id).
+        /// </summary>
+        public Room Origin { get; private set; }
 
+        /// <summary>
+        /// A placed block.
+        /// </summary>
         public Block Placed
         {
             get { return _placed; }
         }
 
+        /// <summary>
+        /// The player who placed the block (see Placed).
+        /// </summary>
         public Player Placer
         {
             get { return _placer; }
