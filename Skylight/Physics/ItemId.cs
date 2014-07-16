@@ -4,9 +4,7 @@ namespace Skylight.Physics
 {
     public class ItemId : object
     {
-        public ItemId()
-        {
-        } // end function
+        // end function
 
         public static bool isSolid(int param1)
         {

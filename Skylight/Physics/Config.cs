@@ -68,9 +68,5 @@ namespace Skylight.Physics
         public static uint admin_color = 16757760;
         public static string[] tutorial_names = {"Moving", "Gravity", "Edit"};
         public static bool disable_tracking = false;
-
-        public Config()
-        {
-        }
     }
 }
