@@ -238,10 +238,7 @@ namespace Skylight
                 // Every bot receives info from the room, because some of it is exclusive to the bot.
                 // We call those "personal" pulls.
                 // They are exactly the same as the main pull, except In.IsPersonal = true.
-                var i = new In();
-                i.IsPersonal = true;
-                i.Source = R;
-                i.Bot = this;
+                var i = new In {IsPersonal = true, Source = R, Bot = this};
                 Connection.OnMessage += i.OnMessage;
                 R.Pulls.Add(i);
 
