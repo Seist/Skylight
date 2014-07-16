@@ -126,6 +126,9 @@ namespace Skylight
             set { _chatPrefix = value; }
         }
 
+        /// <summary>
+        /// The object where the events go to the server.
+        /// </summary>
         public Out Push { get; internal set; }
 
         /// <summary>
