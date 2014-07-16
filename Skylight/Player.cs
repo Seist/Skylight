@@ -258,7 +258,7 @@ namespace Skylight
         /// <summary>
         /// Whether or not the player has died
         /// </summary>
-        private bool _isDead;
+        private readonly bool _isDead;
 
         /// <summary>
         /// Whether or not the player is invulnerable
@@ -416,7 +416,7 @@ namespace Skylight
         /// <param name="isThrusting">Player is using boost potion</param>
         /// <param name="isZombie">Player is a zombie</param>
         public Player(Room room, int id, string name, int smiley, double xPos, double yPos, bool isGod, bool isMod,
-            bool hasChat, int coins, bool purple, bool isFriend, int level, bool hasClub, bool isInvulnerable, bool isThrusting, bool isZombie)
+            bool hasChat, int coins, bool purple, bool isFriend, int level, bool hasClub, bool isInvulnerable, bool isThrusting, bool isZombie, bool isDead)
         {
             PlayingIn = room;
             Smiley = smiley;
@@ -432,6 +432,7 @@ namespace Skylight
             _isInvulnerable = isInvulnerable;
             _isThrusting = isThrusting;
             _isZombie = isZombie;
+            _isDead = isDead;
             _queue = new Queue<int>(Config.PhysicsQueueLength);
             _lastPortal = new Point();
 
