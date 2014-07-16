@@ -668,7 +668,7 @@ namespace Skylight
         /// <value>The block x.</value>
         protected int blockX
         {
-            get { return (int) Math.Round(((X)/16.0)); }
+            get { return (int) Math.Round(X/16.0); }
             set { throw new NotImplementedException(); }
         }
 
