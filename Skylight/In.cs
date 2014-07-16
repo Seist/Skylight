@@ -971,13 +971,13 @@ namespace Skylight
 
             subject.HasGravityModifier = hasGravityModifier;
 
-            subject.IsHoldingUp = false || verticalDirection == -1;
+            subject.IsHoldingUp = verticalDirection == -1;
 
-            subject.IsHoldingDown = false || verticalDirection == 1;
+            subject.IsHoldingDown = verticalDirection == 1;
 
-            subject.IsHoldingLeft = false || horizontalDirection == -1;
+            subject.IsHoldingLeft = horizontalDirection == -1;
 
-            subject.IsHoldingRight = false || horizontalDirection == 1;
+            subject.IsHoldingRight = horizontalDirection == 1;
 
             // Fire the event.
             var movementEventArgs = new PlayerEventArgs(subject, Source, m);
