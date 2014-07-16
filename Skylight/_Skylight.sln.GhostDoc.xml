@@ -12,6 +12,7 @@
       <IgnoreFile>.\Physics\Config.cs</IgnoreFile>
       <IgnoreFile>.\Physics\ItemId.cs</IgnoreFile>
       <IgnoreFile>.\Player.cs</IgnoreFile>
+      <IgnoreFile>.\Room.cs</IgnoreFile>
     </IgnoreFiles>
   </SpellChecker>
 <HelpConfigurations selected="HelpFile">
