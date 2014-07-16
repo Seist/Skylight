@@ -1,9 +1,24 @@
-﻿namespace Skylight.Miscellaneous
+﻿// <copyright file="SmileyIds.cs" company="">
+//     Copyright 2014 (c) . All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+
+namespace Skylight.Miscellaneous
 {
+    /// <summary>
+    /// Class SmileyIds.
+    /// </summary>
     public class SmileyIds
     {
+        /// <summary>
+        /// Class Beta.
+        /// </summary>
         public class Beta
         {
+            /// <summary>
+            /// The types of beta smilies.
+            /// </summary>
             public const int
                 TEAR = 6,
                 WINK = 7,
@@ -13,8 +28,14 @@
                 BEWILDERED = 11;
         }
 
+        /// <summary>
+        /// Class Contest.
+        /// </summary>
         public class Contest
         {
+            /// <summary>
+            /// The types of smilies available for contest winners.
+            /// </summary>
             public const int
                 BIRD = 29,
                 BUNNY = 30,
@@ -22,8 +43,14 @@
                 LITPUMPKIN = 45;
         }
 
+        /// <summary>
+        /// Class Free.
+        /// </summary>
         public class Free
         {
+            /// <summary>
+            /// The smilies that are included by default.
+            /// </summary>
             public const int
                 SMILE = 0,
                 BIGSMILE = 1,
@@ -34,8 +61,14 @@
                 INDIFFERENT = 18;
         }
 
+        /// <summary>
+        /// Class Shop.
+        /// </summary>
         public class Shop
         {
+            /// <summary>
+            /// The smilies that can be bought using the shop.
+            /// </summary>
             public const int
                 NINJA = 12,
                 SANTA = 13,
@@ -102,8 +135,14 @@
                 FARMER = 93;
         }
 
+        /// <summary>
+        /// Class Special.
+        /// </summary>
         public class Special
         {
+            /// <summary>
+            /// The special smilies that cannot be bought.
+            /// </summary>
             public const int
                 SUPERMAN = 16,
                 REDWIZARD = 32,
@@ -118,8 +157,14 @@
                 ZOMBIE = 87;
         }
 
+        /// <summary>
+        /// Class Unimplemented.
+        /// </summary>
         public class Unimplemented
         {
+            /// <summary>
+            /// The smilies that may or may not exist.
+            /// </summary>
             public const int
                 DJ = 50,
                 UPSIDEDOWN = 54;
