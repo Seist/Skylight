@@ -1016,11 +1016,11 @@ namespace Skylight
 
             if (isActive)
             {
-                subject.PotionEffects.Add(id);
+                subject.PotionEffects.Add(potionId);
             }
             else
             {
-                subject.PotionEffects.Remove(id);
+                subject.PotionEffects.Remove(potionId);
             }
 
             // Fire the event.
