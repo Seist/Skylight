@@ -1,13 +1,33 @@
-﻿namespace Skylight.Blocks
+﻿// <copyright file="BlockIds.cs" company="">
+//     Copyright (c) 2014. All rights reserved.
+// </copyright>
+// <summary></summary>
+
+namespace Skylight.Blocks
 {
+    /// <summary>
+    /// Class BlockIds.
+    /// </summary>
     public static class BlockIds
     {
+        /// <summary>
+        /// Class Action.
+        /// </summary>
         public static class Action
         {
-            public const int LAYER = 0;
+            /// <summary>
+            /// The layer
+            /// </summary>
+            public const int Layer = 0;
 
+            /// <summary>
+            /// Class Boost.
+            /// </summary>
             public static class Boost
             {
+                /// <summary>
+                /// The left
+                /// </summary>
                 public const int
                     LEFT = 114,
                     RIGHT = 115,
@@ -15,33 +35,63 @@
                     DOWN = 117;
             }
 
+            /// <summary>
+            /// Class Cake.
+            /// </summary>
             public static class Cake
             {
+                /// <summary>
+                /// The cake
+                /// </summary>
                 public const int
                     CAKE = 337;
             }
 
+            /// <summary>
+            /// Class Coins.
+            /// </summary>
             public static class Coins
             {
+                /// <summary>
+                /// The gold
+                /// </summary>
                 public const int
                     GOLD = 100,
                     BLUE = 101;
             }
 
+            /// <summary>
+            /// Class Crowns.
+            /// </summary>
             public static class Crowns
             {
+                /// <summary>
+                /// The gold
+                /// </summary>
                 public const int
                     GOLD = 5;
             }
 
+            /// <summary>
+            /// Class DIAMOND.
+            /// </summary>
             public static class DIAMOND
             {
+                /// <summary>
+                /// The diamondblock
+                /// </summary>
                 public const int
                     DIAMONDBLOCK = 241;
             }
 
+            /// <summary>
+            /// Class Doors.
+            /// </summary>
             public static class Doors
             {
+                /// <summary>
+                /// The red
+                /// </summary>
                 public const int
                     RED = 23,
                     GREEN = 24,
@@ -53,8 +103,14 @@
                     ZOMBIE = 207;
             }
 
+            /// <summary>
+            /// Class Gates.
+            /// </summary>
             public static class Gates
             {
+                /// <summary>
+                /// The red
+                /// </summary>
                 public const int
                     RED = 26,
                     GREEN = 27,
@@ -66,8 +122,14 @@
                     ZOMBIE = 206;
             }
 
+            /// <summary>
+            /// Class Gravity.
+            /// </summary>
             public static class Gravity
             {
+                /// <summary>
+                /// Down
+                /// </summary>
                 public const int
                     DOWN = 0,
                     LEFT = 1,
@@ -76,23 +138,41 @@
                     ZERO = 4;
             }
 
+            /// <summary>
+            /// Class Hazards.
+            /// </summary>
             public static class Hazards
             {
+                /// <summary>
+                /// The spike
+                /// </summary>
                 public const int
                     SPIKE = 361,
                     FIRE = 368;
             }
 
+            /// <summary>
+            /// Class Keys.
+            /// </summary>
             public static class Keys
             {
+                /// <summary>
+                /// The red
+                /// </summary>
                 public const int
                     RED = 6,
                     GREEN = 7,
                     BLUE = 8;
             }
 
+            /// <summary>
+            /// Class Ladders.
+            /// </summary>
             public static class Ladders
             {
+                /// <summary>
+                /// The chain
+                /// </summary>
                 public const int
                     CHAIN = 118,
                     LADDER = 120,
@@ -100,42 +180,78 @@
                     HORIZONTALVINE = 99;
             }
 
+            /// <summary>
+            /// Class Liquids.
+            /// </summary>
             public static class Liquids
             {
+                /// <summary>
+                /// The water
+                /// </summary>
                 public const int
                     WATER = 119,
                     MUD = 173;
             }
 
+            /// <summary>
+            /// Class Music.
+            /// </summary>
             public static class Music
             {
+                /// <summary>
+                /// The piano
+                /// </summary>
                 public const int
                     PIANO = 77,
                     PERCUSSION = 83;
             }
 
+            /// <summary>
+            /// Class Portals.
+            /// </summary>
             public static class Portals
             {
+                /// <summary>
+                /// The invisible
+                /// </summary>
                 public const int
                     INVISIBLE = 381,
                     NORMAL = 242,
                     WORLD = 374;
             }
 
+            /// <summary>
+            /// Class SIGN.
+            /// </summary>
             public static class SIGN
             {
+                /// <summary>
+                /// The textsign
+                /// </summary>
                 public const int
                     TEXTSIGN = 385;
             }
 
+            /// <summary>
+            /// Class Switches.
+            /// </summary>
             public static class Switches
             {
+                /// <summary>
+                /// The switch
+                /// </summary>
                 public const int
                     SWITCH = 113;
             }
 
+            /// <summary>
+            /// Class Tools.
+            /// </summary>
             public static class Tools
             {
+                /// <summary>
+                /// The spawn
+                /// </summary>
                 public const int
                     SPAWN = 255,
                     CHECKPOINT = 360,
@@ -143,12 +259,24 @@
             }
         }
 
+        /// <summary>
+        /// Class Background.
+        /// </summary>
         public static class Background
         {
+            /// <summary>
+            /// The layer
+            /// </summary>
             public const int LAYER = 1;
 
+            /// <summary>
+            /// Class Basic.
+            /// </summary>
             public static class Basic
             {
+                /// <summary>
+                /// The gray
+                /// </summary>
                 public const int
                     GRAY = 500,
                     BLUE = 501,
@@ -159,8 +287,14 @@
                     CYAN = 506;
             }
 
+            /// <summary>
+            /// Class Brick.
+            /// </summary>
             public static class Brick
             {
+                /// <summary>
+                /// The orange
+                /// </summary>
                 public const int
                     ORANGE = 507,
                     TEAL = 508,
@@ -170,15 +304,27 @@
                     TAN = 512;
             }
 
+            /// <summary>
+            /// Class Candy.
+            /// </summary>
             public static class Candy
             {
+                /// <summary>
+                /// The pink
+                /// </summary>
                 public const int
                     PINK = 539,
                     BLUE = 540;
             }
 
+            /// <summary>
+            /// Class Canvas.
+            /// </summary>
             public static class Canvas
             {
+                /// <summary>
+                /// The red
+                /// </summary>
                 public const int
                     RED = 533,
                     TAN = 534,
@@ -188,8 +334,14 @@
                     GRAY = 538;
             }
 
+            /// <summary>
+            /// Class Carnival.
+            /// </summary>
             public static class Carnival
             {
+                /// <summary>
+                /// The redstripe
+                /// </summary>
                 public const int
                     REDSTRIPE = 545,
                     BLUESTRIPE = 546,
@@ -198,14 +350,26 @@
                     GREEN = 549;
             }
 
+            /// <summary>
+            /// Class Castle.
+            /// </summary>
             public static class Castle
             {
+                /// <summary>
+                /// The bricks
+                /// </summary>
                 public const int
                     BRICKS = 599;
             }
 
+            /// <summary>
+            /// Class Checker.
+            /// </summary>
             public static class Checker
             {
+                /// <summary>
+                /// The gray
+                /// </summary>
                 public const int
                     GRAY = 513,
                     BLUE = 514,
@@ -216,16 +380,28 @@
                     CYAN = 519;
             }
 
+            /// <summary>
+            /// Class Christmas2012.
+            /// </summary>
             public static class Christmas2012
             {
+                /// <summary>
+                /// The yellowpattern
+                /// </summary>
                 public const int
                     YELLOWPATTERN = 624,
                     GREENPATTERN = 625,
                     BLUEPATTERN = 626;
             }
 
+            /// <summary>
+            /// Class Cowboy.
+            /// </summary>
             public static class Cowboy
             {
+                /// <summary>
+                /// The brownplank
+                /// </summary>
                 public const int
                     BROWNPLANK = 568,
                     DARKBROWNPLANK = 569,
@@ -235,8 +411,14 @@
                     DARKBLUEPLANK = 573;
             }
 
+            /// <summary>
+            /// Class Dark.
+            /// </summary>
             public static class Dark
             {
+                /// <summary>
+                /// The gray
+                /// </summary>
                 public const int
                     GRAY = 520,
                     BLUE = 521,
@@ -247,8 +429,14 @@
                     CYAN = 526;
             }
 
+            /// <summary>
+            /// Class Halloween2011.
+            /// </summary>
             public static class Halloween2011
             {
+                /// <summary>
+                /// The wall
+                /// </summary>
                 public const int
                     WALL = 541,
                     BRICK = 542,
@@ -256,16 +444,28 @@
                     RIGHTCORNERSTAIR = 544;
             }
 
+            /// <summary>
+            /// Class Jungle.
+            /// </summary>
             public static class Jungle
             {
+                /// <summary>
+                /// The brightplants
+                /// </summary>
                 public const int
                     BRIGHTPLANTS = 621,
                     PLANTS = 622,
                     DARKPLANTS = 623;
             }
 
+            /// <summary>
+            /// Class JungleRuins.
+            /// </summary>
             public static class JungleRuins
             {
+                /// <summary>
+                /// The gray
+                /// </summary>
                 public const int
                     GRAY = 617,
                     RED = 618,
@@ -273,37 +473,67 @@
                     YELLOW = 620;
             }
 
+            /// <summary>
+            /// Class Lava.
+            /// </summary>
             public static class Lava
             {
+                /// <summary>
+                /// The yellow
+                /// </summary>
                 public const int
                     YELLOW = 627,
                     ORANGE = 628,
                     RED = 629;
             }
 
+            /// <summary>
+            /// Class Mars.
+            /// </summary>
             public static class Mars
             {
+                /// <summary>
+                /// The blue
+                /// </summary>
                 public const int
                     BLUE = 605,
                     LITTLESTAR = 606,
                     BIGSTAR = 607;
             }
 
+            /// <summary>
+            /// Class Medieval.
+            /// </summary>
             public static class Medieval
             {
+                /// <summary>
+                /// The planks
+                /// </summary>
                 public const int
                     PLANKS = 600;
             }
 
+            /// <summary>
+            /// Class Monster.
+            /// </summary>
             public static class Monster
             {
+                /// <summary>
+                /// The lightfur
+                /// </summary>
                 public const int
                     LIGHTFUR = 608,
                     DARKFUR = 609;
             }
 
+            /// <summary>
+            /// Class Ninja.
+            /// </summary>
             public static class Ninja
             {
+                /// <summary>
+                /// The white
+                /// </summary>
                 public const int
                     WHITE = 564,
                     GRAY = 565,
@@ -311,8 +541,14 @@
                     DARKSHINGLES = 567;
             }
 
+            /// <summary>
+            /// Class Normal.
+            /// </summary>
             public static class Normal
             {
+                /// <summary>
+                /// The gray
+                /// </summary>
                 public const int
                     GRAY = 610,
                     BLUE = 611,
@@ -323,8 +559,14 @@
                     CYAN = 616;
             }
 
+            /// <summary>
+            /// Class Pastel.
+            /// </summary>
             public static class Pastel
             {
+                /// <summary>
+                /// The orange
+                /// </summary>
                 public const int
                     ORANGE = 527,
                     GREEN = 528,
@@ -334,8 +576,14 @@
                     RED = 532;
             }
 
+            /// <summary>
+            /// Class Pirate.
+            /// </summary>
             public static class Pirate
             {
+                /// <summary>
+                /// The darkplank
+                /// </summary>
                 public const int
                     DARKPLANK = 554,
                     LIGHTPLANK = 555,
@@ -346,8 +594,14 @@
                     FLAG = 560;
             }
 
+            /// <summary>
+            /// Class PlateIron.
+            /// </summary>
             public static class PlateIron
             {
+                /// <summary>
+                /// The plain
+                /// </summary>
                 public const int
                     PLAIN = 585,
                     GRAYPLATE = 586,
@@ -356,8 +610,14 @@
                     ORANGEPLATE = 589;
             }
 
+            /// <summary>
+            /// Class Prison.
+            /// </summary>
             public static class Prison
             {
+                /// <summary>
+                /// The brick
+                /// </summary>
                 public const int
                     BRICK = 550,
                     WINDOW = 551,
@@ -365,8 +625,14 @@
                     BROKENBARS = 553;
             }
 
+            /// <summary>
+            /// Class Rocket.
+            /// </summary>
             public static class Rocket
             {
+                /// <summary>
+                /// The gray
+                /// </summary>
                 public const int
                     GRAY = 601,
                     BLUE = 602,
@@ -374,8 +640,14 @@
                     RED = 604;
             }
 
+            /// <summary>
+            /// Class Sand.
+            /// </summary>
             public static class Sand
             {
+                /// <summary>
+                /// The white
+                /// </summary>
                 public const int
                     WHITE = 579,
                     GRAY = 580,
@@ -385,28 +657,52 @@
                     BROWN = 584;
             }
 
+            /// <summary>
+            /// Class SciFi2013.
+            /// </summary>
             public static class SciFi2013
             {
+                /// <summary>
+                /// The tile
+                /// </summary>
                 public const int
                     TILE = 637;
             }
 
+            /// <summary>
+            /// Class Sparta.
+            /// </summary>
             public static class Sparta
             {
+                /// <summary>
+                /// The bluebrick
+                /// </summary>
                 public const int
                     BLUEBRICK = 638,
                     GREENBRICK = 639,
                     REDBRICK = 640;
             }
 
+            /// <summary>
+            /// Class Swamp.
+            /// </summary>
             public static class Swamp
             {
+                /// <summary>
+                /// The underbrush
+                /// </summary>
                 public const int
                     UNDERBRUSH = 630;
             }
 
+            /// <summary>
+            /// Class Timbered.
+            /// </summary>
             public static class Timbered
             {
+                /// <summary>
+                /// The thatchroof
+                /// </summary>
                 public const int
                     THATCHROOF = 590,
                     REDSHINGLES = 591,
@@ -419,16 +715,28 @@
                     CLOSEDWINDOW = 598;
             }
 
+            /// <summary>
+            /// Class Vikings.
+            /// </summary>
             public static class Vikings
             {
+                /// <summary>
+                /// The fullbrick
+                /// </summary>
                 public const int
                     FULLBRICK = 561,
                     HALFBRICK = 562,
                     REDWHITESTRIPES = 563;
             }
 
+            /// <summary>
+            /// Class Water.
+            /// </summary>
             public static class Water
             {
+                /// <summary>
+                /// The plain
+                /// </summary>
                 public const int
                     PLAIN = 574,
                     SQUID = 575,
@@ -438,12 +746,24 @@
             }
         }
 
+        /// <summary>
+        /// Class Blocks.
+        /// </summary>
         public static class Blocks
         {
+            /// <summary>
+            /// The layer
+            /// </summary>
             public const int LAYER = 0;
 
+            /// <summary>
+            /// Class Basic.
+            /// </summary>
             public static class Basic
             {
+                /// <summary>
+                /// The gray
+                /// </summary>
                 public const int
                     GRAY = 9,
                     BLUE = 10,
@@ -455,8 +775,14 @@
                     DARKGRAY = 182;
             }
 
+            /// <summary>
+            /// Class Beta.
+            /// </summary>
             public static class Beta
             {
+                /// <summary>
+                /// The purple
+                /// </summary>
                 public const int
                     PURPLE = 37,
                     GREEN = 38,
@@ -466,8 +792,14 @@
                     GRAY = 42;
             }
 
+            /// <summary>
+            /// Class Brick.
+            /// </summary>
             public static class Brick
             {
+                /// <summary>
+                /// The orange
+                /// </summary>
                 public const int
                     ORANGE = 16,
                     TEAL = 17,
@@ -477,16 +809,28 @@
                     TAN = 21;
             }
 
+            /// <summary>
+            /// Class Candy.
+            /// </summary>
             public static class Candy
             {
+                /// <summary>
+                /// The pink
+                /// </summary>
                 public const int
                     PINK = 60,
                     CANDYCANE = 65,
                     CANDYCORN = 66,
                     GINGERBREAD = 67;
 
+                /// <summary>
+                /// Class Oneway.
+                /// </summary>
                 public static class Oneway
                 {
+                    /// <summary>
+                    /// The pink
+                    /// </summary>
                     public const int
                         PINK = 61,
                         RED = 62,
@@ -495,21 +839,39 @@
                 }
             }
 
+            /// <summary>
+            /// Class Castle.
+            /// </summary>
             public static class Castle
             {
+                /// <summary>
+                /// The brick
+                /// </summary>
                 public const int
                     BRICK = 159,
                     WINDOW = 160;
 
+                /// <summary>
+                /// Class Oneway.
+                /// </summary>
                 public static class Oneway
                 {
+                    /// <summary>
+                    /// The gray
+                    /// </summary>
                     public const int
                         GRAY = 158;
                 }
             }
 
+            /// <summary>
+            /// Class Checker.
+            /// </summary>
             public static class Checker
             {
+                /// <summary>
+                /// The gray
+                /// </summary>
                 public const int
                     GRAY = 186,
                     BLUE = 187,
@@ -520,8 +882,14 @@
                     CYAN = 192;
             }
 
+            /// <summary>
+            /// Class Christmas.
+            /// </summary>
             public static class Christmas
             {
+                /// <summary>
+                /// The yellow
+                /// </summary>
                 public const int
                     YELLOW = 78,
                     WHITE = 79,
@@ -530,21 +898,39 @@
                     GREEN = 82;
             }
 
+            /// <summary>
+            /// Class Cloud.
+            /// </summary>
             public static class Cloud
             {
+                /// <summary>
+                /// The white
+                /// </summary>
                 public const int
                     WHITE = 143;
             }
 
+            /// <summary>
+            /// Class Cowboy.
+            /// </summary>
             public static class Cowboy
             {
+                /// <summary>
+                /// The tan
+                /// </summary>
                 public const int
                     TAN = 125,
                     RED = 126,
                     BLUE = 127;
 
+                /// <summary>
+                /// Class Oneway.
+                /// </summary>
                 public static class Oneway
                 {
+                    /// <summary>
+                    /// The tan
+                    /// </summary>
                     public const int
                         TAN = 122,
                         RED = 123,
@@ -552,8 +938,14 @@
                 }
             }
 
+            /// <summary>
+            /// Class Factory.
+            /// </summary>
             public static class Factory
             {
+                /// <summary>
+                /// The tancross
+                /// </summary>
                 public const int
                     TANCROSS = 45,
                     PLANKS = 46,
@@ -562,14 +954,26 @@
                     FISHSCALES = 49;
             }
 
+            /// <summary>
+            /// Class Farm.
+            /// </summary>
             public static class Farm
             {
+                /// <summary>
+                /// The hay
+                /// </summary>
                 public const int
                     HAY = 212;
             }
 
+            /// <summary>
+            /// Class Glass.
+            /// </summary>
             public static class Glass
             {
+                /// <summary>
+                /// The red
+                /// </summary>
                 public const int
                     RED = 51,
                     PURPLE = 52,
@@ -581,23 +985,41 @@
                     ORANGE = 58;
             }
 
+            /// <summary>
+            /// Class Grass.
+            /// </summary>
             public static class Grass
             {
+                /// <summary>
+                /// The left
+                /// </summary>
                 public const int
                     LEFT = 34,
                     MIDDLE = 35,
                     RIGHT = 36;
             }
 
+            /// <summary>
+            /// Class Halloween.
+            /// </summary>
             public static class Halloween
             {
+                /// <summary>
+                /// The blood
+                /// </summary>
                 public const int
                     BLOOD = 68,
                     BRICK = 69;
             }
 
+            /// <summary>
+            /// Class Industrial.
+            /// </summary>
             public static class Industrial
             {
+                /// <summary>
+                /// The crosssupport
+                /// </summary>
                 public const int
                     CROSSSUPPORT = 147,
                     ELEVATOR = 148,
@@ -607,15 +1029,27 @@
                     MIDDLECONVEYOR = 152,
                     RIGHTCONVEYOR = 153;
 
+                /// <summary>
+                /// Class Oneway.
+                /// </summary>
                 public static class Oneway
                 {
+                    /// <summary>
+                    /// The platform
+                    /// </summary>
                     public const int
                         PLATFORM = 146;
                 }
             }
 
+            /// <summary>
+            /// Class JungleRuins.
+            /// </summary>
             public static class JungleRuins
             {
+                /// <summary>
+                /// The head
+                /// </summary>
                 public const int
                     HEAD = 193,
                     GRAY = 195,
@@ -624,23 +1058,41 @@
                     YELLOW = 198,
                     POT = 199;
 
+                /// <summary>
+                /// Class Oneway.
+                /// </summary>
                 public static class Oneway
                 {
+                    /// <summary>
+                    /// The gray
+                    /// </summary>
                     public const int
                         GRAY = 194;
                 }
             }
 
+            /// <summary>
+            /// Class Lava.
+            /// </summary>
             public static class Lava
             {
+                /// <summary>
+                /// The yellow
+                /// </summary>
                 public const int
                     YELLOW = 202,
                     ORANGE = 203,
                     DARKORANGE = 204;
             }
 
+            /// <summary>
+            /// Class Mars.
+            /// </summary>
             public static class Mars
             {
+                /// <summary>
+                /// The sand
+                /// </summary>
                 public const int
                     SAND = 176,
                     PATTERN1 = 177,
@@ -650,23 +1102,41 @@
                     ROCK2 = 181;
             }
 
+            /// <summary>
+            /// Class Medieval.
+            /// </summary>
             public static class Medieval
             {
+                /// <summary>
+                /// The anvil
+                /// </summary>
                 public const int
                     ANVIL = 162,
                     BARREL = 163;
             }
 
+            /// <summary>
+            /// Class Metal.
+            /// </summary>
             public static class Metal
             {
+                /// <summary>
+                /// The silver
+                /// </summary>
                 public const int
                     SILVER = 29,
                     BRONZE = 30,
                     GOLD = 31;
             }
 
+            /// <summary>
+            /// Class Minerals.
+            /// </summary>
             public static class Minerals
             {
+                /// <summary>
+                /// The red
+                /// </summary>
                 public const int
                     RED = 70,
                     PINK = 71,
@@ -677,18 +1147,33 @@
                     ORANGE = 76;
             }
 
+            /// <summary>
+            /// Class Ninja.
+            /// </summary>
             public static class Ninja
             {
+                /// <summary>
+                /// Class Oneway.
+                /// </summary>
                 public static class Oneway
                 {
+                    /// <summary>
+                    /// The whiteshingles
+                    /// </summary>
                     public const int
                         WHITESHINGLES = 96,
                         GRAYSHINGLES = 97;
                 }
             }
 
+            /// <summary>
+            /// Class Pipes.
+            /// </summary>
             public static class Pipes
             {
+                /// <summary>
+                /// The left
+                /// </summary>
                 public const int
                     LEFT = 166,
                     HORIZONTAL = 167,
@@ -698,15 +1183,27 @@
                     DOWN = 171;
             }
 
+            /// <summary>
+            /// Class Pirate.
+            /// </summary>
             public static class Pirate
             {
+                /// <summary>
+                /// The planks
+                /// </summary>
                 public const int
                     PLANKS = 93,
                     CHEST = 94;
             }
 
+            /// <summary>
+            /// Class Plastic.
+            /// </summary>
             public static class Plastic
             {
+                /// <summary>
+                /// The lime
+                /// </summary>
                 public const int
                     LIME = 128,
                     RED = 129,
@@ -718,21 +1215,39 @@
                     ORANGE = 135;
             }
 
+            /// <summary>
+            /// Class PlateIron.
+            /// </summary>
             public static class PlateIron
             {
+                /// <summary>
+                /// The plateiron
+                /// </summary>
                 public const int
                     PLATEIRON = 144,
                     WIRES = 145;
             }
 
+            /// <summary>
+            /// Class Prison.
+            /// </summary>
             public static class Prison
             {
+                /// <summary>
+                /// The brick
+                /// </summary>
                 public const int
                     BRICK = 92;
             }
 
+            /// <summary>
+            /// Class Rocket.
+            /// </summary>
             public static class Rocket
             {
+                /// <summary>
+                /// The white
+                /// </summary>
                 public const int
                     WHITE = 172,
                     BLUE = 173,
@@ -740,8 +1255,14 @@
                     RED = 175;
             }
 
+            /// <summary>
+            /// Class Sand.
+            /// </summary>
             public static class Sand
             {
+                /// <summary>
+                /// The white
+                /// </summary>
                 public const int
                     WHITE = 137,
                     GRAY = 138,
@@ -751,8 +1272,14 @@
                     BROWN = 142;
             }
 
+            /// <summary>
+            /// Class Scifi.
+            /// </summary>
             public static class Scifi
             {
+                /// <summary>
+                /// The red
+                /// </summary>
                 public const int
                     RED = 84,
                     BLUE = 85,
@@ -760,8 +1287,14 @@
                     WHITE = 87,
                     BROWN = 88;
 
+                /// <summary>
+                /// Class Oneway.
+                /// </summary>
                 public static class Oneway
                 {
+                    /// <summary>
+                    /// The red
+                    /// </summary>
                     public const int
                         RED = 89,
                         BLUE = 90,
@@ -769,15 +1302,27 @@
                 }
             }
 
+            /// <summary>
+            /// Class Secrets.
+            /// </summary>
             public static class Secrets
             {
+                /// <summary>
+                /// The solid
+                /// </summary>
                 public const int
                     SOLID = 50,
                     NONSOLID = 243;
             }
 
+            /// <summary>
+            /// Class Sparta.
+            /// </summary>
             public static class Sparta
             {
+                /// <summary>
+                /// The blue
+                /// </summary>
                 public const int
                     BLUE = 208,
                     GREEN = 209,
@@ -785,8 +1330,14 @@
                     PILLAR = 211;
             }
 
+            /// <summary>
+            /// Class Special.
+            /// </summary>
             public static class Special
             {
+                /// <summary>
+                /// The striped
+                /// </summary>
                 public const int
                     STRIPED = 22,
                     FACE = 32,
@@ -794,47 +1345,92 @@
                     FULLYBLACK = 44;
             }
 
+            /// <summary>
+            /// Class Summer2011.
+            /// </summary>
             public static class Summer2011
             {
+                /// <summary>
+                /// The sand
+                /// </summary>
                 public const int
                     SAND = 59;
             }
 
+            /// <summary>
+            /// Class Timbered.
+            /// </summary>
             public static class Timbered
             {
+                /// <summary>
+                /// Class Oneway.
+                /// </summary>
                 public static class Oneway
                 {
+                    /// <summary>
+                    /// The timbered
+                    /// </summary>
                     public const int
                         TIMBERED = 154;
                 }
             }
 
+            /// <summary>
+            /// Class Viking.
+            /// </summary>
             public static class Viking
             {
+                /// <summary>
+                /// The gray
+                /// </summary>
                 public const int
                     GRAY = 95;
             }
         }
 
+        /// <summary>
+        /// Class Decorative.
+        /// </summary>
         public static class Decorative
         {
+            /// <summary>
+            /// The layer
+            /// </summary>
             public const int LAYER = 0;
 
+            /// <summary>
+            /// Class Candy.
+            /// </summary>
             public static class Candy
             {
+                /// <summary>
+                /// The topping
+                /// </summary>
                 public const int
                     TOPPING = 227;
             }
 
+            /// <summary>
+            /// Class Castle.
+            /// </summary>
             public static class Castle
             {
+                /// <summary>
+                /// The roofsupport
+                /// </summary>
                 public const int
                     ROOFSUPPORT = 325,
                     MERLON = 326;
             }
 
+            /// <summary>
+            /// Class Christmas2010.
+            /// </summary>
             public static class Christmas2010
             {
+                /// <summary>
+                /// The rightcornersnow
+                /// </summary>
                 public const int
                     RIGHTCORNERSNOW = 249,
                     LEFTCORNERSNOW = 250,
@@ -844,8 +1440,14 @@
                     FENCE = 254;
             }
 
+            /// <summary>
+            /// Class Christmas2011.
+            /// </summary>
             public static class Christmas2011
             {
+                /// <summary>
+                /// The redornament
+                /// </summary>
                 public const int
                     REDORNAMENT = 218,
                     GREENORNAMENT = 219,
@@ -854,8 +1456,14 @@
                     STAR = 222;
             }
 
+            /// <summary>
+            /// Class Christmas2012.
+            /// </summary>
             public static class Christmas2012
             {
+                /// <summary>
+                /// The blueverticalribbon
+                /// </summary>
                 public const int
                     BLUEVERTICALRIBBON = 362,
                     BLUEHORIZONTALRIBBON = 363,
@@ -865,8 +1473,14 @@
                     REDCROSSEDRIBBON = 367;
             }
 
+            /// <summary>
+            /// Class Cloud.
+            /// </summary>
             public static class Cloud
             {
+                /// <summary>
+                /// The bottom
+                /// </summary>
                 public const int
                     BOTTOM = 311,
                     TOP = 312,
@@ -878,8 +1492,14 @@
                     TOPLEFTCORNER = 318;
             }
 
+            /// <summary>
+            /// Class Cowboy.
+            /// </summary>
             public static class Cowboy
             {
+                /// <summary>
+                /// The whitebar
+                /// </summary>
                 public const int
                     WHITEBAR = 285,
                     GRAYBAR = 286,
@@ -898,8 +1518,14 @@
                     DARKBLUERAIL = 299;
             }
 
+            /// <summary>
+            /// Class Easter2012.
+            /// </summary>
             public static class Easter2012
             {
+                /// <summary>
+                /// The blueegg
+                /// </summary>
                 public const int
                     BLUEEGG = 256,
                     PURPLEEGG = 257,
@@ -908,8 +1534,14 @@
                     GREENEGG = 260;
             }
 
+            /// <summary>
+            /// Class Farm.
+            /// </summary>
             public static class Farm
             {
+                /// <summary>
+                /// The hay
+                /// </summary>
                 public const int
                     HAY = 386,
                     CORN = 387,
@@ -917,8 +1549,14 @@
                     RIGHTFENCE = 389;
             }
 
+            /// <summary>
+            /// Class Fog.
+            /// </summary>
             public static class Fog
             {
+                /// <summary>
+                /// The full
+                /// </summary>
                 public const int
                     FULL = 343,
                     BOTTOM = 344,
@@ -931,16 +1569,28 @@
                     TOPLEFTCORNER = 351;
             }
 
+            /// <summary>
+            /// Class Halloween2011.
+            /// </summary>
             public static class Halloween2011
             {
+                /// <summary>
+                /// The tombstone
+                /// </summary>
                 public const int
                     TOMBSTONE = 224,
                     LEFTCORNERWEB = 225,
                     RIGHTCORNERWEB = 226;
             }
 
+            /// <summary>
+            /// Class Halloween2012.
+            /// </summary>
             public static class Halloween2012
             {
+                /// <summary>
+                /// The teslacap
+                /// </summary>
                 public const int
                     TESLACAP = 352,
                     TESLACOIL = 353,
@@ -949,22 +1599,40 @@
                     ELECTRICITY = 356;
             }
 
+            /// <summary>
+            /// Class Jungle.
+            /// </summary>
             public static class Jungle
             {
+                /// <summary>
+                /// The undergrowth
+                /// </summary>
                 public const int
                     UNDERGROWTH = 357,
                     LOG = 358,
                     IDOL = 359;
             }
 
+            /// <summary>
+            /// Class Mars.
+            /// </summary>
             public static class Mars
             {
+                /// <summary>
+                /// The rock
+                /// </summary>
                 public const int
                     ROCK = 336;
             }
 
+            /// <summary>
+            /// Class Medieval.
+            /// </summary>
             public static class Medieval
             {
+                /// <summary>
+                /// The blueflag
+                /// </summary>
                 public const int
                     BLUEFLAG = 327,
                     REDFLAG = 328,
@@ -973,8 +1641,14 @@
                     ROCKS = 331;
             }
 
+            /// <summary>
+            /// Class Monster.
+            /// </summary>
             public static class Monster
             {
+                /// <summary>
+                /// The bigtoothbottom
+                /// </summary>
                 public const int
                     BIGTOOTHBOTTOM = 338,
                     SMALLTEETHBOTTOM = 339,
@@ -983,8 +1657,14 @@
                     BLUEEYE = 342;
             }
 
+            /// <summary>
+            /// Class NewYear2010.
+            /// </summary>
             public static class NewYear2010
             {
+                /// <summary>
+                /// The purple
+                /// </summary>
                 public const int
                     PURPLE = 244,
                     YELLOW = 245,
@@ -993,8 +1673,14 @@
                     GREEN = 248;
             }
 
+            /// <summary>
+            /// Class Ninja.
+            /// </summary>
             public static class Ninja
             {
+                /// <summary>
+                /// The leftbrightrooftop
+                /// </summary>
                 public const int
                     LEFTBRIGHTROOFTOP = 276,
                     RIGHTBRIGHTROOFTOP = 277,
@@ -1007,21 +1693,39 @@
                     YINYANG = 284;
             }
 
+            /// <summary>
+            /// Class Priate.
+            /// </summary>
             public static class Priate
             {
+                /// <summary>
+                /// The canoncover
+                /// </summary>
                 public const int
                     CANONCOVER = 271,
                     SKULL = 272;
             }
 
+            /// <summary>
+            /// Class Prison.
+            /// </summary>
             public static class Prison
             {
+                /// <summary>
+                /// The bars
+                /// </summary>
                 public const int
                     BARS = 261;
             }
 
+            /// <summary>
+            /// Class Rocket.
+            /// </summary>
             public static class Rocket
             {
+                /// <summary>
+                /// The computerscreen
+                /// </summary>
                 public const int
                     COMPUTERSCREEN = 332,
                     REDLIGHT = 333,
@@ -1029,8 +1733,14 @@
                     CONTROLPANEL = 335;
             }
 
+            /// <summary>
+            /// Class Sand.
+            /// </summary>
             public static class Sand
             {
+                /// <summary>
+                /// The white
+                /// </summary>
                 public const int
                     WHITE = 301,
                     GRAY = 302,
@@ -1040,8 +1750,14 @@
                     BROWN = 306;
             }
 
+            /// <summary>
+            /// Class SciFi2013.
+            /// </summary>
             public static class SciFi2013
             {
+                /// <summary>
+                /// The bluebend
+                /// </summary>
                 public const int
                     BLUEBEND = 375,
                     BLUESTRAIGHT = 376,
@@ -1051,8 +1767,14 @@
                     GREENSTRAIGHT = 380;
             }
 
+            /// <summary>
+            /// Class Signs.
+            /// </summary>
             public static class Signs
             {
+                /// <summary>
+                /// The flame
+                /// </summary>
                 public const int
                     FLAME = 319,
                     SKULL = 320,
@@ -1062,16 +1784,28 @@
                     VERTICALBAR = 324;
             }
 
+            /// <summary>
+            /// Class Sparta.
+            /// </summary>
             public static class Sparta
             {
+                /// <summary>
+                /// The capital
+                /// </summary>
                 public const int
                     CAPITAL = 382,
                     SHAFT = 383,
                     BASE = 384;
             }
 
+            /// <summary>
+            /// Class Spring2011.
+            /// </summary>
             public static class Spring2011
             {
+                /// <summary>
+                /// The leftgrass
+                /// </summary>
                 public const int
                     LEFTGRASS = 233,
                     MIDDLEGRASS = 234,
@@ -1083,8 +1817,14 @@
                     SHRUB = 240;
             }
 
+            /// <summary>
+            /// Class Summer2011.
+            /// </summary>
             public static class Summer2011
             {
+                /// <summary>
+                /// The umbrella
+                /// </summary>
                 public const int
                     UMBRELLA = 228,
                     RIGHTCORNERSAND = 229,
@@ -1093,8 +1833,14 @@
                     BUSH = 232;
             }
 
+            /// <summary>
+            /// Class Summer2012.
+            /// </summary>
             public static class Summer2012
             {
+                /// <summary>
+                /// The ball
+                /// </summary>
                 public const int
                     BALL = 307,
                     BUCKET = 308,
@@ -1102,8 +1848,14 @@
                     MARTINI = 310;
             }
 
+            /// <summary>
+            /// Class Swamp.
+            /// </summary>
             public static class Swamp
             {
+                /// <summary>
+                /// The mudbubbles
+                /// </summary>
                 public const int
                     MUDBUBBLES = 370,
                     GRASS = 371,
@@ -1111,22 +1863,40 @@
                     SIGN = 373;
             }
 
+            /// <summary>
+            /// Class Vikings.
+            /// </summary>
             public static class Vikings
             {
+                /// <summary>
+                /// The redshield
+                /// </summary>
                 public const int
                     REDSHIELD = 273,
                     BLUESHIELD = 274,
                     AXE = 275;
             }
 
+            /// <summary>
+            /// Class Water.
+            /// </summary>
             public static class Water
             {
+                /// <summary>
+                /// The waves
+                /// </summary>
                 public const int
                     WAVES = 300;
             }
 
+            /// <summary>
+            /// Class Windows.
+            /// </summary>
             public static class Windows
             {
+                /// <summary>
+                /// The clear
+                /// </summary>
                 public const int
                     CLEAR = 262,
                     GREEN = 263,
