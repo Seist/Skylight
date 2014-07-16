@@ -110,7 +110,6 @@ namespace Skylight
         ///     (such as when a block was added or updated).
         /// </summary>
         public event BlockEvent
-            // never invoked... hmm..
             SoundBlockEvent = delegate { };
 
         /// <summary>
@@ -120,8 +119,6 @@ namespace Skylight
         /// </summary>
         public event ChatEvent
             AutotextEvent = delegate { } ,
-            LabelEvent = delegate { } ,
-            // never invoked.
             NormalChatEvent = delegate { } ,
             SayOldEvent = delegate { } ,
             SystemMessageEvent = delegate { };
