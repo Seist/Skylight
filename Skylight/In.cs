@@ -88,14 +88,13 @@ namespace Skylight
         /// <summary>
         /// When a sign block is placed in the world.
         /// </summary>
-        /// <param name="e"></param>
         protected virtual void OnSignBlockEvent(Message m)
         {
             // Extract data
             int x = m.GetInteger(0);
             int y = m.GetInteger(1);
             string theText = m.GetString(3);
-            int id = m.GetInteger(4);
+            int id = m.GetInteger(4); // never used
 
             // Fire the event.
             var b = new TextBlock(385,x,y,theText);
@@ -1300,7 +1299,7 @@ namespace Skylight
         private void OnWrite(Message m)
         {
             // Extract data.
-            string prefix = m.GetString(0),
+            string prefix = m.GetString(0), // unused
                 // unused
                 message = m.GetString(1);
 
