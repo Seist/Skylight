@@ -1638,7 +1638,7 @@ namespace Skylight
                     }
                 }
             }
-            if (Math.Abs(imy) > 0.00000001 || CurrentBlockId == BlockIds.Action.Liquids.WATER ||
+            if (Math.Abs(imy) > 0.0000001 || CurrentBlockId == BlockIds.Action.Liquids.WATER ||
                 CurrentBlockId == BlockIds.Action.Liquids.MUD)
             {
             }
@@ -1835,6 +1835,15 @@ namespace Skylight
             return _touchpotions.ContainsKey(param1);
         }
 */
+
+        /// <summary>
+        ///     Gets the active potions.
+        /// </summary>
+        /// <returns>List&lt;System.String&gt;.</returns>
+        private List<string> GetActivePotions()
+        {
+            return _touchpotions.Keys.Where(HasActivePotion).ToList();
+        }
 
 /*
         private bool getCanTag()
