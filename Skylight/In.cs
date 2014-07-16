@@ -10,8 +10,15 @@ using Skylight.Physics;
 
 namespace Skylight
 {
+    /// <summary>
+    /// The main class that takes in events from the playerio client.
+    /// </summary>
     public class In
     {
+        /// <summary>
+        /// The block event compiled from the message from the server.
+        /// </summary>
+        /// <param name="e">The block object.</param>
         public delegate void BlockEvent(BlockEventArgs e);
 
         /// <summary>
@@ -20,12 +27,20 @@ namespace Skylight
         /// <param name="e">The ChatEventArgs event.</param>
         public delegate void ChatEvent(ChatEventArgs e);
 
+        /// <summary>
+        /// An event that concerns the player.
+        /// </summary>
+        /// <param name="e">The player object.</param>
         public delegate void PlayerEvent(PlayerEventArgs e);
 
+        /// <summary>
+        /// Something changed in the room (for example the title).
+        /// </summary>
+        /// <param name="e">The room object.</param>
         public delegate void RoomEvent(RoomEventArgs e);
 
-        private readonly Stopwatch playerPhysicsStopwatch = new Stopwatch();
-        private readonly List<Message> prematureMessages = new List<Message>();
+        private readonly Stopwatch _playerPhysicsStopwatch = new Stopwatch();
+        private readonly List<Message> _prematureMessages = new List<Message>();
 
         /// <summary>
         ///     These IDs do not have an associated Player id when sent.
@@ -131,7 +146,7 @@ namespace Skylight
                         }
                         else
                         {
-                            prematureMessages.Add(m);
+                            _prematureMessages.Add(m);
                         }
                     }
                 }
@@ -747,12 +762,12 @@ namespace Skylight
             loadBlocks.Start();
 
             // Execute the messages that came prematurely.
-            foreach (Message msg in prematureMessages)
+            foreach (Message msg in _prematureMessages)
             {
                 OnMessage(this, msg);
             }
 
-            prematureMessages.Clear();
+            _prematureMessages.Clear();
 
             // Fire the event.
             var e = new RoomEventArgs(Source);
@@ -1313,7 +1328,7 @@ namespace Skylight
 
         private void UpdatePhysics()
         {
-            playerPhysicsStopwatch.Start();
+            _playerPhysicsStopwatch.Start();
 
             long accumulator = 0;
 
@@ -1321,7 +1336,7 @@ namespace Skylight
             {
                 try
                 {
-                    if (playerPhysicsStopwatch.ElapsedMilliseconds >= accumulator + Config.physics_ms_per_tick)
+                    if (_playerPhysicsStopwatch.ElapsedMilliseconds >= accumulator + Config.physics_ms_per_tick)
                     {
                         accumulator += Config.physics_ms_per_tick;
 
@@ -1336,7 +1351,7 @@ namespace Skylight
                     else
                     {
                         //Since the timescales dealt with here should be subsecond, explicit unchecked casts to int should never overflow.
-                        var difference = (int) (playerPhysicsStopwatch.ElapsedMilliseconds - accumulator);
+                        var difference = (int) (_playerPhysicsStopwatch.ElapsedMilliseconds - accumulator);
                         Thread.Sleep(difference);
                     }
                 }
