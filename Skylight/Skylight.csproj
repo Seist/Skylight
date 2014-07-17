@@ -56,7 +56,6 @@
     <Compile Include="Arguments\ChatEventArgs.cs" />
     <Compile Include="Arguments\PlayerEventArgs.cs" />
     <Compile Include="Arguments\RoomEventArgs.cs" />
-    <Compile Include="Autotext.cs" />
     <Compile Include="Blocks\BlockIds.cs" />
     <Compile Include="Blocks\RoomPortalBlock.cs" />
     <Compile Include="Bot.cs" />
@@ -64,8 +63,8 @@
     <Compile Include="Blocks\PercussionBlock.cs" />
     <Compile Include="Blocks\Block.cs" />
     <Compile Include="CoinObject.cs" />
-    <Compile Include="GiveWizard2.cs" />
-    <Compile Include="Hide.cs" />
+    <Compile Include="Skylight.Messages\GiveWizard2.cs" />
+    <Compile Include="Skylight.Messages\Hide.cs" />
     <Compile Include="In.cs" />
     <Compile Include="Info.cs" />
     <Compile Include="Miscellaneous\PotionIds.cs" />
@@ -84,12 +83,13 @@
     <Compile Include="Blocks\TextBlock.cs" />
     <Compile Include="Miscellaneous\Tools.cs" />
     <Compile Include="RefreshShop.cs" />
-    <Compile Include="Show.cs" />
+    <Compile Include="Skylight.Messages\Show.cs" />
     <Compile Include="Skylight.Auth\Access.cs" />
     <Compile Include="Skylight.Blocks\AddSpecialBlock.cs" />
     <Compile Include="Skylight.Blocks\BlockChanged.cs" />
     <Compile Include="Skylight.Blocks\NoteBlock.cs" />
     <Compile Include="Skylight.Blocks\SignBlock.cs" />
+    <Compile Include="Skylight.Messages\Autotext.cs" />
     <Compile Include="Skylight.Messages\Chat.cs" />
     <Compile Include="Skylight.Messages\ChatOld.cs" />
     <Compile Include="Skylight.Messages\ClearMap.cs" />
