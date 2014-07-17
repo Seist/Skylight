@@ -4,7 +4,7 @@ namespace Skylight
 {
     public class Save
     {
-        private readonly In _in;
+        private In _in;
 
         public Save(In @in)
         {

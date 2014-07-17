@@ -6,7 +6,7 @@ namespace Skylight
 {
     public class Teleport
     {
-        private readonly In _in;
+        private In _in;
 
         public Teleport(In @in)
         {
@@ -30,7 +30,7 @@ namespace Skylight
                 y = m.GetInteger(2);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, _in.Source);
+            var subject = Tools.GetPlayerById(id, _in.Source);
 
             subject.X = x;
             subject.Y = y;

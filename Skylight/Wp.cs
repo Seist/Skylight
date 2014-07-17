@@ -6,7 +6,7 @@ namespace Skylight
 {
     public class Wp
     {
-        private readonly In _in;
+        private In _in;
 
         public Wp(In @in)
         {
@@ -26,7 +26,7 @@ namespace Skylight
             int x = m.GetInteger(0),
                 y = m.GetInteger(1);
 
-            string destination = m.GetString(3);
+            var destination = m.GetString(3);
 
             // Update relevant objects.
             Block b = new RoomPortalBlock(x, y, destination);

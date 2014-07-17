@@ -3,23 +3,22 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
-
 using System;
 
 namespace Skylight.Arguments
 {
     /// <summary>
-    ///     Class RoomEventArgs.
+    /// Class RoomEventArgs.
     /// </summary>
     public class RoomEventArgs : EventArgs
     {
         /// <summary>
-        ///     The changed room
+        /// The changed room
         /// </summary>
         private readonly Room _changedRoom;
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="RoomEventArgs" /> class.
+        /// Initializes a new instance of the <see cref="RoomEventArgs"/> class.
         /// </summary>
         /// <param name="changedRoom">The changed room.</param>
         public RoomEventArgs(Room changedRoom)
@@ -28,7 +27,7 @@ namespace Skylight.Arguments
         }
 
         /// <summary>
-        ///     Gets the changed room.
+        /// Gets the changed room.
         /// </summary>
         /// <value>The changed room.</value>
         public Room ChangedRoom

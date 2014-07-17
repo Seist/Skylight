@@ -6,7 +6,7 @@ namespace Skylight
 {
     public class OnKill
     {
-        private readonly In _in;
+        private In _in;
 
         public OnKill(In @in)
         {
@@ -16,10 +16,10 @@ namespace Skylight
         public void OnKillPlayer(Message m)
         {
             // Extract data.
-            int id = m.GetInteger(0);
+            var id = m.GetInteger(0);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, _in.Source);
+            var subject = Tools.GetPlayerById(id, _in.Source);
 
             subject.DeathCount++;
 

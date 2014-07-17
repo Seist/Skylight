@@ -1,4 +1,5 @@
-﻿// <copyright file="Block.cs" company="">
+﻿
+// <copyright file="Block.cs" company="">
 //     Copyright (c) . All rights reserved.
 // </copyright>
 // <summary></summary>
@@ -6,12 +7,12 @@
 namespace Skylight.Blocks
 {
     /// <summary>
-    ///     Class Block.
+    /// Class Block.
     /// </summary>
     public class Block
     {
         /// <summary>
-        ///     The directions of the block.
+        /// The directions of the block.
         /// </summary>
         public const int
             Right = 1,
@@ -23,12 +24,12 @@ namespace Skylight.Blocks
 
 
         /// <summary>
-        ///     The _x
+        /// The _x
         /// </summary>
         private int _z;
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Block" /> class.
+        /// Initializes a new instance of the <see cref="Block"/> class.
         /// </summary>
         /// <param name="id">The id of the block.</param>
         /// <param name="x">The x coord.</param>
@@ -51,7 +52,7 @@ namespace Skylight.Blocks
 
 
         /// <summary>
-        ///     Gets a value indicating whether this instance is solid.
+        /// Gets a value indicating whether this instance is solid.
         /// </summary>
         /// <value><c>true</c> if this instance is solid; otherwise, <c>false</c>.</value>
         public bool IsSolid
@@ -60,19 +61,19 @@ namespace Skylight.Blocks
         }
 
         /// <summary>
-        ///     Gets or sets the direction.
+        /// Gets or sets the direction.
         /// </summary>
         /// <value>The direction.</value>
         public int Direction { get; set; }
 
         /// <summary>
-        ///     Gets the identifier.
+        /// Gets the identifier.
         /// </summary>
         /// <value>The identifier.</value>
         public int Id { get; internal set; }
 
         /// <summary>
-        ///     Gets the z coordinate (background or foreground)
+        /// Gets the z coordinate (background or foreground)
         /// </summary>
         /// <value>The z.</value>
         public int Z
@@ -102,19 +103,19 @@ namespace Skylight.Blocks
         }
 
         /// <summary>
-        ///     Gets the x coordinate
+        /// Gets the x coordinate
         /// </summary>
         /// <value>The x.</value>
         public int X { get; internal set; }
 
         /// <summary>
-        ///     Gets the y coordinate
+        /// Gets the y coordinate
         /// </summary>
         /// <value>The y.</value>
         public int Y { get; internal set; }
 
         /// <summary>
-        ///     Gets the placer (the Player who placed the block).
+        /// Gets the placer (the Player who placed the block).
         /// </summary>
         /// <value>The placer.</value>
         public Player Placer { get; internal set; }

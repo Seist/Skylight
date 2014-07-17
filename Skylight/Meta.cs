@@ -5,7 +5,7 @@ namespace Skylight
 {
     public class Meta
     {
-        private readonly In _in;
+        private In _in;
 
         public Meta(In @in)
         {

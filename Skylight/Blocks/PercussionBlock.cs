@@ -9,12 +9,12 @@
 namespace Skylight.Blocks
 {
     /// <summary>
-    ///     Class PercussionBlock.
+    /// Class PercussionBlock.
     /// </summary>
     public class PercussionBlock : Block
     {
         /// <summary>
-        ///     The types of notes that can be played.
+        /// The types of notes that can be played.
         /// </summary>
         public const int
             Base1 = 0,
@@ -29,12 +29,12 @@ namespace Skylight.Blocks
             Maraca = 9;
 
         /// <summary>
-        ///     The percussion identifier
+        /// The percussion identifier
         /// </summary>
         private int _percussionId = -1;
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="PercussionBlock" /> class.
+        /// Initializes a new instance of the <see cref="PercussionBlock"/> class.
         /// </summary>
         /// <param name="x">The x coordinate.</param>
         /// <param name="y">The y coordinate.</param>
@@ -48,7 +48,7 @@ namespace Skylight.Blocks
         }
 
         /// <summary>
-        ///     Gets the percussion identifier.
+        /// Gets the percussion identifier.
         /// </summary>
         /// <value>The percussion identifier.</value>
         public int PercussionId

@@ -6,7 +6,7 @@ namespace Skylight
 {
     public class NoteBlock
     {
-        private readonly In _in;
+        private In _in;
 
         public NoteBlock(In @in)
         {

@@ -6,7 +6,7 @@ namespace Skylight
 {
     public class ChatOld
     {
-        private readonly In _in;
+        private In _in;
 
         public ChatOld(In @in)
         {
@@ -23,7 +23,7 @@ namespace Skylight
         public void OnSayOld(Message m)
         {
             // Extract data.
-            string message = m.GetString(1);
+            var message = m.GetString(1);
 
             // Update relevant objects.
             // Player subject = new Player() { Name = name };

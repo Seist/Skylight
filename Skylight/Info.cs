@@ -6,7 +6,7 @@ namespace Skylight
 {
     public class Info
     {
-        private readonly In _in;
+        private In _in;
 
         public Info(In @in)
         {

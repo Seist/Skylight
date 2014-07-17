@@ -43,52 +43,52 @@ namespace Skylight
         /// <param name="e">The room object.</param>
         public delegate void RoomEvent(RoomEventArgs e);
 
-        private readonly Access _access;
-
-        private readonly Add _add;
-        private readonly AddSpecialBlock _addSpecialBlock;
-        private readonly Autotext _autotext;
-        private readonly BlockChanged _blockChanged;
-        private readonly Chat _chat;
-        private readonly ChatOld _chatOld;
-        private readonly ClearMap _clearMap;
-        private readonly CoinObject _coinObject;
-        private readonly Crown _crown;
-        private readonly FaceChange _faceChange;
-        private readonly GetWoot _getWoot;
-        private readonly GiveWizard2 _giveWizard2;
-        private readonly GodMode _godMode;
-        private readonly Grinch _grinch;
-        private readonly Hide _hide;
-        private readonly Info _info;
-        private readonly LeftWorld _leftWorld;
-        private readonly LevelChange _levelChange;
-        private readonly Meta _meta;
-        private readonly Moderator _moderator;
-        private readonly Move _move;
-        private readonly NoteBlock _noteBlock;
-        private readonly OnCoinGet _onCoinGet;
-        private readonly OnKill _onKill;
         private readonly Stopwatch _playerPhysicsStopwatch = new Stopwatch();
-        private readonly Potion _potion;
-        private readonly Potions _potions;
         private readonly List<Message> _prematureMessages = new List<Message>();
-        private readonly RefreshShop _refreshShop;
-        private readonly ResetWorld _resetWorld;
-        private readonly Save _save;
-        private readonly Show _show;
-        private readonly SignBlock _signBlock;
-        private readonly Tele _tele;
-        private readonly Teleport _teleport;
-        private readonly Trophy _trophy;
-        private readonly Upgrade _upgrade;
-        private readonly Witch _witch;
-        private readonly Wizard _wizard;
-        private readonly WootUp _wootUp;
-        private readonly Wp _wp;
-        private readonly Write _write;
+
         private Message _initMessage;
         private Thread _playerPhysicsThread;
+        private readonly Add _add;
+        private readonly Potions _potions;
+        private readonly Autotext _autotext;
+        private readonly BlockChanged _blockChanged;
+        private readonly CoinObject _coinObject;
+        private readonly AddSpecialBlock _addSpecialBlock;
+        private readonly NoteBlock _noteBlock;
+        private readonly OnCoinGet _onCoinGet;
+        private readonly ClearMap _clearMap;
+        private readonly FaceChange _faceChange;
+        private readonly Grinch _grinch;
+        private readonly Witch _witch;
+        private readonly Wizard _wizard;
+        private readonly GiveWizard2 _giveWizard2;
+        private readonly GodMode _godMode;
+        private readonly Hide _hide;
+        private readonly Crown _crown;
+        private readonly OnKill _onKill;
+        private readonly Trophy _trophy;
+        private readonly SignBlock _signBlock;
+        private readonly LeftWorld _leftWorld;
+        private readonly LevelChange _levelChange;
+        private readonly Move _move;
+        private readonly Moderator _moderator;
+        private readonly Potion _potion;
+        private readonly RefreshShop _refreshShop;
+        private readonly ResetWorld _resetWorld;
+        private readonly Chat _chat;
+        private readonly ChatOld _chatOld;
+        private readonly Save _save;
+        private readonly Show _show;
+        private readonly Tele _tele;
+        private readonly Teleport _teleport;
+        private readonly Meta _meta;
+        private readonly Upgrade _upgrade;
+        private readonly Wp _wp;
+        private readonly Write _write;
+        private readonly GetWoot _getWoot;
+        private readonly WootUp _wootUp;
+        private readonly Access _access;
+        private readonly Info _info;
 
         public In()
         {
@@ -354,7 +354,7 @@ namespace Skylight
             CoinBlockEvent = delegate { } , PortalBlockEvent = delegate { };
 
         /// <summary>
-        ///     When a sign block is placed in the world.
+        /// When a sign block is placed in the world.
         /// </summary>
         protected virtual void OnSignBlockEvent(Message m)
         {
@@ -666,7 +666,7 @@ namespace Skylight
             loadBlocks.Start();
 
             // Execute the messages that came prematurely.
-            foreach (Message msg in _prematureMessages)
+            foreach (var msg in _prematureMessages)
             {
                 OnMessage(this, msg);
             }
@@ -703,7 +703,7 @@ namespace Skylight
                 portalDestination = m.GetInteger(5);
 
             // Update relevant objects.
-            bool isVisible = blockId == BlockIds.Action.Portals.Normal;
+            var isVisible = blockId == BlockIds.Action.Portals.Normal;
 
             var b = new PortalBlock(x, y, rotation, portalId, portalDestination, isVisible);
 
@@ -722,7 +722,7 @@ namespace Skylight
                 x = m.GetInteger(1),
                 y = m.GetInteger(2);
 
-            string text = m.GetString(3);
+            var text = m.GetString(3);
 
             // Update relevant objects.
             var b = new TextBlock(id, x, y, text);
@@ -737,7 +737,7 @@ namespace Skylight
 
         private void LoadBlocks()
         {
-            foreach (Block b in Tools.DeserializeInit(_initMessage, 18, Source))
+            foreach (var b in Tools.DeserializeInit(_initMessage, 18, Source))
             {
                 Source.Map[b.X, b.Y, b.Z] = b;
             }
@@ -764,7 +764,7 @@ namespace Skylight
                     {
                         accumulator += Config.PhysicsMsPerTick;
 
-                        foreach (Player player in Source.OnlinePlayers)
+                        foreach (var player in Source.OnlinePlayers)
                         {
                             player.Tick();
 

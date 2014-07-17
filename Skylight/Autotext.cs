@@ -7,7 +7,7 @@ namespace Skylight
 {
     public class Autotext
     {
-        private readonly In _in;
+        private In _in;
 
         public Autotext(In @in)
         {
@@ -25,12 +25,12 @@ namespace Skylight
         public void OnAutotext(Message m)
         {
             // Extract data.
-            int id = m.GetInteger(0);
+            var id = m.GetInteger(0);
 
-            string message = m.GetString(1);
+            var message = m.GetString(1);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, _in.Source);
+            var subject = Tools.GetPlayerById(id, _in.Source);
 
             _in.Source.ChatLog.Add(new KeyValuePair<string, Player>(message, subject));
 

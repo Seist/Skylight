@@ -3,24 +3,23 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
-
 using System.Text.RegularExpressions;
 using Skylight.Miscellaneous;
 
 namespace Skylight.Blocks
 {
     /// <summary>
-    ///     Class RoomPortalBlock.
+    /// Class RoomPortalBlock.
     /// </summary>
     public class RoomPortalBlock : Block
     {
         /// <summary>
-        ///     The portal destination
+        /// The portal destination
         /// </summary>
         private string _portalDestination;
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="RoomPortalBlock" /> class.
+        /// Initializes a new instance of the <see cref="RoomPortalBlock"/> class.
         /// </summary>
         /// <param name="x">The x coordinate.</param>
         /// <param name="y">The y coordinate.</param>
@@ -34,7 +33,7 @@ namespace Skylight.Blocks
         }
 
         /// <summary>
-        ///     Gets the portal destination.
+        /// Gets the portal destination.
         /// </summary>
         /// <value>The portal destination.</value>
         public string PortalDestination
@@ -43,7 +42,7 @@ namespace Skylight.Blocks
 
             internal set
             {
-                string s = value;
+                var s = value;
                 Tools.ParseUrl(s);
                 if (Regex.IsMatch(s, "[A-Za-z0-9-_]{13}"))
                 {

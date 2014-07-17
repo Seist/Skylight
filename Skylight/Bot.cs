@@ -55,21 +55,18 @@ namespace Skylight
             _speechDelay = 1000;
 
         /// <summary>
-        ///     The main bot class.
+        /// The main bot class.
         /// </summary>
         /// <param name="r">The room object that the bot will join.</param>
         /// <param name="emailOrToken">The email or token.</param>
         /// <param name="passwordOrToken">The password or token.</param>
-        /// <param name="accType">
-        ///     The account type. Default is regular but it automatically
-        ///     guesses.
-        /// </param>
+        /// <param name="accType">The account type. Default is regular but it automatically
+        /// guesses.</param>
         public Bot(Room r,
             string emailOrToken = Tools.GuestEmail,
             string passwordOrToken = Tools.GuestPassword,
             AccountType accType = AccountType.Regular)
-            : base(
-                r, 0, "", 0, 0.0, 0.0, false, false, true, 0, false, false, 0, false, false, false, false, false, false)
+            : base(r, 0, "", 0, 0.0, 0.0, false, false, true, 0, false, false, 0, false, false, false, false, false, false)
         {
             Push = new Out();
             _emailOrToken = emailOrToken;
@@ -80,27 +77,27 @@ namespace Skylight
         }
 
         /// <summary>
-        ///     Whether or not the bot is connected to the world.
+        /// Whether or not the bot is connected to the world.
         /// </summary>
         public bool IsConnected { get; internal set; }
 
         /// <summary>
-        ///     The room the bot is joined to.
+        /// The room the bot is joined to.
         /// </summary>
         public bool Joined { get; internal set; }
 
         /// <summary>
-        ///     If the physics clock should tick or not.
+        /// If the physics clock should tick or not.
         /// </summary>
         public bool ShouldTick { get; set; }
 
         /// <summary>
-        ///     The PlayerIO client class.
+        /// The PlayerIO client class.
         /// </summary>
         public Client Client { get; internal set; }
 
         /// <summary>
-        ///     The delay between block messages to the server in milliseconds.
+        /// The delay between block messages to the server in milliseconds.
         /// </summary>
         public int BlockDelay
         {
@@ -110,7 +107,7 @@ namespace Skylight
         }
 
         /// <summary>
-        ///     The delay between speech messages to the server in milliseconds.
+        /// The delay between speech messages to the server in milliseconds.
         /// </summary>
         public int SpeechDelay
         {
@@ -120,7 +117,7 @@ namespace Skylight
         }
 
         /// <summary>
-        ///     The prefix to add to all outgoing chat messages.
+        /// The prefix to add to all outgoing chat messages.
         /// </summary>
         public string ChatPrefix
         {
@@ -130,28 +127,28 @@ namespace Skylight
         }
 
         /// <summary>
-        ///     The object where the events go to the server.
+        /// The object where the events go to the server.
         /// </summary>
         public Out Push { get; internal set; }
 
         /// <summary>
-        ///     The current room object.
+        /// The current room object.
         /// </summary>
         public Room R { get; internal set; }
 
         /// <summary>
-        ///     The active connection object to the room.
+        /// The active connection object to the room.
         /// </summary>
         public Connection Connection { get; internal set; }
 
         /// <summary>
-        ///     The current room that the bot is in.
+        /// The current room that the bot is in.
         /// </summary>
         public static Room CurrentRoom { get; set; }
 
         // Public methods
         /// <summary>
-        ///     The main method to login the bot with the credentials already specified.
+        /// The main method to login the bot with the credentials already specified.
         /// </summary>
         public void LogIn()
         {
@@ -175,7 +172,7 @@ namespace Skylight
                         break;
 
                     default: //case AccountType.ArmorGames:
-                        Connection c = Tools.GuestClient.Value.Multiplayer.JoinRoom("", null);
+                        var c = Tools.GuestClient.Value.Multiplayer.JoinRoom("", null);
                         c.OnMessage += (sender, message) =>
                         {
                             if (message.Type != "auth") return;
@@ -208,7 +205,7 @@ namespace Skylight
         }
 
         /// <summary>
-        ///     Join the room that was already set.
+        /// Join the room that was already set.
         /// </summary>
         /// <param name="createRoom"></param>
         public void Join(bool createRoom = true)
@@ -296,7 +293,7 @@ namespace Skylight
         }
 
         /// <summary>
-        ///     Disconnect the bot.
+        /// Disconnect the bot.
         /// </summary>
         public void Disconnect()
         {

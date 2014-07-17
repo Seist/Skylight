@@ -4,31 +4,30 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
-
 using Skylight.Miscellaneous;
 
 namespace Skylight.Blocks
 {
     /// <summary>
-    ///     Class PortalBlock.
+    /// Class PortalBlock.
     /// </summary>
     public class PortalBlock : Block
     {
         /// <summary>
-        ///     The minportalid
+        /// The minportalid
         /// </summary>
         private const int
             Minportalid = 0,
             Maxportalid = 99;
 
         /// <summary>
-        ///     The _portal destination
+        /// The _portal destination
         /// </summary>
         private int
             _portalDestination = -1, _portalId = -1;
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="PortalBlock" /> class.
+        /// Initializes a new instance of the <see cref="PortalBlock"/> class.
         /// </summary>
         /// <param name="x">The x coordinate.</param>
         /// <param name="y">The y coordiante.</param>
@@ -51,12 +50,12 @@ namespace Skylight.Blocks
         }
 
         /// <summary>
-        ///     The direction of the portal.
+        /// The direction of the portal.
         /// </summary>
         public new int Direction { get; set; }
 
         /// <summary>
-        ///     Gets the portal destination.
+        /// Gets the portal destination.
         /// </summary>
         /// <value>The portal destination.</value>
         public int PortalDestination
@@ -73,7 +72,7 @@ namespace Skylight.Blocks
         }
 
         /// <summary>
-        ///     Gets the portal identifier.
+        /// Gets the portal identifier.
         /// </summary>
         /// <value>The portal identifier.</value>
         public int PortalId
@@ -90,7 +89,7 @@ namespace Skylight.Blocks
         }
 
         /// <summary>
-        ///     Gets a value indicating whether this <see cref="PortalBlock" /> is visible.
+        /// Gets a value indicating whether this <see cref="PortalBlock"/> is visible.
         /// </summary>
         /// <value><c>true</c> if visible; otherwise, <c>false</c>.</value>
         public bool Visible { get; internal set; }
