@@ -11,60 +11,63 @@ using Skylight.Blocks;
 namespace Skylight.Miscellaneous
 {
     /// <summary>
-    /// Tools that are available to the core of the program (converting a player id or name into
-    /// a player object) and internal methods are mostly stored here.
+    ///     Tools that are available to the core of the program (converting a player id or name into
+    ///     a player object) and internal methods are mostly stored here.
     /// </summary>
     public static class Tools
     {
         /// <summary>
-        /// Delegate ProgramEvent
+        ///     Delegate ProgramEvent
         /// </summary>
         /// <param name="message">The message.</param>
         public delegate void ProgramEvent(string message);
 
         /// <summary>
-        /// The game identifier
+        ///     The game identifier
         /// </summary>
         internal const string GameId = "everybody-edits-su9rn58o40itdbnw69plyw";
+
         /// <summary>
-        /// The guest email
+        ///     The guest email
         /// </summary>
         internal const string GuestEmail = "guest";
+
         /// <summary>
-        /// The guest password
+        ///     The guest password
         /// </summary>
         internal const string GuestPassword = "guest";
 
         // Compiler seems to choke on this line, saying that Lazy isn't supported in library.
 
         /// <summary>
-        /// The normal room name
+        ///     The normal room name
         /// </summary>
         public const string NormalRoom = "Everybodyedits";
+
         /// <summary>
-        /// The authentication room (temp)
+        ///     The authentication room (temp)
         /// </summary>
         public const string AuthRoom = "Auth";
 
         /// <summary>
-        /// The random seed used in all random based generations.
+        ///     The random seed used in all random based generations.
         /// </summary>
         public static readonly Random
             Ran = new Random();
 
         /// <summary>
-        /// The guest client
+        ///     The guest client
         /// </summary>
         internal static readonly Lazy<Client> GuestClient =
             new Lazy<Client>(() => PlayerIO.QuickConnect.SimpleConnect(GameId, GuestEmail, GuestPassword));
 
         /// <summary>
-        /// Occurs when a program message is sent.
+        ///     Occurs when a program message is sent.
         /// </summary>
         public static event ProgramEvent ProgramMessage = delegate { };
 
         /// <summary>
-        /// Gets the winners.
+        ///     Gets the winners.
         /// </summary>
         /// <param name="r">The room.</param>
         /// <returns>A list of Players who have touched the trophy</returns>
@@ -74,13 +77,13 @@ namespace Skylight.Miscellaneous
         }
 
         /// <summary>
-        /// Gets the crown holder.
+        ///     Gets the crown holder.
         /// </summary>
         /// <param name="r">The room.</param>
         /// <returns>The Player who holds the crown (if there is one).</returns>
         public static Player GetCrownHolder(Room r)
         {
-            foreach (var p in r.OnlinePlayers)
+            foreach (Player p in r.OnlinePlayers)
             {
                 if (p.HasCrown)
                 {
@@ -93,7 +96,7 @@ namespace Skylight.Miscellaneous
         }
 
         /// <summary>
-        /// Gets the player by identifier.
+        ///     Gets the player by identifier.
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <param name="r">The room.</param>
@@ -101,7 +104,7 @@ namespace Skylight.Miscellaneous
         /// <returns>Player.</returns>
         public static Player GetPlayerById(int id, Room r, bool onlyReturnBots = false)
         {
-            foreach (var p in r.OnlinePlayers)
+            foreach (Player p in r.OnlinePlayers)
             {
                 if (p.Id == id)
                 {
@@ -124,7 +127,7 @@ namespace Skylight.Miscellaneous
         }
 
         /// <summary>
-        /// Gets the name of the player by.
+        ///     Gets the name of the player by.
         /// </summary>
         /// <param name="name">The name.</param>
         /// <param name="r">The room.</param>
@@ -132,7 +135,7 @@ namespace Skylight.Miscellaneous
         /// <returns>Player.</returns>
         public static Player GetPlayerByName(string name, Room r, bool onlyReturnBots = false)
         {
-            foreach (var p in r.OnlinePlayers)
+            foreach (Player p in r.OnlinePlayers)
             {
                 if (p.Name == name)
                 {
@@ -155,13 +158,13 @@ namespace Skylight.Miscellaneous
         }
 
         /// <summary>
-        /// Gets the room.
+        ///     Gets the room.
         /// </summary>
         /// <param name="name">The name.</param>
         /// <returns>Room.</returns>
         public static Room GetRoom(string name)
         {
-            foreach (var r in Room.JoinedRooms)
+            foreach (Room r in Room.JoinedRooms)
             {
                 if (r.Name == name)
                 {
@@ -174,25 +177,25 @@ namespace Skylight.Miscellaneous
         }
 
         /// <summary>
-        /// Shuffles the specified list.
+        ///     Shuffles the specified list.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="list">The list.</param>
         public static void Shuffle<T>(this IList<T> list)
         {
-            var n = list.Count;
+            int n = list.Count;
             while (n > 1)
             {
                 n--;
-                var k = Ran.Next(n + 1);
-                var value = list[k];
+                int k = Ran.Next(n + 1);
+                T value = list[k];
                 list[k] = list[n];
                 list[n] = value;
             }
         }
 
         /// <summary>
-        /// Main logging method.
+        ///     Main logging method.
         /// </summary>
         /// <param name="m">The message.</param>
         internal static void SkylightMessage(string m)
@@ -201,15 +204,15 @@ namespace Skylight.Miscellaneous
         }
 
         /// <summary>
-        /// Derots the specified world key.
+        ///     Derots the specified world key.
         /// </summary>
         /// <param name="worldKey">The world key.</param>
         /// <returns>Derotted world key</returns>
         internal static string Derot(string worldKey)
         {
-            var array = worldKey.ToCharArray();
+            char[] array = worldKey.ToCharArray();
 
-            for (var i = 0; i < array.Length; i++)
+            for (int i = 0; i < array.Length; i++)
             {
                 int number = array[i];
 
@@ -243,7 +246,7 @@ namespace Skylight.Miscellaneous
         }
 
         /// <summary>
-        /// Parses the URL.
+        ///     Parses the URL.
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns>A parsed room id</returns>
@@ -253,7 +256,7 @@ namespace Skylight.Miscellaneous
             // Supports haphazard copy/pasting.
             if (Regex.IsMatch(id, "[htp:/w.evrybodis.comga]{0,36}[a-zA-Z0-9_-]{13}"))
             {
-                var parsedUrl = id.Substring(id.ToCharArray().Length - 13, 13);
+                string parsedUrl = id.Substring(id.ToCharArray().Length - 13, 13);
                 return parsedUrl;
             }
 
@@ -261,7 +264,7 @@ namespace Skylight.Miscellaneous
         }
 
         /// <summary>
-        /// Deserializes the initialize.
+        ///     Deserializes the initialize.
         /// </summary>
         /// <param name="m">The message</param>
         /// <param name="start">The start.</param>
@@ -280,11 +283,11 @@ namespace Skylight.Miscellaneous
                 //// Praise him. (this is mainly due to my laziness)
 
                 // First, fill the entire map with blank blocks (so that you don't get null exceptions).
-                for (var x = 0; x < 700; x++)
+                for (int x = 0; x < 700; x++)
                 {
-                    for (var y = 0; y < 400; y++)
+                    for (int y = 0; y < 400; y++)
                     {
-                        for (var z = 0; z < 2; z++)
+                        for (int z = 0; z < 2; z++)
                         {
                             r.Map[x, y, z] = new Block(0, x, y, z);
                         }
@@ -292,7 +295,7 @@ namespace Skylight.Miscellaneous
                 }
 
                 // And now replace empty blocks with the ones that already exist.
-                var messageIndex = start;
+                uint messageIndex = start;
 
                 // Iterate through each internal set of messages.
                 while (messageIndex < m.Count)
@@ -304,24 +307,24 @@ namespace Skylight.Miscellaneous
                     }
 
                     // The ID is first.
-                    var blockId = m.GetInteger(messageIndex);
+                    int blockId = m.GetInteger(messageIndex);
                     messageIndex++;
 
                     // Then the z.
-                    var z = m.GetInteger(messageIndex);
+                    int z = m.GetInteger(messageIndex);
                     messageIndex++;
 
                     // Then the list of all X coordinates of given block
-                    var xa = m.GetByteArray(messageIndex);
+                    byte[] xa = m.GetByteArray(messageIndex);
                     messageIndex++;
 
                     // Then the list of all Y coordinates of given block
-                    var ya = m.GetByteArray(messageIndex);
+                    byte[] ya = m.GetByteArray(messageIndex);
                     messageIndex++;
 
                     int rotation = 0, note = 0, type = 0, portalId = 0, destination = 0, coins = 0;
                     bool isVisible = false, isGate = false;
-                    var roomDestination = "";
+                    string roomDestination = "";
 
                     // Get the variables that are unique to the current block
                     if (blockId == BlockIds.Action.Portals.Normal ||
@@ -380,11 +383,11 @@ namespace Skylight.Miscellaneous
 
                     // Some variables to simplify things.
 
-                    for (var pos = 0; pos < ya.Length; pos += 2)
+                    for (int pos = 0; pos < ya.Length; pos += 2)
                     {
                         // Extract the X and Y positions from the array.
-                        var x = (xa[pos]*256) + xa[pos + 1];
-                        var y = (ya[pos]*256) + ya[pos + 1];
+                        int x = (xa[pos]*256) + xa[pos + 1];
+                        int y = (ya[pos]*256) + ya[pos + 1];
 
                         // Ascertain the block from the ID.
                         // Add block accordingly.
@@ -466,7 +469,7 @@ namespace Skylight.Miscellaneous
 
         // Return the correct portal ID based on whether or not the portal is visible or invisible.
         /// <summary>
-        /// Portals the identifier by visible.
+        ///     Portals the identifier by visible.
         /// </summary>
         /// <param name="visible">if set to <c>true</c> [visible].</param>
         /// <returns>System.Int32.</returns>
@@ -481,7 +484,7 @@ namespace Skylight.Miscellaneous
 
         // Return the correct coin ID based based on whether or not the block is gate or door
         /// <summary>
-        /// Coins the identifier by gate.
+        ///     Coins the identifier by gate.
         /// </summary>
         /// <param name="isGate">if set to <c>true</c> [is gate].</param>
         /// <returns>System.Int32.</returns>

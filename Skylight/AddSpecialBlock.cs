@@ -6,7 +6,7 @@ namespace Skylight
 {
     public class AddSpecialBlock
     {
-        private In _in;
+        private readonly In _in;
 
         public AddSpecialBlock(In @in)
         {

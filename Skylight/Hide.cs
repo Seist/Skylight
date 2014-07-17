@@ -4,7 +4,7 @@ namespace Skylight
 {
     public class Hide
     {
-        private In _in;
+        private readonly In _in;
 
         public Hide(In @in)
         {

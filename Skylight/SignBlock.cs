@@ -6,7 +6,7 @@ namespace Skylight
 {
     public class SignBlock
     {
-        private In _in;
+        private readonly In _in;
 
         public SignBlock(In @in)
         {
@@ -14,17 +14,17 @@ namespace Skylight
         }
 
         /// <summary>
-        /// When a sign block is placed in the world.
+        ///     When a sign block is placed in the world.
         /// </summary>
         public virtual void OnSignBlockEvent(Message m)
         {
             // Extract data
-            var x = m.GetInteger(0);
-            var y = m.GetInteger(1);
-            var theText = m.GetString(3);
+            int x = m.GetInteger(0);
+            int y = m.GetInteger(1);
+            string theText = m.GetString(3);
 
             // Fire the event.
-            var b = new TextBlock(385,x,y,theText);
+            var b = new TextBlock(385, x, y, theText);
             _in.Source.Map[x, y, 0] = b;
             var e = new BlockEventArgs(b);
 

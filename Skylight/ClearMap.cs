@@ -5,7 +5,7 @@ namespace Skylight
 {
     public class ClearMap
     {
-        private In _in;
+        private readonly In _in;
 
         public ClearMap(In @in)
         {
@@ -24,9 +24,9 @@ namespace Skylight
         {
             // There is data, but it's kind of irrelevant.
             // Update relevant objects.
-            for (var x = 0; x < _in.Source.Width; x++)
+            for (int x = 0; x < _in.Source.Width; x++)
             {
-                for (var y = 0; y < _in.Source.Height; y++)
+                for (int y = 0; y < _in.Source.Height; y++)
                 {
                     var blankBlock = new Block(0, x, y);
 

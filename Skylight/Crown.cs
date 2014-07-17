@@ -6,7 +6,7 @@ namespace Skylight
 {
     public class Crown
     {
-        private In _in;
+        private readonly In _in;
 
         public Crown(In @in)
         {
@@ -25,7 +25,7 @@ namespace Skylight
         public void OnCrown(Message m)
         {
             // Extract data.
-            var id = m.GetInteger(0);
+            int id = m.GetInteger(0);
 
             if (id == -1)
             {
@@ -33,10 +33,10 @@ namespace Skylight
             }
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, _in.Source);
+            Player subject = Tools.GetPlayerById(id, _in.Source);
 
             // Take the crown from the current holder (if one exists)
-            var crownHolder = Tools.GetCrownHolder(_in.Source);
+            Player crownHolder = Tools.GetCrownHolder(_in.Source);
 
             if (crownHolder != null)
                 crownHolder.HasCrown = false;

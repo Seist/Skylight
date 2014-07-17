@@ -7,17 +7,17 @@
 namespace Skylight.Blocks
 {
     /// <summary>
-    /// Class TextBlock.
+    ///     Class TextBlock.
     /// </summary>
     public class TextBlock : Block
     {
         /// <summary>
-        /// The message that is on the text block.
+        ///     The message that is on the text block.
         /// </summary>
         private string _text = string.Empty;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TextBlock"/> class.
+        ///     Initializes a new instance of the <see cref="TextBlock" /> class.
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <param name="x">The x coordinate.</param>
@@ -33,7 +33,7 @@ namespace Skylight.Blocks
         }
 
         /// <summary>
-        /// Gets the text.
+        ///     Gets the text.
         /// </summary>
         /// <value>The text.</value>
         public string Text

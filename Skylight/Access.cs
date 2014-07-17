@@ -5,7 +5,7 @@ namespace Skylight
 {
     public class Access
     {
-        private In _in;
+        private readonly In _in;
 
         public Access(In @in)
         {

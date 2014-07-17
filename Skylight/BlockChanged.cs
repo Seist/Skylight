@@ -8,7 +8,7 @@ namespace Skylight
 {
     public class BlockChanged
     {
-        private In _in;
+        private readonly In _in;
 
         /// <summary>
         ///     These IDs do not have an associated Player id when sent.
@@ -56,7 +56,7 @@ namespace Skylight
 
             if (!_specialBlockIds.Contains(blockId))
             {
-                var subject = Tools.GetPlayerById(playerId, _in.Source);
+                Player subject = Tools.GetPlayerById(playerId, _in.Source);
 
                 b.Placer = subject;
             }

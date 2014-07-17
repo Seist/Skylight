@@ -6,7 +6,7 @@ namespace Skylight
 {
     public class FaceChange
     {
-        private In _in;
+        private readonly In _in;
 
         public FaceChange(In @in)
         {
@@ -29,7 +29,7 @@ namespace Skylight
                 smileyId = m.GetInteger(1);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(playerId, _in.Source);
+            Player subject = Tools.GetPlayerById(playerId, _in.Source);
 
             subject.Smiley = smileyId;
 

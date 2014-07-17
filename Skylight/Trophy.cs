@@ -6,7 +6,7 @@ namespace Skylight
 {
     public class Trophy
     {
-        private In _in;
+        private readonly In _in;
 
         public Trophy(In @in)
         {
@@ -25,10 +25,10 @@ namespace Skylight
         public void OnTrophy(Message m)
         {
             // Extract data.
-            var id = m.GetInteger(0);
+            int id = m.GetInteger(0);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, _in.Source);
+            Player subject = Tools.GetPlayerById(id, _in.Source);
 
             subject.HasSilverCrown = true;
 

@@ -6,7 +6,7 @@ namespace Skylight
 {
     public class CoinObject
     {
-        private In _in;
+        private readonly In _in;
 
         public CoinObject(In @in)
         {

@@ -3,19 +3,20 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
+
 using Skylight.Blocks;
 
 namespace Skylight.Physics
 {
     /// <summary>
-    /// Class item id.
+    ///     Class item id.
     /// </summary>
     public class ItemId : object
     {
         // end function
 
         /// <summary>
-        /// Determines whether the specified block is solid.
+        ///     Determines whether the specified block is solid.
         /// </summary>
         /// <param name="param1">The param1.</param>
         /// <returns><c>true</c> if the specified block is solid; otherwise, <c>false</c>.</returns>
@@ -25,7 +26,7 @@ namespace Skylight.Physics
         } // end function
 
         /// <summary>
-        /// Determines whether the specified block is climbable.
+        ///     Determines whether the specified block is climbable.
         /// </summary>
         /// <param name="param1">The block.</param>
         /// <returns><c>true</c> if the specified block is climbable; otherwise, <c>false</c>.</returns>
@@ -49,7 +50,7 @@ namespace Skylight.Physics
         } // end function
 
         /// <summary>
-        /// Determines whether [is background rotateable] [the specified block].
+        ///     Determines whether [is background rotateable] [the specified block].
         /// </summary>
         /// <param name="param1">The param1.</param>
         /// <returns><c>true</c> if [is background rotateable] [the specified block]; otherwise, <c>false</c>.</returns>
@@ -59,7 +60,7 @@ namespace Skylight.Physics
         } // end function
 
         /// <summary>
-        /// Determines whether [is decoration rotateable] [the specified block].
+        ///     Determines whether [is decoration rotateable] [the specified block].
         /// </summary>
         /// <param name="param1">The param1.</param>
         /// <returns><c>true</c> if [is decoration rotateable] [the specified block]; otherwise, <c>false</c>.</returns>

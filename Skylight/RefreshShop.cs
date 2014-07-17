@@ -4,7 +4,7 @@ namespace Skylight
 {
     public class RefreshShop
     {
-        private In _in;
+        private readonly In _in;
 
         public RefreshShop(In @in)
         {
