@@ -69,7 +69,9 @@
     <Compile Include="ResetWorld.cs" />
     <Compile Include="RespawnAllPlayers.cs" />
     <Compile Include="RespawnPlayer.cs" />
+    <Compile Include="SaveTheWorld.cs" />
     <Compile Include="SayChatMessage.cs" />
+    <Compile Include="SetAllPotionBansInWorld.cs" />
     <Compile Include="SetCodeForRoom.cs" />
     <Compile Include="SetTitleOfRoom.cs" />
     <Compile Include="Skylight.Static\Blocks\BlockIds.cs" />

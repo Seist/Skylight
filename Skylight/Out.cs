@@ -33,6 +33,7 @@ namespace Skylight
         private readonly RespawnAllPlayers _respawnAllPlayers;
         private readonly ResetWorld _resetWorld;
         private readonly SaveTheWorld _saveTheWorld;
+        private readonly SetAllPotionBansInWorld _setAllPotionBansInWorld;
 
         public Out()
         {
@@ -53,6 +54,7 @@ namespace Skylight
             _respawnAllPlayers = new RespawnAllPlayers(this);
             _resetWorld = new ResetWorld(this);
             _saveTheWorld = new SaveTheWorld(this);
+            _setAllPotionBansInWorld = new SetAllPotionBansInWorld(this);
         }
 
         /// <summary>
@@ -160,25 +162,6 @@ namespace Skylight
             if (Bot.Name == R.Owner.Name)
             {
                 _sayChatMessage.Say("/kill " + p.Name);
-            }
-        }
-
-        /// <summary>
-        ///     Toggle all potion bans.
-        /// </summary>
-        /// <param name="value">if set to <c>true</c> then turn on potions.</param>
-        public void SetAllPotionBans(bool value)
-        {
-            try
-            {
-                if (Bot.Name == R.Owner.Name)
-                {
-                    C.Send("allowpotions", value);
-                }
-            }
-            catch (Exception)
-            {
-                Tools.SkylightMessage("Error: attempted to use Out.SetAllPotionBans before connecting");
             }
         }
 
