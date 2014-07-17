@@ -67,6 +67,7 @@ namespace Skylight
         private readonly Crown _crown;
         private readonly OnKill _onKill;
         private readonly Trophy _trophy;
+        private readonly SignBlock _signBlock;
 
         public In()
         {
@@ -89,6 +90,7 @@ namespace Skylight
             _crown = new Crown(this);
             _onKill = new OnKill(this);
             _trophy = new Trophy(this);
+            _signBlock = new SignBlock(this);
         }
 
         internal Bot Bot { get; set; }
@@ -192,30 +194,25 @@ namespace Skylight
             get { return _trophy; }
         }
 
+        public SignBlock SignBlock
+        {
+            get { return _signBlock; }
+        }
+
         /// <summary>
         ///     All of the delegates for BlockEvent. These fire when events occur
         ///     (such as when a block was added or updated).
         /// </summary>
         public event BlockEvent
             CoinBlockEvent = delegate { } , PortalBlockEvent = delegate { } ,
-            RoomPortalBlockEvent = delegate { } , SignBlockEvent = delegate { };
+            RoomPortalBlockEvent = delegate { };
 
         /// <summary>
         /// When a sign block is placed in the world.
         /// </summary>
         protected virtual void OnSignBlockEvent(Message m)
         {
-            // Extract data
-            var x = m.GetInteger(0);
-            var y = m.GetInteger(1);
-            var theText = m.GetString(3);
-
-            // Fire the event.
-            var b = new TextBlock(385,x,y,theText);
-            Source.Map[x, y, 0] = b;
-            var e = new BlockEventArgs(b);
-
-            Source.Pull.SignBlockEvent(e);
+            _signBlock.OnSignBlockEvent(m);
         }
 
         /// <summary>
