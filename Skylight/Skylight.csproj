@@ -65,6 +65,7 @@
     <Compile Include="Blocks\CoinBlock.cs" />
     <Compile Include="Blocks\PercussionBlock.cs" />
     <Compile Include="Blocks\Block.cs" />
+    <Compile Include="CoinObject.cs" />
     <Compile Include="In.cs" />
     <Compile Include="Miscellaneous\PotionIds.cs" />
     <Compile Include="Miscellaneous\SmileyIds.cs" />

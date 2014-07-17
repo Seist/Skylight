@@ -52,6 +52,7 @@ namespace Skylight
         private readonly Potions _potions;
         private readonly Autotext _autotext;
         private readonly BlockChanged _blockChanged;
+        private readonly CoinObject _coinObject;
 
         public In()
         {
@@ -59,6 +60,7 @@ namespace Skylight
             _potions = new Potions(this);
             _autotext = new Autotext(this);
             _blockChanged = new BlockChanged(this);
+            _coinObject = new CoinObject(this);
         }
 
         internal Bot Bot { get; set; }
@@ -85,6 +87,11 @@ namespace Skylight
         public BlockChanged BlockChanged
         {
             get { return _blockChanged; }
+        }
+
+        public CoinObject CoinObject
+        {
+            get { return _coinObject; }
         }
 
         /// <summary>
@@ -227,7 +234,7 @@ namespace Skylight
                                 break;
 
                             case "bc":
-                                OnAddCoinDoorOrGate(m);
+                                CoinObject.OnAddCoinDoorOrGate(m);
                                 break;
 
                             case "br":
@@ -414,30 +421,6 @@ namespace Skylight
             var e = new PlayerEventArgs(Bot, Source, m);
 
             Source.Pull.GainAccessEvent(e);
-        }
-
-        private void OnAddCoinDoorOrGate(Message m)
-        {
-            // Extract data.
-            int x = m.GetInteger(0),
-                y = m.GetInteger(1),
-                id = m.GetInteger(2),
-                coinsRequired = m.GetInteger(3);
-
-            // Update relevant objects.
-            var b = new CoinBlock(x, y, coinsRequired, false);
-
-            if (id == BlockIds.Action.Gates.Coin)
-            {
-                b.IsGate = true;
-            }
-
-            Source.Map[x, y, 0] = b;
-
-            // Fire the event.
-            var e = new BlockEventArgs(b, Source);
-
-            Source.Pull.CoinBlockEvent(e);
         }
 
         private void OnAddScifiOrSpikes(Message m)
