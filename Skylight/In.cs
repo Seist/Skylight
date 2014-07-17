@@ -58,6 +58,7 @@ namespace Skylight
         private readonly OnCoinGet _onCoinGet;
         private readonly ClearMap _clearMap;
         private readonly FaceChange _faceChange;
+        private readonly Grinch _grinch;
 
         public In()
         {
@@ -71,6 +72,7 @@ namespace Skylight
             _onCoinGet = new OnCoinGet(this);
             _clearMap = new ClearMap(this);
             _faceChange = new FaceChange(this);
+            _grinch = new Grinch(this);
         }
 
         internal Bot Bot { get; set; }
@@ -129,6 +131,11 @@ namespace Skylight
             get { return _faceChange; }
         }
 
+        public Grinch Grinch
+        {
+            get { return _grinch; }
+        }
+
         /// <summary>
         ///     All of the delegates for BlockEvent. These fire when events occur
         ///     (such as when a block was added or updated).
@@ -173,9 +180,7 @@ namespace Skylight
         public event PlayerEvent
             AddEvent = delegate { } , CrownEvent = delegate { } ,
             DeathEvent = delegate { } , GainAccessEvent = delegate { } ,
-            GodEvent = delegate { } ,
-            GrinchEvent = delegate { } ,
-            InfoEvent = delegate { } ,
+            GodEvent = delegate { } , InfoEvent = delegate { } ,
             JumpEvent = delegate { } ,
             LeaveEvent = delegate { } ,
             LevelUpEvent = delegate { } ,
@@ -278,7 +283,7 @@ namespace Skylight
                                 break;
 
                             case "givegrinch":
-                                OnGiveGrinch(m);
+                                Grinch.OnGiveGrinch(m);
                                 break;
 
                             case "givewitch":
@@ -441,20 +446,6 @@ namespace Skylight
             var e = new PlayerEventArgs(Bot, Source, m);
 
             Source.Pull.GainAccessEvent(e);
-        }
-
-        private void OnGiveGrinch(Message m)
-        {
-            // Extract data
-            var id = m.GetInteger(0);
-
-            // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, Source);
-
-            // Fire the event.
-            var e = new PlayerEventArgs(subject, Source, m);
-
-            Source.Pull.GrinchEvent(e);
         }
 
         private void OnGiveWitch(Message m)
