@@ -34,7 +34,7 @@ namespace Skylight
             // Fire the event.
             var e = new BlockEventArgs(b, _in.Source);
 
-            _in.Source.Pull.CoinBlockEvent(e);
+            _in.Source.Pull.CoinObject.CoinBlockEvent(e);
         }
     }
 }

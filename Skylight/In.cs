@@ -41,7 +41,7 @@ namespace Skylight
         ///     Something changed in the room (for example the title).
         /// </summary>
         /// <param name="e">The room object.</param>
-        public delegate void RoomEvent(RoomEventArgs e);
+        public delegate void RoomEvent(BlockEventArgs e);
 
         private readonly Access _access;
 
