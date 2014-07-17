@@ -26,7 +26,7 @@ namespace Skylight
             // Fire the event.
             var e = new PlayerEventArgs(subject, _in.Source, m);
 
-            _in.Source.Pull.DeathEvent(e);
+            _in.Source.Pull.Tele.DeathEvent(e);
         }
     }
 }

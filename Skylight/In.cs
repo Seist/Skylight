@@ -79,6 +79,8 @@ namespace Skylight
         private readonly ChatOld _chatOld;
         private readonly Save _save;
         private readonly Show _show;
+        private readonly Tele _tele;
+        private readonly Teleport _teleport;
 
         public In()
         {
@@ -113,6 +115,8 @@ namespace Skylight
             _chatOld = new ChatOld(this);
             _save = new Save(this);
             _show = new Show(this);
+            _tele = new Tele(this);
+            _teleport = new Teleport(this);
         }
 
         internal Bot Bot { get; set; }
@@ -276,6 +280,16 @@ namespace Skylight
             get { return _show; }
         }
 
+        public Tele Tele
+        {
+            get { return _tele; }
+        }
+
+        public Teleport Teleport
+        {
+            get { return _teleport; }
+        }
+
         /// <summary>
         ///     All of the delegates for BlockEvent. These fire when events occur
         ///     (such as when a block was added or updated).
@@ -306,16 +320,15 @@ namespace Skylight
         ///     box or by prefixing a chat message with *SYSTEM.
         /// </summary>
         public event PlayerEvent
-            AddEvent = delegate { } , DeathEvent = delegate { } , GainAccessEvent = delegate { } , InfoEvent = delegate { } , LoseAccessEvent = delegate { } ,
-            MagicCoinEvent = delegate { } , TeleportEvent = delegate { } ,
-            TickEvent = delegate { } , WootEvent = delegate { };
+            AddEvent = delegate { } , GainAccessEvent = delegate { } , InfoEvent = delegate { } , LoseAccessEvent = delegate { } ,
+            MagicCoinEvent = delegate { } , TickEvent = delegate { } , WootEvent = delegate { };
 
         /// <summary>
         ///     Delegates for RoomEvent. Are only invoked when commands that concern
         ///     the room's state (such as global clear, potion toggling and saved) for just
         ///     a few examples.
         /// </summary>
-        public event RoomEvent InitEvent = delegate { } , ResetEvent = delegate { } , UpdateEvent = delegate { } ,
+        public event RoomEvent InitEvent = delegate { } , UpdateEvent = delegate { } ,
             UpdateMetaEvent = delegate { };
 
         internal void OnMessage(object sender, Message m)
@@ -479,11 +492,11 @@ namespace Skylight
                                 break;
 
                             case "tele":
-                                OnTele(m);
+                                Tele.OnTele(m);
                                 break;
 
                             case "teleport":
-                                OnTeleport(m);
+                                Teleport.OnTeleport(m);
                                 break;
 
                             case "ts":
@@ -689,75 +702,6 @@ namespace Skylight
             var e = new BlockEventArgs(b, Source);
 
             Source.Pull.PortalBlockEvent(e);
-        }
-
-        private void OnTeleport(Message m)
-        {
-            // Extract data.
-            int id = m.GetInteger(0),
-                x = m.GetInteger(1),
-                y = m.GetInteger(2);
-
-            // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, Source);
-
-            subject.X = x;
-            subject.Y = y;
-
-            // Fire the event.
-            var e = new PlayerEventArgs(subject, Source, m);
-
-            Source.Pull.TeleportEvent(e);
-        }
-
-        private void OnTele(Message m)
-        {
-            // Extract some of the data.
-            var isReset = m.GetBoolean(0);
-
-            // On reset
-            if (isReset)
-            {
-                // Extract more data and update relevant objects.
-                uint index = 1;
-
-                while (index < m.Count)
-                {
-                    int id = m.GetInteger(index),
-                        x = m.GetInteger(index + 1),
-                        y = m.GetInteger(index + 2);
-
-                    var tempSubject = Tools.GetPlayerById(id, Source);
-                    tempSubject.X = x;
-                    tempSubject.Y = y;
-
-                    index += 3;
-                }
-
-                // Fire the event.
-                var e = new RoomEventArgs(Source);
-
-                Source.Pull.ResetEvent(e);
-            }
-            else
-            {
-                // On death (or whatever else isn't a reset).
-                // Extract data.
-                int id = m.GetInteger(1),
-                    x = m.GetInteger(2),
-                    y = m.GetInteger(3);
-
-                // Update relevant objects.
-                var subject = Tools.GetPlayerById(id, Source);
-
-                subject.X = x;
-                subject.Y = y;
-
-                // Fire the event.
-                var e = new PlayerEventArgs(subject, Source, m);
-
-                Source.Pull.DeathEvent(e);
-            }
         }
 
         private void OnTs(Message m)

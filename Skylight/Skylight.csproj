@@ -108,6 +108,8 @@
     <Compile Include="Save.cs" />
     <Compile Include="Show.cs" />
     <Compile Include="SignBlock.cs" />
+    <Compile Include="Tele.cs" />
+    <Compile Include="Teleport.cs" />
     <Compile Include="Trophy.cs" />
     <Compile Include="Witch.cs" />
     <Compile Include="Wizard.cs" />
