@@ -69,6 +69,7 @@ namespace Skylight
         private readonly Trophy _trophy;
         private readonly SignBlock _signBlock;
         private readonly LeftWorld _leftWorld;
+        private readonly LevelChange _levelChange;
 
         public In()
         {
@@ -93,6 +94,7 @@ namespace Skylight
             _trophy = new Trophy(this);
             _signBlock = new SignBlock(this);
             _leftWorld = new LeftWorld(this);
+            _levelChange = new LevelChange(this);
         }
 
         internal Bot Bot { get; set; }
@@ -206,6 +208,11 @@ namespace Skylight
             get { return _leftWorld; }
         }
 
+        public LevelChange LevelChange
+        {
+            get { return _levelChange; }
+        }
+
         /// <summary>
         ///     All of the delegates for BlockEvent. These fire when events occur
         ///     (such as when a block was added or updated).
@@ -239,8 +246,7 @@ namespace Skylight
         /// </summary>
         public event PlayerEvent
             AddEvent = delegate { } , DeathEvent = delegate { } , GainAccessEvent = delegate { } , InfoEvent = delegate { } ,
-            JumpEvent = delegate { } , LevelUpEvent = delegate { } ,
-            LoseAccessEvent = delegate { } ,
+            JumpEvent = delegate { } , LoseAccessEvent = delegate { } ,
             MagicCoinEvent = delegate { } ,
             ModModeEvent = delegate { } ,
             MovementEvent = delegate { } ,
@@ -376,7 +382,7 @@ namespace Skylight
                                 break;
 
                             case "levelup":
-                                OnLevelUp(m);
+                                LevelChange.OnLevelUp(m);
                                 break;
 
                             case "m":
@@ -596,22 +602,6 @@ namespace Skylight
             Source.Pull.InitEvent(e);
         }
 
-
-        private void OnLevelUp(Message m)
-        {
-            // Extract data.
-            int id = m.GetInteger(0),
-                level = m.GetInteger(1); // never used.
-
-            // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, Source);
-            subject.XpLevel = level;
-
-            // Fire the event.
-            var e = new PlayerEventArgs(subject, Source, m);
-
-            Source.Pull.LevelUpEvent(e);
-        }
 
         private void OnLostAccess(Message m)
         {
