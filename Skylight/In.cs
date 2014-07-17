@@ -59,6 +59,9 @@ namespace Skylight
         private readonly ClearMap _clearMap;
         private readonly FaceChange _faceChange;
         private readonly Grinch _grinch;
+        private readonly Witch _witch;
+        private readonly Wizard _wizard;
+        private readonly GiveWizard2 _giveWizard2;
 
         public In()
         {
@@ -73,6 +76,9 @@ namespace Skylight
             _clearMap = new ClearMap(this);
             _faceChange = new FaceChange(this);
             _grinch = new Grinch(this);
+            _witch = new Witch(this);
+            _wizard = new Wizard(this);
+            _giveWizard2 = new GiveWizard2(this);
         }
 
         internal Bot Bot { get; set; }
@@ -136,6 +142,21 @@ namespace Skylight
             get { return _grinch; }
         }
 
+        public Witch Witch
+        {
+            get { return _witch; }
+        }
+
+        public Wizard Wizard
+        {
+            get { return _wizard; }
+        }
+
+        public GiveWizard2 GiveWizard2
+        {
+            get { return _giveWizard2; }
+        }
+
         /// <summary>
         ///     All of the delegates for BlockEvent. These fire when events occur
         ///     (such as when a block was added or updated).
@@ -188,14 +209,9 @@ namespace Skylight
             MagicCoinEvent = delegate { } ,
             ModModeEvent = delegate { } ,
             MovementEvent = delegate { } ,
-            PotionEvent = delegate { } ,
-            RedWizardEvent = delegate { } ,
-            TeleportEvent = delegate { } ,
+            PotionEvent = delegate { } , TeleportEvent = delegate { } ,
             TickEvent = delegate { } ,
-            TrophyEvent = delegate { } ,
-            WitchEvent = delegate { } ,
-            WizardEvent = delegate { } ,
-            WootEvent = delegate { };
+            TrophyEvent = delegate { } , WootEvent = delegate { };
 
         /// <summary>
         ///     Delegates for RoomEvent. Are only invoked when commands that concern
@@ -287,15 +303,15 @@ namespace Skylight
                                 break;
 
                             case "givewitch":
-                                OnGiveWitch(m);
+                                Witch.OnGiveWitch(m);
                                 break;
 
                             case "givewizard":
-                                OnGiveWizard(m);
+                                Wizard.OnGiveWizard(m);
                                 break;
 
                             case "givewizard2":
-                                OnGiveWizard2(m);
+                                GiveWizard2.OnGiveWizard2(m);
                                 break;
 
                             case "god":
@@ -446,48 +462,6 @@ namespace Skylight
             var e = new PlayerEventArgs(Bot, Source, m);
 
             Source.Pull.GainAccessEvent(e);
-        }
-
-        private void OnGiveWitch(Message m)
-        {
-            // Extract data
-            var id = m.GetInteger(0);
-
-            // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, Source);
-
-            // Fire the event.
-            var e = new PlayerEventArgs(subject, Source, m);
-
-            Source.Pull.WitchEvent(e);
-        }
-
-        private void OnGiveWizard(Message m)
-        {
-            // Extract data
-            var id = m.GetInteger(0);
-
-            // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, Source);
-
-            // Fire the event.
-            var e = new PlayerEventArgs(subject, Source, m);
-
-            Source.Pull.WizardEvent(e);
-        }
-
-        private void OnGiveWizard2(Message m)
-        {
-            // Extract data
-            var id = m.GetInteger(0);
-
-            // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, Source);
-
-            // Fire the event.
-            var e = new PlayerEventArgs(subject, Source, m);
-
-            Source.Pull.RedWizardEvent(e);
         }
 
         private void OnGod(Message m)

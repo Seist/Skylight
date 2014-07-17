@@ -69,6 +69,7 @@
     <Compile Include="ClearMap.cs" />
     <Compile Include="CoinObject.cs" />
     <Compile Include="FaceChange.cs" />
+    <Compile Include="GiveWizard2.cs" />
     <Compile Include="Grinch.cs" />
     <Compile Include="In.cs" />
     <Compile Include="Miscellaneous\PotionIds.cs" />
@@ -91,6 +92,8 @@
     <Compile Include="Blocks\TextBlock.cs" />
     <Compile Include="Miscellaneous\Tools.cs" />
     <Compile Include="Room.cs" />
+    <Compile Include="Witch.cs" />
+    <Compile Include="Wizard.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\Settings.settings">
