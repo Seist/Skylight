@@ -78,6 +78,7 @@ namespace Skylight
         private readonly Chat _chat;
         private readonly ChatOld _chatOld;
         private readonly Save _save;
+        private readonly Show _show;
 
         public In()
         {
@@ -111,6 +112,7 @@ namespace Skylight
             _chat = new Chat(this);
             _chatOld = new ChatOld(this);
             _save = new Save(this);
+            _show = new Show(this);
         }
 
         internal Bot Bot { get; set; }
@@ -269,6 +271,11 @@ namespace Skylight
             get { return _save; }
         }
 
+        public Show Show
+        {
+            get { return _show; }
+        }
+
         /// <summary>
         ///     All of the delegates for BlockEvent. These fire when events occur
         ///     (such as when a block was added or updated).
@@ -308,8 +315,7 @@ namespace Skylight
         ///     the room's state (such as global clear, potion toggling and saved) for just
         ///     a few examples.
         /// </summary>
-        public event RoomEvent InitEvent = delegate { } , ResetEvent = delegate { } , ShowEvent = delegate { } ,
-            UpdateEvent = delegate { } ,
+        public event RoomEvent InitEvent = delegate { } , ResetEvent = delegate { } , UpdateEvent = delegate { } ,
             UpdateMetaEvent = delegate { };
 
         internal void OnMessage(object sender, Message m)
@@ -469,7 +475,7 @@ namespace Skylight
                                 break;
 
                             case "show":
-                                OnShow();
+                                Show.OnShow();
                                 break;
 
                             case "tele":
@@ -683,18 +689,6 @@ namespace Skylight
             var e = new BlockEventArgs(b, Source);
 
             Source.Pull.PortalBlockEvent(e);
-        }
-
-        private void OnShow()
-        {
-            // Like with "hide", there is data but it is irrelevant.
-            // Update relevant objects.
-            Source.TimeDoorsVisible = true;
-
-            // Fire the event.
-            var e = new RoomEventArgs(Source);
-
-            Source.Pull.ShowEvent(e);
         }
 
         private void OnTeleport(Message m)

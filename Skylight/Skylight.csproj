@@ -106,6 +106,7 @@
     <Compile Include="ResetWorld.cs" />
     <Compile Include="Room.cs" />
     <Compile Include="Save.cs" />
+    <Compile Include="Show.cs" />
     <Compile Include="SignBlock.cs" />
     <Compile Include="Trophy.cs" />
     <Compile Include="Witch.cs" />
