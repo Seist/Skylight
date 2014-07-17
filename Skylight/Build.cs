@@ -94,7 +94,7 @@ namespace Skylight
 
             foreach (var b in tempList)
             {
-                BuildBlock(b);
+                BuildBlock(b); // this line has problems but I fixed it in a weird way.
             }
         }
     }
