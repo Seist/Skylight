@@ -58,6 +58,7 @@
     <Compile Include="Arguments\PlayerEventArgs.cs" />
     <Compile Include="Arguments\RoomEventArgs.cs" />
     <Compile Include="Autotext.cs" />
+    <Compile Include="BlockChanged.cs" />
     <Compile Include="Blocks\BlockIds.cs" />
     <Compile Include="Blocks\RoomPortalBlock.cs" />
     <Compile Include="Bot.cs" />

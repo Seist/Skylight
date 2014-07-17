@@ -46,37 +46,19 @@ namespace Skylight
         private readonly Stopwatch _playerPhysicsStopwatch = new Stopwatch();
         private readonly List<Message> _prematureMessages = new List<Message>();
 
-        /// <summary>
-        ///     These IDs do not have an associated Player id when sent.
-        /// </summary>
-        private readonly List<int> _specialBlockIds = new List<int>
-        {
-            BlockIds.Action.Switches.Switch,
-            BlockIds.Action.Tools.Trophy,
-            BlockIds.Action.Doors.Time,
-            BlockIds.Action.Gates.Time,
-            BlockIds.Action.Doors.Switch,
-            BlockIds.Action.Gates.Switch,
-            BlockIds.Action.Doors.Zombie,
-            BlockIds.Action.Gates.Zombie,
-            BlockIds.Blocks.Secrets.NONSOLID,
-            BlockIds.Action.Tools.Spawn,
-            BlockIds.Action.Cake.CAKE,
-            BlockIds.Action.Tools.Checkpoint,
-            BlockIds.Action.Hazards.Fire
-        };
-
         private Message _initMessage;
         private Thread _playerPhysicsThread;
         private readonly Add _add;
         private readonly Potions _potions;
         private readonly Autotext _autotext;
+        private readonly BlockChanged _blockChanged;
 
         public In()
         {
             _add = new Add(this);
             _potions = new Potions(this);
             _autotext = new Autotext(this);
+            _blockChanged = new BlockChanged(this);
         }
 
         internal Bot Bot { get; set; }
@@ -100,14 +82,17 @@ namespace Skylight
             get { return _autotext; }
         }
 
+        public BlockChanged BlockChanged
+        {
+            get { return _blockChanged; }
+        }
+
         /// <summary>
         ///     All of the delegates for BlockEvent. These fire when events occur
         ///     (such as when a block was added or updated).
         /// </summary>
         public event BlockEvent
-            CoinBlockEvent = delegate { } ,
-            NormalBlockEvent = delegate { } ,
-            PortalBlockEvent = delegate { } ,
+            CoinBlockEvent = delegate { } , PortalBlockEvent = delegate { } ,
             RoomPortalBlockEvent = delegate { } ,
             RotateEvent = delegate { } ,
             SignBlockEvent = delegate { };
@@ -238,7 +223,7 @@ namespace Skylight
                                 break;
 
                             case "b":
-                                OnBlock(m);
+                                BlockChanged.OnBlock(m);
                                 break;
 
                             case "bc":
@@ -429,33 +414,6 @@ namespace Skylight
             var e = new PlayerEventArgs(Bot, Source, m);
 
             Source.Pull.GainAccessEvent(e);
-        }
-
-        private void OnBlock(Message m)
-        {
-            // Extract data.
-            int z = m.GetInteger(0),
-                x = m.GetInteger(1),
-                y = m.GetInteger(2),
-                blockId = m.GetInteger(3),
-                playerId = m.GetInteger(4);
-
-            // Update relevant objects.
-            var b = new Block(blockId, x, y, z);
-
-            if (!_specialBlockIds.Contains(blockId))
-            {
-                var subject = Tools.GetPlayerById(playerId, Source);
-
-                b.Placer = subject;
-            }
-
-            Source.Map[x, y, z] = b;
-
-            // Fire the event.
-            var e = new BlockEventArgs(b, Source);
-
-            Source.Pull.NormalBlockEvent(e);
         }
 
         private void OnAddCoinDoorOrGate(Message m)
