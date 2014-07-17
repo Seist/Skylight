@@ -908,7 +908,7 @@ namespace Skylight
 
             // Update relevant objects.
             Player subject = Tools.GetPlayerById(id, Source);
-            subject.XpLevel++;
+            subject.XpLevel = level;
 
             // Fire the event.
             var e = new PlayerEventArgs(subject, Source, m);
