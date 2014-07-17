@@ -71,6 +71,7 @@ namespace Skylight
         private readonly LeftWorld _leftWorld;
         private readonly LevelChange _levelChange;
         private readonly Move _move;
+        private readonly Moderator _moderator;
 
         public In()
         {
@@ -97,6 +98,7 @@ namespace Skylight
             _leftWorld = new LeftWorld(this);
             _levelChange = new LevelChange(this);
             _move = new Move(this);
+            _moderator = new Moderator(this);
         }
 
         internal Bot Bot { get; set; }
@@ -220,6 +222,11 @@ namespace Skylight
             get { return _move; }
         }
 
+        public Moderator Moderator
+        {
+            get { return _moderator; }
+        }
+
         /// <summary>
         ///     All of the delegates for BlockEvent. These fire when events occur
         ///     (such as when a block was added or updated).
@@ -253,8 +260,7 @@ namespace Skylight
         /// </summary>
         public event PlayerEvent
             AddEvent = delegate { } , DeathEvent = delegate { } , GainAccessEvent = delegate { } , InfoEvent = delegate { } , LoseAccessEvent = delegate { } ,
-            MagicCoinEvent = delegate { } ,
-            ModModeEvent = delegate { } , PotionEvent = delegate { } , TeleportEvent = delegate { } ,
+            MagicCoinEvent = delegate { } , PotionEvent = delegate { } , TeleportEvent = delegate { } ,
             TickEvent = delegate { } , WootEvent = delegate { };
 
         /// <summary>
@@ -394,7 +400,7 @@ namespace Skylight
                                 break;
 
                             case "mod":
-                                OnMod(m);
+                                Moderator.OnMod(m);
                                 break;
 
                             case "p":
@@ -617,24 +623,6 @@ namespace Skylight
             var e = new PlayerEventArgs(Bot, Source, m);
 
             Source.Pull.LoseAccessEvent(e);
-        }
-
-        private void OnMod(Message m)
-        {
-            // Extract data.
-            var isMod = m.GetBoolean(1);
-
-            var id = m.GetInteger(0);
-
-            // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, Source);
-
-            subject.IsMod = isMod;
-
-            // Fire the event.
-            var e = new PlayerEventArgs(subject, Source, m);
-
-            Source.Pull.ModModeEvent(e);
         }
 
         private void OnP(Message m)
