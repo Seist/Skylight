@@ -5,6 +5,7 @@
     <IgnoreExtensions>
     </IgnoreExtensions>
     <IgnoreFiles>
+      <IgnoreFile>.\Skylight.Static\Tools.cs</IgnoreFile>
     </IgnoreFiles>
   </SpellChecker>
 <HelpConfigurations selected="HelpFile">
