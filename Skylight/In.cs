@@ -291,8 +291,6 @@ namespace Skylight
             get { return _save; }
         }
 
-        
-
         public Show Show
         {
             get { return _show; }
@@ -353,7 +351,7 @@ namespace Skylight
         ///     (such as when a block was added or updated).
         /// </summary>
         public event BlockEvent
-            PortalBlockEvent = delegate { };
+            CoinBlockEvent = delegate { } , PortalBlockEvent = delegate { };
 
         /// <summary>
         ///     When a sign block is placed in the world.
@@ -480,7 +478,7 @@ namespace Skylight
                                 break;
 
                             case "kill":
-                                OnKill1.OnKillPlayer(m);
+                                OnKill1.OnKill(m);
                                 break;
 
                             case "ks":

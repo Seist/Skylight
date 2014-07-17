@@ -12,8 +12,8 @@ namespace Skylight
         {
             _in = @in;
         }
-        public event In.RoomEvent KillEvent = delegate { };
-        public void OnKillPlayer(Message m)
+
+        public void OnKill(Message m)
         {
             // Extract data.
             int id = m.GetInteger(0);
@@ -26,12 +26,7 @@ namespace Skylight
             // Fire the event.
             var e = new PlayerEventArgs(subject, _in.Source, m);
 
-            _in.Source.Pull.OnKill1.DeathEvent(e);
-        }
-
-        private void DeathEvent(PlayerEventArgs playerEventArgs)
-        {
-            throw new System.NotImplementedException();
+            _in.Source.Pull.Tele.DeathEvent(e);
         }
     }
 }
