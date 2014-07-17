@@ -324,8 +324,8 @@ namespace Skylight.Miscellaneous
                     var roomDestination = "";
 
                     // Get the variables that are unique to the current block
-                    if (blockId == BlockIds.Action.Portals.NORMAL ||
-                        blockId == BlockIds.Action.Portals.INVISIBLE)
+                    if (blockId == BlockIds.Action.Portals.Normal ||
+                        blockId == BlockIds.Action.Portals.Invisible)
                     {
                         rotation = m.GetInteger(messageIndex);
                         messageIndex++;
@@ -337,41 +337,41 @@ namespace Skylight.Miscellaneous
                         messageIndex++;
 
                         isVisible = true;
-                        if (blockId == BlockIds.Action.Portals.INVISIBLE)
+                        if (blockId == BlockIds.Action.Portals.Invisible)
                         {
                             isVisible = false;
                         }
                     }
-                    else if (blockId == BlockIds.Action.Portals.WORLD)
+                    else if (blockId == BlockIds.Action.Portals.World)
                     {
                         roomDestination = m.GetString(messageIndex);
                         messageIndex++;
                     }
                     else if (blockId == BlockIds.Action.Doors.Coin ||
-                             blockId == BlockIds.Action.Gates.COIN)
+                             blockId == BlockIds.Action.Gates.Coin)
                     {
                         coins = m.GetInteger(messageIndex);
                         messageIndex++;
 
-                        isGate = blockId == BlockIds.Action.Gates.COIN;
+                        isGate = blockId == BlockIds.Action.Gates.Coin;
                     }
-                    else if (blockId == BlockIds.Action.Music.PERCUSSION)
+                    else if (blockId == BlockIds.Action.Music.Percussion)
                     {
                         type = m.GetInteger(messageIndex);
                         messageIndex++;
                     }
-                    else if (blockId == BlockIds.Action.Music.PIANO)
+                    else if (blockId == BlockIds.Action.Music.Piano)
                     {
                         note = m.GetInteger(messageIndex);
                         messageIndex++;
                     }
-                    else if (blockId == BlockIds.Decorative.SciFi2013.BLUEBEND ||
-                             blockId == BlockIds.Decorative.SciFi2013.BLUESTRAIGHT ||
-                             blockId == BlockIds.Decorative.SciFi2013.GREENBEND ||
-                             blockId == BlockIds.Decorative.SciFi2013.GREENSTRAIGHT ||
-                             blockId == BlockIds.Decorative.SciFi2013.ORANGEBEND ||
-                             blockId == BlockIds.Decorative.SciFi2013.ORANGESTRAIGHT ||
-                             blockId == BlockIds.Action.Hazards.SPIKE)
+                    else if (blockId == BlockIds.Decorative.SciFi2013.Bluebend ||
+                             blockId == BlockIds.Decorative.SciFi2013.Bluestraight ||
+                             blockId == BlockIds.Decorative.SciFi2013.Greenbend ||
+                             blockId == BlockIds.Decorative.SciFi2013.Greenstraight ||
+                             blockId == BlockIds.Decorative.SciFi2013.Orangebend ||
+                             blockId == BlockIds.Decorative.SciFi2013.Orangestraight ||
+                             blockId == BlockIds.Action.Hazards.Spike)
                     {
                         rotation = m.GetInteger(messageIndex);
                         messageIndex++;
@@ -388,8 +388,8 @@ namespace Skylight.Miscellaneous
 
                         // Ascertain the block from the ID.
                         // Add block accordingly.
-                        if (blockId == BlockIds.Action.Portals.NORMAL ||
-                            blockId == BlockIds.Action.Portals.INVISIBLE)
+                        if (blockId == BlockIds.Action.Portals.Normal ||
+                            blockId == BlockIds.Action.Portals.Invisible)
                         {
                             list.Add(new PortalBlock(
                                 x,
@@ -399,7 +399,7 @@ namespace Skylight.Miscellaneous
                                 destination,
                                 isVisible));
                         }
-                        else if (blockId == BlockIds.Action.Portals.WORLD)
+                        else if (blockId == BlockIds.Action.Portals.World)
                         {
                             list.Add(new RoomPortalBlock(
                                 x,
@@ -407,7 +407,7 @@ namespace Skylight.Miscellaneous
                                 roomDestination));
                         }
                         else if (blockId == BlockIds.Action.Doors.Coin ||
-                                 blockId == BlockIds.Action.Gates.COIN)
+                                 blockId == BlockIds.Action.Gates.Coin)
                         {
                             list.Add(new CoinBlock(
                                 x,
@@ -415,27 +415,27 @@ namespace Skylight.Miscellaneous
                                 coins,
                                 isGate));
                         }
-                        else if (blockId == BlockIds.Action.Music.PERCUSSION)
+                        else if (blockId == BlockIds.Action.Music.Percussion)
                         {
                             list.Add(new PercussionBlock(
                                 x,
                                 y,
                                 type));
                         }
-                        else if (blockId == BlockIds.Action.Music.PIANO)
+                        else if (blockId == BlockIds.Action.Music.Piano)
                         {
                             list.Add(new PianoBlock(
                                 x,
                                 y,
                                 note));
                         }
-                        else if (blockId == BlockIds.Decorative.SciFi2013.BLUEBEND ||
-                                 blockId == BlockIds.Decorative.SciFi2013.BLUESTRAIGHT ||
-                                 blockId == BlockIds.Decorative.SciFi2013.GREENBEND ||
-                                 blockId == BlockIds.Decorative.SciFi2013.GREENSTRAIGHT ||
-                                 blockId == BlockIds.Decorative.SciFi2013.ORANGEBEND ||
-                                 blockId == BlockIds.Decorative.SciFi2013.ORANGESTRAIGHT ||
-                                 blockId == BlockIds.Action.Hazards.SPIKE)
+                        else if (blockId == BlockIds.Decorative.SciFi2013.Bluebend ||
+                                 blockId == BlockIds.Decorative.SciFi2013.Bluestraight ||
+                                 blockId == BlockIds.Decorative.SciFi2013.Greenbend ||
+                                 blockId == BlockIds.Decorative.SciFi2013.Greenstraight ||
+                                 blockId == BlockIds.Decorative.SciFi2013.Orangebend ||
+                                 blockId == BlockIds.Decorative.SciFi2013.Orangestraight ||
+                                 blockId == BlockIds.Action.Hazards.Spike)
                         {
                             list.Add(new Block(
                                 blockId,
@@ -474,9 +474,9 @@ namespace Skylight.Miscellaneous
         {
             if (visible)
             {
-                return BlockIds.Action.Portals.NORMAL;
+                return BlockIds.Action.Portals.Normal;
             }
-            return BlockIds.Action.Portals.INVISIBLE;
+            return BlockIds.Action.Portals.Invisible;
         }
 
         // Return the correct coin ID based based on whether or not the block is gate or door
@@ -489,7 +489,7 @@ namespace Skylight.Miscellaneous
         {
             if (isGate)
             {
-                return BlockIds.Action.Gates.COIN;
+                return BlockIds.Action.Gates.Coin;
             }
             return BlockIds.Action.Doors.Coin;
         }

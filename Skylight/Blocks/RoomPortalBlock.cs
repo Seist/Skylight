@@ -27,7 +27,7 @@ namespace Skylight.Blocks
         public RoomPortalBlock(
             int x,
             int y,
-            string portalDestination) : base(BlockIds.Action.Portals.WORLD, x, y, 0)
+            string portalDestination) : base(BlockIds.Action.Portals.World, x, y, 0)
         {
             PortalDestination = portalDestination;
         }

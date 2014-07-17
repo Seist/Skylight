@@ -33,10 +33,10 @@ namespace Skylight.Physics
         {
             switch (param1)
             {
-                case BlockIds.Action.Ladders.LADDER:
-                case BlockIds.Action.Ladders.CHAIN:
-                case BlockIds.Action.Ladders.HORIZONTALVINE:
-                case BlockIds.Action.Ladders.VERTICALVINE:
+                case BlockIds.Action.Ladders.Ladder:
+                case BlockIds.Action.Ladders.Chain:
+                case BlockIds.Action.Ladders.Horizontalvine:
+                case BlockIds.Action.Ladders.Verticalvine:
                 {
                     return true;
                 }
@@ -67,12 +67,12 @@ namespace Skylight.Physics
         {
             switch (param1)
             {
-                case BlockIds.Decorative.SciFi2013.BLUESTRAIGHT:
-                case BlockIds.Decorative.SciFi2013.BLUEBEND:
-                case BlockIds.Decorative.SciFi2013.GREENSTRAIGHT:
-                case BlockIds.Decorative.SciFi2013.GREENBEND:
-                case BlockIds.Decorative.SciFi2013.ORANGESTRAIGHT:
-                case BlockIds.Decorative.SciFi2013.ORANGEBEND:
+                case BlockIds.Decorative.SciFi2013.Bluestraight:
+                case BlockIds.Decorative.SciFi2013.Bluebend:
+                case BlockIds.Decorative.SciFi2013.Greenstraight:
+                case BlockIds.Decorative.SciFi2013.Greenbend:
+                case BlockIds.Decorative.SciFi2013.Orangestraight:
+                case BlockIds.Decorative.SciFi2013.Orangebend:
                 {
                     return true;
                 }

@@ -56,7 +56,7 @@ namespace Skylight.Blocks
         public PianoBlock(
             int x,
             int y,
-            int key) : base(BlockIds.Action.Music.PIANO, x, y, 0)
+            int key) : base(BlockIds.Action.Music.Piano, x, y, 0)
         {
             PianoId = key;
         }

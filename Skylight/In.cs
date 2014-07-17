@@ -50,19 +50,19 @@ namespace Skylight
         /// </summary>
         private readonly List<int> _specialBlockIds = new List<int>
         {
-            BlockIds.Action.Switches.SWITCH,
-            BlockIds.Action.Tools.TROPHY,
+            BlockIds.Action.Switches.Switch,
+            BlockIds.Action.Tools.Trophy,
             BlockIds.Action.Doors.Time,
-            BlockIds.Action.Gates.TIME,
+            BlockIds.Action.Gates.Time,
             BlockIds.Action.Doors.Switch,
-            BlockIds.Action.Gates.SWITCH,
+            BlockIds.Action.Gates.Switch,
             BlockIds.Action.Doors.Zombie,
-            BlockIds.Action.Gates.ZOMBIE,
+            BlockIds.Action.Gates.Zombie,
             BlockIds.Blocks.Secrets.NONSOLID,
-            BlockIds.Action.Tools.SPAWN,
+            BlockIds.Action.Tools.Spawn,
             BlockIds.Action.Cake.CAKE,
-            BlockIds.Action.Tools.CHECKPOINT,
-            BlockIds.Action.Hazards.FIRE
+            BlockIds.Action.Tools.Checkpoint,
+            BlockIds.Action.Hazards.Fire
         };
 
         private Message _initMessage;
@@ -509,7 +509,7 @@ namespace Skylight
             // Update relevant objects.
             var b = new CoinBlock(x, y, coinsRequired, false);
 
-            if (id == BlockIds.Action.Gates.COIN)
+            if (id == BlockIds.Action.Gates.Coin)
             {
                 b.IsGate = true;
             }
@@ -553,11 +553,11 @@ namespace Skylight
             // Update relevant objects.
             Block b = null;
 
-            if (id == BlockIds.Action.Music.PERCUSSION)
+            if (id == BlockIds.Action.Music.Percussion)
             {
                 b = new PercussionBlock(x, y, note);
             }
-            else if (id == BlockIds.Action.Music.PIANO)
+            else if (id == BlockIds.Action.Music.Piano)
             {
                 b = new PianoBlock(x, y, note);
             }
@@ -1047,7 +1047,7 @@ namespace Skylight
                 portalDestination = m.GetInteger(5);
 
             // Update relevant objects.
-            var isVisible = blockId == BlockIds.Action.Portals.NORMAL;
+            var isVisible = blockId == BlockIds.Action.Portals.Normal;
 
             var b = new PortalBlock(x, y, rotation, portalId, portalDestination, isVisible);
 

@@ -112,14 +112,14 @@ namespace Skylight.Blocks
                 /// The red
                 /// </summary>
                 public const int
-                    RED = 26,
-                    GREEN = 27,
-                    BLUE = 28,
-                    COIN = 165,
-                    TIME = 157,
-                    SWITCH = 185,
-                    CLUB = 201,
-                    ZOMBIE = 206;
+                    Red = 26,
+                    Green = 27,
+                    Blue = 28,
+                    Coin = 165,
+                    Time = 157,
+                    Switch = 185,
+                    Club = 201,
+                    Zombie = 206;
             }
 
             /// <summary>
@@ -131,11 +131,11 @@ namespace Skylight.Blocks
                 /// Down
                 /// </summary>
                 public const int
-                    DOWN = 0,
-                    LEFT = 1,
-                    UP = 2,
-                    RIGHT = 3,
-                    ZERO = 4;
+                    Down = 0,
+                    Left = 1,
+                    Up = 2,
+                    Right = 3,
+                    Zero = 4;
             }
 
             /// <summary>
@@ -147,8 +147,8 @@ namespace Skylight.Blocks
                 /// The spike
                 /// </summary>
                 public const int
-                    SPIKE = 361,
-                    FIRE = 368;
+                    Spike = 361,
+                    Fire = 368;
             }
 
             /// <summary>
@@ -160,9 +160,9 @@ namespace Skylight.Blocks
                 /// The red
                 /// </summary>
                 public const int
-                    RED = 6,
-                    GREEN = 7,
-                    BLUE = 8;
+                    Red = 6,
+                    Green = 7,
+                    Blue = 8;
             }
 
             /// <summary>
@@ -174,10 +174,10 @@ namespace Skylight.Blocks
                 /// The chain
                 /// </summary>
                 public const int
-                    CHAIN = 118,
-                    LADDER = 120,
-                    VERTICALVINE = 98,
-                    HORIZONTALVINE = 99;
+                    Chain = 118,
+                    Ladder = 120,
+                    Verticalvine = 98,
+                    Horizontalvine = 99;
             }
 
             /// <summary>
@@ -189,8 +189,8 @@ namespace Skylight.Blocks
                 /// The water
                 /// </summary>
                 public const int
-                    WATER = 119,
-                    MUD = 173;
+                    Water = 119,
+                    Mud = 173;
             }
 
             /// <summary>
@@ -202,8 +202,8 @@ namespace Skylight.Blocks
                 /// The piano
                 /// </summary>
                 public const int
-                    PIANO = 77,
-                    PERCUSSION = 83;
+                    Piano = 77,
+                    Percussion = 83;
             }
 
             /// <summary>
@@ -215,21 +215,23 @@ namespace Skylight.Blocks
                 /// The invisible
                 /// </summary>
                 public const int
-                    INVISIBLE = 381,
-                    NORMAL = 242,
-                    WORLD = 374;
+                    Invisible = 381,
+                    Normal = 242,
+                    World = 374;
             }
 
             /// <summary>
             /// Class SIGN.
             /// </summary>
-            public static class SIGN
+            public static class Sign
             {
                 /// <summary>
                 /// The textsign
                 /// </summary>
                 public const int
-                    TEXTSIGN = 385;
+                    
+                    
+                    Textsign = 385;
             }
 
             /// <summary>
@@ -241,7 +243,7 @@ namespace Skylight.Blocks
                 /// The switch
                 /// </summary>
                 public const int
-                    SWITCH = 113;
+                    Switch = 113;
             }
 
             /// <summary>
@@ -253,9 +255,9 @@ namespace Skylight.Blocks
                 /// The spawn
                 /// </summary>
                 public const int
-                    SPAWN = 255,
-                    CHECKPOINT = 360,
-                    TROPHY = 121;
+                    Spawn = 255,
+                    Checkpoint = 360,
+                    Trophy = 121;
             }
         }
 
@@ -267,7 +269,8 @@ namespace Skylight.Blocks
             /// <summary>
             /// The layer
             /// </summary>
-            public const int LAYER = 1;
+            public const int 
+                Layer = 1;
 
             /// <summary>
             /// Class Basic.
@@ -278,13 +281,13 @@ namespace Skylight.Blocks
                 /// The gray
                 /// </summary>
                 public const int
-                    GRAY = 500,
-                    BLUE = 501,
-                    PURPLE = 502,
-                    RED = 503,
-                    YELLOW = 504,
-                    GREEN = 505,
-                    CYAN = 506;
+                    Gray = 500,
+                    Blue = 501,
+                    Purple = 502,
+                    Red = 503,
+                    Yellow = 504,
+                    Green = 505,
+                    Cyan = 506;
             }
 
             /// <summary>
@@ -296,12 +299,12 @@ namespace Skylight.Blocks
                 /// The orange
                 /// </summary>
                 public const int
-                    ORANGE = 507,
-                    TEAL = 508,
-                    PURPLE = 509,
-                    GREEN = 510,
-                    RED = 511,
-                    TAN = 512;
+                    Orange = 507,
+                    Teal = 508,
+                    Purple = 509,
+                    Green = 510,
+                    Red = 511,
+                    Tan = 512;
             }
 
             /// <summary>
@@ -313,8 +316,8 @@ namespace Skylight.Blocks
                 /// The pink
                 /// </summary>
                 public const int
-                    PINK = 539,
-                    BLUE = 540;
+                    Pink = 539,
+                    Blue = 540;
             }
 
             /// <summary>
@@ -326,12 +329,12 @@ namespace Skylight.Blocks
                 /// The red
                 /// </summary>
                 public const int
-                    RED = 533,
-                    TAN = 534,
-                    GOLD = 535,
-                    LIME = 536,
-                    BLUE = 537,
-                    GRAY = 538;
+                    Red = 533,
+                    Tan = 534,
+                    Gold = 535,
+                    Lime = 536,
+                    Blue = 537,
+                    Gray = 538;
             }
 
             /// <summary>
@@ -343,11 +346,11 @@ namespace Skylight.Blocks
                 /// The redstripe
                 /// </summary>
                 public const int
-                    REDSTRIPE = 545,
-                    BLUESTRIPE = 546,
-                    PINK = 547,
-                    CHECKER = 548,
-                    GREEN = 549;
+                    Redstripe = 545,
+                    Bluestripe = 546,
+                    Pink = 547,
+                    Checker = 548,
+                    Green = 549;
             }
 
             /// <summary>
@@ -359,7 +362,7 @@ namespace Skylight.Blocks
                 /// The bricks
                 /// </summary>
                 public const int
-                    BRICKS = 599;
+                    Bricks = 599;
             }
 
             /// <summary>
@@ -371,13 +374,13 @@ namespace Skylight.Blocks
                 /// The gray
                 /// </summary>
                 public const int
-                    GRAY = 513,
-                    BLUE = 514,
-                    PURPLE = 515,
-                    RED = 516,
-                    YELLOW = 517,
-                    GREEN = 518,
-                    CYAN = 519;
+                    Gray = 513,
+                    Blue = 514,
+                    Purple = 515,
+                    Red = 516,
+                    Yellow = 517,
+                    Green = 518,
+                    Cyan = 519;
             }
 
             /// <summary>
@@ -389,9 +392,9 @@ namespace Skylight.Blocks
                 /// The yellowpattern
                 /// </summary>
                 public const int
-                    YELLOWPATTERN = 624,
-                    GREENPATTERN = 625,
-                    BLUEPATTERN = 626;
+                    Yellowpattern = 624,
+                    Greenpattern = 625,
+                    Bluepattern = 626;
             }
 
             /// <summary>
@@ -403,12 +406,12 @@ namespace Skylight.Blocks
                 /// The brownplank
                 /// </summary>
                 public const int
-                    BROWNPLANK = 568,
-                    DARKBROWNPLANK = 569,
-                    REDPLANK = 570,
-                    DARKREDPLANK = 571,
-                    BLUEPLANK = 572,
-                    DARKBLUEPLANK = 573;
+                    Brownplank = 568,
+                    Darkbrownplank = 569,
+                    Redplank = 570,
+                    Darkredplank = 571,
+                    Blueplank = 572,
+                    Darkblueplank = 573;
             }
 
             /// <summary>
@@ -420,13 +423,13 @@ namespace Skylight.Blocks
                 /// The gray
                 /// </summary>
                 public const int
-                    GRAY = 520,
-                    BLUE = 521,
-                    PURPLE = 522,
-                    RED = 523,
-                    YELLOW = 524,
-                    GREEN = 525,
-                    CYAN = 526;
+                    Gray = 520,
+                    Blue = 521,
+                    Purple = 522,
+                    Red = 523,
+                    Yellow = 524,
+                    Green = 525,
+                    Cyan = 526;
             }
 
             /// <summary>
@@ -438,10 +441,10 @@ namespace Skylight.Blocks
                 /// The wall
                 /// </summary>
                 public const int
-                    WALL = 541,
-                    BRICK = 542,
-                    LEFTCORNERSTAIR = 543,
-                    RIGHTCORNERSTAIR = 544;
+                    Wall = 541,
+                    Brick = 542,
+                    Leftcornerstair = 543,
+                    Rightcornerstair = 544;
             }
 
             /// <summary>
@@ -453,9 +456,9 @@ namespace Skylight.Blocks
                 /// The brightplants
                 /// </summary>
                 public const int
-                    BRIGHTPLANTS = 621,
-                    PLANTS = 622,
-                    DARKPLANTS = 623;
+                    Brightplants = 621,
+                    Plants = 622,
+                    Darkplants = 623;
             }
 
             /// <summary>
@@ -467,10 +470,10 @@ namespace Skylight.Blocks
                 /// The gray
                 /// </summary>
                 public const int
-                    GRAY = 617,
-                    RED = 618,
-                    BLUE = 619,
-                    YELLOW = 620;
+                    Gray = 617,
+                    Red = 618,
+                    Blue = 619,
+                    Yellow = 620;
             }
 
             /// <summary>
@@ -482,9 +485,9 @@ namespace Skylight.Blocks
                 /// The yellow
                 /// </summary>
                 public const int
-                    YELLOW = 627,
-                    ORANGE = 628,
-                    RED = 629;
+                    Yellow = 627,
+                    Orange = 628,
+                    Red = 629;
             }
 
             /// <summary>
@@ -496,9 +499,9 @@ namespace Skylight.Blocks
                 /// The blue
                 /// </summary>
                 public const int
-                    BLUE = 605,
-                    LITTLESTAR = 606,
-                    BIGSTAR = 607;
+                    Blue = 605,
+                    Littlestar = 606,
+                    Bigstar = 607;
             }
 
             /// <summary>
@@ -510,7 +513,7 @@ namespace Skylight.Blocks
                 /// The planks
                 /// </summary>
                 public const int
-                    PLANKS = 600;
+                    Planks = 600;
             }
 
             /// <summary>
@@ -522,8 +525,8 @@ namespace Skylight.Blocks
                 /// The lightfur
                 /// </summary>
                 public const int
-                    LIGHTFUR = 608,
-                    DARKFUR = 609;
+                    Lightfur = 608,
+                    Darkfur = 609;
             }
 
             /// <summary>
@@ -535,10 +538,10 @@ namespace Skylight.Blocks
                 /// The white
                 /// </summary>
                 public const int
-                    WHITE = 564,
-                    GRAY = 565,
-                    LIGHTSHINGLES = 566,
-                    DARKSHINGLES = 567;
+                    White = 564,
+                    Gray = 565,
+                    Lightshingles = 566,
+                    Darkshingles = 567;
             }
 
             /// <summary>
@@ -550,13 +553,13 @@ namespace Skylight.Blocks
                 /// The gray
                 /// </summary>
                 public const int
-                    GRAY = 610,
-                    BLUE = 611,
-                    PURPLE = 612,
-                    RED = 613,
-                    YELLOW = 614,
-                    GREEN = 615,
-                    CYAN = 616;
+                    Gray = 610,
+                    Blue = 611,
+                    Purple = 612,
+                    Red = 613,
+                    Yellow = 614,
+                    Green = 615,
+                    Cyan = 616;
             }
 
             /// <summary>
@@ -565,15 +568,15 @@ namespace Skylight.Blocks
             public static class Pastel
             {
                 /// <summary>
-                /// The orange
+                /// The pastel blocks
                 /// </summary>
                 public const int
-                    ORANGE = 527,
-                    GREEN = 528,
-                    YELLOW = 529,
-                    CYAN = 530,
-                    BLUE = 531,
-                    RED = 532;
+                    Orange = 527,
+                    Green = 528,
+                    Yellow = 529,
+                    Cyan = 530,
+                    Blue = 531,
+                    Red = 532;
             }
 
             /// <summary>
@@ -585,13 +588,13 @@ namespace Skylight.Blocks
                 /// The darkplank
                 /// </summary>
                 public const int
-                    DARKPLANK = 554,
-                    LIGHTPLANK = 555,
-                    PEGGEDPLANK = 556,
-                    LIFESAVER = 557,
-                    WINDOW = 558,
-                    CANNON = 559,
-                    FLAG = 560;
+                    Darkplank = 554,
+                    Lightplank = 555,
+                    Peggedplank = 556,
+                    Lifesaver = 557,
+                    Window = 558,
+                    Cannon = 559,
+                    Flag = 560;
             }
 
             /// <summary>
@@ -603,11 +606,11 @@ namespace Skylight.Blocks
                 /// The plain
                 /// </summary>
                 public const int
-                    PLAIN = 585,
-                    GRAYPLATE = 586,
-                    BLUEPLATE = 587,
-                    GREENPLATE = 588,
-                    ORANGEPLATE = 589;
+                    Plain = 585,
+                    Grayplate = 586,
+                    Blueplate = 587,
+                    Greenplate = 588,
+                    Orangeplate = 589;
             }
 
             /// <summary>
@@ -619,10 +622,10 @@ namespace Skylight.Blocks
                 /// The brick
                 /// </summary>
                 public const int
-                    BRICK = 550,
-                    WINDOW = 551,
-                    BARS = 552,
-                    BROKENBARS = 553;
+                    Brick = 550,
+                    Window = 551,
+                    Bars = 552,
+                    Brokenbars = 553;
             }
 
             /// <summary>
@@ -634,10 +637,10 @@ namespace Skylight.Blocks
                 /// The gray
                 /// </summary>
                 public const int
-                    GRAY = 601,
-                    BLUE = 602,
-                    GREEN = 603,
-                    RED = 604;
+                    Gray = 601,
+                    Blue = 602,
+                    Green = 603,
+                    Red = 604;
             }
 
             /// <summary>
@@ -649,12 +652,12 @@ namespace Skylight.Blocks
                 /// The white
                 /// </summary>
                 public const int
-                    WHITE = 579,
-                    GRAY = 580,
-                    YELLOW = 581,
-                    ORANGE = 582,
-                    TAN = 583,
-                    BROWN = 584;
+                    White = 579,
+                    Gray = 580,
+                    Yellow = 581,
+                    Orange = 582,
+                    Tan = 583,
+                    Brown = 584;
             }
 
             /// <summary>
@@ -666,7 +669,7 @@ namespace Skylight.Blocks
                 /// The tile
                 /// </summary>
                 public const int
-                    TILE = 637;
+                    Tile = 637;
             }
 
             /// <summary>
@@ -678,9 +681,9 @@ namespace Skylight.Blocks
                 /// The bluebrick
                 /// </summary>
                 public const int
-                    BLUEBRICK = 638,
-                    GREENBRICK = 639,
-                    REDBRICK = 640;
+                    Bluebrick = 638,
+                    Greenbrick = 639,
+                    Redbrick = 640;
             }
 
             /// <summary>
@@ -692,7 +695,7 @@ namespace Skylight.Blocks
                 /// The underbrush
                 /// </summary>
                 public const int
-                    UNDERBRUSH = 630;
+                    Underbrush = 630;
             }
 
             /// <summary>
@@ -704,15 +707,15 @@ namespace Skylight.Blocks
                 /// The thatchroof
                 /// </summary>
                 public const int
-                    THATCHROOF = 590,
-                    REDSHINGLES = 591,
-                    TEALSHINGLES = 592,
-                    VSUPPORT = 593,
-                    LEFTDIAGONALSUPPORT = 594,
-                    RIGHTDIAGONALSUPPORT = 595,
-                    HORIZONTALSUPPORT = 596,
-                    TSUPPORT = 597,
-                    CLOSEDWINDOW = 598;
+                    Thatchroof = 590,
+                    Redshingles = 591,
+                    Tealshingles = 592,
+                    Vsupport = 593,
+                    Leftdiagonalsupport = 594,
+                    Rightdiagonalsupport = 595,
+                    Horizontalsupport = 596,
+                    Tsupport = 597,
+                    Closedwindow = 598;
             }
 
             /// <summary>
@@ -721,11 +724,11 @@ namespace Skylight.Blocks
             public static class Vikings
             {
                 /// <summary>
-                /// The fullbrick
+                /// The vikings
                 /// </summary>
                 public const int
-                    FULLBRICK = 561,
-                    HALFBRICK = 562,
+                    Fullbrick = 561,
+                    Halfbrick = 562,
                     REDWHITESTRIPES = 563;
             }
 
@@ -738,11 +741,11 @@ namespace Skylight.Blocks
                 /// The plain
                 /// </summary>
                 public const int
-                    PLAIN = 574,
-                    SQUID = 575,
-                    FISH = 576,
-                    SEAHORSE = 577,
-                    SEAWEED = 578;
+                    Plain = 574,
+                    Squid = 575,
+                    Fish = 576,
+                    Seahorse = 577,
+                    Seaweed = 578;
             }
         }
 
@@ -765,14 +768,14 @@ namespace Skylight.Blocks
                 /// The gray
                 /// </summary>
                 public const int
-                    GRAY = 9,
-                    BLUE = 10,
-                    PURPLE = 11,
-                    RED = 12,
-                    YELLOW = 13,
-                    GREEN = 14,
-                    CYAN = 15,
-                    DARKGRAY = 182;
+                    Gray = 9,
+                    Blue = 10,
+                    Purple = 11,
+                    Red = 12,
+                    Yellow = 13,
+                    Green = 14,
+                    Cyan = 15,
+                    Darkgray = 182;
             }
 
             /// <summary>
@@ -784,12 +787,12 @@ namespace Skylight.Blocks
                 /// The purple
                 /// </summary>
                 public const int
-                    PURPLE = 37,
-                    GREEN = 38,
-                    BLUE = 39,
-                    RED = 40,
-                    GOLD = 41,
-                    GRAY = 42;
+                    Purple = 37,
+                    Green = 38,
+                    Blue = 39,
+                    Red = 40,
+                    Gold = 41,
+                    Gray = 42;
             }
 
             /// <summary>
@@ -801,12 +804,12 @@ namespace Skylight.Blocks
                 /// The orange
                 /// </summary>
                 public const int
-                    ORANGE = 16,
-                    TEAL = 17,
-                    PURPLE = 18,
-                    GREEN = 19,
-                    RED = 20,
-                    TAN = 21;
+                    Orange = 16,
+                    Teal = 17,
+                    Purple = 18,
+                    Green = 19,
+                    Red = 20,
+                    Tan = 21;
             }
 
             /// <summary>
@@ -818,10 +821,10 @@ namespace Skylight.Blocks
                 /// The pink
                 /// </summary>
                 public const int
-                    PINK = 60,
-                    CANDYCANE = 65,
-                    CANDYCORN = 66,
-                    GINGERBREAD = 67;
+                    Pink = 60,
+                    Candycane = 65,
+                    Candycorn = 66,
+                    Gingerbread = 67;
 
                 /// <summary>
                 /// Class Oneway.
@@ -838,19 +841,19 @@ namespace Skylight.Blocks
                     /// The red oneway block
                     /// </summary>
                     public const int
-                        RED = 62;
+                        Red = 62;
 
                     /// <summary>
                     /// The cyan oneway block
                     /// </summary>
                     public const int
-                        CYAN = 63;
+                        Cyan = 63;
 
                     /// <summary>
                     /// The green oneway block
                     /// </summary>
                     public const int
-                        GREEN = 64;
+                        Green = 64;
                 }
             }
 
@@ -863,8 +866,8 @@ namespace Skylight.Blocks
                 /// The brick
                 /// </summary>
                 public const int
-                    BRICK = 159,
-                    WINDOW = 160;
+                    Brick = 159,
+                    Window = 160;
 
                 /// <summary>
                 /// Class Oneway.
@@ -875,7 +878,7 @@ namespace Skylight.Blocks
                     /// The gray
                     /// </summary>
                     public const int
-                        GRAY = 158;
+                        Gray = 158;
                 }
             }
 
@@ -888,13 +891,13 @@ namespace Skylight.Blocks
                 /// The gray
                 /// </summary>
                 public const int
-                    GRAY = 186,
-                    BLUE = 187,
-                    PURPLE = 188,
-                    RED = 189,
-                    YELLOW = 190,
-                    GREEN = 191,
-                    CYAN = 192;
+                    Gray = 186,
+                    Blue = 187,
+                    Purple = 188,
+                    Red = 189,
+                    Yellow = 190,
+                    Green = 191,
+                    Cyan = 192;
             }
 
             /// <summary>
@@ -906,11 +909,11 @@ namespace Skylight.Blocks
                 /// The yellow
                 /// </summary>
                 public const int
-                    YELLOW = 78,
-                    WHITE = 79,
-                    RED = 80,
-                    BLUE = 81,
-                    GREEN = 82;
+                    Yellow = 78,
+                    White = 79,
+                    Red = 80,
+                    Blue = 81,
+                    Green = 82;
             }
 
             /// <summary>
@@ -922,7 +925,7 @@ namespace Skylight.Blocks
                 /// The white
                 /// </summary>
                 public const int
-                    WHITE = 143;
+                    White = 143;
             }
 
             /// <summary>
@@ -934,9 +937,9 @@ namespace Skylight.Blocks
                 /// The tan
                 /// </summary>
                 public const int
-                    TAN = 125,
-                    RED = 126,
-                    BLUE = 127;
+                    Tan = 125,
+                    Red = 126,
+                    Blue = 127;
 
                 /// <summary>
                 /// Class Oneway.
@@ -962,11 +965,11 @@ namespace Skylight.Blocks
                 /// The tancross
                 /// </summary>
                 public const int
-                    TANCROSS = 45,
-                    PLANKS = 46,
-                    SANDPAPER = 47,
-                    BROWNCROSS = 48,
-                    FISHSCALES = 49;
+                    Tancross = 45,
+                    Planks = 46,
+                    Sandpaper = 47,
+                    Browncross = 48,
+                    Fishscales = 49;
             }
 
             /// <summary>
@@ -978,7 +981,7 @@ namespace Skylight.Blocks
                 /// The hay
                 /// </summary>
                 public const int
-                    HAY = 212;
+                    Hay = 212;
             }
 
             /// <summary>
@@ -990,14 +993,14 @@ namespace Skylight.Blocks
                 /// The red
                 /// </summary>
                 public const int
-                    RED = 51,
-                    PURPLE = 52,
-                    INDIGO = 53,
-                    BLUE = 54,
-                    CYAN = 55,
-                    GREEN = 56,
-                    YELLOW = 57,
-                    ORANGE = 58;
+                    Red = 51,
+                    Purple = 52,
+                    Indigo = 53,
+                    Blue = 54,
+                    Cyan = 55,
+                    Green = 56,
+                    Yellow = 57,
+                    Orange = 58;
             }
 
             /// <summary>
@@ -1009,9 +1012,9 @@ namespace Skylight.Blocks
                 /// The left
                 /// </summary>
                 public const int
-                    LEFT = 34,
-                    MIDDLE = 35,
-                    RIGHT = 36;
+                    Left = 34,
+                    Middle = 35,
+                    Right = 36;
             }
 
             /// <summary>
@@ -1023,8 +1026,8 @@ namespace Skylight.Blocks
                 /// The blood
                 /// </summary>
                 public const int
-                    BLOOD = 68,
-                    BRICK = 69;
+                    Blood = 68,
+                    Brick = 69;
             }
 
             /// <summary>
@@ -1036,13 +1039,13 @@ namespace Skylight.Blocks
                 /// The crosssupport
                 /// </summary>
                 public const int
-                    CROSSSUPPORT = 147,
-                    ELEVATOR = 148,
-                    SUPPORT = 149,
-                    LEFTCONVEYOR = 150,
-                    SUPPORTEDMIDDLECONVEYOR = 151,
-                    MIDDLECONVEYOR = 152,
-                    RIGHTCONVEYOR = 153;
+                    Crosssupport = 147,
+                    Elevator = 148,
+                    Support = 149,
+                    Leftconveyor = 150,
+                    Supportedmiddleconveyor = 151,
+                    Middleconveyor = 152,
+                    Rightconveyor = 153;
 
                 /// <summary>
                 /// Class Oneway.
@@ -1053,7 +1056,7 @@ namespace Skylight.Blocks
                     /// The platform
                     /// </summary>
                     public const int
-                        PLATFORM = 146;
+                        Platform = 146;
                 }
             }
 
@@ -1066,12 +1069,12 @@ namespace Skylight.Blocks
                 /// The head
                 /// </summary>
                 public const int
-                    HEAD = 193,
-                    GRAY = 195,
-                    RED = 196,
-                    BLUE = 197,
-                    YELLOW = 198,
-                    POT = 199;
+                    Head = 193,
+                    Gray = 195,
+                    Red = 196,
+                    Blue = 197,
+                    Yellow = 198,
+                    Pot = 199;
 
                 /// <summary>
                 /// Class Oneway.
@@ -1095,9 +1098,9 @@ namespace Skylight.Blocks
                 /// The yellow
                 /// </summary>
                 public const int
-                    YELLOW = 202,
-                    ORANGE = 203,
-                    DARKORANGE = 204;
+                    Yellow = 202,
+                    Orange = 203,
+                    Darkorange = 204;
             }
 
             /// <summary>
@@ -1109,12 +1112,12 @@ namespace Skylight.Blocks
                 /// The sand
                 /// </summary>
                 public const int
-                    SAND = 176,
-                    PATTERN1 = 177,
-                    PATTERN2 = 178,
-                    PATTERN3 = 179,
-                    ROCK1 = 180,
-                    ROCK2 = 181;
+                    Sand = 176,
+                    Pattern1 = 177,
+                    Pattern2 = 178,
+                    Pattern3 = 179,
+                    Rock1 = 180,
+                    Rock2 = 181;
             }
 
             /// <summary>
@@ -1126,8 +1129,8 @@ namespace Skylight.Blocks
                 /// The anvil
                 /// </summary>
                 public const int
-                    ANVIL = 162,
-                    BARREL = 163;
+                    Anvil = 162,
+                    Barrel = 163;
             }
 
             /// <summary>
@@ -1139,9 +1142,9 @@ namespace Skylight.Blocks
                 /// The silver
                 /// </summary>
                 public const int
-                    SILVER = 29,
-                    BRONZE = 30,
-                    GOLD = 31;
+                    Silver = 29,
+                    Bronze = 30,
+                    Gold = 31;
             }
 
             /// <summary>
@@ -1153,13 +1156,13 @@ namespace Skylight.Blocks
                 /// The red
                 /// </summary>
                 public const int
-                    RED = 70,
-                    PINK = 71,
-                    BLUE = 72,
-                    CYAN = 73,
-                    GREEN = 74,
-                    YELLOW = 75,
-                    ORANGE = 76;
+                    Red = 70,
+                    Pink = 71,
+                    Blue = 72,
+                    Cyan = 73,
+                    Green = 74,
+                    Yellow = 75,
+                    Orange = 76;
             }
 
             /// <summary>
@@ -1176,8 +1179,8 @@ namespace Skylight.Blocks
                     /// The whiteshingles
                     /// </summary>
                     public const int
-                        WHITESHINGLES = 96,
-                        GRAYSHINGLES = 97;
+                        Whiteshingles = 96,
+                        Grayshingles = 97;
                 }
             }
 
@@ -1190,12 +1193,12 @@ namespace Skylight.Blocks
                 /// The left
                 /// </summary>
                 public const int
-                    LEFT = 166,
-                    HORIZONTAL = 167,
-                    RIGHT = 168,
-                    UP = 169,
-                    VERTICAL = 170,
-                    DOWN = 171;
+                    Left = 166,
+                    Horizontal = 167,
+                    Right = 168,
+                    Up = 169,
+                    Vertical = 170,
+                    Down = 171;
             }
 
             /// <summary>
@@ -1207,8 +1210,8 @@ namespace Skylight.Blocks
                 /// The planks
                 /// </summary>
                 public const int
-                    PLANKS = 93,
-                    CHEST = 94;
+                    Planks = 93,
+                    Chest = 94;
             }
 
             /// <summary>
@@ -1220,14 +1223,14 @@ namespace Skylight.Blocks
                 /// The lime
                 /// </summary>
                 public const int
-                    LIME = 128,
-                    RED = 129,
-                    YELLOW = 130,
-                    CYAN = 131,
-                    BLUE = 132,
-                    PINK = 133,
-                    GREEN = 134,
-                    ORANGE = 135;
+                    Lime = 128,
+                    Red = 129,
+                    Yellow = 130,
+                    Cyan = 131,
+                    Blue = 132,
+                    Pink = 133,
+                    Green = 134,
+                    Orange = 135;
             }
 
             /// <summary>
@@ -1239,8 +1242,8 @@ namespace Skylight.Blocks
                 /// The plateiron
                 /// </summary>
                 public const int
-                    PLATEIRON = 144,
-                    WIRES = 145;
+                    Plateiron = 144,
+                    Wires = 145;
             }
 
             /// <summary>
@@ -1252,7 +1255,7 @@ namespace Skylight.Blocks
                 /// The brick
                 /// </summary>
                 public const int
-                    BRICK = 92;
+                    Brick = 92;
             }
 
             /// <summary>
@@ -1264,10 +1267,10 @@ namespace Skylight.Blocks
                 /// The white
                 /// </summary>
                 public const int
-                    WHITE = 172,
-                    BLUE = 173,
-                    GREEN = 174,
-                    RED = 175;
+                    White = 172,
+                    Blue = 173,
+                    Green = 174,
+                    Red = 175;
             }
 
             /// <summary>
@@ -1279,12 +1282,12 @@ namespace Skylight.Blocks
                 /// The white
                 /// </summary>
                 public const int
-                    WHITE = 137,
-                    GRAY = 138,
-                    LIGHTTAN = 139,
-                    ORANGE = 140,
-                    TAN = 141,
-                    BROWN = 142;
+                    White = 137,
+                    Gray = 138,
+                    Lighttan = 139,
+                    Orange = 140,
+                    Tan = 141,
+                    Brown = 142;
             }
 
             /// <summary>
@@ -1296,11 +1299,11 @@ namespace Skylight.Blocks
                 /// The red
                 /// </summary>
                 public const int
-                    RED = 84,
-                    BLUE = 85,
-                    GRAY = 86,
-                    WHITE = 87,
-                    BROWN = 88;
+                    Red = 84,
+                    Blue = 85,
+                    Gray = 86,
+                    White = 87,
+                    Brown = 88;
 
                 /// <summary>
                 /// Class Oneway.
@@ -1313,7 +1316,7 @@ namespace Skylight.Blocks
                     public const int
                         RED = 89,
                         BLUE = 90,
-                        GREEN = 91;
+                        Green = 91;
                 }
             }
 
@@ -1326,7 +1329,7 @@ namespace Skylight.Blocks
                 /// The solid
                 /// </summary>
                 public const int
-                    SOLID = 50,
+                    Solid = 50,
                     NONSOLID = 243;
             }
 
@@ -1339,10 +1342,10 @@ namespace Skylight.Blocks
                 /// The blue
                 /// </summary>
                 public const int
-                    BLUE = 208,
-                    GREEN = 209,
-                    RED = 210,
-                    PILLAR = 211;
+                    Blue = 208,
+                    Green = 209,
+                    Red = 210,
+                    Pillar = 211;
             }
 
             /// <summary>
@@ -1354,10 +1357,10 @@ namespace Skylight.Blocks
                 /// The striped
                 /// </summary>
                 public const int
-                    STRIPED = 22,
-                    FACE = 32,
-                    GLOSSYBLACK = 33,
-                    FULLYBLACK = 44;
+                    Striped = 22,
+                    Face = 32,
+                    Glossyblack = 33,
+                    Fullyblack = 44;
             }
 
             /// <summary>
@@ -1369,7 +1372,7 @@ namespace Skylight.Blocks
                 /// The sand
                 /// </summary>
                 public const int
-                    SAND = 59;
+                    Sand = 59;
             }
 
             /// <summary>
@@ -1386,7 +1389,7 @@ namespace Skylight.Blocks
                     /// The timbered
                     /// </summary>
                     public const int
-                        TIMBERED = 154;
+                        Timbered = 154;
                 }
             }
 
@@ -1399,7 +1402,7 @@ namespace Skylight.Blocks
                 /// The gray
                 /// </summary>
                 public const int
-                    GRAY = 95;
+                    Gray = 95;
             }
         }
 
@@ -1411,7 +1414,7 @@ namespace Skylight.Blocks
             /// <summary>
             /// The layer
             /// </summary>
-            public const int LAYER = 0;
+            public const int Layer = 0;
 
             /// <summary>
             /// Class Candy.
@@ -1422,7 +1425,7 @@ namespace Skylight.Blocks
                 /// The topping
                 /// </summary>
                 public const int
-                    TOPPING = 227;
+                    Topping = 227;
             }
 
             /// <summary>
@@ -1434,8 +1437,8 @@ namespace Skylight.Blocks
                 /// The roofsupport
                 /// </summary>
                 public const int
-                    ROOFSUPPORT = 325,
-                    MERLON = 326;
+                    Roofsupport = 325,
+                    Merlon = 326;
             }
 
             /// <summary>
@@ -1447,12 +1450,12 @@ namespace Skylight.Blocks
                 /// The rightcornersnow
                 /// </summary>
                 public const int
-                    RIGHTCORNERSNOW = 249,
-                    LEFTCORNERSNOW = 250,
-                    TREE = 251,
-                    SNOWYTREE = 252,
-                    SNOWYFENCE = 253,
-                    FENCE = 254;
+                    Rightcornersnow = 249,
+                    Leftcornersnow = 250,
+                    Tree = 251,
+                    Snowytree = 252,
+                    Snowyfence = 253,
+                    Fence = 254;
             }
 
             /// <summary>
@@ -1464,11 +1467,11 @@ namespace Skylight.Blocks
                 /// The redornament
                 /// </summary>
                 public const int
-                    REDORNAMENT = 218,
-                    GREENORNAMENT = 219,
-                    BLUEORNAMENT = 220,
-                    WREATH = 221,
-                    STAR = 222;
+                    Redornament = 218,
+                    Greenornament = 219,
+                    Blueornament = 220,
+                    Wreath = 221,
+                    Star = 222;
             }
 
             /// <summary>
@@ -1480,12 +1483,12 @@ namespace Skylight.Blocks
                 /// The blueverticalribbon
                 /// </summary>
                 public const int
-                    BLUEVERTICALRIBBON = 362,
-                    BLUEHORIZONTALRIBBON = 363,
-                    BLUECROSSEDRIBBON = 364,
-                    REDVERTICALRIBBON = 365,
-                    REDHORIZONTALRIBBON = 366,
-                    REDCROSSEDRIBBON = 367;
+                    Blueverticalribbon = 362,
+                    Bluehorizontalribbon = 363,
+                    Bluecrossedribbon = 364,
+                    Redverticalribbon = 365,
+                    Redhorizontalribbon = 366,
+                    Redcrossedribbon = 367;
             }
 
             /// <summary>
@@ -1497,14 +1500,14 @@ namespace Skylight.Blocks
                 /// The bottom
                 /// </summary>
                 public const int
-                    BOTTOM = 311,
-                    TOP = 312,
-                    RIGHT = 313,
-                    LEFT = 314,
-                    BOTTOMLEFTCORNER = 315,
-                    BOTTOMRIGHTCORNER = 316,
-                    TOPRIGHTCORNER = 317,
-                    TOPLEFTCORNER = 318;
+                    Bottom = 311,
+                    Top = 312,
+                    Right = 313,
+                    Left = 314,
+                    Bottomleftcorner = 315,
+                    Bottomrightcorner = 316,
+                    Toprightcorner = 317,
+                    Topleftcorner = 318;
             }
 
             /// <summary>
@@ -1516,21 +1519,21 @@ namespace Skylight.Blocks
                 /// The whitebar
                 /// </summary>
                 public const int
-                    WHITEBAR = 285,
-                    GRAYBAR = 286,
-                    LEFTBROWNDOOR = 287,
-                    RIGHTBROWNDOOR = 288,
-                    LEFTREDDOOR = 289,
-                    RIGHTREDDOOR = 290,
-                    LEFTBLUEDOOR = 291,
-                    RIGHTBLUEDOOR = 292,
-                    CURTAINS = 293,
-                    LIGHTBROWNRAIL = 294,
-                    DARKBROWNRAIL = 295,
-                    LIGHTREDRAIL = 296,
-                    DARKREDRAIL = 297,
-                    CYANRAIL = 298,
-                    DARKBLUERAIL = 299;
+                    Whitebar = 285,
+                    Graybar = 286,
+                    Leftbrowndoor = 287,
+                    Rightbrowndoor = 288,
+                    Leftreddoor = 289,
+                    Rightreddoor = 290,
+                    Leftbluedoor = 291,
+                    Rightbluedoor = 292,
+                    Curtains = 293,
+                    Lightbrownrail = 294,
+                    Darkbrownrail = 295,
+                    Lightredrail = 296,
+                    Darkredrail = 297,
+                    Cyanrail = 298,
+                    Darkbluerail = 299;
             }
 
             /// <summary>
@@ -1542,11 +1545,11 @@ namespace Skylight.Blocks
                 /// The blueegg
                 /// </summary>
                 public const int
-                    BLUEEGG = 256,
-                    PURPLEEGG = 257,
-                    YELLOWEGG = 258,
-                    REDEGG = 259,
-                    GREENEGG = 260;
+                    Blueegg = 256,
+                    Purpleegg = 257,
+                    Yellowegg = 258,
+                    Redegg = 259,
+                    Greenegg = 260;
             }
 
             /// <summary>
@@ -1558,10 +1561,10 @@ namespace Skylight.Blocks
                 /// The hay
                 /// </summary>
                 public const int
-                    HAY = 386,
-                    CORN = 387,
-                    LEFTFENCE = 388,
-                    RIGHTFENCE = 389;
+                    Hay = 386,
+                    Corn = 387,
+                    Leftfence = 388,
+                    Rightfence = 389;
             }
 
             /// <summary>
@@ -1573,15 +1576,15 @@ namespace Skylight.Blocks
                 /// The full
                 /// </summary>
                 public const int
-                    FULL = 343,
-                    BOTTOM = 344,
-                    TOP = 345,
-                    RIGHT = 346,
-                    LEFT = 347,
-                    BOTTOMLEFTCORNER = 348,
-                    BOTTOMRIGHTCORNER = 349,
-                    TOPRIGHTCORNER = 350,
-                    TOPLEFTCORNER = 351;
+                    Full = 343,
+                    Bottom = 344,
+                    Top = 345,
+                    Right = 346,
+                    Left = 347,
+                    Bottomleftcorner = 348,
+                    Bottomrightcorner = 349,
+                    Toprightcorner = 350,
+                    Topleftcorner = 351;
             }
 
             /// <summary>
@@ -1593,9 +1596,9 @@ namespace Skylight.Blocks
                 /// The tombstone
                 /// </summary>
                 public const int
-                    TOMBSTONE = 224,
-                    LEFTCORNERWEB = 225,
-                    RIGHTCORNERWEB = 226;
+                    Tombstone = 224,
+                    Leftcornerweb = 225,
+                    Rightcornerweb = 226;
             }
 
             /// <summary>
@@ -1607,11 +1610,11 @@ namespace Skylight.Blocks
                 /// The teslacap
                 /// </summary>
                 public const int
-                    TESLACAP = 352,
-                    TESLACOIL = 353,
-                    VERTICALWIRES = 354,
-                    HORIZONTALWIRES = 355,
-                    ELECTRICITY = 356;
+                    Teslacap = 352,
+                    Teslacoil = 353,
+                    Verticalwires = 354,
+                    Horizontalwires = 355,
+                    Electricity = 356;
             }
 
             /// <summary>
@@ -1623,9 +1626,9 @@ namespace Skylight.Blocks
                 /// The undergrowth
                 /// </summary>
                 public const int
-                    UNDERGROWTH = 357,
-                    LOG = 358,
-                    IDOL = 359;
+                    Undergrowth = 357,
+                    Log = 358,
+                    Idol = 359;
             }
 
             /// <summary>
@@ -1637,7 +1640,7 @@ namespace Skylight.Blocks
                 /// The rock
                 /// </summary>
                 public const int
-                    ROCK = 336;
+                    Rock = 336;
             }
 
             /// <summary>
@@ -1649,11 +1652,11 @@ namespace Skylight.Blocks
                 /// The blueflag
                 /// </summary>
                 public const int
-                    BLUEFLAG = 327,
-                    REDFLAG = 328,
-                    SWORD = 329,
-                    SHIELD = 330,
-                    ROCKS = 331;
+                    Blueflag = 327,
+                    Redflag = 328,
+                    Sword = 329,
+                    Shield = 330,
+                    Rocks = 331;
             }
 
             /// <summary>
@@ -1665,11 +1668,11 @@ namespace Skylight.Blocks
                 /// The bigtoothbottom
                 /// </summary>
                 public const int
-                    BIGTOOTHBOTTOM = 338,
-                    SMALLTEETHBOTTOM = 339,
-                    SMALLTEETHTOP = 340,
-                    ORANGEEYE = 341,
-                    BLUEEYE = 342;
+                    Bigtoothbottom = 338,
+                    Smallteethbottom = 339,
+                    Smallteethtop = 340,
+                    Orangeeye = 341,
+                    Blueeye = 342;
             }
 
             /// <summary>
@@ -1681,11 +1684,11 @@ namespace Skylight.Blocks
                 /// The purple
                 /// </summary>
                 public const int
-                    PURPLE = 244,
-                    YELLOW = 245,
-                    BLUE = 246,
-                    RED = 247,
-                    GREEN = 248;
+                    Purple = 244,
+                    Yellow = 245,
+                    Blue = 246,
+                    Red = 247,
+                    Green = 248;
             }
 
             /// <summary>
@@ -1697,15 +1700,15 @@ namespace Skylight.Blocks
                 /// The leftbrightrooftop
                 /// </summary>
                 public const int
-                    LEFTBRIGHTROOFTOP = 276,
-                    RIGHTBRIGHTROOFTOP = 277,
-                    BRIGHTWINDOW = 278,
-                    LEFTDARKROOFTOP = 279,
-                    RIGHTDARKROOFTOP = 280,
-                    DARKWINDOW = 281,
-                    LADDER = 282,
-                    ANTENNAE = 283,
-                    YINYANG = 284;
+                    Leftbrightrooftop = 276,
+                    Rightbrightrooftop = 277,
+                    Brightwindow = 278,
+                    Leftdarkrooftop = 279,
+                    Rightdarkrooftop = 280,
+                    Darkwindow = 281,
+                    Ladder = 282,
+                    Antennae = 283,
+                    Yinyang = 284;
             }
 
             /// <summary>
@@ -1717,8 +1720,8 @@ namespace Skylight.Blocks
                 /// The canoncover
                 /// </summary>
                 public const int
-                    CANONCOVER = 271,
-                    SKULL = 272;
+                    Canoncover = 271,
+                    Skull = 272;
             }
 
             /// <summary>
@@ -1730,7 +1733,7 @@ namespace Skylight.Blocks
                 /// The bars
                 /// </summary>
                 public const int
-                    BARS = 261;
+                    Bars = 261;
             }
 
             /// <summary>
@@ -1742,10 +1745,10 @@ namespace Skylight.Blocks
                 /// The computerscreen
                 /// </summary>
                 public const int
-                    COMPUTERSCREEN = 332,
-                    REDLIGHT = 333,
-                    BLUELIGHT = 334,
-                    CONTROLPANEL = 335;
+                    Computerscreen = 332,
+                    Redlight = 333,
+                    Bluelight = 334,
+                    Controlpanel = 335;
             }
 
             /// <summary>
@@ -1757,12 +1760,12 @@ namespace Skylight.Blocks
                 /// The white
                 /// </summary>
                 public const int
-                    WHITE = 301,
-                    GRAY = 302,
-                    LIGHTTAN = 303,
-                    ORANGE = 304,
-                    TAN = 305,
-                    BROWN = 306;
+                    White = 301,
+                    Gray = 302,
+                    Lighttan = 303,
+                    Orange = 304,
+                    Tan = 305,
+                    Brown = 306;
             }
 
             /// <summary>
@@ -1774,12 +1777,12 @@ namespace Skylight.Blocks
                 /// The bluebend
                 /// </summary>
                 public const int
-                    BLUEBEND = 375,
-                    BLUESTRAIGHT = 376,
-                    ORANGEBEND = 377,
-                    ORANGESTRAIGHT = 378,
-                    GREENBEND = 379,
-                    GREENSTRAIGHT = 380;
+                    Bluebend = 375,
+                    Bluestraight = 376,
+                    Orangebend = 377,
+                    Orangestraight = 378,
+                    Greenbend = 379,
+                    Greenstraight = 380;
             }
 
             /// <summary>
@@ -1791,12 +1794,12 @@ namespace Skylight.Blocks
                 /// The flame
                 /// </summary>
                 public const int
-                    FLAME = 319,
-                    SKULL = 320,
-                    BOLT = 321,
-                    CROSS = 322,
-                    HORIZONTALBAR = 323,
-                    VERTICALBAR = 324;
+                    Flame = 319,
+                    Skull = 320,
+                    Bolt = 321,
+                    Cross = 322,
+                    Horizontalbar = 323,
+                    Verticalbar = 324;
             }
 
             /// <summary>
@@ -1808,9 +1811,9 @@ namespace Skylight.Blocks
                 /// The capital
                 /// </summary>
                 public const int
-                    CAPITAL = 382,
-                    SHAFT = 383,
-                    BASE = 384;
+                    Capital = 382,
+                    Shaft = 383,
+                    Base = 384;
             }
 
             /// <summary>
@@ -1822,14 +1825,14 @@ namespace Skylight.Blocks
                 /// The leftgrass
                 /// </summary>
                 public const int
-                    LEFTGRASS = 233,
-                    MIDDLEGRASS = 234,
-                    RIGHTGRASS = 235,
-                    LEFTBUSH = 236,
-                    MIDDLEBUSH = 237,
-                    RIGHTBUSH = 238,
-                    FLOWER = 239,
-                    SHRUB = 240;
+                    Leftgrass = 233,
+                    Middlegrass = 234,
+                    Rightgrass = 235,
+                    Leftbush = 236,
+                    Middlebush = 237,
+                    Rightbush = 238,
+                    Flower = 239,
+                    Shrub = 240;
             }
 
             /// <summary>
@@ -1841,11 +1844,11 @@ namespace Skylight.Blocks
                 /// The umbrella
                 /// </summary>
                 public const int
-                    UMBRELLA = 228,
-                    RIGHTCORNERSAND = 229,
-                    LEFTCORNERSAND = 230,
-                    ROCK = 231,
-                    BUSH = 232;
+                    Umbrella = 228,
+                    Rightcornersand = 229,
+                    Leftcornersand = 230,
+                    Rock = 231,
+                    Bush = 232;
             }
 
             /// <summary>
@@ -1857,10 +1860,10 @@ namespace Skylight.Blocks
                 /// The ball
                 /// </summary>
                 public const int
-                    BALL = 307,
-                    BUCKET = 308,
-                    SHOVEL = 309,
-                    MARTINI = 310;
+                    Ball = 307,
+                    Bucket = 308,
+                    Shovel = 309,
+                    Martini = 310;
             }
 
             /// <summary>
@@ -1872,10 +1875,10 @@ namespace Skylight.Blocks
                 /// The mudbubbles
                 /// </summary>
                 public const int
-                    MUDBUBBLES = 370,
-                    GRASS = 371,
-                    LOG = 372,
-                    SIGN = 373;
+                    Mudbubbles = 370,
+                    Grass = 371,
+                    Log = 372,
+                    Sign = 373;
             }
 
             /// <summary>
@@ -1887,9 +1890,9 @@ namespace Skylight.Blocks
                 /// The redshield
                 /// </summary>
                 public const int
-                    REDSHIELD = 273,
-                    BLUESHIELD = 274,
-                    AXE = 275;
+                    Redshield = 273,
+                    Blueshield = 274,
+                    Axe = 275;
             }
 
             /// <summary>
@@ -1901,7 +1904,7 @@ namespace Skylight.Blocks
                 /// The waves
                 /// </summary>
                 public const int
-                    WAVES = 300;
+                    Waves = 300;
             }
 
             /// <summary>
@@ -1913,15 +1916,15 @@ namespace Skylight.Blocks
                 /// The clear
                 /// </summary>
                 public const int
-                    CLEAR = 262,
-                    GREEN = 263,
-                    TEAL = 264,
-                    BLUE = 265,
-                    PURPLE = 266,
-                    PINK = 267,
-                    RED = 268,
-                    ORANGE = 269,
-                    YELLOW = 270;
+                    Clear = 262,
+                    Green = 263,
+                    Teal = 264,
+                    Blue = 265,
+                    Purple = 266,
+                    Pink = 267,
+                    Red = 268,
+                    Orange = 269,
+                    Yellow = 270;
             }
         }
     }

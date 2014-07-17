@@ -951,7 +951,7 @@ namespace Skylight
                                                 }
                                                 break;
                                             }
-                                            case BlockIds.Action.Gates.SWITCH:
+                                            case BlockIds.Action.Gates.Switch:
                                             {
                                                 if (!SwitchOpened)
                                                 {
@@ -967,7 +967,7 @@ namespace Skylight
                                                 }
                                                 break;
                                             }
-                                            case BlockIds.Action.Gates.CLUB:
+                                            case BlockIds.Action.Gates.Club:
                                             {
                                                 if (!Isclubmember)
                                                 {
@@ -984,7 +984,7 @@ namespace Skylight
                                                 }
                                                 break;
                                             }
-                                            case BlockIds.Action.Gates.COIN:
+                                            case BlockIds.Action.Gates.Coin:
                                             {
                                                 if (currentBlock is CoinBlock &&
                                                     ((CoinBlock) currentBlock).CoinsRequired > _coins)
@@ -993,7 +993,7 @@ namespace Skylight
                                                 }
                                                 break;
                                             }
-                                            case BlockIds.Action.Gates.ZOMBIE:
+                                            case BlockIds.Action.Gates.Zombie:
                                             {
                                                 if (_isZombie)
                                                 {
@@ -1161,7 +1161,7 @@ namespace Skylight
         {
             var targetPortalList = new List<Point>();
             CurrentBlockId = PlayingIn.Map[_cx, _cy, 0].Id;
-            if (!_isgodmod && CurrentBlockId == BlockIds.Action.Portals.WORLD)
+            if (!_isgodmod && CurrentBlockId == BlockIds.Action.Portals.World)
             {
                 if (_spacejustdown)
                 {
@@ -1348,30 +1348,30 @@ namespace Skylight
                     case BlockIds.Action.Boost.Right:
                     case BlockIds.Action.Boost.Up:
                     case BlockIds.Action.Boost.Down:
-                    case BlockIds.Action.Ladders.CHAIN:
-                    case BlockIds.Action.Ladders.LADDER:
-                    case BlockIds.Action.Ladders.HORIZONTALVINE:
-                    case BlockIds.Action.Ladders.VERTICALVINE:
-                    case BlockIds.Action.Gravity.ZERO:
+                    case BlockIds.Action.Ladders.Chain:
+                    case BlockIds.Action.Ladders.Ladder:
+                    case BlockIds.Action.Ladders.Horizontalvine:
+                    case BlockIds.Action.Ladders.Verticalvine:
+                    case BlockIds.Action.Gravity.Zero:
                     {
                         _morx = 0;
                         _mory = 0;
                         break;
                     }
-                    case BlockIds.Action.Liquids.WATER:
+                    case BlockIds.Action.Liquids.Water:
                     {
                         _morx = 0;
                         _mory = (int) WaterBuoyancy;
                         break;
                     }
-                    case BlockIds.Action.Liquids.MUD:
+                    case BlockIds.Action.Liquids.Mud:
                     {
                         _morx = 0;
                         _mory = (int) MudBuoyancy;
                         break;
                     }
-                    case BlockIds.Action.Hazards.FIRE:
-                    case BlockIds.Action.Hazards.SPIKE:
+                    case BlockIds.Action.Hazards.Fire:
+                    case BlockIds.Action.Hazards.Spike:
                     {
                         if (!_isDead && !_isInvulnerable)
                         {
@@ -1410,23 +1410,23 @@ namespace Skylight
                     case BlockIds.Action.Boost.Right:
                     case BlockIds.Action.Boost.Up:
                     case BlockIds.Action.Boost.Down:
-                    case BlockIds.Action.Ladders.CHAIN:
-                    case BlockIds.Action.Ladders.LADDER:
-                    case BlockIds.Action.Ladders.HORIZONTALVINE:
-                    case BlockIds.Action.Ladders.VERTICALVINE:
-                    case BlockIds.Action.Gravity.ZERO:
+                    case BlockIds.Action.Ladders.Chain:
+                    case BlockIds.Action.Ladders.Ladder:
+                    case BlockIds.Action.Ladders.Horizontalvine:
+                    case BlockIds.Action.Ladders.Verticalvine:
+                    case BlockIds.Action.Gravity.Zero:
                     {
                         _oldHorizontalAcceleration = 0;
                         _oldVerticalAcceleration = 0;
                         break;
                     }
-                    case BlockIds.Action.Liquids.WATER:
+                    case BlockIds.Action.Liquids.Water:
                     {
                         _oldHorizontalAcceleration = 0;
                         _oldVerticalAcceleration = WaterBuoyancy;
                         break;
                     }
-                    case BlockIds.Action.Liquids.MUD:
+                    case BlockIds.Action.Liquids.Mud:
                     {
                         _oldHorizontalAcceleration = 0;
                         _oldVerticalAcceleration = MudBuoyancy;
@@ -1477,11 +1477,11 @@ namespace Skylight
                 {
                     SpeedX = SpeedX*NoModifierDragX;
                 }
-                else if (CurrentBlockId == BlockIds.Action.Liquids.WATER && !_isgodmod)
+                else if (CurrentBlockId == BlockIds.Action.Liquids.Water && !_isgodmod)
                 {
                     SpeedX = SpeedX*WaterDrag;
                 }
-                else if (CurrentBlockId == BlockIds.Action.Liquids.MUD && !_isgodmod)
+                else if (CurrentBlockId == BlockIds.Action.Liquids.Mud && !_isgodmod)
                 {
                     SpeedX = SpeedX*DragMud();
                 }
@@ -1508,11 +1508,11 @@ namespace Skylight
                 {
                     SpeedY = SpeedY*NoModifierDragY;
                 }
-                else if (CurrentBlockId == BlockIds.Action.Liquids.WATER && !_isgodmod)
+                else if (CurrentBlockId == BlockIds.Action.Liquids.Water && !_isgodmod)
                 {
                     SpeedY = SpeedY*WaterDrag;
                 }
-                else if (CurrentBlockId == BlockIds.Action.Liquids.MUD && !_isgodmod)
+                else if (CurrentBlockId == BlockIds.Action.Liquids.Mud && !_isgodmod)
                 {
                     SpeedY = SpeedY*DragMud();
                 }
@@ -1582,8 +1582,8 @@ namespace Skylight
             }
             var imx = SpeedX*256;
             var imy = SpeedY*256;
-            if (Math.Abs(imx) > 0.00000001 || CurrentBlockId == BlockIds.Action.Liquids.WATER ||
-                CurrentBlockId == BlockIds.Action.Liquids.MUD)
+            if (Math.Abs(imx) > 0.00000001 || CurrentBlockId == BlockIds.Action.Liquids.Water ||
+                CurrentBlockId == BlockIds.Action.Liquids.Mud)
             {
             }
             else if (ModifierX < 0.1 && ModifierX > -0.1)
@@ -1614,8 +1614,8 @@ namespace Skylight
                     }
                 }
             }
-            if (Math.Abs(imy) > 0.0000001 || CurrentBlockId == BlockIds.Action.Liquids.WATER ||
-                CurrentBlockId == BlockIds.Action.Liquids.MUD)
+            if (Math.Abs(imy) > 0.0000001 || CurrentBlockId == BlockIds.Action.Liquids.Water ||
+                CurrentBlockId == BlockIds.Action.Liquids.Mud)
             {
             }
             else if (ModifierY < 0.1 && ModifierY > -0.1)
