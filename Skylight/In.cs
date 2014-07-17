@@ -88,6 +88,7 @@ namespace Skylight
         private readonly GetWoot _getWoot;
         private readonly WootUp _wootUp;
         private readonly Access _access;
+        private readonly Info _info;
 
         public In()
         {
@@ -131,6 +132,7 @@ namespace Skylight
             _getWoot = new GetWoot(this);
             _wootUp = new WootUp(this);
             _access = new Access(this);
+            _info = new Info(this);
         }
 
         public Bot Bot { get; set; }
@@ -339,6 +341,11 @@ namespace Skylight
             get { return _access; }
         }
 
+        public Info Info
+        {
+            get { return _info; }
+        }
+
         /// <summary>
         ///     All of the delegates for BlockEvent. These fire when events occur
         ///     (such as when a block was added or updated).
@@ -361,7 +368,7 @@ namespace Skylight
         ///     box or by prefixing a chat message with *SYSTEM.
         /// </summary>
         public event PlayerEvent
-            AddEvent = delegate { } , InfoEvent = delegate { } , LoseAccessEvent = delegate { } , TickEvent = delegate { };
+            AddEvent = delegate { } , LoseAccessEvent = delegate { } , TickEvent = delegate { };
 
         /// <summary>
         ///     Delegates for RoomEvent. Are only invoked when commands that concern
@@ -584,7 +591,7 @@ namespace Skylight
                                 break;
 
                             case "info":
-                                OnInfo(m);
+                                Info.OnInfo(m);
                                 break;
                         }
                     }
@@ -594,29 +601,6 @@ namespace Skylight
             {
                 Tools.SkylightMessage(e.ToString());
             }
-        }
-
-        private void OnInfo(Message m)
-        {
-            // Extract data.
-            string
-                title = m.GetString(0),
-                body = m.GetString(1);
-
-            // Update relevant objects.
-            Tools.SkylightMessage("Bot " + Bot.Name + " received a pop-up window:\n   " +
-                title + "\n    " + body);
-
-            if (title == "Limit reached")
-            {
-                Bot.Disconnect();
-                Tools.SkylightMessage("The bot was forced to disconnect because the limit was reached.");
-            }
-
-            // Fire the event.
-            var e = new PlayerEventArgs(Bot, Source, m);
-
-            Source.Pull.InfoEvent(e);
         }
 
         private void OnInit(Message m)

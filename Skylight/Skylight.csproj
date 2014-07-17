@@ -79,6 +79,7 @@
     <Compile Include="Grinch.cs" />
     <Compile Include="Hide.cs" />
     <Compile Include="In.cs" />
+    <Compile Include="Info.cs" />
     <Compile Include="LeftWorld.cs" />
     <Compile Include="LevelChange.cs" />
     <Compile Include="Meta.cs" />
