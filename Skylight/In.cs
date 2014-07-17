@@ -1,5 +1,6 @@
 ﻿// <author>TakoMan02</author>
-// <summary>In.cs is s receiver and processor for every event that happens in the world it is in.</summary>
+// <summary>In.cs is s receiver and processor for every event that happens
+// in the world it is in.</summary>
 
 using System;
 using System.Collections.Generic;
@@ -1365,7 +1366,8 @@ namespace Skylight
                     }
                     else
                     {
-                        //Since the timescales dealt with here should be subsecond, explicit unchecked casts to int should never overflow.
+                        //Since the timescales dealt with here should be subsecond, explicit unchecked casts
+                        // to int should never overflow.
                         var difference = (int) (_playerPhysicsStopwatch.ElapsedMilliseconds - accumulator);
                         Thread.Sleep(difference);
                     }
