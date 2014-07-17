@@ -321,16 +321,6 @@ namespace Skylight
         private double _oldVerticalAcceleration;
 
         /// <summary>
-        /// The old x
-        /// </summary>
-        private double _oldX = -1;
-
-        /// <summary>
-        /// The _old y
-        /// </summary>
-        private double _oldY = -1;
-
-        /// <summary>
         /// The _osx
         /// </summary>
         private double _osx;
@@ -1262,9 +1252,6 @@ namespace Skylight
         /// </summary>
         public void Tick()
         {
-            _oldX = X;
-            _oldY = Y;
-
             _animoffset = _animoffset + 0.2;
             if (IsMod && !IsGod)
             {
