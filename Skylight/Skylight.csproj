@@ -64,6 +64,7 @@
     <Compile Include="HoldSpace.cs" />
     <Compile Include="HoldUpArrow.cs" />
     <Compile Include="InputCodeForRoom.cs" />
+    <Compile Include="ReleaseArrowKey.cs" />
     <Compile Include="SayChatMessage.cs" />
     <Compile Include="SetCodeForRoom.cs" />
     <Compile Include="SetTitleOfRoom.cs" />

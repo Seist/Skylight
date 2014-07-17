@@ -27,6 +27,7 @@ namespace Skylight
         private readonly SayChatMessage _sayChatMessage;
         private readonly InputCodeForRoom _inputCodeForRoom;
         private readonly SetCodeForRoom _setCodeForRoom;
+        private readonly ReleaseArrowKey _releaseArrowKey;
 
         public Out()
         {
@@ -41,6 +42,7 @@ namespace Skylight
             _sayChatMessage = new SayChatMessage(this);
             _inputCodeForRoom = new InputCodeForRoom(this);
             _setCodeForRoom = new SetCodeForRoom(this);
+            _releaseArrowKey = new ReleaseArrowKey(this);
         }
 
         /// <summary>
@@ -75,20 +77,9 @@ namespace Skylight
             get { return Bot.R; }
         }
 
-        /// <summary>
-        ///     Moves the specified bot.
-        /// </summary>
-        /// <param name="args">The raw message where to move.</param>
-        public void Move(object[] args)
+        public ReleaseArrowKey ReleaseArrowKey
         {
-            try
-            {
-                C.Send("m", args);
-            }
-            catch (Exception)
-            {
-                Tools.SkylightMessage("Error: attempted to use Out.Move before connecting");
-            }
+            get { return _releaseArrowKey; }
         }
 
         /// <summary>
@@ -117,29 +108,6 @@ namespace Skylight
             {
                 Tools.SkylightMessage("Error: attempted to use Out.Move before connecting");
             }
-        }
-
-        /// <summary>
-        ///     Releases the arrow key.
-        /// </summary>
-        /// <param name="startX">The start x.</param>
-        /// <param name="startY">The start y.</param>
-        public void Release(double startX, double startY)
-        {
-            var holdArgs = new object[11];
-            holdArgs[0] = startX;
-            holdArgs[1] = startY;
-            holdArgs[2] = 0;
-            holdArgs[3] = 0;
-            holdArgs[4] = 0;
-            holdArgs[5] = 2;
-            holdArgs[6] = 0;
-            holdArgs[7] = 0;
-            holdArgs[8] = 4;
-            holdArgs[9] = false;
-            holdArgs[10] = false;
-
-            Move(holdArgs);
         }
 
         /// <summary>

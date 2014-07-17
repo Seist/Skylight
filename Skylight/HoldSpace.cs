@@ -30,7 +30,7 @@ namespace Skylight
             holdArgs[9] = false;
             holdArgs[10] = true;
 
-            _out.Move(holdArgs);
+            _out.ReleaseArrowKey.Move(holdArgs);
         }
     }
 }
