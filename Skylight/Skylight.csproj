@@ -62,14 +62,14 @@
     <Compile Include="Blocks\CoinBlock.cs" />
     <Compile Include="Blocks\PercussionBlock.cs" />
     <Compile Include="Blocks\Block.cs" />
-    <Compile Include="CoinObject.cs" />
+    <Compile Include="Skylight.Blocks\CoinObject.cs" />
     <Compile Include="Skylight.Messages\Chat\Autotext.cs" />
     <Compile Include="Skylight.Messages\Chat\Chat.cs" />
     <Compile Include="Skylight.Messages\Chat\ChatOld.cs" />
-    <Compile Include="Skylight.Messages\GiveWizard2.cs" />
-    <Compile Include="Skylight.Messages\System\Hide.cs" />
+    <Compile Include="Skylight.Messages\System\Meta\GiveWizard2.cs" />
+    <Compile Include="Skylight.Messages\System\Visibility\Hide.cs" />
     <Compile Include="In.cs" />
-    <Compile Include="Info.cs" />
+    <Compile Include="Skylight.Messages\System\Info.cs" />
     <Compile Include="Miscellaneous\PotionIds.cs" />
     <Compile Include="Miscellaneous\SmileyIds.cs" />
     <Compile Include="Out.cs" />
@@ -85,22 +85,22 @@
     <Compile Include="Blocks\PianoBlock.cs" />
     <Compile Include="Blocks\TextBlock.cs" />
     <Compile Include="Miscellaneous\Tools.cs" />
-    <Compile Include="RefreshShop.cs" />
-    <Compile Include="Skylight.Messages\System\Show.cs" />
+    <Compile Include="Skylight.Messages\System\RefreshShop.cs" />
+    <Compile Include="Skylight.Messages\System\Visibility\Show.cs" />
     <Compile Include="Skylight.Auth\Access.cs" />
     <Compile Include="Skylight.Blocks\AddSpecialBlock.cs" />
     <Compile Include="Skylight.Blocks\BlockChanged.cs" />
     <Compile Include="Skylight.Blocks\NoteBlock.cs" />
     <Compile Include="Skylight.Blocks\SignBlock.cs" />
-    <Compile Include="Skylight.Messages\System\ClearMap.cs" />
-    <Compile Include="Skylight.Messages\GetWoot.cs" />
-    <Compile Include="Skylight.Messages\LevelChange.cs" />
-    <Compile Include="Skylight.Messages\Meta.cs" />
+    <Compile Include="Skylight.Messages\System\World\ClearMap.cs" />
+    <Compile Include="Skylight.Messages\System\World\GetWoot.cs" />
+    <Compile Include="Skylight.Messages\System\Meta\LevelChange.cs" />
+    <Compile Include="Skylight.Messages\System\Meta\Meta.cs" />
     <Compile Include="Skylight.Messages\Potions.cs" />
-    <Compile Include="Skylight.Messages\System\ResetWorld.cs" />
+    <Compile Include="Skylight.Messages\System\World\ResetWorld.cs" />
     <Compile Include="Skylight.Messages\Room.cs" />
-    <Compile Include="Skylight.Messages\System\Save.cs" />
-    <Compile Include="Skylight.Messages\System\Upgrade.cs" />
+    <Compile Include="Skylight.Messages\System\World\Save.cs" />
+    <Compile Include="Skylight.Messages\System\Meta\Upgrade.cs" />
     <Compile Include="Skylight.Player\Add.cs" />
     <Compile Include="Skylight.Player\Crown.cs" />
     <Compile Include="Skylight.Player\FaceChange.cs" />
@@ -119,8 +119,8 @@
     <Compile Include="Skylight.Player\Witch.cs" />
     <Compile Include="Skylight.Player\Wizard.cs" />
     <Compile Include="Skylight.Player\WootUp.cs" />
-    <Compile Include="Wp.cs" />
-    <Compile Include="Write.cs" />
+    <Compile Include="Skylight.Blocks\Wp.cs" />
+    <Compile Include="Skylight.Messages\Chat\Write.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\Settings.settings">
@@ -131,7 +131,9 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Skylight.Incoming\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="lib\Rabbit.dll" />
   </ItemGroup>
