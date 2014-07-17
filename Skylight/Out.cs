@@ -125,7 +125,7 @@ namespace Skylight
             var tempList = new List<Block>();
             tempList.AddRange(blockList);
 
-            foreach (Block b in tempList)
+            foreach (var b in tempList)
             {
                 Build(b);
             }
@@ -746,7 +746,7 @@ namespace Skylight
         {
             if (Bot.Name == R.Owner.Name)
             {
-                foreach (Player p in R.OnlinePlayers)
+                foreach (var p in R.OnlinePlayers)
                 {
                     Teleport(newXLocation, newYLocation, p);
                 }
