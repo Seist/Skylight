@@ -64,11 +64,6 @@ namespace Skylight
         private readonly Queue<int> _queue = new Queue<int>();
 
         /// <summary>
-        /// All the potions that activate other users when they touch you.
-        /// </summary>
-        private readonly Dictionary<string, int> _touchpotions = new Dictionary<string, int>();
-
-        /// <summary>
         /// The boost
         /// </summary>
         protected double Boost;
