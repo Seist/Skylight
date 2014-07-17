@@ -112,6 +112,7 @@
     <Compile Include="Tele.cs" />
     <Compile Include="Teleport.cs" />
     <Compile Include="Trophy.cs" />
+    <Compile Include="Upgrade.cs" />
     <Compile Include="Witch.cs" />
     <Compile Include="Wizard.cs" />
   </ItemGroup>

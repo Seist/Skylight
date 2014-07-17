@@ -82,6 +82,7 @@ namespace Skylight
         private readonly Tele _tele;
         private readonly Teleport _teleport;
         private readonly Meta _meta;
+        private readonly Upgrade _upgrade;
 
         public In()
         {
@@ -119,6 +120,7 @@ namespace Skylight
             _tele = new Tele(this);
             _teleport = new Teleport(this);
             _meta = new Meta(this);
+            _upgrade = new Upgrade(this);
         }
 
         internal Bot Bot { get; set; }
@@ -297,6 +299,11 @@ namespace Skylight
             get { return _meta; }
         }
 
+        public Upgrade Upgrade
+        {
+            get { return _upgrade; }
+        }
+
         /// <summary>
         ///     All of the delegates for BlockEvent. These fire when events occur
         ///     (such as when a block was added or updated).
@@ -335,7 +342,7 @@ namespace Skylight
         ///     the room's state (such as global clear, potion toggling and saved) for just
         ///     a few examples.
         /// </summary>
-        public event RoomEvent InitEvent = delegate { } , UpdateEvent = delegate { };
+        public event RoomEvent InitEvent = delegate { };
 
         internal void OnMessage(object sender, Message m)
         {
@@ -514,7 +521,7 @@ namespace Skylight
                                 break;
 
                             case "upgrade":
-                                OnUpgrade();
+                                Upgrade.OnUpgrade();
                                 break;
 
                             case "wp":
@@ -728,16 +735,6 @@ namespace Skylight
             var e = new BlockEventArgs(b, Source);
 
             Source.Pull.CoinBlockEvent(e);
-        }
-
-        private void OnUpgrade()
-        {
-            // Nothing to extract from message.
-            // Nothing to update.
-            // Fire the event.
-            var e = new RoomEventArgs(Source);
-
-            UpdateEvent(e);
         }
 
         private void OnGetWoot(Message m)
