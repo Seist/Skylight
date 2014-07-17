@@ -19,12 +19,14 @@ namespace Skylight
         private readonly Build _build;
         private readonly Clear _clear;
         private readonly HoldDownArrow _holdDownArrow;
+        private readonly HoldLeftArrow _holdLeftArrow;
 
         public Out()
         {
             _build = new Build(this);
             _clear = new Clear(this);
             _holdDownArrow = new HoldDownArrow(this);
+            _holdLeftArrow = new HoldLeftArrow(this);
         }
 
         /// <summary>
@@ -57,30 +59,6 @@ namespace Skylight
         public Room R
         {
             get { return Bot.R; }
-        }
-
-        /// <summary>
-        ///     Holds the left arrow key.
-        /// </summary>
-        /// <param name="startX">The start x coordinate.</param>
-        /// <param name="startY">The start y coordinate.</param>
-        public void HoldLeft(double startX, double startY)
-        {
-            var holdArgs = new object[11];
-
-            holdArgs[0] = startX;
-            holdArgs[1] = startY;
-            holdArgs[2] = 0;
-            holdArgs[3] = 0;
-            holdArgs[4] = -1;
-            holdArgs[5] = 2;
-            holdArgs[6] = -1;
-            holdArgs[7] = 0;
-            holdArgs[8] = 4;
-            holdArgs[9] = false;
-            holdArgs[10] = false;
-
-            Move(holdArgs);
         }
 
         /// <summary>
