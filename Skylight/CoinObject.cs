@@ -12,7 +12,7 @@ namespace Skylight
         {
             _in = @in;
         }
-
+        public event In.RoomEvent CoinBlockEvent = delegate { };
         public void OnAddCoinDoorOrGate(Message m)
         {
             // Extract data.
