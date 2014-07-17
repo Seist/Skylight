@@ -22,6 +22,7 @@ namespace Skylight
         private readonly HoldLeftArrow _holdLeftArrow;
         private readonly HoldRightArrow _holdRightArrow;
         private readonly HoldUpArrow _holdUpArrow;
+        private readonly HoldSpace _holdSpace;
 
         public Out()
         {
@@ -31,6 +32,7 @@ namespace Skylight
             _holdLeftArrow = new HoldLeftArrow(this);
             _holdRightArrow = new HoldRightArrow(this);
             _holdUpArrow = new HoldUpArrow(this);
+            _holdSpace = new HoldSpace(this);
         }
 
         /// <summary>
@@ -91,30 +93,6 @@ namespace Skylight
             {
                 C.Send("key", newCode);
             }
-        }
-
-        /// <summary>
-        ///     Tells the bot to jump from the specified coordinates.
-        /// </summary>
-        /// <param name="startX">The start x coordinate.</param>
-        /// <param name="startY">The start y coordinate.</param>
-        public void Jump(double startX, double startY)
-        {
-            var holdArgs = new object[11];
-
-            holdArgs[0] = startX;
-            holdArgs[1] = startY;
-            holdArgs[2] = 0;
-            holdArgs[3] = -52;
-            holdArgs[4] = 0;
-            holdArgs[5] = 2;
-            holdArgs[6] = 0;
-            holdArgs[7] = 0;
-            holdArgs[8] = 4;
-            holdArgs[9] = false;
-            holdArgs[10] = true;
-
-            Move(holdArgs);
         }
 
         /// <summary>
