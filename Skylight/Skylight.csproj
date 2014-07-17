@@ -60,6 +60,8 @@
     <Compile Include="Clear.cs" />
     <Compile Include="HoldDownArrow.cs" />
     <Compile Include="HoldLeftArrow.cs" />
+    <Compile Include="HoldRightArrow.cs" />
+    <Compile Include="HoldUpArrow.cs" />
     <Compile Include="Skylight.Static\Blocks\BlockIds.cs" />
     <Compile Include="Skylight.Static\Blocks\RoomPortalBlock.cs" />
     <Compile Include="Skylight.Static\Auth\Bot.cs" />

@@ -20,6 +20,8 @@ namespace Skylight
         private readonly Clear _clear;
         private readonly HoldDownArrow _holdDownArrow;
         private readonly HoldLeftArrow _holdLeftArrow;
+        private readonly HoldRightArrow _holdRightArrow;
+        private readonly HoldUpArrow _holdUpArrow;
 
         public Out()
         {
@@ -27,6 +29,8 @@ namespace Skylight
             _clear = new Clear(this);
             _holdDownArrow = new HoldDownArrow(this);
             _holdLeftArrow = new HoldLeftArrow(this);
+            _holdRightArrow = new HoldRightArrow(this);
+            _holdUpArrow = new HoldUpArrow(this);
         }
 
         /// <summary>
@@ -59,54 +63,6 @@ namespace Skylight
         public Room R
         {
             get { return Bot.R; }
-        }
-
-        /// <summary>
-        ///     Holds the right arrow key.
-        /// </summary>
-        /// <param name="startX">The start x coordinate.</param>
-        /// <param name="startY">The start y coordinate.</param>
-        public void HoldRight(double startX, double startY)
-        {
-            var holdArgs = new object[11];
-
-            holdArgs[0] = startX;
-            holdArgs[1] = startY;
-            holdArgs[2] = 0;
-            holdArgs[3] = 0;
-            holdArgs[4] = 1;
-            holdArgs[5] = 2;
-            holdArgs[6] = 1;
-            holdArgs[7] = 0;
-            holdArgs[8] = 0;
-            holdArgs[9] = false;
-            holdArgs[10] = false;
-
-            Move(holdArgs);
-        }
-
-        /// <summary>
-        ///     Holds the up arrow key.
-        /// </summary>
-        /// <param name="startX">The start x coordinate.</param>
-        /// <param name="startY">The start y coordinate.</param>
-        public void HoldUp(double startX, double startY)
-        {
-            var holdArgs = new object[11];
-
-            holdArgs[0] = startX;
-            holdArgs[1] = startY;
-            holdArgs[2] = 0;
-            holdArgs[3] = 0;
-            holdArgs[4] = 0;
-            holdArgs[5] = 2;
-            holdArgs[6] = 0;
-            holdArgs[7] = -1;
-            holdArgs[8] = 4;
-            holdArgs[9] = false;
-            holdArgs[10] = false;
-
-            Move(holdArgs);
         }
 
         /// <summary>
