@@ -94,7 +94,6 @@ namespace Skylight
             int x = m.GetInteger(0);
             int y = m.GetInteger(1);
             string theText = m.GetString(3);
-            int id = m.GetInteger(4); // never used
 
             // Fire the event.
             var b = new TextBlock(385,x,y,theText);
@@ -1109,8 +1108,7 @@ namespace Skylight
         private void OnSayOld(Message m)
         {
             // Extract data.
-            string message = m.GetString(1),
-                name = m.GetString(0); // never used.
+            string message = m.GetString(1);
 
             // Update relevant objects.
             // Player subject = new Player() { Name = name };
@@ -1279,8 +1277,7 @@ namespace Skylight
         {
             // Extract data.
             int x = m.GetInteger(0),
-                y = m.GetInteger(1),
-                id = m.GetInteger(2); // unused
+                y = m.GetInteger(1);
 
             string destination = m.GetString(3);
 
@@ -1298,9 +1295,7 @@ namespace Skylight
         private void OnWrite(Message m)
         {
             // Extract data.
-            string prefix = m.GetString(0), // unused
-                // unused
-                message = m.GetString(1);
+            string message = m.GetString(1);
 
             // Update relevant objects.
             // Player system = new Player() { Name = prefix };
