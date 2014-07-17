@@ -16,45 +16,29 @@ namespace Skylight
     /// </summary>
     public class Out
     {
-        private readonly Build _build;
-        private readonly Clear _clear;
-        private readonly HoldDownArrow _holdDownArrow;
-        private readonly HoldLeftArrow _holdLeftArrow;
-        private readonly HoldRightArrow _holdRightArrow;
-        private readonly HoldUpArrow _holdUpArrow;
-        private readonly HoldSpace _holdSpace;
-        private readonly SetTitleOfRoom _setTitleOfRoom;
         private readonly SayChatMessage _sayChatMessage;
-        private readonly InputCodeForRoom _inputCodeForRoom;
-        private readonly SetCodeForRoom _setCodeForRoom;
         private readonly ReleaseArrowKey _releaseArrowKey;
-        private readonly LoadLevelInWorld _loadLevelInWorld;
-        private readonly RespawnPlayer _respawnPlayer;
-        private readonly RespawnAllPlayers _respawnAllPlayers;
-        private readonly ResetWorld _resetWorld;
-        private readonly SaveTheWorld _saveTheWorld;
-        private readonly SetAllPotionBansInWorld _setAllPotionBansInWorld;
 
         public Out()
         {
-            _build = new Build(this);
-            _clear = new Clear(this);
-            _holdDownArrow = new HoldDownArrow(this);
-            _holdLeftArrow = new HoldLeftArrow(this);
-            _holdRightArrow = new HoldRightArrow(this);
-            _holdUpArrow = new HoldUpArrow(this);
-            _holdSpace = new HoldSpace(this);
-            _setTitleOfRoom = new SetTitleOfRoom(this);
+            new Build(this);
+            new Clear(this);
+            new HoldDownArrow(this);
+            new HoldLeftArrow(this);
+            new HoldRightArrow(this);
+            new HoldUpArrow(this);
+            new HoldSpace(this);
+            new SetTitleOfRoom(this);
             _sayChatMessage = new SayChatMessage(this);
-            _inputCodeForRoom = new InputCodeForRoom(this);
-            _setCodeForRoom = new SetCodeForRoom(this);
+            new InputCodeForRoom(this);
+            new SetCodeForRoom(this);
             _releaseArrowKey = new ReleaseArrowKey(this);
-            _loadLevelInWorld = new LoadLevelInWorld(this);
-            _respawnPlayer = new RespawnPlayer(this);
-            _respawnAllPlayers = new RespawnAllPlayers(this);
-            _resetWorld = new ResetWorld(this);
-            _saveTheWorld = new SaveTheWorld(this);
-            _setAllPotionBansInWorld = new SetAllPotionBansInWorld(this);
+            new LoadLevelInWorld(this);
+            new RespawnPlayer(this);
+            new RespawnAllPlayers(this);
+            new ResetWorld(this);
+            new SaveTheWorld(this);
+            new SetAllPotionBansInWorld(this);
         }
 
         /// <summary>
