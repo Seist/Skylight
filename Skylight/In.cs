@@ -73,6 +73,7 @@ namespace Skylight
         private readonly Move _move;
         private readonly Moderator _moderator;
         private readonly Potion _potion;
+        private readonly RefreshShop _refreshShop;
 
         public In()
         {
@@ -101,6 +102,7 @@ namespace Skylight
             _move = new Move(this);
             _moderator = new Moderator(this);
             _potion = new Potion(this);
+            _refreshShop = new RefreshShop(this);
         }
 
         internal Bot Bot { get; set; }
@@ -234,6 +236,11 @@ namespace Skylight
             get { return _potion; }
         }
 
+        public RefreshShop RefreshShop
+        {
+            get { return _refreshShop; }
+        }
+
         /// <summary>
         ///     All of the delegates for BlockEvent. These fire when events occur
         ///     (such as when a block was added or updated).
@@ -275,8 +282,7 @@ namespace Skylight
         ///     the room's state (such as global clear, potion toggling and saved) for just
         ///     a few examples.
         /// </summary>
-        public event RoomEvent InitEvent = delegate { } , RefreshshopEvent = delegate { } ,
-            ResetEvent = delegate { } ,
+        public event RoomEvent InitEvent = delegate { } , ResetEvent = delegate { } ,
             SavedEvent = delegate { } ,
             ShowEvent = delegate { } ,
             UpdateEvent = delegate { } ,
@@ -419,7 +425,7 @@ namespace Skylight
                                 break;
 
                             case "refreshshop":
-                                OnRefreshShop();
+                                RefreshShop.OnRefreshShop();
                                 break;
 
                             case "reset":
@@ -653,16 +659,6 @@ namespace Skylight
             var e = new BlockEventArgs(b, Source);
 
             Source.Pull.PortalBlockEvent(e);
-        }
-
-        private void OnRefreshShop()
-        {
-            // Nothing to extract.
-            // Nothing to update.
-            // Fire the event.
-            var e = new RoomEventArgs(Source);
-
-            Source.Pull.RefreshshopEvent(e);
         }
 
         private void OnReset(Message m)
