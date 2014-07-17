@@ -68,7 +68,7 @@
     <Compile Include="Skylight.Incoming\Messages\Chat\ChatOld.cs" />
     <Compile Include="Skylight.Incoming\Messages\System\Meta\GiveWizard2.cs" />
     <Compile Include="Skylight.Incoming\Messages\System\Visibility\Hide.cs" />
-    <Compile Include="In.cs" />
+    <Compile Include="Skylight.Incoming\In.cs" />
     <Compile Include="Skylight.Incoming\Messages\System\Info.cs" />
     <Compile Include="Miscellaneous\PotionIds.cs" />
     <Compile Include="Miscellaneous\SmileyIds.cs" />
