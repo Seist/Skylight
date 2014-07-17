@@ -46,15 +46,9 @@
     <Reference Include="PlayerIOClient">
       <HintPath>References\PlayerIOClient.dll</HintPath>
     </Reference>
-    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
@@ -62,30 +56,89 @@
     <Compile Include="Arguments\ChatEventArgs.cs" />
     <Compile Include="Arguments\PlayerEventArgs.cs" />
     <Compile Include="Arguments\RoomEventArgs.cs" />
-    <Compile Include="Blocks\BlockIds.cs" />
-    <Compile Include="Blocks\RoomPortalBlock.cs" />
-    <Compile Include="Bot.cs" />
-    <Compile Include="Blocks\CoinBlock.cs" />
-    <Compile Include="Blocks\PercussionBlock.cs" />
-    <Compile Include="Blocks\Block.cs" />
-    <Compile Include="In.cs" />
-    <Compile Include="Miscellaneous\PotionIds.cs" />
-    <Compile Include="Miscellaneous\SmileyIds.cs" />
-    <Compile Include="Out.cs" />
-    <Compile Include="Player.cs" />
+    <Compile Include="Skylight.Outgoing\Build.cs" />
+    <Compile Include="Skylight.Outgoing\Clear.cs" />
+    <Compile Include="Skylight.Outgoing\HoldDownArrow.cs" />
+    <Compile Include="Skylight.Outgoing\HoldLeftArrow.cs" />
+    <Compile Include="Skylight.Outgoing\HoldRightArrow.cs" />
+    <Compile Include="Skylight.Outgoing\HoldSpace.cs" />
+    <Compile Include="Skylight.Outgoing\HoldUpArrow.cs" />
+    <Compile Include="Skylight.Outgoing\InputCodeForRoom.cs" />
+    <Compile Include="Skylight.Outgoing\LoadLevelInWorld.cs" />
+    <Compile Include="Skylight.Outgoing\ReleaseArrowKey.cs" />
+    <Compile Include="Skylight.Outgoing\ResetWorld.cs" />
+    <Compile Include="Skylight.Outgoing\RespawnAllPlayers.cs" />
+    <Compile Include="Skylight.Outgoing\RespawnPlayer.cs" />
+    <Compile Include="Skylight.Outgoing\SaveTheWorld.cs" />
+    <Compile Include="Skylight.Outgoing\SayChatMessage.cs" />
+    <Compile Include="Skylight.Outgoing\SetAllPotionBansInWorld.cs" />
+    <Compile Include="Skylight.Outgoing\SetCodeForRoom.cs" />
+    <Compile Include="Skylight.Outgoing\SetTitleOfRoom.cs" />
+    <Compile Include="Skylight.Static\Blocks\BlockIds.cs" />
+    <Compile Include="Skylight.Static\Blocks\RoomPortalBlock.cs" />
+    <Compile Include="Skylight.Static\Auth\Bot.cs" />
+    <Compile Include="Skylight.Static\Blocks\CoinBlock.cs" />
+    <Compile Include="Skylight.Static\Blocks\PercussionBlock.cs" />
+    <Compile Include="Skylight.Static\Blocks\Block.cs" />
+    <Compile Include="Skylight.Incoming\Blocks\CoinObject.cs" />
+    <Compile Include="Skylight.Incoming\Messages\Chat\Autotext.cs" />
+    <Compile Include="Skylight.Incoming\Messages\Chat\Chat.cs" />
+    <Compile Include="Skylight.Incoming\Messages\Chat\ChatOld.cs" />
+    <Compile Include="Skylight.Incoming\Messages\System\Meta\GiveWizard2.cs" />
+    <Compile Include="Skylight.Incoming\Messages\System\Visibility\Hide.cs" />
+    <Compile Include="Skylight.Incoming\In.cs" />
+    <Compile Include="Skylight.Incoming\Messages\System\Info.cs" />
+    <Compile Include="Skylight.Static\PotionIds.cs" />
+    <Compile Include="Skylight.Static\SmileyIds.cs" />
+    <Compile Include="Skylight.Outgoing\Out.cs" />
     <Compile Include="Physics\Config.cs" />
     <Compile Include="Physics\ItemId.cs" />
-    <Compile Include="Blocks\PortalBlock.cs" />
+    <Compile Include="Skylight.Static\Blocks\PortalBlock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Blocks\PianoBlock.cs" />
-    <Compile Include="Blocks\TextBlock.cs" />
-    <Compile Include="Miscellaneous\Tools.cs" />
-    <Compile Include="Room.cs" />
+    <Compile Include="Skylight.Static\Blocks\PianoBlock.cs" />
+    <Compile Include="Skylight.Static\Blocks\TextBlock.cs" />
+    <Compile Include="Skylight.Static\Tools.cs" />
+    <Compile Include="Skylight.Incoming\Messages\System\RefreshShop.cs" />
+    <Compile Include="Skylight.Incoming\Messages\System\Visibility\Show.cs" />
+    <Compile Include="Skylight.Static\Auth\Access.cs" />
+    <Compile Include="Skylight.Incoming\Blocks\AddSpecialBlock.cs" />
+    <Compile Include="Skylight.Incoming\Blocks\BlockChanged.cs" />
+    <Compile Include="Skylight.Incoming\Blocks\NoteBlock.cs" />
+    <Compile Include="Skylight.Incoming\Blocks\SignBlock.cs" />
+    <Compile Include="Skylight.Incoming\Messages\System\World\ClearMap.cs" />
+    <Compile Include="Skylight.Incoming\Messages\System\World\GetWoot.cs" />
+    <Compile Include="Skylight.Incoming\Messages\System\Meta\LevelChange.cs" />
+    <Compile Include="Skylight.Incoming\Messages\System\Meta\Meta.cs" />
+    <Compile Include="Skylight.Incoming\Messages\Potions.cs" />
+    <Compile Include="Skylight.Incoming\Messages\System\World\ResetWorld.cs" />
+    <Compile Include="Skylight.Incoming\Messages\Room.cs" />
+    <Compile Include="Skylight.Incoming\Messages\System\World\Save.cs" />
+    <Compile Include="Skylight.Incoming\Messages\System\Meta\Upgrade.cs" />
+    <Compile Include="Skylight.Incoming\Player\Add.cs" />
+    <Compile Include="Skylight.Incoming\Player\Crown.cs" />
+    <Compile Include="Skylight.Incoming\Player\FaceChange.cs" />
+    <Compile Include="Skylight.Incoming\Player\GodMode.cs" />
+    <Compile Include="Skylight.Incoming\Player\Grinch.cs" />
+    <Compile Include="Skylight.Incoming\Player\LeftWorld.cs" />
+    <Compile Include="Skylight.Incoming\Player\Moderator.cs" />
+    <Compile Include="Skylight.Incoming\Player\Move.cs" />
+    <Compile Include="Skylight.Incoming\Player\OnCoinGet.cs" />
+    <Compile Include="Skylight.Incoming\Player\OnKill.cs" />
+    <Compile Include="Skylight.Incoming\Player\Player.cs" />
+    <Compile Include="Skylight.Incoming\Player\Potion.cs" />
+    <Compile Include="Skylight.Incoming\Player\Tele.cs" />
+    <Compile Include="Skylight.Incoming\Player\Teleport.cs" />
+    <Compile Include="Skylight.Incoming\Player\Trophy.cs" />
+    <Compile Include="Skylight.Incoming\Player\Witch.cs" />
+    <Compile Include="Skylight.Incoming\Player\Wizard.cs" />
+    <Compile Include="Skylight.Incoming\Player\WootUp.cs" />
+    <Compile Include="Skylight.Incoming\Blocks\Wp.cs" />
+    <Compile Include="Skylight.Incoming\Messages\Chat\Write.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\Settings.settings">
@@ -95,6 +148,10 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="lib\Rabbit.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

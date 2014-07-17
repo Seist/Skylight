@@ -1,0 +1,18 @@
+<GhostDoc>
+  <SpellChecker>
+    <IncludeExtensions>
+    </IncludeExtensions>
+    <IgnoreExtensions>
+    </IgnoreExtensions>
+    <IgnoreFiles>
+      <IgnoreFile>.\Blocks\BlockIds.cs</IgnoreFile>
+      <IgnoreFile>.\Blocks\PortalBlock.cs</IgnoreFile>
+      <IgnoreFile>.\Bot.cs</IgnoreFile>
+      <IgnoreFile>.\In.cs</IgnoreFile>
+      <IgnoreFile>.\Miscellaneous\PotionIds.cs</IgnoreFile>
+      <IgnoreFile>.\Out.cs</IgnoreFile>
+      <IgnoreFile>.\Physics\Config.cs</IgnoreFile>
+      <IgnoreFile>.\Physics\ItemId.cs</IgnoreFile>
+    </IgnoreFiles>
+  </SpellChecker>
+</GhostDoc>

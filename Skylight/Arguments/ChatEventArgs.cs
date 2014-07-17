@@ -1,37 +1,64 @@
-﻿
+﻿using System;
+using System.Linq;
 
-namespace Skylight
+namespace Skylight.Arguments
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-
+    /// <summary>
+    ///     The class that handles all chat-based messages from the server
+    ///     including ones sent to the user through system.
+    /// </summary>
     public class ChatEventArgs : EventArgs
     {
-        private Player speaker;
+        /// <summary>
+        ///     The room where the message originated from.
+        /// </summary>
+        private readonly Room _origin;
 
-        private Room origin;
+        /// <summary>
+        ///     The player who sent the message.
+        /// </summary>
+        private readonly Player _speaker;
 
+        /// <summary>
+        ///     The main method where the chat messages are sent. This method sets the properties in
+        ///     this class to the speaker and origin of the message, where it is handed off to a delegate
+        ///     later.
+        /// </summary>
+        /// <param name="speaker">The player who said the message.</param>
+        /// <param name="origin">The room where the message originated.</param>
         public ChatEventArgs(Player speaker, Room origin)
         {
-            this.origin = origin;
-            this.origin.ChatLog = origin.ChatLog;
-            this.speaker = speaker;
+            _origin = origin;
+            Room room = _origin;
+            if (room != null)
+            {
+                room.ChatLog = origin.ChatLog;
+            }
+            _speaker = speaker;
         }
 
+        /// <summary>
+        ///     The message object containing the message content.
+        /// </summary>
         public string Message
         {
-            get { return this.Origin.ChatLog.Last().Key; }
+            get { return Origin.ChatLog.Last().Key; }
         }
 
+        /// <summary>
+        ///     The origin (room) where the message came from.
+        /// </summary>
         public Room Origin
         {
-            get { return this.origin; }
+            get { return _origin; }
         }
 
+        /// <summary>
+        ///     Who said the message (player).
+        /// </summary>
         public Player Speaker
         {
-            get { return this.speaker; }
+            get { return _speaker; }
         }
     }
 }

@@ -1,37 +1,61 @@
-﻿
+﻿//-----------------------------------------------------------------------
+// <copyright file="BlockEventArgs.cs" company="TakoMan02">
+//     Copyright TakoMan02
+// </copyright>
+//-----------------------------------------------------------------------
 
-namespace Skylight
+using System;
+using Skylight.Blocks;
+
+namespace Skylight.Arguments
 {
-    using System;
-
+    /// <summary>
+    ///     Sends the delegate an event based on the content of the block.
+    /// </summary>
     public class BlockEventArgs : EventArgs
     {
-        private Room origin;
+        /// <summary>
+        ///     The block.
+        /// </summary>
+        private readonly Block _placed;
 
-        private Block placed;
+        /// <summary>
+        ///     A player object containing who was the author of the block.
+        /// </summary>
+        private readonly Player _placer;
 
-        private Player placer;
-        
-        public BlockEventArgs(Block b, Room origin)
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="BlockEventArgs" />. Send a block changed event.
+        /// </summary>
+        /// <param name="b">The block</param>
+        /// <param name="origin">The room where the block originated from.</param>
+        public BlockEventArgs(Block b, Room origin = null)
         {
-            this.origin = origin;
-            this.placed = b;
-            this.placer = b.Placer;
+            Origin = origin ?? Bot.CurrentRoom;
+            _placed = b;
+            _placer = b.Placer;
         }
 
-        public Room Origin
-        {
-            get { return this.origin; }
-        }
-        
+        /// <summary>
+        ///     The room object (with room id).
+        /// </summary>
+        public Room Origin { get; private set; }
+
+        /// <summary>
+        ///     A placed block.
+        /// </summary>
         public Block Placed
         {
-            get { return this.placed; }
+            get { return _placed; }
         }
 
+        /// <summary>
+        ///     The player who placed the block (see Placed).
+        /// </summary>
         public Player Placer
         {
-            get { return this.placer; }
+            get { return _placer; }
         }
     }
 }
