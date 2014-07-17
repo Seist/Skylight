@@ -937,8 +937,7 @@ namespace Skylight
                 verticalSpeed = m.GetDouble(4);
 
             int id = m.GetInteger(0),
-                coins = m.GetInteger(9),
-                // never used.
+       
                 horizontalModifier = m.GetInteger(5),
                 verticalModifier = m.GetInteger(6),
                 horizontalDirection = m.GetInteger(7),
