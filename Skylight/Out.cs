@@ -32,6 +32,7 @@ namespace Skylight
         private readonly RespawnPlayer _respawnPlayer;
         private readonly RespawnAllPlayers _respawnAllPlayers;
         private readonly ResetWorld _resetWorld;
+        private readonly SaveTheWorld _saveTheWorld;
 
         public Out()
         {
@@ -51,6 +52,7 @@ namespace Skylight
             _respawnPlayer = new RespawnPlayer(this);
             _respawnAllPlayers = new RespawnAllPlayers(this);
             _resetWorld = new ResetWorld(this);
+            _saveTheWorld = new SaveTheWorld(this);
         }
 
         /// <summary>
@@ -158,24 +160,6 @@ namespace Skylight
             if (Bot.Name == R.Owner.Name)
             {
                 _sayChatMessage.Say("/kill " + p.Name);
-            }
-        }
-
-        /// <summary>
-        ///     Saves the world.
-        /// </summary>
-        public void Save()
-        {
-            try
-            {
-                if (Bot.Name == R.Owner.Name)
-                {
-                    C.Send("save");
-                }
-            }
-            catch (Exception)
-            {
-                Tools.SkylightMessage("Error: attempted to use Out.Save before connecting");
             }
         }
 
