@@ -215,23 +215,23 @@ namespace Skylight
                                 break;
 
                             case "b":
-                                OnB(m);
+                                OnBlock(m);
                                 break;
 
                             case "bc":
-                                OnBc(m);
+                                OnAddCoinDoorOrGate(m);
                                 break;
 
                             case "br":
-                                OnBr(m);
+                                OnAddScifiOrSpikes(m);
                                 break;
 
                             case "bs":
-                                OnBs(m);
+                                OnAddNoteblock(m);
                                 break;
 
                             case "c":
-                                OnC(m);
+                                OnCoin(m);
                                 break;
 
                             case "clear":
@@ -267,7 +267,7 @@ namespace Skylight
                                 break;
 
                             case "k":
-                                OnK(m);
+                                OnCrown(m);
                                 break;
 
                             case "kill":
@@ -275,7 +275,7 @@ namespace Skylight
                                 break;
 
                             case "ks":
-                                OnKs(m);
+                                OnTrophy(m);
                                 break;
 
                             case "lb":
@@ -291,7 +291,7 @@ namespace Skylight
                                 break;
 
                             case "m":
-                                OnM(m);
+                                OnMove(m);
                                 break;
 
                             case "mod":
@@ -359,11 +359,11 @@ namespace Skylight
                                 break;
 
                             case "w":
-                                OnW(m);
+                                OnGetWoot(m);
                                 break;
 
                             case "wu":
-                                OnWu(m);
+                                OnWootUp(m);
                                 break;
                         }
                     }
@@ -471,7 +471,7 @@ namespace Skylight
             Source.Pull.AutotextEvent(e);
         }
 
-        private void OnB(Message m)
+        private void OnBlock(Message m)
         {
             // Extract data.
             int z = m.GetInteger(0),
@@ -498,7 +498,7 @@ namespace Skylight
             Source.Pull.NormalBlockEvent(e);
         }
 
-        private void OnBc(Message m)
+        private void OnAddCoinDoorOrGate(Message m)
         {
             // Extract data.
             int x = m.GetInteger(0),
@@ -522,7 +522,7 @@ namespace Skylight
             Source.Pull.CoinBlockEvent(e);
         }
 
-        private void OnBr(Message m)
+        private void OnAddScifiOrSpikes(Message m)
         {
             // Extract data.
             int x = m.GetInteger(0),
@@ -542,7 +542,7 @@ namespace Skylight
             Source.Pull.RotateEvent(e);
         }
 
-        private void OnBs(Message m)
+        private void OnAddNoteblock(Message m)
         {
             // Extract data.
             int x = m.GetInteger(0),
@@ -570,7 +570,7 @@ namespace Skylight
             Source.Pull.SoundBlockEvent(e);
         }
 
-        private void OnC(Message m)
+        private void OnCoin(Message m)
         {
             try
             {
@@ -815,7 +815,7 @@ namespace Skylight
             Source.Pull.InitEvent(e);
         }
 
-        private void OnK(Message m)
+        private void OnCrown(Message m)
         {
             // Extract data.
             var id = m.GetInteger(0);
@@ -860,7 +860,7 @@ namespace Skylight
             Source.Pull.DeathEvent(e);
         }
 
-        private void OnKs(Message m)
+        private void OnTrophy(Message m)
         {
             // Extract data.
             var id = m.GetInteger(0);
@@ -927,7 +927,7 @@ namespace Skylight
             Source.Pull.LoseAccessEvent(e);
         }
 
-        private void OnM(Message m)
+        private void OnMove(Message m)
         {
             // Extract data.
             double xLocation = m.GetDouble(1),
@@ -1256,7 +1256,7 @@ namespace Skylight
             UpdateEvent(e);
         }
 
-        private void OnW(Message m)
+        private void OnGetWoot(Message m)
         {
             // "W" stands for "woot" which is the old name for magic.
             // Extract data.
@@ -1307,7 +1307,7 @@ namespace Skylight
             Source.Pull.SystemMessageEvent(e);
         }
 
-        private void OnWu(Message m)
+        private void OnWootUp(Message m)
         {
             // Extract data.
             var id = m.GetInteger(0);
