@@ -55,6 +55,7 @@ namespace Skylight
         private readonly CoinObject _coinObject;
         private readonly AddSpecialBlock _addSpecialBlock;
         private readonly NoteBlock _noteBlock;
+        private readonly OnCoinGet _onCoinGet;
 
         public In()
         {
@@ -65,6 +66,7 @@ namespace Skylight
             _coinObject = new CoinObject(this);
             _addSpecialBlock = new AddSpecialBlock(this);
             _noteBlock = new NoteBlock(this);
+            _onCoinGet = new OnCoinGet(this);
         }
 
         internal Bot Bot { get; set; }
@@ -106,6 +108,11 @@ namespace Skylight
         public NoteBlock NoteBlock
         {
             get { return _noteBlock; }
+        }
+
+        public OnCoinGet OnCoinGet
+        {
+            get { return _onCoinGet; }
         }
 
         /// <summary>
@@ -150,9 +157,7 @@ namespace Skylight
         ///     box or by prefixing a chat message with *SYSTEM.
         /// </summary>
         public event PlayerEvent
-            AddEvent = delegate { } ,
-            CoinCollectedEvent = delegate { } ,
-            CrownEvent = delegate { } ,
+            AddEvent = delegate { } , CrownEvent = delegate { } ,
             DeathEvent = delegate { } ,
             FaceEvent = delegate { } ,
             GainAccessEvent = delegate { } ,
@@ -251,7 +256,7 @@ namespace Skylight
                                 break;
 
                             case "c":
-                                OnCoin(m);
+                                OnCoinGet.OnCoin(m);
                                 break;
 
                             case "clear":
@@ -426,30 +431,6 @@ namespace Skylight
             var e = new PlayerEventArgs(Bot, Source, m);
 
             Source.Pull.GainAccessEvent(e);
-        }
-
-        private void OnCoin(Message m)
-        {
-            try
-            {
-                // Extract data.
-                int id = m.GetInteger(0),
-                    totalCoins = m.GetInteger(1);
-
-                // Update relevant objects.
-                var subject = Tools.GetPlayerById(id, Source);
-
-                subject.Coins = totalCoins;
-
-                // Fire the event.
-                var e = new PlayerEventArgs(subject, Source, m);
-
-                Source.Pull.CoinCollectedEvent(e);
-            }
-            catch (Exception ex)
-            {
-                Tools.SkylightMessage(ex.ToString());
-            }
         }
 
         private void OnClear()
