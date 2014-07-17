@@ -40,7 +40,7 @@ namespace Skylight
             // Fire the event.
             var e = new PlayerEventArgs(subject, _in.Source, m);
 
-            _in.Source.Pull.AddEvent(e);
+            _in.Source.Pull.OnAdd.AddEvent(e);
         }
     }
 }

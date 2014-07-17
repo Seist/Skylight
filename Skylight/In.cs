@@ -41,7 +41,7 @@ namespace Skylight
         ///     Something changed in the room (for example the title).
         /// </summary>
         /// <param name="e">The room object.</param>
-        public delegate void RoomEvent(BlockEventArgs e);
+        public delegate void RoomEvent(RoomEventArgs e);
 
         private readonly Access _access;
 
@@ -478,7 +478,7 @@ namespace Skylight
                                 break;
 
                             case "kill":
-                                OnKill1.OnKill(m);
+                                OnKill1.OnKillPlayer(m);
                                 break;
 
                             case "ks":

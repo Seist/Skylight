@@ -13,7 +13,7 @@ namespace Skylight
             _in = @in;
         }
 
-        public void OnKill(Message m)
+        public void OnKillPlayer(Message m)
         {
             // Extract data.
             int id = m.GetInteger(0);
