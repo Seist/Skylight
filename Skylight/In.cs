@@ -63,6 +63,7 @@ namespace Skylight
         private readonly Wizard _wizard;
         private readonly GiveWizard2 _giveWizard2;
         private readonly GodMode _godMode;
+        private readonly Hide _hide;
 
         public In()
         {
@@ -81,6 +82,7 @@ namespace Skylight
             _wizard = new Wizard(this);
             _giveWizard2 = new GiveWizard2(this);
             _godMode = new GodMode(this);
+            _hide = new Hide(this);
         }
 
         internal Bot Bot { get; set; }
@@ -164,6 +166,11 @@ namespace Skylight
             get { return _godMode; }
         }
 
+        public Hide Hide
+        {
+            get { return _hide; }
+        }
+
         /// <summary>
         ///     All of the delegates for BlockEvent. These fire when events occur
         ///     (such as when a block was added or updated).
@@ -224,8 +231,7 @@ namespace Skylight
         ///     the room's state (such as global clear, potion toggling and saved) for just
         ///     a few examples.
         /// </summary>
-        public event RoomEvent HideEvent = delegate { } ,
-            InitEvent = delegate { } , RefreshshopEvent = delegate { } ,
+        public event RoomEvent InitEvent = delegate { } , RefreshshopEvent = delegate { } ,
             ResetEvent = delegate { } ,
             SavedEvent = delegate { } ,
             ShowEvent = delegate { } ,
@@ -325,7 +331,7 @@ namespace Skylight
                                 break;
 
                             case "hide":
-                                OnHide();
+                                Hide.OnHide();
                                 break;
 
                             case "k":
@@ -468,18 +474,6 @@ namespace Skylight
             var e = new PlayerEventArgs(Bot, Source, m);
 
             Source.Pull.GainAccessEvent(e);
-        }
-
-        private void OnHide()
-        {
-            // Like with "clear", there is data but it is irrelevant.
-            // Update relevant objects.
-            Source.TimeDoorsVisible = false;
-
-            // Fire the event.
-            var e = new RoomEventArgs(Source);
-
-            Source.Pull.HideEvent(e);
         }
 
         private void OnInfo(Message m)
