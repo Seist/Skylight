@@ -68,6 +68,7 @@ namespace Skylight
         private readonly OnKill _onKill;
         private readonly Trophy _trophy;
         private readonly SignBlock _signBlock;
+        private readonly LeftWorld _leftWorld;
 
         public In()
         {
@@ -91,6 +92,7 @@ namespace Skylight
             _onKill = new OnKill(this);
             _trophy = new Trophy(this);
             _signBlock = new SignBlock(this);
+            _leftWorld = new LeftWorld(this);
         }
 
         internal Bot Bot { get; set; }
@@ -199,6 +201,11 @@ namespace Skylight
             get { return _signBlock; }
         }
 
+        public LeftWorld LeftWorld
+        {
+            get { return _leftWorld; }
+        }
+
         /// <summary>
         ///     All of the delegates for BlockEvent. These fire when events occur
         ///     (such as when a block was added or updated).
@@ -232,9 +239,7 @@ namespace Skylight
         /// </summary>
         public event PlayerEvent
             AddEvent = delegate { } , DeathEvent = delegate { } , GainAccessEvent = delegate { } , InfoEvent = delegate { } ,
-            JumpEvent = delegate { } ,
-            LeaveEvent = delegate { } ,
-            LevelUpEvent = delegate { } ,
+            JumpEvent = delegate { } , LevelUpEvent = delegate { } ,
             LoseAccessEvent = delegate { } ,
             MagicCoinEvent = delegate { } ,
             ModModeEvent = delegate { } ,
@@ -367,7 +372,7 @@ namespace Skylight
                                 break;
 
                             case "left":
-                                OnLeft(m);
+                                LeftWorld.OnLeft(m);
                                 break;
 
                             case "levelup":
@@ -591,28 +596,6 @@ namespace Skylight
             Source.Pull.InitEvent(e);
         }
 
-
-        private void OnLeft(Message m)
-        {
-            // Extract data.
-            var id = m.GetInteger(0);
-
-            // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, Source);
-            for (var i = 0; i < Source.OnlinePlayers.Count; i++)
-            {
-                if (Source.OnlinePlayers[i] == subject)
-                {
-                    Source.OnlinePlayers.RemoveAt(i);
-                    break;
-                }
-            }
-
-            // Fire the event.
-            var e = new PlayerEventArgs(subject, Source, m);
-
-            Source.Pull.LeaveEvent(e);
-        }
 
         private void OnLevelUp(Message m)
         {
