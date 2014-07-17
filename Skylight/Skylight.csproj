@@ -56,24 +56,24 @@
     <Compile Include="Arguments\ChatEventArgs.cs" />
     <Compile Include="Arguments\PlayerEventArgs.cs" />
     <Compile Include="Arguments\RoomEventArgs.cs" />
-    <Compile Include="Build.cs" />
-    <Compile Include="Clear.cs" />
-    <Compile Include="HoldDownArrow.cs" />
-    <Compile Include="HoldLeftArrow.cs" />
-    <Compile Include="HoldRightArrow.cs" />
-    <Compile Include="HoldSpace.cs" />
-    <Compile Include="HoldUpArrow.cs" />
-    <Compile Include="InputCodeForRoom.cs" />
-    <Compile Include="LoadLevelInWorld.cs" />
-    <Compile Include="ReleaseArrowKey.cs" />
-    <Compile Include="ResetWorld.cs" />
-    <Compile Include="RespawnAllPlayers.cs" />
-    <Compile Include="RespawnPlayer.cs" />
-    <Compile Include="SaveTheWorld.cs" />
-    <Compile Include="SayChatMessage.cs" />
-    <Compile Include="SetAllPotionBansInWorld.cs" />
-    <Compile Include="SetCodeForRoom.cs" />
-    <Compile Include="SetTitleOfRoom.cs" />
+    <Compile Include="Skylight.Outgoing\Build.cs" />
+    <Compile Include="Skylight.Outgoing\Clear.cs" />
+    <Compile Include="Skylight.Outgoing\HoldDownArrow.cs" />
+    <Compile Include="Skylight.Outgoing\HoldLeftArrow.cs" />
+    <Compile Include="Skylight.Outgoing\HoldRightArrow.cs" />
+    <Compile Include="Skylight.Outgoing\HoldSpace.cs" />
+    <Compile Include="Skylight.Outgoing\HoldUpArrow.cs" />
+    <Compile Include="Skylight.Outgoing\InputCodeForRoom.cs" />
+    <Compile Include="Skylight.Outgoing\LoadLevelInWorld.cs" />
+    <Compile Include="Skylight.Outgoing\ReleaseArrowKey.cs" />
+    <Compile Include="Skylight.Outgoing\ResetWorld.cs" />
+    <Compile Include="Skylight.Outgoing\RespawnAllPlayers.cs" />
+    <Compile Include="Skylight.Outgoing\RespawnPlayer.cs" />
+    <Compile Include="Skylight.Outgoing\SaveTheWorld.cs" />
+    <Compile Include="Skylight.Outgoing\SayChatMessage.cs" />
+    <Compile Include="Skylight.Outgoing\SetAllPotionBansInWorld.cs" />
+    <Compile Include="Skylight.Outgoing\SetCodeForRoom.cs" />
+    <Compile Include="Skylight.Outgoing\SetTitleOfRoom.cs" />
     <Compile Include="Skylight.Static\Blocks\BlockIds.cs" />
     <Compile Include="Skylight.Static\Blocks\RoomPortalBlock.cs" />
     <Compile Include="Skylight.Static\Auth\Bot.cs" />
@@ -149,9 +149,7 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Skylight.Outgoing\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="lib\Rabbit.dll" />
   </ItemGroup>
