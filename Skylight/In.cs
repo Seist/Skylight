@@ -66,6 +66,7 @@ namespace Skylight
         private readonly Hide _hide;
         private readonly Crown _crown;
         private readonly OnKill _onKill;
+        private readonly Trophy _trophy;
 
         public In()
         {
@@ -87,6 +88,7 @@ namespace Skylight
             _hide = new Hide(this);
             _crown = new Crown(this);
             _onKill = new OnKill(this);
+            _trophy = new Trophy(this);
         }
 
         internal Bot Bot { get; set; }
@@ -185,6 +187,11 @@ namespace Skylight
             get { return _onKill; }
         }
 
+        public Trophy Trophy
+        {
+            get { return _trophy; }
+        }
+
         /// <summary>
         ///     All of the delegates for BlockEvent. These fire when events occur
         ///     (such as when a block was added or updated).
@@ -236,8 +243,7 @@ namespace Skylight
             ModModeEvent = delegate { } ,
             MovementEvent = delegate { } ,
             PotionEvent = delegate { } , TeleportEvent = delegate { } ,
-            TickEvent = delegate { } ,
-            TrophyEvent = delegate { } , WootEvent = delegate { };
+            TickEvent = delegate { } , WootEvent = delegate { };
 
         /// <summary>
         ///     Delegates for RoomEvent. Are only invoked when commands that concern
@@ -356,7 +362,7 @@ namespace Skylight
                                 break;
 
                             case "ks":
-                                OnTrophy(m);
+                                Trophy.OnTrophy(m);
                                 break;
 
                             case "lb":
@@ -586,22 +592,6 @@ namespace Skylight
             var e = new RoomEventArgs(Source);
 
             Source.Pull.InitEvent(e);
-        }
-
-        private void OnTrophy(Message m)
-        {
-            // Extract data.
-            var id = m.GetInteger(0);
-
-            // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, Source);
-
-            subject.HasSilverCrown = true;
-
-            // Fire the event.
-            var e = new PlayerEventArgs(subject, Source, m);
-
-            Source.Pull.TrophyEvent(e);
         }
 
 
