@@ -75,6 +75,8 @@ namespace Skylight
         private readonly Potion _potion;
         private readonly RefreshShop _refreshShop;
         private readonly ResetWorld _resetWorld;
+        private readonly Chat _chat;
+        private readonly ChatOld _chatOld;
 
         public In()
         {
@@ -105,6 +107,8 @@ namespace Skylight
             _potion = new Potion(this);
             _refreshShop = new RefreshShop(this);
             _resetWorld = new ResetWorld(this);
+            _chat = new Chat(this);
+            _chatOld = new ChatOld(this);
         }
 
         internal Bot Bot { get; set; }
@@ -248,6 +252,16 @@ namespace Skylight
             get { return _resetWorld; }
         }
 
+        public Chat Chat
+        {
+            get { return _chat; }
+        }
+
+        public ChatOld ChatOld
+        {
+            get { return _chatOld; }
+        }
+
         /// <summary>
         ///     All of the delegates for BlockEvent. These fire when events occur
         ///     (such as when a block was added or updated).
@@ -269,9 +283,7 @@ namespace Skylight
         ///     says something, and distinguishes between auto text and system messages
         ///     and much more.
         /// </summary>
-        public event ChatEvent NormalChatEvent = delegate { } ,
-            SayOldEvent = delegate { } ,
-            SystemMessageEvent = delegate { };
+        public event ChatEvent SystemMessageEvent = delegate { };
 
         /// <summary>
         ///     All events that concern the player. This includes many messages that the player
@@ -440,11 +452,11 @@ namespace Skylight
                                 break;
 
                             case "say":
-                                OnSay(m);
+                                Chat.OnSay(m);
                                 break;
 
                             case "say_old":
-                                OnSayOld(m);
+                                ChatOld.OnSayOld(m);
                                 break;
 
                             case "saved":
@@ -676,40 +688,6 @@ namespace Skylight
             var e = new RoomEventArgs(Source);
 
             Source.Pull.SavedEvent(e);
-        }
-
-        private void OnSay(Message m)
-        {
-            // Extract data.
-            var id = m.GetInteger(0);
-
-            var message = m.GetString(1);
-
-            // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, Source);
-
-            Source.ChatLog.Add(new KeyValuePair<string, Player>(message, subject));
-
-            // Fire the event.
-            var e = new ChatEventArgs(subject, Source);
-
-            Source.Pull.NormalChatEvent(e);
-        }
-
-        private void OnSayOld(Message m)
-        {
-            // Extract data.
-            var message = m.GetString(1);
-
-            // Update relevant objects.
-            // Player subject = new Player() { Name = name };
-
-            Source.ChatLog.Add(new KeyValuePair<string, Player>(message, null));
-
-            // Fire the event.
-            var e = new ChatEventArgs(null, Source);
-
-            Source.Pull.SayOldEvent(e);
         }
 
         private void OnShow()

@@ -66,6 +66,8 @@
     <Compile Include="Blocks\CoinBlock.cs" />
     <Compile Include="Blocks\PercussionBlock.cs" />
     <Compile Include="Blocks\Block.cs" />
+    <Compile Include="Chat.cs" />
+    <Compile Include="ChatOld.cs" />
     <Compile Include="ClearMap.cs" />
     <Compile Include="CoinObject.cs" />
     <Compile Include="Crown.cs" />
