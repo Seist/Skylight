@@ -70,11 +70,13 @@ namespace Skylight
         private Thread _playerPhysicsThread;
         private readonly Add _add;
         private readonly Potions _potions;
+        private readonly Autotext _autotext;
 
         public In()
         {
             _add = new Add(this);
             _potions = new Potions(this);
+            _autotext = new Autotext(this);
         }
 
         internal Bot Bot { get; set; }
@@ -91,6 +93,11 @@ namespace Skylight
         public Potions Potions
         {
             get { return _potions; }
+        }
+
+        public Autotext Autotext
+        {
+            get { return _autotext; }
         }
 
         /// <summary>
@@ -135,9 +142,7 @@ namespace Skylight
         ///     says something, and distinguishes between auto text and system messages
         ///     and much more.
         /// </summary>
-        public event ChatEvent
-            AutotextEvent = delegate { } ,
-            NormalChatEvent = delegate { } ,
+        public event ChatEvent NormalChatEvent = delegate { } ,
             SayOldEvent = delegate { } ,
             SystemMessageEvent = delegate { };
 
@@ -229,7 +234,7 @@ namespace Skylight
                                 break;
 
                             case "autotext":
-                                OnAutotext(m);
+                                Autotext.OnAutotext(m);
                                 break;
 
                             case "b":
@@ -424,24 +429,6 @@ namespace Skylight
             var e = new PlayerEventArgs(Bot, Source, m);
 
             Source.Pull.GainAccessEvent(e);
-        }
-
-        private void OnAutotext(Message m)
-        {
-            // Extract data.
-            var id = m.GetInteger(0);
-
-            var message = m.GetString(1);
-
-            // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, Source);
-
-            Source.ChatLog.Add(new KeyValuePair<string, Player>(message, subject));
-
-            // Fire the event.
-            var e = new ChatEventArgs(subject, Source);
-
-            Source.Pull.AutotextEvent(e);
         }
 
         private void OnBlock(Message m)
