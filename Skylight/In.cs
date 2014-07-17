@@ -57,6 +57,7 @@ namespace Skylight
         private readonly NoteBlock _noteBlock;
         private readonly OnCoinGet _onCoinGet;
         private readonly ClearMap _clearMap;
+        private readonly FaceChange _faceChange;
 
         public In()
         {
@@ -69,6 +70,7 @@ namespace Skylight
             _noteBlock = new NoteBlock(this);
             _onCoinGet = new OnCoinGet(this);
             _clearMap = new ClearMap(this);
+            _faceChange = new FaceChange(this);
         }
 
         internal Bot Bot { get; set; }
@@ -122,6 +124,11 @@ namespace Skylight
             get { return _clearMap; }
         }
 
+        public FaceChange FaceChange
+        {
+            get { return _faceChange; }
+        }
+
         /// <summary>
         ///     All of the delegates for BlockEvent. These fire when events occur
         ///     (such as when a block was added or updated).
@@ -165,9 +172,7 @@ namespace Skylight
         /// </summary>
         public event PlayerEvent
             AddEvent = delegate { } , CrownEvent = delegate { } ,
-            DeathEvent = delegate { } ,
-            FaceEvent = delegate { } ,
-            GainAccessEvent = delegate { } ,
+            DeathEvent = delegate { } , GainAccessEvent = delegate { } ,
             GodEvent = delegate { } ,
             GrinchEvent = delegate { } ,
             InfoEvent = delegate { } ,
@@ -269,7 +274,7 @@ namespace Skylight
                                 break;
 
                             case "face":
-                                OnFace(m);
+                                FaceChange.OnFace(m);
                                 break;
 
                             case "givegrinch":
@@ -436,23 +441,6 @@ namespace Skylight
             var e = new PlayerEventArgs(Bot, Source, m);
 
             Source.Pull.GainAccessEvent(e);
-        }
-
-        private void OnFace(Message m)
-        {
-            // Extract data.
-            int playerId = m.GetInteger(0),
-                smileyId = m.GetInteger(1);
-
-            // Update relevant objects.
-            var subject = Tools.GetPlayerById(playerId, Source);
-
-            subject.Smiley = smileyId;
-
-            // Fire the event.
-            var e = new PlayerEventArgs(subject, Source, m);
-
-            Source.Pull.FaceEvent(e);
         }
 
         private void OnGiveGrinch(Message m)
