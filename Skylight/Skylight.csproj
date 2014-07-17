@@ -79,6 +79,7 @@
     <Compile Include="LevelChange.cs" />
     <Compile Include="Miscellaneous\PotionIds.cs" />
     <Compile Include="Miscellaneous\SmileyIds.cs" />
+    <Compile Include="Move.cs" />
     <Compile Include="NoteBlock.cs" />
     <Compile Include="OnCoinGet.cs" />
     <Compile Include="OnKill.cs" />

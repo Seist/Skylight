@@ -70,6 +70,7 @@ namespace Skylight
         private readonly SignBlock _signBlock;
         private readonly LeftWorld _leftWorld;
         private readonly LevelChange _levelChange;
+        private readonly Move _move;
 
         public In()
         {
@@ -95,6 +96,7 @@ namespace Skylight
             _signBlock = new SignBlock(this);
             _leftWorld = new LeftWorld(this);
             _levelChange = new LevelChange(this);
+            _move = new Move(this);
         }
 
         internal Bot Bot { get; set; }
@@ -213,6 +215,11 @@ namespace Skylight
             get { return _levelChange; }
         }
 
+        public Move Move
+        {
+            get { return _move; }
+        }
+
         /// <summary>
         ///     All of the delegates for BlockEvent. These fire when events occur
         ///     (such as when a block was added or updated).
@@ -245,12 +252,9 @@ namespace Skylight
         ///     box or by prefixing a chat message with *SYSTEM.
         /// </summary>
         public event PlayerEvent
-            AddEvent = delegate { } , DeathEvent = delegate { } , GainAccessEvent = delegate { } , InfoEvent = delegate { } ,
-            JumpEvent = delegate { } , LoseAccessEvent = delegate { } ,
+            AddEvent = delegate { } , DeathEvent = delegate { } , GainAccessEvent = delegate { } , InfoEvent = delegate { } , LoseAccessEvent = delegate { } ,
             MagicCoinEvent = delegate { } ,
-            ModModeEvent = delegate { } ,
-            MovementEvent = delegate { } ,
-            PotionEvent = delegate { } , TeleportEvent = delegate { } ,
+            ModModeEvent = delegate { } , PotionEvent = delegate { } , TeleportEvent = delegate { } ,
             TickEvent = delegate { } , WootEvent = delegate { };
 
         /// <summary>
@@ -386,7 +390,7 @@ namespace Skylight
                                 break;
 
                             case "m":
-                                OnMove(m);
+                                Move.OnMove(m);
                                 break;
 
                             case "mod":
@@ -613,71 +617,6 @@ namespace Skylight
             var e = new PlayerEventArgs(Bot, Source, m);
 
             Source.Pull.LoseAccessEvent(e);
-        }
-
-        private void OnMove(Message m)
-        {
-            // Extract data.
-            double xLocation = m.GetDouble(1),
-                yLocation = m.GetDouble(2),
-                horizontalSpeed = m.GetDouble(3),
-                verticalSpeed = m.GetDouble(4);
-
-            int id = m.GetInteger(0),
-       
-                horizontalModifier = m.GetInteger(5),
-                verticalModifier = m.GetInteger(6),
-                horizontalDirection = m.GetInteger(7),
-                verticalDirection = m.GetInteger(8);
-
-            bool hasGravityModifier = m.GetBoolean(10),
-                spaceDown = m.GetBoolean(11);
-
-            // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, Source);
-
-            subject.IsHoldingSpace = false;
-            if (spaceDown)
-            {
-                subject.IsHoldingSpace = true;
-
-                // If they are simply switching between keys whilst holding space, ignore it
-                if (subject.Vertical == verticalDirection &&
-                    subject.Horizontal == horizontalDirection)
-                {
-                    // Fire the jump event.
-                    var jumpEventArgs = new PlayerEventArgs(subject, Source, m);
-
-                    Source.Pull.JumpEvent(jumpEventArgs);
-                }
-            }
-
-            subject.X = xLocation;
-            subject.Y = yLocation;
-
-            subject.speedX = horizontalSpeed;
-            subject.speedY = verticalSpeed;
-
-            subject.modifierX = horizontalModifier;
-            subject.modifierY = verticalModifier;
-
-            subject.Horizontal = horizontalDirection;
-            subject.Vertical = verticalDirection;
-
-            subject.HasGravityModifier = hasGravityModifier;
-
-            subject.IsHoldingUp = verticalDirection == -1;
-
-            subject.IsHoldingDown = verticalDirection == 1;
-
-            subject.IsHoldingLeft = horizontalDirection == -1;
-
-            subject.IsHoldingRight = horizontalDirection == 1;
-
-            // Fire the event.
-            var movementEventArgs = new PlayerEventArgs(subject, Source, m);
-
-            Source.Pull.MovementEvent(movementEventArgs);
         }
 
         private void OnMod(Message m)
