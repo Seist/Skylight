@@ -54,13 +54,11 @@
   <ItemGroup>
     <Compile Include="Access.cs" />
     <Compile Include="Add.cs" />
-    <Compile Include="AddSpecialBlock.cs" />
     <Compile Include="Arguments\BlockEventArgs.cs" />
     <Compile Include="Arguments\ChatEventArgs.cs" />
     <Compile Include="Arguments\PlayerEventArgs.cs" />
     <Compile Include="Arguments\RoomEventArgs.cs" />
     <Compile Include="Autotext.cs" />
-    <Compile Include="BlockChanged.cs" />
     <Compile Include="Blocks\BlockIds.cs" />
     <Compile Include="Blocks\RoomPortalBlock.cs" />
     <Compile Include="Bot.cs" />
@@ -87,7 +85,6 @@
     <Compile Include="Miscellaneous\SmileyIds.cs" />
     <Compile Include="Moderator.cs" />
     <Compile Include="Move.cs" />
-    <Compile Include="NoteBlock.cs" />
     <Compile Include="OnCoinGet.cs" />
     <Compile Include="OnKill.cs" />
     <Compile Include="Out.cs" />
@@ -111,7 +108,10 @@
     <Compile Include="Room.cs" />
     <Compile Include="Save.cs" />
     <Compile Include="Show.cs" />
-    <Compile Include="SignBlock.cs" />
+    <Compile Include="Skylight.Blocks\AddSpecialBlock.cs" />
+    <Compile Include="Skylight.Blocks\BlockChanged.cs" />
+    <Compile Include="Skylight.Blocks\NoteBlock.cs" />
+    <Compile Include="Skylight.Blocks\SignBlock.cs" />
     <Compile Include="Tele.cs" />
     <Compile Include="Teleport.cs" />
     <Compile Include="Trophy.cs" />
