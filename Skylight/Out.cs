@@ -28,6 +28,7 @@ namespace Skylight
         private readonly InputCodeForRoom _inputCodeForRoom;
         private readonly SetCodeForRoom _setCodeForRoom;
         private readonly ReleaseArrowKey _releaseArrowKey;
+        private readonly LoadLevelInWorld _loadLevelInWorld;
 
         public Out()
         {
@@ -43,6 +44,7 @@ namespace Skylight
             _inputCodeForRoom = new InputCodeForRoom(this);
             _setCodeForRoom = new SetCodeForRoom(this);
             _releaseArrowKey = new ReleaseArrowKey(this);
+            _loadLevelInWorld = new LoadLevelInWorld(this);
         }
 
         /// <summary>
@@ -80,6 +82,11 @@ namespace Skylight
         public ReleaseArrowKey ReleaseArrowKey
         {
             get { return _releaseArrowKey; }
+        }
+
+        public SayChatMessage SayChatMessage
+        {
+            get { return _sayChatMessage; }
         }
 
         /// <summary>
@@ -133,17 +140,6 @@ namespace Skylight
             if (Bot.Name == R.Owner.Name)
             {
                 _sayChatMessage.Say("/kick " + p.Name + " " + reason);
-            }
-        }
-
-        /// <summary>
-        ///     Resets the level to its state when it was last saved.
-        /// </summary>
-        public void Loadlevel()
-        {
-            if (Bot.Name == R.Owner.Name)
-            {
-                _sayChatMessage.Say("/loadlevel");
             }
         }
 
