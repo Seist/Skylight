@@ -58,6 +58,7 @@
     <Compile Include="Arguments\RoomEventArgs.cs" />
     <Compile Include="Build.cs" />
     <Compile Include="Clear.cs" />
+    <Compile Include="HoldDownArrow.cs" />
     <Compile Include="Skylight.Static\Blocks\BlockIds.cs" />
     <Compile Include="Skylight.Static\Blocks\RoomPortalBlock.cs" />
     <Compile Include="Skylight.Static\Auth\Bot.cs" />

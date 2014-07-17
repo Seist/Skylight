@@ -18,11 +18,13 @@ namespace Skylight
     {
         private readonly Build _build;
         private readonly Clear _clear;
+        private readonly HoldDownArrow _holdDownArrow;
 
         public Out()
         {
             _build = new Build(this);
             _clear = new Clear(this);
+            _holdDownArrow = new HoldDownArrow(this);
         }
 
         /// <summary>
@@ -55,30 +57,6 @@ namespace Skylight
         public Room R
         {
             get { return Bot.R; }
-        }
-
-        /// <summary>
-        ///     Holds the down arrow key, causing the bot to move downward.
-        /// </summary>
-        /// <param name="startX">The start x coordinate.</param>
-        /// <param name="startY">The start y coordinate.</param>
-        public void HoldDown(double startX, double startY)
-        {
-            var holdArgs = new object[11];
-
-            holdArgs[0] = startX;
-            holdArgs[1] = startY;
-            holdArgs[2] = 0;
-            holdArgs[3] = 0;
-            holdArgs[4] = 0;
-            holdArgs[5] = 2;
-            holdArgs[6] = 0;
-            holdArgs[7] = 1;
-            holdArgs[8] = 4;
-            holdArgs[9] = false;
-            holdArgs[10] = false;
-
-            Move(holdArgs);
         }
 
         /// <summary>
