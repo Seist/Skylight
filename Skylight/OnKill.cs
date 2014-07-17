@@ -12,7 +12,7 @@ namespace Skylight
         {
             _in = @in;
         }
-
+        public event In.PlayerEvent DeathEvent = delegate { };
         public void OnKillPlayer(Message m)
         {
             // Extract data.
@@ -26,7 +26,7 @@ namespace Skylight
             // Fire the event.
             var e = new PlayerEventArgs(subject, _in.Source, m);
 
-            _in.Source.Pull.Tele.DeathEvent(e);
+            _in.Source.Pull.OnKill1.DeathEvent(e);
         }
     }
 }

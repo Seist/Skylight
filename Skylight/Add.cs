@@ -11,7 +11,7 @@ namespace Skylight
         {
             _in = @in;
         }
-
+        public event In.PlayerEvent OnAddEvent = delegate { };
         public void OnAdd(Message m)
         {
             // Extract data.
@@ -40,7 +40,7 @@ namespace Skylight
             // Fire the event.
             var e = new PlayerEventArgs(subject, _in.Source, m);
 
-            _in.Source.Pull.OnAdd.AddEvent(e);
+            _in.Source.Pull.Add.OnAddEvent(e);
         }
     }
 }
