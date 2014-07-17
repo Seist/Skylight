@@ -72,6 +72,7 @@ namespace Skylight
         private readonly LevelChange _levelChange;
         private readonly Move _move;
         private readonly Moderator _moderator;
+        private readonly Potion _potion;
 
         public In()
         {
@@ -99,6 +100,7 @@ namespace Skylight
             _levelChange = new LevelChange(this);
             _move = new Move(this);
             _moderator = new Moderator(this);
+            _potion = new Potion(this);
         }
 
         internal Bot Bot { get; set; }
@@ -227,6 +229,11 @@ namespace Skylight
             get { return _moderator; }
         }
 
+        public Potion Potion
+        {
+            get { return _potion; }
+        }
+
         /// <summary>
         ///     All of the delegates for BlockEvent. These fire when events occur
         ///     (such as when a block was added or updated).
@@ -260,7 +267,7 @@ namespace Skylight
         /// </summary>
         public event PlayerEvent
             AddEvent = delegate { } , DeathEvent = delegate { } , GainAccessEvent = delegate { } , InfoEvent = delegate { } , LoseAccessEvent = delegate { } ,
-            MagicCoinEvent = delegate { } , PotionEvent = delegate { } , TeleportEvent = delegate { } ,
+            MagicCoinEvent = delegate { } , TeleportEvent = delegate { } ,
             TickEvent = delegate { } , WootEvent = delegate { };
 
         /// <summary>
@@ -404,7 +411,7 @@ namespace Skylight
                                 break;
 
                             case "p":
-                                OnP(m);
+                                Potion.OnP(m);
                                 break;
 
                             case "pt":
@@ -623,32 +630,6 @@ namespace Skylight
             var e = new PlayerEventArgs(Bot, Source, m);
 
             Source.Pull.LoseAccessEvent(e);
-        }
-
-        private void OnP(Message m)
-        {
-            // Extract data.
-            int id = m.GetInteger(0),
-                potionId = m.GetInteger(1);
-
-            var isActive = m.GetBoolean(2);
-
-            // Update relevant objects
-            var subject = Tools.GetPlayerById(id, Source);
-
-            if (isActive)
-            {
-                subject.PotionEffects.Add(potionId);
-            }
-            else
-            {
-                subject.PotionEffects.Remove(potionId);
-            }
-
-            // Fire the event.
-            var e = new PlayerEventArgs(subject, Source, m);
-
-            Source.Pull.PotionEvent(e);
         }
 
         private void OnPt(Message m)
