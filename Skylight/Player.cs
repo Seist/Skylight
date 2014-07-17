@@ -790,15 +790,6 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Gets a value indicating whether this <see cref="Player" /> is moved.
-        /// </summary>
-        /// <value><c>true</c> if moved; otherwise, <c>false</c>.</value>
-        private bool Moved
-        {
-            get { return BlockX != OldBlockX || BlockY != OldBlockY; }
-        }
-
-        /// <summary>
         /// Gets or sets a value indicating whether this <see cref="Player" /> is levitation.
         /// </summary>
         /// <value><c>true</c> if levitation; otherwise, <c>false</c>.</value>
@@ -870,7 +861,7 @@ namespace Skylight
         /// <returns>System.Int32.</returns>
         private int Overlaps(Player player)
         {
-            var _loc_8 = new List<int>();
+           
 
             if (player.X < 0 || player.Y < 0 || player.X >= PlayingIn.Width*16 - 8 ||
                 player.Y >= PlayingIn.Height*16 - 8)
@@ -1732,15 +1723,6 @@ namespace Skylight
             return _touchpotions.ContainsKey(param1);
         }
 */
-
-        /// <summary>
-        /// Gets the active potions.
-        /// </summary>
-        /// <returns>List&lt;System.String&gt;.</returns>
-        private List<string> GetActivePotions()
-        {
-            return _touchpotions.Keys.Where(HasActivePotion).ToList();
-        }
 
 
         /// <summary>
