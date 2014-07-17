@@ -85,6 +85,8 @@ namespace Skylight
         private readonly Upgrade _upgrade;
         private readonly Wp _wp;
         private readonly Write _write;
+        private readonly GetWoot _getWoot;
+        private readonly WootUp _wootUp;
 
         public In()
         {
@@ -125,6 +127,8 @@ namespace Skylight
             _upgrade = new Upgrade(this);
             _wp = new Wp(this);
             _write = new Write(this);
+            _getWoot = new GetWoot(this);
+            _wootUp = new WootUp(this);
         }
 
         internal Bot Bot { get; set; }
@@ -318,6 +322,16 @@ namespace Skylight
             get { return _write; }
         }
 
+        public GetWoot GetWoot
+        {
+            get { return _getWoot; }
+        }
+
+        public WootUp WootUp
+        {
+            get { return _wootUp; }
+        }
+
         /// <summary>
         ///     All of the delegates for BlockEvent. These fire when events occur
         ///     (such as when a block was added or updated).
@@ -340,8 +354,7 @@ namespace Skylight
         ///     box or by prefixing a chat message with *SYSTEM.
         /// </summary>
         public event PlayerEvent
-            AddEvent = delegate { } , GainAccessEvent = delegate { } , InfoEvent = delegate { } , LoseAccessEvent = delegate { } ,
-            MagicCoinEvent = delegate { } , TickEvent = delegate { } , WootEvent = delegate { };
+            AddEvent = delegate { } , GainAccessEvent = delegate { } , InfoEvent = delegate { } , LoseAccessEvent = delegate { } , TickEvent = delegate { };
 
         /// <summary>
         ///     Delegates for RoomEvent. Are only invoked when commands that concern
@@ -539,11 +552,11 @@ namespace Skylight
                                 break;
 
                             case "w":
-                                OnGetWoot(m);
+                                GetWoot.OnGetWoot(m);
                                 break;
 
                             case "wu":
-                                OnWootUp(m);
+                                WootUp.OnWootUp(m);
                                 break;
                         }
                     }
@@ -741,40 +754,6 @@ namespace Skylight
             var e = new BlockEventArgs(b, Source);
 
             Source.Pull.CoinBlockEvent(e);
-        }
-
-        private void OnGetWoot(Message m)
-        {
-            // "W" stands for "woot" which is the old name for magic.
-            // Extract data.
-            var id = m.GetInteger(0);
-
-            // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, Source);
-
-            subject.CollectedMagic++;
-
-            // Fire the event.
-            var e = new PlayerEventArgs(subject, Source, m);
-
-            Source.Pull.MagicCoinEvent(e);
-        }
-
-        private void OnWootUp(Message m)
-        {
-            // Extract data.
-            var id = m.GetInteger(0);
-
-            // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, Source);
-
-            Source.TotalWoots++;
-            Source.Woots++;
-
-            // Fire the event.
-            var e = new PlayerEventArgs(subject, Source, m);
-
-            Source.Pull.WootEvent(e);
         }
 
         private void LoadBlocks()

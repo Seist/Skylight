@@ -72,6 +72,7 @@
     <Compile Include="CoinObject.cs" />
     <Compile Include="Crown.cs" />
     <Compile Include="FaceChange.cs" />
+    <Compile Include="GetWoot.cs" />
     <Compile Include="GiveWizard2.cs" />
     <Compile Include="GodMode.cs" />
     <Compile Include="Grinch.cs" />
@@ -115,6 +116,7 @@
     <Compile Include="Upgrade.cs" />
     <Compile Include="Witch.cs" />
     <Compile Include="Wizard.cs" />
+    <Compile Include="WootUp.cs" />
     <Compile Include="Wp.cs" />
     <Compile Include="Write.cs" />
   </ItemGroup>
