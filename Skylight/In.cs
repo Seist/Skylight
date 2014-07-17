@@ -62,6 +62,7 @@ namespace Skylight
         private readonly Witch _witch;
         private readonly Wizard _wizard;
         private readonly GiveWizard2 _giveWizard2;
+        private readonly GodMode _godMode;
 
         public In()
         {
@@ -79,6 +80,7 @@ namespace Skylight
             _witch = new Witch(this);
             _wizard = new Wizard(this);
             _giveWizard2 = new GiveWizard2(this);
+            _godMode = new GodMode(this);
         }
 
         internal Bot Bot { get; set; }
@@ -157,6 +159,11 @@ namespace Skylight
             get { return _giveWizard2; }
         }
 
+        public GodMode GodMode
+        {
+            get { return _godMode; }
+        }
+
         /// <summary>
         ///     All of the delegates for BlockEvent. These fire when events occur
         ///     (such as when a block was added or updated).
@@ -200,8 +207,7 @@ namespace Skylight
         /// </summary>
         public event PlayerEvent
             AddEvent = delegate { } , CrownEvent = delegate { } ,
-            DeathEvent = delegate { } , GainAccessEvent = delegate { } ,
-            GodEvent = delegate { } , InfoEvent = delegate { } ,
+            DeathEvent = delegate { } , GainAccessEvent = delegate { } , InfoEvent = delegate { } ,
             JumpEvent = delegate { } ,
             LeaveEvent = delegate { } ,
             LevelUpEvent = delegate { } ,
@@ -315,7 +321,7 @@ namespace Skylight
                                 break;
 
                             case "god":
-                                OnGod(m);
+                                GodMode.OnGod(m);
                                 break;
 
                             case "hide":
@@ -462,24 +468,6 @@ namespace Skylight
             var e = new PlayerEventArgs(Bot, Source, m);
 
             Source.Pull.GainAccessEvent(e);
-        }
-
-        private void OnGod(Message m)
-        {
-            // Extract data.
-            var isGod = m.GetBoolean(1);
-
-            var id = m.GetInteger(0);
-
-            // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, Source);
-
-            subject.IsGod = isGod;
-
-            // Fire the event.
-            var e = new PlayerEventArgs(subject, Source, m);
-
-            Source.Pull.GodEvent(e);
         }
 
         private void OnHide()

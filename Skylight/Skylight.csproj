@@ -70,6 +70,7 @@
     <Compile Include="CoinObject.cs" />
     <Compile Include="FaceChange.cs" />
     <Compile Include="GiveWizard2.cs" />
+    <Compile Include="GodMode.cs" />
     <Compile Include="Grinch.cs" />
     <Compile Include="In.cs" />
     <Compile Include="Miscellaneous\PotionIds.cs" />
