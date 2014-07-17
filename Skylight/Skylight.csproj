@@ -79,6 +79,7 @@
     <Compile Include="In.cs" />
     <Compile Include="LeftWorld.cs" />
     <Compile Include="LevelChange.cs" />
+    <Compile Include="Meta.cs" />
     <Compile Include="Miscellaneous\PotionIds.cs" />
     <Compile Include="Miscellaneous\SmileyIds.cs" />
     <Compile Include="Moderator.cs" />

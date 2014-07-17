@@ -81,6 +81,7 @@ namespace Skylight
         private readonly Show _show;
         private readonly Tele _tele;
         private readonly Teleport _teleport;
+        private readonly Meta _meta;
 
         public In()
         {
@@ -117,6 +118,7 @@ namespace Skylight
             _show = new Show(this);
             _tele = new Tele(this);
             _teleport = new Teleport(this);
+            _meta = new Meta(this);
         }
 
         internal Bot Bot { get; set; }
@@ -290,6 +292,11 @@ namespace Skylight
             get { return _teleport; }
         }
 
+        public Meta Meta
+        {
+            get { return _meta; }
+        }
+
         /// <summary>
         ///     All of the delegates for BlockEvent. These fire when events occur
         ///     (such as when a block was added or updated).
@@ -328,8 +335,7 @@ namespace Skylight
         ///     the room's state (such as global clear, potion toggling and saved) for just
         ///     a few examples.
         /// </summary>
-        public event RoomEvent InitEvent = delegate { } , UpdateEvent = delegate { } ,
-            UpdateMetaEvent = delegate { };
+        public event RoomEvent InitEvent = delegate { } , UpdateEvent = delegate { };
 
         internal void OnMessage(object sender, Message m)
         {
@@ -504,7 +510,7 @@ namespace Skylight
                                 break;
 
                             case "updatemeta":
-                                OnUpdateMeta(m);
+                                Meta.OnUpdateMeta(m);
                                 break;
 
                             case "upgrade":
@@ -722,30 +728,6 @@ namespace Skylight
             var e = new BlockEventArgs(b, Source);
 
             Source.Pull.CoinBlockEvent(e);
-        }
-
-        private void OnUpdateMeta(Message m)
-        {
-            // Extract data.
-            string
-                ownerName = m.GetString(0),
-                roomName = m.GetString(1);
-
-            int plays = m.GetInteger(2),
-                woots = m.GetInteger(3),
-                totalWoots = m.GetInteger(4);
-
-            // Update relevant objects.
-            Source.Owner.Name = ownerName;
-            Source.Name = roomName;
-            Source.Plays = plays;
-            Source.Woots = woots;
-            Source.TotalWoots = totalWoots;
-
-            // Fire the event.
-            var e = new RoomEventArgs(Source);
-
-            Source.Pull.UpdateMetaEvent(e);
         }
 
         private void OnUpgrade()
