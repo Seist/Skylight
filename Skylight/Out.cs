@@ -23,6 +23,7 @@ namespace Skylight
         private readonly HoldRightArrow _holdRightArrow;
         private readonly HoldUpArrow _holdUpArrow;
         private readonly HoldSpace _holdSpace;
+        private readonly SetTitleOfRoom _setTitleOfRoom;
 
         public Out()
         {
@@ -33,6 +34,7 @@ namespace Skylight
             _holdRightArrow = new HoldRightArrow(this);
             _holdUpArrow = new HoldUpArrow(this);
             _holdSpace = new HoldSpace(this);
+            _setTitleOfRoom = new SetTitleOfRoom(this);
         }
 
         /// <summary>
@@ -213,25 +215,6 @@ namespace Skylight
             catch (Exception)
             {
                 Tools.SkylightMessage("Error: attempted to use Out.Say before connecting");
-            }
-        }
-
-        /// <summary>
-        ///     Sets the title of the room.
-        /// </summary>
-        /// <param name="s">The new title.</param>
-        public void SetTitle(string s)
-        {
-            try
-            {
-                if (s != string.Empty)
-                {
-                    C.Send("name", s);
-                }
-            }
-            catch (Exception)
-            {
-                Tools.SkylightMessage("Error: attempted to use Out.SetTitle before connecting");
             }
         }
 
