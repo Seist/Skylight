@@ -25,6 +25,8 @@ namespace Skylight
         private readonly HoldSpace _holdSpace;
         private readonly SetTitleOfRoom _setTitleOfRoom;
         private readonly SayChatMessage _sayChatMessage;
+        private readonly InputCodeForRoom _inputCodeForRoom;
+        private readonly SetCodeForRoom _setCodeForRoom;
 
         public Out()
         {
@@ -37,6 +39,8 @@ namespace Skylight
             _holdSpace = new HoldSpace(this);
             _setTitleOfRoom = new SetTitleOfRoom(this);
             _sayChatMessage = new SayChatMessage(this);
+            _inputCodeForRoom = new InputCodeForRoom(this);
+            _setCodeForRoom = new SetCodeForRoom(this);
         }
 
         /// <summary>
@@ -69,34 +73,6 @@ namespace Skylight
         public Room R
         {
             get { return Bot.R; }
-        }
-
-        /// <summary>
-        ///     Inputs the edit key.
-        /// </summary>
-        /// <param name="editKey">The edit key.</param>
-        public void InputCode(string editKey)
-        {
-            try
-            {
-                C.Send("access", editKey);
-            }
-            catch (Exception)
-            {
-                Tools.SkylightMessage("Error: attempted to use Out.InputCode before connecting");
-            }
-        }
-
-        /// <summary>
-        ///     Sets the edit key for the current room.
-        /// </summary>
-        /// <param name="newCode">The new code.</param>
-        public void SetCode(string newCode)
-        {
-            if (Bot.Name == R.Owner.Name)
-            {
-                C.Send("key", newCode);
-            }
         }
 
         /// <summary>

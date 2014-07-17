@@ -63,7 +63,9 @@
     <Compile Include="HoldRightArrow.cs" />
     <Compile Include="HoldSpace.cs" />
     <Compile Include="HoldUpArrow.cs" />
+    <Compile Include="InputCodeForRoom.cs" />
     <Compile Include="SayChatMessage.cs" />
+    <Compile Include="SetCodeForRoom.cs" />
     <Compile Include="SetTitleOfRoom.cs" />
     <Compile Include="Skylight.Static\Blocks\BlockIds.cs" />
     <Compile Include="Skylight.Static\Blocks\RoomPortalBlock.cs" />
