@@ -68,11 +68,23 @@ namespace Skylight
 
         private Message _initMessage;
         private Thread _playerPhysicsThread;
+        private readonly Add _add;
+
+        public In()
+        {
+            _add = new Add(this);
+        }
+
         internal Bot Bot { get; set; }
 
-        internal Room Source { get; set; }
+        public Room Source { get; set; }
 
         internal bool IsPersonal { get; set; }
+
+        public Add Add
+        {
+            get { return _add; }
+        }
 
         /// <summary>
         ///     All of the delegates for BlockEvent. These fire when events occur
@@ -189,7 +201,7 @@ namespace Skylight
                         }
                         else if (m.Type == "add")
                         {
-                            OnAdd(m);
+                            Add.OnAdd(m);
                         }
                         else
                         {
@@ -204,7 +216,7 @@ namespace Skylight
                         switch (Convert.ToString(m.Type))
                         {
                             case "add":
-                                OnAdd(m);
+                                Add.OnAdd(m);
                                 break;
 
                             case "allowpotions":
@@ -407,37 +419,6 @@ namespace Skylight
             var e = new PlayerEventArgs(Bot, Source, m);
 
             Source.Pull.GainAccessEvent(e);
-        }
-
-        private void OnAdd(Message m)
-        {
-            // Extract data.
-            var name = m.GetString(1);
-
-            int id = m.GetInteger(0),
-                smiley = m.GetInteger(2),
-                coins = m.GetInteger(8),
-                xplevel = m.GetInteger(11);
-
-            double x = m.GetDouble(3),
-                y = m.GetDouble(4);
-
-            bool isGod = m.GetBoolean(5),
-                isMod = m.GetBoolean(6),
-                hasBoost = m.GetBoolean(9),
-                isFriend = m.GetBoolean(10),
-                hasClub = m.GetBoolean(12); // never used.
-
-            // Update relevant objects.
-            var subject = new Player(Source, id, name, smiley, x, y, isGod, isMod, true, coins, hasBoost, isFriend,
-                xplevel, hasClub, false, false, false, false, false);
-
-            Source.OnlinePlayers.Add(subject);
-
-            // Fire the event.
-            var e = new PlayerEventArgs(subject, Source, m);
-
-            Source.Pull.AddEvent(e);
         }
 
         private void OnAllowPotions(Message m)

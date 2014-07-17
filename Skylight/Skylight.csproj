@@ -52,6 +52,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Add.cs" />
     <Compile Include="Arguments\BlockEventArgs.cs" />
     <Compile Include="Arguments\ChatEventArgs.cs" />
     <Compile Include="Arguments\PlayerEventArgs.cs" />
