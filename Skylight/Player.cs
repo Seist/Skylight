@@ -773,24 +773,6 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Gets the old block x.
-        /// </summary>
-        /// <value>The old block x.</value>
-        private int OldBlockX
-        {
-            get { return (int) Math.Round(((_oldX)/16.0)); }
-        }
-
-        /// <summary>
-        /// Gets the old block y.
-        /// </summary>
-        /// <value>The old block y.</value>
-        private int OldBlockY
-        {
-            get { return (int) Math.Round(((_oldY)/16.0)); }
-        }
-
-        /// <summary>
         /// Gets or sets a value indicating whether this <see cref="Player" /> is levitation.
         /// </summary>
         /// <value><c>true</c> if levitation; otherwise, <c>false</c>.</value>
@@ -1703,20 +1685,6 @@ namespace Skylight
             _touchpotions.Remove(param1);
         }
 */
-
-        /// <summary>
-        /// Determines whether [has active potion] [the specified param1].
-        /// </summary>
-        /// <param name="param1">The param1.</param>
-        /// <returns><c>true</c> if [has active potion] [the specified param1]; otherwise, <c>false</c>.</returns>
-        private bool HasActivePotion(string param1)
-        {
-            if (!_touchpotions.ContainsKey(param1))
-            {
-                return false;
-            }
-            return (DateTime.Now.Millisecond - _touchpotions[param1]) > 0;
-        }
 
 /*
         private bool hasPotion(string param1)
