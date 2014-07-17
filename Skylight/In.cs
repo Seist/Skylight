@@ -53,6 +53,7 @@ namespace Skylight
         private readonly Autotext _autotext;
         private readonly BlockChanged _blockChanged;
         private readonly CoinObject _coinObject;
+        private readonly AddSpecialBlock _addSpecialBlock;
 
         public In()
         {
@@ -61,6 +62,7 @@ namespace Skylight
             _autotext = new Autotext(this);
             _blockChanged = new BlockChanged(this);
             _coinObject = new CoinObject(this);
+            _addSpecialBlock = new AddSpecialBlock(this);
         }
 
         internal Bot Bot { get; set; }
@@ -94,15 +96,18 @@ namespace Skylight
             get { return _coinObject; }
         }
 
+        public AddSpecialBlock AddSpecialBlock
+        {
+            get { return _addSpecialBlock; }
+        }
+
         /// <summary>
         ///     All of the delegates for BlockEvent. These fire when events occur
         ///     (such as when a block was added or updated).
         /// </summary>
         public event BlockEvent
             CoinBlockEvent = delegate { } , PortalBlockEvent = delegate { } ,
-            RoomPortalBlockEvent = delegate { } ,
-            RotateEvent = delegate { } ,
-            SignBlockEvent = delegate { };
+            RoomPortalBlockEvent = delegate { } , SignBlockEvent = delegate { };
 
         /// <summary>
         /// When a sign block is placed in the world.
@@ -238,7 +243,7 @@ namespace Skylight
                                 break;
 
                             case "br":
-                                OnAddScifiOrSpikes(m);
+                                AddSpecialBlock.OnAddScifiOrSpikes(m);
                                 break;
 
                             case "bs":
@@ -421,26 +426,6 @@ namespace Skylight
             var e = new PlayerEventArgs(Bot, Source, m);
 
             Source.Pull.GainAccessEvent(e);
-        }
-
-        private void OnAddScifiOrSpikes(Message m)
-        {
-            // Extract data.
-            int x = m.GetInteger(0),
-                y = m.GetInteger(1),
-                id = m.GetInteger(2),
-                rotation = m.GetInteger(3),
-                z = m.GetInteger(4);
-
-            // Update relevant objects.
-            var b = new Block(id, x, y, 0, rotation);
-
-            Source.Map[x, y, z] = b;
-
-            // Fire the event.
-            var e = new BlockEventArgs(b, Source);
-
-            Source.Pull.RotateEvent(e);
         }
 
         private void OnAddNoteblock(Message m)

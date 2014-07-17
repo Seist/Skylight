@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Add.cs" />
+    <Compile Include="AddSpecialBlock.cs" />
     <Compile Include="Arguments\BlockEventArgs.cs" />
     <Compile Include="Arguments\ChatEventArgs.cs" />
     <Compile Include="Arguments\PlayerEventArgs.cs" />
