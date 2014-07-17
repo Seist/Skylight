@@ -1,6 +1,6 @@
 namespace Skylight
 {
-    public class ResetWorld
+    public partial class ResetWorld
     {
         private Out _out;
 
