@@ -7,7 +7,7 @@ namespace Skylight
 {
     public class OnCoinGet
     {
-        private In _in;
+        private readonly In _in;
 
         public OnCoinGet(In @in)
         {
@@ -32,7 +32,7 @@ namespace Skylight
                     totalCoins = m.GetInteger(1);
 
                 // Update relevant objects.
-                var subject = Tools.GetPlayerById(id, _in.Source);
+                Player subject = Tools.GetPlayerById(id, _in.Source);
 
                 subject.Coins = totalCoins;
 

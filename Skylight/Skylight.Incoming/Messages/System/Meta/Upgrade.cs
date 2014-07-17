@@ -4,7 +4,7 @@ namespace Skylight
 {
     public class Upgrade
     {
-        private In _in;
+        private readonly In _in;
 
         public Upgrade(In @in)
         {

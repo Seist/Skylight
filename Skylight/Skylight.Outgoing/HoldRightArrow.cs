@@ -2,7 +2,7 @@ namespace Skylight
 {
     public class HoldRightArrow
     {
-        private Out _out;
+        private readonly Out _out;
 
         public HoldRightArrow(Out @out)
         {

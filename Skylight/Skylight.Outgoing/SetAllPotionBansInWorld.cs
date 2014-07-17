@@ -5,7 +5,7 @@ namespace Skylight
 {
     public class SetAllPotionBansInWorld
     {
-        private Out _out;
+        private readonly Out _out;
 
         public SetAllPotionBansInWorld(Out @out)
         {

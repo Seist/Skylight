@@ -6,7 +6,7 @@ namespace Skylight
 {
     public class SayChatMessage
     {
-        private Out _out;
+        private readonly Out _out;
 
         public SayChatMessage(Out @out)
         {

@@ -5,7 +5,7 @@ namespace Skylight
 {
     public class SaveTheWorld
     {
-        private Out _out;
+        private readonly Out _out;
 
         public SaveTheWorld(Out @out)
         {

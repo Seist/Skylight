@@ -6,27 +6,27 @@
 namespace Skylight.Blocks
 {
     /// <summary>
-    /// Class BlockIds.
+    ///     Class BlockIds.
     /// </summary>
     public static class BlockIds
     {
         /// <summary>
-        /// Class Action.
+        ///     Class Action.
         /// </summary>
         public static class Action
         {
             /// <summary>
-            /// The layer
+            ///     The layer
             /// </summary>
             public const int Layer = 0;
 
             /// <summary>
-            /// Class Boost.
+            ///     Class Boost.
             /// </summary>
             public static class Boost
             {
                 /// <summary>
-                /// The left
+                ///     The left
                 /// </summary>
                 public const int
                     Left = 114,
@@ -36,24 +36,24 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Cake.
+            ///     Class Cake.
             /// </summary>
             public static class Cake
             {
                 /// <summary>
-                /// The cake
+                ///     The cake
                 /// </summary>
                 public const int
                     CAKE = 337;
             }
 
             /// <summary>
-            /// Class Coins.
+            ///     Class Coins.
             /// </summary>
             public static class Coins
             {
                 /// <summary>
-                /// The gold
+                ///     The gold
                 /// </summary>
                 public const int
                     Gold = 100,
@@ -61,36 +61,36 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Crowns.
+            ///     Class Crowns.
             /// </summary>
             public static class Crowns
             {
                 /// <summary>
-                /// The gold
+                ///     The gold
                 /// </summary>
                 public const int
                     Gold = 5;
             }
 
             /// <summary>
-            /// Class DIAMOND.
+            ///     Class DIAMOND.
             /// </summary>
             public static class Diamond
             {
                 /// <summary>
-                /// The diamondblock
+                ///     The diamondblock
                 /// </summary>
                 public const int
                     Diamondblock = 241;
             }
 
             /// <summary>
-            /// Class Doors.
+            ///     Class Doors.
             /// </summary>
             public static class Doors
             {
                 /// <summary>
-                /// The red
+                ///     The red
                 /// </summary>
                 public const int
                     Red = 23,
@@ -104,12 +104,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Gates.
+            ///     Class Gates.
             /// </summary>
             public static class Gates
             {
                 /// <summary>
-                /// The red
+                ///     The red
                 /// </summary>
                 public const int
                     Red = 26,
@@ -123,12 +123,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Gravity.
+            ///     Class Gravity.
             /// </summary>
             public static class Gravity
             {
                 /// <summary>
-                /// Down
+                ///     Down
                 /// </summary>
                 public const int
                     Down = 0,
@@ -139,12 +139,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Hazards.
+            ///     Class Hazards.
             /// </summary>
             public static class Hazards
             {
                 /// <summary>
-                /// The spike
+                ///     The spike
                 /// </summary>
                 public const int
                     Spike = 361,
@@ -152,12 +152,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Keys.
+            ///     Class Keys.
             /// </summary>
             public static class Keys
             {
                 /// <summary>
-                /// The red
+                ///     The red
                 /// </summary>
                 public const int
                     Red = 6,
@@ -166,12 +166,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Ladders.
+            ///     Class Ladders.
             /// </summary>
             public static class Ladders
             {
                 /// <summary>
-                /// The chain
+                ///     The chain
                 /// </summary>
                 public const int
                     Chain = 118,
@@ -181,12 +181,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Liquids.
+            ///     Class Liquids.
             /// </summary>
             public static class Liquids
             {
                 /// <summary>
-                /// The water
+                ///     The water
                 /// </summary>
                 public const int
                     Water = 119,
@@ -194,12 +194,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Music.
+            ///     Class Music.
             /// </summary>
             public static class Music
             {
                 /// <summary>
-                /// The piano
+                ///     The piano
                 /// </summary>
                 public const int
                     Piano = 77,
@@ -207,12 +207,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Portals.
+            ///     Class Portals.
             /// </summary>
             public static class Portals
             {
                 /// <summary>
-                /// The invisible
+                ///     The invisible
                 /// </summary>
                 public const int
                     Invisible = 381,
@@ -221,38 +221,36 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class SIGN.
+            ///     Class SIGN.
             /// </summary>
             public static class Sign
             {
                 /// <summary>
-                /// The textsign
+                ///     The textsign
                 /// </summary>
                 public const int
-                    
-                    
                     Textsign = 385;
             }
 
             /// <summary>
-            /// Class Switches.
+            ///     Class Switches.
             /// </summary>
             public static class Switches
             {
                 /// <summary>
-                /// The switch
+                ///     The switch
                 /// </summary>
                 public const int
                     Switch = 113;
             }
 
             /// <summary>
-            /// Class Tools.
+            ///     Class Tools.
             /// </summary>
             public static class Tools
             {
                 /// <summary>
-                /// The spawn
+                ///     The spawn
                 /// </summary>
                 public const int
                     Spawn = 255,
@@ -262,23 +260,23 @@ namespace Skylight.Blocks
         }
 
         /// <summary>
-        /// Class Background.
+        ///     Class Background.
         /// </summary>
         public static class Background
         {
             /// <summary>
-            /// The layer
+            ///     The layer
             /// </summary>
-            public const int 
+            public const int
                 Layer = 1;
 
             /// <summary>
-            /// Class Basic.
+            ///     Class Basic.
             /// </summary>
             public static class Basic
             {
                 /// <summary>
-                /// The gray
+                ///     The gray
                 /// </summary>
                 public const int
                     Gray = 500,
@@ -291,12 +289,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Brick.
+            ///     Class Brick.
             /// </summary>
             public static class Brick
             {
                 /// <summary>
-                /// The orange
+                ///     The orange
                 /// </summary>
                 public const int
                     Orange = 507,
@@ -308,12 +306,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Candy.
+            ///     Class Candy.
             /// </summary>
             public static class Candy
             {
                 /// <summary>
-                /// The pink
+                ///     The pink
                 /// </summary>
                 public const int
                     Pink = 539,
@@ -321,12 +319,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Canvas.
+            ///     Class Canvas.
             /// </summary>
             public static class Canvas
             {
                 /// <summary>
-                /// The red
+                ///     The red
                 /// </summary>
                 public const int
                     Red = 533,
@@ -338,12 +336,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Carnival.
+            ///     Class Carnival.
             /// </summary>
             public static class Carnival
             {
                 /// <summary>
-                /// The redstripe
+                ///     The redstripe
                 /// </summary>
                 public const int
                     Redstripe = 545,
@@ -354,24 +352,24 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Castle.
+            ///     Class Castle.
             /// </summary>
             public static class Castle
             {
                 /// <summary>
-                /// The bricks
+                ///     The bricks
                 /// </summary>
                 public const int
                     Bricks = 599;
             }
 
             /// <summary>
-            /// Class Checker.
+            ///     Class Checker.
             /// </summary>
             public static class Checker
             {
                 /// <summary>
-                /// The gray
+                ///     The gray
                 /// </summary>
                 public const int
                     Gray = 513,
@@ -384,12 +382,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Christmas2012.
+            ///     Class Christmas2012.
             /// </summary>
             public static class Christmas2012
             {
                 /// <summary>
-                /// The yellowpattern
+                ///     The yellowpattern
                 /// </summary>
                 public const int
                     Yellowpattern = 624,
@@ -398,12 +396,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Cowboy.
+            ///     Class Cowboy.
             /// </summary>
             public static class Cowboy
             {
                 /// <summary>
-                /// The brownplank
+                ///     The brownplank
                 /// </summary>
                 public const int
                     Brownplank = 568,
@@ -415,12 +413,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Dark.
+            ///     Class Dark.
             /// </summary>
             public static class Dark
             {
                 /// <summary>
-                /// The gray
+                ///     The gray
                 /// </summary>
                 public const int
                     Gray = 520,
@@ -433,12 +431,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Halloween2011.
+            ///     Class Halloween2011.
             /// </summary>
             public static class Halloween2011
             {
                 /// <summary>
-                /// The wall
+                ///     The wall
                 /// </summary>
                 public const int
                     Wall = 541,
@@ -448,12 +446,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Jungle.
+            ///     Class Jungle.
             /// </summary>
             public static class Jungle
             {
                 /// <summary>
-                /// The brightplants
+                ///     The brightplants
                 /// </summary>
                 public const int
                     Brightplants = 621,
@@ -462,12 +460,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class JungleRuins.
+            ///     Class JungleRuins.
             /// </summary>
             public static class JungleRuins
             {
                 /// <summary>
-                /// The gray
+                ///     The gray
                 /// </summary>
                 public const int
                     Gray = 617,
@@ -477,12 +475,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Lava.
+            ///     Class Lava.
             /// </summary>
             public static class Lava
             {
                 /// <summary>
-                /// The yellow
+                ///     The yellow
                 /// </summary>
                 public const int
                     Yellow = 627,
@@ -491,12 +489,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Mars.
+            ///     Class Mars.
             /// </summary>
             public static class Mars
             {
                 /// <summary>
-                /// The blue
+                ///     The blue
                 /// </summary>
                 public const int
                     Blue = 605,
@@ -505,24 +503,24 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Medieval.
+            ///     Class Medieval.
             /// </summary>
             public static class Medieval
             {
                 /// <summary>
-                /// The planks
+                ///     The planks
                 /// </summary>
                 public const int
                     Planks = 600;
             }
 
             /// <summary>
-            /// Class Monster.
+            ///     Class Monster.
             /// </summary>
             public static class Monster
             {
                 /// <summary>
-                /// The lightfur
+                ///     The lightfur
                 /// </summary>
                 public const int
                     Lightfur = 608,
@@ -530,12 +528,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Ninja.
+            ///     Class Ninja.
             /// </summary>
             public static class Ninja
             {
                 /// <summary>
-                /// The white
+                ///     The white
                 /// </summary>
                 public const int
                     White = 564,
@@ -545,12 +543,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Normal.
+            ///     Class Normal.
             /// </summary>
             public static class Normal
             {
                 /// <summary>
-                /// The gray
+                ///     The gray
                 /// </summary>
                 public const int
                     Gray = 610,
@@ -563,12 +561,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Pastel.
+            ///     Class Pastel.
             /// </summary>
             public static class Pastel
             {
                 /// <summary>
-                /// The pastel blocks
+                ///     The pastel blocks
                 /// </summary>
                 public const int
                     Orange = 527,
@@ -580,12 +578,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Pirate.
+            ///     Class Pirate.
             /// </summary>
             public static class Pirate
             {
                 /// <summary>
-                /// The darkplank
+                ///     The darkplank
                 /// </summary>
                 public const int
                     Darkplank = 554,
@@ -598,12 +596,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class PlateIron.
+            ///     Class PlateIron.
             /// </summary>
             public static class PlateIron
             {
                 /// <summary>
-                /// The plain
+                ///     The plain
                 /// </summary>
                 public const int
                     Plain = 585,
@@ -614,12 +612,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Prison.
+            ///     Class Prison.
             /// </summary>
             public static class Prison
             {
                 /// <summary>
-                /// The brick
+                ///     The brick
                 /// </summary>
                 public const int
                     Brick = 550,
@@ -629,12 +627,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Rocket.
+            ///     Class Rocket.
             /// </summary>
             public static class Rocket
             {
                 /// <summary>
-                /// The gray
+                ///     The gray
                 /// </summary>
                 public const int
                     Gray = 601,
@@ -644,12 +642,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Sand.
+            ///     Class Sand.
             /// </summary>
             public static class Sand
             {
                 /// <summary>
-                /// The white
+                ///     The white
                 /// </summary>
                 public const int
                     White = 579,
@@ -661,24 +659,24 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class SciFi2013.
+            ///     Class SciFi2013.
             /// </summary>
             public static class SciFi2013
             {
                 /// <summary>
-                /// The tile
+                ///     The tile
                 /// </summary>
                 public const int
                     Tile = 637;
             }
 
             /// <summary>
-            /// Class Sparta.
+            ///     Class Sparta.
             /// </summary>
             public static class Sparta
             {
                 /// <summary>
-                /// The bluebrick
+                ///     The bluebrick
                 /// </summary>
                 public const int
                     Bluebrick = 638,
@@ -687,24 +685,24 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Swamp.
+            ///     Class Swamp.
             /// </summary>
             public static class Swamp
             {
                 /// <summary>
-                /// The underbrush
+                ///     The underbrush
                 /// </summary>
                 public const int
                     Underbrush = 630;
             }
 
             /// <summary>
-            /// Class Timbered.
+            ///     Class Timbered.
             /// </summary>
             public static class Timbered
             {
                 /// <summary>
-                /// The thatchroof
+                ///     The thatchroof
                 /// </summary>
                 public const int
                     Thatchroof = 590,
@@ -719,12 +717,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Vikings.
+            ///     Class Vikings.
             /// </summary>
             public static class Vikings
             {
                 /// <summary>
-                /// The vikings
+                ///     The vikings
                 /// </summary>
                 public const int
                     Fullbrick = 561,
@@ -733,12 +731,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Water.
+            ///     Class Water.
             /// </summary>
             public static class Water
             {
                 /// <summary>
-                /// The plain
+                ///     The plain
                 /// </summary>
                 public const int
                     Plain = 574,
@@ -750,22 +748,22 @@ namespace Skylight.Blocks
         }
 
         /// <summary>
-        /// Class Blocks.
+        ///     Class Blocks.
         /// </summary>
         public static class Blocks
         {
             /// <summary>
-            /// The layer
+            ///     The layer
             /// </summary>
             public const int Layer = 0;
 
             /// <summary>
-            /// Class Basic.
+            ///     Class Basic.
             /// </summary>
             public static class Basic
             {
                 /// <summary>
-                /// The gray
+                ///     The gray
                 /// </summary>
                 public const int
                     Gray = 9,
@@ -779,12 +777,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Beta.
+            ///     Class Beta.
             /// </summary>
             public static class Beta
             {
                 /// <summary>
-                /// The purple
+                ///     The purple
                 /// </summary>
                 public const int
                     Purple = 37,
@@ -796,12 +794,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Brick.
+            ///     Class Brick.
             /// </summary>
             public static class Brick
             {
                 /// <summary>
-                /// The orange
+                ///     The orange
                 /// </summary>
                 public const int
                     Orange = 16,
@@ -813,12 +811,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Candy.
+            ///     Class Candy.
             /// </summary>
             public static class Candy
             {
                 /// <summary>
-                /// The pink
+                ///     The pink
                 /// </summary>
                 public const int
                     Pink = 60,
@@ -827,30 +825,30 @@ namespace Skylight.Blocks
                     Gingerbread = 67;
 
                 /// <summary>
-                /// Class Oneway.
+                ///     Class Oneway.
                 /// </summary>
                 public static class Oneway
                 {
                     /// <summary>
-                    /// The pink oneway block
+                    ///     The pink oneway block
                     /// </summary>
                     public const int
                         PINK = 61;
 
                     /// <summary>
-                    /// The red oneway block
+                    ///     The red oneway block
                     /// </summary>
                     public const int
                         Red = 62;
 
                     /// <summary>
-                    /// The cyan oneway block
+                    ///     The cyan oneway block
                     /// </summary>
                     public const int
                         Cyan = 63;
 
                     /// <summary>
-                    /// The green oneway block
+                    ///     The green oneway block
                     /// </summary>
                     public const int
                         Green = 64;
@@ -858,24 +856,24 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Castle.
+            ///     Class Castle.
             /// </summary>
             public static class Castle
             {
                 /// <summary>
-                /// The brick
+                ///     The brick
                 /// </summary>
                 public const int
                     Brick = 159,
                     Window = 160;
 
                 /// <summary>
-                /// Class Oneway.
+                ///     Class Oneway.
                 /// </summary>
                 public static class Oneway
                 {
                     /// <summary>
-                    /// The gray
+                    ///     The gray
                     /// </summary>
                     public const int
                         Gray = 158;
@@ -883,12 +881,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Checker.
+            ///     Class Checker.
             /// </summary>
             public static class Checker
             {
                 /// <summary>
-                /// The gray
+                ///     The gray
                 /// </summary>
                 public const int
                     Gray = 186,
@@ -901,12 +899,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Christmas.
+            ///     Class Christmas.
             /// </summary>
             public static class Christmas
             {
                 /// <summary>
-                /// The yellow
+                ///     The yellow
                 /// </summary>
                 public const int
                     Yellow = 78,
@@ -917,24 +915,24 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Cloud.
+            ///     Class Cloud.
             /// </summary>
             public static class Cloud
             {
                 /// <summary>
-                /// The white
+                ///     The white
                 /// </summary>
                 public const int
                     White = 143;
             }
 
             /// <summary>
-            /// Class Cowboy.
+            ///     Class Cowboy.
             /// </summary>
             public static class Cowboy
             {
                 /// <summary>
-                /// The tan
+                ///     The tan
                 /// </summary>
                 public const int
                     Tan = 125,
@@ -942,24 +940,24 @@ namespace Skylight.Blocks
                     Blue = 127;
 
                 /// <summary>
-                /// Class Oneway.
+                ///     Class Oneway.
                 /// </summary>
                 public static class Oneway
                 {
                     /// <summary>
-                    /// The tan
+                    ///     The tan
                     /// </summary>
                     public const int
                         TAN = 122;
 
                     /// <summary>
-                    /// The tan
+                    ///     The tan
                     /// </summary>
                     public const int
                         RED = 123;
 
                     /// <summary>
-                    /// The tan
+                    ///     The tan
                     /// </summary>
                     public const int
                         BLUE = 124;
@@ -967,12 +965,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Factory.
+            ///     Class Factory.
             /// </summary>
             public static class Factory
             {
                 /// <summary>
-                /// The tancross
+                ///     The tancross
                 /// </summary>
                 public const int
                     Tancross = 45,
@@ -983,24 +981,24 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Farm.
+            ///     Class Farm.
             /// </summary>
             public static class Farm
             {
                 /// <summary>
-                /// The hay
+                ///     The hay
                 /// </summary>
                 public const int
                     Hay = 212;
             }
 
             /// <summary>
-            /// Class Glass.
+            ///     Class Glass.
             /// </summary>
             public static class Glass
             {
                 /// <summary>
-                /// The red
+                ///     The red
                 /// </summary>
                 public const int
                     Red = 51,
@@ -1014,12 +1012,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Grass.
+            ///     Class Grass.
             /// </summary>
             public static class Grass
             {
                 /// <summary>
-                /// The left
+                ///     The left
                 /// </summary>
                 public const int
                     Left = 34,
@@ -1028,12 +1026,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Halloween.
+            ///     Class Halloween.
             /// </summary>
             public static class Halloween
             {
                 /// <summary>
-                /// The blood
+                ///     The blood
                 /// </summary>
                 public const int
                     Blood = 68,
@@ -1041,12 +1039,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Industrial.
+            ///     Class Industrial.
             /// </summary>
             public static class Industrial
             {
                 /// <summary>
-                /// The crosssupport
+                ///     The crosssupport
                 /// </summary>
                 public const int
                     Crosssupport = 147,
@@ -1058,12 +1056,12 @@ namespace Skylight.Blocks
                     Rightconveyor = 153;
 
                 /// <summary>
-                /// Class Oneway.
+                ///     Class Oneway.
                 /// </summary>
                 public static class Oneway
                 {
                     /// <summary>
-                    /// The platform
+                    ///     The platform
                     /// </summary>
                     public const int
                         Platform = 146;
@@ -1071,12 +1069,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class JungleRuins.
+            ///     Class JungleRuins.
             /// </summary>
             public static class JungleRuins
             {
                 /// <summary>
-                /// The head
+                ///     The head
                 /// </summary>
                 public const int
                     Head = 193,
@@ -1087,12 +1085,12 @@ namespace Skylight.Blocks
                     Pot = 199;
 
                 /// <summary>
-                /// Class Oneway.
+                ///     Class Oneway.
                 /// </summary>
                 public static class Oneway
                 {
                     /// <summary>
-                    /// The gray
+                    ///     The gray
                     /// </summary>
                     public const int
                         GRAY = 194;
@@ -1100,12 +1098,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Lava.
+            ///     Class Lava.
             /// </summary>
             public static class Lava
             {
                 /// <summary>
-                /// The yellow
+                ///     The yellow
                 /// </summary>
                 public const int
                     Yellow = 202,
@@ -1114,12 +1112,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Mars.
+            ///     Class Mars.
             /// </summary>
             public static class Mars
             {
                 /// <summary>
-                /// The sand
+                ///     The sand
                 /// </summary>
                 public const int
                     Sand = 176,
@@ -1131,12 +1129,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Medieval.
+            ///     Class Medieval.
             /// </summary>
             public static class Medieval
             {
                 /// <summary>
-                /// The anvil
+                ///     The anvil
                 /// </summary>
                 public const int
                     Anvil = 162,
@@ -1144,12 +1142,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Metal.
+            ///     Class Metal.
             /// </summary>
             public static class Metal
             {
                 /// <summary>
-                /// The silver
+                ///     The silver
                 /// </summary>
                 public const int
                     Silver = 29,
@@ -1158,12 +1156,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Minerals.
+            ///     Class Minerals.
             /// </summary>
             public static class Minerals
             {
                 /// <summary>
-                /// The red
+                ///     The red
                 /// </summary>
                 public const int
                     Red = 70,
@@ -1176,17 +1174,17 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Ninja.
+            ///     Class Ninja.
             /// </summary>
             public static class Ninja
             {
                 /// <summary>
-                /// Class Oneway.
+                ///     Class Oneway.
                 /// </summary>
                 public static class Oneway
                 {
                     /// <summary>
-                    /// The whiteshingles
+                    ///     The whiteshingles
                     /// </summary>
                     public const int
                         Whiteshingles = 96,
@@ -1195,12 +1193,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Pipes.
+            ///     Class Pipes.
             /// </summary>
             public static class Pipes
             {
                 /// <summary>
-                /// The left
+                ///     The left
                 /// </summary>
                 public const int
                     Left = 166,
@@ -1212,12 +1210,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Pirate.
+            ///     Class Pirate.
             /// </summary>
             public static class Pirate
             {
                 /// <summary>
-                /// The planks
+                ///     The planks
                 /// </summary>
                 public const int
                     Planks = 93,
@@ -1225,12 +1223,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Plastic.
+            ///     Class Plastic.
             /// </summary>
             public static class Plastic
             {
                 /// <summary>
-                /// The lime
+                ///     The lime
                 /// </summary>
                 public const int
                     Lime = 128,
@@ -1244,12 +1242,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class PlateIron.
+            ///     Class PlateIron.
             /// </summary>
             public static class PlateIron
             {
                 /// <summary>
-                /// The plateiron
+                ///     The plateiron
                 /// </summary>
                 public const int
                     Plateiron = 144,
@@ -1257,24 +1255,24 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Prison.
+            ///     Class Prison.
             /// </summary>
             public static class Prison
             {
                 /// <summary>
-                /// The brick
+                ///     The brick
                 /// </summary>
                 public const int
                     Brick = 92;
             }
 
             /// <summary>
-            /// Class Rocket.
+            ///     Class Rocket.
             /// </summary>
             public static class Rocket
             {
                 /// <summary>
-                /// The white
+                ///     The white
                 /// </summary>
                 public const int
                     White = 172,
@@ -1284,12 +1282,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Sand.
+            ///     Class Sand.
             /// </summary>
             public static class Sand
             {
                 /// <summary>
-                /// The white
+                ///     The white
                 /// </summary>
                 public const int
                     White = 137,
@@ -1301,12 +1299,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Scifi.
+            ///     Class Scifi.
             /// </summary>
             public static class Scifi
             {
                 /// <summary>
-                /// The red
+                ///     The red
                 /// </summary>
                 public const int
                     Red = 84,
@@ -1316,12 +1314,12 @@ namespace Skylight.Blocks
                     Brown = 88;
 
                 /// <summary>
-                /// Class Oneway.
+                ///     Class Oneway.
                 /// </summary>
                 public static class Oneway
                 {
                     /// <summary>
-                    /// The red
+                    ///     The red
                     /// </summary>
                     public const int
                         RED = 89,
@@ -1331,12 +1329,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Secrets.
+            ///     Class Secrets.
             /// </summary>
             public static class Secrets
             {
                 /// <summary>
-                /// The solid
+                ///     The solid
                 /// </summary>
                 public const int
                     Solid = 50,
@@ -1344,12 +1342,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Sparta.
+            ///     Class Sparta.
             /// </summary>
             public static class Sparta
             {
                 /// <summary>
-                /// The blue
+                ///     The blue
                 /// </summary>
                 public const int
                     Blue = 208,
@@ -1359,12 +1357,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Special.
+            ///     Class Special.
             /// </summary>
             public static class Special
             {
                 /// <summary>
-                /// The striped
+                ///     The striped
                 /// </summary>
                 public const int
                     Striped = 22,
@@ -1374,29 +1372,29 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Summer2011.
+            ///     Class Summer2011.
             /// </summary>
             public static class Summer2011
             {
                 /// <summary>
-                /// The sand
+                ///     The sand
                 /// </summary>
                 public const int
                     Sand = 59;
             }
 
             /// <summary>
-            /// Class Timbered.
+            ///     Class Timbered.
             /// </summary>
             public static class Timbered
             {
                 /// <summary>
-                /// Class Oneway.
+                ///     Class Oneway.
                 /// </summary>
                 public static class Oneway
                 {
                     /// <summary>
-                    /// The timbered
+                    ///     The timbered
                     /// </summary>
                     public const int
                         Timbered = 154;
@@ -1404,12 +1402,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Viking.
+            ///     Class Viking.
             /// </summary>
             public static class Viking
             {
                 /// <summary>
-                /// The gray
+                ///     The gray
                 /// </summary>
                 public const int
                     Gray = 95;
@@ -1417,34 +1415,34 @@ namespace Skylight.Blocks
         }
 
         /// <summary>
-        /// Class Decorative.
+        ///     Class Decorative.
         /// </summary>
         public static class Decorative
         {
             /// <summary>
-            /// The layer
+            ///     The layer
             /// </summary>
             public const int Layer = 0;
 
             /// <summary>
-            /// Class Candy.
+            ///     Class Candy.
             /// </summary>
             public static class Candy
             {
                 /// <summary>
-                /// The topping
+                ///     The topping
                 /// </summary>
                 public const int
                     Topping = 227;
             }
 
             /// <summary>
-            /// Class Castle.
+            ///     Class Castle.
             /// </summary>
             public static class Castle
             {
                 /// <summary>
-                /// The roofsupport
+                ///     The roofsupport
                 /// </summary>
                 public const int
                     Roofsupport = 325,
@@ -1452,12 +1450,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Christmas2010.
+            ///     Class Christmas2010.
             /// </summary>
             public static class Christmas2010
             {
                 /// <summary>
-                /// The rightcornersnow
+                ///     The rightcornersnow
                 /// </summary>
                 public const int
                     Rightcornersnow = 249,
@@ -1469,12 +1467,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Christmas2011.
+            ///     Class Christmas2011.
             /// </summary>
             public static class Christmas2011
             {
                 /// <summary>
-                /// The redornament
+                ///     The redornament
                 /// </summary>
                 public const int
                     Redornament = 218,
@@ -1485,12 +1483,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Christmas2012.
+            ///     Class Christmas2012.
             /// </summary>
             public static class Christmas2012
             {
                 /// <summary>
-                /// The blueverticalribbon
+                ///     The blueverticalribbon
                 /// </summary>
                 public const int
                     Blueverticalribbon = 362,
@@ -1502,12 +1500,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Cloud.
+            ///     Class Cloud.
             /// </summary>
             public static class Cloud
             {
                 /// <summary>
-                /// The bottom
+                ///     The bottom
                 /// </summary>
                 public const int
                     Bottom = 311,
@@ -1521,12 +1519,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Cowboy.
+            ///     Class Cowboy.
             /// </summary>
             public static class Cowboy
             {
                 /// <summary>
-                /// The whitebar
+                ///     The whitebar
                 /// </summary>
                 public const int
                     Whitebar = 285,
@@ -1547,12 +1545,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Easter2012.
+            ///     Class Easter2012.
             /// </summary>
             public static class Easter2012
             {
                 /// <summary>
-                /// The blueegg
+                ///     The blueegg
                 /// </summary>
                 public const int
                     Blueegg = 256,
@@ -1563,12 +1561,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Farm.
+            ///     Class Farm.
             /// </summary>
             public static class Farm
             {
                 /// <summary>
-                /// The hay
+                ///     The hay
                 /// </summary>
                 public const int
                     Hay = 386,
@@ -1578,12 +1576,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Fog.
+            ///     Class Fog.
             /// </summary>
             public static class Fog
             {
                 /// <summary>
-                /// The full
+                ///     The full
                 /// </summary>
                 public const int
                     Full = 343,
@@ -1598,12 +1596,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Halloween2011.
+            ///     Class Halloween2011.
             /// </summary>
             public static class Halloween2011
             {
                 /// <summary>
-                /// The tombstone
+                ///     The tombstone
                 /// </summary>
                 public const int
                     Tombstone = 224,
@@ -1612,12 +1610,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Halloween2012.
+            ///     Class Halloween2012.
             /// </summary>
             public static class Halloween2012
             {
                 /// <summary>
-                /// The teslacap
+                ///     The teslacap
                 /// </summary>
                 public const int
                     Teslacap = 352,
@@ -1628,12 +1626,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Jungle.
+            ///     Class Jungle.
             /// </summary>
             public static class Jungle
             {
                 /// <summary>
-                /// The undergrowth
+                ///     The undergrowth
                 /// </summary>
                 public const int
                     Undergrowth = 357,
@@ -1642,24 +1640,24 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Mars.
+            ///     Class Mars.
             /// </summary>
             public static class Mars
             {
                 /// <summary>
-                /// The rock
+                ///     The rock
                 /// </summary>
                 public const int
                     Rock = 336;
             }
 
             /// <summary>
-            /// Class Medieval.
+            ///     Class Medieval.
             /// </summary>
             public static class Medieval
             {
                 /// <summary>
-                /// The blueflag
+                ///     The blueflag
                 /// </summary>
                 public const int
                     Blueflag = 327,
@@ -1670,12 +1668,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Monster.
+            ///     Class Monster.
             /// </summary>
             public static class Monster
             {
                 /// <summary>
-                /// The bigtoothbottom
+                ///     The bigtoothbottom
                 /// </summary>
                 public const int
                     Bigtoothbottom = 338,
@@ -1686,12 +1684,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class NewYear2010.
+            ///     Class NewYear2010.
             /// </summary>
             public static class NewYear2010
             {
                 /// <summary>
-                /// The purple
+                ///     The purple
                 /// </summary>
                 public const int
                     Purple = 244,
@@ -1702,12 +1700,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Ninja.
+            ///     Class Ninja.
             /// </summary>
             public static class Ninja
             {
                 /// <summary>
-                /// The leftbrightrooftop
+                ///     The leftbrightrooftop
                 /// </summary>
                 public const int
                     Leftbrightrooftop = 276,
@@ -1722,12 +1720,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Priate.
+            ///     Class Priate.
             /// </summary>
             public static class Priate
             {
                 /// <summary>
-                /// The canoncover
+                ///     The canoncover
                 /// </summary>
                 public const int
                     Canoncover = 271,
@@ -1735,24 +1733,24 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Prison.
+            ///     Class Prison.
             /// </summary>
             public static class Prison
             {
                 /// <summary>
-                /// The bars
+                ///     The bars
                 /// </summary>
                 public const int
                     Bars = 261;
             }
 
             /// <summary>
-            /// Class Rocket.
+            ///     Class Rocket.
             /// </summary>
             public static class Rocket
             {
                 /// <summary>
-                /// The computerscreen
+                ///     The computerscreen
                 /// </summary>
                 public const int
                     Computerscreen = 332,
@@ -1762,12 +1760,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Sand.
+            ///     Class Sand.
             /// </summary>
             public static class Sand
             {
                 /// <summary>
-                /// The white
+                ///     The white
                 /// </summary>
                 public const int
                     White = 301,
@@ -1779,12 +1777,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class SciFi2013.
+            ///     Class SciFi2013.
             /// </summary>
             public static class SciFi2013
             {
                 /// <summary>
-                /// The bluebend
+                ///     The bluebend
                 /// </summary>
                 public const int
                     Bluebend = 375,
@@ -1796,12 +1794,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Signs.
+            ///     Class Signs.
             /// </summary>
             public static class Signs
             {
                 /// <summary>
-                /// The flame
+                ///     The flame
                 /// </summary>
                 public const int
                     Flame = 319,
@@ -1813,12 +1811,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Sparta.
+            ///     Class Sparta.
             /// </summary>
             public static class Sparta
             {
                 /// <summary>
-                /// The capital
+                ///     The capital
                 /// </summary>
                 public const int
                     Capital = 382,
@@ -1827,12 +1825,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Spring2011.
+            ///     Class Spring2011.
             /// </summary>
             public static class Spring2011
             {
                 /// <summary>
-                /// The leftgrass
+                ///     The leftgrass
                 /// </summary>
                 public const int
                     Leftgrass = 233,
@@ -1846,12 +1844,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Summer2011.
+            ///     Class Summer2011.
             /// </summary>
             public static class Summer2011
             {
                 /// <summary>
-                /// The umbrella
+                ///     The umbrella
                 /// </summary>
                 public const int
                     Umbrella = 228,
@@ -1862,12 +1860,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Summer2012.
+            ///     Class Summer2012.
             /// </summary>
             public static class Summer2012
             {
                 /// <summary>
-                /// The ball
+                ///     The ball
                 /// </summary>
                 public const int
                     Ball = 307,
@@ -1877,12 +1875,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Swamp.
+            ///     Class Swamp.
             /// </summary>
             public static class Swamp
             {
                 /// <summary>
-                /// The mudbubbles
+                ///     The mudbubbles
                 /// </summary>
                 public const int
                     Mudbubbles = 370,
@@ -1892,12 +1890,12 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Vikings.
+            ///     Class Vikings.
             /// </summary>
             public static class Vikings
             {
                 /// <summary>
-                /// The redshield
+                ///     The redshield
                 /// </summary>
                 public const int
                     Redshield = 273,
@@ -1906,24 +1904,24 @@ namespace Skylight.Blocks
             }
 
             /// <summary>
-            /// Class Water.
+            ///     Class Water.
             /// </summary>
             public static class Water
             {
                 /// <summary>
-                /// The waves
+                ///     The waves
                 /// </summary>
                 public const int
                     Waves = 300;
             }
 
             /// <summary>
-            /// Class Windows.
+            ///     Class Windows.
             /// </summary>
             public static class Windows
             {
                 /// <summary>
-                /// The clear
+                ///     The clear
                 /// </summary>
                 public const int
                     Clear = 262,

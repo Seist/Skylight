@@ -6,7 +6,7 @@ namespace Skylight
 {
     public class LevelChange
     {
-        private In _in;
+        private readonly In _in;
 
         public LevelChange(In @in)
         {
@@ -29,7 +29,7 @@ namespace Skylight
                 level = m.GetInteger(1); // never used.
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, _in.Source);
+            Player subject = Tools.GetPlayerById(id, _in.Source);
             subject.XpLevel = level;
 
             // Fire the event.

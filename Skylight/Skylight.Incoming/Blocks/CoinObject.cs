@@ -6,13 +6,15 @@ namespace Skylight
 {
     public class CoinObject
     {
-        private In _in;
+        private readonly In _in;
 
         public CoinObject(In @in)
         {
             _in = @in;
         }
+
         public event In.BlockEvent CoinBlockEvent = delegate { };
+
         public void OnAddCoinDoorOrGate(Message m)
         {
             // Extract data.

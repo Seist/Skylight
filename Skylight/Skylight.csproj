@@ -90,7 +90,7 @@
     <Compile Include="Skylight.Incoming\Messages\System\Info.cs" />
     <Compile Include="Skylight.Static\PotionIds.cs" />
     <Compile Include="Skylight.Static\SmileyIds.cs" />
-    <Compile Include="Out.cs" />
+    <Compile Include="Skylight.Outgoing\Out.cs" />
     <Compile Include="Physics\Config.cs" />
     <Compile Include="Physics\ItemId.cs" />
     <Compile Include="Skylight.Static\Blocks\PortalBlock.cs" />

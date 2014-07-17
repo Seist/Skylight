@@ -8,12 +8,12 @@
 namespace Skylight.Blocks
 {
     /// <summary>
-    /// Class PianoBlock.
+    ///     Class PianoBlock.
     /// </summary>
     public class PianoBlock : Block
     {
         /// <summary>
-        /// The piano notes.
+        ///     The piano notes.
         /// </summary>
         public const int
             C1 = 1,
@@ -43,12 +43,12 @@ namespace Skylight.Blocks
             C3 = 25;
 
         /// <summary>
-        /// The piano block identifier
+        ///     The piano block identifier
         /// </summary>
         private int _pianoId = -1;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PianoBlock"/> class.
+        ///     Initializes a new instance of the <see cref="PianoBlock" /> class.
         /// </summary>
         /// <param name="x">The x coordinate.</param>
         /// <param name="y">The y coordinate.</param>
@@ -62,7 +62,7 @@ namespace Skylight.Blocks
         }
 
         /// <summary>
-        /// Gets the piano identifier.
+        ///     Gets the piano identifier.
         /// </summary>
         /// <value>The piano identifier.</value>
         public int PianoId

@@ -5,7 +5,7 @@ namespace Skylight
 {
     public class ReleaseArrowKey
     {
-        private Out _out;
+        private readonly Out _out;
 
         public ReleaseArrowKey(Out @out)
         {

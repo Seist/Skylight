@@ -6,7 +6,7 @@ namespace Skylight
 {
     public class Move
     {
-        private In _in;
+        private readonly In _in;
 
         public Move(In @in)
         {
@@ -40,7 +40,6 @@ namespace Skylight
                 verticalSpeed = m.GetDouble(4);
 
             int id = m.GetInteger(0),
-       
                 horizontalModifier = m.GetInteger(5),
                 verticalModifier = m.GetInteger(6),
                 horizontalDirection = m.GetInteger(7),
@@ -50,7 +49,7 @@ namespace Skylight
                 spaceDown = m.GetBoolean(11);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, _in.Source);
+            Player subject = Tools.GetPlayerById(id, _in.Source);
 
             subject.IsHoldingSpace = false;
             if (spaceDown)

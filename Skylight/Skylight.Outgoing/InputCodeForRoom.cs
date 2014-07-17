@@ -5,7 +5,7 @@ namespace Skylight
 {
     public class InputCodeForRoom
     {
-        private Out _out;
+        private readonly Out _out;
 
         public InputCodeForRoom(Out @out)
         {

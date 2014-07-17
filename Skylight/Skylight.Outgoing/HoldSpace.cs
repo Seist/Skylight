@@ -2,7 +2,7 @@ namespace Skylight
 {
     public class HoldSpace
     {
-        private Out _out;
+        private readonly Out _out;
 
         public HoldSpace(Out @out)
         {

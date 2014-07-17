@@ -2,7 +2,7 @@ namespace Skylight
 {
     public class SetCodeForRoom
     {
-        private Out _out;
+        private readonly Out _out;
 
         public SetCodeForRoom(Out @out)
         {

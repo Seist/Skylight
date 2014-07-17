@@ -4,22 +4,23 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
+
 using Skylight.Miscellaneous;
 
 namespace Skylight.Blocks
 {
     /// <summary>
-    /// Class CoinBlock.
+    ///     Class CoinBlock.
     /// </summary>
     public class CoinBlock : Block
     {
         /// <summary>
-        /// The coins required to open the coinblock door.
+        ///     The coins required to open the coinblock door.
         /// </summary>
         private int _coinsRequired = -1;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CoinBlock"/> class.
+        ///     Initializes a new instance of the <see cref="CoinBlock" /> class.
         /// </summary>
         /// <param name="x">The x coordinate.</param>
         /// <param name="y">The y coordinate.</param>
@@ -36,13 +37,13 @@ namespace Skylight.Blocks
         }
 
         /// <summary>
-        /// Gets a value indicating whether this instance is a gate.
+        ///     Gets a value indicating whether this instance is a gate.
         /// </summary>
         /// <value><c>true</c> if this instance is gate; otherwise, <c>false</c>.</value>
         public bool IsGate { get; internal set; }
 
         /// <summary>
-        /// Gets the coins required to open the gate (or close the door).
+        ///     Gets the coins required to open the gate (or close the door).
         /// </summary>
         /// <value>The coins required.</value>
         public int CoinsRequired

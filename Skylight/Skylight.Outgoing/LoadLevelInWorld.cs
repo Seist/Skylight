@@ -2,7 +2,7 @@ namespace Skylight
 {
     public class LoadLevelInWorld
     {
-        private Out _out;
+        private readonly Out _out;
 
         public LoadLevelInWorld(Out @out)
         {

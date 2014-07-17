@@ -2,11 +2,8 @@
 // <summary>Out.cs is the methods that can be used to edit the world it is in.</summary>
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using PlayerIOClient;
-using Skylight.Blocks;
 using Skylight.Miscellaneous;
 
 namespace Skylight
@@ -16,8 +13,8 @@ namespace Skylight
     /// </summary>
     public class Out
     {
-        private readonly SayChatMessage _sayChatMessage;
         private readonly ReleaseArrowKey _releaseArrowKey;
+        private readonly SayChatMessage _sayChatMessage;
 
         public Out()
         {
@@ -341,7 +338,7 @@ namespace Skylight
         {
             if (Bot.Name == R.Owner.Name)
             {
-                foreach (var p in R.OnlinePlayers)
+                foreach (Player p in R.OnlinePlayers)
                 {
                     Teleport(newXLocation, newYLocation, p);
                 }

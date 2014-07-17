@@ -7,17 +7,17 @@
 namespace Skylight.Miscellaneous
 {
     /// <summary>
-    /// Class SmileyIds.
+    ///     Class SmileyIds.
     /// </summary>
     public class SmileyIds
     {
         /// <summary>
-        /// Class Beta.
+        ///     Class Beta.
         /// </summary>
         public class Beta
         {
             /// <summary>
-            /// The types of beta smilies.
+            ///     The types of beta smilies.
             /// </summary>
             public const int
                 Tear = 6,
@@ -29,12 +29,12 @@ namespace Skylight.Miscellaneous
         }
 
         /// <summary>
-        /// Class Contest.
+        ///     Class Contest.
         /// </summary>
         public class Contest
         {
             /// <summary>
-            /// The types of smilies available for contest winners.
+            ///     The types of smilies available for contest winners.
             /// </summary>
             public const int
                 Bird = 29,
@@ -44,12 +44,12 @@ namespace Skylight.Miscellaneous
         }
 
         /// <summary>
-        /// Class Free.
+        ///     Class Free.
         /// </summary>
         public class Free
         {
             /// <summary>
-            /// The smilies that are included by default.
+            ///     The smilies that are included by default.
             /// </summary>
             public const int
                 Smile = 0,
@@ -62,12 +62,12 @@ namespace Skylight.Miscellaneous
         }
 
         /// <summary>
-        /// Class Shop.
+        ///     Class Shop.
         /// </summary>
         public class Shop
         {
             /// <summary>
-            /// The smilies that can be bought using the shop.
+            ///     The smilies that can be bought using the shop.
             /// </summary>
             public const int
                 Ninja = 12,
@@ -136,12 +136,12 @@ namespace Skylight.Miscellaneous
         }
 
         /// <summary>
-        /// Class Special.
+        ///     Class Special.
         /// </summary>
         public class Special
         {
             /// <summary>
-            /// The special smilies that cannot be bought.
+            ///     The special smilies that cannot be bought.
             /// </summary>
             public const int
                 Superman = 16,
@@ -158,12 +158,12 @@ namespace Skylight.Miscellaneous
         }
 
         /// <summary>
-        /// Class Unimplemented.
+        ///     Class Unimplemented.
         /// </summary>
         public class Unimplemented
         {
             /// <summary>
-            /// The smilies that may or may not exist.
+            ///     The smilies that may or may not exist.
             /// </summary>
             public const int
                 Dj = 50,

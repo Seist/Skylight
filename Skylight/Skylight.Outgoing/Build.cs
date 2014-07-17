@@ -8,7 +8,7 @@ namespace Skylight
 {
     public class Build
     {
-        private Out _out;
+        private readonly Out _out;
 
         public Build(Out @out)
         {
@@ -92,7 +92,7 @@ namespace Skylight
             var tempList = new List<Block>();
             tempList.AddRange(blockList);
 
-            foreach (var b in tempList)
+            foreach (Block b in tempList)
             {
                 BuildBlock(b); // this line has problems but I fixed it in a weird way.
             }

@@ -5,7 +5,7 @@ namespace Skylight
 {
     public class Clear
     {
-        private Out _out;
+        private readonly Out _out;
 
         public Clear(Out @out)
         {

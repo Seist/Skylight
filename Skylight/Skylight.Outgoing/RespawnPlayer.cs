@@ -2,7 +2,7 @@
 {
     public class RespawnPlayer
     {
-        private Out _out;
+        private readonly Out _out;
 
         public RespawnPlayer(Out @out)
         {

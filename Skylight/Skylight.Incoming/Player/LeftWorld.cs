@@ -6,7 +6,7 @@ namespace Skylight
 {
     public class LeftWorld
     {
-        private In _in;
+        private readonly In _in;
 
         public LeftWorld(In @in)
         {
@@ -25,11 +25,11 @@ namespace Skylight
         public void OnLeft(Message m)
         {
             // Extract data.
-            var id = m.GetInteger(0);
+            int id = m.GetInteger(0);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, _in.Source);
-            for (var i = 0; i < _in.Source.OnlinePlayers.Count; i++)
+            Player subject = Tools.GetPlayerById(id, _in.Source);
+            for (int i = 0; i < _in.Source.OnlinePlayers.Count; i++)
             {
                 if (_in.Source.OnlinePlayers[i] == subject)
                 {

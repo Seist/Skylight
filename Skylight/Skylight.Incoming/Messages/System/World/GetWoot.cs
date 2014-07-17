@@ -6,7 +6,7 @@ namespace Skylight
 {
     public class GetWoot
     {
-        private In _in;
+        private readonly In _in;
 
         public GetWoot(In @in)
         {
@@ -26,10 +26,10 @@ namespace Skylight
         {
             // "W" stands for "woot" which is the old name for magic.
             // Extract data.
-            var id = m.GetInteger(0);
+            int id = m.GetInteger(0);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, _in.Source);
+            Player subject = Tools.GetPlayerById(id, _in.Source);
 
             subject.CollectedMagic++;
 

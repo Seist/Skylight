@@ -2,7 +2,7 @@ namespace Skylight
 {
     public partial class ResetWorld
     {
-        private Out _out;
+        private readonly Out _out;
 
         public ResetWorld(Out @out)
         {

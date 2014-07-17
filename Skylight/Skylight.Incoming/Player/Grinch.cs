@@ -6,7 +6,7 @@ namespace Skylight
 {
     public class Grinch
     {
-        private In _in;
+        private readonly In _in;
 
         public Grinch(In @in)
         {
@@ -25,10 +25,10 @@ namespace Skylight
         public void OnGiveGrinch(Message m)
         {
             // Extract data
-            var id = m.GetInteger(0);
+            int id = m.GetInteger(0);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, _in.Source);
+            Player subject = Tools.GetPlayerById(id, _in.Source);
 
             // Fire the event.
             var e = new PlayerEventArgs(subject, _in.Source, m);

@@ -6,7 +6,7 @@ namespace Skylight
 {
     public class Moderator
     {
-        private In _in;
+        private readonly In _in;
 
         public Moderator(In @in)
         {
@@ -25,12 +25,12 @@ namespace Skylight
         public void OnMod(Message m)
         {
             // Extract data.
-            var isMod = m.GetBoolean(1);
+            bool isMod = m.GetBoolean(1);
 
-            var id = m.GetInteger(0);
+            int id = m.GetInteger(0);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, _in.Source);
+            Player subject = Tools.GetPlayerById(id, _in.Source);
 
             subject.IsMod = isMod;
 

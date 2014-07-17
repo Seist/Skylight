@@ -2,7 +2,7 @@ namespace Skylight
 {
     public class RespawnAllPlayers
     {
-        private Out _out;
+        private readonly Out _out;
 
         public RespawnAllPlayers(Out @out)
         {

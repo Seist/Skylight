@@ -5,7 +5,7 @@ namespace Skylight
 {
     public class SetTitleOfRoom
     {
-        private Out _out;
+        private readonly Out _out;
 
         public SetTitleOfRoom(Out @out)
         {
