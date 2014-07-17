@@ -74,6 +74,7 @@ namespace Skylight
         private readonly Moderator _moderator;
         private readonly Potion _potion;
         private readonly RefreshShop _refreshShop;
+        private readonly ResetWorld _resetWorld;
 
         public In()
         {
@@ -103,6 +104,7 @@ namespace Skylight
             _moderator = new Moderator(this);
             _potion = new Potion(this);
             _refreshShop = new RefreshShop(this);
+            _resetWorld = new ResetWorld(this);
         }
 
         internal Bot Bot { get; set; }
@@ -239,6 +241,11 @@ namespace Skylight
         public RefreshShop RefreshShop
         {
             get { return _refreshShop; }
+        }
+
+        public ResetWorld ResetWorld
+        {
+            get { return _resetWorld; }
         }
 
         /// <summary>
@@ -429,7 +436,7 @@ namespace Skylight
                                 break;
 
                             case "reset":
-                                OnReset(m);
+                                ResetWorld.OnReset(m);
                                 break;
 
                             case "say":
@@ -659,14 +666,6 @@ namespace Skylight
             var e = new BlockEventArgs(b, Source);
 
             Source.Pull.PortalBlockEvent(e);
-        }
-
-        private void OnReset(Message m)
-        {
-            foreach (var b in Tools.DeserializeInit(m, 1, Source))
-            {
-                Source.Map[b.X, b.Y, b.Z] = b;
-            }
         }
 
         private void OnSaved()

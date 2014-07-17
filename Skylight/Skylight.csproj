@@ -101,6 +101,7 @@
     <Compile Include="Blocks\TextBlock.cs" />
     <Compile Include="Miscellaneous\Tools.cs" />
     <Compile Include="RefreshShop.cs" />
+    <Compile Include="ResetWorld.cs" />
     <Compile Include="Room.cs" />
     <Compile Include="SignBlock.cs" />
     <Compile Include="Trophy.cs" />
