@@ -84,6 +84,7 @@ namespace Skylight
         private readonly Meta _meta;
         private readonly Upgrade _upgrade;
         private readonly Wp _wp;
+        private readonly Write _write;
 
         public In()
         {
@@ -123,6 +124,7 @@ namespace Skylight
             _meta = new Meta(this);
             _upgrade = new Upgrade(this);
             _wp = new Wp(this);
+            _write = new Write(this);
         }
 
         internal Bot Bot { get; set; }
@@ -311,6 +313,11 @@ namespace Skylight
             get { return _wp; }
         }
 
+        public Write Write
+        {
+            get { return _write; }
+        }
+
         /// <summary>
         ///     All of the delegates for BlockEvent. These fire when events occur
         ///     (such as when a block was added or updated).
@@ -325,13 +332,6 @@ namespace Skylight
         {
             _signBlock.OnSignBlockEvent(m);
         }
-
-        /// <summary>
-        ///     All of the delegates for ChatEvent. Chat events are when the player
-        ///     says something, and distinguishes between auto text and system messages
-        ///     and much more.
-        /// </summary>
-        public event ChatEvent SystemMessageEvent = delegate { };
 
         /// <summary>
         ///     All events that concern the player. This includes many messages that the player
@@ -535,7 +535,7 @@ namespace Skylight
                                 break;
 
                             case "write":
-                                OnWrite(m);
+                                Write.OnWrite(m);
                                 break;
 
                             case "w":
@@ -758,21 +758,6 @@ namespace Skylight
             var e = new PlayerEventArgs(subject, Source, m);
 
             Source.Pull.MagicCoinEvent(e);
-        }
-
-        private void OnWrite(Message m)
-        {
-            // Extract data.
-            var message = m.GetString(1);
-
-            // Update relevant objects.
-            // Player system = new Player() { Name = prefix };
-            Source.ChatLog.Add(new KeyValuePair<string, Player>(message, null));
-
-            // Fire the event.
-            var e = new ChatEventArgs(null, Source);
-
-            Source.Pull.SystemMessageEvent(e);
         }
 
         private void OnWootUp(Message m)

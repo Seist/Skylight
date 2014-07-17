@@ -116,6 +116,7 @@
     <Compile Include="Witch.cs" />
     <Compile Include="Wizard.cs" />
     <Compile Include="Wp.cs" />
+    <Compile Include="Write.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\Settings.settings">
