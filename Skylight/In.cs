@@ -65,6 +65,7 @@ namespace Skylight
         private readonly GodMode _godMode;
         private readonly Hide _hide;
         private readonly Crown _crown;
+        private readonly OnKill _onKill;
 
         public In()
         {
@@ -85,6 +86,7 @@ namespace Skylight
             _godMode = new GodMode(this);
             _hide = new Hide(this);
             _crown = new Crown(this);
+            _onKill = new OnKill(this);
         }
 
         internal Bot Bot { get; set; }
@@ -176,6 +178,11 @@ namespace Skylight
         public Crown Crown
         {
             get { return _crown; }
+        }
+
+        public OnKill OnKill1
+        {
+            get { return _onKill; }
         }
 
         /// <summary>
@@ -345,7 +352,7 @@ namespace Skylight
                                 break;
 
                             case "kill":
-                                OnKill(m);
+                                OnKill1.OnKill(m);
                                 break;
 
                             case "ks":
@@ -579,22 +586,6 @@ namespace Skylight
             var e = new RoomEventArgs(Source);
 
             Source.Pull.InitEvent(e);
-        }
-
-        private void OnKill(Message m)
-        {
-            // Extract data.
-            var id = m.GetInteger(0);
-
-            // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, Source);
-
-            subject.DeathCount++;
-
-            // Fire the event.
-            var e = new PlayerEventArgs(subject, Source, m);
-
-            Source.Pull.DeathEvent(e);
         }
 
         private void OnTrophy(Message m)
