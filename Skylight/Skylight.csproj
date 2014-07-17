@@ -70,6 +70,7 @@
     <Compile Include="In.cs" />
     <Compile Include="Miscellaneous\PotionIds.cs" />
     <Compile Include="Miscellaneous\SmileyIds.cs" />
+    <Compile Include="NoteBlock.cs" />
     <Compile Include="Out.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Physics\Config.cs" />

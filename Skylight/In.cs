@@ -54,6 +54,7 @@ namespace Skylight
         private readonly BlockChanged _blockChanged;
         private readonly CoinObject _coinObject;
         private readonly AddSpecialBlock _addSpecialBlock;
+        private readonly NoteBlock _noteBlock;
 
         public In()
         {
@@ -63,6 +64,7 @@ namespace Skylight
             _blockChanged = new BlockChanged(this);
             _coinObject = new CoinObject(this);
             _addSpecialBlock = new AddSpecialBlock(this);
+            _noteBlock = new NoteBlock(this);
         }
 
         internal Bot Bot { get; set; }
@@ -101,6 +103,11 @@ namespace Skylight
             get { return _addSpecialBlock; }
         }
 
+        public NoteBlock NoteBlock
+        {
+            get { return _noteBlock; }
+        }
+
         /// <summary>
         ///     All of the delegates for BlockEvent. These fire when events occur
         ///     (such as when a block was added or updated).
@@ -126,13 +133,6 @@ namespace Skylight
 
             Source.Pull.SignBlockEvent(e);
         }
-
-        /// <summary>
-        ///     All of the delegates for BlockEvent. These fire when events occur
-        ///     (such as when a block was added or updated).
-        /// </summary>
-        public event BlockEvent
-            SoundBlockEvent = delegate { };
 
         /// <summary>
         ///     All of the delegates for ChatEvent. Chat events are when the player
@@ -247,7 +247,7 @@ namespace Skylight
                                 break;
 
                             case "bs":
-                                OnAddNoteblock(m);
+                                NoteBlock.OnAddNoteblock(m);
                                 break;
 
                             case "c":
@@ -426,34 +426,6 @@ namespace Skylight
             var e = new PlayerEventArgs(Bot, Source, m);
 
             Source.Pull.GainAccessEvent(e);
-        }
-
-        private void OnAddNoteblock(Message m)
-        {
-            // Extract data.
-            int x = m.GetInteger(0),
-                y = m.GetInteger(1),
-                id = m.GetInteger(2),
-                note = m.GetInteger(3);
-
-            // Update relevant objects.
-            Block b = null;
-
-            if (id == BlockIds.Action.Music.Percussion)
-            {
-                b = new PercussionBlock(x, y, note);
-            }
-            else if (id == BlockIds.Action.Music.Piano)
-            {
-                b = new PianoBlock(x, y, note);
-            }
-
-            Source.Map[x, y, 0] = b;
-
-            // Fire the event.
-            var e = new BlockEventArgs(b, Source);
-
-            Source.Pull.SoundBlockEvent(e);
         }
 
         private void OnCoin(Message m)
