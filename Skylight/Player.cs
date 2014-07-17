@@ -417,7 +417,7 @@ namespace Skylight
         /// <param name="isZombie">Player is a zombie</param>
         /// <param name="isDead">Player is dead</param>
         public Player(Room room, int id, string name, int smiley, double xPos, double yPos, bool isGod, bool isMod,
-            bool hasChat, int coins, bool purple, bool isFriend, int level, bool hasClub, bool isInvulnerable, bool isThrusting, bool isZombie, bool isDead)
+            bool hasChat, int coins, bool purple, bool isFriend, int level, bool hasClub, bool isInvulnerable, bool isThrusting, bool isZombie, bool isDead, bool levitation)
         {
             PlayingIn = room;
             Smiley = smiley;
@@ -434,6 +434,7 @@ namespace Skylight
             _isThrusting = isThrusting;
             _isZombie = isZombie;
             _isDead = isDead;
+            Levitation = levitation;
             _queue = new Queue<int>(Config.PhysicsQueueLength);
             _lastPortal = new Point();
 
