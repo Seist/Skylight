@@ -68,6 +68,7 @@
     <Compile Include="Blocks\Block.cs" />
     <Compile Include="ClearMap.cs" />
     <Compile Include="CoinObject.cs" />
+    <Compile Include="Crown.cs" />
     <Compile Include="FaceChange.cs" />
     <Compile Include="GiveWizard2.cs" />
     <Compile Include="GodMode.cs" />

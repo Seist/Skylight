@@ -64,6 +64,7 @@ namespace Skylight
         private readonly GiveWizard2 _giveWizard2;
         private readonly GodMode _godMode;
         private readonly Hide _hide;
+        private readonly Crown _crown;
 
         public In()
         {
@@ -83,6 +84,7 @@ namespace Skylight
             _giveWizard2 = new GiveWizard2(this);
             _godMode = new GodMode(this);
             _hide = new Hide(this);
+            _crown = new Crown(this);
         }
 
         internal Bot Bot { get; set; }
@@ -171,6 +173,11 @@ namespace Skylight
             get { return _hide; }
         }
 
+        public Crown Crown
+        {
+            get { return _crown; }
+        }
+
         /// <summary>
         ///     All of the delegates for BlockEvent. These fire when events occur
         ///     (such as when a block was added or updated).
@@ -213,8 +220,7 @@ namespace Skylight
         ///     box or by prefixing a chat message with *SYSTEM.
         /// </summary>
         public event PlayerEvent
-            AddEvent = delegate { } , CrownEvent = delegate { } ,
-            DeathEvent = delegate { } , GainAccessEvent = delegate { } , InfoEvent = delegate { } ,
+            AddEvent = delegate { } , DeathEvent = delegate { } , GainAccessEvent = delegate { } , InfoEvent = delegate { } ,
             JumpEvent = delegate { } ,
             LeaveEvent = delegate { } ,
             LevelUpEvent = delegate { } ,
@@ -335,7 +341,7 @@ namespace Skylight
                                 break;
 
                             case "k":
-                                OnCrown(m);
+                                Crown.OnCrown(m);
                                 break;
 
                             case "kill":
@@ -573,35 +579,6 @@ namespace Skylight
             var e = new RoomEventArgs(Source);
 
             Source.Pull.InitEvent(e);
-        }
-
-        private void OnCrown(Message m)
-        {
-            // Extract data.
-            var id = m.GetInteger(0);
-
-            if (id == -1)
-            {
-                return;
-            }
-
-            // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, Source);
-
-            // Take the crown from the current holder (if one exists)
-            var crownHolder = Tools.GetCrownHolder(Source);
-
-            if (crownHolder != null)
-                crownHolder.HasCrown = false;
-
-            // Give it to the subject.
-            if (subject != null)
-                subject.HasCrown = true;
-
-            // Fire the event.
-            var e = new PlayerEventArgs(subject, Source, m);
-
-            Source.Pull.CrownEvent(e);
         }
 
         private void OnKill(Message m)
