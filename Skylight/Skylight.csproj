@@ -66,6 +66,9 @@
     <Compile Include="InputCodeForRoom.cs" />
     <Compile Include="LoadLevelInWorld.cs" />
     <Compile Include="ReleaseArrowKey.cs" />
+    <Compile Include="ResetWorld.cs" />
+    <Compile Include="RespawnAllPlayers.cs" />
+    <Compile Include="RespawnPlayer.cs" />
     <Compile Include="SayChatMessage.cs" />
     <Compile Include="SetCodeForRoom.cs" />
     <Compile Include="SetTitleOfRoom.cs" />

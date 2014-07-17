@@ -29,6 +29,9 @@ namespace Skylight
         private readonly SetCodeForRoom _setCodeForRoom;
         private readonly ReleaseArrowKey _releaseArrowKey;
         private readonly LoadLevelInWorld _loadLevelInWorld;
+        private readonly RespawnPlayer _respawnPlayer;
+        private readonly RespawnAllPlayers _respawnAllPlayers;
+        private readonly ResetWorld _resetWorld;
 
         public Out()
         {
@@ -45,6 +48,9 @@ namespace Skylight
             _setCodeForRoom = new SetCodeForRoom(this);
             _releaseArrowKey = new ReleaseArrowKey(this);
             _loadLevelInWorld = new LoadLevelInWorld(this);
+            _respawnPlayer = new RespawnPlayer(this);
+            _respawnAllPlayers = new RespawnAllPlayers(this);
+            _resetWorld = new ResetWorld(this);
         }
 
         /// <summary>
@@ -144,18 +150,6 @@ namespace Skylight
         }
 
         /// <summary>
-        ///     Respawns the specified player by their username.
-        /// </summary>
-        /// <param name="name">The username.</param>
-        public void Respawn(string name)
-        {
-            if (Bot.Name == R.Owner.Name)
-            {
-                _sayChatMessage.Say("/kill " + name);
-            }
-        }
-
-        /// <summary>
         ///     Respawns the specified Player object.
         /// </summary>
         /// <param name="p">The player.</param>
@@ -164,28 +158,6 @@ namespace Skylight
             if (Bot.Name == R.Owner.Name)
             {
                 _sayChatMessage.Say("/kill " + p.Name);
-            }
-        }
-
-        /// <summary>
-        ///     Respawns everyone in the room.
-        /// </summary>
-        public void RespawnAll()
-        {
-            if (Bot.Name == R.Owner.Name)
-            {
-                _sayChatMessage.Say("/respawnall");
-            }
-        }
-
-        /// <summary>
-        ///     Clears the entire world.
-        /// </summary>
-        public void Reset()
-        {
-            if (Bot.Name == R.Owner.Name)
-            {
-                _sayChatMessage.Say("/reset");
             }
         }
 
