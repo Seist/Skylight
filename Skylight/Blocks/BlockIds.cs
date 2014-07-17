@@ -729,7 +729,7 @@ namespace Skylight.Blocks
                 public const int
                     Fullbrick = 561,
                     Halfbrick = 562,
-                    REDWHITESTRIPES = 563;
+                    Redwhitestripes = 563;
             }
 
             /// <summary>
@@ -757,7 +757,7 @@ namespace Skylight.Blocks
             /// <summary>
             /// The layer
             /// </summary>
-            public const int LAYER = 0;
+            public const int Layer = 0;
 
             /// <summary>
             /// Class Basic.
@@ -950,8 +950,18 @@ namespace Skylight.Blocks
                     /// The tan
                     /// </summary>
                     public const int
-                        TAN = 122,
-                        RED = 123,
+                        TAN = 122;
+
+                    /// <summary>
+                    /// The tan
+                    /// </summary>
+                    public const int
+                        RED = 123;
+
+                    /// <summary>
+                    /// The tan
+                    /// </summary>
+                    public const int
                         BLUE = 124;
                 }
             }
