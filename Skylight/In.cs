@@ -87,6 +87,7 @@ namespace Skylight
         private readonly Write _write;
         private readonly GetWoot _getWoot;
         private readonly WootUp _wootUp;
+        private readonly Access _access;
 
         public In()
         {
@@ -129,9 +130,10 @@ namespace Skylight
             _write = new Write(this);
             _getWoot = new GetWoot(this);
             _wootUp = new WootUp(this);
+            _access = new Access(this);
         }
 
-        internal Bot Bot { get; set; }
+        public Bot Bot { get; set; }
 
         public Room Source { get; set; }
 
@@ -332,6 +334,11 @@ namespace Skylight
             get { return _wootUp; }
         }
 
+        public Access Access
+        {
+            get { return _access; }
+        }
+
         /// <summary>
         ///     All of the delegates for BlockEvent. These fire when events occur
         ///     (such as when a block was added or updated).
@@ -354,7 +361,7 @@ namespace Skylight
         ///     box or by prefixing a chat message with *SYSTEM.
         /// </summary>
         public event PlayerEvent
-            AddEvent = delegate { } , GainAccessEvent = delegate { } , InfoEvent = delegate { } , LoseAccessEvent = delegate { } , TickEvent = delegate { };
+            AddEvent = delegate { } , InfoEvent = delegate { } , LoseAccessEvent = delegate { } , TickEvent = delegate { };
 
         /// <summary>
         ///     Delegates for RoomEvent. Are only invoked when commands that concern
@@ -565,7 +572,7 @@ namespace Skylight
                         switch (m.Type)
                         {
                             case "access":
-                                OnAccess(m);
+                                Access.OnAccess(m);
                                 break;
 
                             case "lostaccess":
@@ -587,18 +594,6 @@ namespace Skylight
             {
                 Tools.SkylightMessage(e.ToString());
             }
-        }
-
-        private void OnAccess(Message m)
-        {
-            // Nothing to extract from message.
-            // Update relevant objects.
-            Bot.HasAccess = true;
-
-            // Fire the event.
-            var e = new PlayerEventArgs(Bot, Source, m);
-
-            Source.Pull.GainAccessEvent(e);
         }
 
         private void OnInfo(Message m)
