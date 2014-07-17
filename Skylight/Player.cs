@@ -1218,7 +1218,7 @@ namespace Skylight
                             }
                         }
                     }
-                    var loopIterator = 0;
+                    const int loopIterator = 0;
                     while (loopIterator < targetPortalList.Count)
                     {
                         var currentLoopPortal = targetPortalList[loopIterator];
