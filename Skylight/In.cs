@@ -69,10 +69,12 @@ namespace Skylight
         private Message _initMessage;
         private Thread _playerPhysicsThread;
         private readonly Add _add;
+        private readonly Potions _potions;
 
         public In()
         {
             _add = new Add(this);
+            _potions = new Potions(this);
         }
 
         internal Bot Bot { get; set; }
@@ -84,6 +86,11 @@ namespace Skylight
         public Add Add
         {
             get { return _add; }
+        }
+
+        public Potions Potions
+        {
+            get { return _potions; }
         }
 
         /// <summary>
@@ -174,9 +181,7 @@ namespace Skylight
         public event RoomEvent
             ClearEvent = delegate { } ,
             HideEvent = delegate { } ,
-            InitEvent = delegate { } ,
-            PotionToggleEvent = delegate { } ,
-            RefreshshopEvent = delegate { } ,
+            InitEvent = delegate { } , RefreshshopEvent = delegate { } ,
             ResetEvent = delegate { } ,
             SavedEvent = delegate { } ,
             ShowEvent = delegate { } ,
@@ -220,7 +225,7 @@ namespace Skylight
                                 break;
 
                             case "allowpotions":
-                                OnAllowPotions(m);
+                                Potions.OnAllowPotions(m);
                                 break;
 
                             case "autotext":
@@ -419,20 +424,6 @@ namespace Skylight
             var e = new PlayerEventArgs(Bot, Source, m);
 
             Source.Pull.GainAccessEvent(e);
-        }
-
-        private void OnAllowPotions(Message m)
-        {
-            // Extract data.
-            var potions = m.GetBoolean(0);
-
-            // Update relevant objects.
-            Source.PotionsAllowed = potions;
-
-            // Fire the event.
-            var e = new RoomEventArgs(Source);
-
-            Source.Pull.PotionToggleEvent(e);
         }
 
         private void OnAutotext(Message m)
