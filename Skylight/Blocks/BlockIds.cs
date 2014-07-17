@@ -829,12 +829,27 @@ namespace Skylight.Blocks
                 public static class Oneway
                 {
                     /// <summary>
-                    /// The pink
+                    /// The pink oneway block
                     /// </summary>
                     public const int
-                        PINK = 61,
-                        RED = 62,
-                        CYAN = 63,
+                        PINK = 61;
+
+                    /// <summary>
+                    /// The red oneway block
+                    /// </summary>
+                    public const int
+                        RED = 62;
+
+                    /// <summary>
+                    /// The cyan oneway block
+                    /// </summary>
+                    public const int
+                        CYAN = 63;
+
+                    /// <summary>
+                    /// The green oneway block
+                    /// </summary>
+                    public const int
                         GREEN = 64;
                 }
             }

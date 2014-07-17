@@ -5,6 +5,7 @@
     <IgnoreExtensions>
     </IgnoreExtensions>
     <IgnoreFiles>
+      <IgnoreFile>.\Blocks\BlockIds.cs</IgnoreFile>
       <IgnoreFile>.\Blocks\PortalBlock.cs</IgnoreFile>
       <IgnoreFile>.\Bot.cs</IgnoreFile>
       <IgnoreFile>.\In.cs</IgnoreFile>
