@@ -17,10 +17,12 @@ namespace Skylight
     public class Out
     {
         private readonly Build _build;
+        private readonly Clear _clear;
 
         public Out()
         {
             _build = new Build(this);
+            _clear = new Clear(this);
         }
 
         /// <summary>
@@ -53,21 +55,6 @@ namespace Skylight
         public Room R
         {
             get { return Bot.R; }
-        }
-
-        /// <summary>
-        ///     Clears the entire world.
-        /// </summary>
-        public void Clear()
-        {
-            try
-            {
-                C.Send("clear");
-            }
-            catch (Exception)
-            {
-                Tools.SkylightMessage("Error: attempted to use Out.Clear before connecting");
-            }
         }
 
         /// <summary>
