@@ -83,6 +83,7 @@ namespace Skylight
         private readonly Teleport _teleport;
         private readonly Meta _meta;
         private readonly Upgrade _upgrade;
+        private readonly Wp _wp;
 
         public In()
         {
@@ -121,6 +122,7 @@ namespace Skylight
             _teleport = new Teleport(this);
             _meta = new Meta(this);
             _upgrade = new Upgrade(this);
+            _wp = new Wp(this);
         }
 
         internal Bot Bot { get; set; }
@@ -304,13 +306,17 @@ namespace Skylight
             get { return _upgrade; }
         }
 
+        public Wp Wp
+        {
+            get { return _wp; }
+        }
+
         /// <summary>
         ///     All of the delegates for BlockEvent. These fire when events occur
         ///     (such as when a block was added or updated).
         /// </summary>
         public event BlockEvent
-            CoinBlockEvent = delegate { } , PortalBlockEvent = delegate { } ,
-            RoomPortalBlockEvent = delegate { };
+            CoinBlockEvent = delegate { } , PortalBlockEvent = delegate { };
 
         /// <summary>
         /// When a sign block is placed in the world.
@@ -525,7 +531,7 @@ namespace Skylight
                                 break;
 
                             case "wp":
-                                OnWp(m);
+                                Wp.OnWp(m);
                                 break;
 
                             case "write":
@@ -752,25 +758,6 @@ namespace Skylight
             var e = new PlayerEventArgs(subject, Source, m);
 
             Source.Pull.MagicCoinEvent(e);
-        }
-
-        private void OnWp(Message m)
-        {
-            // Extract data.
-            int x = m.GetInteger(0),
-                y = m.GetInteger(1);
-
-            var destination = m.GetString(3);
-
-            // Update relevant objects.
-            Block b = new RoomPortalBlock(x, y, destination);
-
-            Source.Map[x, y, 0] = b;
-
-            // Fire the event
-            var e = new BlockEventArgs(b, Source);
-
-            Source.Pull.RoomPortalBlockEvent(e);
         }
 
         private void OnWrite(Message m)
