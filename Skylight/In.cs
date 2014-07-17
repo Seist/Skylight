@@ -77,6 +77,7 @@ namespace Skylight
         private readonly ResetWorld _resetWorld;
         private readonly Chat _chat;
         private readonly ChatOld _chatOld;
+        private readonly Save _save;
 
         public In()
         {
@@ -109,6 +110,7 @@ namespace Skylight
             _resetWorld = new ResetWorld(this);
             _chat = new Chat(this);
             _chatOld = new ChatOld(this);
+            _save = new Save(this);
         }
 
         internal Bot Bot { get; set; }
@@ -262,6 +264,11 @@ namespace Skylight
             get { return _chatOld; }
         }
 
+        public Save Save
+        {
+            get { return _save; }
+        }
+
         /// <summary>
         ///     All of the delegates for BlockEvent. These fire when events occur
         ///     (such as when a block was added or updated).
@@ -301,9 +308,7 @@ namespace Skylight
         ///     the room's state (such as global clear, potion toggling and saved) for just
         ///     a few examples.
         /// </summary>
-        public event RoomEvent InitEvent = delegate { } , ResetEvent = delegate { } ,
-            SavedEvent = delegate { } ,
-            ShowEvent = delegate { } ,
+        public event RoomEvent InitEvent = delegate { } , ResetEvent = delegate { } , ShowEvent = delegate { } ,
             UpdateEvent = delegate { } ,
             UpdateMetaEvent = delegate { };
 
@@ -460,7 +465,7 @@ namespace Skylight
                                 break;
 
                             case "saved":
-                                OnSaved();
+                                Save.OnSaved();
                                 break;
 
                             case "show":
@@ -678,16 +683,6 @@ namespace Skylight
             var e = new BlockEventArgs(b, Source);
 
             Source.Pull.PortalBlockEvent(e);
-        }
-
-        private void OnSaved()
-        {
-            // Nothing to extract from message.
-            // Nothing to update because I have no idea what it is.
-            // Fire the event.
-            var e = new RoomEventArgs(Source);
-
-            Source.Pull.SavedEvent(e);
         }
 
         private void OnShow()
