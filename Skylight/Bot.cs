@@ -66,7 +66,7 @@ namespace Skylight
             string emailOrToken = Tools.GuestEmail,
             string passwordOrToken = Tools.GuestPassword,
             AccountType accType = AccountType.Regular)
-            : base(r, 0, "", 0, 0.0, 0.0, false, false, true, 0, false, false, 0, false, false, false, false, false, false,)
+            : base(r, 0, "", 0, 0.0, 0.0, false, false, true, 0, false, false, 0, false, false, false, false, false, false)
         {
             Push = new Out();
             _emailOrToken = emailOrToken;
