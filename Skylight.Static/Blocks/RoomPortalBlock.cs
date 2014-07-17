@@ -43,7 +43,7 @@ namespace Skylight.Blocks
 
             internal set
             {
-                string s = value;
+                var s = value;
                 Tools.ParseUrl(s);
                 if (Regex.IsMatch(s, "[A-Za-z0-9-_]{13}"))
                 {

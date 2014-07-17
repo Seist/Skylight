@@ -92,7 +92,7 @@ namespace Skylight
             var tempList = new List<Block>();
             tempList.AddRange(blockList);
 
-            foreach (Block b in tempList)
+            foreach (var b in tempList)
             {
                 BuildBlock(b); // this line has problems but I fixed it in a weird way.
             }

@@ -56,7 +56,7 @@ namespace Skylight
 
             if (!_specialBlockIds.Contains(blockId))
             {
-                Player subject = Tools.GetPlayerById(playerId, _in.Source);
+                var subject = Tools.GetPlayerById(playerId, _in.Source);
 
                 b.Placer = subject;
             }

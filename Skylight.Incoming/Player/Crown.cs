@@ -25,7 +25,7 @@ namespace Skylight
         public void OnCrown(Message m)
         {
             // Extract data.
-            int id = m.GetInteger(0);
+            var id = m.GetInteger(0);
 
             if (id == -1)
             {
@@ -33,10 +33,10 @@ namespace Skylight
             }
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, _in.Source);
+            var subject = Tools.GetPlayerById(id, _in.Source);
 
             // Take the crown from the current holder (if one exists)
-            Player crownHolder = Tools.GetCrownHolder(_in.Source);
+            var crownHolder = Tools.GetCrownHolder(_in.Source);
 
             if (crownHolder != null)
                 crownHolder.HasCrown = false;

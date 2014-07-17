@@ -338,7 +338,7 @@ namespace Skylight
         {
             if (Bot.Name == R.Owner.Name)
             {
-                foreach (Player p in R.OnlinePlayers)
+                foreach (var p in R.OnlinePlayers)
                 {
                     Teleport(newXLocation, newYLocation, p);
                 }

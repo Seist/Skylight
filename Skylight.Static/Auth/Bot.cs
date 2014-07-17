@@ -175,7 +175,7 @@ namespace Skylight
                         break;
 
                     default: //case AccountType.ArmorGames:
-                        Connection c = Tools.GuestClient.Value.Multiplayer.JoinRoom("", null);
+                        var c = Tools.GuestClient.Value.Multiplayer.JoinRoom("", null);
                         c.OnMessage += (sender, message) =>
                         {
                             if (message.Type != "auth") return;

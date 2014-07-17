@@ -25,12 +25,12 @@ namespace Skylight
         public void OnMod(Message m)
         {
             // Extract data.
-            bool isMod = m.GetBoolean(1);
+            var isMod = m.GetBoolean(1);
 
-            int id = m.GetInteger(0);
+            var id = m.GetInteger(0);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, _in.Source);
+            var subject = Tools.GetPlayerById(id, _in.Source);
 
             subject.IsMod = isMod;
 

@@ -29,7 +29,7 @@ namespace Skylight
                 level = m.GetInteger(1); // never used.
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, _in.Source);
+            var subject = Tools.GetPlayerById(id, _in.Source);
             subject.XpLevel = level;
 
             // Fire the event.

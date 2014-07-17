@@ -23,7 +23,7 @@ namespace Skylight
         public void OnWrite(Message m)
         {
             // Extract data.
-            string message = m.GetString(1);
+            var message = m.GetString(1);
 
             // Update relevant objects.
             // Player system = new Player() { Name = prefix };
