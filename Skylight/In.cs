@@ -726,11 +726,13 @@ namespace Skylight
                 body = m.GetString(1);
 
             // Update relevant objects.
-            Tools.SkylightMessage("Bot " + Bot.Name + " received a pop-up window:\n   " + title + "\n    " + body);
+            Tools.SkylightMessage("Bot " + Bot.Name + " received a pop-up window:\n   " +
+                title + "\n    " + body);
 
             if (title == "Limit reached")
             {
                 Bot.Disconnect();
+                Tools.SkylightMessage("The bot was forced to disconnect because the limit was reached.");
             }
 
             // Fire the event.
