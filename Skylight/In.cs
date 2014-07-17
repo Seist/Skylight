@@ -56,6 +56,7 @@ namespace Skylight
         private readonly AddSpecialBlock _addSpecialBlock;
         private readonly NoteBlock _noteBlock;
         private readonly OnCoinGet _onCoinGet;
+        private readonly ClearMap _clearMap;
 
         public In()
         {
@@ -67,6 +68,7 @@ namespace Skylight
             _addSpecialBlock = new AddSpecialBlock(this);
             _noteBlock = new NoteBlock(this);
             _onCoinGet = new OnCoinGet(this);
+            _clearMap = new ClearMap(this);
         }
 
         internal Bot Bot { get; set; }
@@ -113,6 +115,11 @@ namespace Skylight
         public OnCoinGet OnCoinGet
         {
             get { return _onCoinGet; }
+        }
+
+        public ClearMap ClearMap
+        {
+            get { return _clearMap; }
         }
 
         /// <summary>
@@ -185,9 +192,7 @@ namespace Skylight
         ///     the room's state (such as global clear, potion toggling and saved) for just
         ///     a few examples.
         /// </summary>
-        public event RoomEvent
-            ClearEvent = delegate { } ,
-            HideEvent = delegate { } ,
+        public event RoomEvent HideEvent = delegate { } ,
             InitEvent = delegate { } , RefreshshopEvent = delegate { } ,
             ResetEvent = delegate { } ,
             SavedEvent = delegate { } ,
@@ -260,7 +265,7 @@ namespace Skylight
                                 break;
 
                             case "clear":
-                                OnClear();
+                                ClearMap.OnClear();
                                 break;
 
                             case "face":
@@ -431,27 +436,6 @@ namespace Skylight
             var e = new PlayerEventArgs(Bot, Source, m);
 
             Source.Pull.GainAccessEvent(e);
-        }
-
-        private void OnClear()
-        {
-            // There is data, but it's kind of irrelevant.
-            // Update relevant objects.
-            for (var x = 0; x < Source.Width; x++)
-            {
-                for (var y = 0; y < Source.Height; y++)
-                {
-                    var blankBlock = new Block(0, x, y);
-
-                    Source.Map[x, y, 0] = blankBlock;
-                    Source.Map[x, y, 1] = blankBlock;
-                }
-            }
-
-            // Fire the event.
-            var e = new RoomEventArgs(Source);
-
-            Source.Pull.ClearEvent(e);
         }
 
         private void OnFace(Message m)
