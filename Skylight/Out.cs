@@ -24,6 +24,7 @@ namespace Skylight
         private readonly HoldUpArrow _holdUpArrow;
         private readonly HoldSpace _holdSpace;
         private readonly SetTitleOfRoom _setTitleOfRoom;
+        private readonly SayChatMessage _sayChatMessage;
 
         public Out()
         {
@@ -35,6 +36,7 @@ namespace Skylight
             _holdUpArrow = new HoldUpArrow(this);
             _holdSpace = new HoldSpace(this);
             _setTitleOfRoom = new SetTitleOfRoom(this);
+            _sayChatMessage = new SayChatMessage(this);
         }
 
         /// <summary>
@@ -165,60 +167,6 @@ namespace Skylight
         }
 
         /// <summary>
-        ///     Says the specified message.
-        /// </summary>
-        /// <param name="s">The message.</param>
-        /// <param name="useChatPrefix">if set to <c>true</c> then [use chat prefix].</param>
-        public void Say(string s, bool useChatPrefix = true)
-        {
-            try
-            {
-                if (s.StartsWith("/") || !useChatPrefix)
-                {
-                    if (s.Length <= 80 && s.Length > 0)
-                    {
-                        C.Send("say", s);
-                        Thread.Sleep(Bot.SpeechDelay);
-                    }
-                    else
-                    {
-                        // Say what you can.
-                        Say(s.Substring(0, 80));
-
-                        // Delete what you just said.
-                        s = s.Substring(80);
-
-                        // Repeat the process.
-                        Say(s);
-                    }
-                }
-                else
-                {
-                    if (s.Length + Bot.ChatPrefix.Length <= 80)
-                    {
-                        C.Send("say", Bot.ChatPrefix + s);
-                        Thread.Sleep(Bot.SpeechDelay);
-                    }
-                    else
-                    {
-                        // Say what you can.
-                        Say(s.Substring(0, 80 - Bot.ChatPrefix.Length));
-
-                        // Delete what you just said.
-                        s = s.Substring(80 - Bot.ChatPrefix.Length);
-
-                        // Repeat the process.
-                        Say(s);
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                Tools.SkylightMessage("Error: attempted to use Out.Say before connecting");
-            }
-        }
-
-        /// <summary>
         ///     Kicks the specified player by their username.
         /// </summary>
         /// <param name="name">The username.</param>
@@ -227,7 +175,7 @@ namespace Skylight
         {
             if (Bot.Name == R.Owner.Name)
             {
-                Say("/kick " + name + " " + reason);
+                _sayChatMessage.Say("/kick " + name + " " + reason);
             }
         }
 
@@ -240,7 +188,7 @@ namespace Skylight
         {
             if (Bot.Name == R.Owner.Name)
             {
-                Say("/kick " + p.Name + " " + reason);
+                _sayChatMessage.Say("/kick " + p.Name + " " + reason);
             }
         }
 
@@ -251,7 +199,7 @@ namespace Skylight
         {
             if (Bot.Name == R.Owner.Name)
             {
-                Say("/loadlevel");
+                _sayChatMessage.Say("/loadlevel");
             }
         }
 
@@ -263,7 +211,7 @@ namespace Skylight
         {
             if (Bot.Name == R.Owner.Name)
             {
-                Say("/kill " + name);
+                _sayChatMessage.Say("/kill " + name);
             }
         }
 
@@ -275,7 +223,7 @@ namespace Skylight
         {
             if (Bot.Name == R.Owner.Name)
             {
-                Say("/kill " + p.Name);
+                _sayChatMessage.Say("/kill " + p.Name);
             }
         }
 
@@ -286,7 +234,7 @@ namespace Skylight
         {
             if (Bot.Name == R.Owner.Name)
             {
-                Say("/respawnall");
+                _sayChatMessage.Say("/respawnall");
             }
         }
 
@@ -297,7 +245,7 @@ namespace Skylight
         {
             if (Bot.Name == R.Owner.Name)
             {
-                Say("/reset");
+                _sayChatMessage.Say("/reset");
             }
         }
 
@@ -349,11 +297,11 @@ namespace Skylight
             {
                 if (value)
                 {
-                    Say("/giveedit " + name);
+                    _sayChatMessage.Say("/giveedit " + name);
                 }
                 else
                 {
-                    Say("/removeedit " + name);
+                    _sayChatMessage.Say("/removeedit " + name);
                 }
             }
         }
@@ -369,11 +317,11 @@ namespace Skylight
             {
                 if (value)
                 {
-                    Say("/giveedit " + p.Name);
+                    _sayChatMessage.Say("/giveedit " + p.Name);
                 }
                 else
                 {
-                    Say("/removeedit " + p.Name);
+                    _sayChatMessage.Say("/removeedit " + p.Name);
                 }
             }
         }
@@ -402,11 +350,11 @@ namespace Skylight
             {
                 if (value)
                 {
-                    Say("/mute " + name);
+                    _sayChatMessage.Say("/mute " + name);
                 }
                 else
                 {
-                    Say("/unmute " + name);
+                    _sayChatMessage.Say("/unmute " + name);
                 }
             }
         }
@@ -422,11 +370,11 @@ namespace Skylight
             {
                 if (value)
                 {
-                    Say("/mute " + p.Name);
+                    _sayChatMessage.Say("/mute " + p.Name);
                 }
                 else
                 {
-                    Say("/unmute " + p.Name);
+                    _sayChatMessage.Say("/unmute " + p.Name);
                 }
             }
         }
@@ -442,11 +390,11 @@ namespace Skylight
             {
                 if (value)
                 {
-                    Say("/potionson " + potionId);
+                    _sayChatMessage.Say("/potionson " + potionId);
                 }
                 else
                 {
-                    Say("/potionsoff " + potionId);
+                    _sayChatMessage.Say("/potionsoff " + potionId);
                 }
             }
         }
@@ -475,7 +423,7 @@ namespace Skylight
         {
             if (Bot.Name == R.Owner.Name)
             {
-                Say("/visible " + value);
+                _sayChatMessage.Say("/visible " + value);
             }
         }
 
@@ -491,11 +439,11 @@ namespace Skylight
             {
                 if (name != "")
                 {
-                    Say("/teleport " + name + " " + newXLocation + " " + newYLocation);
+                    _sayChatMessage.Say("/teleport " + name + " " + newXLocation + " " + newYLocation);
                 }
                 else
                 {
-                    Say("/teleport " + Bot.Name + " " + newXLocation + " " + newYLocation);
+                    _sayChatMessage.Say("/teleport " + Bot.Name + " " + newXLocation + " " + newYLocation);
                 }
             }
         }
@@ -512,11 +460,11 @@ namespace Skylight
             {
                 if (p != null)
                 {
-                    Say("/teleport " + p.Name + " " + newXLocation + " " + newYLocation);
+                    _sayChatMessage.Say("/teleport " + p.Name + " " + newXLocation + " " + newYLocation);
                 }
                 else
                 {
-                    Say("/teleport " + Bot.Name + " " + newXLocation + " " + newYLocation);
+                    _sayChatMessage.Say("/teleport " + Bot.Name + " " + newXLocation + " " + newYLocation);
                 }
             }
         }
