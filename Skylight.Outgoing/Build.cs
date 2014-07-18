@@ -38,6 +38,11 @@ namespace Skylight
             {
                 return;
             }
+            if (!_in.Bot.HasAccess)
+            {
+                Tools.SkylightMessage("The bot cannot build because it is unauthorized.");
+                return;
+            }
             try
             {
                 if (theBlock is CoinBlock)
