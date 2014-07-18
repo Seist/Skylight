@@ -54,12 +54,11 @@ namespace Skylight
             // Update relevant objects.
             var b = new Block(blockId, x, y, z);
 
-            if (!_specialBlockIds.Contains(blockId))
-            {
-                var subject = Tools.GetPlayerById(playerId, _in.Source);
 
-                b.Placer = subject;
-            }
+            var subject = Tools.GetPlayerById(playerId, _in.Source);
+
+            b.Placer = subject;
+            
 
             _in.Source.Map[x, y, z] = b;
 
