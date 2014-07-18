@@ -161,7 +161,7 @@ namespace Skylight
                 {
                     case AccountType.Regular:
                         if (_emailOrToken == Tools.GuestEmail && _passwordOrToken == Tools.GuestPassword)
-                            Client = Tools.GuestClient.Value;
+                            Client = Tools.GuestClient;
                         else
                             Client = PlayerIO.QuickConnect.SimpleConnect(Tools.GameId, _emailOrToken, _passwordOrToken);
                         break;
@@ -175,7 +175,7 @@ namespace Skylight
                         break;
 
                     default: //case AccountType.ArmorGames:
-                        var c = Tools.GuestClient.Value.Multiplayer.JoinRoom("", null);
+                        var c = Tools.GuestClient.Multiplayer.JoinRoom("", null);
                         c.OnMessage += (sender, message) =>
                         {
                             if (message.Type != "auth") return;
