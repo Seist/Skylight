@@ -137,7 +137,7 @@ namespace Skylight
 
         public Bot Bot { get; set; }
 
-        public static Room Source { get; set; }
+        public Room Source { get; set; }
 
         internal bool IsPersonal { get; set; }
 
