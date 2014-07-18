@@ -24,6 +24,10 @@ namespace Skylight
                 {
                     _out.C.Send("allowpotions", value);
                 }
+                else
+                {
+                    throw new Exception("You are not authorized to allow potions.");
+                }
             }
             catch (Exception)
             {
