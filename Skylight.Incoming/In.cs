@@ -746,7 +746,7 @@ namespace Skylight
 
             Source.BlocksLoaded = true;
 
-            Thread.Sleep(1000);
+
 
             _playerPhysicsThread = new Thread(UpdatePhysics);
             _playerPhysicsThread.Start();
