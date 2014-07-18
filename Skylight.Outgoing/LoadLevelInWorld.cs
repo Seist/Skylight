@@ -1,3 +1,6 @@
+using System;
+using System.Drawing;
+
 namespace Skylight
 {
     public class LoadLevelInWorld
@@ -17,6 +20,10 @@ namespace Skylight
             if (_out.Bot.Name == _out.R.Owner.Name)
             {
                 _out.SayChatMessage.Say("/loadlevel");
+            }
+            else
+            {
+                throw new AccessViolationException("You are not authorized to load the level.");
             }
         }
     }
