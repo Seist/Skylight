@@ -24,12 +24,7 @@ namespace Skylight
                 coinsRequired = m.GetInteger(3);
 
             // Update relevant objects.
-            var b = new CoinBlock(x, y, coinsRequired, false);
-
-            if (id == BlockIds.Action.Gates.Coin)
-            {
-                b.IsGate = true;
-            }
+            var b = new CoinBlock(x, y, coinsRequired, false) {IsGate = (id == BlockIds.Action.Gates.Coin)};
 
             _in.Source.Map[x, y, 0] = b;
 
