@@ -32,6 +32,10 @@ namespace Skylight
         /// <param name="b">The block.</param>
         public void BuildBlock(Block b)
         {
+            if (In.Source.Map[b.X, b.Y, b.Z] == b)
+            {
+                return;
+            }
             try
             {
                 if (b is CoinBlock)
