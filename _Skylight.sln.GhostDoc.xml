@@ -3,6 +3,7 @@
     <IncludeExtensions>
     </IncludeExtensions>
     <IgnoreExtensions>
+      <IgnoreExtension>.cs</IgnoreExtension>
     </IgnoreExtensions>
     <IgnoreFiles>
       <IgnoreFile>.\Skylight.Static\Tools.cs</IgnoreFile>
