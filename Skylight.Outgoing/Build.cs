@@ -10,9 +10,11 @@ namespace Skylight
     {
         private readonly Out _out;
 
-        public Build(Out @out)
+        private readonly In _in;
+        public Build(Out @out, In @in)
         {
             _out = @out;
+            _in = @in;
         }
 
         /// <summary>
@@ -32,7 +34,7 @@ namespace Skylight
         /// <param name="theBlock">The block.</param>
         public void BuildBlock(Block theBlock)
         {
-            if (In.Source.Map[theBlock.X, theBlock.Y, theBlock.Z] == theBlock)
+            if (_in.Source.Map[theBlock.X, theBlock.Y, theBlock.Z] == theBlock)
             {
                 return;
             }
