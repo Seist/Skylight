@@ -1,3 +1,4 @@
+using System;
 using PlayerIOClient;
 using Skylight.Arguments;
 using Skylight.Blocks;
@@ -40,7 +41,14 @@ namespace Skylight
                 b = new PianoBlock(x, y, note);
             }
 
-            _in.Source.Map[x, y, 0] = b;
+            if (b != null)
+            {
+                _in.Source.Map[x, y, 0] = b;
+            }
+            else
+            {
+                throw new Exception("Unknown music block. Not placing on map.");
+            }
 
             // Fire the event.
             var e = new BlockEventArgs(b, _in.Source);
