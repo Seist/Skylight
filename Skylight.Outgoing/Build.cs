@@ -29,53 +29,53 @@ namespace Skylight
         /// <summary>
         ///     Builds the specified block object.
         /// </summary>
-        /// <param name="b">The block.</param>
-        public void BuildBlock(Block b)
+        /// <param name="theBlock">The block.</param>
+        public void BuildBlock(Block theBlock)
         {
-            if (In.Source.Map[b.X, b.Y, b.Z] == b)
+            if (In.Source.Map[theBlock.X, theBlock.Y, theBlock.Z] == theBlock)
             {
                 return;
             }
             try
             {
-                if (b is CoinBlock)
+                if (theBlock is CoinBlock)
                 {
-                    var c = b as CoinBlock;
+                    var c = theBlock as CoinBlock;
 
                     _out.C.Send(_out.R.RoomKey, c.Z, c.X, c.Y, c.Id, c.CoinsRequired);
                 }
-                else if (b is PercussionBlock)
+                else if (theBlock is PercussionBlock)
                 {
-                    var p = b as PercussionBlock;
+                    var p = theBlock as PercussionBlock;
 
                     _out.C.Send(_out.R.RoomKey, p.Z, p.X, p.Y, p.Id, p.PercussionId);
                 }
-                else if (b is PianoBlock)
+                else if (theBlock is PianoBlock)
                 {
-                    var p = b as PianoBlock;
+                    var p = theBlock as PianoBlock;
 
                     _out.C.Send(_out.R.RoomKey, p.Z, p.X, p.Y, p.Id, p.PianoId);
                 }
-                else if (b is PortalBlock)
+                else if (theBlock is PortalBlock)
                 {
-                    var p = b as PortalBlock;
+                    var p = theBlock as PortalBlock;
 
                     _out.C.Send(_out.R.RoomKey, p.Z, p.X, p.Y, p.Id, p.Direction, p.PortalId, p.PortalDestination);
                 }
-                else if (b is RoomPortalBlock)
+                else if (theBlock is RoomPortalBlock)
                 {
-                    var r = b as RoomPortalBlock;
+                    var r = theBlock as RoomPortalBlock;
 
                     _out.C.Send(_out.R.RoomKey, r.Z, r.X, r.Y, r.Id, r.PortalDestination);
                 }
-                else if (b is TextBlock)
+                else if (theBlock is TextBlock)
                 {
-                    var t = b as TextBlock;
+                    var t = theBlock as TextBlock;
                     _out.C.Send(_out.R.RoomKey, t.Z, t.X, t.Y, t.Id, t.Text);
                 }
                 else
                 {
-                    _out.C.Send(_out.R.RoomKey, b.Z, b.X, b.Y, b.Id, b.Direction);
+                    _out.C.Send(_out.R.RoomKey, theBlock.Z, theBlock.X, theBlock.Y, theBlock.Id, theBlock.Direction);
                 }
 
 
