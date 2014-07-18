@@ -107,19 +107,11 @@ namespace Skylight.Miscellaneous
         {
             foreach (var p in r.OnlinePlayers)
             {
-                if (p.Id == id)
+                if (p.Id != id) continue;
+                // If value is false, return the first match.
+                if (!onlyReturnBots || p.IsBot)
                 {
-                    // If value is false, return the first match.
-                    if (!onlyReturnBots)
-                    {
-                        return p;
-                    }
-
-                    // Otherwise, only return a bot.
-                    if (p.IsBot)
-                    {
-                        return p;
-                    }
+                    return p;
                 }
             }
 
