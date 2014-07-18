@@ -655,6 +655,8 @@ namespace Skylight
             Source.RoomKey = worldKey;
             Source.Height = height;
             Source.Width = width;
+            RoomAccessor.Width = width;
+            RoomAccessor.Height = height;
             Source.PotionsAllowed = potions;
             Source.IsTutorialRoom = isTutorialRoom;
             Source.GravityMultiplier = gravityMultiplier;

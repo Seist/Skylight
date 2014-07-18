@@ -15,8 +15,17 @@ namespace Skylight.Miscellaneous
     ///     Tools that are available to the core of the program (converting a player id or name into
     ///     a player object) and internal methods are mostly stored here.
     /// </summary>
+
+    public static class RoomAccessor
+    {
+        public static int Width { get; set; }
+        public static int Height { get; set; }
+    
+}
     public static class Tools
     {
+
+        
         /// <summary>
         ///     Delegate ProgramEvent
         /// </summary>
@@ -284,9 +293,10 @@ namespace Skylight.Miscellaneous
                 //// Praise him. (this is mainly due to my laziness)
 
                 // First, fill the entire map with blank blocks (so that you don't get null exceptions).
-                for (var x = 0; x < 700; x++)
+
+                for (var x = 0; x <= RoomAccessor.Width; x++)
                 {
-                    for (var y = 0; y < 400; y++)
+                    for (var y = 0; y <= RoomAccessor.Height; y++)
                     {
                         for (var z = 0; z < 2; z++)
                         {
