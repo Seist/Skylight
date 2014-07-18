@@ -18,6 +18,8 @@ namespace Skylight
         /// <param name="editKey">The edit key.</param>
         public void InputCode(string editKey)
         {
+            if (String.IsNullOrWhiteSpace(editKey)) {throw new ArgumentException("editKey cannot be empty or null.");}
+
             try
             {
                 _out.C.Send("access", editKey);
