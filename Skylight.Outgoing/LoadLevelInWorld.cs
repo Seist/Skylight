@@ -23,7 +23,7 @@ namespace Skylight
             }
             else
             {
-                throw new AccessViolationException("You are not authorized to load the level.");
+                throw new Exception("You are not authorized to load the level.");
             }
         }
     }
