@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using PlayerIOClient;
 using Skylight.Arguments;
@@ -27,12 +28,26 @@ namespace Skylight
             // Extract data.
             var id = m.GetInteger(0);
 
-            var message = m.GetString(1);
+            var message = m.GetInteger(1);
+
+            var autoTextConversions = new Dictionary<int,string>
+            {
+                {0, "Left."},
+                {1, "Hi."},
+                {2, "Goodbye."},
+                {3, "Help me!"},
+                {4, "Thank you."},
+                {5, "Follow me."},
+                {6, "Stop!"},
+                {7, "Yes."},
+                {8, "No."},
+                {9, "Right."}
+            };
 
             // Update relevant objects.
             var subject = Tools.GetPlayerById(id, _in.Source);
 
-            _in.Source.ChatLog.Add(new KeyValuePair<string, Player>(message, subject));
+            _in.Source.ChatLog.Add(new KeyValuePair<string, Player>(autoTextConversions[message], subject));
 
             // Fire the event.
             var e = new ChatEventArgs(subject, _in.Source);
