@@ -220,7 +220,7 @@ namespace Skylight
 
            var rabbitAuth = new Rabbit.Auth();
 
-            Connection = rabbitAuth.LogIn("EMAILORTOKEN", "PASSWORD", R.Id);
+           Connection = rabbitAuth.LogIn(_emailOrToken, _passwordOrToken, R.Id);
                 // Update room data
                 Room.JoinedRooms.Add(R);
 
