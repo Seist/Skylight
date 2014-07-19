@@ -261,10 +261,7 @@ namespace Skylight
                 {
                 }
             }
-            catch (Exception e)
-            {
-                Tools.SkylightMessage("Unable to join room \"" + R.Id + "\": " + e.Message);
-            }
+            
         }
 
         /// <summary>
