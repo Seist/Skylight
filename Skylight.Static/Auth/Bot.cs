@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using PlayerIOClient;
 using Skylight.Miscellaneous;
 
@@ -149,63 +148,7 @@ namespace Skylight
         /// </summary>
         public static Room CurrentRoom { get; set; }
 
-        // Public methods
-        /// <summary>
-        ///     The main method to login the bot with the credentials already specified.
-        /// </summary>
-        public void LogIn()
-        {
-            try
-            {
-                switch (_accType)
-                {
-                    case AccountType.Regular:
-                        if (_emailOrToken == Tools.GuestEmail && _passwordOrToken == Tools.GuestPassword)
-                            Client = Tools.GuestClient.Value;
-                        else
-                            Client = PlayerIO.QuickConnect.SimpleConnect(Tools.GameId, _emailOrToken, _passwordOrToken);
-                        break;
-
-                    case AccountType.Facebook:
-                        Client = PlayerIO.QuickConnect.FacebookOAuthConnect(Tools.GameId, _emailOrToken, null);
-                        break;
-
-                    case AccountType.Kongregate:
-                        Client = PlayerIO.QuickConnect.KongregateConnect(Tools.GameId, _emailOrToken, _passwordOrToken);
-                        break;
-
-                    default: //case AccountType.ArmorGames:
-                        var c = Tools.GuestClient.Value.Multiplayer.JoinRoom("", null);
-                        c.OnMessage += (sender, message) =>
-                        {
-                            if (message.Type != "auth") return;
-
-                            if (message.Count == 0)
-                                Tools.SkylightMessage(
-                                    "Cannot log in using ArmorGames. The response from the auth server is wrong.");
-                            else
-                            {
-                                Client = PlayerIO.Connect(Tools.GameId, "secure",
-                                    message.GetString(0), message.GetString(1),
-                                    "armorgames");
-                            }
-
-                            c.Disconnect();
-                        };
-
-                        c.Send("auth", _emailOrToken, _passwordOrToken);
-                        break;
-                }
-            }
-            catch (PlayerIOError e)
-            {
-                Tools.SkylightMessage("Cannot log in: " + e.Message);
-                IsConnected = false;
-                return;
-            }
-
-            IsConnected = true;
-        }
+        public void LogIn() { throw new Exception("Please use Join() instead.");}
 
         /// <summary>
         ///     Join the room that was already set.
@@ -213,42 +156,23 @@ namespace Skylight
         /// <param name="createRoom"></param>
         public void Join(bool createRoom = true)
         {
-            // Update the game version.
-            Refresh();
-
-            if (!IsConnected)
-            {
-                // Log in
-                LogIn();
-
-                // If you didn't connect, it must have failed.
-                if (!IsConnected)
-                {
-                    return;
-                }
-            }
 
             // Parse the level ID (because some people like to put full URLs in).
             R.Id = Tools.ParseUrl(R.Id);
 
+           var rabbitAuth = new Rabbit.Auth();
+
             try
             {
-                if (createRoom)
-                {
-                    // Join room
-                    Connection = Client.Multiplayer.CreateJoinRoom(
-                        R.Id, // RoomId   (URL)
-                        _storedVersion, // RoomType (Server)
-                        true, // Visible
-                        new Dictionary<string, string>(), // RoomData
-                        new Dictionary<string, string>()); // JoinData
-                }
-                else
-                {
-                    Connection = Client.Multiplayer.JoinRoom(
-                        R.Id,
-                        new Dictionary<string, string>());
-                }
+                Connection = rabbitAuth.LogIn(_emailOrToken, _passwordOrToken, R.Id);
+            }
+            catch (PlayerIOError e)
+            {
+                Tools.SkylightMessage("Cannot log in: " + e.Message);
+                IsConnected = false;
+                return;
+            }
+            IsConnected = true;
                 // Update room data
                 Room.JoinedRooms.Add(R);
 
@@ -289,11 +213,8 @@ namespace Skylight
                 {
                 }
             }
-            catch (Exception e)
-            {
-                Tools.SkylightMessage("Unable to join room \"" + R.Id + "\": " + e.Message);
-            }
-        }
+            
+        
 
         /// <summary>
         ///     Disconnect the bot.
