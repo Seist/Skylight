@@ -262,7 +262,7 @@ namespace Skylight
                 }
             }
             
-        }
+        
 
         /// <summary>
         ///     Disconnect the bot.
