@@ -150,7 +150,7 @@ namespace Skylight
         /// </summary>
         public static Room CurrentRoom { get; set; }
 
-        public void LogIn() { }
+        public void LogIn() { throw new Exception("Please use Join() instead.");}
 
         /// <summary>
         ///     Join the room that was already set.
