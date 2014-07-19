@@ -220,7 +220,17 @@ namespace Skylight
 
            var rabbitAuth = new Rabbit.Auth();
 
-           Connection = rabbitAuth.LogIn(_emailOrToken, _passwordOrToken, R.Id);
+            try
+            {
+                Connection = rabbitAuth.LogIn(_emailOrToken, _passwordOrToken, R.Id);
+            }
+            catch (PlayerIOError e)
+            {
+                Tools.SkylightMessage("Cannot log in: " + e.Message);
+                IsConnected = false;
+                return;
+            }
+            IsConnected = true;
                 // Update room data
                 Room.JoinedRooms.Add(R);
 
