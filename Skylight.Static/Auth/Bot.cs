@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using PlayerIOClient;
 using Skylight.Miscellaneous;
+using Rabbit;
 
 namespace Skylight
 {
@@ -213,42 +214,13 @@ namespace Skylight
         /// <param name="createRoom"></param>
         public void Join(bool createRoom = true)
         {
-            // Update the game version.
-            Refresh();
-
-            if (!IsConnected)
-            {
-                // Log in
-                LogIn();
-
-                // If you didn't connect, it must have failed.
-                if (!IsConnected)
-                {
-                    return;
-                }
-            }
 
             // Parse the level ID (because some people like to put full URLs in).
             R.Id = Tools.ParseUrl(R.Id);
 
-            try
-            {
-                if (createRoom)
-                {
-                    // Join room
-                    Connection = Client.Multiplayer.CreateJoinRoom(
-                        R.Id, // RoomId   (URL)
-                        _storedVersion, // RoomType (Server)
-                        true, // Visible
-                        new Dictionary<string, string>(), // RoomData
-                        new Dictionary<string, string>()); // JoinData
-                }
-                else
-                {
-                    Connection = Client.Multiplayer.JoinRoom(
-                        R.Id,
-                        new Dictionary<string, string>());
-                }
+           var rabbitAuth = new Rabbit.Auth();
+
+            Connection = rabbitAuth.LogIn("EMAILORTOKEN", "PASSWORD", R.Id);
                 // Update room data
                 Room.JoinedRooms.Add(R);
 
