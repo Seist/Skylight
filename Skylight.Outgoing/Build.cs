@@ -100,10 +100,8 @@ namespace Skylight
         /// <param name="blockList">The block list.</param>
         public void BuildBlock(List<Block> blockList)
         {
-            var tempList = new List<Block>();
-            tempList.AddRange(blockList);
 
-            foreach (var b in tempList)
+            foreach (var b in blockList)
             {
                 BuildBlock(b); // this line has problems but I fixed it in a weird way.
             }
