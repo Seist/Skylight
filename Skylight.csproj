@@ -63,7 +63,6 @@
     <Compile Include="Arguments\ChatEventArgs.cs" />
     <Compile Include="Arguments\PlayerEventArgs.cs" />
     <Compile Include="Arguments\RoomEventArgs.cs" />
-    <Compile Include="Skylight.Outgoing\Clear.cs" />
     <Compile Include="Skylight.Outgoing\HoldDownArrow.cs" />
     <Compile Include="Skylight.Outgoing\HoldLeftArrow.cs" />
     <Compile Include="Skylight.Outgoing\HoldRightArrow.cs" />

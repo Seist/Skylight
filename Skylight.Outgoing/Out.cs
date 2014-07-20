@@ -18,8 +18,6 @@ namespace Skylight
 
         public Out()
         {
-            //var build = new Build(this);
-            new Clear(this);
             new HoldDownArrow(this);
             new HoldLeftArrow(this);
             new HoldRightArrow(this);

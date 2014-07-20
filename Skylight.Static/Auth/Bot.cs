@@ -404,6 +404,21 @@ namespace Skylight
             }
         }
 
+        /// <summary>
+        ///     Clears the entire world.
+        /// </summary>
+        public void ClearWorld()
+        {
+            try
+            {
+                Connection.Send("clear");
+            }
+            catch (Exception)
+            {
+                Tools.SkylightMessage("Error: attempted to use Out.Clear before connecting");
+            }
+        }
+
         private void Refresh()
         {
             _storedVersion = Convert.ToString(Client.BigDB.Load("config", "config")["version"]);
