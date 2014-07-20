@@ -158,12 +158,9 @@ namespace Skylight.Miscellaneous
         /// <returns>Room.</returns>
         public static Room GetRoom(string name)
         {
-            foreach (var r in Room.JoinedRooms)
+            foreach (var r in Room.JoinedRooms.Where(r => r.Name == name))
             {
-                if (r.Name == name)
-                {
-                    return r;
-                }
+                return r;
             }
 
             SkylightMessage("Could not find room \"" + name + "\"");
