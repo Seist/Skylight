@@ -1648,13 +1648,8 @@ namespace Skylight
         /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         private bool Zombie()
         {
-            if (IsGod || IsMod)
-            {
-                return false;
-            }
-            return _isZombie;
+            return !IsGod && !IsMod && _isZombie;
         }
-
 
 
         /// <summary>
