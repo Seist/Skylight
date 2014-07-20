@@ -450,11 +450,7 @@ namespace Skylight.Miscellaneous
         /// <returns>System.Int32.</returns>
         internal static int PortalIdByVisible(bool visible)
         {
-            if (visible)
-            {
-                return BlockIds.Action.Portals.Normal;
-            }
-            return BlockIds.Action.Portals.Invisible;
+            return visible ? BlockIds.Action.Portals.Normal : BlockIds.Action.Portals.Invisible;
         }
 
         // Return the correct coin ID based based on whether or not the block is gate or door
@@ -465,11 +461,7 @@ namespace Skylight.Miscellaneous
         /// <returns>System.Int32.</returns>
         internal static int CoinIdByGate(bool isGate)
         {
-            if (isGate)
-            {
-                return BlockIds.Action.Gates.Coin;
-            }
-            return BlockIds.Action.Doors.Coin;
+            return isGate ? BlockIds.Action.Gates.Coin : BlockIds.Action.Doors.Coin;
         }
     }
 }
