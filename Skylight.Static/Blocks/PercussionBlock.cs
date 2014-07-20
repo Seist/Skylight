@@ -29,11 +29,6 @@ namespace Skylight.Blocks
             Maraca = 9;
 
         /// <summary>
-        ///     The percussion identifier
-        /// </summary>
-        private int _percussionId = -1;
-
-        /// <summary>
         ///     Initializes a new instance of the <see cref="PercussionBlock" /> class.
         /// </summary>
         /// <param name="x">The x coordinate.</param>
@@ -51,11 +46,6 @@ namespace Skylight.Blocks
         ///     Gets the percussion identifier.
         /// </summary>
         /// <value>The percussion identifier.</value>
-        public int PercussionId
-        {
-            get { return _percussionId; }
-
-            internal set { _percussionId = value; }
-        }
+        public int PercussionId { get; internal set; }
     }
 }
