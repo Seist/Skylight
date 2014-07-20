@@ -77,7 +77,6 @@
     <Compile Include="Skylight.Outgoing\InputCodeForRoom.cs" />
     <Compile Include="Skylight.Outgoing\LoadLevelInWorld.cs" />
     <Compile Include="Skylight.Outgoing\ReleaseArrowKey.cs" />
-    <Compile Include="Skylight.Outgoing\ResetWorld.cs" />
     <Compile Include="Skylight.Outgoing\RespawnAllPlayers.cs" />
     <Compile Include="Skylight.Outgoing\RespawnPlayer.cs" />
     <Compile Include="Skylight.Outgoing\SaveTheWorld.cs" />

@@ -33,7 +33,6 @@ namespace Skylight
             new LoadLevelInWorld(this);
             new RespawnPlayer(this);
             new RespawnAllPlayers(this);
-            new ResetWorld(this);
             new SaveTheWorld(this);
             new SetAllPotionBansInWorld(this);
         }
