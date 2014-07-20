@@ -43,12 +43,7 @@ namespace Skylight
                 }
                 else
                 {
-                    if (s.Length + _out.Bot.ChatPrefix.Length <= 80)
-                    {
-                        _out.C.Send("say", _out.Bot.ChatPrefix + s);
-                        Thread.Sleep(_out.Bot.SpeechDelay);
-                    }
-                    else
+                    if (s.Length + _out.Bot.ChatPrefix.Length > 80)
                     {
                         // Say what you can.
                         Say(s.Substring(0, 80 - _out.Bot.ChatPrefix.Length));
@@ -58,6 +53,11 @@ namespace Skylight
 
                         // Repeat the process.
                         Say(s);
+                    }
+                    else
+                    {
+                        _out.C.Send("say", _out.Bot.ChatPrefix + s);
+                        Thread.Sleep(_out.Bot.SpeechDelay);
                     }
                 }
             }
