@@ -43,96 +43,54 @@ namespace Skylight
         /// <param name="e">The room object.</param>
         public delegate void RoomEvent(RoomEventArgs e);
 
-        private readonly Access _access;
-
-        private readonly Add _add;
-        private readonly AddSpecialBlock _addSpecialBlock;
-        private readonly Autotext _autotext;
-        private readonly BlockChanged _blockChanged;
-        private readonly Chat _chat;
-        private readonly ChatOld _chatOld;
-        private readonly ClearMap _clearMap;
-        private readonly CoinObject _coinObject;
-        private readonly Crown _crown;
-        private readonly FaceChange _faceChange;
-        private readonly GetWoot _getWoot;
-        private readonly GiveWizard2 _giveWizard2;
-        private readonly GodMode _godMode;
-        private readonly Grinch _grinch;
-        private readonly Hide _hide;
-        private readonly Info _info;
-        private readonly LeftWorld _leftWorld;
-        private readonly LevelChange _levelChange;
-        private readonly Meta _meta;
-        private readonly Moderator _moderator;
-        private readonly Move _move;
-        private readonly NoteBlock _noteBlock;
-        private readonly OnCoinGet _onCoinGet;
-        private readonly OnKill _onKill;
         private readonly Stopwatch _playerPhysicsStopwatch = new Stopwatch();
-        private readonly Potion _potion;
-        private readonly Potions _potions;
         private readonly List<Message> _prematureMessages = new List<Message>();
-        private readonly RefreshShop _refreshShop;
-        private readonly ResetWorld _resetWorld;
-        private readonly Save _save;
-        private readonly Show _show;
-        private readonly SignBlock _signBlock;
-        private readonly Tele _tele;
-        private readonly Teleport _teleport;
-        private readonly Trophy _trophy;
-        private readonly Upgrade _upgrade;
-        private readonly Witch _witch;
-        private readonly Wizard _wizard;
-        private readonly WootUp _wootUp;
-        private readonly Wp _wp;
-        private readonly Write _write;
         private Message _initMessage;
         private Thread _playerPhysicsThread;
 
         public In()
         {
-            _add = new Add(this);
-            _potions = new Potions(this);
-            _autotext = new Autotext(this);
-            _blockChanged = new BlockChanged(this);
-            _coinObject = new CoinObject(this);
-            _addSpecialBlock = new AddSpecialBlock(this);
-            _noteBlock = new NoteBlock(this);
-            _onCoinGet = new OnCoinGet(this);
-            _clearMap = new ClearMap(this);
-            _faceChange = new FaceChange(this);
-            _grinch = new Grinch(this);
-            _witch = new Witch(this);
-            _wizard = new Wizard(this);
-            _giveWizard2 = new GiveWizard2(this);
-            _godMode = new GodMode(this);
-            _hide = new Hide(this);
-            _crown = new Crown(this);
-            _onKill = new OnKill(this);
-            _trophy = new Trophy(this);
-            _signBlock = new SignBlock(this);
-            _leftWorld = new LeftWorld(this);
-            _levelChange = new LevelChange(this);
-            _move = new Move(this);
-            _moderator = new Moderator(this);
-            _potion = new Potion(this);
-            _refreshShop = new RefreshShop(this);
-            _resetWorld = new ResetWorld(this);
-            _chat = new Chat(this);
-            _chatOld = new ChatOld(this);
-            _save = new Save(this);
-            _show = new Show(this);
-            _tele = new Tele(this);
-            _teleport = new Teleport(this);
-            _meta = new Meta(this);
-            _upgrade = new Upgrade(this);
-            _wp = new Wp(this);
-            _write = new Write(this);
-            _getWoot = new GetWoot(this);
-            _wootUp = new WootUp(this);
-            _access = new Access(this);
-            _info = new Info(this);
+            Add = new Add(this);
+            Potions = new Potions(this);
+            Autotext = new Autotext(this);
+            BlockChanged = new BlockChanged(this);
+            CoinObject = new CoinObject(this);
+            AddSpecialBlock = new AddSpecialBlock(this);
+            NoteBlock = new NoteBlock(this);
+            OnCoinGet = new OnCoinGet(this);
+            ClearMap = new ClearMap(this);
+            FaceChange = new FaceChange(this);
+            Grinch = new Grinch(this);
+            Witch = new Witch(this);
+            Wizard = new Wizard(this);
+            GiveWizard2 = new GiveWizard2(this);
+            GodMode = new GodMode(this);
+            Hide = new Hide(this);
+            Crown = new Crown(this);
+            OnKill1 = new OnKill(this);
+            Trophy = new Trophy(this);
+            SignBlock = new SignBlock(this);
+            LeftWorld = new LeftWorld(this);
+            LevelChange = new LevelChange(this);
+            Move = new Move(this);
+            Moderator = new Moderator(this);
+            Potion = new Potion(this);
+            RefreshShop = new RefreshShop(this);
+            ResetWorld = new ResetWorld(this);
+            Chat = new Chat(this);
+            ChatOld = new ChatOld(this);
+            Save = new Save(this);
+            Show = new Show(this);
+            Tele = new Tele(this);
+            Teleport = new Teleport(this);
+            Meta = new Meta(this);
+            Upgrade = new Upgrade(this);
+            Wp = new Wp(this);
+            Write = new Write(this);
+            GetWoot = new GetWoot(this);
+            WootUp = new WootUp(this);
+            Access = new Access(this);
+            Info = new Info(this);
         }
 
         public Bot Bot { get; set; }
@@ -141,210 +99,87 @@ namespace Skylight
 
         internal bool IsPersonal { get; set; }
 
-        public Add Add
-        {
-            get { return _add; }
-        }
+        public Add Add { get; private set; }
 
-        public Potions Potions
-        {
-            get { return _potions; }
-        }
+        public Potions Potions { get; private set; }
 
-        public Autotext Autotext
-        {
-            get { return _autotext; }
-        }
+        public Autotext Autotext { get; private set; }
 
-        public BlockChanged BlockChanged
-        {
-            get { return _blockChanged; }
-        }
+        public BlockChanged BlockChanged { get; private set; }
 
-        public CoinObject CoinObject
-        {
-            get { return _coinObject; }
-        }
+        public CoinObject CoinObject { get; private set; }
 
-        public AddSpecialBlock AddSpecialBlock
-        {
-            get { return _addSpecialBlock; }
-        }
+        public AddSpecialBlock AddSpecialBlock { get; private set; }
 
-        public NoteBlock NoteBlock
-        {
-            get { return _noteBlock; }
-        }
+        public NoteBlock NoteBlock { get; private set; }
 
-        public OnCoinGet OnCoinGet
-        {
-            get { return _onCoinGet; }
-        }
+        public OnCoinGet OnCoinGet { get; private set; }
 
-        public ClearMap ClearMap
-        {
-            get { return _clearMap; }
-        }
+        public ClearMap ClearMap { get; private set; }
 
-        public FaceChange FaceChange
-        {
-            get { return _faceChange; }
-        }
+        public FaceChange FaceChange { get; private set; }
 
-        public Grinch Grinch
-        {
-            get { return _grinch; }
-        }
+        public Grinch Grinch { get; private set; }
 
-        public Witch Witch
-        {
-            get { return _witch; }
-        }
+        public Witch Witch { get; private set; }
 
-        public Wizard Wizard
-        {
-            get { return _wizard; }
-        }
+        public Wizard Wizard { get; private set; }
 
-        public GiveWizard2 GiveWizard2
-        {
-            get { return _giveWizard2; }
-        }
+        public GiveWizard2 GiveWizard2 { get; private set; }
 
-        public GodMode GodMode
-        {
-            get { return _godMode; }
-        }
+        public GodMode GodMode { get; private set; }
 
-        public Hide Hide
-        {
-            get { return _hide; }
-        }
+        public Hide Hide { get; private set; }
 
-        public Crown Crown
-        {
-            get { return _crown; }
-        }
+        public Crown Crown { get; private set; }
 
-        public OnKill OnKill1
-        {
-            get { return _onKill; }
-        }
+        public OnKill OnKill1 { get; private set; }
 
-        public Trophy Trophy
-        {
-            get { return _trophy; }
-        }
+        public Trophy Trophy { get; private set; }
 
-        public SignBlock SignBlock
-        {
-            get { return _signBlock; }
-        }
+        public SignBlock SignBlock { get; private set; }
 
-        public LeftWorld LeftWorld
-        {
-            get { return _leftWorld; }
-        }
+        public LeftWorld LeftWorld { get; private set; }
 
-        public LevelChange LevelChange
-        {
-            get { return _levelChange; }
-        }
+        public LevelChange LevelChange { get; private set; }
 
-        public Move Move
-        {
-            get { return _move; }
-        }
+        public Move Move { get; private set; }
 
-        public Moderator Moderator
-        {
-            get { return _moderator; }
-        }
+        public Moderator Moderator { get; private set; }
 
-        public Potion Potion
-        {
-            get { return _potion; }
-        }
+        public Potion Potion { get; private set; }
 
-        public RefreshShop RefreshShop
-        {
-            get { return _refreshShop; }
-        }
+        public RefreshShop RefreshShop { get; private set; }
 
-        public ResetWorld ResetWorld
-        {
-            get { return _resetWorld; }
-        }
+        public ResetWorld ResetWorld { get; private set; }
 
-        public Chat Chat
-        {
-            get { return _chat; }
-        }
+        public Chat Chat { get; private set; }
 
-        public ChatOld ChatOld
-        {
-            get { return _chatOld; }
-        }
+        public ChatOld ChatOld { get; private set; }
 
-        public Save Save
-        {
-            get { return _save; }
-        }
+        public Save Save { get; private set; }
 
-        public Show Show
-        {
-            get { return _show; }
-        }
+        public Show Show { get; private set; }
 
-        public Tele Tele
-        {
-            get { return _tele; }
-        }
+        public Tele Tele { get; private set; }
 
-        public Teleport Teleport
-        {
-            get { return _teleport; }
-        }
+        public Teleport Teleport { get; private set; }
 
-        public Meta Meta
-        {
-            get { return _meta; }
-        }
+        public Meta Meta { get; private set; }
 
-        public Upgrade Upgrade
-        {
-            get { return _upgrade; }
-        }
+        public Upgrade Upgrade { get; private set; }
 
-        public Wp Wp
-        {
-            get { return _wp; }
-        }
+        public Wp Wp { get; private set; }
 
-        public Write Write
-        {
-            get { return _write; }
-        }
+        public Write Write { get; private set; }
 
-        public GetWoot GetWoot
-        {
-            get { return _getWoot; }
-        }
+        public GetWoot GetWoot { get; private set; }
 
-        public WootUp WootUp
-        {
-            get { return _wootUp; }
-        }
+        public WootUp WootUp { get; private set; }
 
-        public Access Access
-        {
-            get { return _access; }
-        }
+        public Access Access { get; private set; }
 
-        public Info Info
-        {
-            get { return _info; }
-        }
+        public Info Info { get; private set; }
 
         /// <summary>
         ///     All of the delegates for BlockEvent. These fire when events occur
@@ -358,7 +193,7 @@ namespace Skylight
         /// </summary>
         protected virtual void OnSignBlockEvent(Message m)
         {
-            _signBlock.OnSignBlockEvent(m);
+            SignBlock.OnSignBlockEvent(m);
         }
 
         /// <summary>
