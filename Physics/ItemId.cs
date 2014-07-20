@@ -49,22 +49,13 @@ namespace Skylight.Physics
             return false;
         } // end function
 
-        /// <summary>
-        ///     Determines whether [is background rotateable] [the specified block].
-        /// </summary>
-        /// <param name="param1">The param1.</param>
-        /// <returns><c>true</c> if [is background rotateable] [the specified block]; otherwise, <c>false</c>.</returns>
-        public static bool IsBackgroundRotateable(int param1)
-        {
-            return false;
-        } // end function
 
         /// <summary>
         ///     Determines whether [is decoration rotateable] [the specified block].
         /// </summary>
         /// <param name="param1">The param1.</param>
         /// <returns><c>true</c> if [is decoration rotateable] [the specified block]; otherwise, <c>false</c>.</returns>
-        public static bool IsDecorationRotateable(int param1)
+        public static bool IsBlockRotateable(int param1)
         {
             switch (param1)
             {
