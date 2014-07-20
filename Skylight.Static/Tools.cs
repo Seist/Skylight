@@ -36,8 +36,8 @@ namespace Skylight.Miscellaneous
         /// <summary>
         ///     The guest client
         /// </summary>
-        internal static readonly System.Lazy<Client> GuestClient =
-            new System.Lazy<Client>(() => PlayerIO.QuickConnect.SimpleConnect(Config.PlayerioGameId, "guest", "guest"));
+        internal static readonly Lazy<Client> GuestClient =
+            new Lazy<Client>(() => PlayerIO.QuickConnect.SimpleConnect(Config.PlayerioGameId, "guest", "guest"));
 
         /// <summary>
         ///     Occurs when a program message is sent.
