@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using PlayerIOClient;
 using Skylight.Miscellaneous;
+using Skylight.Blocks;
+using System.Threading;
 
 namespace Skylight
 {
@@ -308,6 +310,98 @@ namespace Skylight
             Push = null;
             IsConnected = false;
             Joined = false;
+        }
+
+        /// <summary>
+        ///     Builds the specified block.
+        /// </summary>
+        /// <param name="id">The id of the block.</param>
+        /// <param name="x">The x coordinate of the block (in block units).</param>
+        /// <param name="y">The y coordinate of the block (in block units).</param>
+        public void Build(int id, int x, int y)
+        {
+            Build(new Block(id, x, y));
+        }
+
+        /// <summary>
+        ///     Builds the specified block object.
+        /// </summary>
+        /// <param name="theBlock">The block.</param>
+        public void Build(Block theBlock)
+        {
+            if (R.Map[theBlock.X, theBlock.Y, theBlock.Z] == theBlock)
+            {
+                return;
+            }
+            if (!this.HasAccess)
+            {
+                Tools.SkylightMessage("The bot cannot build because it is unauthorized.");
+                return;
+            }
+            try
+            {
+                if (theBlock is CoinBlock)
+                {
+                    var c = theBlock as CoinBlock;
+
+                    Connection.Send(R.RoomKey, c.Z, c.X, c.Y, c.Id, c.CoinsRequired);
+                }
+                else if (theBlock is PercussionBlock)
+                {
+                    var p = theBlock as PercussionBlock;
+
+                    Connection.Send(R.RoomKey, p.Z, p.X, p.Y, p.Id, p.PercussionId);
+                }
+                else if (theBlock is PianoBlock)
+                {
+                    var p = theBlock as PianoBlock;
+
+                    Connection.Send(R.RoomKey, p.Z, p.X, p.Y, p.Id, p.PianoId);
+                }
+                else if (theBlock is PortalBlock)
+                {
+                    var p = theBlock as PortalBlock;
+
+                    Connection.Send(R.RoomKey, p.Z, p.X, p.Y, p.Id, p.Direction, p.PortalId, p.PortalDestination);
+                }
+                else if (theBlock is RoomPortalBlock)
+                {
+                    var r = theBlock as RoomPortalBlock;
+
+                    Connection.Send(R.RoomKey, r.Z, r.X, r.Y, r.Id, r.PortalDestination);
+                }
+                else if (theBlock is TextBlock)
+                {
+                    var t = theBlock as TextBlock;
+                    Connection.Send(R.RoomKey, t.Z, t.X, t.Y, t.Id, t.Text);
+                }
+                else
+                {
+                    Connection.Send(R.RoomKey, theBlock.Z, theBlock.X, theBlock.Y, theBlock.Id, theBlock.Direction);
+                }
+
+
+                Thread.Sleep(BlockDelay);
+            }
+            catch (Exception)
+            {
+                Tools.SkylightMessage("Error: attempted to use Out.Build before connecting");
+            }
+        }
+
+        /// <summary>
+        ///     Builds the specified block list.
+        /// </summary>
+        /// <param name="blockList">The block list.</param>
+        public void Build(List<Block> blockList)
+        {
+            var tempList = new List<Block>();
+            tempList.AddRange(blockList);
+
+            foreach (var b in tempList)
+            {
+                Build(b); // this line has problems but I fixed it in a weird way.
+            }
         }
 
         private void Refresh()
