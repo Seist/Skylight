@@ -61,12 +61,9 @@ namespace Skylight.Miscellaneous
         /// <returns>The Player who holds the crown (if there is one).</returns>
         public static Player GetCrownHolder(Room r)
         {
-            foreach (var p in r.OnlinePlayers)
+            foreach (var p in r.OnlinePlayers.Where(p => p.HasCrown))
             {
-                if (p.HasCrown)
-                {
-                    return p;
-                }
+                return p;
             }
 
             SkylightMessage("Could not find crown holder.");
@@ -82,14 +79,9 @@ namespace Skylight.Miscellaneous
         /// <returns>Player.</returns>
         public static Player GetPlayerById(int id, Room r, bool onlyReturnBots = false)
         {
-            foreach (var p in r.OnlinePlayers)
+            foreach (var p in r.OnlinePlayers.Where(p => p.Id == id).Where(p => !onlyReturnBots || p.IsBot))
             {
-                if (p.Id != id) continue;
-                // If value is false, return the first match.
-                if (!onlyReturnBots || p.IsBot)
-                {
-                    return p;
-                }
+                return p;
             }
 
             SkylightMessage("Could not find player " + id + " in " + r.Name);
@@ -105,14 +97,9 @@ namespace Skylight.Miscellaneous
         /// <returns>Player.</returns>
         public static Player GetPlayerByName(string name, Room r, bool onlyReturnBots = false)
         {
-            foreach (var p in r.OnlinePlayers)
+            foreach (var p in r.OnlinePlayers.Where(p => p.Name == name).Where(p => !onlyReturnBots || p.IsBot))
             {
-                if (p.Name != name) continue;
-                // If value is false, return the first match.
-                if (!onlyReturnBots || p.IsBot)
-                {
-                    return p;
-                }
+                return p;
             }
 
             SkylightMessage("Could not find player " + name + " in " + r.Name);
