@@ -170,23 +170,6 @@ namespace Skylight.Miscellaneous
             return null;
         }
 
-        /// <summary>
-        ///     Shuffles the specified list.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="list">The list.</param>
-        public static void Shuffle<T>(this IList<T> list)
-        {
-            var n = list.Count;
-            while (n > 1)
-            {
-                n--;
-                var k = Ran.Next(n + 1);
-                var value = list[k];
-                list[k] = list[n];
-                list[n] = value;
-            }
-        }
 
         /// <summary>
         ///     Main logging method.
