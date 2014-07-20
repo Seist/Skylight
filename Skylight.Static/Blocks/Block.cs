@@ -77,8 +77,8 @@ namespace Skylight.Blocks
         /// <value>The z.</value>
         public int Z
         {
-            // if the id is 0 return _z, else if id >= 500 return 1 otherwise 0
-            get { return Id == 0 ? _z : (Id >= 500 ? 1 : 0); }
+
+            get { return Id; }
 
             internal set
             {
