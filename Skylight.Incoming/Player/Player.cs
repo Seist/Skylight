@@ -1655,26 +1655,6 @@ namespace Skylight
             return _isZombie;
         }
 
-/*
-        private void addTouchPotion(string param1, double param2 = 1)
-        {
-            _touchpotions.Add(param1, DateTime.Now.Millisecond + (int) param2*1000);
-        }
-*/
-
-/*
-        private void removeTouchPotion(string param1)
-        {
-            _touchpotions.Remove(param1);
-        }
-*/
-
-/*
-        private bool hasPotion(string param1)
-        {
-            return _touchpotions.ContainsKey(param1);
-        }
-*/
 
 
         /// <summary>
@@ -1690,17 +1670,8 @@ namespace Skylight
             {
                 speedX = speedX - _currentThrust*(Config.PhysicsJumpHeight/2)*(_morx*0.5);
             }
-            if (!_isThrusting)
-            {
-                if (_currentThrust > 0)
-                {
-                    _currentThrust = _currentThrust - ThrustBurnOff;
-                }
-                else
-                {
-                    _currentThrust = 0;
-                }
-            }
+            if (_isThrusting) return;
+            _currentThrust = _currentThrust > 0 ? _currentThrust - ThrustBurnOff : 0;
         }
     }
 }
