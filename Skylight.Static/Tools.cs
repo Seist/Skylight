@@ -302,57 +302,50 @@ namespace Skylight.Miscellaneous
                     var roomDestination = "";
 
                     // Get the variables that are unique to the current block
-                    if (blockId == BlockIds.Action.Portals.Normal ||
-                        blockId == BlockIds.Action.Portals.Invisible)
+                    switch (blockId)
                     {
-                        rotation = m.GetInteger(messageIndex);
-                        messageIndex++;
-
-                        portalId = m.GetInteger(messageIndex);
-                        messageIndex++;
-
-                        destination = m.GetInteger(messageIndex);
-                        messageIndex++;
-
-                        isVisible = true;
-                        if (blockId == BlockIds.Action.Portals.Invisible)
-                        {
-                            isVisible = false;
-                        }
-                    }
-                    else if (blockId == BlockIds.Action.Portals.World)
-                    {
-                        roomDestination = m.GetString(messageIndex);
-                        messageIndex++;
-                    }
-                    else if (blockId == BlockIds.Action.Doors.Coin ||
-                             blockId == BlockIds.Action.Gates.Coin)
-                    {
-                        coins = m.GetInteger(messageIndex);
-                        messageIndex++;
-
-                        isGate = blockId == BlockIds.Action.Gates.Coin;
-                    }
-                    else if (blockId == BlockIds.Action.Music.Percussion)
-                    {
-                        type = m.GetInteger(messageIndex);
-                        messageIndex++;
-                    }
-                    else if (blockId == BlockIds.Action.Music.Piano)
-                    {
-                        note = m.GetInteger(messageIndex);
-                        messageIndex++;
-                    }
-                    else if (blockId == BlockIds.Decorative.SciFi2013.Bluebend ||
-                             blockId == BlockIds.Decorative.SciFi2013.Bluestraight ||
-                             blockId == BlockIds.Decorative.SciFi2013.Greenbend ||
-                             blockId == BlockIds.Decorative.SciFi2013.Greenstraight ||
-                             blockId == BlockIds.Decorative.SciFi2013.Orangebend ||
-                             blockId == BlockIds.Decorative.SciFi2013.Orangestraight ||
-                             blockId == BlockIds.Action.Hazards.Spike)
-                    {
-                        rotation = m.GetInteger(messageIndex);
-                        messageIndex++;
+                        case BlockIds.Action.Portals.Invisible:
+                        case BlockIds.Action.Portals.Normal:
+                            rotation = m.GetInteger(messageIndex);
+                            messageIndex++;
+                            portalId = m.GetInteger(messageIndex);
+                            messageIndex++;
+                            destination = m.GetInteger(messageIndex);
+                            messageIndex++;
+                            isVisible = true;
+                            if (blockId == BlockIds.Action.Portals.Invisible)
+                            {
+                                isVisible = false;
+                            }
+                            break;
+                        case BlockIds.Action.Portals.World:
+                            roomDestination = m.GetString(messageIndex);
+                            messageIndex++;
+                            break;
+                        case BlockIds.Action.Gates.Coin:
+                        case BlockIds.Action.Doors.Coin:
+                            coins = m.GetInteger(messageIndex);
+                            messageIndex++;
+                            isGate = blockId == BlockIds.Action.Gates.Coin;
+                            break;
+                        case BlockIds.Action.Music.Percussion:
+                            type = m.GetInteger(messageIndex);
+                            messageIndex++;
+                            break;
+                        case BlockIds.Action.Music.Piano:
+                            note = m.GetInteger(messageIndex);
+                            messageIndex++;
+                            break;
+                        case BlockIds.Action.Hazards.Spike:
+                        case BlockIds.Decorative.SciFi2013.Orangestraight:
+                        case BlockIds.Decorative.SciFi2013.Orangebend:
+                        case BlockIds.Decorative.SciFi2013.Greenstraight:
+                        case BlockIds.Decorative.SciFi2013.Greenbend:
+                        case BlockIds.Decorative.SciFi2013.Bluestraight:
+                        case BlockIds.Decorative.SciFi2013.Bluebend:
+                            rotation = m.GetInteger(messageIndex);
+                            messageIndex++;
+                            break;
                     }
 
 
@@ -366,69 +359,65 @@ namespace Skylight.Miscellaneous
 
                         // Ascertain the block from the ID.
                         // Add block accordingly.
-                        if (blockId == BlockIds.Action.Portals.Normal ||
-                            blockId == BlockIds.Action.Portals.Invisible)
+                        switch (blockId)
                         {
-                            list.Add(new PortalBlock(
-                                x,
-                                y,
-                                rotation,
-                                portalId,
-                                destination,
-                                isVisible));
-                        }
-                        else if (blockId == BlockIds.Action.Portals.World)
-                        {
-                            list.Add(new RoomPortalBlock(
-                                x,
-                                y,
-                                roomDestination));
-                        }
-                        else if (blockId == BlockIds.Action.Doors.Coin ||
-                                 blockId == BlockIds.Action.Gates.Coin)
-                        {
-                            list.Add(new CoinBlock(
-                                x,
-                                y,
-                                coins,
-                                isGate));
-                        }
-                        else if (blockId == BlockIds.Action.Music.Percussion)
-                        {
-                            list.Add(new PercussionBlock(
-                                x,
-                                y,
-                                type));
-                        }
-                        else if (blockId == BlockIds.Action.Music.Piano)
-                        {
-                            list.Add(new PianoBlock(
-                                x,
-                                y,
-                                note));
-                        }
-                        else if (blockId == BlockIds.Decorative.SciFi2013.Bluebend ||
-                                 blockId == BlockIds.Decorative.SciFi2013.Bluestraight ||
-                                 blockId == BlockIds.Decorative.SciFi2013.Greenbend ||
-                                 blockId == BlockIds.Decorative.SciFi2013.Greenstraight ||
-                                 blockId == BlockIds.Decorative.SciFi2013.Orangebend ||
-                                 blockId == BlockIds.Decorative.SciFi2013.Orangestraight ||
-                                 blockId == BlockIds.Action.Hazards.Spike)
-                        {
-                            list.Add(new Block(
-                                blockId,
-                                x,
-                                y,
-                                0,
-                                rotation));
-                        }
-                        else
-                        {
-                            list.Add(new Block(
-                                blockId,
-                                x,
-                                y,
-                                z));
+                            case BlockIds.Action.Portals.Invisible:
+                            case BlockIds.Action.Portals.Normal:
+                                list.Add(new PortalBlock(
+                                    x,
+                                    y,
+                                    rotation,
+                                    portalId,
+                                    destination,
+                                    isVisible));
+                                break;
+                            case BlockIds.Action.Portals.World:
+                                list.Add(new RoomPortalBlock(
+                                    x,
+                                    y,
+                                    roomDestination));
+                                break;
+                            case BlockIds.Action.Gates.Coin:
+                            case BlockIds.Action.Doors.Coin:
+                                list.Add(new CoinBlock(
+                                    x,
+                                    y,
+                                    coins,
+                                    isGate));
+                                break;
+                            case BlockIds.Action.Music.Percussion:
+                                list.Add(new PercussionBlock(
+                                    x,
+                                    y,
+                                    type));
+                                break;
+                            case BlockIds.Action.Music.Piano:
+                                list.Add(new PianoBlock(
+                                    x,
+                                    y,
+                                    note));
+                                break;
+                            case BlockIds.Action.Hazards.Spike:
+                            case BlockIds.Decorative.SciFi2013.Orangestraight:
+                            case BlockIds.Decorative.SciFi2013.Orangebend:
+                            case BlockIds.Decorative.SciFi2013.Greenstraight:
+                            case BlockIds.Decorative.SciFi2013.Greenbend:
+                            case BlockIds.Decorative.SciFi2013.Bluestraight:
+                            case BlockIds.Decorative.SciFi2013.Bluebend:
+                                list.Add(new Block(
+                                    blockId,
+                                    x,
+                                    y,
+                                    0,
+                                    rotation));
+                                break;
+                            default:
+                                list.Add(new Block(
+                                    blockId,
+                                    x,
+                                    y,
+                                    z));
+                                break;
                         }
                     }
                 }
