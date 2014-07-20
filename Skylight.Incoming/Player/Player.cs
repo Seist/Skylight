@@ -785,21 +785,6 @@ namespace Skylight
             return param1 >= X && param2 >= Y && param1 <= X + Size && param2 <= Y + Size;
         }
 
-/*
-        private double jumpMultiplier() // never used
-        {
-            double _loc_1 = 1;
-            if (JumpBoost)
-            {
-                _loc_1 = _loc_1*1.2;
-            }
-            if (zombie())
-            {
-                _loc_1 = _loc_1*0.75;
-            }
-            return _loc_1;
-        }
-*/
 
         /// <summary>
         ///     Speeds the multiplier.
