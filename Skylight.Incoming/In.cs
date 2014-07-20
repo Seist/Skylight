@@ -193,7 +193,7 @@ namespace Skylight
         /// </summary>
         protected virtual void OnSignBlockEvent(Message m)
         {
-            SignBlock.OnSignBlockEvent(m);
+            ;
         }
 
         /// <summary>
@@ -321,7 +321,7 @@ namespace Skylight
                                 break;
 
                             case "lb":
-                                OnSignBlockEvent(m);
+                                SignBlock.OnSignBlockEvent(m);
                                 break;
 
                             case "left":
