@@ -15,11 +15,6 @@ namespace Skylight.Blocks
     public class CoinBlock : Block
     {
         /// <summary>
-        ///     The coins required to open the coinblock door.
-        /// </summary>
-        private int _coinsRequired = -1;
-
-        /// <summary>
         ///     Initializes a new instance of the <see cref="CoinBlock" /> class.
         /// </summary>
         /// <param name="x">The x coordinate.</param>
@@ -46,11 +41,6 @@ namespace Skylight.Blocks
         ///     Gets the coins required to open the gate (or close the door).
         /// </summary>
         /// <value>The coins required.</value>
-        public int CoinsRequired
-        {
-            get { return _coinsRequired; }
-
-            internal set { _coinsRequired = value; }
-        }
+        public int CoinsRequired { get; internal set; }
     }
 }
