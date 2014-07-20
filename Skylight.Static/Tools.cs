@@ -267,11 +267,7 @@ namespace Skylight.Miscellaneous
                             messageIndex++;
                             destination = m.GetInteger(messageIndex);
                             messageIndex++;
-                            isVisible = true;
-                            if (blockId == BlockIds.Action.Portals.Invisible)
-                            {
-                                isVisible = false;
-                            }
+                            isVisible = (blockId != BlockIds.Action.Portals.Invisible);
                             break;
                         case BlockIds.Action.Portals.World:
                             roomDestination = m.GetString(messageIndex);
