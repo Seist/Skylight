@@ -397,26 +397,13 @@ namespace Skylight.Miscellaneous
                                     y,
                                     note));
                                 break;
-                            case BlockIds.Action.Hazards.Spike:
-                            case BlockIds.Decorative.SciFi2013.Orangestraight:
-                            case BlockIds.Decorative.SciFi2013.Orangebend:
-                            case BlockIds.Decorative.SciFi2013.Greenstraight:
-                            case BlockIds.Decorative.SciFi2013.Greenbend:
-                            case BlockIds.Decorative.SciFi2013.Bluestraight:
-                            case BlockIds.Decorative.SciFi2013.Bluebend:
-                                list.Add(new Block(
-                                    blockId,
-                                    x,
-                                    y,
-                                    0,
-                                    rotation));
-                                break;
                             default:
                                 list.Add(new Block(
                                     blockId,
                                     x,
                                     y,
-                                    z));
+                                    z,
+                                    rotation));
                                 break;
                         }
                     }
