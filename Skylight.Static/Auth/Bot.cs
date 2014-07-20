@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using PlayerIOClient;
 using Skylight.Miscellaneous;
 
@@ -45,14 +46,6 @@ namespace Skylight
             _emailOrToken,
             _passwordOrToken;
 
-        private int
-            _blockDelay = 10;
-
-        private string _chatPrefix = "";
-
-        private int
-            _speechDelay = 1000;
-
         /// <summary>
         ///     The main bot class.
         /// </summary>
@@ -70,6 +63,9 @@ namespace Skylight
             : base(
                 r, 0, "", 0, 0.0, 0.0, false, false, true, 0, false, false, 0, false, false, false, false, false, false)
         {
+            ChatPrefix = "";
+            SpeechDelay = 1000;
+            BlockDelay = 10;
             Push = new Out();
             _emailOrToken = emailOrToken;
             _passwordOrToken = passwordOrToken;
@@ -101,32 +97,17 @@ namespace Skylight
         /// <summary>
         ///     The delay between block messages to the server in milliseconds.
         /// </summary>
-        public int BlockDelay
-        {
-            get { return _blockDelay; }
-
-            set { _blockDelay = value; }
-        }
+        public int BlockDelay { get; set; }
 
         /// <summary>
         ///     The delay between speech messages to the server in milliseconds.
         /// </summary>
-        public int SpeechDelay
-        {
-            get { return _speechDelay; }
-
-            set { _speechDelay = value; }
-        }
+        public int SpeechDelay { get; set; }
 
         /// <summary>
         ///     The prefix to add to all outgoing chat messages.
         /// </summary>
-        public string ChatPrefix
-        {
-            get { return _chatPrefix; }
-
-            set { _chatPrefix = value; }
-        }
+        public string ChatPrefix { get; set; }
 
         /// <summary>
         ///     The object where the events go to the server.
@@ -211,6 +192,7 @@ namespace Skylight
 
                 while (!R.BlocksLoaded)
                 {
+                    Thread.Sleep(100);
                 }
             }
             
@@ -231,9 +213,6 @@ namespace Skylight
             Joined = false;
         }
 
-        private void Refresh()
-        {
-            _storedVersion = Convert.ToString(Client.BigDB.Load("config", "config")["version"]);
-        }
+     
     }
 }
