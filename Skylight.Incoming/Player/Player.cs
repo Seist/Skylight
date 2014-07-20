@@ -492,12 +492,7 @@ namespace Skylight
         {
             get
             {
-                if (PlayingIn != null)
-                {
-                    return PlayingIn.OnlineBots.Any(bt => bt.Id == Id);
-                }
-
-                return false;
+                return PlayingIn != null && PlayingIn.OnlineBots.Any(bt => bt.Id == Id);
             }
         }
 
