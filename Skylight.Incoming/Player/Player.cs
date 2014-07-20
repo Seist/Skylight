@@ -204,12 +204,6 @@ namespace Skylight
         private double _cluboffset;
 
         /// <summary>
-        ///     The amount of coins the player has.
-        /// </summary>
-        private int
-            _coins;
-
-        /// <summary>
         ///     The _current sx
         /// </summary>
         private double _currentSx;
@@ -253,12 +247,6 @@ namespace Skylight
         ///     The horizontal acceleration
         /// </summary>
         private double _horizontalAcceleration;
-
-        /// <summary>
-        ///     The id of the player (in game session)
-        /// </summary>
-        private int
-            _id = -1;
 
 /*
         private bool injump = false;
@@ -346,11 +334,6 @@ namespace Skylight
         private double _oy;
 
         /// <summary>
-        ///     The _potion effects
-        /// </summary>
-        private List<int> _potionEffects = new List<int>();
-
-        /// <summary>
         ///     The _reminder x
         /// </summary>
         private double _reminderX;
@@ -406,6 +389,7 @@ namespace Skylight
             bool hasChat, int coins, bool purple, bool isFriend, int level, bool hasClub, bool isInvulnerable,
             bool isThrusting, bool isZombie, bool isDead, bool levitation)
         {
+            PotionEffects = new List<int>();
             PlayingIn = room;
             Smiley = smiley;
             IsGod = isGod;
@@ -575,12 +559,7 @@ namespace Skylight
         ///     Gets the coins.
         /// </summary>
         /// <value>The coins.</value>
-        public int Coins
-        {
-            get { return _coins; }
-
-            internal set { _coins = value; }
-        }
+        public int Coins { get; internal set; }
 
         /// <summary>
         ///     Gets the blue coins.
@@ -604,12 +583,7 @@ namespace Skylight
         ///     Gets the identifier.
         /// </summary>
         /// <value>The identifier.</value>
-        public int Id
-        {
-            get { return _id; }
-
-            internal set { _id = value; }
-        }
+        public int Id { get; internal set; }
 
         /// <summary>
         ///     Gets the smiley.
@@ -627,12 +601,7 @@ namespace Skylight
         ///     Gets the potion effects.
         /// </summary>
         /// <value>The potion effects.</value>
-        public List<int> PotionEffects
-        {
-            get { return _potionEffects; }
-
-            internal set { _potionEffects = value; }
-        }
+        public List<int> PotionEffects { get; internal set; }
 
         /// <summary>
         ///     Gets the playing in.
@@ -944,7 +913,7 @@ namespace Skylight
                                             case BlockIds.Action.Doors.Coin:
                                             {
                                                 if (currentBlock is CoinBlock &&
-                                                    ((CoinBlock) currentBlock).CoinsRequired <= _coins)
+                                                    ((CoinBlock) currentBlock).CoinsRequired <= Coins)
                                                 {
                                                     continue;
                                                 }
@@ -953,7 +922,7 @@ namespace Skylight
                                             case BlockIds.Action.Gates.Coin:
                                             {
                                                 if (currentBlock is CoinBlock &&
-                                                    ((CoinBlock) currentBlock).CoinsRequired > _coins)
+                                                    ((CoinBlock) currentBlock).CoinsRequired > Coins)
                                                 {
                                                     continue;
                                                 }
