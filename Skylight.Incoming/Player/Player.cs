@@ -565,11 +565,7 @@ namespace Skylight
         {
             get
             {
-                if (PlayingIn.Owner == this)
-                {
-                    return true;
-                }
-                return false;
+                return PlayingIn.Owner == this;
             }
 
             set { throw new NotImplementedException(); }
