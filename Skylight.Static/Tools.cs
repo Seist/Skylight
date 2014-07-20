@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using PlayerIOClient;
 using Skylight.Blocks;
+using Skylight.Physics;
 
 
 namespace Skylight.Miscellaneous
@@ -33,43 +34,10 @@ namespace Skylight.Miscellaneous
         public delegate void ProgramEvent(string message);
 
         /// <summary>
-        ///     The game identifier
-        /// </summary>
-        internal const string GameId = "everybody-edits-su9rn58o40itdbnw69plyw";
-
-        /// <summary>
-        ///     The guest email
-        /// </summary>
-        internal const string GuestEmail = "guest";
-
-        /// <summary>
-        ///     The guest password
-        /// </summary>
-        internal const string GuestPassword = "guest";
-
-        // Compiler seems to choke on this line, saying that Lazy isn't supported in library.
-
-        /// <summary>
-        ///     The normal room name
-        /// </summary>
-        public const string NormalRoom = "Everybodyedits";
-
-        /// <summary>
-        ///     The authentication room (temp)
-        /// </summary>
-        public const string AuthRoom = "Auth";
-
-        /// <summary>
-        ///     The random seed used in all random based generations.
-        /// </summary>
-        public static readonly Random
-            Ran = new Random();
-
-        /// <summary>
         ///     The guest client
         /// </summary>
         internal static readonly System.Lazy<Client> GuestClient =
-            new System.Lazy<Client>(() => PlayerIO.QuickConnect.SimpleConnect(GameId, GuestEmail, GuestPassword));
+            new System.Lazy<Client>(() => PlayerIO.QuickConnect.SimpleConnect(Config.PlayerioGameId, "guest", "guest"));
 
         /// <summary>
         ///     Occurs when a program message is sent.

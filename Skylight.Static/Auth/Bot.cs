@@ -64,8 +64,8 @@ namespace Skylight
         ///     guesses.
         /// </param>
         public Bot(Room r,
-            string emailOrToken = Tools.GuestEmail,
-            string passwordOrToken = Tools.GuestPassword,
+            string emailOrToken = "guest",
+            string passwordOrToken = "guest",
             AccountType accType = AccountType.Regular)
             : base(
                 r, 0, "", 0, 0.0, 0.0, false, false, true, 0, false, false, 0, false, false, false, false, false, false)
