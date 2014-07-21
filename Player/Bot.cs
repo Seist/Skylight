@@ -306,7 +306,7 @@ namespace Skylight
             {
                 return;
             }
-            if (!this.HasAccess)
+            if (!HasAccess)
             {
                 Tools.SkylightMessage("The bot cannot build because it is unauthorized.");
                 return;
