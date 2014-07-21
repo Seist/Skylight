@@ -6,9 +6,7 @@
 // ***********************************************************************
 
 
-using Skylight.Blocks;
-
-namespace Skylight
+namespace Skylight.Blocks
 {
     /// <summary>
     ///     Class CoinBlock.
