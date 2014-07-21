@@ -29,7 +29,7 @@ namespace Skylight
         /// </summary>
         private const double GravityMultiplier = 1;
 
-/*
+        /*
         /// <summary>
         ///     The jump boost
         /// </summary>
@@ -246,10 +246,10 @@ namespace Skylight
         /// </summary>
         private double _horizontalAcceleration;
 
-/*
+        /*
         private bool injump = false;
 */
-/*
+        /*
         /// <summary>
         /// The _is cursed
         /// </summary>
@@ -266,13 +266,13 @@ namespace Skylight
         /// </summary>
         private Point _lastPortal;
 
-/*
+        /*
         /// <summary>
         /// The _last respawn
         /// </summary>
         private double _lastRespawn;
 */
-/*
+        /*
         private int mod = 0;
 */
 
@@ -421,9 +421,60 @@ namespace Skylight
             Boost = Config.PhysicsBoost;
             Gravity = Config.PhysicsGravity;
             _mult = Config.PhysicsVariableMultiplyer;
+
+            ShouldTick = true;
+        }
+
+        /// <summary>
+        ///     Creates a copy of a player object.
+        /// </summary>
+        /// <param name="p">The player object to be copied.</param>
+        public Player(Player p)
+        {
+            PotionEffects = new List<int>();
+            PlayingIn = p.PlayingIn;
+            Smiley = p.Smiley;
+            IsGod = p.IsGod;
+            IsMod = p.IsMod;
+            HasChat = p.HasChat;
+            Id = p.Id;
+            Coins = p.Coins;
+            SwitchOpened = p.SwitchOpened;
+            IsFriend = p.IsFriend;
+            Level = p.Level;
+            HasClub = p.HasClub;
+            _isInvulnerable = p._isInvulnerable;
+            _isThrusting = p._isThrusting;
+            _isZombie = p._isZombie;
+            _isDead = p._isDead;
+            Levitation = p.Levitation;
+            _queue = new Queue<int>(Config.PhysicsQueueLength);
+            _lastPortal = new Point();
+
+            _currentThrust = MaxThrust;
+            X = p.X;
+            Y = p.Y;
+            Name = p.Name;
+            Size = 16;
+            NoModifierDragX = Config.PhysicsNoModifierDrag;
+            NoModifierDragY = Config.PhysicsNoModifierDrag;
+            WaterDrag = Config.PhysicsWaterDrag;
+            WaterBuoyancy = Config.PhysicsWaterBuoyancy;
+            MudDrag = Config.PhysicsMudDrag;
+            MudBuoyancy = Config.PhysicsMudBuoyancy;
+            Boost = Config.PhysicsBoost;
+            Gravity = Config.PhysicsGravity;
+            _mult = Config.PhysicsVariableMultiplyer;
+
+            ShouldTick = true;
         }
 
         // Public instance properties.
+        /// <summary>
+        ///     Gets or sets value indicating whether this player should have accurate player coordinates. 
+        /// </summary>
+        public bool ShouldTick { get; set; }
+
         /// <summary>
         ///     Gets a value indicating whether this instance has access.
         /// </summary>
