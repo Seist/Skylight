@@ -67,7 +67,7 @@ namespace Skylight
             _passwordOrToken = passwordOrToken;
             R = r;
             _accType = accType;
-            ShouldTick = true;
+            ShouldTickAll = true;
             BlockDelay = 10;
             SpeechDelay = 750;
         }
@@ -85,7 +85,7 @@ namespace Skylight
         /// <summary>
         ///     If the physics clock should tick or not.
         /// </summary>
-        public bool ShouldTick { get; set; }
+        public bool ShouldTickAll { get; set; }
 
         /// <summary>
         ///     The PlayerIO client class.

@@ -587,7 +587,7 @@ namespace Skylight
 
             long accumulator = 0;
 
-            while (Bot.ShouldTick)
+            while (Bot.ShouldTickAll)
             {
                 try
                 {
@@ -597,10 +597,13 @@ namespace Skylight
 
                         foreach (var player in Source.OnlinePlayers)
                         {
-                            player.Tick();
+                            if (player.ShouldTick)
+                            {
+                                player.Tick();
 
-                            var e = new PlayerEventArgs(player, Source, null);
-                            Source.Pull.TickEvent(e);
+                                var e = new PlayerEventArgs(player, Source, null);
+                                Source.Pull.TickEvent(e);
+                            }
                         }
                     }
                     else
