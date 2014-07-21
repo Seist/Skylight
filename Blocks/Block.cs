@@ -31,9 +31,9 @@ namespace Skylight.Blocks
         ///     Initializes a new instance of the <see cref="Block" /> class.
         /// </summary>
         /// <param name="id">The id of the block.</param>
-        /// <param name="x">The x coord.</param>
-        /// <param name="y">The y coord.</param>
-        /// <param name="z">The z coord.</param>
+        /// <param name="x">The x coordinate.</param>
+        /// <param name="y">The y coordinate.</param>
+        /// <param name="z">The z coordinate.</param>
         /// <param name="direction">The direction.</param>
         public Block(
             int id,
