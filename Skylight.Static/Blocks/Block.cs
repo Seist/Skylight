@@ -85,11 +85,7 @@ namespace Skylight.Blocks
                 }
 
 
-                if (Id >= 500)
-                {
-                    return 1;
-                }
-                return 0;
+                return Id >= 500 ? 1 : 0;
             }
 
             internal set
