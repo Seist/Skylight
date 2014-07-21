@@ -20,11 +20,8 @@ namespace Skylight
         {
             try
             {
-                if (!String.IsNullOrWhiteSpace(s) ||
-                    s.Length < 22)
-                {
-                    _out.C.Send("name", s);
-                }
+                if (String.IsNullOrWhiteSpace(s) || s.Length > 22) return;
+                _out.C.Send("name", s);
             }
             catch (Exception)
             {

@@ -14,10 +14,8 @@ namespace Skylight
         /// </summary>
         public void RespawnAll()
         {
-            if (_out.Bot.Name == _out.R.Owner.Name)
-            {
-                _out.SayChatMessage.Say("/respawnall");
-            }
+            if (_out.Bot.Name != _out.R.Owner.Name) return;
+            _out.SayChatMessage.Say("/respawnall");
         }
     }
 }

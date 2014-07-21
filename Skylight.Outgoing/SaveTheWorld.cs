@@ -19,10 +19,8 @@ namespace Skylight
         {
             try
             {
-                if (_out.Bot.Name == _out.R.Owner.Name)
-                {
-                    _out.C.Send("save");
-                }
+                if (_out.Bot.Name != _out.R.Owner.Name) return;
+                _out.C.Send("save");
             }
             catch (Exception)
             {

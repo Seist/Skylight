@@ -20,6 +20,8 @@ namespace Skylight
         {
             if (String.IsNullOrWhiteSpace(editKey)) {throw new ArgumentException("editKey cannot be empty or null.");}
 
+            if (_out.Bot.HasAccess) { Tools.SkylightMessage("You already are authorized in this room.");}
+
             try
             {
                 _out.C.Send("access", editKey);

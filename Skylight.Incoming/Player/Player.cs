@@ -204,12 +204,6 @@ namespace Skylight
         private double _cluboffset;
 
         /// <summary>
-        ///     The amount of coins the player has.
-        /// </summary>
-        private int
-            _coins;
-
-        /// <summary>
         ///     The _current sx
         /// </summary>
         private double _currentSx;
@@ -253,12 +247,6 @@ namespace Skylight
         ///     The horizontal acceleration
         /// </summary>
         private double _horizontalAcceleration;
-
-        /// <summary>
-        ///     The id of the player (in game session)
-        /// </summary>
-        private int
-            _id = -1;
 
 /*
         private bool injump = false;
@@ -346,11 +334,6 @@ namespace Skylight
         private double _oy;
 
         /// <summary>
-        ///     The _potion effects
-        /// </summary>
-        private List<int> _potionEffects = new List<int>();
-
-        /// <summary>
         ///     The _reminder x
         /// </summary>
         private double _reminderX;
@@ -406,6 +389,7 @@ namespace Skylight
             bool hasChat, int coins, bool purple, bool isFriend, int level, bool hasClub, bool isInvulnerable,
             bool isThrusting, bool isZombie, bool isDead, bool levitation)
         {
+            PotionEffects = new List<int>();
             PlayingIn = room;
             Smiley = smiley;
             IsGod = isGod;
@@ -492,12 +476,7 @@ namespace Skylight
         {
             get
             {
-                if (PlayingIn != null)
-                {
-                    return PlayingIn.OnlineBots.Any(bt => bt.Id == Id);
-                }
-
-                return false;
+                return PlayingIn != null && PlayingIn.OnlineBots.Any(bt => bt.Id == Id);
             }
         }
 
@@ -570,11 +549,7 @@ namespace Skylight
         {
             get
             {
-                if (PlayingIn.Owner == this)
-                {
-                    return true;
-                }
-                return false;
+                return PlayingIn.Owner == this;
             }
 
             set { throw new NotImplementedException(); }
@@ -584,12 +559,7 @@ namespace Skylight
         ///     Gets the coins.
         /// </summary>
         /// <value>The coins.</value>
-        public int Coins
-        {
-            get { return _coins; }
-
-            internal set { _coins = value; }
-        }
+        public int Coins { get; internal set; }
 
         /// <summary>
         ///     Gets the blue coins.
@@ -613,12 +583,7 @@ namespace Skylight
         ///     Gets the identifier.
         /// </summary>
         /// <value>The identifier.</value>
-        public int Id
-        {
-            get { return _id; }
-
-            internal set { _id = value; }
-        }
+        public int Id { get; internal set; }
 
         /// <summary>
         ///     Gets the smiley.
@@ -636,12 +601,7 @@ namespace Skylight
         ///     Gets the potion effects.
         /// </summary>
         /// <value>The potion effects.</value>
-        public List<int> PotionEffects
-        {
-            get { return _potionEffects; }
-
-            internal set { _potionEffects = value; }
-        }
+        public List<int> PotionEffects { get; internal set; }
 
         /// <summary>
         ///     Gets the playing in.
@@ -785,21 +745,6 @@ namespace Skylight
             return param1 >= X && param2 >= Y && param1 <= X + Size && param2 <= Y + Size;
         }
 
-/*
-        private double jumpMultiplier() // never used
-        {
-            double _loc_1 = 1;
-            if (JumpBoost)
-            {
-                _loc_1 = _loc_1*1.2;
-            }
-            if (zombie())
-            {
-                _loc_1 = _loc_1*0.75;
-            }
-            return _loc_1;
-        }
-*/
 
         /// <summary>
         ///     Speeds the multiplier.
@@ -968,7 +913,7 @@ namespace Skylight
                                             case BlockIds.Action.Doors.Coin:
                                             {
                                                 if (currentBlock is CoinBlock &&
-                                                    ((CoinBlock) currentBlock).CoinsRequired <= _coins)
+                                                    ((CoinBlock) currentBlock).CoinsRequired <= Coins)
                                                 {
                                                     continue;
                                                 }
@@ -977,7 +922,7 @@ namespace Skylight
                                             case BlockIds.Action.Gates.Coin:
                                             {
                                                 if (currentBlock is CoinBlock &&
-                                                    ((CoinBlock) currentBlock).CoinsRequired > _coins)
+                                                    ((CoinBlock) currentBlock).CoinsRequired > Coins)
                                                 {
                                                     continue;
                                                 }
@@ -1648,33 +1593,8 @@ namespace Skylight
         /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         private bool Zombie()
         {
-            if (IsGod || IsMod)
-            {
-                return false;
-            }
-            return _isZombie;
+            return !IsGod && !IsMod && _isZombie;
         }
-
-/*
-        private void addTouchPotion(string param1, double param2 = 1)
-        {
-            _touchpotions.Add(param1, DateTime.Now.Millisecond + (int) param2*1000);
-        }
-*/
-
-/*
-        private void removeTouchPotion(string param1)
-        {
-            _touchpotions.Remove(param1);
-        }
-*/
-
-/*
-        private bool hasPotion(string param1)
-        {
-            return _touchpotions.ContainsKey(param1);
-        }
-*/
 
 
         /// <summary>
@@ -1690,17 +1610,8 @@ namespace Skylight
             {
                 speedX = speedX - _currentThrust*(Config.PhysicsJumpHeight/2)*(_morx*0.5);
             }
-            if (!_isThrusting)
-            {
-                if (_currentThrust > 0)
-                {
-                    _currentThrust = _currentThrust - ThrustBurnOff;
-                }
-                else
-                {
-                    _currentThrust = 0;
-                }
-            }
+            if (_isThrusting) return;
+            _currentThrust = _currentThrust > 0 ? _currentThrust - ThrustBurnOff : 0;
         }
     }
 }

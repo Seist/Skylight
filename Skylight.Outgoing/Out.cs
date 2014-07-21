@@ -18,24 +18,8 @@ namespace Skylight
 
         public Out()
         {
-            //var build = new Build(this);
-            new Clear(this);
-            new HoldDownArrow(this);
-            new HoldLeftArrow(this);
-            new HoldRightArrow(this);
-            new HoldUpArrow(this);
-            new HoldSpace(this);
-            new SetTitleOfRoom(this);
             _sayChatMessage = new SayChatMessage(this);
-            new InputCodeForRoom(this);
-            new SetCodeForRoom(this);
             _releaseArrowKey = new ReleaseArrowKey(this);
-            new LoadLevelInWorld(this);
-            new RespawnPlayer(this);
-            new RespawnAllPlayers(this);
-            new ResetWorld(this);
-            new SaveTheWorld(this);
-            new SetAllPotionBansInWorld(this);
         }
 
         /// <summary>
@@ -115,10 +99,8 @@ namespace Skylight
         /// <param name="reason">The reason.</param>
         public void Kick(string name, string reason = "")
         {
-            if (Bot.Name == R.Owner.Name)
-            {
-                _sayChatMessage.Say("/kick " + name + " " + reason);
-            }
+            if (Bot.Name != R.Owner.Name) return;
+            _sayChatMessage.Say("/kick " + name + " " + reason);
         }
 
         /// <summary>
@@ -128,10 +110,8 @@ namespace Skylight
         /// <param name="reason">The reason.</param>
         public void Kick(Player p, string reason = "")
         {
-            if (Bot.Name == R.Owner.Name)
-            {
-                _sayChatMessage.Say("/kick " + p.Name + " " + reason);
-            }
+            if (Bot.Name != R.Owner.Name) return;
+            _sayChatMessage.Say("/kick " + p.Name + " " + reason);
         }
 
         /// <summary>
@@ -140,10 +120,8 @@ namespace Skylight
         /// <param name="p">The player.</param>
         public void Respawn(Player p)
         {
-            if (Bot.Name == R.Owner.Name)
-            {
-                _sayChatMessage.Say("/kill " + p.Name);
-            }
+            if (Bot.Name != R.Owner.Name) return;
+            _sayChatMessage.Say("/kill " + p.Name);
         }
 
         /// <summary>
@@ -151,18 +129,16 @@ namespace Skylight
         /// </summary>
         /// <param name="name">The username of the player.</param>
         /// <param name="value">if set to <c>true</c> then the player will receive edit privileges.</param>
-        public void SetEdit(string name, bool value)
+        public void SetEdit(string name, bool canEdit)
         {
-            if (Bot.Name == R.Owner.Name)
+            if (Bot.Name != R.Owner.Name) return;
+            if (canEdit)
             {
-                if (value)
-                {
-                    _sayChatMessage.Say("/giveedit " + name);
-                }
-                else
-                {
-                    _sayChatMessage.Say("/removeedit " + name);
-                }
+                _sayChatMessage.Say("/giveedit " + name);
+            }
+            else
+            {
+                _sayChatMessage.Say("/removeedit " + name);
             }
         }
 
@@ -170,19 +146,19 @@ namespace Skylight
         ///     Sets the edit for a Player object.
         /// </summary>
         /// <param name="p">The Player object.</param>
-        /// <param name="value">if set to <c>true</c> then the Player object recieves edit.</param>
-        public void SetEdit(Player p, bool value)
+        /// <param>if set to
+        ///     <name>canEdit</name>
+        ///     <c>true</c> then the Player object recieves edit.</param>
+        public void SetEdit(Player p, bool canEdit)
         {
-            if (Bot.Name == R.Owner.Name)
+            if (Bot.Name != R.Owner.Name) return;
+            if (canEdit)
             {
-                if (value)
-                {
-                    _sayChatMessage.Say("/giveedit " + p.Name);
-                }
-                else
-                {
-                    _sayChatMessage.Say("/removeedit " + p.Name);
-                }
+                _sayChatMessage.Say("/giveedit " + p.Name);
+            }
+            else
+            {
+                _sayChatMessage.Say("/removeedit " + p.Name);
             }
         }
 
@@ -192,10 +168,8 @@ namespace Skylight
         /// <param name="value">if set to <c>true</c> then the bot will go into god mode.</param>
         public void SetGod(bool value)
         {
-            if (Bot.HasAccess)
-            {
-                C.Send("god", value);
-            }
+            if (!Bot.HasAccess) return;
+            C.Send("god", value);
         }
 
         /// <summary>
@@ -206,16 +180,14 @@ namespace Skylight
         /// <param name="value">if set to <c>true</c> then that username will be muted.</param>
         public void SetMute(string name, bool value)
         {
-            if (Bot.Name == R.Owner.Name)
+            if (Bot.Name != R.Owner.Name) return;
+            if (value)
             {
-                if (value)
-                {
-                    _sayChatMessage.Say("/mute " + name);
-                }
-                else
-                {
-                    _sayChatMessage.Say("/unmute " + name);
-                }
+                _sayChatMessage.Say("/mute " + name);
+            }
+            else
+            {
+                _sayChatMessage.Say("/unmute " + name);
             }
         }
 
@@ -226,16 +198,14 @@ namespace Skylight
         /// <param name="value">if set to <c>true</c> then that Player.subject object will be muted.</param>
         public void SetMute(Player p, bool value)
         {
-            if (Bot.Name == R.Owner.Name)
+            if (Bot.Name != R.Owner.Name) return;
+            if (value)
             {
-                if (value)
-                {
-                    _sayChatMessage.Say("/mute " + p.Name);
-                }
-                else
-                {
-                    _sayChatMessage.Say("/unmute " + p.Name);
-                }
+                _sayChatMessage.Say("/mute " + p.Name);
+            }
+            else
+            {
+                _sayChatMessage.Say("/unmute " + p.Name);
             }
         }
 
@@ -246,16 +216,14 @@ namespace Skylight
         /// <param name="value">if set to <c>true</c> then potions will be turned on for that potion.</param>
         public void SetPotionBan(int potionId, bool value)
         {
-            if (Bot.Name == R.Owner.Name)
+            if (Bot.Name != R.Owner.Name) return;
+            if (value)
             {
-                if (value)
-                {
-                    _sayChatMessage.Say("/potionson " + potionId);
-                }
-                else
-                {
-                    _sayChatMessage.Say("/potionsoff " + potionId);
-                }
+                _sayChatMessage.Say("/potionson " + potionId);
+            }
+            else
+            {
+                _sayChatMessage.Say("/potionsoff " + potionId);
             }
         }
 
@@ -281,10 +249,8 @@ namespace Skylight
         /// <param name="value">if set to <c>true</c> then the bot will become visible.</param>
         public void SetVisibility(bool value)
         {
-            if (Bot.Name == R.Owner.Name)
-            {
-                _sayChatMessage.Say("/visible " + value);
-            }
+            if (Bot.Name != R.Owner.Name) return;
+            _sayChatMessage.Say("/visible " + value);
         }
 
         /// <summary>
@@ -295,16 +261,14 @@ namespace Skylight
         /// <param name="name">The name.</param>
         public void Teleport(int newXLocation, int newYLocation, string name = "")
         {
-            if (Bot.Name == R.Owner.Name)
+            if (Bot.Name != R.Owner.Name) return;
+            if (name != "")
             {
-                if (name != "")
-                {
-                    _sayChatMessage.Say("/teleport " + name + " " + newXLocation + " " + newYLocation);
-                }
-                else
-                {
-                    _sayChatMessage.Say("/teleport " + Bot.Name + " " + newXLocation + " " + newYLocation);
-                }
+                _sayChatMessage.Say("/teleport " + name + " " + newXLocation + " " + newYLocation);
+            }
+            else
+            {
+                _sayChatMessage.Say("/teleport " + Bot.Name + " " + newXLocation + " " + newYLocation);
             }
         }
 
@@ -316,16 +280,14 @@ namespace Skylight
         /// <param name="p">The p.</param>
         public void Teleport(int newXLocation, int newYLocation, Player p = null)
         {
-            if (Bot.Name == R.Owner.Name)
+            if (Bot.Name != R.Owner.Name) return;
+            if (p != null)
             {
-                if (p != null)
-                {
-                    _sayChatMessage.Say("/teleport " + p.Name + " " + newXLocation + " " + newYLocation);
-                }
-                else
-                {
-                    _sayChatMessage.Say("/teleport " + Bot.Name + " " + newXLocation + " " + newYLocation);
-                }
+                _sayChatMessage.Say("/teleport " + p.Name + " " + newXLocation + " " + newYLocation);
+            }
+            else
+            {
+                _sayChatMessage.Say("/teleport " + Bot.Name + " " + newXLocation + " " + newYLocation);
             }
         }
 
@@ -336,12 +298,10 @@ namespace Skylight
         /// <param name="newYLocation">The new y location.</param>
         public void TeleportAll(int newXLocation, int newYLocation)
         {
-            if (Bot.Name == R.Owner.Name)
+            if (Bot.Name != R.Owner.Name) return;
+            foreach (var p in R.OnlinePlayers)
             {
-                foreach (var p in R.OnlinePlayers)
-                {
-                    Teleport(newXLocation, newYLocation, p);
-                }
+                Teleport(newXLocation, newYLocation, p);
             }
         }
     }

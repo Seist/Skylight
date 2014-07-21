@@ -15,10 +15,8 @@ namespace Skylight
         /// <param name="newCode">The new code.</param>
         public void SetCode(string newCode)
         {
-            if (_out.Bot.Name == _out.R.Owner.Name)
-            {
-                _out.C.Send("key", newCode);
-            }
+            if (_out.Bot.Name != _out.R.Owner.Name) return;
+            _out.C.Send("key", newCode);
         }
     }
 }
