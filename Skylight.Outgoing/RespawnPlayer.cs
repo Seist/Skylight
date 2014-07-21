@@ -15,10 +15,8 @@
         /// <param name="name">The username.</param>
         public void Respawn(string name)
         {
-            if (_out.Bot.Name == _out.R.Owner.Name)
-            {
-                _out.SayChatMessage.Say("/kill " + name);
-            }
+            if (_out.Bot.Name != _out.R.Owner.Name) return;
+            _out.SayChatMessage.Say("/kill " + name);
         }
     }
 }

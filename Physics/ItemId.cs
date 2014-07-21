@@ -11,7 +11,7 @@ namespace Skylight.Physics
     /// <summary>
     ///     Class item id.
     /// </summary>
-    public class ItemId : object
+    public class ItemId
     {
         // end function
 

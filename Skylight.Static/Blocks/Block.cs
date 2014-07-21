@@ -3,12 +3,14 @@
 // </copyright>
 // <summary></summary>
 
+using Skylight.Physics;
+
 namespace Skylight.Blocks
 {
     /// <summary>
     ///     Class Block.
     /// </summary>
-    public class Block
+    public class Block : ItemId
     {
         /// <summary>
         ///     The directions of the block.
