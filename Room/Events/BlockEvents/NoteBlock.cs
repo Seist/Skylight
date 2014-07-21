@@ -1,4 +1,3 @@
-using System;
 using PlayerIOClient;
 using Skylight.Blocks;
 
