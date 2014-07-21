@@ -3,7 +3,7 @@
 // </copyright>
 // <summary></summary>
 
-namespace Skylight
+namespace Skylight.Blocks
 {
     /// <summary>
     ///     Class BlockIds.

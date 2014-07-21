@@ -92,7 +92,6 @@ namespace Skylight.Blocks
             internal set {if (value == 0 || value == 1) {_z = value;}}
         }
 
-
         /// <summary>
         /// Gets the placer (the Player who placed the block).
         /// </summary>
