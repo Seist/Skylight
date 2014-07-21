@@ -29,11 +29,9 @@ namespace Skylight
             var subject = Tools.GetPlayer(id, _in.Source);
             for (var i = 0; i < _in.Source.OnlinePlayers.Count; i++)
             {
-                if (_in.Source.OnlinePlayers[i] == subject)
-                {
-                    _in.Source.OnlinePlayers.RemoveAt(i);
-                    break;
-                }
+                if (_in.Source.OnlinePlayers[i] != subject) continue;
+                _in.Source.OnlinePlayers.RemoveAt(i);
+                break;
             }
 
             // Fire the event.
