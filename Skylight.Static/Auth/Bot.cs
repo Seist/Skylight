@@ -48,14 +48,6 @@ namespace Skylight
             _emailOrToken,
             _passwordOrToken;
 
-        private int
-            _blockDelay = 10;
-
-        private string _chatPrefix = "";
-
-        private int
-            _speechDelay = 1000;
-
         /// <summary>
         ///     The main bot class.
         /// </summary>
@@ -67,18 +59,18 @@ namespace Skylight
         ///     guesses.
         /// </param>
         public Bot(Room r,
-            string emailOrToken = Tools.GuestEmail,
-            string passwordOrToken = Tools.GuestPassword,
-            AccountType accType = AccountType.Regular)
-            : base(
-                r, 0, "", 0, 0.0, 0.0, false, false, true, 0, false, false, 0, false, false, false, false, false, false)
+            string emailOrToken,
+            string passwordOrToken,
+            AccountType accType = AccountType.Regular) : base(r, 0, "", 0, 0.0, 0.0, false, 
+            false, true, 0, false, false, 0, false, false, false, false, false, false)
         {
-            Push = new Out();
             _emailOrToken = emailOrToken;
             _passwordOrToken = passwordOrToken;
             R = r;
             _accType = accType;
             ShouldTick = true;
+            BlockDelay = 10;
+            SpeechDelay = 750;
         }
 
         /// <summary>
@@ -104,37 +96,17 @@ namespace Skylight
         /// <summary>
         ///     The delay between block messages to the server in milliseconds.
         /// </summary>
-        public int BlockDelay
-        {
-            get { return _blockDelay; }
-
-            set { _blockDelay = value; }
-        }
+        public int BlockDelay { get; set; }
 
         /// <summary>
         ///     The delay between speech messages to the server in milliseconds.
         /// </summary>
-        public int SpeechDelay
-        {
-            get { return _speechDelay; }
-
-            set { _speechDelay = value; }
-        }
+        public int SpeechDelay { get; set; }
 
         /// <summary>
         ///     The prefix to add to all outgoing chat messages.
         /// </summary>
-        public string ChatPrefix
-        {
-            get { return _chatPrefix; }
-
-            set { _chatPrefix = value; }
-        }
-
-        /// <summary>
-        ///     The object where the events go to the server.
-        /// </summary>
-        public Out Push { get; internal set; }
+        public string ChatPrefix { get; set; }
 
         /// <summary>
         ///     The current room object.
@@ -307,11 +279,11 @@ namespace Skylight
 
             Client = null;
             Connection = null;
-            Push = null;
             IsConnected = false;
             Joined = false;
         }
 
+        #region In-game functions
         /// <summary>
         ///     Builds the specified block.
         /// </summary>
@@ -418,6 +390,518 @@ namespace Skylight
                 Tools.SkylightMessage("Error: attempted to use Out.Clear before connecting");
             }
         }
+
+        /// <summary>
+        ///     Inputs the edit key.
+        /// </summary>
+        /// <param name="editKey">The edit key.</param>
+        public void InputCode(string editKey)
+        {
+            if (String.IsNullOrWhiteSpace(editKey)) { throw new ArgumentException("editKey cannot be empty or null."); }
+
+            try
+            {
+                Connection.Send("access", editKey);
+            }
+            catch (Exception)
+            {
+                Tools.SkylightMessage("Error: attempted to use Out.InputCode before connecting");
+            }
+        }
+
+        /// <summary>
+        ///     Kicks the specified player by their username.
+        /// </summary>
+        /// <param name="name">The username.</param>
+        /// <param name="reason">The reason.</param>
+        public void Kick(string name, string reason = "")
+        {
+            if (Name == R.Owner.Name)
+            {
+                Say("/kick " + name + " " + reason);
+            }
+        }
+
+        /// <summary>
+        ///     Kicks the specified Player object.
+        /// </summary>
+        /// <param name="p">The player object.</param>
+        /// <param name="reason">The reason.</param>
+        public void Kick(Player p, string reason = "")
+        {
+            if (Name == R.Owner.Name)
+            {
+                Say("/kick " + p.Name + " " + reason);
+            }
+        }
+
+        /// <summary>
+        ///     Resets the level to its state when it was last saved.
+        /// </summary>
+        public void Loadlevel()
+        {
+            if (Name == R.Owner.Name)
+            {
+                Say("/loadlevel");
+            }
+            else
+            {
+                throw new Exception("You are not authorized to load the level.");
+            }
+        }
+
+        /// <summary>
+        ///     Moves the bot.
+        /// </summary>
+        /// <param name="m">The movement Message Object.</param>
+        public void Move(Message m)
+        {
+            try
+            {
+                Connection.Send(
+                    "m",
+                    m.GetDouble(1),
+                    m.GetDouble(2),
+                    m.GetDouble(3),
+                    m.GetDouble(4),
+                    m.GetDouble(5),
+                    m.GetDouble(6),
+                    m.GetDouble(7),
+                    m.GetDouble(8),
+                    m.GetInt(9),
+                    m.GetBoolean(10),
+                    m.GetBoolean(11));
+            }
+            catch (NullReferenceException)
+            {
+                Tools.SkylightMessage("Error: attempted to use Out.Move before connecting");
+            }
+        }
+
+        /// <summary>
+        ///     Moves the bot.
+        /// </summary>
+        /// <param name="hSpeed">The horizontal speed.</param>
+        /// <param name="vSpeed">The vertical speed. (-52 when jumping)</param>
+        /// <param name="hMod">The horizontal acceleration. (usually -1 or 2)</param>
+        /// <param name="vMod">The vertical acceleration. (usually -1 or 2)</param>
+        /// <param name="hDirection">-1 is left, 0 is neither, 1 is right.</param>
+        /// <param name="vDirection">-1 is up, 0 is neither, 1 is down.</param>
+        public void Move(double hSpeed, double vSpeed,
+            int hMod, int vMod, int hDirection, int vDirection)
+        {
+            try
+            {
+                Connection.Send("m", X, Y, hSpeed, vSpeed, hMod, vMod, hDirection, vDirection);
+            }
+            catch (Exception)
+            {
+                Tools.SkylightMessage("Error: attempted to use Out.Move before connecting");
+            }
+        }
+
+        /// <summary>
+        ///     Moves the bot.
+        /// </summary>
+        /// <param name="up">True if the up/'W' key should be pressed, False if not. If this is true, "down" must be false.</param>
+        /// <param name="down">True if the down/'S' key should be pressed, False if not. If this is true, "up" must be false.</param>
+        /// <param name="left">True if the left/'A' key should be pressed, False if not. If this is true, "right" must be false.</param>
+        /// <param name="right">True if the right/'D' key should be pressed, False if not. If this is true, "left" must be false.</param>
+        /// <param name="jump">True if the jump key/spacebar should be pressed, False" if not.</param>
+        void Move(bool up, bool down, bool left, bool right, bool jump)
+        {
+            if (left && right)
+                throw new Exception("Out.Move() does not allow you to move left and right at the same time.");
+            else if (up && down)
+                throw new Exception("Out.Move() does not allow you to move up and down at the same time.");
+
+            var reset = new object[11] { X, Y, 0, 0, 0, 0, 0, 0, 0, false, false };
+
+            var args = new object[11] {
+            X, Y, 0,
+            jump ? -52 : 0,
+            left ? -1 : right ? 1 : 0,
+            up ? -1 : down ? 2 : 0,
+            left ? -1 : right ? 1 : 0,
+            up ? -1 : down ? 1 : 0,
+            0, false, false };
+
+            Connection.Send("m", reset);
+            Connection.Send("m", args);
+        }
+
+        /// <summary>
+        ///     Returns all players to spawn and resets their coins.
+        /// </summary>
+        public void Reset()
+        {
+            if (Name == R.Owner.Name)
+            {
+                Say("/reset");
+            }
+        }
+
+        /// <summary>
+        ///     Respawns the specified Player object.
+        /// </summary>
+        /// <param name="p">The player.</param>
+        public void Respawn(Player p)
+        {
+            if (Name == R.Owner.Name)
+            {
+                Say("/kill " + p.Name);
+            }
+        }
+
+        /// <summary>
+        ///     Respawns the specified player by their username.
+        /// </summary>
+        /// <param name="name">The username.</param>
+        public void Respawn(string name)
+        {
+            if (Name == R.Owner.Name)
+            {
+                Say("/kill " + name);
+            }
+        }
+
+        /// <summary>
+        ///     Respawns everyone in the room.
+        /// </summary>
+        public void RespawnAll()
+        {
+            if (Name == R.Owner.Name)
+            {
+                Say("/respawnall");
+            }
+        }
+
+        /// <summary>
+        ///     Saves the world.
+        /// </summary>
+        public void Save()
+        {
+            try
+            {
+                if (Name == R.Owner.Name)
+                {
+                    Connection.Send("save");
+                }
+            }
+            catch (Exception)
+            {
+                Tools.SkylightMessage("Error: attempted to use Out.Save before connecting");
+            }
+        }
+
+        /// <summary>
+        ///     Says the specified message.
+        /// </summary>
+        /// <param name="s">The message.</param>
+        /// <param name="useChatPrefix">if set to <c>true</c> then [use chat prefix].</param>
+        public void Say(string s, bool useChatPrefix = true)
+        {
+            try
+            {
+                if (s.StartsWith("/") || !useChatPrefix)
+                {
+                    if (s.Length <= 80 && s.Length > 0)
+                    {
+                        Connection.Send("say", s);
+                        Thread.Sleep(SpeechDelay);
+                    }
+                    else
+                    {
+                        // Say what you can.
+                        Say(s.Substring(0, 80));
+
+                        // Delete what you just said.
+                        s = s.Substring(80);
+
+                        // Repeat the process.
+                        Say(s);
+                    }
+                }
+                else
+                {
+                    if (s.Length + ChatPrefix.Length <= 80)
+                    {
+                        Connection.Send("say", ChatPrefix + s);
+                        Thread.Sleep(SpeechDelay);
+                    }
+                    else
+                    {
+                        // Say what you can.
+                        Say(s.Substring(0, 80 - ChatPrefix.Length));
+
+                        // Delete what you just said.
+                        s = s.Substring(80 - ChatPrefix.Length);
+
+                        // Repeat the process.
+                        Say(s);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                Tools.SkylightMessage("Error: attempted to use Out.Say before connecting");
+            }
+        }
+
+        /// <summary>
+        ///     Toggle all potion bans.
+        /// </summary>
+        /// <param name="value">if set to <c>true</c> then turn on potions.</param>
+        public void SetAllPotionBans(bool value)
+        {
+            try
+            {
+                if (Name == R.Owner.Name)
+                {
+                    Connection.Send("allowpotions", value);
+                }
+                else
+                {
+                    throw new Exception("You are not authorized to allow potions.");
+                }
+            }
+            catch (Exception)
+            {
+                Tools.SkylightMessage("Error: attempted to use Out.SetAllPotionBans before connecting");
+            }
+        }
+
+        /// <summary>
+        ///     Sets the edit key for the current room.
+        /// </summary>
+        /// <param name="newCode">The new code.</param>
+        public void SetCode(string newCode)
+        {
+            if (Name == R.Owner.Name)
+            {
+                Connection.Send("key", newCode);
+            }
+        }
+
+        /// <summary>
+        ///     Sets the edit of a player.
+        /// </summary>
+        /// <param name="name">The username of the player.</param>
+        /// <param name="value">if set to <c>true</c> then the player will receive edit privileges.</param>
+        public void SetEdit(string name, bool value)
+        {
+            if (Name == R.Owner.Name)
+            {
+                if (value)
+                {
+                    Say("/giveedit " + name);
+                }
+                else
+                {
+                    Say("/removeedit " + name);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Sets the edit for a Player object.
+        /// </summary>
+        /// <param name="p">The Player object.</param>
+        /// <param name="value">if set to <c>true</c> then the Player object recieves edit.</param>
+        public void SetEdit(Player p, bool value)
+        {
+            if (Name == R.Owner.Name)
+            {
+                if (value)
+                {
+                    Say("/giveedit " + p.Name);
+                }
+                else
+                {
+                    Say("/removeedit " + p.Name);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Sets the god mode for the bot.
+        /// </summary>
+        /// <param name="value">if set to <c>true</c> then the bot will go into god mode.</param>
+        public void SetGod(bool value)
+        {
+            if (HasAccess)
+            {
+                Connection.Send("god", value);
+            }
+        }
+
+        /// <summary>
+        ///     Sets the mute for a player by their username. This will prevent chat messages from being
+        ///     sent from that player to the server.
+        /// </summary>
+        /// <param name="name">The username.</param>
+        /// <param name="value">if set to <c>true</c> then that username will be muted.</param>
+        public void SetMute(string name, bool value)
+        {
+            if (Name == R.Owner.Name)
+            {
+                if (value)
+                {
+                    Say("/mute " + name);
+                }
+                else
+                {
+                    Say("/unmute " + name);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Sets the mute for a Player object.
+        /// </summary>
+        /// <param name="p">The Player.</param>
+        /// <param name="value">if set to <c>true</c> then that Player.subject object will be muted.</param>
+        public void SetMute(Player p, bool value)
+        {
+            if (Name == R.Owner.Name)
+            {
+                if (value)
+                {
+                    Say("/mute " + p.Name);
+                }
+                else
+                {
+                    Say("/unmute " + p.Name);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Sets the potion ban.
+        /// </summary>
+        /// <param name="potionId">The potion id.</param>
+        /// <param name="value">if set to <c>true</c> then potions will be turned on for that potion.</param>
+        public void SetPotionBan(int potionId, bool value)
+        {
+            if (Name == R.Owner.Name)
+            {
+                if (value)
+                {
+                    Say("/potionson " + potionId);
+                }
+                else
+                {
+                    Say("/potionsoff " + potionId);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Sets the smiley.
+        /// </summary>
+        /// <param name="smileyId">The smiley id.</param>
+        public void SetSmiley(int smileyId)
+        {
+            try
+            {
+                Connection.Send(R.RoomKey + "f", smileyId);
+            }
+            catch (Exception)
+            {
+                Tools.SkylightMessage("Error: attempted to use Out.SetSmiley before connecting");
+            }
+        }
+
+        /// <summary>
+        ///     Sets the visibility of the bot.
+        /// </summary>
+        /// <param name="value">if set to <c>true</c> then the bot will become visible.</param>
+        public void SetRoomVisibility(bool value)
+        {
+            if (Name == R.Owner.Name)
+            {
+                Say("/visible " + value);
+            }
+        }
+
+        /// <summary>
+        ///     Sets the title of the room.
+        /// </summary>
+        /// <param name="s">The new title.</param>
+        public void SetTitle(string s)
+        {
+            try
+            {
+                if (!String.IsNullOrWhiteSpace(s) ||
+                    s.Length < 22)
+                {
+                    Connection.Send("name", s);
+                }
+            }
+            catch (Exception)
+            {
+                Tools.SkylightMessage("Error: attempted to use Out.SetTitle before connecting");
+            }
+        }
+
+        /// <summary>
+        ///     Teleports the specified new x location.
+        /// </summary>
+        /// <param name="newXLocation">The new x location.</param>
+        /// <param name="newYLocation">The new y location.</param>
+        /// <param name="name">The name.</param>
+        public void Teleport(int newXLocation, int newYLocation, string name = "")
+        {
+            if (Name == R.Owner.Name)
+            {
+                if (name != "")
+                {
+                    Say("/teleport " + name + " " + newXLocation + " " + newYLocation);
+                }
+                else
+                {
+                    Say("/teleport " + Name + " " + newXLocation + " " + newYLocation);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Teleports the specified new x location.
+        /// </summary>
+        /// <param name="newXLocation">The new x location.</param>
+        /// <param name="newYLocation">The new y location.</param>
+        /// <param name="p">The p.</param>
+        public void Teleport(int newXLocation, int newYLocation, Player p = null)
+        {
+            if (Name == R.Owner.Name)
+            {
+                if (p != null)
+                {
+                    Say("/teleport " + p.Name + " " + newXLocation + " " + newYLocation);
+                }
+                else
+                {
+                    Say("/teleport " + Name + " " + newXLocation + " " + newYLocation);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Teleports all.
+        /// </summary>
+        /// <param name="newXLocation">The new x location.</param>
+        /// <param name="newYLocation">The new y location.</param>
+        public void TeleportAll(int newXLocation, int newYLocation)
+        {
+            if (Name == R.Owner.Name)
+            {
+                foreach (var p in R.OnlinePlayers)
+                {
+                    Teleport(newXLocation, newYLocation, p);
+                }
+            }
+        }
+        #endregion
 
         private void Refresh()
         {

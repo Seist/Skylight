@@ -393,7 +393,7 @@ namespace Skylight
         /// <param name="isMod">if set to <c>true</c> [is mod].</param>
         /// <param name="hasChat">if set to <c>true</c> [has chat].</param>
         /// <param name="coins">The coins.</param>
-        /// <param name="purple">if set to <c>true</c> [purple].</param>
+        /// <param name="switchOpened">if set to <c>true</c> [purple].</param>
         /// <param name="isFriend">if set to <c>true</c> [is friend].</param>
         /// <param name="level">The level.</param>
         /// <param name="hasClub">If the player has builder's club or not.</param>
@@ -403,7 +403,7 @@ namespace Skylight
         /// <param name="isDead">Player is dead</param>
         /// <param name="levitation">Player has levitation potion</param>
         public Player(Room room, int id, string name, int smiley, double xPos, double yPos, bool isGod, bool isMod,
-            bool hasChat, int coins, bool purple, bool isFriend, int level, bool hasClub, bool isInvulnerable,
+            bool hasChat, int coins, bool switchOpened, bool isFriend, int level, bool hasClub, bool isInvulnerable,
             bool isThrusting, bool isZombie, bool isDead, bool levitation)
         {
             PlayingIn = room;
@@ -413,7 +413,7 @@ namespace Skylight
             HasChat = hasChat;
             Id = id;
             Coins = coins;
-            SwitchOpened = purple;
+            SwitchOpened = switchOpened;
             IsFriend = isFriend;
             Level = level;
             HasClub = hasClub;
