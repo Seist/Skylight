@@ -17,7 +17,7 @@ namespace Skylight
         /// <summary>
         ///     Determines whether the specified block is solid.
         /// </summary>
-        /// <param name="param1">The param1.</param>
+        /// <param name="blockId">The id of the block</param>
         /// <returns><c>true</c> if the specified block is solid; otherwise, <c>false</c>.</returns>
         public static bool IsSolid(int blockId)
         {
@@ -27,7 +27,7 @@ namespace Skylight
         /// <summary>
         ///     Determines whether the specified block is climbable.
         /// </summary>
-        /// <param name="param1">The block.</param>
+        /// <param name="blockId">The block id</param>
         /// <returns><c>true</c> if the specified block is climbable; otherwise, <c>false</c>.</returns>
         public static bool IsClimbable(int blockId)
         {
