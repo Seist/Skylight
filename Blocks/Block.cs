@@ -11,7 +11,7 @@ namespace Skylight.Blocks
     public class Block : ItemId
     {
         /// <summary>
-        ///     The directions of the block.
+        /// The directions of the block.
         /// </summary>
         public const int
             Right = 1,
@@ -21,14 +21,13 @@ namespace Skylight.Blocks
             Foregroundlayer = 0,
             Backgroundlayer = 1;
 
-
         /// <summary>
-        ///     The _x
+        /// The _x
         /// </summary>
         private int _z;
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Block" /> class.
+        /// Initializes a new instance of the <see cref="Block" /> class.
         /// </summary>
         /// <param name="id">The id of the block.</param>
         /// <param name="x">The x coordinate.</param>
@@ -49,13 +48,20 @@ namespace Skylight.Blocks
             Direction = direction;
         }
 
+        /// <summary>
+        /// Gets or sets the y.
+        /// </summary>
+        /// <value>The y.</value>
         public int Y { get; set; }
 
+        /// <summary>
+        /// Gets or sets the x.
+        /// </summary>
+        /// <value>The x.</value>
         public int X { get; set; }
 
-
         /// <summary>
-        ///     Gets a value indicating whether this instance is solid.
+        /// Gets a value indicating whether this instance is solid.
         /// </summary>
         /// <value><c>true</c> if this instance is solid; otherwise, <c>false</c>.</value>
         public bool IsSolid
@@ -64,37 +70,31 @@ namespace Skylight.Blocks
         }
 
         /// <summary>
-        ///     Gets or sets the direction.
+        /// Gets or sets the direction.
         /// </summary>
         /// <value>The direction.</value>
         public int Direction { get; set; }
 
         /// <summary>
-        ///     Gets the identifier.
+        /// Gets the identifier.
         /// </summary>
         /// <value>The identifier.</value>
         public int Id { get; internal set; }
 
         /// <summary>
-        ///     Gets the z coordinate (background or foreground)
+        /// Gets the z coordinate (background or foreground)
         /// </summary>
         /// <value>The z.</value>
         public int Z
         {
             get { return Id >= 500 ? 1 : 0; }
 
-            internal set
-            {
-                if (value == 0 || value == 1)
-                {
-                    _z = value;
-                }
-            }
+            internal set {if (value == 0 || value == 1) {_z = value;}}
         }
 
 
         /// <summary>
-        ///     Gets the placer (the Player who placed the block).
+        /// Gets the placer (the Player who placed the block).
         /// </summary>
         /// <value>The placer.</value>
         public Player Placer { get; internal set; }
