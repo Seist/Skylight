@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -53,56 +53,12 @@
     <Reference Include="PlayerIOClient">
       <HintPath>References\PlayerIOClient.dll</HintPath>
     </Reference>
-    <Reference Include="Rabbit, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\Rabbit.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Arguments\BlockEventArgs.cs" />
-    <Compile Include="Arguments\ChatEventArgs.cs" />
-    <Compile Include="Arguments\PlayerEventArgs.cs" />
-    <Compile Include="Arguments\RoomEventArgs.cs" />
-    <Compile Include="Skylight.Outgoing\Clear.cs" />
-    <Compile Include="Skylight.Outgoing\HoldDownArrow.cs" />
-    <Compile Include="Skylight.Outgoing\HoldLeftArrow.cs" />
-    <Compile Include="Skylight.Outgoing\HoldRightArrow.cs" />
-    <Compile Include="Skylight.Outgoing\HoldSpace.cs" />
-    <Compile Include="Skylight.Outgoing\HoldUpArrow.cs" />
-    <Compile Include="Skylight.Outgoing\InputCodeForRoom.cs" />
-    <Compile Include="Skylight.Outgoing\LoadLevelInWorld.cs" />
-    <Compile Include="Skylight.Outgoing\ReleaseArrowKey.cs" />
-    <Compile Include="Skylight.Outgoing\RespawnAllPlayers.cs" />
-    <Compile Include="Skylight.Outgoing\RespawnPlayer.cs" />
-    <Compile Include="Skylight.Outgoing\SaveTheWorld.cs" />
-    <Compile Include="Skylight.Outgoing\SayChatMessage.cs" />
-    <Compile Include="Skylight.Outgoing\SetAllPotionBansInWorld.cs" />
-    <Compile Include="Skylight.Outgoing\SetCodeForRoom.cs" />
-    <Compile Include="Skylight.Outgoing\SetTitleOfRoom.cs" />
-    <Compile Include="Skylight.Static\Blocks\BlockIds.cs" />
-    <Compile Include="Skylight.Static\Blocks\RoomPortalBlock.cs" />
-    <Compile Include="Skylight.Static\Auth\Bot.cs" />
-    <Compile Include="Skylight.Static\Blocks\CoinBlock.cs" />
-    <Compile Include="Skylight.Static\Blocks\PercussionBlock.cs" />
-    <Compile Include="Skylight.Static\Blocks\Block.cs" />
-    <Compile Include="Skylight.Incoming\Blocks\CoinObject.cs" />
-    <Compile Include="Skylight.Incoming\Messages\Chat\Autotext.cs" />
-    <Compile Include="Skylight.Incoming\Messages\Chat\Chat.cs" />
-    <Compile Include="Skylight.Incoming\Messages\Chat\ChatOld.cs" />
-    <Compile Include="Skylight.Incoming\Messages\System\Meta\GiveWizard2.cs" />
-    <Compile Include="Skylight.Incoming\Messages\System\Visibility\Hide.cs" />
-    <Compile Include="Skylight.Incoming\In.cs" />
-    <Compile Include="Skylight.Incoming\Messages\System\Info.cs" />
-    <Compile Include="Skylight.Static\PotionIds.cs" />
-    <Compile Include="Skylight.Static\SmileyIds.cs" />
-    <Compile Include="Skylight.Outgoing\Out.cs" />
-    <Compile Include="Physics\Config.cs" />
-    <Compile Include="Physics\ItemId.cs" />
-    <Compile Include="Skylight.Static\Blocks\PortalBlock.cs" />
     <Compile Include="Room\Events\Arguments\BlockEventArgs.cs" />
     <Compile Include="Room\Events\Arguments\ChatEventArgs.cs" />
     <Compile Include="Room\Events\Arguments\PlayerEventArgs.cs" />
@@ -181,8 +137,9 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="lib\" />
+    <Content Include="lib\Rabbit.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
