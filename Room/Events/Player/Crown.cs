@@ -31,7 +31,7 @@ namespace Skylight
             }
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, _in.Source);
+            var subject = Tools.GetPlayer(id, _in.Source);
 
             // Take the crown from the current holder (if one exists)
             var crownHolder = Tools.GetCrownHolder(_in.Source);

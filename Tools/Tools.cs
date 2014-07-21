@@ -72,7 +72,7 @@ namespace Skylight
         /// <param name="r">The room.</param>
         /// <param name="onlyReturnBots">if set to <c>true</c> [only return bots].</param>
         /// <returns>Player.</returns>
-        public static Player GetPlayerById(int id, Room r, bool onlyReturnBots = false)
+        public static Player GetPlayer(int id, Room r, bool onlyReturnBots = false)
         {
             foreach (var p in r.OnlinePlayers.Where(p => p.Id == id).Where(p => !onlyReturnBots || p.IsBot))
             {
@@ -90,7 +90,7 @@ namespace Skylight
         /// <param name="r">The room.</param>
         /// <param name="onlyReturnBots">if set to <c>true</c> [only return bots].</param>
         /// <returns>Player.</returns>
-        public static Player GetPlayerByName(string name, Room r, bool onlyReturnBots = false)
+        public static Player GetPlayer(string name, Room r, bool onlyReturnBots = false)
         {
             foreach (var p in r.OnlinePlayers.Where(p => p.Name == name).Where(p => !onlyReturnBots || p.IsBot))
             {

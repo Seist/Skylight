@@ -30,7 +30,7 @@ namespace Skylight
                     totalCoins = m.GetInteger(1);
 
                 // Update relevant objects.
-                var subject = Tools.GetPlayerById(id, _in.Source);
+                var subject = Tools.GetPlayer(id, _in.Source);
 
                 subject.Coins = totalCoins;
 

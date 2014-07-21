@@ -46,7 +46,7 @@ namespace Skylight
             bool hasGravityModifier = m.GetBoolean(10),
                 spaceDown = m.GetBoolean(11);
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, _in.Source);
+            var subject = Tools.GetPlayer(id, _in.Source);
 
             subject.IsHoldingSpace = false;
             if (spaceDown)

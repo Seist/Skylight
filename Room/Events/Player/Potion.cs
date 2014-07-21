@@ -29,7 +29,7 @@ namespace Skylight
             var isActive = m.GetBoolean(2);
 
             // Update relevant objects
-            var subject = Tools.GetPlayerById(id, _in.Source);
+            var subject = Tools.GetPlayer(id, _in.Source);
 
             if (isActive)
             {

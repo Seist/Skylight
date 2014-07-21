@@ -42,7 +42,7 @@ namespace Skylight
             };
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, _in.Source);
+            var subject = Tools.GetPlayer(id, _in.Source);
 
             _in.Source.ChatLog.Add(new KeyValuePair<string, Player>(autoTextConversions[message], subject));
 

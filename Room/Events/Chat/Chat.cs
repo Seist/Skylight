@@ -27,7 +27,7 @@ namespace Skylight
             var message = m.GetString(1);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, _in.Source);
+            var subject = Tools.GetPlayer(id, _in.Source);
 
             _in.Source.ChatLog.Add(new KeyValuePair<string, Player>(message, subject));
 

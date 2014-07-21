@@ -478,7 +478,7 @@ namespace Skylight
 
             // Update the room data.
             Source.Name = name;
-            Source.Owner = Tools.GetPlayerByName(owner, Source);
+            Source.Owner = Tools.GetPlayer(owner, Source);
             Source.Plays = plays;
             Source.Woots = woots;
             Source.TotalWoots = totalWoots;

@@ -27,7 +27,7 @@ namespace Skylight
             var id = m.GetInteger(0);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, _in.Source);
+            var subject = Tools.GetPlayer(id, _in.Source);
 
             subject.CollectedMagic++;
 
