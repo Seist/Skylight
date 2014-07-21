@@ -80,7 +80,7 @@ namespace Skylight
         /// <summary>
         ///     The room the bot is joined to.
         /// </summary>
-        public bool Joined { get; internal set; }
+        public bool Joined { internal get; set; }
 
         /// <summary>
         ///     If the physics clock should tick or not.
