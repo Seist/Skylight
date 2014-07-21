@@ -5,7 +5,7 @@ namespace Skylight
 {
     public class ClearMap
     {
-        private readonly In _in;
+        public readonly In _in;
 
         public ClearMap(In @in)
         {

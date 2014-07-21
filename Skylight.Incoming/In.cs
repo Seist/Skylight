@@ -655,6 +655,8 @@ namespace Skylight
             Source.RoomKey = worldKey;
             Source.Height = height;
             Source.Width = width;
+            RoomAccessor.Width = width;
+            RoomAccessor.Height = height;
             Source.PotionsAllowed = potions;
             Source.IsTutorialRoom = isTutorialRoom;
             Source.GravityMultiplier = gravityMultiplier;
@@ -744,7 +746,7 @@ namespace Skylight
 
             Source.BlocksLoaded = true;
 
-            Thread.Sleep(1000);
+
 
             _playerPhysicsThread = new Thread(UpdatePhysics);
             _playerPhysicsThread.Start();
