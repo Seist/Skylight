@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using PlayerIOClient;
 using System.Threading;
+using Skylight.Blocks;
 
 namespace Skylight
 {
@@ -132,18 +133,18 @@ namespace Skylight
                 switch (_accType)
                 {
                     case AccountType.Regular:
-                        if (_emailOrToken == Tools.GuestEmail && _passwordOrToken == Tools.GuestPassword)
+                        if (_emailOrToken == "guest" && _passwordOrToken == "guest")
                             Client = Tools.GuestClient.Value;
                         else
-                            Client = PlayerIO.QuickConnect.SimpleConnect(Tools.GameId, _emailOrToken, _passwordOrToken);
+                            Client = PlayerIO.QuickConnect.SimpleConnect(Config.PlayerioGameId, _emailOrToken, _passwordOrToken);
                         break;
 
                     case AccountType.Facebook:
-                        Client = PlayerIO.QuickConnect.FacebookOAuthConnect(Tools.GameId, _emailOrToken, null);
+                        Client = PlayerIO.QuickConnect.FacebookOAuthConnect(Config.PlayerioGameId, _emailOrToken, null);
                         break;
 
                     case AccountType.Kongregate:
-                        Client = PlayerIO.QuickConnect.KongregateConnect(Tools.GameId, _emailOrToken, _passwordOrToken);
+                        Client = PlayerIO.QuickConnect.KongregateConnect(Config.PlayerioGameId, _emailOrToken, _passwordOrToken);
                         break;
 
                     default: //case AccountType.ArmorGames:
@@ -157,7 +158,7 @@ namespace Skylight
                                     "Cannot log in using ArmorGames. The response from the auth server is wrong.");
                             else
                             {
-                                Client = PlayerIO.Connect(Tools.GameId, "secure",
+                                Client = PlayerIO.Connect(Config.PlayerioGameId, "secure",
                                     message.GetString(0), message.GetString(1),
                                     "armorgames");
                             }

@@ -5,6 +5,7 @@
 // ***********************************************************************
 
 using System.Text.RegularExpressions;
+using Skylight.Blocks;
 
 
 namespace Skylight

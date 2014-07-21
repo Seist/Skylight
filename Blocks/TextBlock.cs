@@ -4,6 +4,8 @@
 // <summary></summary>
 // ***********************************************************************
 
+using Skylight.Blocks;
+
 namespace Skylight
 {
     /// <summary>

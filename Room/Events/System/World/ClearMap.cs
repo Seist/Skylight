@@ -1,6 +1,8 @@
 
 
 
+using Skylight.Blocks;
+
 namespace Skylight
 {
     public class ClearMap
