@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using PlayerIOClient;
 using Skylight.Blocks;
 
-
 namespace Skylight
 {
     public class BlockChanged
@@ -54,10 +53,10 @@ namespace Skylight
             var b = new Block(blockId, x, y, z);
 
 
-            var subject = Tools.GetPlayerById(playerId, _in.Source);
+            Player subject = Tools.GetPlayerById(playerId, _in.Source);
 
             b.Placer = subject;
-            
+
 
             _in.Source.Map[x, y, z] = b;
 

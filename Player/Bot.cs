@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using PlayerIOClient;
 using System.Threading;
+using PlayerIOClient;
 using Skylight.Blocks;
 
 namespace Skylight
@@ -60,8 +60,8 @@ namespace Skylight
         public Bot(Room r,
             string emailOrToken,
             string passwordOrToken,
-            AccountType accType = AccountType.Regular) : base(r, 0, "", 0, 0.0, 0.0, false, 
-            false, true, 0, false, false, 0, false, false, false, false, false, false)
+            AccountType accType = AccountType.Regular) : base(r, 0, "", 0, 0.0, 0.0, false,
+                false, true, 0, false, false, 0, false, false, false, false, false, false)
         {
             _emailOrToken = emailOrToken;
             _passwordOrToken = passwordOrToken;
@@ -136,7 +136,8 @@ namespace Skylight
                         if (_emailOrToken == "guest" && _passwordOrToken == "guest")
                             Client = Tools.GuestClient.Value;
                         else
-                            Client = PlayerIO.QuickConnect.SimpleConnect(Config.PlayerioGameId, _emailOrToken, _passwordOrToken);
+                            Client = PlayerIO.QuickConnect.SimpleConnect(Config.PlayerioGameId, _emailOrToken,
+                                _passwordOrToken);
                         break;
 
                     case AccountType.Facebook:
@@ -144,11 +145,12 @@ namespace Skylight
                         break;
 
                     case AccountType.Kongregate:
-                        Client = PlayerIO.QuickConnect.KongregateConnect(Config.PlayerioGameId, _emailOrToken, _passwordOrToken);
+                        Client = PlayerIO.QuickConnect.KongregateConnect(Config.PlayerioGameId, _emailOrToken,
+                            _passwordOrToken);
                         break;
 
                     default: //case AccountType.ArmorGames:
-                        var c = Tools.GuestClient.Value.Multiplayer.JoinRoom("", null);
+                        Connection c = Tools.GuestClient.Value.Multiplayer.JoinRoom("", null);
                         c.OnMessage += (sender, message) =>
                         {
                             if (message.Type != "auth") return;
@@ -284,7 +286,13 @@ namespace Skylight
             Joined = false;
         }
 
+        private void Refresh()
+        {
+            _storedVersion = Convert.ToString(Client.BigDB.Load("config", "config")["version"]);
+        }
+
         #region In-game functions
+
         /// <summary>
         ///     Builds the specified block.
         /// </summary>
@@ -371,7 +379,7 @@ namespace Skylight
             var tempList = new List<Block>();
             tempList.AddRange(blockList);
 
-            foreach (var b in tempList)
+            foreach (Block b in tempList)
             {
                 Build(b); // this line has problems but I fixed it in a weird way.
             }
@@ -398,7 +406,10 @@ namespace Skylight
         /// <param name="editKey">The edit key.</param>
         public void InputCode(string editKey)
         {
-            if (String.IsNullOrWhiteSpace(editKey)) { throw new ArgumentException("editKey cannot be empty or null."); }
+            if (String.IsNullOrWhiteSpace(editKey))
+            {
+                throw new ArgumentException("editKey cannot be empty or null.");
+            }
 
             try
             {
@@ -509,23 +520,25 @@ namespace Skylight
         /// <param name="left">True if the left/'A' key should be pressed, False if not. If this is true, "right" must be false.</param>
         /// <param name="right">True if the right/'D' key should be pressed, False if not. If this is true, "left" must be false.</param>
         /// <param name="jump">True if the jump key/spacebar should be pressed, False" if not.</param>
-        void Move(bool up, bool down, bool left, bool right, bool jump)
+        private void Move(bool up, bool down, bool left, bool right, bool jump)
         {
             if (left && right)
                 throw new Exception("Out.Move() does not allow you to move left and right at the same time.");
-            else if (up && down)
+            if (up && down)
                 throw new Exception("Out.Move() does not allow you to move up and down at the same time.");
 
-            var reset = new object[11] { X, Y, 0, 0, 0, 0, 0, 0, 0, false, false };
+            var reset = new object[11] {X, Y, 0, 0, 0, 0, 0, 0, 0, false, false};
 
-            var args = new object[11] {
-            X, Y, 0,
-            jump ? -52 : 0,
-            left ? -1 : right ? 1 : 0,
-            up ? -1 : down ? 2 : 0,
-            left ? -1 : right ? 1 : 0,
-            up ? -1 : down ? 1 : 0,
-            0, false, false };
+            var args = new object[11]
+            {
+                X, Y, 0,
+                jump ? -52 : 0,
+                left ? -1 : right ? 1 : 0,
+                up ? -1 : down ? 2 : 0,
+                left ? -1 : right ? 1 : 0,
+                up ? -1 : down ? 1 : 0,
+                0, false, false
+            };
 
             Connection.Send("m", reset);
             Connection.Send("m", args);
@@ -896,17 +909,13 @@ namespace Skylight
         {
             if (Name == R.Owner.Name)
             {
-                foreach (var p in R.OnlinePlayers)
+                foreach (Player p in R.OnlinePlayers)
                 {
                     Teleport(newXLocation, newYLocation, p);
                 }
             }
         }
-        #endregion
 
-        private void Refresh()
-        {
-            _storedVersion = Convert.ToString(Client.BigDB.Load("config", "config")["version"]);
-        }
+        #endregion
     }
 }

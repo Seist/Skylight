@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using PlayerIOClient;
 
-
 namespace Skylight
 {
     public class ChatOld
@@ -23,7 +22,7 @@ namespace Skylight
         public void OnSayOld(Message m)
         {
             // Extract data.
-            var message = m.GetString(1);
+            string message = m.GetString(1);
 
             // Update relevant objects.
             // Player subject = new Player() { Name = name };

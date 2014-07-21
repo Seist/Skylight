@@ -1,7 +1,5 @@
 using PlayerIOClient;
 
-
-
 namespace Skylight
 {
     public class Teleport
@@ -30,7 +28,7 @@ namespace Skylight
                 y = m.GetInteger(2);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, _in.Source);
+            Player subject = Tools.GetPlayerById(id, _in.Source);
 
             subject.X = x;
             subject.Y = y;

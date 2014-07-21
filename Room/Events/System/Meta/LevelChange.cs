@@ -1,7 +1,5 @@
 using PlayerIOClient;
 
-
-
 namespace Skylight
 {
     public class LevelChange
@@ -29,7 +27,7 @@ namespace Skylight
                 level = m.GetInteger(1);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, _in.Source);
+            Player subject = Tools.GetPlayerById(id, _in.Source);
             subject.XpLevel = level;
 
             // Fire the event.

@@ -8,24 +8,20 @@ using System.Text.RegularExpressions;
 using PlayerIOClient;
 using Skylight.Blocks;
 
-
 namespace Skylight
 {
     /// <summary>
     ///     Tools that are available to the core of the program (converting a player id or name into
     ///     a player object) and internal methods are mostly stored here.
     /// </summary>
-
     public static class RoomAccessor
     {
         public static int Width { get; set; }
         public static int Height { get; set; }
-    
-}
+    }
+
     public static class Tools
     {
-
-        
         /// <summary>
         ///     Delegate ProgramEvent
         /// </summary>
@@ -60,7 +56,7 @@ namespace Skylight
         /// <returns>The Player who holds the crown (if there is one).</returns>
         public static Player GetCrownHolder(Room r)
         {
-            foreach (var p in r.OnlinePlayers.Where(p => p.HasCrown))
+            foreach (Player p in r.OnlinePlayers.Where(p => p.HasCrown))
             {
                 return p;
             }
@@ -78,7 +74,7 @@ namespace Skylight
         /// <returns>Player.</returns>
         public static Player GetPlayerById(int id, Room r, bool onlyReturnBots = false)
         {
-            foreach (var p in r.OnlinePlayers.Where(p => p.Id == id).Where(p => !onlyReturnBots || p.IsBot))
+            foreach (Player p in r.OnlinePlayers.Where(p => p.Id == id).Where(p => !onlyReturnBots || p.IsBot))
             {
                 return p;
             }
@@ -96,7 +92,7 @@ namespace Skylight
         /// <returns>Player.</returns>
         public static Player GetPlayerByName(string name, Room r, bool onlyReturnBots = false)
         {
-            foreach (var p in r.OnlinePlayers.Where(p => p.Name == name).Where(p => !onlyReturnBots || p.IsBot))
+            foreach (Player p in r.OnlinePlayers.Where(p => p.Name == name).Where(p => !onlyReturnBots || p.IsBot))
             {
                 return p;
             }
@@ -112,7 +108,7 @@ namespace Skylight
         /// <returns>Room.</returns>
         public static Room GetRoom(string name)
         {
-            foreach (var r in Room.JoinedRooms.Where(r => r.Name == name))
+            foreach (Room r in Room.JoinedRooms.Where(r => r.Name == name))
             {
                 return r;
             }
@@ -138,9 +134,9 @@ namespace Skylight
         /// <returns>Derotted world key</returns>
         internal static string Derot(string worldKey)
         {
-            var array = worldKey.ToCharArray();
+            char[] array = worldKey.ToCharArray();
 
-            for (var i = 0; i < array.Length; i++)
+            for (int i = 0; i < array.Length; i++)
             {
                 int number = array[i];
 
@@ -184,7 +180,7 @@ namespace Skylight
             // Supports haphazard copy/pasting.
             if (Regex.IsMatch(id, "[htp:/w.evrybodis.comga]{0,36}[a-zA-Z0-9_-]{13}"))
             {
-                var parsedUrl = id.Substring(id.ToCharArray().Length - 13, 13);
+                string parsedUrl = id.Substring(id.ToCharArray().Length - 13, 13);
                 return parsedUrl;
             }
 
@@ -212,11 +208,11 @@ namespace Skylight
 
                 // First, fill the entire map with blank blocks (so that you don't get null exceptions).
 
-                for (var x = 0; x <= RoomAccessor.Width; x++)
+                for (int x = 0; x <= RoomAccessor.Width; x++)
                 {
-                    for (var y = 0; y <= RoomAccessor.Height; y++)
+                    for (int y = 0; y <= RoomAccessor.Height; y++)
                     {
-                        for (var z = 0; z < 2; z++)
+                        for (int z = 0; z < 2; z++)
                         {
                             r.Map[x, y, z] = new Block(0, x, y, z);
                         }
@@ -224,7 +220,7 @@ namespace Skylight
                 }
 
                 // And now replace empty blocks with the ones that already exist.
-                var messageIndex = start;
+                uint messageIndex = start;
 
                 // Iterate through each internal set of messages.
                 while (messageIndex < m.Count)
@@ -236,24 +232,24 @@ namespace Skylight
                     }
 
                     // The ID is first.
-                    var blockId = m.GetInteger(messageIndex);
+                    int blockId = m.GetInteger(messageIndex);
                     messageIndex++;
 
                     // Then the z.
-                    var z = m.GetInteger(messageIndex);
+                    int z = m.GetInteger(messageIndex);
                     messageIndex++;
 
                     // Then the list of all X coordinates of given block
-                    var xa = m.GetByteArray(messageIndex);
+                    byte[] xa = m.GetByteArray(messageIndex);
                     messageIndex++;
 
                     // Then the list of all Y coordinates of given block
-                    var ya = m.GetByteArray(messageIndex);
+                    byte[] ya = m.GetByteArray(messageIndex);
                     messageIndex++;
 
                     int rotation = 0, note = 0, type = 0, portalId = 0, destination = 0, coins = 0;
                     bool isVisible = false, isGate = false;
-                    var roomDestination = "";
+                    string roomDestination = "";
 
                     // Get the variables that are unique to the current block
                     switch (blockId)
@@ -301,11 +297,11 @@ namespace Skylight
 
                     // Some variables to simplify things.
 
-                    for (var pos = 0; pos < ya.Length; pos += 2)
+                    for (int pos = 0; pos < ya.Length; pos += 2)
                     {
                         // Extract the X and Y positions from the array.
-                        var x = (xa[pos]*256) + xa[pos + 1];
-                        var y = (ya[pos]*256) + ya[pos + 1];
+                        int x = (xa[pos]*256) + xa[pos + 1];
+                        int y = (ya[pos]*256) + ya[pos + 1];
 
                         // Ascertain the block from the ID.
                         // Add block accordingly.

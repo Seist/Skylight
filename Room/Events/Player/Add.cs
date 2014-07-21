@@ -1,6 +1,5 @@
 using PlayerIOClient;
 
-
 namespace Skylight
 {
     public class Add
@@ -17,7 +16,7 @@ namespace Skylight
         public void OnAdd(Message m)
         {
             // Extract data.
-            var name = m.GetString(1);
+            string name = m.GetString(1);
 
             int id = m.GetInteger(0),
                 smiley = m.GetInteger(2),

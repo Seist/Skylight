@@ -1,6 +1,5 @@
 using PlayerIOClient;
 
-
 namespace Skylight
 {
     public class Meta

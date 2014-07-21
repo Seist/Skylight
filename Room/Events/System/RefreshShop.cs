@@ -1,5 +1,3 @@
-
-
 namespace Skylight
 {
     public class RefreshShop

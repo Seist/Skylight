@@ -1,7 +1,5 @@
 using PlayerIOClient;
 
-
-
 namespace Skylight
 {
     public class SignBlock
@@ -19,9 +17,9 @@ namespace Skylight
         public virtual void OnSignBlockEvent(Message m)
         {
             // Extract data
-            var x = m.GetInteger(0);
-            var y = m.GetInteger(1);
-            var theText = m.GetString(3);
+            int x = m.GetInteger(0);
+            int y = m.GetInteger(1);
+            string theText = m.GetString(3);
 
             // Fire the event.
             var b = new TextBlock(385, x, y, theText);

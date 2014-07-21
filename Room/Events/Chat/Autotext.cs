@@ -1,8 +1,5 @@
-using System;
 using System.Collections.Generic;
 using PlayerIOClient;
-
-
 
 namespace Skylight
 {
@@ -26,11 +23,11 @@ namespace Skylight
         public void OnAutotext(Message m)
         {
             // Extract data.
-            var id = m.GetInteger(0);
+            int id = m.GetInteger(0);
 
-            var message = m.GetInteger(1);
+            int message = m.GetInteger(1);
 
-            var autoTextConversions = new Dictionary<int,string>
+            var autoTextConversions = new Dictionary<int, string>
             {
                 {0, "Left."},
                 {1, "Hi."},
@@ -45,7 +42,7 @@ namespace Skylight
             };
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, _in.Source);
+            Player subject = Tools.GetPlayerById(id, _in.Source);
 
             _in.Source.ChatLog.Add(new KeyValuePair<string, Player>(autoTextConversions[message], subject));
 

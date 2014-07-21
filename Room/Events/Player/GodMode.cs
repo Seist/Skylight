@@ -1,7 +1,5 @@
 using PlayerIOClient;
 
-
-
 namespace Skylight
 {
     public class GodMode
@@ -25,12 +23,12 @@ namespace Skylight
         public void OnGod(Message m)
         {
             // Extract data.
-            var isGod = m.GetBoolean(1);
+            bool isGod = m.GetBoolean(1);
 
-            var id = m.GetInteger(0);
+            int id = m.GetInteger(0);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayerById(id, _in.Source);
+            Player subject = Tools.GetPlayerById(id, _in.Source);
 
             subject.IsGod = isGod;
 

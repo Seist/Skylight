@@ -1,7 +1,6 @@
 using PlayerIOClient;
 using Skylight.Blocks;
 
-
 namespace Skylight
 {
     public class Wp
@@ -28,7 +27,7 @@ namespace Skylight
             // possible bug if the id of the block isn't definied then it could
             // mean that the portal is disabled, in which it would go under a seperate
             // category. The destination (below) may not exist.
-            var destination = m.GetString(3);
+            string destination = m.GetString(3);
 
             // Update relevant objects.
             Block b = new RoomPortalBlock(x, y, destination);

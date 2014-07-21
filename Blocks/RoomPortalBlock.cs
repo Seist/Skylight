@@ -7,7 +7,6 @@
 using System.Text.RegularExpressions;
 using Skylight.Blocks;
 
-
 namespace Skylight
 {
     /// <summary>
@@ -44,7 +43,7 @@ namespace Skylight
 
             internal set
             {
-                var s = value;
+                string s = value;
                 Tools.ParseUrl(s);
                 if (Regex.IsMatch(s, "[A-Za-z0-9-_]{13}"))
                 {
