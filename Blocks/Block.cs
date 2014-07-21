@@ -1,14 +1,16 @@
-﻿// <copyright file="Block.cs" company="">
+// <copyright file="Block.cs" company="">
 //     Copyright (c) . All rights reserved.
 // </copyright>
 // <summary></summary>
 
-namespace Skylight
+using Skylight.Physics;
+
+namespace Skylight.Blocks
 {
     /// <summary>
     ///     Class Block.
     /// </summary>
-    public class Block
+    public class Block : ItemId
     {
         /// <summary>
         ///     The directions of the block.
@@ -77,19 +79,9 @@ namespace Skylight
         /// <value>The z.</value>
         public int Z
         {
-            get
-            {
-                if (Id == 0)
-                {
-                    return _z;
-                }
 
 
-                if (Id >= 500)
-                {
-                    return 1;
-                }
-                return 0;
+                return Id >= 500 ? 1 : 0;
             }
 
             internal set

@@ -1,4 +1,4 @@
-﻿// <author>TakoMan02</author>
+// <author>TakoMan02</author>
 // <summary>Tools.cs is the tools that belong to no specific class or are not related to EE.</summary>
 
 using System;
@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using PlayerIOClient;
+using Skylight.Physics;
 
 
 namespace Skylight
@@ -32,43 +33,10 @@ namespace Skylight
         public delegate void ProgramEvent(string message);
 
         /// <summary>
-        ///     The game identifier
-        /// </summary>
-        internal const string GameId = "everybody-edits-su9rn58o40itdbnw69plyw";
-
-        /// <summary>
-        ///     The guest email
-        /// </summary>
-        internal const string GuestEmail = "guest";
-
-        /// <summary>
-        ///     The guest password
-        /// </summary>
-        internal const string GuestPassword = "guest";
-
-        // Compiler seems to choke on this line, saying that Lazy isn't supported in library.
-
-        /// <summary>
-        ///     The normal room name
-        /// </summary>
-        public const string NormalRoom = "Everybodyedits";
-
-        /// <summary>
-        ///     The authentication room (temp)
-        /// </summary>
-        public const string AuthRoom = "Auth";
-
-        /// <summary>
-        ///     The random seed used in all random based generations.
-        /// </summary>
-        public static readonly Random
-            Ran = new Random();
-
-        /// <summary>
         ///     The guest client
         /// </summary>
-        internal static readonly System.Lazy<Client> GuestClient =
-            new System.Lazy<Client>(() => PlayerIO.QuickConnect.SimpleConnect(GameId, GuestEmail, GuestPassword));
+        internal static readonly Lazy<Client> GuestClient =
+            new Lazy<Client>(() => PlayerIO.QuickConnect.SimpleConnect(Config.PlayerioGameId, "guest", "guest"));
 
         /// <summary>
         ///     Occurs when a program message is sent.
@@ -92,12 +60,9 @@ namespace Skylight
         /// <returns>The Player who holds the crown (if there is one).</returns>
         public static Player GetCrownHolder(Room r)
         {
-            foreach (var p in r.OnlinePlayers)
+            foreach (var p in r.OnlinePlayers.Where(p => p.HasCrown))
             {
-                if (p.HasCrown)
-                {
-                    return p;
-                }
+                return p;
             }
 
             SkylightMessage("Could not find crown holder.");
@@ -113,14 +78,9 @@ namespace Skylight
         /// <returns>Player.</returns>
         public static Player GetPlayerById(int id, Room r, bool onlyReturnBots = false)
         {
-            foreach (var p in r.OnlinePlayers)
+            foreach (var p in r.OnlinePlayers.Where(p => p.Id == id).Where(p => !onlyReturnBots || p.IsBot))
             {
-                if (p.Id != id) continue;
-                // If value is false, return the first match.
-                if (!onlyReturnBots || p.IsBot)
-                {
-                    return p;
-                }
+                return p;
             }
 
             SkylightMessage("Could not find player " + id + " in " + r.Name);
@@ -136,14 +96,9 @@ namespace Skylight
         /// <returns>Player.</returns>
         public static Player GetPlayerByName(string name, Room r, bool onlyReturnBots = false)
         {
-            foreach (var p in r.OnlinePlayers)
+            foreach (var p in r.OnlinePlayers.Where(p => p.Name == name).Where(p => !onlyReturnBots || p.IsBot))
             {
-                if (p.Name != name) continue;
-                // If value is false, return the first match.
-                if (!onlyReturnBots || p.IsBot)
-                {
-                    return p;
-                }
+                return p;
             }
 
             SkylightMessage("Could not find player " + name + " in " + r.Name);
@@ -157,35 +112,15 @@ namespace Skylight
         /// <returns>Room.</returns>
         public static Room GetRoom(string name)
         {
-            foreach (var r in Room.JoinedRooms)
+            foreach (var r in Room.JoinedRooms.Where(r => r.Name == name))
             {
-                if (r.Name == name)
-                {
-                    return r;
-                }
+                return r;
             }
 
             SkylightMessage("Could not find room \"" + name + "\"");
             return null;
         }
 
-        /// <summary>
-        ///     Shuffles the specified list.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="list">The list.</param>
-        public static void Shuffle<T>(this IList<T> list)
-        {
-            var n = list.Count;
-            while (n > 1)
-            {
-                n--;
-                var k = Ran.Next(n + 1);
-                var value = list[k];
-                list[k] = list[n];
-                list[n] = value;
-            }
-        }
 
         /// <summary>
         ///     Main logging method.
@@ -321,57 +256,46 @@ namespace Skylight
                     var roomDestination = "";
 
                     // Get the variables that are unique to the current block
-                    if (blockId == BlockIds.Action.Portals.Normal ||
-                        blockId == BlockIds.Action.Portals.Invisible)
+                    switch (blockId)
                     {
-                        rotation = m.GetInteger(messageIndex);
-                        messageIndex++;
-
-                        portalId = m.GetInteger(messageIndex);
-                        messageIndex++;
-
-                        destination = m.GetInteger(messageIndex);
-                        messageIndex++;
-
-                        isVisible = true;
-                        if (blockId == BlockIds.Action.Portals.Invisible)
-                        {
-                            isVisible = false;
-                        }
-                    }
-                    else if (blockId == BlockIds.Action.Portals.World)
-                    {
-                        roomDestination = m.GetString(messageIndex);
-                        messageIndex++;
-                    }
-                    else if (blockId == BlockIds.Action.Doors.Coin ||
-                             blockId == BlockIds.Action.Gates.Coin)
-                    {
-                        coins = m.GetInteger(messageIndex);
-                        messageIndex++;
-
-                        isGate = blockId == BlockIds.Action.Gates.Coin;
-                    }
-                    else if (blockId == BlockIds.Action.Music.Percussion)
-                    {
-                        type = m.GetInteger(messageIndex);
-                        messageIndex++;
-                    }
-                    else if (blockId == BlockIds.Action.Music.Piano)
-                    {
-                        note = m.GetInteger(messageIndex);
-                        messageIndex++;
-                    }
-                    else if (blockId == BlockIds.Decorative.SciFi2013.Bluebend ||
-                             blockId == BlockIds.Decorative.SciFi2013.Bluestraight ||
-                             blockId == BlockIds.Decorative.SciFi2013.Greenbend ||
-                             blockId == BlockIds.Decorative.SciFi2013.Greenstraight ||
-                             blockId == BlockIds.Decorative.SciFi2013.Orangebend ||
-                             blockId == BlockIds.Decorative.SciFi2013.Orangestraight ||
-                             blockId == BlockIds.Action.Hazards.Spike)
-                    {
-                        rotation = m.GetInteger(messageIndex);
-                        messageIndex++;
+                        case BlockIds.Action.Portals.Invisible:
+                        case BlockIds.Action.Portals.Normal:
+                            rotation = m.GetInteger(messageIndex);
+                            messageIndex++;
+                            portalId = m.GetInteger(messageIndex);
+                            messageIndex++;
+                            destination = m.GetInteger(messageIndex);
+                            messageIndex++;
+                            isVisible = (blockId != BlockIds.Action.Portals.Invisible);
+                            break;
+                        case BlockIds.Action.Portals.World:
+                            roomDestination = m.GetString(messageIndex);
+                            messageIndex++;
+                            break;
+                        case BlockIds.Action.Gates.Coin:
+                        case BlockIds.Action.Doors.Coin:
+                            coins = m.GetInteger(messageIndex);
+                            messageIndex++;
+                            isGate = blockId == BlockIds.Action.Gates.Coin;
+                            break;
+                        case BlockIds.Action.Music.Percussion:
+                            type = m.GetInteger(messageIndex);
+                            messageIndex++;
+                            break;
+                        case BlockIds.Action.Music.Piano:
+                            note = m.GetInteger(messageIndex);
+                            messageIndex++;
+                            break;
+                        case BlockIds.Action.Hazards.Spike:
+                        case BlockIds.Decorative.SciFi2013.Orangestraight:
+                        case BlockIds.Decorative.SciFi2013.Orangebend:
+                        case BlockIds.Decorative.SciFi2013.Greenstraight:
+                        case BlockIds.Decorative.SciFi2013.Greenbend:
+                        case BlockIds.Decorative.SciFi2013.Bluestraight:
+                        case BlockIds.Decorative.SciFi2013.Bluebend:
+                            rotation = m.GetInteger(messageIndex);
+                            messageIndex++;
+                            break;
                     }
 
 
@@ -385,69 +309,52 @@ namespace Skylight
 
                         // Ascertain the block from the ID.
                         // Add block accordingly.
-                        if (blockId == BlockIds.Action.Portals.Normal ||
-                            blockId == BlockIds.Action.Portals.Invisible)
+                        switch (blockId)
                         {
-                            list.Add(new PortalBlock(
-                                x,
-                                y,
-                                rotation,
-                                portalId,
-                                destination,
-                                isVisible));
-                        }
-                        else if (blockId == BlockIds.Action.Portals.World)
-                        {
-                            list.Add(new RoomPortalBlock(
-                                x,
-                                y,
-                                roomDestination));
-                        }
-                        else if (blockId == BlockIds.Action.Doors.Coin ||
-                                 blockId == BlockIds.Action.Gates.Coin)
-                        {
-                            list.Add(new CoinBlock(
-                                x,
-                                y,
-                                coins,
-                                isGate));
-                        }
-                        else if (blockId == BlockIds.Action.Music.Percussion)
-                        {
-                            list.Add(new PercussionBlock(
-                                x,
-                                y,
-                                type));
-                        }
-                        else if (blockId == BlockIds.Action.Music.Piano)
-                        {
-                            list.Add(new PianoBlock(
-                                x,
-                                y,
-                                note));
-                        }
-                        else if (blockId == BlockIds.Decorative.SciFi2013.Bluebend ||
-                                 blockId == BlockIds.Decorative.SciFi2013.Bluestraight ||
-                                 blockId == BlockIds.Decorative.SciFi2013.Greenbend ||
-                                 blockId == BlockIds.Decorative.SciFi2013.Greenstraight ||
-                                 blockId == BlockIds.Decorative.SciFi2013.Orangebend ||
-                                 blockId == BlockIds.Decorative.SciFi2013.Orangestraight ||
-                                 blockId == BlockIds.Action.Hazards.Spike)
-                        {
-                            list.Add(new Block(
-                                blockId,
-                                x,
-                                y,
-                                0,
-                                rotation));
-                        }
-                        else
-                        {
-                            list.Add(new Block(
-                                blockId,
-                                x,
-                                y,
-                                z));
+                            case BlockIds.Action.Portals.Invisible:
+                            case BlockIds.Action.Portals.Normal:
+                                list.Add(new PortalBlock(
+                                    x,
+                                    y,
+                                    rotation,
+                                    portalId,
+                                    destination,
+                                    isVisible));
+                                break;
+                            case BlockIds.Action.Portals.World:
+                                list.Add(new RoomPortalBlock(
+                                    x,
+                                    y,
+                                    roomDestination));
+                                break;
+                            case BlockIds.Action.Gates.Coin:
+                            case BlockIds.Action.Doors.Coin:
+                                list.Add(new CoinBlock(
+                                    x,
+                                    y,
+                                    coins,
+                                    isGate));
+                                break;
+                            case BlockIds.Action.Music.Percussion:
+                                list.Add(new PercussionBlock(
+                                    x,
+                                    y,
+                                    type));
+                                break;
+                            case BlockIds.Action.Music.Piano:
+                                list.Add(new PianoBlock(
+                                    x,
+                                    y,
+                                    note));
+                                break;
+                            default:
+                                list.Add(new Block(
+                                    blockId,
+                                    x,
+                                    y,
+                                    z,
+                                    rotation));
+                                break;
                         }
                     }
                 }
@@ -469,11 +376,7 @@ namespace Skylight
         /// <returns>System.Int32.</returns>
         internal static int PortalIdByVisible(bool visible)
         {
-            if (visible)
-            {
-                return BlockIds.Action.Portals.Normal;
-            }
-            return BlockIds.Action.Portals.Invisible;
+            return visible ? BlockIds.Action.Portals.Normal : BlockIds.Action.Portals.Invisible;
         }
 
         // Return the correct coin ID based based on whether or not the block is gate or door
@@ -484,11 +387,7 @@ namespace Skylight
         /// <returns>System.Int32.</returns>
         internal static int CoinIdByGate(bool isGate)
         {
-            if (isGate)
-            {
-                return BlockIds.Action.Gates.Coin;
-            }
-            return BlockIds.Action.Doors.Coin;
+            return isGate ? BlockIds.Action.Gates.Coin : BlockIds.Action.Doors.Coin;
         }
     }
 }

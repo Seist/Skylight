@@ -27,12 +27,12 @@ namespace Skylight
                 y = m.GetInteger(1),
                 id = m.GetInteger(2),
                 rotation = m.GetInteger(3),
-                z = m.GetInteger(4);
+                p_id = m.GetInteger(4); // player id
 
             // Update relevant objects.
             var b = new Block(id, x, y, 0, rotation);
 
-            _in.Source.Map[x, y, z] = b;
+            _in.Source.Map[x, y, 0] = b;
 
             // Fire the event.
             var e = new BlockEventArgs(b, _in.Source);

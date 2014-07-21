@@ -10,7 +10,7 @@ namespace Skylight
     /// <summary>
     ///     Class item id.
     /// </summary>
-    public class ItemId : object
+    public class ItemId
     {
         // end function
 
@@ -19,9 +19,9 @@ namespace Skylight
         /// </summary>
         /// <param name="param1">The param1.</param>
         /// <returns><c>true</c> if the specified block is solid; otherwise, <c>false</c>.</returns>
-        public static bool IsSolid(int param1)
+        public static bool IsSolid(int blockId)
         {
-            return param1 >= 9 && param1 <= 97 || param1 >= 122 && param1 <= 217;
+            return blockId >= 9 && blockId <= 97 || blockId >= 122 && blockId <= 217;
         } // end function
 
         /// <summary>
@@ -29,9 +29,9 @@ namespace Skylight
         /// </summary>
         /// <param name="param1">The block.</param>
         /// <returns><c>true</c> if the specified block is climbable; otherwise, <c>false</c>.</returns>
-        public static bool IsClimbable(int param1)
+        public static bool IsClimbable(int blockId)
         {
-            switch (param1)
+            switch (blockId)
             {
                 case BlockIds.Action.Ladders.Ladder:
                 case BlockIds.Action.Ladders.Chain:
@@ -48,24 +48,15 @@ namespace Skylight
             return false;
         } // end function
 
-        /// <summary>
-        ///     Determines whether [is background rotateable] [the specified block].
-        /// </summary>
-        /// <param name="param1">The param1.</param>
-        /// <returns><c>true</c> if [is background rotateable] [the specified block]; otherwise, <c>false</c>.</returns>
-        public static bool IsBackgroundRotateable(int param1)
-        {
-            return false;
-        } // end function
 
         /// <summary>
         ///     Determines whether [is decoration rotateable] [the specified block].
         /// </summary>
         /// <param name="param1">The param1.</param>
         /// <returns><c>true</c> if [is decoration rotateable] [the specified block]; otherwise, <c>false</c>.</returns>
-        public static bool IsDecorationRotateable(int param1)
+        public static bool IsBlockRotateable(int blockId)
         {
-            switch (param1)
+            switch (blockId)
             {
                 case BlockIds.Decorative.SciFi2013.Bluestraight:
                 case BlockIds.Decorative.SciFi2013.Bluebend:

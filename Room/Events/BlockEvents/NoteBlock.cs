@@ -1,7 +1,8 @@
 using System;
 using PlayerIOClient;
-
-
+using Skylight.Arguments;
+using Skylight.Blocks;
+using Skylight.Miscellaneous;
 
 namespace Skylight
 {
@@ -39,6 +40,11 @@ namespace Skylight
             else if (id == BlockIds.Action.Music.Piano)
             {
                 b = new PianoBlock(x, y, note);
+            }
+            else
+            {
+                Tools.SkylightMessage("Error: noteblock does not exist");
+                return;
             }
 
             if (b != null)

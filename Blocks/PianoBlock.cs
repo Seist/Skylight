@@ -43,11 +43,6 @@ namespace Skylight
             C3 = 25;
 
         /// <summary>
-        ///     The piano block identifier
-        /// </summary>
-        private int _pianoId = -1;
-
-        /// <summary>
         ///     Initializes a new instance of the <see cref="PianoBlock" /> class.
         /// </summary>
         /// <param name="x">The x coordinate.</param>
@@ -65,11 +60,6 @@ namespace Skylight
         ///     Gets the piano identifier.
         /// </summary>
         /// <value>The piano identifier.</value>
-        public int PianoId
-        {
-            get { return _pianoId; }
-
-            internal set { _pianoId = value; }
-        }
+        public int PianoId { get; internal set; }
     }
 }

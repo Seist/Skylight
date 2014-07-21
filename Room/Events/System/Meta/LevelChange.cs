@@ -26,7 +26,7 @@ namespace Skylight
         {
             // Extract data.
             int id = m.GetInteger(0),
-                level = m.GetInteger(1); // never used.
+                level = m.GetInteger(1);
 
             // Update relevant objects.
             var subject = Tools.GetPlayerById(id, _in.Source);

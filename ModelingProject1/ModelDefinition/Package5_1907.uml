@@ -1,0 +1,2460 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="d77b4c9f-bf9c-4757-b045-c467a6635630"
+  name="Arguments"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="e3de5570-fbfc-4e7e-9158-0b9e35c3d08e"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DSkylight.Arguments"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="5f4c61e5-3df8-4959-a1ec-445d32337857"
+        name="BlockEventArgs"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="384159e1-513b-41f9-b3c3-667938038a2c"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight.Arguments Type%3DBlockEventArgs"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="7cebd514-89b7-4503-afd6-7b58b3d762f5"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="bdd8d058-0f60-47fe-9fb1-c8f91effd39a">
+                <propertyInstance
+                  Id="c1db6cd4-e7ea-443f-b8fa-22ca53dbee5d"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="1c506cea-6d61-45df-90cb-f187bd649f11">
+                <propertyInstance
+                  Id="58b7128a-4790-468c-9df2-d8efc244f8f9"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7b60c4fc-03ab-4709-982d-944cefdd307d">
+                <propertyInstance
+                  Id="3d304ef2-5cfe-41ea-960b-9dc95300b964"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="3313e75e-6181-4970-92fc-1ba1622a3446">
+                <propertyInstance
+                  Id="cf3dec42-13ad-4841-b907-ce2f0bce379a"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="150f26d1-eb33-463f-8ec3-c7fa06c8d1cd">
+                <propertyInstance
+                  Id="c74891b3-d9a4-4f9f-8eec-f919488ba00a"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <generalsInternal>
+          <generalization
+            Id="f34b644a-df08-490e-bc5b-38186b1adae6"
+            isSubstitutable="false">
+            <classMoniker
+              Id="c370126c-238b-4d81-b69c-33a0f7ba4bdf"
+              LastKnownName="EventArgs"
+              LastKnownLocation="Package2_1907.uml" />
+          </generalization>
+        </generalsInternal>
+        <targetEnds>
+          <association
+            Id="73439224-d3bb-46cf-a20b-4acbae607392"
+            isDerived="false"
+            sourceEndRoleName="BlockEventArgs"
+            targetEndRoleName="Origin"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="5bbc59e5-a813-4709-9d46-97005ecbb9f8"
+              LastKnownName="Room"
+              LastKnownLocation="Package_1907.uml" />
+            <description>Property Origin references type Room.</description>
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="64239896-5c87-46ac-9b1d-5c4776439fe6"
+                  name="BlockEventArgs"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="f067233c-2155-455f-bd8e-28a7223379f0"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="492dc088-7717-4e37-ab40-78e3fab17473"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="b53c139c-5fb1-444f-8ee8-cbeceab893fa"
+                  name="Origin"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="bebacd80-61dd-4820-939c-b8224d16cb4b"
+                      name="Lower"
+                      value="1" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="60aa496c-06ba-42ae-a485-44b4f7c0f722"
+                      name="Upper"
+                      value="1" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="58f1e38c-7828-42b4-bbde-dc7124d34be7"
+            isDerived="false"
+            sourceEndRoleName="BlockEventArgs"
+            targetEndRoleName="Placed"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="fa5f484d-8421-4da3-bb26-ad534e17dc83"
+              LastKnownName="Block"
+              LastKnownLocation="Package9_1907.uml" />
+            <description>Property Placed references type Block.</description>
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="85183284-3edb-489b-a04a-621fad53e28c"
+                  name="BlockEventArgs"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="33ecabc3-a5fe-4be9-ac91-0ff5fe2a3f03"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="beee451b-2a01-437d-ac31-8ef08d14d885"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="026f2df8-764f-449e-9199-071739096fc0"
+                  name="Placed"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="add20341-666d-4a9f-a3b8-ef08d7d38633"
+                      name="Lower"
+                      value="1" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="78f479ec-2320-4a2c-a44f-bc7769a6da38"
+                      name="Upper"
+                      value="1" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="750cb46f-aca3-4a9c-b072-e530e2119800"
+            isDerived="false"
+            sourceEndRoleName="BlockEventArgs"
+            targetEndRoleName="Placer"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="803df12c-d975-49a5-98c9-d820d6377325"
+              LastKnownName="Player"
+              LastKnownLocation="Package_1907.uml" />
+            <description>Property Placer references type Player.</description>
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="1bc1e2aa-85a5-47a1-b3a9-3b10d6cdb839"
+                  name="BlockEventArgs"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="3cd9baa0-bdcf-4fbf-93c4-d6acff3aad56"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="d3d6c45d-47f1-492a-ac33-a24068e4c471"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="db5bc60b-250d-4211-b022-0320c7203b34"
+                  name="Placer"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="eae4042e-9dd7-46a9-acea-6fc1d7aa0370"
+                      name="Lower"
+                      value="1" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="6d463c04-7c52-4835-b17f-9533249397de"
+                      name="Upper"
+                      value="1" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property
+            Id="f62a5d9c-0947-434d-83cf-b5edaf55148e"
+            name="Origin"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="fba31a2a-c6f5-4671-9142-5e906866e3b6"
+                handle="viewcode://./CodeSchema_Property?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight.Arguments Type%3DBlockEventArgs Member%3DOrigin"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="a4eed118-bb96-4a5a-859f-23615cb8e415"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3a15a981-1fa5-4806-8a59-3bf4e0cb38b6">
+                    <propertyInstance
+                      Id="0b10d663-eaa7-4549-9d33-8923f3ec75cc"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b6b2c141-6055-4578-bad9-21ad27bbaa54">
+                    <propertyInstance
+                      Id="cc8f3683-d7d6-43c2-9ca7-d29ecaf99252"
+                      name="Get"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="afbc0b49-4b00-4faf-8dcc-29bfc3a5ec68">
+                    <propertyInstance
+                      Id="3534cbcb-c1fe-487e-a5af-effb86456b51"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="17c39bfa-0d9f-46f0-8969-7da28946c1dc">
+                    <propertyInstance
+                      Id="40629db6-eb9e-4842-8e5b-298a8b233856"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="dd9721e3-f502-4945-a7d5-ab005bdfd07f">
+                    <propertyInstance
+                      Id="330c6157-be9a-4642-a1d3-4dfaa996a00e"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="18712538-30c2-419d-9896-681989f601c6">
+                    <propertyInstance
+                      Id="7b683d58-f15a-4f27-b942-fc9c06dfe376"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fd177631-0f0f-45a8-b302-c199f83fb3a9">
+                    <propertyInstance
+                      Id="258d9104-d5f9-4184-bda1-44b95582783e"
+                      name="Set"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="5bbc59e5-a813-4709-9d46-97005ecbb9f8"
+                LastKnownName="Room"
+                LastKnownLocation="Package_1907.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="ccbc8253-cc39-4470-b7eb-313c9a9daa46"
+            name="Placed"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="true"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="72925358-c7da-4f6d-89a9-b740ef2b8b25"
+                handle="viewcode://./CodeSchema_Property?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight.Arguments Type%3DBlockEventArgs Member%3DPlaced"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="1faa19bf-f4e0-4836-ab10-766c662c8df1"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e65dfb8e-d34f-44a3-87c6-6db92db1a5f5">
+                    <propertyInstance
+                      Id="d2ba2d6d-4a06-454f-bb79-8889b00265ad"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7066b284-8401-4a29-8351-0e3bb3e2d74a">
+                    <propertyInstance
+                      Id="cfd0c9bf-123a-42b6-9955-fc430b0e2391"
+                      name="Get"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="37162e92-cf85-4cfe-bec2-c9a97ea2b42f">
+                    <propertyInstance
+                      Id="f52583de-5cb4-4d70-ae36-4e2fadd1d8c7"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4ba14a94-6a29-4aa7-9d16-fb2a8153c11d">
+                    <propertyInstance
+                      Id="4a2a15d9-c507-4d41-be20-c83faa13b4bc"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0140a3cb-17a0-4a21-aa1f-644943d9fc4b">
+                    <propertyInstance
+                      Id="0429182e-cec8-4e51-881d-cf1ed91bd2bb"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="abd8c2c3-7a28-445b-94ab-aec8127f4ead">
+                    <propertyInstance
+                      Id="6db0370d-8b60-4576-b903-1f61cee7e8e8"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e5a50350-33a4-49ec-992a-a845d169b2ce">
+                    <propertyInstance
+                      Id="428a0357-4754-4d5a-9bda-dacd648b00e7"
+                      name="Set"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="fa5f484d-8421-4da3-bb26-ad534e17dc83"
+                LastKnownName="Block"
+                LastKnownLocation="Package9_1907.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="5cea2d0d-cd43-4a90-a348-5e394e1ee1a4"
+            name="Placer"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="true"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="d3637647-29d0-4c40-900d-fca3fa4ee7cf"
+                handle="viewcode://./CodeSchema_Property?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight.Arguments Type%3DBlockEventArgs Member%3DPlacer"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="f6d5270e-5397-4f31-8daf-4f03d29def39"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cbe06af1-26e8-475b-b0b5-388abe2caa7e">
+                    <propertyInstance
+                      Id="f41369c4-c927-4901-96f0-cd0998af3533"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="750709d1-5ce5-4f7b-a799-4f40d18b669e">
+                    <propertyInstance
+                      Id="0a4d852e-040b-48d2-83c7-5d7f09b4790e"
+                      name="Get"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d1cdbefb-731a-4e0f-bfc9-9aece7d50d90">
+                    <propertyInstance
+                      Id="6990eb97-3644-4b2b-8213-946c288c1c7d"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="28646cc7-20ed-493c-8502-fd67ef89c53d">
+                    <propertyInstance
+                      Id="90832885-15f5-4d40-9fa3-a3cc08b75259"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c9151db5-37e4-46e7-bac9-d1f6c6040f6f">
+                    <propertyInstance
+                      Id="cef031c2-376f-4413-8aff-06a69e34cbda"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="58a7dd5b-db54-48d0-ac24-89b55c96b24d">
+                    <propertyInstance
+                      Id="086a7c57-a46a-4d92-8122-bc1b06abce81"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d6e2ee9a-f4af-4aed-b2e5-337422ad01a3">
+                    <propertyInstance
+                      Id="07c4e6da-5f5f-49b4-b0cf-2b4920e75e77"
+                      name="Set"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="803df12c-d975-49a5-98c9-d820d6377325"
+                LastKnownName="Player"
+                LastKnownLocation="Package_1907.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="16102dea-e7f1-44a3-882a-4c69f6df9c39"
+            name="_placed"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="c2b35be5-ee7e-4b1a-9eee-6df0b3d21cf7"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight.Arguments Type%3DBlockEventArgs Member%3D_placed"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="19ae815a-a98b-4201-a14a-74f68a969235"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="eb50ccdd-6315-4250-bb9c-37e076cac937">
+                    <propertyInstance
+                      Id="aa83c66c-a191-40ba-a189-02efc961a9c4"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b1fa55e7-8908-4335-a334-a78aea1218fa">
+                    <propertyInstance
+                      Id="2d883370-a556-4aeb-a53e-29c42fb61192"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="39cb431f-e3f4-4fd0-8e4c-05c7b0219dd9">
+                    <propertyInstance
+                      Id="d57503a2-bb1b-4c75-a790-60d472fa5573"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3820a720-bad5-417a-aefa-42066721ed53">
+                    <propertyInstance
+                      Id="9f419c28-2111-483c-847b-18feac8c572d"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4f66a8d0-721b-428a-9846-62958bfaf9e8">
+                    <propertyInstance
+                      Id="83f26cf0-2204-45f4-862c-7f899e1859b8"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="fa5f484d-8421-4da3-bb26-ad534e17dc83"
+                LastKnownName="Block"
+                LastKnownLocation="Package9_1907.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="5d80393c-c5a8-40fe-b321-2cf26b0c1b1f"
+            name="_placer"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="3e058fe9-6830-4a58-8166-994a96d897c2"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight.Arguments Type%3DBlockEventArgs Member%3D_placer"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="c93d05eb-f76d-49b7-9ed2-adff412e51c7"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c4c2aff9-1d9c-405f-9515-bab0633a67fc">
+                    <propertyInstance
+                      Id="b71a68b7-585e-45da-8d8a-5bf13402eb19"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c93f9394-43af-4fe3-bbce-94d356737f91">
+                    <propertyInstance
+                      Id="f99c64c8-abd7-4486-a252-cc54b96e3f15"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b5bd0599-8444-4db8-9cbc-e89b97001e17">
+                    <propertyInstance
+                      Id="f06ba316-ec5f-44ca-adf3-4565fad7b2ba"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2ce27ef7-4feb-45c3-a205-de6190a6f897">
+                    <propertyInstance
+                      Id="8e00dada-af6b-4255-b449-1fe494257ecd"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="466777f9-d0ee-40e8-a579-d3e592b7c156">
+                    <propertyInstance
+                      Id="d9305d9f-2515-473d-82ef-f543dc1f7795"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="803df12c-d975-49a5-98c9-d820d6377325"
+                LastKnownName="Player"
+                LastKnownLocation="Package_1907.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="8f1bf42c-ba24-4b7e-9eb0-b42eeabc871a"
+            name="BlockEventArgs"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="7c44bdb6-fcba-4762-a7cf-96ba03d2167d"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight.Arguments Type%3DBlockEventArgs Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight.Blocks Type%3DBlock)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight Type%3DRoom)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="5a395e91-2085-41c7-81f8-0b3cb5395d35"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a2bac640-f08b-45a9-8d42-31e0491808eb">
+                    <propertyInstance
+                      Id="d7a023fc-0d06-404d-94d0-08c3b2eaccd2"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3f783829-f2a0-4485-867a-b776340f79f3">
+                    <propertyInstance
+                      Id="66945e91-b453-4bb7-8450-d3ff9ae7d689"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="84fe73f5-29f0-4400-be2f-df93b2c2241a">
+                    <propertyInstance
+                      Id="c29567db-1088-4e91-a21c-bc3a9058a0e6"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="682fbeef-4c37-4f3e-8250-7e2f8b12fabb">
+                    <propertyInstance
+                      Id="e405678d-00c5-415d-bd8b-7b2a83b0ef76"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9e0d93da-ef6e-4156-a40e-e9d237cc8cb6">
+                    <propertyInstance
+                      Id="f1d30420-28dd-4e6c-a4e0-9b4ce755849d"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="502a610b-b664-4343-a799-cfad9445dd78">
+                    <propertyInstance
+                      Id="cc51d85e-6d70-4ce1-9e89-161aedfe22a4"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="4635a337-e4dd-47ef-bed9-e9da8d4a8804"
+                  name="b"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="ba27223c-9af6-4946-9d2c-f9f627b8125d"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight.Arguments Type%3DBlockEventArgs Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight.Blocks Type%3DBlock)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight Type%3DRoom)]) ParameterIdentifier%3Db"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="fa5f484d-8421-4da3-bb26-ad534e17dc83"
+                      LastKnownName="Block"
+                      LastKnownLocation="Package9_1907.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="94720bcc-4329-4bc2-b24c-2f48eaa7f3d7"
+                  name="origin"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="960d035a-19e4-4bb9-84f8-776753570610"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight.Arguments Type%3DBlockEventArgs Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight.Blocks Type%3DBlock)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight Type%3DRoom)]) ParameterIdentifier%3Dorigin"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="5bbc59e5-a813-4709-9d46-97005ecbb9f8"
+                      LastKnownName="Room"
+                      LastKnownLocation="Package_1907.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="988fa8fb-c46c-45cd-b7d2-45dc275ba993"
+        name="ChatEventArgs"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="ed8dd83b-3b51-4cd5-a346-997c1b7c99f8"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight.Arguments Type%3DChatEventArgs"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="f729458f-e5ba-48a7-ab69-3023c16d422c"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="fc4becc9-0ff1-4fd7-8b47-58720c7b518d">
+                <propertyInstance
+                  Id="d76480b5-fea0-410d-98dc-4b699c8db75a"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a64c11d9-04b7-46ee-bb97-13f52082e545">
+                <propertyInstance
+                  Id="50b2efd7-25dc-47be-bdfc-ed746cf4251e"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="dcd3557e-f820-4857-b4ef-06a9dac2b4d4">
+                <propertyInstance
+                  Id="4131ae20-0822-42a9-9fa7-bc010dccfbc4"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="737851e8-c2cb-4cd1-9806-3082c89ec4d2">
+                <propertyInstance
+                  Id="d33c8a80-0fd0-4594-b9c1-45925fa1aa70"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="4037def3-c64b-456c-817b-a9721d62fef8">
+                <propertyInstance
+                  Id="29a2ccf2-9fd0-4067-9b60-8231700c636b"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <generalsInternal>
+          <generalization
+            Id="bd486ec9-f1c3-408a-a92b-d7bf6e632b2e"
+            isSubstitutable="false">
+            <classMoniker
+              Id="c370126c-238b-4d81-b69c-33a0f7ba4bdf"
+              LastKnownName="EventArgs"
+              LastKnownLocation="Package2_1907.uml" />
+          </generalization>
+        </generalsInternal>
+        <targetEnds>
+          <association
+            Id="bd697fc8-77f7-44d5-9ca4-a6e163c87a7e"
+            isDerived="false"
+            sourceEndRoleName="ChatEventArgs"
+            targetEndRoleName="Origin"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="5bbc59e5-a813-4709-9d46-97005ecbb9f8"
+              LastKnownName="Room"
+              LastKnownLocation="Package_1907.uml" />
+            <description>Property Origin references type Room.</description>
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="b76c4019-c364-410e-b92a-51d2bdf49cf4"
+                  name="ChatEventArgs"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="31b9b0e5-5521-4f88-84f8-233efef962e0"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="6f9a23a9-91b2-4631-bd42-7952af88e216"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="10956ea4-a84b-404c-83d5-04557b2237a7"
+                  name="Origin"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="d419a4b0-641e-4c40-ade5-5b4bf8c751d2"
+                      name="Lower"
+                      value="1" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="8ee6cfcd-83e1-4e53-85d1-3b0bccd549d3"
+                      name="Upper"
+                      value="1" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="1d181d64-03a5-4838-bf7d-52134938174e"
+            isDerived="false"
+            sourceEndRoleName="ChatEventArgs"
+            targetEndRoleName="Speaker"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="803df12c-d975-49a5-98c9-d820d6377325"
+              LastKnownName="Player"
+              LastKnownLocation="Package_1907.uml" />
+            <description>Property Speaker references type Player.</description>
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="e2ea09ad-976b-4b0c-a678-c07e694b9855"
+                  name="ChatEventArgs"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="aa38fb55-97d2-49a8-aec0-a6413e0b6d5d"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="fdb30eb6-6527-4c0e-9822-9463885e31bc"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="2ce8d817-f141-4ccb-b4e6-5218ee8cccd6"
+                  name="Speaker"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="7b4a35f9-08ac-433f-b54e-bf85467fc7ed"
+                      name="Lower"
+                      value="1" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="7a33a3b2-5fac-44a6-80a2-62ce4a6a397c"
+                      name="Upper"
+                      value="1" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property
+            Id="1a3c7968-4170-4105-bfee-f4038291e585"
+            name="Message"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="true"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="4d30181f-0a5a-4473-b485-770f5ff24314"
+                handle="viewcode://./CodeSchema_Property?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight.Arguments Type%3DChatEventArgs Member%3DMessage"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="4f8689d1-c170-48df-b658-f464472d6ea7"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2d48d5e9-7ab4-4f11-ba38-7ce023a73f6f">
+                    <propertyInstance
+                      Id="0394046f-db6b-4187-b70b-b4754706e933"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="848ad11a-c57c-4478-bda8-10be61a6630e">
+                    <propertyInstance
+                      Id="9f82ed19-3b1e-4d68-af3e-3b0300a7e9c4"
+                      name="Get"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="03cbc8f9-b361-4e07-842b-3384819caa05">
+                    <propertyInstance
+                      Id="82e7f65d-9146-4231-961f-32c8cd3cb7d0"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3ab9354f-b9fc-4e47-8384-2f16ba0ca147">
+                    <propertyInstance
+                      Id="e673100a-f979-4d4b-88cb-1352e7a874f1"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e9d60a8e-b2ca-499e-ac94-0cc3bd688e73">
+                    <propertyInstance
+                      Id="b2206f42-d4fa-49ad-a0a9-a3782655f330"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8476a183-6a12-4430-b577-8e2936510701">
+                    <propertyInstance
+                      Id="915e8d82-69b0-43f2-a957-d826b624753e"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d66f5e06-c9e7-4dc4-af39-4acf352becb8">
+                    <propertyInstance
+                      Id="18ff8ba6-027a-4f9f-a587-125b31329408"
+                      name="Set"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <primitiveTypeMoniker
+                Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                LastKnownName="String"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="fd9d8475-c789-4038-b5d6-3bab89034c6c"
+            name="Origin"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="true"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="74421f61-603e-4dc4-a411-7bfb8af0627e"
+                handle="viewcode://./CodeSchema_Property?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight.Arguments Type%3DChatEventArgs Member%3DOrigin"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="2c543405-6990-42a3-975d-a4acc09de427"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a7ae1c61-7da1-4734-adb9-3796b55b1e07">
+                    <propertyInstance
+                      Id="0515019e-a89f-4dec-8ad8-65d0371f16d7"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f0852da5-9048-4cca-9027-fa0448865a80">
+                    <propertyInstance
+                      Id="8460f3f5-1d88-4dee-a20f-7029b4750240"
+                      name="Get"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="00285e7d-1267-491c-ac29-f24bffe538ef">
+                    <propertyInstance
+                      Id="a6622829-8cb1-4804-af29-9cf32469922f"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="18c6b755-fb2c-45d4-9b44-9b2f4a18c7fe">
+                    <propertyInstance
+                      Id="d985cf95-9882-4cf4-8a45-0856357ae769"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="eb7052e9-2a1a-42e4-9e1d-4cd4844ac158">
+                    <propertyInstance
+                      Id="734f4713-e554-4edd-9923-092b0d47f219"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="19c433c4-f90d-4f24-9620-77db827fabe6">
+                    <propertyInstance
+                      Id="09bc2152-355a-4e98-83aa-f110a1be6b0e"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="22cb9f19-72c3-478b-93b1-0a5306db2612">
+                    <propertyInstance
+                      Id="06df1b08-4bd3-4305-8184-76c66a956a4a"
+                      name="Set"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="5bbc59e5-a813-4709-9d46-97005ecbb9f8"
+                LastKnownName="Room"
+                LastKnownLocation="Package_1907.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="49666696-28f3-4262-bcec-b4088e43956e"
+            name="Speaker"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="true"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="7035e686-bfe9-4a26-a72b-427e6261807c"
+                handle="viewcode://./CodeSchema_Property?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight.Arguments Type%3DChatEventArgs Member%3DSpeaker"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="62b64812-5127-44a5-999a-903f85957fee"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a127a9ae-f8a8-421e-8c3f-3dd688beb4b4">
+                    <propertyInstance
+                      Id="bc9926f6-3738-47d5-b570-5e7f5bb24562"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0a3e4bb2-c3b7-4098-919f-a1a3b5c71417">
+                    <propertyInstance
+                      Id="40b49ba1-9972-4dec-b13c-1caf9e1687a1"
+                      name="Get"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c1a00cdb-cace-47be-876f-5b26b02f2228">
+                    <propertyInstance
+                      Id="37a32129-773c-4154-8442-73e243c8f720"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0840b059-041d-4421-b68b-3ef6d5b5c963">
+                    <propertyInstance
+                      Id="c28298d6-371b-47d7-8a2d-5fbd63ec877e"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="19a17be0-298a-4c0d-a242-4ef757687fd8">
+                    <propertyInstance
+                      Id="96d8e9cd-8c5a-40a0-9b66-5d7fbb10f8a4"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="49558549-d2ce-40a1-b160-8e133da3d113">
+                    <propertyInstance
+                      Id="270b1ae7-4f71-4dde-b633-f9792a3f6f1c"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ebbe2951-ce01-48a2-b4a6-2fb5a0bbd9c4">
+                    <propertyInstance
+                      Id="9525f47b-c3a9-49c2-be97-c9fe4d27bf43"
+                      name="Set"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="803df12c-d975-49a5-98c9-d820d6377325"
+                LastKnownName="Player"
+                LastKnownLocation="Package_1907.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="29d205f4-c906-490d-88f0-d1a3ac8bdbdc"
+            name="_origin"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="3918d603-49b3-405b-94dd-fef92a6e6500"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight.Arguments Type%3DChatEventArgs Member%3D_origin"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="7618c25c-0e20-4731-8224-bb0cbcdf06fc"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="01d0ee5a-3af4-407a-8fdf-c84f4f462fbc">
+                    <propertyInstance
+                      Id="a7f06cf9-4f94-41ec-bc25-7bfcddd633db"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="756f7e58-3af7-4ed7-82dd-15bb4f4e21d1">
+                    <propertyInstance
+                      Id="c9be78e0-d0ce-4700-aebf-97d85d13a8c7"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b36eb446-2dea-40e0-949f-dc1deb14f85d">
+                    <propertyInstance
+                      Id="1bace493-b901-4c64-af68-ee0730fbeabc"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9b71a92b-909e-4cf9-8a7d-88f66949f1ec">
+                    <propertyInstance
+                      Id="b2388bbe-79bc-44d9-b522-78e4ae60b7b6"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="76913459-95e5-4a17-89ed-569e91179f94">
+                    <propertyInstance
+                      Id="e19fb92e-94a2-49f4-84c4-45a576bd2fca"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="5bbc59e5-a813-4709-9d46-97005ecbb9f8"
+                LastKnownName="Room"
+                LastKnownLocation="Package_1907.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="6d8e5fc2-4f39-47ba-a310-4ceee57dea06"
+            name="_speaker"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="73eb7727-4b31-49b4-a12e-19e792ec3c48"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight.Arguments Type%3DChatEventArgs Member%3D_speaker"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="8b9a35d3-5228-4866-896f-f5d21388e154"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a7edf35b-a23e-4080-aab3-666b38d83a1b">
+                    <propertyInstance
+                      Id="6e2ba38b-7476-4080-9618-381b97958c1d"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ea9e6fc2-589e-44c2-be5b-6c513f78e51a">
+                    <propertyInstance
+                      Id="4ab376f0-aacc-497b-b65c-01a7ecf774f9"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="36137fd4-5867-43fd-b34e-a08f1378017e">
+                    <propertyInstance
+                      Id="b0b225c4-5f6b-48cf-a7e5-075f5beef71a"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="99e2daae-3a57-40e4-b27f-d8ac09c0b4d7">
+                    <propertyInstance
+                      Id="c2f0f8fd-d7fc-4a83-8de9-28fb997fabeb"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b6adb27f-2ea2-4ec0-86f8-8d461d0b7937">
+                    <propertyInstance
+                      Id="73de1603-edad-4583-ad32-349a25234a63"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="803df12c-d975-49a5-98c9-d820d6377325"
+                LastKnownName="Player"
+                LastKnownLocation="Package_1907.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="7eb19026-f473-4689-9f5a-9292bd5ab2b6"
+            name="ChatEventArgs"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="45b6aff6-a022-4978-b924-0a69d90467a3"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight.Arguments Type%3DChatEventArgs Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight Type%3DPlayer)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight Type%3DRoom)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="f6ecbd97-0463-426c-8147-4249511c0de2"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9370d08d-68f4-41d6-84de-2afb388bec27">
+                    <propertyInstance
+                      Id="83b32f88-f1a3-4524-831f-21a92f02686c"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fa373503-e4fd-40f0-ae78-00fe8fb459dd">
+                    <propertyInstance
+                      Id="bee4b1d1-5327-4663-95f5-301d72e99a3e"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cae85006-27f4-45ea-8180-7adda6a71863">
+                    <propertyInstance
+                      Id="7cb9966d-7a55-4bcf-a309-c0cb4b3ef8f8"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="95fb7840-47c7-4b1d-9cb7-61774987195b">
+                    <propertyInstance
+                      Id="f67c7304-05bd-4f96-88b4-baa12a2560c2"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="50a3aecb-2f8d-41b1-b948-79a959ade8b7">
+                    <propertyInstance
+                      Id="dee7c009-3bfe-4cbe-afbd-127c20a7aa36"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5ed60fca-2d3d-48cf-a94d-2634c9ebe68f">
+                    <propertyInstance
+                      Id="c12822e9-5b29-4c9a-aebd-905280c89b9b"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="35719332-c3c6-4123-a65b-61d4a05b817f"
+                  name="speaker"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="5c4843bc-0ebd-4f15-bf81-fb820d7119f7"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight.Arguments Type%3DChatEventArgs Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight Type%3DPlayer)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight Type%3DRoom)]) ParameterIdentifier%3Dspeaker"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="803df12c-d975-49a5-98c9-d820d6377325"
+                      LastKnownName="Player"
+                      LastKnownLocation="Package_1907.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="52c77f18-0851-468a-8e11-b26345daf68a"
+                  name="origin"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="fed4b491-fbed-4d5b-899b-7d8e6bea7246"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight.Arguments Type%3DChatEventArgs Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight Type%3DPlayer)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight Type%3DRoom)]) ParameterIdentifier%3Dorigin"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="5bbc59e5-a813-4709-9d46-97005ecbb9f8"
+                      LastKnownName="Room"
+                      LastKnownLocation="Package_1907.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="f68c6e57-afac-470c-8495-d3d6b446ab7f"
+        name="PlayerEventArgs"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="14fc2f3c-fc4f-431e-98b2-8bed09d8eb2e"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight.Arguments Type%3DPlayerEventArgs"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="d88b1106-a13f-48ab-9693-45f7ed303977"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="0831165b-967c-43f7-a8a9-bcef53421d66">
+                <propertyInstance
+                  Id="f0b7791d-99c8-472a-923d-9d620688a510"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="566e3b85-9d7e-48b8-bec6-05beda577a6d">
+                <propertyInstance
+                  Id="066a144b-3064-4ded-822a-4a36249f3a67"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="bc49e122-ebf0-48f7-9d77-b445c62c954d">
+                <propertyInstance
+                  Id="51dc8cc5-eac0-47df-8c32-5b0d1d101f6a"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7806b058-19ce-4282-94bd-b157c50e0a38">
+                <propertyInstance
+                  Id="3aacc122-01d7-4c40-bc5f-1b4f3543e394"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="c47f5e46-464f-4bf9-9422-58bb2388aafc">
+                <propertyInstance
+                  Id="c6ba0940-cdb1-4a4a-bb87-a425639174a7"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <generalsInternal>
+          <generalization
+            Id="3b15514d-e606-46f7-99f3-ce24eae62f04"
+            isSubstitutable="false">
+            <classMoniker
+              Id="c370126c-238b-4d81-b69c-33a0f7ba4bdf"
+              LastKnownName="EventArgs"
+              LastKnownLocation="Package2_1907.uml" />
+          </generalization>
+        </generalsInternal>
+        <targetEnds>
+          <association
+            Id="79ddd69e-b5fb-42dc-abe6-3fd06b179521"
+            isDerived="false"
+            sourceEndRoleName="PlayerEventArgs"
+            targetEndRoleName="Subject"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="803df12c-d975-49a5-98c9-d820d6377325"
+              LastKnownName="Player"
+              LastKnownLocation="Package_1907.uml" />
+            <description>Property Subject references type Player.</description>
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="854936d5-41fe-402b-8cc9-f90c7d93aca4"
+                  name="PlayerEventArgs"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="ec46475b-9789-46a6-9622-07e607370716"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="ba3a550a-1484-4ce1-af1b-14d2e7cfdcf3"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="125198be-93d6-42cf-b0de-2495421a1d6a"
+                  name="Subject"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="2d6ed571-bd7a-496c-b332-195e69ff2a10"
+                      name="Lower"
+                      value="1" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="164f0c28-1dd4-4b8e-9cb5-f4cf02107270"
+                      name="Upper"
+                      value="1" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="0b15c766-4581-4c4d-acff-30fa7e059369"
+            isDerived="false"
+            sourceEndRoleName="PlayerEventArgs"
+            targetEndRoleName="Origin"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="5bbc59e5-a813-4709-9d46-97005ecbb9f8"
+              LastKnownName="Room"
+              LastKnownLocation="Package_1907.uml" />
+            <description>Property Origin references type Room.</description>
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="c44dde24-be27-411b-9282-774cff125fc9"
+                  name="PlayerEventArgs"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="b55310aa-ce60-4dbd-9924-4f819de74fb5"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="317e3af2-1582-417e-b19c-1ad8bd9751a2"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="3f34f76d-6b94-4c4f-8648-37b4dcb0e811"
+                  name="Origin"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="d6c800e5-9186-4329-a693-44b85f6520c3"
+                      name="Lower"
+                      value="1" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="1ff852a5-e6d4-4bff-bce7-8ed2af6666b1"
+                      name="Upper"
+                      value="1" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="4f8abcb8-0e71-401c-9ff9-031c6022f522"
+            isDerived="false"
+            sourceEndRoleName="PlayerEventArgs"
+            targetEndRoleName="RawMessage"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="895a0883-1506-4c70-9e0d-5f1ca5cf45d9"
+              LastKnownName="Message"
+              LastKnownLocation="Package6_1907.uml" />
+            <description>Property RawMessage references type Message.</description>
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="763dd96a-149c-4dd9-b077-ddf11a877280"
+                  name="PlayerEventArgs"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="c617e725-2562-4fdd-ab1d-4e444445f44b"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="57972e55-ec79-472f-a757-a72c8f97b4fc"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="4a97e99f-308d-4cbe-bcce-e2f9dac822f9"
+                  name="RawMessage"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="568d23d6-1b0b-4ea1-8785-35affa5efe08"
+                      name="Lower"
+                      value="1" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="acbe4d60-c5d8-42d4-abad-5dfa59a9502e"
+                      name="Upper"
+                      value="1" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property
+            Id="8f9bfd91-b631-4034-a062-c0351b5eb609"
+            name="Subject"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="ea0da70c-9e25-4293-8713-9e4cad2bc06c"
+                handle="viewcode://./CodeSchema_Property?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight.Arguments Type%3DPlayerEventArgs Member%3DSubject"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="8bd1edca-5e56-4013-bad1-ce26d21e953d"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8aa31346-f6ba-4ed8-b926-82faea6be299">
+                    <propertyInstance
+                      Id="e7968e39-0a3f-4a1f-ad3f-7e95cc55257c"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ff994129-a42b-45b5-9b8f-e29587930ebe">
+                    <propertyInstance
+                      Id="7bfb3a36-0157-4d73-9c56-06d8d1c762c3"
+                      name="Get"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cb588fab-1cf1-4340-ae2b-54bf93df80ee">
+                    <propertyInstance
+                      Id="9bb01030-5083-474b-8516-48bae68a1e62"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fcd81687-82b1-4ce4-be08-4b4104a13c24">
+                    <propertyInstance
+                      Id="3f7188f9-b27d-45f6-a7ba-5d44bb2fba6d"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="33201f6e-6d6b-481b-854d-cbe6437c9641">
+                    <propertyInstance
+                      Id="fbfa9a93-c972-4398-8307-710b55af88b7"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d5c737bd-f8ef-452d-a32a-f42236a5a669">
+                    <propertyInstance
+                      Id="b76126f4-a46e-4500-a73a-4ab03b51cbdb"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0c39241d-2a42-4161-81a8-f14c722465f1">
+                    <propertyInstance
+                      Id="29b47454-aec8-4cba-ac57-2ce168620808"
+                      name="Set"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="803df12c-d975-49a5-98c9-d820d6377325"
+                LastKnownName="Player"
+                LastKnownLocation="Package_1907.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="2bd0b116-63e2-41e8-996f-01e5bf0413f9"
+            name="Origin"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="2b9558c2-9251-4126-a6fa-80882ee3166c"
+                handle="viewcode://./CodeSchema_Property?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight.Arguments Type%3DPlayerEventArgs Member%3DOrigin"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="4df54bc3-9657-4973-baf0-fa55ac8383ff"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a0330855-1d10-42ae-b421-6c4f54d8ce48">
+                    <propertyInstance
+                      Id="4bea28e7-6d02-404e-bf4d-0ca3382a64eb"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="09c3f4c5-80bf-4d93-b27f-35cbfb7efea5">
+                    <propertyInstance
+                      Id="4cd13cb7-eb32-4c85-866b-04b93885827a"
+                      name="Get"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="794c03b2-5852-4f4c-a24e-26fae6703be8">
+                    <propertyInstance
+                      Id="d04b3786-1479-4d82-927a-1b2f29b91534"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8dc607c1-75d2-4e80-8526-6af532d9e60d">
+                    <propertyInstance
+                      Id="fa1761be-85d3-43d5-83bc-c6385b4af8a5"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4001d176-372a-4590-a290-901835d645ec">
+                    <propertyInstance
+                      Id="79eb29e9-6b7e-4a4b-90f2-6c569dce77fa"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9703f890-a1c7-4032-a6d8-5cbc37f15cb9">
+                    <propertyInstance
+                      Id="010f264a-37bb-4c18-81c0-2a86887b8239"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c00c7e53-6f97-4117-8cf1-da704a91a739">
+                    <propertyInstance
+                      Id="3faccd6f-f998-4f42-a4e3-5a039b9c8385"
+                      name="Set"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="5bbc59e5-a813-4709-9d46-97005ecbb9f8"
+                LastKnownName="Room"
+                LastKnownLocation="Package_1907.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="0f8b96ae-6956-44d2-a537-e6bf10ba78f8"
+            name="RawMessage"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="9903e1fc-2780-48b3-82f6-fd30854f112b"
+                handle="viewcode://./CodeSchema_Property?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight.Arguments Type%3DPlayerEventArgs Member%3DRawMessage"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="f58cbf06-4e4b-4f49-a43c-9fad6ba4606f"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4ab2257e-d3ab-4ab0-ab76-075c9117f815">
+                    <propertyInstance
+                      Id="0217720d-d094-4a9f-b2e8-afb83dd700e3"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2e6c7e22-49f4-4dd6-ae24-aed1cf06d62d">
+                    <propertyInstance
+                      Id="d300b438-14c9-45c4-a694-049e7279ca80"
+                      name="Get"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="958fa3cb-f21f-42c6-b00c-520b56fec7dd">
+                    <propertyInstance
+                      Id="ab9893e6-b3c6-4b66-bb11-1743d5e682c8"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="96121e80-1f3e-4011-8a01-69c4de539f1d">
+                    <propertyInstance
+                      Id="ded472f0-3585-4a28-869c-232e756208ee"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5d3aa895-fa92-400d-a1cb-58ce6c4053f1">
+                    <propertyInstance
+                      Id="7cfbc542-0894-4a00-b6c7-f474a80707ba"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0ce0bc94-4820-4a3f-a0c1-431f8ec9d0e1">
+                    <propertyInstance
+                      Id="cbc2fefd-fc37-43e8-95e9-54c4dbcebd1b"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fb22413d-5c66-404f-9c60-dd4b0d1beb4a">
+                    <propertyInstance
+                      Id="a3cf4524-3e68-4417-9f80-200c20121e18"
+                      name="Set"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="895a0883-1506-4c70-9e0d-5f1ca5cf45d9"
+                LastKnownName="Message"
+                LastKnownLocation="Package6_1907.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="bcb054b0-e64b-47cf-b4e2-553e03f652c8"
+            name="PlayerEventArgs"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="a39341f8-538b-44b0-875f-350f95f3f193"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight.Arguments Type%3DPlayerEventArgs Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight Type%3DPlayer)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight Type%3DRoom)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2FReferences%2FPlayerIOClient.dll Namespace%3DPlayerIOClient Type%3DMessage)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="fa31820a-0ceb-4004-b486-78be6e219bc6"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a85a0d66-7a48-403e-b679-95a832e75bbc">
+                    <propertyInstance
+                      Id="07a9f948-2384-4b52-b4ba-7dbec2060de6"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1482fd5e-ab40-4452-871a-511fec1b466b">
+                    <propertyInstance
+                      Id="f93f1811-0df4-45ed-8d6e-43c95c28e900"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="99ba2587-f926-4ded-8ef8-5085261cdc84">
+                    <propertyInstance
+                      Id="fed89e91-92b3-42ba-bac4-cfa4fe51837d"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="87a49778-9350-49a1-a6fc-ff1e79bde23e">
+                    <propertyInstance
+                      Id="7f7f5557-150b-41b9-bc6f-8c06811f206f"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bbe77883-d39d-4d9c-aa9d-0e7c026d0095">
+                    <propertyInstance
+                      Id="46ee257d-3603-492e-bab4-89ce61fc5afc"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e38b8449-bbf0-4d4d-bc40-4e755d2e895d">
+                    <propertyInstance
+                      Id="7e9fd7c9-8128-4518-9579-fd4db440f5d1"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="03f60444-0778-416f-8212-6b33b8668839"
+                  name="subject"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="b6743668-a3b5-4c4a-8fdc-d563f05145ea"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight.Arguments Type%3DPlayerEventArgs Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight Type%3DPlayer)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight Type%3DRoom)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2FReferences%2FPlayerIOClient.dll Namespace%3DPlayerIOClient Type%3DMessage)]) ParameterIdentifier%3Dsubject"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="803df12c-d975-49a5-98c9-d820d6377325"
+                      LastKnownName="Player"
+                      LastKnownLocation="Package_1907.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="cf732d30-0939-4b4c-bf38-c17376f4bc32"
+                  name="origin"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="643bd13d-18f6-4855-a159-4b71873fe9d8"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight.Arguments Type%3DPlayerEventArgs Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight Type%3DPlayer)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight Type%3DRoom)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2FReferences%2FPlayerIOClient.dll Namespace%3DPlayerIOClient Type%3DMessage)]) ParameterIdentifier%3Dorigin"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="5bbc59e5-a813-4709-9d46-97005ecbb9f8"
+                      LastKnownName="Room"
+                      LastKnownLocation="Package_1907.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="42a1b349-b49a-45f2-bfc4-b7d7d0e39e9c"
+                  name="rawMessage"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="54c941d8-72b9-4dee-a850-8754e9a66379"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight.Arguments Type%3DPlayerEventArgs Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight Type%3DPlayer)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight Type%3DRoom)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2FReferences%2FPlayerIOClient.dll Namespace%3DPlayerIOClient Type%3DMessage)]) ParameterIdentifier%3DrawMessage"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="895a0883-1506-4c70-9e0d-5f1ca5cf45d9"
+                      LastKnownName="Message"
+                      LastKnownLocation="Package6_1907.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="f3bdc60a-176a-42dd-be87-f694b01347ba"
+        name="RoomEventArgs"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="925b2ec5-c268-498d-8ed4-8de833e10c47"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight.Arguments Type%3DRoomEventArgs"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="73132730-fa24-403d-abba-dbe051327473"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f2488f4c-d3d1-4280-ad80-b9acf5183b02">
+                <propertyInstance
+                  Id="3b2df574-d26e-4861-a4ff-d72cca6d6b48"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="aed22320-3100-42ce-a7da-9fc0fbe28f33">
+                <propertyInstance
+                  Id="74c5a2b2-de20-4a28-be73-b9aacad6c4ea"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="75f9e3bc-347d-41de-b427-f3f0de87f0bd">
+                <propertyInstance
+                  Id="b2892ac9-b9d9-4384-8344-c8db82b564ac"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="6d9284f8-ceef-495e-8cec-68ea6804db92">
+                <propertyInstance
+                  Id="55b0de62-962d-444e-b5a2-1d2df109702a"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="325e1368-ebd2-46ef-8849-451f08196ddf">
+                <propertyInstance
+                  Id="353f41f8-9b41-4574-b430-ea3e1ea058d5"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <generalsInternal>
+          <generalization
+            Id="306de46f-5b4c-420b-9fe9-cdb61f51a87b"
+            isSubstitutable="false">
+            <classMoniker
+              Id="c370126c-238b-4d81-b69c-33a0f7ba4bdf"
+              LastKnownName="EventArgs"
+              LastKnownLocation="Package2_1907.uml" />
+          </generalization>
+        </generalsInternal>
+        <targetEnds>
+          <association
+            Id="63fab785-f2e9-4945-916b-3c29c69a4ee9"
+            isDerived="false"
+            sourceEndRoleName="RoomEventArgs"
+            targetEndRoleName="ChangedRoom"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="5bbc59e5-a813-4709-9d46-97005ecbb9f8"
+              LastKnownName="Room"
+              LastKnownLocation="Package_1907.uml" />
+            <description>Property ChangedRoom references type Room.</description>
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="adb4cce2-e472-494a-80ac-f69dd240cae6"
+                  name="RoomEventArgs"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="2b84cb1a-9fde-4494-bb75-8b98b4bc192d"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="38c20bd6-c6bc-40ce-b539-ef63a7d4a7a7"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="c8ed5705-a90c-46f9-94c3-a5428edc5cae"
+                  name="ChangedRoom"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="7fabdee4-fefe-4f89-9689-0f20c52d01ce"
+                      name="Lower"
+                      value="1" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="6c357a51-1cb6-491d-b99e-bca32f6b8532"
+                      name="Upper"
+                      value="1" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property
+            Id="c77c4b5f-9bd7-4663-92fe-d414966d6091"
+            name="ChangedRoom"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="true"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="a4cb4e14-80d1-4c19-bb93-203b05e653e3"
+                handle="viewcode://./CodeSchema_Property?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight.Arguments Type%3DRoomEventArgs Member%3DChangedRoom"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="c1b023f4-b7ff-4964-87b8-fe2024f0b9d6"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ef5ff5ab-cb47-43b5-8740-f3b48147b71b">
+                    <propertyInstance
+                      Id="b3c5790c-33c2-4fc1-b9f2-7d7bfea80dfe"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="eafb9d0c-c81e-48ee-af49-405091b0f8b2">
+                    <propertyInstance
+                      Id="ea4f9e4d-6995-4ac5-a79d-b9ae1d48c2e4"
+                      name="Get"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a3c9f816-7d03-4a67-98b9-e396480098d6">
+                    <propertyInstance
+                      Id="730ddbdf-e580-4db1-b4e1-b7f3611abc48"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="818ddbc8-2316-4ec6-92b3-f04b7e94b249">
+                    <propertyInstance
+                      Id="468c7824-9aca-4672-befd-b93cf69052c4"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b2fc0b62-8675-41b8-90ac-3c1a527493c6">
+                    <propertyInstance
+                      Id="9ab39867-87e6-4d8f-8395-1d6a8d86a823"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c9044c80-5414-4cfe-a96f-321f7af5f79c">
+                    <propertyInstance
+                      Id="24c25ddd-c398-4871-af2f-0b220ae54ad0"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="52c425ca-d7d6-4a89-af69-ccc84d94dec0">
+                    <propertyInstance
+                      Id="1b4a5f9c-e73a-4e36-97df-5e4211b74421"
+                      name="Set"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="5bbc59e5-a813-4709-9d46-97005ecbb9f8"
+                LastKnownName="Room"
+                LastKnownLocation="Package_1907.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="c7ad1788-0b19-4d4d-832d-36e90a50f183"
+            name="_changedRoom"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="7cbbca72-ee8b-4188-af77-0fd9ef121b7e"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight.Arguments Type%3DRoomEventArgs Member%3D_changedRoom"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="607398c0-8152-4bf0-9553-35e7d0ccefc9"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="58396c34-7111-414f-8750-a8585ce8692d">
+                    <propertyInstance
+                      Id="a8579404-4bdf-4b80-a83c-f211903d8f4e"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c58e2352-575e-48da-bc2d-7c18c51e086c">
+                    <propertyInstance
+                      Id="ea98fcd9-4087-4035-83e4-cfa640a4196d"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a78b1ab6-d2e0-4682-a25d-9659c5d5bc71">
+                    <propertyInstance
+                      Id="e3e5d206-6050-482b-8cec-b4d5b003b7b3"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5e8ee08c-4979-43de-b462-6eda15408d33">
+                    <propertyInstance
+                      Id="11df83c7-66ad-4898-910a-4aa68578056f"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="001df5dd-45af-41d8-8af1-4c8a1fca5968">
+                    <propertyInstance
+                      Id="79eac971-78d0-473a-be9a-a74e162ce013"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="5bbc59e5-a813-4709-9d46-97005ecbb9f8"
+                LastKnownName="Room"
+                LastKnownLocation="Package_1907.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="39aae299-dd51-42d0-91b2-6ade333c960d"
+            name="RoomEventArgs"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="14497431-38c5-4b77-9af4-44cadd3d9d2a"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight.Arguments Type%3DRoomEventArgs Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight Type%3DRoom)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="1b5abba0-94b5-49d5-8bbd-3c94402f7320"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="102836ee-c9bd-4916-ab26-7880ea32407a">
+                    <propertyInstance
+                      Id="1ec292c9-b5fe-4cda-be4c-45d44d08c3ee"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="96c7b5ec-22d6-4a2a-807c-ec9fabb3e743">
+                    <propertyInstance
+                      Id="5679f685-9ade-4e59-9568-f8261fcc76db"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c4cc688f-2e1d-4853-a3a7-6727ae9ad283">
+                    <propertyInstance
+                      Id="58849e2a-3406-4c3e-9ce3-92e151e98a82"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cd59275e-2301-4b17-a890-3668515f3e61">
+                    <propertyInstance
+                      Id="69dc8f42-f7c7-40ce-8c86-d15aecce72c7"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7ed828e8-1af2-4a9b-a281-3e9e64b9bed8">
+                    <propertyInstance
+                      Id="ad0eb99e-1415-4a53-bf13-3f081f646546"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="75b5f58b-e144-4654-ac87-60a6de133ab1">
+                    <propertyInstance
+                      Id="8f848d07-3397-4c09-a9fe-3fe24b5a42ee"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="88cac017-926c-4579-9c62-64e770f547b2"
+                  name="changedRoom"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="ee924491-8f1c-4c36-bddf-bc8bc3074b96"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight.Arguments Type%3DRoomEventArgs Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FAlex%2FDocuments%2FGitHub%2FSkylight%2Fbin%2FRelease%2FSkylight.dll Namespace%3DSkylight Type%3DRoom)]) ParameterIdentifier%3DchangedRoom"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="5bbc59e5-a813-4709-9d46-97005ecbb9f8"
+                      LastKnownName="Room"
+                      LastKnownLocation="Package_1907.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>
