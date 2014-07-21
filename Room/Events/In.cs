@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using PlayerIOClient;
-using Skylight.Blocks;
 
 namespace Skylight
 {
