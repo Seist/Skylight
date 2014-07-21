@@ -150,7 +150,7 @@ namespace Skylight
                         break;
 
                     default: //case AccountType.ArmorGames:
-                        Connection c = Tools.GuestClient.Value.Multiplayer.JoinRoom("", null);
+                        var c = Tools.GuestClient.Value.Multiplayer.JoinRoom("", null);
                         c.OnMessage += (sender, message) =>
                         {
                             if (message.Type != "auth") return;
@@ -379,7 +379,7 @@ namespace Skylight
             var tempList = new List<Block>();
             tempList.AddRange(blockList);
 
-            foreach (Block b in tempList)
+            foreach (var b in tempList)
             {
                 Build(b); // this line has problems but I fixed it in a weird way.
             }
@@ -909,7 +909,7 @@ namespace Skylight
         {
             if (Name == R.Owner.Name)
             {
-                foreach (Player p in R.OnlinePlayers)
+                foreach (var p in R.OnlinePlayers)
                 {
                     Teleport(newXLocation, newYLocation, p);
                 }

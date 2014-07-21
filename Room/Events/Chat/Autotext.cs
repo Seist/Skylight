@@ -23,9 +23,9 @@ namespace Skylight
         public void OnAutotext(Message m)
         {
             // Extract data.
-            int id = m.GetInteger(0);
+            var id = m.GetInteger(0);
 
-            int message = m.GetInteger(1);
+            var message = m.GetInteger(1);
 
             var autoTextConversions = new Dictionary<int, string>
             {
@@ -42,7 +42,7 @@ namespace Skylight
             };
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, _in.Source);
+            var subject = Tools.GetPlayerById(id, _in.Source);
 
             _in.Source.ChatLog.Add(new KeyValuePair<string, Player>(autoTextConversions[message], subject));
 

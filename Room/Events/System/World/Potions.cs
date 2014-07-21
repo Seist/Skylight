@@ -22,7 +22,7 @@ namespace Skylight
         public void OnAllowPotions(Message m)
         {
             // Extract data.
-            bool potions = m.GetBoolean(0);
+            var potions = m.GetBoolean(0);
 
             // Update relevant objects.
             _in.Source.PotionsAllowed = potions;

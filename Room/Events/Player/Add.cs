@@ -16,7 +16,7 @@ namespace Skylight
         public void OnAdd(Message m)
         {
             // Extract data.
-            string name = m.GetString(1);
+            var name = m.GetString(1);
 
             int id = m.GetInteger(0),
                 smiley = m.GetInteger(2),

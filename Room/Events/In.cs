@@ -498,7 +498,7 @@ namespace Skylight
             loadBlocks.Start();
 
             // Execute the messages that came prematurely.
-            foreach (Message msg in _prematureMessages)
+            foreach (var msg in _prematureMessages)
             {
                 OnMessage(this, msg);
             }
@@ -535,7 +535,7 @@ namespace Skylight
                 portalDestination = m.GetInteger(5);
 
             // Update relevant objects.
-            bool isVisible = blockId == BlockIds.Action.Portals.Normal;
+            var isVisible = blockId == BlockIds.Action.Portals.Normal;
 
             var b = new PortalBlock(x, y, rotation, portalId, portalDestination, isVisible);
 
@@ -554,7 +554,7 @@ namespace Skylight
                 x = m.GetInteger(1),
                 y = m.GetInteger(2);
 
-            string text = m.GetString(3);
+            var text = m.GetString(3);
 
             // Update relevant objects.
             var b = new TextBlock(id, x, y, text);
@@ -569,7 +569,7 @@ namespace Skylight
 
         private void LoadBlocks()
         {
-            foreach (Block b in Tools.DeserializeInit(_initMessage, 18, Source))
+            foreach (var b in Tools.DeserializeInit(_initMessage, 18, Source))
             {
                 Source.Map[b.X, b.Y, b.Z] = b;
             }
@@ -595,7 +595,7 @@ namespace Skylight
                     {
                         accumulator += Config.PhysicsMsPerTick;
 
-                        foreach (Player player in Source.OnlinePlayers)
+                        foreach (var player in Source.OnlinePlayers)
                         {
                             player.Tick();
 

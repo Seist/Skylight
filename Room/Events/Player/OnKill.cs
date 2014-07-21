@@ -16,10 +16,10 @@ namespace Skylight
         public void OnKillPlayer(Message m)
         {
             // Extract data.
-            int id = m.GetInteger(0);
+            var id = m.GetInteger(0);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayerById(id, _in.Source);
+            var subject = Tools.GetPlayerById(id, _in.Source);
 
             subject.DeathCount++;
 
