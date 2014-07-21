@@ -3,8 +3,6 @@
 // </copyright>
 // <summary></summary>
 
-using Skylight.Physics;
-
 namespace Skylight.Blocks
 {
     /// <summary>
@@ -51,6 +49,10 @@ namespace Skylight.Blocks
             Direction = direction;
         }
 
+        public int Y { get; set; }
+
+        public int X { get; set; }
+
 
         /// <summary>
         ///     Gets a value indicating whether this instance is solid.
@@ -80,8 +82,8 @@ namespace Skylight.Blocks
         public int Z
         {
 
-
-                return Id >= 500 ? 1 : 0;
+get {
+    return Id >= 500 ? 1 : 0;
             }
 
             internal set
@@ -93,17 +95,6 @@ namespace Skylight.Blocks
             }
         }
 
-        /// <summary>
-        ///     Gets the x coordinate
-        /// </summary>
-        /// <value>The x.</value>
-        public int X { get; internal set; }
-
-        /// <summary>
-        ///     Gets the y coordinate
-        /// </summary>
-        /// <value>The y.</value>
-        public int Y { get; internal set; }
 
         /// <summary>
         ///     Gets the placer (the Player who placed the block).
