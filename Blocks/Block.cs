@@ -6,7 +6,7 @@
 namespace Skylight.Blocks
 {
     /// <summary>
-    ///     Class Block.
+    /// Class Block.
     /// </summary>
     public class Block : ItemId
     {
