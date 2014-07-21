@@ -6,7 +6,9 @@
 // <summary></summary>
 // ***********************************************************************
 
-namespace Skylight.Blocks
+using Skylight.Blocks;
+
+namespace Skylight
 {
     /// <summary>
     ///     Class PercussionBlock.

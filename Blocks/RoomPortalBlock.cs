@@ -5,8 +5,9 @@
 // ***********************************************************************
 
 using System.Text.RegularExpressions;
+using Skylight.Blocks;
 
-namespace Skylight.Blocks
+namespace Skylight
 {
     /// <summary>
     ///     Class RoomPortalBlock.

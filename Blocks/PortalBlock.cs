@@ -6,7 +6,9 @@
 // ***********************************************************************
 
 
-namespace Skylight.Blocks
+using Skylight.Blocks;
+
+namespace Skylight
 {
     /// <summary>
     ///     Class PortalBlock.
