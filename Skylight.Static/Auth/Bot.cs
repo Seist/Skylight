@@ -259,8 +259,10 @@ namespace Skylight
 
                 Joined = true;
 
+                // Wait until all the blocks are loaded before joining.
                 while (!R.BlocksLoaded)
                 {
+                    Thread.Sleep(500);
                 }
             }
             catch (Exception e)
