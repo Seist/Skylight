@@ -219,20 +219,18 @@ namespace Skylight
             {
                 if (!Source.IsInitialized)
                 {
-                    if (!IsPersonal)
+                    if (IsPersonal) return;
+                    switch (m.Type)
                     {
-                        if (m.Type == "init")
-                        {
+                        case "init":
                             OnInit(m);
-                        }
-                        else if (m.Type == "add")
-                        {
+                            break;
+                        case "add":
                             Add.OnAdd(m);
-                        }
-                        else
-                        {
+                            break;
+                        default:
                             _prematureMessages.Add(m);
-                        }
+                            break;
                     }
                 }
                 else
