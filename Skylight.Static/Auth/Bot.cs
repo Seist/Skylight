@@ -393,7 +393,7 @@ namespace Skylight
         ///     Builds the specified block list.
         /// </summary>
         /// <param name="blockList">The block list.</param>
-        public void Build(List<Block> blockList)
+        public void Build(IEnumerable<Block> blockList)
         {
             var tempList = new List<Block>();
             tempList.AddRange(blockList);
