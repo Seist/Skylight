@@ -199,7 +199,7 @@ namespace Skylight
         ///     box or by prefixing a chat message with *SYSTEM.
         /// </summary>
         public event PlayerEvent
-            AddEvent = delegate { } , LoseAccessEvent = delegate { } , TickEvent = delegate { };
+            AddEvent = delegate { } , LoseAccessEvent = delegate { } , TickEvent = delegate { }, GuardianEvent = delegate { };
 
         /// <summary>
         ///     Delegates for RoomEvent. Are only invoked when commands that concern
@@ -297,7 +297,9 @@ namespace Skylight
                             case "god":
                                 GodMode.OnGod(m);
                                 break;
-
+                            case "guardian":
+                                OnGuardianMode(m);
+                                break;
                             case "hide":
                                 Hide.OnHide();
                                 break;
@@ -431,6 +433,17 @@ namespace Skylight
                 Tools.SkylightMessage(e.ToString());
             }
         }
+
+        private void OnGuardianMode(Message m)
+        {
+            int id = m.GetInteger(0);
+
+            var player = Tools.GetPlayer(id, Source);
+
+            var e = new PlayerEventArgs(player, Source, null);
+            Source.Pull.GuardianEvent(e);
+        }
+
 
         private void OnInit(Message m)
         {
