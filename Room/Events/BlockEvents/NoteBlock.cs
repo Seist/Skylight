@@ -29,30 +29,22 @@ namespace Skylight
                 note = m.GetInteger(3);
 
             // Update relevant objects.
-            Block b = null;
+            Block b;
 
-            if (id == BlockIds.Action.Music.Percussion)
+            switch (id)
             {
-                b = new PercussionBlock(x, y, note);
-            }
-            else if (id == BlockIds.Action.Music.Piano)
-            {
-                b = new PianoBlock(x, y, note);
-            }
-            else
-            {
-                Tools.SkylightMessage("Error: noteblock does not exist");
-                return;
+                case BlockIds.Action.Music.Percussion:
+                    b = new PercussionBlock(x, y, note);
+                    break;
+                case BlockIds.Action.Music.Piano:
+                    b = new PianoBlock(x, y, note);
+                    break;
+                default:
+                    Tools.SkylightMessage("Error: noteblock does not exist");
+                    return;
             }
 
-            if (b != null)
-            {
-                _in.Source.Map[x, y, 0] = b;
-            }
-            else
-            {
-                throw new Exception("Unknown music block. Not placing on map.");
-            }
+            _in.Source.Map[x, y, 0] = b;
 
             // Fire the event.
             var e = new BlockEventArgs(b, _in.Source);
