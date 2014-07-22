@@ -520,7 +520,7 @@ namespace Skylight
         /// <param name="left">True if the left/'A' key should be pressed, False if not. If this is true, "right" must be false.</param>
         /// <param name="right">True if the right/'D' key should be pressed, False if not. If this is true, "left" must be false.</param>
         /// <param name="jump">True if the jump key/spacebar should be pressed, False" if not.</param>
-        private void Move(bool up, bool down, bool left, bool right, bool jump)
+        public void Move(bool up, bool down, bool left, bool right, bool jump)
         {
             if (left && right)
                 throw new Exception("Out.Move() does not allow you to move left and right at the same time.");
