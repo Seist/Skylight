@@ -84,7 +84,7 @@ namespace Skylight
         /// <summary>
         ///     The boost
         /// </summary>
-        protected double Boost;
+        private double Boost;
 
         /// <summary>
         ///     The checkpoint at the x coordinate
@@ -99,12 +99,12 @@ namespace Skylight
         /// <summary>
         ///     The current block identifier
         /// </summary>
-        public int CurrentBlockId = 0;
+        private int CurrentBlockId = 0;
 
         /// <summary>
         ///     The gravity
         /// </summary>
-        protected double Gravity;
+        private double Gravity;
 
         /// <summary>
         ///     The horizontal position
@@ -112,54 +112,59 @@ namespace Skylight
         internal int Horizontal = 0;
 
         /// <summary>
+        ///     Whether the player is a club member or not
+        /// </summary>
+        private bool Isclubmember = false;
+
+        /// <summary>
         ///     The modifier x
         /// </summary>
-        protected double ModifierX = 0;
+        private double ModifierX = 0;
 
         /// <summary>
         ///     The modifier y
         /// </summary>
-        protected double ModifierY = 0;
+        private double ModifierY = 0;
 
         /// <summary>
         ///     The mud buoyancy
         /// </summary>
-        protected double MudBuoyancy;
+        private double MudBuoyancy;
 
         /// <summary>
         ///     The mud drag
         /// </summary>
-        protected double MudDrag;
+        private double MudDrag;
 
         /// <summary>
         ///     The no modifier drag x
         /// </summary>
-        protected double NoModifierDragX;
+        private double NoModifierDragX;
 
         /// <summary>
         ///     The no modifier drag y
         /// </summary>
-        protected double NoModifierDragY;
+        private double NoModifierDragY;
 
         /// <summary>
         ///     The size of the block
         /// </summary>
-        protected int Size;
+        private int Size;
 
         /// <summary>
         ///     The speed x
         /// </summary>
-        protected double SpeedX = 0;
+        private double SpeedX = 0;
 
         /// <summary>
         ///     The speed y
         /// </summary>
-        protected double SpeedY = 0;
+        private double SpeedY = 0;
 
         /// <summary>
         ///     The switch opened
         /// </summary>
-        public bool SwitchOpened = false;
+        private bool SwitchOpened = false;
 
         /// <summary>
         ///     The vertical
@@ -169,12 +174,12 @@ namespace Skylight
         /// <summary>
         ///     The water buoyancy
         /// </summary>
-        protected double WaterBuoyancy;
+        private double WaterBuoyancy;
 
         /// <summary>
         ///     The water drag
         /// </summary>
-        protected double WaterDrag;
+        private double WaterDrag;
 
         /// <summary>
         ///     The x position
@@ -486,7 +491,7 @@ namespace Skylight
         ///     Gets a value indicating whether this instance has club.
         /// </summary>
         /// <value><c>true</c> if this instance has club; otherwise, <c>false</c>.</value>
-        public bool HasClub { get; internal set; }
+        private bool HasClub { get; set; }
 
         /// <summary>
         ///     Gets a value indicating whether this instance has command access.
@@ -525,13 +530,13 @@ namespace Skylight
         ///     Gets a value indicating whether this instance is friend.
         /// </summary>
         /// <value><c>true</c> if this instance is friend; otherwise, <c>false</c>.</value>
-        public bool IsFriend { get; internal set; }
+        private bool IsFriend { get; set; }
 
         /// <summary>
         ///     The level of the player (in terms of xp).
         /// </summary>
         /// <value>The level.</value>
-        public int Level { get; internal set; }
+        private int Level { get; set; }
 
         /// <summary>
         ///     Gets a value indicating whether this instance is god.
@@ -550,7 +555,7 @@ namespace Skylight
         ///     free form chat messages.
         /// </summary>
         /// <value><c>true</c> if this instance has chat; otherwise, <c>false</c>.</value>
-        public bool HasChat { get; internal set; }
+        private bool HasChat { get; set; }
 
         /// <summary>
         ///     Gets a value indicating whether this instance is holding left.
@@ -656,10 +661,9 @@ namespace Skylight
         /// </summary>
         /// <value>The block x.</value>
         /// <exception cref="System.NotImplementedException"></exception>
-        internal int blockX
+        private int blockX
         {
             get { return (int) Math.Round(X/16.0); }
-            set { throw new NotImplementedException(); }
         }
 
         /// <summary>
@@ -667,10 +671,9 @@ namespace Skylight
         /// </summary>
         /// <value>The block y.</value>
         /// <exception cref="System.NotImplementedException"></exception>
-        internal int blockY
+        private int blockY
         {
             get { return (int) Math.Round((Y)/16.0); }
-            set { throw new NotImplementedException(); }
         }
 
         /// <summary>
