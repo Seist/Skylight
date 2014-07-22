@@ -185,12 +185,12 @@ namespace Skylight
         /// <summary>
         ///     The x position
         /// </summary>
-        public double X = 0;
+        public double X { get; internal set; }
 
         /// <summary>
         ///     The y position
         /// </summary>
-        public double Y = 0;
+        public double Y { get; internal set; }
 
         /// <summary>
         ///     The _animoffset
@@ -537,7 +537,7 @@ namespace Skylight
         ///     The level of the player (in terms of xp).
         /// </summary>
         /// <value>The level.</value>
-        private int Level { get; set; }
+        public int Level { get; internal set; }
 
         /// <summary>
         ///     Gets a value indicating whether this instance is god.
@@ -556,7 +556,7 @@ namespace Skylight
         ///     free form chat messages.
         /// </summary>
         /// <value><c>true</c> if this instance has chat; otherwise, <c>false</c>.</value>
-        private bool HasChat { get; set; }
+        public bool HasChat { get; internal set; }
 
         /// <summary>
         ///     Gets a value indicating whether this instance is holding left.
