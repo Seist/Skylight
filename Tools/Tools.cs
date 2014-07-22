@@ -189,6 +189,8 @@ namespace Skylight
         /// </summary>
         /// <param name="id">The unparsed identifier of the room.</param>
         /// <returns>A parsed room id</returns>
+        
+        // TODO: fix this function (as it parses regular sized custom open world urls incorrectly)
         internal static string ParseUrl(string id)
         {
             // If it matches any type of URL and has 13 characters at the end, return the last 13 characters.
