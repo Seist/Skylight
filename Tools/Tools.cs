@@ -198,11 +198,30 @@ namespace Skylight
             // Supports haphazard copy/pasting.
             if (Regex.IsMatch(id, "[htp:/w.evrybodis.comga]{0,36}[a-zA-Z0-9_-]{13}"))
             {
-                string parsedUrl = id.Substring(id.ToCharArray().Length - 13, 13);
-                return parsedUrl;
-            }
+                string finalUrl;
+                try
+                {
+                    Uri parsedUrl = new Uri(id, true);
+                    finalUrl = Convert.ToString(parsedUrl.Segments.Last());
 
-            return id;
+                    return finalUrl;
+                }
+                catch (System.UriFormatException)
+                {
+                    id = id.Trim();
+                    if (Regex.IsMatch(id, @"^[a-zA-Z0-9_-]+$") && (id.Length >= 14) && (9 >= id.Length))
+                    {
+                        return id;
+                    }
+                    else
+                    {
+                        SkylightMessage("Invalid room id");
+                    }
+                }
+
+
+            }
+            return null;
         }
 
         /// <summary>
