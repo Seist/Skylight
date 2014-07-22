@@ -85,6 +85,7 @@ namespace Skylight
         /// <summary>
         ///     The size of the block
         /// </summary>
+        protected double Boost;
         private readonly int Size;
 
         /// <summary>
@@ -101,11 +102,13 @@ namespace Skylight
         ///     The water drag
         /// </summary>
         private readonly double WaterDrag;
+        private int CurrentBlockId = 0;
 
         /// <summary>
         ///     Whether or not the player has died
         /// </summary>
         private readonly bool _isDead;
+        private double Gravity;
 
         /// <summary>
         ///     The horizontal position
@@ -120,52 +123,70 @@ namespace Skylight
         /// <summary>
         ///     The player is a zombie
         /// </summary>
-        private readonly bool _isZombie;
+        private double ModifierX = 0;
 
         /// <summary>
         ///     The multiplyer.
         /// </summary>
+        protected double ModifierY = 0;
         private readonly double _mult;
+        private double ModifierY = 0;
 
         /// <summary>
         ///     The main event queue.
         /// </summary>
+        protected double MudBuoyancy;
         private readonly Queue<int> _queue = new Queue<int>();
+        private double MudBuoyancy;
 
         /// <summary>
         ///     The checkpoint at the x coordinate
         /// </summary>
+        protected double MudDrag;
         public int CheckpointX = -1;
+        private double MudDrag;
 
         /// <summary>
         ///     The checkpoint at the y coordinate
         /// </summary>
+        protected double NoModifierDragX;
         public int CheckpointY = -1;
+        private double NoModifierDragX;
 
         /// <summary>
         ///     The current block identifier
         /// </summary>
+        protected double NoModifierDragY;
         private int CurrentBlockId;
+        private double NoModifierDragY;
 
         /// <summary>
         ///     The horizontal position
         /// </summary>
+        protected int Size;
         internal int Horizontal = 0;
+        private int Size;
 
         /// <summary>
         ///     Whether the player is a club member or not
         /// </summary>
+        protected double SpeedX = 0;
         private bool Isclubmember = false;
+        private double SpeedX = 0;
 
         /// <summary>
         ///     The modifier x
         /// </summary>
+        protected double SpeedY = 0;
         private double ModifierX;
+        private double SpeedY = 0;
 
         /// <summary>
         ///     The modifier y
         /// </summary>
+        public bool SwitchOpened = false;
         private double ModifierY;
+        private bool SwitchOpened = false;
 
         /// <summary>
         ///     The speed x
@@ -175,12 +196,16 @@ namespace Skylight
         /// <summary>
         ///     The speed y
         /// </summary>
+        protected double WaterBuoyancy;
         private double SpeedY;
+        private double WaterBuoyancy;
 
         /// <summary>
         ///     The vertical
         /// </summary>
+        protected double WaterDrag;
         internal int Vertical = 0;
+        private double WaterDrag;
 
         /// <summary>
         ///     The x position
@@ -537,7 +562,7 @@ namespace Skylight
         ///     The level of the player (in terms of xp).
         /// </summary>
         /// <value>The level.</value>
-        public int Level { get; internal set; }
+        private int Level { get; set; }
 
         /// <summary>
         ///     Gets a value indicating whether this instance is god.
@@ -556,7 +581,7 @@ namespace Skylight
         ///     free form chat messages.
         /// </summary>
         /// <value><c>true</c> if this instance has chat; otherwise, <c>false</c>.</value>
-        public bool HasChat { get; internal set; }
+        private bool HasChat { get; set; }
 
         /// <summary>
         ///     Gets a value indicating whether this instance is holding left.
