@@ -196,13 +196,9 @@ namespace Skylight
         {
             // If it matches any type of URL and has 13 characters at the end, return the last 13 characters.
             // Supports haphazard copy/pasting.
-            if (Regex.IsMatch(id, "[htp:/w.evrybodis.comga]{0,36}[a-zA-Z0-9_-]{13}"))
-            {
-                string parsedUrl = id.Substring(id.ToCharArray().Length - 13, 13);
-                return parsedUrl;
-            }
-
-            return id;
+            if (!Regex.IsMatch(id, "[htp:/w.evrybodis.comga]{0,36}[a-zA-Z0-9_-]{13}")) return id;
+            string parsedUrl = id.Substring(id.ToCharArray().Length - 13, 13);
+            return parsedUrl;
         }
 
         /// <summary>
