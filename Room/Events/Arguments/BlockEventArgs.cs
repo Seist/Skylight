@@ -40,7 +40,7 @@ namespace Skylight
         /// <summary>
         ///     The room object (with room id).
         /// </summary>
-        public Room Origin { get; private set; }
+        private Room Origin { get; set; }
 
         /// <summary>
         ///     A placed block.

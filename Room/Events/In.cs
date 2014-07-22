@@ -13,7 +13,7 @@ namespace Skylight
     /// <summary>
     ///     The main class that takes in events from the playerio client.
     /// </summary>
-    public class In
+    public sealed class In
     {
         /// <summary>
         ///     The block event compiled from the message from the server.
@@ -93,7 +93,7 @@ namespace Skylight
 
         public Room Source { get; set; }
 
-        internal bool IsPersonal { get; set; }
+        internal bool IsPersonal { private get; set; }
 
         public Add Add { get; private set; }
 
@@ -147,7 +147,7 @@ namespace Skylight
 
         public RefreshShop RefreshShop { get; private set; }
 
-        public ResetWorld ResetWorld { get; private set; }
+        private ResetWorld ResetWorld { get; set; }
 
         public Chat Chat { get; private set; }
 
@@ -163,7 +163,7 @@ namespace Skylight
 
         public Meta Meta { get; private set; }
 
-        public Upgrade Upgrade { get; private set; }
+        private Upgrade Upgrade { get; set; }
 
         public Wp Wp { get; private set; }
 
@@ -182,14 +182,21 @@ namespace Skylight
         ///     (such as when a block was added or updated).
         /// </summary>
         public event BlockEvent
-            CoinBlockEvent = delegate { } , PortalBlockEvent = delegate { };
+            CoinBlockEvent = delegate { };
+
+        /// <summary>
+        ///     All of the delegates for BlockEvent. These fire when events occur
+        ///     (such as when a block was added or updated).
+        /// </summary>
+        public event BlockEvent
+            PortalBlockEvent = delegate { };
 
         /// <summary>
         ///     When a sign block is placed in the world.
         /// </summary>
-        protected virtual void OnSignBlockEvent(Message m)
+        private void OnSignBlockEvent(Message m)
         {
-            ;
+            
         }
 
         /// <summary>
@@ -199,7 +206,34 @@ namespace Skylight
         ///     box or by prefixing a chat message with *SYSTEM.
         /// </summary>
         public event PlayerEvent
-            AddEvent = delegate { } , LoseAccessEvent = delegate { } , TickEvent = delegate { }, GuardianEvent = delegate { };
+            AddEvent = delegate { };
+
+        /// <summary>
+        ///     All events that concern the player. This includes many messages that the player
+        ///     gets from the world (such as server information and leveling up). Mostly these
+        ///     events are shown from the server directly to the user in the form of a dialog
+        ///     box or by prefixing a chat message with *SYSTEM.
+        /// </summary>
+        public event PlayerEvent
+            LoseAccessEvent = delegate { };
+
+        /// <summary>
+        ///     All events that concern the player. This includes many messages that the player
+        ///     gets from the world (such as server information and leveling up). Mostly these
+        ///     events are shown from the server directly to the user in the form of a dialog
+        ///     box or by prefixing a chat message with *SYSTEM.
+        /// </summary>
+        public event PlayerEvent
+            TickEvent = delegate { };
+
+        /// <summary>
+        ///     All events that concern the player. This includes many messages that the player
+        ///     gets from the world (such as server information and leveling up). Mostly these
+        ///     events are shown from the server directly to the user in the form of a dialog
+        ///     box or by prefixing a chat message with *SYSTEM.
+        /// </summary>
+        public event PlayerEvent
+            GuardianEvent = delegate { };
 
         /// <summary>
         ///     Delegates for RoomEvent. Are only invoked when commands that concern

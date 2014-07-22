@@ -194,7 +194,7 @@ namespace Skylight
         /// <param name="start">The start.</param>
         /// <param name="r">The room.</param>
         /// <returns>A list of blocks which is the room.</returns>
-        internal static List<Block> DeserializeInit(Message m, uint start, Room r)
+        internal static IEnumerable<Block> DeserializeInit(Message m, uint start, Room r)
         {
             var list = new List<Block>();
             try

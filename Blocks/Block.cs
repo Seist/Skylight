@@ -52,13 +52,13 @@ namespace Skylight.Blocks
         /// Gets or sets the y.
         /// </summary>
         /// <value>The y.</value>
-        public int Y { get; set; }
+        public int Y { get; private set; }
 
         /// <summary>
         /// Gets or sets the x.
         /// </summary>
         /// <value>The x.</value>
-        public int X { get; set; }
+        public int X { get; private set; }
 
         /// <summary>
         /// Gets a value indicating whether this instance is solid.
@@ -73,13 +73,13 @@ namespace Skylight.Blocks
         /// Gets or sets the direction.
         /// </summary>
         /// <value>The direction.</value>
-        public int Direction { get; set; }
+        public int Direction { get; private set; }
 
         /// <summary>
         /// Gets the identifier.
         /// </summary>
         /// <value>The identifier.</value>
-        public int Id { get; internal set; }
+        public int Id { get; private set; }
 
         /// <summary>
         /// Gets the z coordinate (background or foreground)
@@ -89,7 +89,7 @@ namespace Skylight.Blocks
         {
             get { return Id >= 500 ? 1 : 0; }
 
-            internal set {if (value == 0 || value == 1) {_z = value;}}
+            private set {if (value == 0 || value == 1) {_z = value;}}
         }
 
 

@@ -33,6 +33,6 @@ namespace Skylight
         ///     Gets the text.
         /// </summary>
         /// <value>The text.</value>
-        public string Text { get; internal set; }
+        public string Text { get; private set; }
     }
 }
