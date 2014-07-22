@@ -108,14 +108,14 @@ namespace Skylight
         private readonly bool _isDead;
 
         /// <summary>
-        ///     Whether or not the player is invulnerable
+        ///     The horizontal position
         /// </summary>
-        private readonly bool _isInvulnerable;
+        internal int Horizontal = 0;
 
         /// <summary>
-        ///     Whether or not the player is thrusting
+        ///     Whether the player is a club member or not
         /// </summary>
-        private readonly bool _isThrusting;
+        public bool Isclubmember = false;
 
         /// <summary>
         ///     The player is a zombie
@@ -932,7 +932,7 @@ namespace Skylight
                                             }
                                             case BlockIds.Action.Doors.Club:
                                             {
-                                                if (Isclubmember)
+                                                if (HasClub)
                                                 {
                                                     continue;
                                                 }
@@ -940,7 +940,7 @@ namespace Skylight
                                             }
                                             case BlockIds.Action.Gates.Club:
                                             {
-                                                if (!Isclubmember)
+                                                if (!HasClub)
                                                 {
                                                     continue;
                                                 }
@@ -1242,7 +1242,7 @@ namespace Skylight
                     _modoffset = 10;
                 }
             }
-            else if (Isclubmember)
+            else if (HasClub)
             {
                 _cluboffset = _cluboffset + 0.2;
                 if (_cluboffset >= 14)
