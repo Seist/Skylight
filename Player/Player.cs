@@ -635,12 +635,6 @@ namespace Skylight
         public int Smiley { get; internal set; }
 
         /// <summary>
-        ///     Gets the xp level.
-        /// </summary>
-        /// <value>The xp level.</value>
-        public int XpLevel { get; internal set; }
-
-        /// <summary>
         ///     Gets the potion effects.
         /// </summary>
         /// <value>The potion effects.</value>
