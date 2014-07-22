@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using PlayerIOClient;
@@ -126,6 +127,9 @@ namespace Skylight
         /// <summary>
         ///     The main method to login the bot with the credentials already specified.
         /// </summary>
+        /// 
+        
+        // TODO: switch authentication system to Rabbit.
         public void LogIn()
         {
             try
@@ -435,7 +439,7 @@ namespace Skylight
         /// <param name="reason">The reason.</param>
         public void Kick(string name, string reason = "")
         {
-            if (Name == R.Owner.Name)
+            if (IsOwner)
             {
                 Say("/kick " + name + " " + reason);
             }
@@ -448,7 +452,7 @@ namespace Skylight
         /// <param name="reason">The reason.</param>
         public void Kick(Player p, string reason = "")
         {
-            if (Name == R.Owner.Name)
+            if (IsOwner)
             {
                 Say("/kick " + p.Name + " " + reason);
             }
@@ -459,7 +463,7 @@ namespace Skylight
         /// </summary>
         public void Loadlevel()
         {
-            if (Name == R.Owner.Name)
+            if (IsOwner)
             {
                 Say("/loadlevel");
             }
@@ -556,7 +560,7 @@ namespace Skylight
         /// </summary>
         public void Reset()
         {
-            if (Name == R.Owner.Name)
+            if (IsOwner)
             {
                 Say("/reset");
             }
@@ -568,7 +572,7 @@ namespace Skylight
         /// <param name="p">The player.</param>
         public void Respawn(Player p)
         {
-            if (Name == R.Owner.Name)
+            if (IsOwner)
             {
                 Say("/kill " + p.Name);
             }
@@ -580,7 +584,7 @@ namespace Skylight
         /// <param name="name">The username.</param>
         public void Respawn(string name)
         {
-            if (Name == R.Owner.Name)
+            if (IsOwner)
             {
                 Say("/kill " + name);
             }
@@ -591,7 +595,7 @@ namespace Skylight
         /// </summary>
         public void RespawnAll()
         {
-            if (Name == R.Owner.Name)
+            if (IsOwner)
             {
                 Say("/respawnall");
             }
@@ -604,7 +608,7 @@ namespace Skylight
         {
             try
             {
-                if (Name == R.Owner.Name)
+                if (IsOwner)
                 {
                     Connection.Send("save");
                 }
@@ -677,7 +681,7 @@ namespace Skylight
         {
             try
             {
-                if (Name == R.Owner.Name)
+                if (IsOwner)
                 {
                     Connection.Send("allowpotions", value);
                 }
@@ -698,7 +702,7 @@ namespace Skylight
         /// <param name="newCode">The new code.</param>
         public void SetCode(string newCode)
         {
-            if (Name == R.Owner.Name)
+            if (IsOwner)
             {
                 Connection.Send("key", newCode);
             }
@@ -711,7 +715,7 @@ namespace Skylight
         /// <param name="value">if set to <c>true</c> then the player will receive edit privileges.</param>
         public void SetEdit(string name, bool value)
         {
-            if (Name == R.Owner.Name)
+            if (IsOwner)
             {
                 if (value)
                 {
@@ -731,7 +735,7 @@ namespace Skylight
         /// <param name="value">if set to <c>true</c> then the Player object recieves edit.</param>
         public void SetEdit(Player p, bool value)
         {
-            if (Name == R.Owner.Name)
+            if (IsOwner)
             {
                 if (value)
                 {
@@ -764,7 +768,7 @@ namespace Skylight
         /// <param name="value">if set to <c>true</c> then that username will be muted.</param>
         public void SetMute(string name, bool value)
         {
-            if (Name == R.Owner.Name)
+            if (IsOwner)
             {
                 if (value)
                 {
@@ -784,7 +788,7 @@ namespace Skylight
         /// <param name="value">if set to <c>true</c> then that Player.subject object will be muted.</param>
         public void SetMute(Player p, bool value)
         {
-            if (Name == R.Owner.Name)
+            if (IsOwner)
             {
                 if (value)
                 {
@@ -804,7 +808,7 @@ namespace Skylight
         /// <param name="value">if set to <c>true</c> then potions will be turned on for that potion.</param>
         public void SetPotionBan(int potionId, bool value)
         {
-            if (Name == R.Owner.Name)
+            if (IsOwner)
             {
                 if (value)
                 {
@@ -839,7 +843,7 @@ namespace Skylight
         /// <param name="value">if set to <c>true</c> then the bot will become visible.</param>
         public void SetRoomVisibility(bool value)
         {
-            if (Name == R.Owner.Name)
+            if (IsOwner)
             {
                 Say("/visible " + value);
             }
@@ -873,7 +877,7 @@ namespace Skylight
         /// <param name="name">The name.</param>
         public void Teleport(int newXLocation, int newYLocation, string name = "")
         {
-            if (Name == R.Owner.Name)
+            if (IsOwner)
             {
                 if (name != "")
                 {
@@ -894,7 +898,7 @@ namespace Skylight
         /// <param name="p">The p.</param>
         public void Teleport(int newXLocation, int newYLocation, Player p = null)
         {
-            if (Name == R.Owner.Name)
+            if (IsOwner)
             {
                 if (p != null)
                 {
@@ -914,7 +918,7 @@ namespace Skylight
         /// <param name="newYLocation">The new y location.</param>
         public void TeleportAll(int newXLocation, int newYLocation)
         {
-            if (Name == R.Owner.Name)
+            if (IsOwner)
             {
                 foreach (var p in R.OnlinePlayers)
                 {
