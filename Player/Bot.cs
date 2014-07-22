@@ -312,6 +312,7 @@ namespace Skylight
         {
             if (R.Map[theBlock.X, theBlock.Y, theBlock.Z] == theBlock)
             {
+                // don't bother writing a block to the map if it's already there.
                 return;
             }
             if (!HasAccess)
@@ -358,6 +359,7 @@ namespace Skylight
                 }
                 else
                 {
+                    
                     Connection.Send(R.RoomKey, theBlock.Z, theBlock.X, theBlock.Y, theBlock.Id, theBlock.Direction);
                 }
 
@@ -381,6 +383,11 @@ namespace Skylight
 
             foreach (var b in tempList)
             {
+                if (R.Map[b.X, b.Y, b.Z] == b)
+                {
+                    // don't bother writing a block to the map if it's already there.
+                    return;
+                }
                 Build(b); // this line has problems but I fixed it in a weird way.
             }
         }
