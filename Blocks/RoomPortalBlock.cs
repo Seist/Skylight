@@ -41,7 +41,7 @@ namespace Skylight
         {
             get { return _portalDestination; }
 
-            internal set
+            private set
             {
                 var s = value;
                 Tools.ParseUrl(s);

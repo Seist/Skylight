@@ -48,7 +48,7 @@ namespace Skylight
         /// <summary>
         ///     The origin (room) where the message came from.
         /// </summary>
-        public Room Origin
+        private Room Origin
         {
             get { return _origin; }
         }

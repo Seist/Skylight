@@ -54,7 +54,7 @@ namespace Skylight
         /// <summary>
         ///     The direction of the portal.
         /// </summary>
-        public new int Direction { get; set; }
+        public new int Direction { get; private set; }
 
         /// <summary>
         ///     Gets the portal destination.
@@ -64,7 +64,7 @@ namespace Skylight
         {
             get { return _portalDestination; }
 
-            internal set
+            private set
             {
                 if (value > Minportalid && value < Maxportalid)
                 {
@@ -81,7 +81,7 @@ namespace Skylight
         {
             get { return _portalId; }
 
-            internal set
+            private set
             {
                 if (value < Maxportalid && value > Minportalid)
                 {
@@ -94,6 +94,6 @@ namespace Skylight
         ///     Gets a value indicating whether this <see cref="PortalBlock" /> is visible.
         /// </summary>
         /// <value><c>true</c> if visible; otherwise, <c>false</c>.</value>
-        public bool Visible { get; internal set; }
+        private bool Visible { get; set; }
     }
 }

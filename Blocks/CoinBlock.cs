@@ -42,6 +42,6 @@ namespace Skylight
         ///     Gets the coins required to open the gate (or close the door).
         /// </summary>
         /// <value>The coins required.</value>
-        public int CoinsRequired { get; internal set; }
+        public int CoinsRequired { get; private set; }
     }
 }

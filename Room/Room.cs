@@ -37,7 +37,7 @@ namespace Skylight
         ///     Initializes a new instance of the <see cref="Room" /> class.
         /// </summary>
         /// <param name="id">The room identifier.</param>
-        public Room(string id)
+        public Room(string id, bool shouldTick)
         {
             OnlineBots = new List<Bot>();
             OnlinePlayers = new List<Player>();
@@ -46,19 +46,20 @@ namespace Skylight
             Pull = new In();
             Map = new Block[700, 400, 2];
             Id = id;
+            ShouldTick = shouldTick;
         }
 
         /// <summary>
         ///     Gets the joined rooms.
         /// </summary>
         /// <value>The joined rooms.</value>
-        public static List<Room> JoinedRooms { get; internal set; }
+        public static List<Room> JoinedRooms { get; private set; }
 
         /// <summary>
         ///     Gets the map.
         /// </summary>
         /// <value>The map.</value>
-        public Block[,,] Map { get; internal set; }
+        public Block[,,] Map { get; private set; }
 
         /// <summary>
         ///     Gets a value indicating whether [blocks are loaded].
@@ -112,7 +113,7 @@ namespace Skylight
         ///     Gets the pull.
         /// </summary>
         /// <value>The pull.</value>
-        public In Pull { get; internal set; }
+        public In Pull { get; private set; }
 
         /// <summary>
         ///     Gets the height.

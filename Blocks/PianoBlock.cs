@@ -18,30 +18,150 @@ namespace Skylight
         ///     The piano notes.
         /// </summary>
         public const int
-            C1 = 1,
-            Csharp1 = 2,
-            D1 = 3,
-            Dsharp1 = 4,
-            E1 = 5,
-            F1 = 6,
-            Fsharp1 = 7,
-            G1 = 8,
-            Gsharp1 = 9,
-            A1 = 10,
-            Asharp1 = 11,
-            B1 = 12,
-            C2 = 13,
-            Csharp2 = 14,
-            D2 = 15,
-            Dsharp2 = 16,
-            E2 = 17,
-            F2 = 18,
-            Fsharp2 = 19,
-            G2 = 20,
-            Gsharp2 = 21,
-            A2 = 22,
-            Asharp2 = 23,
-            B2 = 24,
+            C1 = 1;
+
+        /// <summary>
+        ///     The piano notes.
+        /// </summary>
+        public const int
+            Csharp1 = 2;
+
+        /// <summary>
+        ///     The piano notes.
+        /// </summary>
+        public const int
+            D1 = 3;
+
+        /// <summary>
+        ///     The piano notes.
+        /// </summary>
+        public const int
+            Dsharp1 = 4;
+
+        /// <summary>
+        ///     The piano notes.
+        /// </summary>
+        public const int
+            E1 = 5;
+
+        /// <summary>
+        ///     The piano notes.
+        /// </summary>
+        public const int
+            F1 = 6;
+
+        /// <summary>
+        ///     The piano notes.
+        /// </summary>
+        public const int
+            Fsharp1 = 7;
+
+        /// <summary>
+        ///     The piano notes.
+        /// </summary>
+        public const int
+            G1 = 8;
+
+        /// <summary>
+        ///     The piano notes.
+        /// </summary>
+        public const int
+            Gsharp1 = 9;
+
+        /// <summary>
+        ///     The piano notes.
+        /// </summary>
+        public const int
+            A1 = 10;
+
+        /// <summary>
+        ///     The piano notes.
+        /// </summary>
+        public const int
+            Asharp1 = 11;
+
+        /// <summary>
+        ///     The piano notes.
+        /// </summary>
+        public const int
+            B1 = 12;
+
+        /// <summary>
+        ///     The piano notes.
+        /// </summary>
+        public const int
+            C2 = 13;
+
+        /// <summary>
+        ///     The piano notes.
+        /// </summary>
+        public const int
+            Csharp2 = 14;
+
+        /// <summary>
+        ///     The piano notes.
+        /// </summary>
+        public const int
+            D2 = 15;
+
+        /// <summary>
+        ///     The piano notes.
+        /// </summary>
+        public const int
+            Dsharp2 = 16;
+
+        /// <summary>
+        ///     The piano notes.
+        /// </summary>
+        public const int
+            E2 = 17;
+
+        /// <summary>
+        ///     The piano notes.
+        /// </summary>
+        public const int
+            F2 = 18;
+
+        /// <summary>
+        ///     The piano notes.
+        /// </summary>
+        public const int
+            Fsharp2 = 19;
+
+        /// <summary>
+        ///     The piano notes.
+        /// </summary>
+        public const int
+            G2 = 20;
+
+        /// <summary>
+        ///     The piano notes.
+        /// </summary>
+        public const int
+            Gsharp2 = 21;
+
+        /// <summary>
+        ///     The piano notes.
+        /// </summary>
+        public const int
+            A2 = 22;
+
+        /// <summary>
+        ///     The piano notes.
+        /// </summary>
+        public const int
+            Asharp2 = 23;
+
+        /// <summary>
+        ///     The piano notes.
+        /// </summary>
+        public const int
+            B2 = 24;
+
+        /// <summary>
+        ///     The piano notes.
+        /// </summary>
+        public const int
             C3 = 25;
 
         /// <summary>
@@ -62,6 +182,6 @@ namespace Skylight
         ///     Gets the piano identifier.
         /// </summary>
         /// <value>The piano identifier.</value>
-        public int PianoId { get; internal set; }
+        public int PianoId { get; private set; }
     }
 }

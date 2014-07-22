@@ -19,15 +19,60 @@ namespace Skylight
         ///     The types of notes that can be played.
         /// </summary>
         public const int
-            Base1 = 0,
-            Base2 = 1,
-            Snare1 = 2,
-            Snare2 = 3,
-            Cymbal1 = 4,
-            Cymbal2 = 5,
-            Cymbal3 = 6,
-            Clap = 7,
-            Cymbal4 = 8,
+            Base1 = 0;
+
+        /// <summary>
+        ///     The types of notes that can be played.
+        /// </summary>
+        public const int
+            Base2 = 1;
+
+        /// <summary>
+        ///     The types of notes that can be played.
+        /// </summary>
+        public const int
+            Snare1 = 2;
+
+        /// <summary>
+        ///     The types of notes that can be played.
+        /// </summary>
+        public const int
+            Snare2 = 3;
+
+        /// <summary>
+        ///     The types of notes that can be played.
+        /// </summary>
+        public const int
+            Cymbal1 = 4;
+
+        /// <summary>
+        ///     The types of notes that can be played.
+        /// </summary>
+        public const int
+            Cymbal2 = 5;
+
+        /// <summary>
+        ///     The types of notes that can be played.
+        /// </summary>
+        public const int
+            Cymbal3 = 6;
+
+        /// <summary>
+        ///     The types of notes that can be played.
+        /// </summary>
+        public const int
+            Clap = 7;
+
+        /// <summary>
+        ///     The types of notes that can be played.
+        /// </summary>
+        public const int
+            Cymbal4 = 8;
+
+        /// <summary>
+        ///     The types of notes that can be played.
+        /// </summary>
+        public const int
             Maraca = 9;
 
         /// <summary>
