@@ -765,7 +765,6 @@ namespace Skylight
         /// <param name="value">if set to <c>true</c> then that username will be muted.</param>
         public void SetMute(string name, bool shouldMute)
         {
-            if (!IsOwner) return;
             if (shouldMute)
             {
                 Say("/mute " + name);
@@ -783,7 +782,6 @@ namespace Skylight
         /// <param name="value">if set to <c>true</c> then that Player.subject object will be muted.</param>
         public void SetMute(Player p, bool shouldMute)
         {
-            if (!IsOwner) return;
             if (shouldMute)
             {
                 Say("/mute " + p.Name);
