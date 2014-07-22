@@ -25,8 +25,7 @@ namespace Skylight
             int x = m.GetInteger(0),
                 y = m.GetInteger(1),
                 id = m.GetInteger(2),
-                rotation = m.GetInteger(3),
-                pId = m.GetInteger(4); // player id
+                rotation = m.GetInteger(3);
 
             // Update relevant objects.
             var b = new Block(id, x, y, 0, rotation);

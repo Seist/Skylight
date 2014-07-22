@@ -130,6 +130,7 @@ namespace Skylight
         /// 
         
         // TODO: switch authentication system to Rabbit.
+        // TODO: fix authentication system.
         public void LogIn()
         {
             try
@@ -677,13 +678,13 @@ namespace Skylight
         ///     Toggle all potion bans.
         /// </summary>
         /// <param name="value">if set to <c>true</c> then turn on potions.</param>
-        public void SetAllPotionBans(bool value)
+        public void SetAllPotionBans(bool shouldSetPotionBan)
         {
             try
             {
                 if (IsOwner)
                 {
-                    Connection.Send("allowpotions", value);
+                    Connection.Send("allowpotions", shouldSetPotionBan);
                 }
                 else
                 {
@@ -713,18 +714,16 @@ namespace Skylight
         /// </summary>
         /// <param name="name">The username of the player.</param>
         /// <param name="value">if set to <c>true</c> then the player will receive edit privileges.</param>
-        public void SetEdit(string name, bool value)
+        public void SetEdit(string name, bool shouldSetEdit)
         {
-            if (IsOwner)
+            if (!IsOwner) return;
+            if (shouldSetEdit)
             {
-                if (value)
-                {
-                    Say("/giveedit " + name);
-                }
-                else
-                {
-                    Say("/removeedit " + name);
-                }
+                Say("/giveedit " + name);
+            }
+            else
+            {
+                Say("/removeedit " + name);
             }
         }
 
@@ -733,18 +732,16 @@ namespace Skylight
         /// </summary>
         /// <param name="p">The Player object.</param>
         /// <param name="value">if set to <c>true</c> then the Player object recieves edit.</param>
-        public void SetEdit(Player p, bool value)
+        public void SetEdit(Player p, bool shouldSetEdit)
         {
-            if (IsOwner)
+            if (!IsOwner) return;
+            if (shouldSetEdit)
             {
-                if (value)
-                {
-                    Say("/giveedit " + p.Name);
-                }
-                else
-                {
-                    Say("/removeedit " + p.Name);
-                }
+                Say("/giveedit " + p.Name);
+            }
+            else
+            {
+                Say("/removeedit " + p.Name);
             }
         }
 
@@ -752,11 +749,11 @@ namespace Skylight
         ///     Sets the god mode for the bot.
         /// </summary>
         /// <param name="value">if set to <c>true</c> then the bot will go into god mode.</param>
-        public void SetGod(bool value)
+        public void SetGod(bool shouldSetGodMode)
         {
             if (HasAccess)
             {
-                Connection.Send("god", value);
+                Connection.Send("god", shouldSetGodMode);
             }
         }
 
@@ -766,18 +763,16 @@ namespace Skylight
         /// </summary>
         /// <param name="name">The username.</param>
         /// <param name="value">if set to <c>true</c> then that username will be muted.</param>
-        public void SetMute(string name, bool value)
+        public void SetMute(string name, bool shouldMute)
         {
-            if (IsOwner)
+            if (!IsOwner) return;
+            if (shouldMute)
             {
-                if (value)
-                {
-                    Say("/mute " + name);
-                }
-                else
-                {
-                    Say("/unmute " + name);
-                }
+                Say("/mute " + name);
+            }
+            else
+            {
+                Say("/unmute " + name);
             }
         }
 
@@ -786,18 +781,16 @@ namespace Skylight
         /// </summary>
         /// <param name="p">The Player.</param>
         /// <param name="value">if set to <c>true</c> then that Player.subject object will be muted.</param>
-        public void SetMute(Player p, bool value)
+        public void SetMute(Player p, bool shouldMute)
         {
-            if (IsOwner)
+            if (!IsOwner) return;
+            if (shouldMute)
             {
-                if (value)
-                {
-                    Say("/mute " + p.Name);
-                }
-                else
-                {
-                    Say("/unmute " + p.Name);
-                }
+                Say("/mute " + p.Name);
+            }
+            else
+            {
+                Say("/unmute " + p.Name);
             }
         }
 
@@ -806,11 +799,11 @@ namespace Skylight
         /// </summary>
         /// <param name="potionId">The potion id.</param>
         /// <param name="value">if set to <c>true</c> then potions will be turned on for that potion.</param>
-        public void SetPotionBan(int potionId, bool value)
+        public void SetPotionBan(int potionId, bool shouldSetPotionBans)
         {
             if (IsOwner)
             {
-                if (value)
+                if (shouldSetPotionBans)
                 {
                     Say("/potionson " + potionId);
                 }
@@ -841,11 +834,11 @@ namespace Skylight
         ///     Sets the visibility of the bot.
         /// </summary>
         /// <param name="value">if set to <c>true</c> then the bot will become visible.</param>
-        public void SetRoomVisibility(bool value)
+        public void SetRoomVisibility(bool visbility)
         {
             if (IsOwner)
             {
-                Say("/visible " + value);
+                Say("/visible " + visbility);
             }
         }
 
