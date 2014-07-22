@@ -21,18 +21,7 @@ namespace Skylight
 
         public void OnClear()
         {
-            // There is data, but it's kind of irrelevant.
-            // Update relevant objects.
-            for (int x = 0; x <= _in.Source.Width; x++)
-            {
-                for (int y = 0; y <= _in.Source.Height; y++)
-                {
-                    var blankBlock = new Block(0, x, y);
-
-                    _in.Source.Map[x, y, 0] = blankBlock;
-                    _in.Source.Map[x, y, 1] = blankBlock;
-                }
-            }
+           Tools.ClearMap(_in.Source);
 
             // Fire the event.
             var e = new RoomEventArgs(_in.Source);

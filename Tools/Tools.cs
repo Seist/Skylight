@@ -222,16 +222,7 @@ namespace Skylight
 
                 // First, fill the entire map with blank blocks (so that you don't get null exceptions).
 
-                for (int x = 0; x <= RoomAccessor.Width; x++)
-                {
-                    for (int y = 0; y <= RoomAccessor.Height; y++)
-                    {
-                        for (int z = 0; z < 2; z++)
-                        {
-                            r.Map[x, y, z] = new Block(0, x, y, z);
-                        }
-                    }
-                }
+                ClearMap(r);
 
                 // And now replace empty blocks with the ones that already exist.
                 uint messageIndex = start;
@@ -376,6 +367,20 @@ namespace Skylight
 
             SkylightMessage("Done loading blocks");
             return list;
+        }
+
+        public static void ClearMap(Room r)
+        {
+            for (int x = 0; x <= r.Width; x++)
+            {
+                for (int y = 0; y <= r.Height; y++)
+                {
+                    for (int z = 0; z < 2; z++)
+                    {
+                        r.Map[x, y, z] = new Block(0, x, y, z);
+                    }
+                }
+            }
         }
 
         /// <summary>
