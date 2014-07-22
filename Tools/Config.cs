@@ -24,7 +24,7 @@ namespace Skylight
         public static int ServerTypeVersion = 176;
 
         /// <summary>
-        ///     The server_type_normalroom
+        ///     The server type normal room combined with the everybody edits version.
         /// </summary>
         public static string ServerTypeNormalroom = "Everybodyedits" + ServerTypeVersion;
 
@@ -44,12 +44,12 @@ namespace Skylight
         public static string ServerTypeServiceroom = "Lobby" + ServerTypeVersion;
 
         /// <summary>
-        ///     The authentication room (temp)
+        ///     The authentication room used for ArmorGames authentication
         /// </summary>
         public static string ServerTypeAuthroom = "Auth" + ServerTypeVersion;
 
         /// <summary>
-        ///     The blacklisted rooms
+        ///     The blacklisted room
         /// </summary>
         public static string ServerTypeBlacklistroom = "QuickInviteHandler" + ServerTypeVersion;
 
@@ -94,22 +94,22 @@ namespace Skylight
         public static bool RunInDevelopmentMode = false;
 
         /// <summary>
-        ///     The show_disabled_shopitems
+        ///     Whether or not to show disabled shop items
         /// </summary>
         public static bool ShowDisabledShopitems = false;
 
         /// <summary>
-        ///     The development_mode_autojoin_room
+        ///     If in development mode, auto join a room
         /// </summary>
         public static string DevelopmentModeAutojoinRoom = "PWvOaRIeIvbUI";
 
         /// <summary>
-        ///     The debug_news
+        ///     The debug news
         /// </summary>
         public static string DebugNews = "";
 
         /// <summary>
-        ///     The developer_server
+        ///     The developer server (locally)
         /// </summary>
         public static string DeveloperServer = "127.0.0.1:8184";
 
@@ -119,22 +119,22 @@ namespace Skylight
         public static bool ForceArmor = false;
 
         /// <summary>
-        ///     The armor_userid
+        ///     The ArmorGames userid
         /// </summary>
         public static string ArmorUserid = null;
 
         /// <summary>
-        ///     The armor_authtoken
+        ///     The ArmorGames authentication token
         /// </summary>
         public static string ArmorAuthtoken = null;
 
         /// <summary>
-        ///     The force mouse breaker
+        ///     The force mouse breaker option
         /// </summary>
         public static bool ForceMouseBreaker = false;
 
         /// <summary>
-        ///     The mousebreaker_authtoken
+        ///     The mousebreaker authtoken
         /// </summary>
         public static string MousebreakerAuthtoken = null;
 
@@ -144,97 +144,97 @@ namespace Skylight
         public static bool ForceBeta = false;
 
         /// <summary>
-        ///     The show_debug_profile
+        ///     Whether or not to show debug profile
         /// </summary>
         public static bool ShowDebugProfile = true;
 
         /// <summary>
-        ///     The debug_profile
+        ///     The debug profile
         /// </summary>
         public static string DebugProfile = "";
 
         /// <summary>
-        ///     The disable cookie
+        ///     The disable cookie option
         /// </summary>
         public static bool DisableCookie = false;
 
         /// <summary>
-        ///     The show_debug_friendrequest
+        ///     Whether or not to show debug information concerning a friend request
         /// </summary>
         public static bool ShowDebugFriendrequest = false;
 
         /// <summary>
-        ///     The debug_friendrequest
+        ///     The debug inforation for friend request
         /// </summary>
         public static string DebugFriendrequest = "";
 
         /// <summary>
-        ///     The show_blacklist_invitation
+        ///     Whether or not to show blacklist invitation
         /// </summary>
         public static bool ShowBlacklistInvitation = false;
 
         /// <summary>
-        ///     The debug_invitation
+        ///     The debug invitation
         /// </summary>
         public static string DebugInvitation = "";
 
         /// <summary>
-        ///     The physics_ms_per_tick
+        ///     The milliseconds that constitute one player physics tick
         /// </summary>
         public static int PhysicsMsPerTick = 10;
 
         /// <summary>
-        ///     The physics_variable_multiplyer
+        ///     The physics variable multiplyer
         /// </summary>
         public static double PhysicsVariableMultiplyer = 7.752;
 
         /// <summary>
-        ///     The physics_base_drag
+        ///     The physics base drag
         /// </summary>
         public static double PhysicsBaseDrag = Math.Pow(0.9981, PhysicsMsPerTick)*1.00016;
 
         /// <summary>
-        ///     The physics_no_modifier_drag
+        ///     The physics no modifier drag
         /// </summary>
         public static double PhysicsNoModifierDrag = Math.Pow(0.99, PhysicsMsPerTick)*1.00016;
 
         /// <summary>
-        ///     The physics_water_drag
+        ///     The physics water drag
         /// </summary>
         public static double PhysicsWaterDrag = Math.Pow(0.995, PhysicsMsPerTick)*1.00016;
 
         /// <summary>
-        ///     The physics_mud_drag
+        ///     The physics mud drag
         /// </summary>
         public static double PhysicsMudDrag = Math.Pow(0.975, PhysicsMsPerTick)*1.00016;
 
         /// <summary>
-        ///     The physics_jump_height
+        ///     The jump height
         /// </summary>
         public static double PhysicsJumpHeight = 26;
 
         /// <summary>
-        ///     The physics_gravity
+        ///     The gravity
         /// </summary>
         public static double PhysicsGravity = 2;
 
         /// <summary>
-        ///     The physics_boost
+        ///     The physics boost
         /// </summary>
         public static double PhysicsBoost = 16;
 
         /// <summary>
-        ///     The physics_water_buoyancy
+        ///     The physics water buoyancy
         /// </summary>
         public static double PhysicsWaterBuoyancy = -0.5;
 
         /// <summary>
-        ///     The physics_mud_buoyancy
+        ///     The physics mud buoyancy
         /// </summary>
         public static double PhysicsMudBuoyancy = 0.4;
 
         /// <summary>
-        ///     The physics_queue_length
+        ///     The physics queue length
         /// </summary>
         public static int PhysicsQueueLength = 2;
 
@@ -244,12 +244,12 @@ namespace Skylight
         public static int ShopPotionMax = 10;
 
         /// <summary>
-        ///     The camera_lag
+        ///     The camera lag
         /// </summary>
         public static double CameraLag = 0.0625;
 
         /// <summary>
-        ///     The is mobile
+        ///     The is mobile option
         /// </summary>
         public static bool IsMobile = false;
 
@@ -259,22 +259,22 @@ namespace Skylight
         public static bool EnableDebugShadow = false;
 
         /// <summary>
-        ///     The maxwidth
+        ///     The max width of a room
         /// </summary>
         public static int Maxwidth = 850;
 
         /// <summary>
-        ///     The minwidth
+        ///     The min width of a room
         /// </summary>
         public static int Minwidth = 640;
 
         /// <summary>
-        ///     The width
+        ///     The default width of a room
         /// </summary>
         public static int Width = 640;
 
         /// <summary>
-        ///     The height
+        ///     The default height of a room
         /// </summary>
         public static int Height = 500;
 
@@ -284,52 +284,52 @@ namespace Skylight
         public static int MaxFrameRate = 120;
 
         /// <summary>
-        ///     The max_daily_woot
+        ///     The maximum daily woots for a player
         /// </summary>
         public static int MaxDailyWoot = 10;
 
         /// <summary>
-        ///     The guest_color
+        ///     The color of a guest
         /// </summary>
         public static uint GuestColor = 3355443;
 
         /// <summary>
-        ///     The default_color
+        ///     The default color
         /// </summary>
         public static uint DefaultColor = 15658734;
 
         /// <summary>
-        ///     The default_color_dark
+        ///     The default dark color
         /// </summary>
         public static uint DefaultColorDark = 13421772;
 
         /// <summary>
-        ///     The friend_color
+        ///     The friend color
         /// </summary>
         public static uint FriendColor = 65280;
 
         /// <summary>
-        ///     The friend_color_dark
+        ///     The darker friend color
         /// </summary>
         public static uint FriendColorDark = 47872;
 
         /// <summary>
-        ///     The mod_color
+        ///     The mod color
         /// </summary>
         public static uint ModColor = 16759552;
 
         /// <summary>
-        ///     The admin_color
+        ///     The admin color
         /// </summary>
         public static uint AdminColor = 16757760;
 
         /// <summary>
-        ///     The tutorial_names
+        ///     The tutorial room names
         /// </summary>
         public static string[] TutorialNames = {"Moving", "Gravity", "Edit"};
 
         /// <summary>
-        ///     The disable_tracking
+        ///     The disable tracking options
         /// </summary>
         public static bool DisableTracking = false;
     }

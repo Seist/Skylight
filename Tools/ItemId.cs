@@ -12,7 +12,6 @@ namespace Skylight
     /// </summary>
     public class ItemId
     {
-        // end function
 
         /// <summary>
         ///     Determines whether the specified block is solid.
@@ -46,14 +45,14 @@ namespace Skylight
                 }
             }
             return false;
-        } // end function
+        }
 
 
         /// <summary>
-        ///     Determines whether [is decoration rotateable] [the specified block].
+        ///     Determines whether the specified block is able to be rotated.
         /// </summary>
-        /// <param name="param1">The param1.</param>
-        /// <returns><c>true</c> if [is decoration rotateable] [the specified block]; otherwise, <c>false</c>.</returns>
+        /// <param name="blockId">The id of the block</param>
+        /// <returns><c>true</c> if the specified block is able to be rotated; otherwise, <c>false</c>.</returns>
         public static bool IsBlockRotateable(int blockId)
         {
             switch (blockId)
@@ -73,6 +72,6 @@ namespace Skylight
                 }
             }
             return false;
-        } // end function
+        }
     }
 }

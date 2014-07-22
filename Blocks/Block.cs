@@ -49,15 +49,15 @@ namespace Skylight.Blocks
         }
 
         /// <summary>
-        /// Gets or sets the y.
+        /// Gets or sets the y coordinate.
         /// </summary>
-        /// <value>The y.</value>
+        /// <value>The y coordinate.</value>
         public int Y { get; private set; }
 
         /// <summary>
-        /// Gets or sets the x.
+        /// Gets or sets the x coordinate.
         /// </summary>
-        /// <value>The x.</value>
+        /// <value>The x coordinate.</value>
         public int X { get; private set; }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace Skylight.Blocks
         public int Direction { get; private set; }
 
         /// <summary>
-        /// Gets the identifier.
+        /// Gets the identifier from the block.
         /// </summary>
         /// <value>The identifier.</value>
         public int Id { get; private set; }
@@ -84,7 +84,7 @@ namespace Skylight.Blocks
         /// <summary>
         /// Gets the z coordinate (background or foreground)
         /// </summary>
-        /// <value>The z.</value>
+        /// <value>The z coordinate.</value>
         public int Z
         {
             get { return Id >= 500 ? 1 : 0; }
