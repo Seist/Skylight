@@ -848,7 +848,7 @@ namespace Skylight
         {
             try
             {
-                if (!String.IsNullOrWhiteSpace(s) ||
+                if (!String.IsNullOrWhiteSpace(s) &&
                     s.Length < 22)
                 {
                     Connection.Send("name", s);
