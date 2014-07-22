@@ -1,22 +1,21 @@
 ﻿// ***********************************************************************
-// ***********************************************************************
 // <copyright file="PercussionBlock.cs" company="">
 //     Copyright 2014 (c) . All rights reserved.
 // </copyright>
 // <summary></summary>
-// ***********************************************************************
+// ************************************************************************
 
 using Skylight.Blocks;
 
 namespace Skylight
 {
     /// <summary>
-    ///     Class PercussionBlock.
+    /// Class Percussion.
     /// </summary>
     public class PercussionBlock : Block
     {
         /// <summary>
-        ///     The types of notes that can be played.
+        /// The types of notes that can be played.
         /// </summary>
         public const int
             Base1 = 0;
@@ -76,7 +75,7 @@ namespace Skylight
             Maraca = 9;
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="PercussionBlock" /> class.
+        /// Initializes a new instance of the <see cref="PercussionBlock" /> class.
         /// </summary>
         /// <param name="x">The x coordinate.</param>
         /// <param name="y">The y coordinate.</param>
@@ -90,7 +89,7 @@ namespace Skylight
         }
 
         /// <summary>
-        ///     Gets the percussion identifier.
+        /// Gets the percussion identifier.
         /// </summary>
         /// <value>The percussion identifier.</value>
         public int PercussionId { get; internal set; }

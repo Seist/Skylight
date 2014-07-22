@@ -1,5 +1,9 @@
-// <author>TakoMan02</author>
-// <summary>Tools.cs is the tools that belong to no specific class or are not related to EE.</summary>
+// ***********************************************************************
+// <copyright file="Tools.cs" company="">
+//     Copyright (c) . All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************>
 
 using System;
 using System.Collections.Generic;
@@ -11,36 +15,47 @@ using Skylight.Blocks;
 namespace Skylight
 {
     /// <summary>
-    ///     Tools that are available to the core of the program (converting a player id or name into
-    ///     a player object) and internal methods are mostly stored here.
+    /// Tools that are available to the core of the program (converting a player id or name into
+    /// a player object) and internal methods are mostly stored here.
     /// </summary>
     public static class RoomAccessor
     {
+        /// <summary>
+        /// Gets or sets the width of the room.
+        /// </summary>
+        /// <value>The width.</value>
         public static int Width { get; set; }
+        /// <summary>
+        /// Gets or sets the height of the room.
+        /// </summary>
+        /// <value>The height.</value>
         public static int Height { get; set; }
     }
 
+    /// <summary>
+    /// Class Tools.
+    /// </summary>
     public static class Tools
     {
         /// <summary>
-        ///     Delegate ProgramEvent
+        /// Delegate ProgramEvent
         /// </summary>
         /// <param name="message">The message.</param>
         public delegate void ProgramEvent(string message);
 
         /// <summary>
-        ///     The guest client
+        /// The guest client
         /// </summary>
         internal static readonly Lazy<Client> GuestClient =
             new Lazy<Client>(() => PlayerIO.QuickConnect.SimpleConnect(Config.PlayerioGameId, "guest", "guest"));
 
         /// <summary>
-        ///     Occurs when a program message is sent.
+        /// Occurs when a program message is sent.
         /// </summary>
         public static event ProgramEvent ProgramMessage = delegate { };
 
         /// <summary>
-        ///     Gets the winners.
+        /// Gets the winners.
         /// </summary>
         /// <param name="r">The room.</param>
         /// <returns>A list of Players who have touched the trophy</returns>
@@ -50,7 +65,7 @@ namespace Skylight
         }
 
         /// <summary>
-        ///     Gets the crown holder.
+        /// Gets the crown holder.
         /// </summary>
         /// <param name="r">The room.</param>
         /// <returns>The Player who holds the crown (if there is one).</returns>
@@ -66,7 +81,7 @@ namespace Skylight
         }
 
         /// <summary>
-        ///     Gets the player by identifier.
+        /// Gets the player by their session identifier.
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <param name="r">The room.</param>
@@ -84,7 +99,7 @@ namespace Skylight
         }
 
         /// <summary>
-        ///     Gets the name of the player by.
+        /// Gets the name of the player by.
         /// </summary>
         /// <param name="name">The name.</param>
         /// <param name="r">The room.</param>
@@ -102,7 +117,7 @@ namespace Skylight
         }
 
         /// <summary>
-        ///     Gets the room.
+        /// Gets the room.
         /// </summary>
         /// <param name="name">The name.</param>
         /// <returns>Room.</returns>
@@ -119,7 +134,7 @@ namespace Skylight
 
 
         /// <summary>
-        ///     Main logging method.
+        /// Main logging method.
         /// </summary>
         /// <param name="m">The message.</param>
         internal static void SkylightMessage(string m)
@@ -128,7 +143,7 @@ namespace Skylight
         }
 
         /// <summary>
-        ///     Derots the specified world key.
+        /// Derots the specified world key.
         /// </summary>
         /// <param name="worldKey">The world key.</param>
         /// <returns>Derotted world key</returns>
@@ -170,9 +185,9 @@ namespace Skylight
         }
 
         /// <summary>
-        ///     Parses the URL.
+        /// Parses the URL.
         /// </summary>
-        /// <param name="id">The identifier.</param>
+        /// <param name="id">The unparsed identifier of the room.</param>
         /// <returns>A parsed room id</returns>
         internal static string ParseUrl(string id)
         {
@@ -188,7 +203,7 @@ namespace Skylight
         }
 
         /// <summary>
-        ///     Deserializes the initialize.
+        /// Deserializes the initialize.
         /// </summary>
         /// <param name="m">The message</param>
         /// <param name="start">The start.</param>
@@ -364,12 +379,11 @@ namespace Skylight
             return list;
         }
 
-        // Return the correct portal ID based on whether or not the portal is visible or invisible.
         /// <summary>
-        ///     Portals the identifier by visible.
+        /// Return the correct portal ID based on whether or not the portal is visible or invisible.
         /// </summary>
         /// <param name="visible">if set to <c>true</c> [visible].</param>
-        /// <returns>System.Int32.</returns>
+        /// <returns>Returns the id of the portal based on its visibility.</returns>
         internal static int PortalIdByVisible(bool visible)
         {
             return visible ? BlockIds.Action.Portals.Normal : BlockIds.Action.Portals.Invisible;
@@ -377,7 +391,7 @@ namespace Skylight
 
         // Return the correct coin ID based based on whether or not the block is gate or door
         /// <summary>
-        ///     Coins the identifier by gate.
+        /// Coins the identifier by gate.
         /// </summary>
         /// <param name="isGate">if set to <c>true</c> [is gate].</param>
         /// <returns>System.Int32.</returns>

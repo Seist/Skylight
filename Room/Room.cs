@@ -16,12 +16,12 @@ namespace Skylight
     public class Room
     {
         /// <summary>
-        ///     The should tick option
+        ///     Whether the physics are enabled.
         /// </summary>
         internal bool ShouldTick = true;
 
         /// <summary>
-        ///     The connections available
+        ///     The connections available.
         /// </summary>
         private List<Connection> _connections = new List<Connection>();
 
@@ -62,15 +62,15 @@ namespace Skylight
         public Block[,,] Map { get; private set; }
 
         /// <summary>
-        ///     Gets a value indicating whether [blocks are loaded].
+        ///     Gets a value indicating whether the blocks are loaded.
         /// </summary>
-        /// <value><c>true</c> if [blocks loaded]; otherwise, <c>false</c>.</value>
+        /// <value><c>true</c> if the blocks loaded; otherwise, <c>false</c>.</value>
         public bool BlocksLoaded { get; internal set; }
 
         /// <summary>
-        ///     Gets a value indicating whether this instance has pull.
+        ///     Gets a value indicating whether this instance has pull access.
         /// </summary>
-        /// <value><c>true</c> if this instance has pull; otherwise, <c>false</c>.</value>
+        /// <value><c>true</c> if this instance has pull access; otherwise, <c>false</c>.</value>
         public bool HasPull { get; internal set; }
 
         /// <summary>
@@ -80,19 +80,19 @@ namespace Skylight
         public bool IsInitialized { get; internal set; }
 
         /// <summary>
-        ///     Gets a value indicating whether this instance is tutorial room.
+        ///     Gets a value indicating whether this instance is a tutorial room.
         /// </summary>
-        /// <value><c>true</c> if this instance is tutorial room; otherwise, <c>false</c>.</value>
+        /// <value><c>true</c> if this instance is a tutorial room; otherwise, <c>false</c>.</value>
         public bool IsTutorialRoom { get; internal set; }
 
         /// <summary>
-        ///     Gets a value indicating whether [potions allowed].
+        ///     Gets a value indicating whether potions are allowed.
         /// </summary>
-        /// <value><c>true</c> if [potions allowed]; otherwise, <c>false</c>.</value>
+        /// <value><c>true</c> if potions are allowed; otherwise, <c>false</c>.</value>
         public bool PotionsAllowed { get; internal set; }
 
         /// <summary>
-        ///     Gets a value indicating whether [time doors visible].
+        ///     Gets a value indicating whether time doors are visible.
         /// </summary>
         /// <value><c>true</c> if [time doors visible]; otherwise, <c>false</c>.</value>
         public bool TimeDoorsVisible { get; internal set; }
@@ -116,13 +116,13 @@ namespace Skylight
         public In Pull { get; private set; }
 
         /// <summary>
-        ///     Gets the height.
+        ///     Gets the height of the room.
         /// </summary>
         /// <value>The height.</value>
         public int Height { get; internal set; }
 
         /// <summary>
-        ///     Gets the plays.
+        ///     Gets the total plays.
         /// </summary>
         /// <value>The plays.</value>
         public int Plays { get; internal set; }
@@ -134,7 +134,7 @@ namespace Skylight
         public int TotalWoots { get; internal set; }
 
         /// <summary>
-        ///     Gets the width.
+        ///     Gets the width pf the room.
         /// </summary>
         /// <value>The width.</value>
         public int Width { get; internal set; }
@@ -182,13 +182,13 @@ namespace Skylight
         public string EditKey { get; internal set; }
 
         /// <summary>
-        ///     Gets the identifier.
+        ///     Gets the identifier of the room.
         /// </summary>
         /// <value>The identifier.</value>
         public string Id { get; internal set; }
 
         /// <summary>
-        ///     Gets the name.
+        ///     Gets the name of the room.
         /// </summary>
         /// <value>The name.</value>
         public string Name { get; internal set; }
@@ -211,21 +211,21 @@ namespace Skylight
         }
 
         /// <summary>
-        ///     Gets or sets a value indicating whether [red activated].
+        ///     Gets or sets a value indicating whether the red key is activated.
         /// </summary>
-        /// <value><c>true</c> if [red activated]; otherwise, <c>false</c>.</value>
+        /// <value><c>true</c> if the red key is activated; otherwise, <c>false</c>.</value>
         public bool RedActivated { get; set; }
 
         /// <summary>
-        ///     Gets or sets a value indicating whether [green activated].
+        ///     Gets or sets a value indicating whether the green key is activated.
         /// </summary>
-        /// <value><c>true</c> if [green activated]; otherwise, <c>false</c>.</value>
+        /// <value><c>true</c> if the green key is activated; otherwise, <c>false</c>.</value>
         public bool GreenActivated { get; set; }
 
         /// <summary>
-        ///     Gets or sets a value indicating whether [blue activated].
+        ///     Gets or sets a value indicating whether the blue key is activated.
         /// </summary>
-        /// <value><c>true</c> if [blue activated]; otherwise, <c>false</c>.</value>
+        /// <value><c>true</c> if the blue key is activated; otherwise, <c>false</c>.</value>
         public bool BlueActivated { get; set; }
     }
 }

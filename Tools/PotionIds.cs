@@ -13,7 +13,7 @@ namespace Skylight
     public static class PotionIds
     {
         /// <summary>
-        ///     The curse
+        ///     The curses
         /// </summary>
         public static readonly int
             Curse = 6, Invulnerable = 8, Zombie = 9, Respawn = 10, Flauntlevel = 12, Solitude = 13;
@@ -31,12 +31,12 @@ namespace Skylight
         }
 
         /// <summary>
-        ///     Class GravityModifiers.
+        ///     Class Gravity Modifiers.
         /// </summary>
         public static class GravityModifiers
         {
             /// <summary>
-            ///     The jumpboost class
+            ///     The types of player-specific gravity alternations.
             /// </summary>
             public static readonly int
                 Jumpboost = 4, Levitation = 11;
