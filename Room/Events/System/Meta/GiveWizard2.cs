@@ -23,10 +23,10 @@ namespace Skylight
         public void OnGiveWizard2(Message m)
         {
             // Extract data
-            var id = m.GetInteger(0);
+            int id = m.GetInteger(0);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayer(id, _in.Source);
+            Player subject = Tools.GetPlayer(id, _in.Source);
 
             // Fire the event.
             var e = new PlayerEventArgs(subject, _in.Source, m);

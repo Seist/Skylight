@@ -53,7 +53,7 @@ namespace Skylight
             var b = new Block(blockId, x, y, z);
 
 
-            var subject = Tools.GetPlayer(playerId, _in.Source);
+            Player subject = Tools.GetPlayer(playerId, _in.Source);
 
             b.Placer = subject;
 

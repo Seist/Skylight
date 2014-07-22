@@ -1,4 +1,5 @@
 using PlayerIOClient;
+using Skylight.Blocks;
 
 namespace Skylight
 {
@@ -13,7 +14,7 @@ namespace Skylight
 
         public void OnReset(Message m)
         {
-            foreach (var b in Tools.DeserializeInit(m, 1, _in.Source))
+            foreach (Block b in Tools.DeserializeInit(m, 1, _in.Source))
             {
                 _in.Source.Map[b.X, b.Y, b.Z] = b;
             }

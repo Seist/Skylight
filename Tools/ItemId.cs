@@ -12,7 +12,6 @@ namespace Skylight
     /// </summary>
     public class ItemId
     {
-
         /// <summary>
         ///     Determines whether the specified block is solid.
         /// </summary>

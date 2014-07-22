@@ -22,12 +22,12 @@ namespace Skylight
         public void OnSay(Message m)
         {
             // Extract data.
-            var id = m.GetInteger(0);
+            int id = m.GetInteger(0);
 
-            var message = m.GetString(1);
+            string message = m.GetString(1);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayer(id, _in.Source);
+            Player subject = Tools.GetPlayer(id, _in.Source);
 
             _in.Source.ChatLog.Add(new KeyValuePair<string, Player>(message, subject));
 
