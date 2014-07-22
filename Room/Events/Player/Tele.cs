@@ -30,7 +30,7 @@ namespace Skylight
         public void OnTele(Message m)
         {
             // Extract some of the data.
-            var isReset = m.GetBoolean(0);
+            bool isReset = m.GetBoolean(0);
 
             // On reset
             if (isReset)
@@ -44,7 +44,7 @@ namespace Skylight
                         x = m.GetInteger(index + 1),
                         y = m.GetInteger(index + 2);
 
-                    var tempSubject = Tools.GetPlayer(id, _in.Source);
+                    Player tempSubject = Tools.GetPlayer(id, _in.Source);
                     tempSubject.X = x;
                     tempSubject.Y = y;
 
@@ -65,7 +65,7 @@ namespace Skylight
                     y = m.GetInteger(3);
 
                 // Update relevant objects.
-                var subject = Tools.GetPlayer(id, _in.Source);
+                Player subject = Tools.GetPlayer(id, _in.Source);
 
                 subject.X = x;
                 subject.Y = y;

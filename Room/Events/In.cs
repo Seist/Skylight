@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using PlayerIOClient;
+using Skylight.Blocks;
 
 namespace Skylight
 {
@@ -197,7 +198,6 @@ namespace Skylight
         /// </summary>
         private void OnSignBlockEvent(Message m)
         {
-            
         }
 
         /// <summary>
@@ -471,9 +471,9 @@ namespace Skylight
 
         private void OnGuardianMode(Message m)
         {
-            var id = m.GetInteger(0);
+            int id = m.GetInteger(0);
 
-            var player = Tools.GetPlayer(id, Source);
+            Player player = Tools.GetPlayer(id, Source);
 
             var e = new PlayerEventArgs(player, Source, null);
             Source.Pull.GuardianEvent(e);
@@ -545,7 +545,7 @@ namespace Skylight
             loadBlocks.Start();
 
             // Execute the messages that came prematurely.
-            foreach (var msg in _prematureMessages)
+            foreach (Message msg in _prematureMessages)
             {
                 OnMessage(this, msg);
             }
@@ -582,7 +582,7 @@ namespace Skylight
                 portalDestination = m.GetInteger(5);
 
             // Update relevant objects.
-            var isVisible = blockId == BlockIds.Action.Portals.Normal;
+            bool isVisible = blockId == BlockIds.Action.Portals.Normal;
 
             var b = new PortalBlock(x, y, rotation, portalId, portalDestination, isVisible);
 
@@ -601,7 +601,7 @@ namespace Skylight
                 x = m.GetInteger(1),
                 y = m.GetInteger(2);
 
-            var text = m.GetString(3);
+            string text = m.GetString(3);
 
             // Update relevant objects.
             var b = new TextBlock(id, x, y, text);
@@ -616,7 +616,7 @@ namespace Skylight
 
         private void LoadBlocks()
         {
-            foreach (var b in Tools.DeserializeInit(_initMessage, 18, Source))
+            foreach (Block b in Tools.DeserializeInit(_initMessage, 18, Source))
             {
                 Source.Map[b.X, b.Y, b.Z] = b;
             }
@@ -642,7 +642,7 @@ namespace Skylight
                     {
                         accumulator += Config.PhysicsMsPerTick;
 
-                        foreach (var player in Source.OnlinePlayers.Where(player => player.ShouldTick))
+                        foreach (Player player in Source.OnlinePlayers.Where(player => player.ShouldTick))
                         {
                             player.Tick();
 

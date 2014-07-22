@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using Skylight.Blocks;
 
 namespace Skylight
 {
@@ -52,6 +53,56 @@ namespace Skylight
         };
 
         /// <summary>
+        ///     The boost
+        /// </summary>
+        private readonly double Boost;
+
+        /// <summary>
+        ///     The gravity
+        /// </summary>
+        private readonly double Gravity;
+
+        /// <summary>
+        ///     The mud buoyancy
+        /// </summary>
+        private readonly double MudBuoyancy;
+
+        /// <summary>
+        ///     The mud drag
+        /// </summary>
+        private readonly double MudDrag;
+
+        /// <summary>
+        ///     The no modifier drag x
+        /// </summary>
+        private readonly double NoModifierDragX;
+
+        /// <summary>
+        ///     The no modifier drag y
+        /// </summary>
+        private readonly double NoModifierDragY;
+
+        /// <summary>
+        ///     The size of the block
+        /// </summary>
+        private readonly int Size;
+
+        /// <summary>
+        ///     The switch opened
+        /// </summary>
+        private readonly bool SwitchOpened;
+
+        /// <summary>
+        ///     The water buoyancy
+        /// </summary>
+        private readonly double WaterBuoyancy;
+
+        /// <summary>
+        ///     The water drag
+        /// </summary>
+        private readonly double WaterDrag;
+
+        /// <summary>
         ///     Whether or not the player has died
         /// </summary>
         private readonly bool _isDead;
@@ -82,11 +133,6 @@ namespace Skylight
         private readonly Queue<int> _queue = new Queue<int>();
 
         /// <summary>
-        ///     The boost
-        /// </summary>
-        private double Boost;
-
-        /// <summary>
         ///     The checkpoint at the x coordinate
         /// </summary>
         public int CheckpointX = -1;
@@ -99,12 +145,7 @@ namespace Skylight
         /// <summary>
         ///     The current block identifier
         /// </summary>
-        private int CurrentBlockId = 0;
-
-        /// <summary>
-        ///     The gravity
-        /// </summary>
-        private double Gravity;
+        private int CurrentBlockId;
 
         /// <summary>
         ///     The horizontal position
@@ -119,67 +160,27 @@ namespace Skylight
         /// <summary>
         ///     The modifier x
         /// </summary>
-        private double ModifierX = 0;
+        private double ModifierX;
 
         /// <summary>
         ///     The modifier y
         /// </summary>
-        private double ModifierY = 0;
-
-        /// <summary>
-        ///     The mud buoyancy
-        /// </summary>
-        private double MudBuoyancy;
-
-        /// <summary>
-        ///     The mud drag
-        /// </summary>
-        private double MudDrag;
-
-        /// <summary>
-        ///     The no modifier drag x
-        /// </summary>
-        private double NoModifierDragX;
-
-        /// <summary>
-        ///     The no modifier drag y
-        /// </summary>
-        private double NoModifierDragY;
-
-        /// <summary>
-        ///     The size of the block
-        /// </summary>
-        private int Size;
+        private double ModifierY;
 
         /// <summary>
         ///     The speed x
         /// </summary>
-        private double SpeedX = 0;
+        private double SpeedX;
 
         /// <summary>
         ///     The speed y
         /// </summary>
-        private double SpeedY = 0;
-
-        /// <summary>
-        ///     The switch opened
-        /// </summary>
-        private bool SwitchOpened = false;
+        private double SpeedY;
 
         /// <summary>
         ///     The vertical
         /// </summary>
         internal int Vertical = 0;
-
-        /// <summary>
-        ///     The water buoyancy
-        /// </summary>
-        private double WaterBuoyancy;
-
-        /// <summary>
-        ///     The water drag
-        /// </summary>
-        private double WaterDrag;
 
         /// <summary>
         ///     The x position
@@ -471,7 +472,7 @@ namespace Skylight
 
         // Public instance properties.
         /// <summary>
-        ///     Gets or sets value indicating whether this player should have accurate player coordinates. 
+        ///     Gets or sets value indicating whether this player should have accurate player coordinates.
         /// </summary>
         public bool ShouldTick { get; set; }
 
@@ -817,34 +818,34 @@ namespace Skylight
                 return 1;
             }
 
-            var loc2 = this;
+            Player loc2 = this;
 
             if (loc2.IsGod || loc2.IsMod)
             {
                 return 0;
             }
 
-            var loc3 = ((loc2.X)/16);
-            var loc4 = ((loc2.Y)/16);
-            for (var xx = -2; xx < 1; xx++)
+            double loc3 = ((loc2.X)/16);
+            double loc4 = ((loc2.Y)/16);
+            for (int xx = -2; xx < 1; xx++)
             {
-                for (var yy = -2; yy < 1; yy++)
+                for (int yy = -2; yy < 1; yy++)
                 {
                     if (loc3 + xx > 0 && loc3 + xx < PlayingIn.Width && loc4 + yy > 0 &&
                         loc4 + yy <= PlayingIn.Height)
                     {
-                        for (var xTest = 0; xTest < 16; xTest++)
+                        for (int xTest = 0; xTest < 16; xTest++)
                         {
-                            for (var yTest = 0; yTest < 16; yTest++)
+                            for (int yTest = 0; yTest < 16; yTest++)
                             {
                                 if (HitTest((int) (xTest + loc2.X + xx*16), (int) (yTest + loc2.Y + yy*16)))
                                 {
-                                    var loc9 = loc4;
-                                    var currentBlock = PlayingIn.Map[
+                                    double loc9 = loc4;
+                                    Block currentBlock = PlayingIn.Map[
                                         (int) (((xx*16) + loc2.X + xTest)/16),
                                         (int) (((yy*16) + loc2.Y + yTest)/16),
                                         0];
-                                    var loc11 = currentBlock.Id;
+                                    int loc11 = currentBlock.Id;
                                     if (ItemId.IsSolid(loc11))
                                     {
                                         switch (loc11)
@@ -1143,15 +1144,15 @@ namespace Skylight
                 {
                     _lastPortal = new Point(_cx << 4, _cy << 4);
 
-                    var currentBlock = PlayingIn.Map[_cx, _cy, 0];
+                    Block currentBlock = PlayingIn.Map[_cx, _cy, 0];
                     var currentPortalBlock = (PortalBlock) currentBlock;
-                    var currentTarget = currentPortalBlock.PortalDestination;
+                    int currentTarget = currentPortalBlock.PortalDestination;
 
-                    for (var x = 1; x < PlayingIn.Width; x++)
+                    for (int x = 1; x < PlayingIn.Width; x++)
                     {
-                        for (var y = 1; y < PlayingIn.Height; y++)
+                        for (int y = 1; y < PlayingIn.Height; y++)
                         {
-                            var block = PlayingIn.Map[x, y, 0];
+                            Block block = PlayingIn.Map[x, y, 0];
                             if (block is PortalBlock && ((PortalBlock) block).PortalId == currentTarget)
                             {
                                 targetPortalList.Add(new Point(x << 4, y << 4));
@@ -1161,18 +1162,18 @@ namespace Skylight
                     const int loopIterator = 0;
                     while (loopIterator < targetPortalList.Count)
                     {
-                        var currentLoopPortal = targetPortalList[loopIterator];
-                        var loc4 = PlayingIn.Map[_lastPortal.X >> 4, _lastPortal.Y >> 4, 0].Direction;
-                        var loc5 = PlayingIn.Map[currentLoopPortal.X >> 4, currentLoopPortal.Y >> 4, 0].Direction;
+                        Point currentLoopPortal = targetPortalList[loopIterator];
+                        int loc4 = PlayingIn.Map[_lastPortal.X >> 4, _lastPortal.Y >> 4, 0].Direction;
+                        int loc5 = PlayingIn.Map[currentLoopPortal.X >> 4, currentLoopPortal.Y >> 4, 0].Direction;
                         if (loc4 < loc5)
                         {
                             loc4 = loc4 + 4;
                         }
-                        var loc6 = speedX;
-                        var loc7 = speedY;
-                        var loc8 = modifierX;
-                        var loc9 = modifierY;
-                        var loc10 = loc4 - loc5;
+                        double loc6 = speedX;
+                        double loc7 = speedY;
+                        double loc8 = modifierX;
+                        double loc9 = modifierY;
+                        int loc10 = loc4 - loc5;
                         const double loc11 = 1.42;
                         switch (loc10)
                         {
@@ -1263,7 +1264,7 @@ namespace Skylight
             }
             _cx = (int) ((X + 8)/16);
             _cy = (int) ((Y + 8)/16);
-            var delayed = 0;
+            int delayed = 0;
             if (_queue.Count >= 1)
             {
                 delayed = _queue.Dequeue();
@@ -1548,8 +1549,8 @@ namespace Skylight
             {
                 UpdateThrust();
             }
-            var imx = SpeedX*256;
-            var imy = SpeedY*256;
+            double imx = SpeedX*256;
+            double imy = SpeedY*256;
             if (Math.Abs(imx) > 0.00000001 || CurrentBlockId == BlockIds.Action.Liquids.Water ||
                 CurrentBlockId == BlockIds.Action.Liquids.Mud)
             {
@@ -1573,7 +1574,7 @@ namespace Skylight
                     if (_tx > 15.8)
                     {
                         X = Math.Floor(X);
-                        var loc3 = X + 1;
+                        double loc3 = X + 1;
                         X = loc3;
                     }
                     else
@@ -1605,7 +1606,7 @@ namespace Skylight
                     if (_ty > 15.8)
                     {
                         Y = Math.Floor(Y);
-                        var loc3 = Y + 1;
+                        double loc3 = Y + 1;
                         Y = loc3;
                     }
                     else

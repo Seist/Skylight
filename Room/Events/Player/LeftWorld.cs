@@ -23,11 +23,11 @@ namespace Skylight
         public void OnLeft(Message m)
         {
             // Extract data.
-            var id = m.GetInteger(0);
+            int id = m.GetInteger(0);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayer(id, _in.Source);
-            for (var i = 0; i < _in.Source.OnlinePlayers.Count; i++)
+            Player subject = Tools.GetPlayer(id, _in.Source);
+            for (int i = 0; i < _in.Source.OnlinePlayers.Count; i++)
             {
                 if (_in.Source.OnlinePlayers[i] != subject) continue;
                 _in.Source.OnlinePlayers.RemoveAt(i);

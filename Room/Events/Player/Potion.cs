@@ -26,10 +26,10 @@ namespace Skylight
             int id = m.GetInteger(0),
                 potionId = m.GetInteger(1);
 
-            var isActive = m.GetBoolean(2);
+            bool isActive = m.GetBoolean(2);
 
             // Update relevant objects
-            var subject = Tools.GetPlayer(id, _in.Source);
+            Player subject = Tools.GetPlayer(id, _in.Source);
 
             if (isActive)
             {

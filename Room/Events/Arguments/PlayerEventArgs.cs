@@ -15,7 +15,7 @@ namespace Skylight
         /// <param name="subject">The player</param>
         /// <param name="origin">The room where the player is originating in.</param>
         /// <param name="rawMessage">The raw, unparsed message from the server (concerning player).</param>
-        
+
         // TODO: make the room and message option optional (room is always used; message is used sometimes)
         public PlayerEventArgs(Player subject, Room origin, Message rawMessage)
         {

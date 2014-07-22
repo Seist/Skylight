@@ -27,7 +27,7 @@ namespace Skylight
                 smileyId = m.GetInteger(1);
 
             // Update relevant objects.
-            var subject = Tools.GetPlayer(playerId, _in.Source);
+            Player subject = Tools.GetPlayer(playerId, _in.Source);
 
             subject.Smiley = smileyId;
 

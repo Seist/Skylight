@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading;
 using PlayerIOClient;
@@ -127,8 +126,7 @@ namespace Skylight
         /// <summary>
         ///     The main method to login the bot with the credentials already specified.
         /// </summary>
-        /// 
-        
+
         // TODO: switch authentication system to Rabbit.
         // TODO: fix authentication system.
         public void LogIn()
@@ -155,7 +153,7 @@ namespace Skylight
                         break;
 
                     default: //case AccountType.ArmorGames:
-                        var c = Tools.GuestClient.Value.Multiplayer.JoinRoom("", null);
+                        Connection c = Tools.GuestClient.Value.Multiplayer.JoinRoom("", null);
                         c.OnMessage += (sender, message) =>
                         {
                             if (message.Type != "auth") return;
@@ -364,7 +362,6 @@ namespace Skylight
                 }
                 else
                 {
-                    
                     Connection.Send(R.RoomKey, theBlock.Z, theBlock.X, theBlock.Y, theBlock.Id, theBlock.Direction);
                 }
 
@@ -386,7 +383,7 @@ namespace Skylight
             var tempList = new List<Block>();
             tempList.AddRange(blockList);
 
-            foreach (var b in tempList)
+            foreach (Block b in tempList)
             {
                 if (R.Map[b.X, b.Y, b.Z] == b)
                 {
@@ -906,7 +903,7 @@ namespace Skylight
         public void TeleportAll(int newXLocation, int newYLocation)
         {
             if (!IsOwner) return;
-            foreach (var p in R.OnlinePlayers)
+            foreach (Player p in R.OnlinePlayers)
             {
                 Teleport(newXLocation, newYLocation, p);
             }
