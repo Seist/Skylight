@@ -868,16 +868,14 @@ namespace Skylight
         /// <param name="name">The name.</param>
         public void Teleport(int newXLocation, int newYLocation, string name = "")
         {
-            if (IsOwner)
+            if (!IsOwner) return;
+            if (name != "")
             {
-                if (name != "")
-                {
-                    Say("/teleport " + name + " " + newXLocation + " " + newYLocation);
-                }
-                else
-                {
-                    Say("/teleport " + Name + " " + newXLocation + " " + newYLocation);
-                }
+                Say("/teleport " + name + " " + newXLocation + " " + newYLocation);
+            }
+            else
+            {
+                Say("/teleport " + Name + " " + newXLocation + " " + newYLocation);
             }
         }
 
@@ -889,16 +887,14 @@ namespace Skylight
         /// <param name="p">The p.</param>
         public void Teleport(int newXLocation, int newYLocation, Player p = null)
         {
-            if (IsOwner)
+            if (!IsOwner) return;
+            if (p != null)
             {
-                if (p != null)
-                {
-                    Say("/teleport " + p.Name + " " + newXLocation + " " + newYLocation);
-                }
-                else
-                {
-                    Say("/teleport " + Name + " " + newXLocation + " " + newYLocation);
-                }
+                Say("/teleport " + p.Name + " " + newXLocation + " " + newYLocation);
+            }
+            else
+            {
+                Say("/teleport " + Name + " " + newXLocation + " " + newYLocation);
             }
         }
 
@@ -909,12 +905,10 @@ namespace Skylight
         /// <param name="newYLocation">The new y location.</param>
         public void TeleportAll(int newXLocation, int newYLocation)
         {
-            if (IsOwner)
+            if (!IsOwner) return;
+            foreach (var p in R.OnlinePlayers)
             {
-                foreach (var p in R.OnlinePlayers)
-                {
-                    Teleport(newXLocation, newYLocation, p);
-                }
+                Teleport(newXLocation, newYLocation, p);
             }
         }
 
