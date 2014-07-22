@@ -29,10 +29,9 @@ namespace Skylight
         public ChatEventArgs(Player speaker, Room origin)
         {
             _origin = origin;
-            var room = _origin;
-            if (room != null)
+            if (_origin != null)
             {
-                room.ChatLog = origin.ChatLog;
+                _origin.ChatLog = origin.ChatLog;
             }
             _speaker = speaker;
         }

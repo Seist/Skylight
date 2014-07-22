@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading;
 using PlayerIOClient;
 
@@ -470,7 +471,7 @@ namespace Skylight
 
         private void OnGuardianMode(Message m)
         {
-            int id = m.GetInteger(0);
+            var id = m.GetInteger(0);
 
             var player = Tools.GetPlayer(id, Source);
 
@@ -641,15 +642,12 @@ namespace Skylight
                     {
                         accumulator += Config.PhysicsMsPerTick;
 
-                        foreach (var player in Source.OnlinePlayers)
+                        foreach (var player in Source.OnlinePlayers.Where(player => player.ShouldTick))
                         {
-                            if (player.ShouldTick)
-                            {
-                                player.Tick();
+                            player.Tick();
 
-                                var e = new PlayerEventArgs(player, Source, null);
-                                Source.Pull.TickEvent(e);
-                            }
+                            var e = new PlayerEventArgs(player, Source, null);
+                            Source.Pull.TickEvent(e);
                         }
                     }
                     else
