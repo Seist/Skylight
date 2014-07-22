@@ -112,11 +112,6 @@ namespace Skylight
         internal int Horizontal = 0;
 
         /// <summary>
-        ///     Whether the player is a club member or not
-        /// </summary>
-        public bool Isclubmember = false;
-
-        /// <summary>
         ///     The modifier x
         /// </summary>
         protected double ModifierX = 0;
@@ -933,7 +928,7 @@ namespace Skylight
                                             }
                                             case BlockIds.Action.Doors.Club:
                                             {
-                                                if (Isclubmember)
+                                                if (HasClub)
                                                 {
                                                     continue;
                                                 }
@@ -941,7 +936,7 @@ namespace Skylight
                                             }
                                             case BlockIds.Action.Gates.Club:
                                             {
-                                                if (!Isclubmember)
+                                                if (!HasClub)
                                                 {
                                                     continue;
                                                 }
@@ -1243,7 +1238,7 @@ namespace Skylight
                     _modoffset = 10;
                 }
             }
-            else if (Isclubmember)
+            else if (HasClub)
             {
                 _cluboffset = _cluboffset + 0.2;
                 if (_cluboffset >= 14)
