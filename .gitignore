@@ -8,6 +8,8 @@
 
 # Build results
 [Rr]elease/
+[Dd]ebug/
+CodeAnalysisLog.xml
 *_i.c
 *_p.c
 *.ilk
