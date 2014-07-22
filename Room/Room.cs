@@ -37,7 +37,8 @@ namespace Skylight
         ///     Initializes a new instance of the <see cref="Room" /> class.
         /// </summary>
         /// <param name="id">The room identifier.</param>
-        public Room(string id, bool shouldTick)
+        /// <param name="shouldTick">If the room should update player coordinates accurately.</param>
+        public Room(string id, bool shouldTick = true)
         {
             OnlineBots = new List<Bot>();
             OnlinePlayers = new List<Player>();
