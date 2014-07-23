@@ -61,15 +61,6 @@ namespace Skylight.Blocks
         public int X { get; private set; }
 
         /// <summary>
-        ///     Gets a value indicating whether this instance is solid.
-        /// </summary>
-        /// <value><c>true</c> if this instance is solid; otherwise, <c>false</c>.</value>
-        public bool IsSolid
-        {
-            get { return (Id >= 9 && Id <= 97) || (Id >= 122 && Id <= 217); }
-        }
-
-        /// <summary>
         ///     Gets or sets the direction.
         /// </summary>
         /// <value>The direction.</value>
