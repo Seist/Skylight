@@ -112,10 +112,6 @@ namespace Skylight
         /// </summary>
         private readonly bool _isInvulnerable;
 
-        /// <summary>
-        ///     Whether or not the player is thrusting
-        /// </summary>
-        private bool Isclubmember = false;
         private readonly bool _isThrusting;
 
         /// <summary>
