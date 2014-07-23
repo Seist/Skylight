@@ -823,194 +823,190 @@ namespace Skylight
                         {
                             for (int yTest = 0; yTest < 16; yTest++)
                             {
-                                if (HitTest((int) (xTest + loc2.X + xx*16), (int) (yTest + loc2.Y + yy*16)))
+                                if (!HitTest((int) (xTest + loc2.X + xx*16), (int) (yTest + loc2.Y + yy*16))) continue;
+                                double loc9 = loc4;
+                                Block currentBlock = PlayingIn.Map[
+                                    (int) (((xx*16) + loc2.X + xTest)/16),
+                                    (int) (((yy*16) + loc2.Y + yTest)/16),
+                                    0];
+                                int loc11 = currentBlock.Id;
+                                if (!ItemId.IsSolid(loc11)) continue;
+                                switch (loc11)
                                 {
-                                    double loc9 = loc4;
-                                    Block currentBlock = PlayingIn.Map[
-                                        (int) (((xx*16) + loc2.X + xTest)/16),
-                                        (int) (((yy*16) + loc2.Y + yTest)/16),
-                                        0];
-                                    int loc11 = currentBlock.Id;
-                                    if (ItemId.IsSolid(loc11))
+                                    case 23:
                                     {
-                                        switch (loc11)
+                                        if (PlayingIn.RedActivated)
                                         {
-                                            case 23:
+                                            continue;
+                                        }
+                                        break;
+                                    }
+                                    case 24:
+                                    {
+                                        if (PlayingIn.GreenActivated)
+                                        {
+                                            continue;
+                                        }
+                                        break;
+                                    }
+                                    case 25:
+                                    {
+                                        if (PlayingIn.BlueActivated)
+                                        {
+                                            continue;
+                                        }
+                                        break;
+                                    }
+                                    case 26:
+                                    {
+                                        if (!PlayingIn.RedActivated)
+                                        {
+                                            continue;
+                                        }
+                                        break;
+                                    }
+                                    case 27:
+                                    {
+                                        if (!PlayingIn.GreenActivated)
+                                        {
+                                            continue;
+                                        }
+                                        break;
+                                    }
+                                    case 28:
+                                    {
+                                        if (!PlayingIn.BlueActivated)
+                                        {
+                                            continue;
+                                        }
+                                        break;
+                                    }
+                                    case 156:
+                                    {
+                                        if (PlayingIn.TimeDoorsVisible)
+                                        {
+                                            continue;
+                                        }
+                                        break;
+                                    }
+                                    case 157:
+                                    {
+                                        if (!PlayingIn.TimeDoorsVisible)
+                                        {
+                                            continue;
+                                        }
+                                        break;
+                                    }
+                                    case BlockIds.Action.Doors.Switch:
+                                    {
+                                        if (SwitchOpened)
+                                        {
+                                            continue;
+                                        }
+                                        break;
+                                    }
+                                    case BlockIds.Action.Gates.Switch:
+                                    {
+                                        if (!SwitchOpened)
+                                        {
+                                            continue;
+                                        }
+                                        break;
+                                    }
+                                    case BlockIds.Action.Doors.Club:
+                                    {
+                                        if (HasClub)
+                                        {
+                                            continue;
+                                        }
+                                        break;
+                                    }
+                                    case BlockIds.Action.Gates.Club:
+                                    {
+                                        if (!HasClub)
+                                        {
+                                            continue;
+                                        }
+                                        break;
+                                    }
+                                    case BlockIds.Action.Doors.Coin:
+                                    {
+                                        if (currentBlock is CoinBlock &&
+                                            ((CoinBlock) currentBlock).CoinsRequired <= Coins)
+                                        {
+                                            continue;
+                                        }
+                                        break;
+                                    }
+                                    case BlockIds.Action.Gates.Coin:
+                                    {
+                                        if (currentBlock is CoinBlock &&
+                                            ((CoinBlock) currentBlock).CoinsRequired > Coins)
+                                        {
+                                            continue;
+                                        }
+                                        break;
+                                    }
+                                    case BlockIds.Action.Gates.Zombie:
+                                    {
+                                        if (_isZombie)
+                                        {
+                                            continue;
+                                        }
+                                        break;
+                                    }
+                                    case BlockIds.Action.Doors.Zombie:
+                                    {
+                                        if (!_isZombie)
+                                        {
+                                            continue;
+                                        }
+                                        break;
+                                    }
+                                    case 50:
+                                    {
+                                        break;
+                                    }
+                                    case 61:
+                                    case 62:
+                                    case 63:
+                                    case 64:
+                                    case 89:
+                                    case 90:
+                                    case 91:
+                                    case 96:
+                                    case 97:
+                                    case 122:
+                                    case 123:
+                                    case 124:
+                                    case 125:
+                                    case 126:
+                                    case 127:
+                                    case 146:
+                                    case 154:
+                                    case 158:
+                                    case 194:
+                                    {
+                                        if (loc2.speedY < 0 || loc9 <= loc2._overlapy)
+                                        {
+                                            if (Math.Abs(loc9 - loc4) > 0.00000001 || loc2._overlapy == -1)
                                             {
-                                                if (PlayingIn.RedActivated)
-                                                {
-                                                    continue;
-                                                }
-                                                break;
-                                            }
-                                            case 24:
-                                            {
-                                                if (PlayingIn.GreenActivated)
-                                                {
-                                                    continue;
-                                                }
-                                                break;
-                                            }
-                                            case 25:
-                                            {
-                                                if (PlayingIn.BlueActivated)
-                                                {
-                                                    continue;
-                                                }
-                                                break;
-                                            }
-                                            case 26:
-                                            {
-                                                if (!PlayingIn.RedActivated)
-                                                {
-                                                    continue;
-                                                }
-                                                break;
-                                            }
-                                            case 27:
-                                            {
-                                                if (!PlayingIn.GreenActivated)
-                                                {
-                                                    continue;
-                                                }
-                                                break;
-                                            }
-                                            case 28:
-                                            {
-                                                if (!PlayingIn.BlueActivated)
-                                                {
-                                                    continue;
-                                                }
-                                                break;
-                                            }
-                                            case 156:
-                                            {
-                                                if (PlayingIn.TimeDoorsVisible)
-                                                {
-                                                    continue;
-                                                }
-                                                break;
-                                            }
-                                            case 157:
-                                            {
-                                                if (!PlayingIn.TimeDoorsVisible)
-                                                {
-                                                    continue;
-                                                }
-                                                break;
-                                            }
-                                            case BlockIds.Action.Doors.Switch:
-                                            {
-                                                if (SwitchOpened)
-                                                {
-                                                    continue;
-                                                }
-                                                break;
-                                            }
-                                            case BlockIds.Action.Gates.Switch:
-                                            {
-                                                if (!SwitchOpened)
-                                                {
-                                                    continue;
-                                                }
-                                                break;
-                                            }
-                                            case BlockIds.Action.Doors.Club:
-                                            {
-                                                if (HasClub)
-                                                {
-                                                    continue;
-                                                }
-                                                break;
-                                            }
-                                            case BlockIds.Action.Gates.Club:
-                                            {
-                                                if (!HasClub)
-                                                {
-                                                    continue;
-                                                }
-                                                break;
-                                            }
-                                            case BlockIds.Action.Doors.Coin:
-                                            {
-                                                if (currentBlock is CoinBlock &&
-                                                    ((CoinBlock) currentBlock).CoinsRequired <= Coins)
-                                                {
-                                                    continue;
-                                                }
-                                                break;
-                                            }
-                                            case BlockIds.Action.Gates.Coin:
-                                            {
-                                                if (currentBlock is CoinBlock &&
-                                                    ((CoinBlock) currentBlock).CoinsRequired > Coins)
-                                                {
-                                                    continue;
-                                                }
-                                                break;
-                                            }
-                                            case BlockIds.Action.Gates.Zombie:
-                                            {
-                                                if (_isZombie)
-                                                {
-                                                    continue;
-                                                }
-                                                break;
-                                            }
-                                            case BlockIds.Action.Doors.Zombie:
-                                            {
-                                                if (!_isZombie)
-                                                {
-                                                    continue;
-                                                }
-                                                break;
-                                            }
-                                            case 50:
-                                            {
-                                                break;
-                                            }
-                                            case 61:
-                                            case 62:
-                                            case 63:
-                                            case 64:
-                                            case 89:
-                                            case 90:
-                                            case 91:
-                                            case 96:
-                                            case 97:
-                                            case 122:
-                                            case 123:
-                                            case 124:
-                                            case 125:
-                                            case 126:
-                                            case 127:
-                                            case 146:
-                                            case 154:
-                                            case 158:
-                                            case 194:
-                                            {
-                                                if (loc2.speedY < 0 || loc9 <= loc2._overlapy)
-                                                {
-                                                    if (Math.Abs(loc9 - loc4) > 0.00000001 || loc2._overlapy == -1)
-                                                    {
-                                                        loc2._overlapy = (int) loc9;
-                                                    }
-                                                }
-                                                break;
-                                            }
-                                            case 83:
-                                            case 77:
-                                            {
-                                                continue;
-                                            }
-                                            default:
-                                            {
-                                                break;
+                                                loc2._overlapy = (int) loc9;
                                             }
                                         }
-                                        return loc11;
+                                        break;
+                                    }
+                                    case 83:
+                                    case 77:
+                                    {
+                                        continue;
+                                    }
+                                    default:
+                                    {
+                                        break;
                                     }
                                 }
+                                return loc11;
                             }
                         }
                     }
