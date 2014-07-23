@@ -1,18 +1,41 @@
+// ***********************************************************************
+// <copyright file="CoinObject.cs" company="">
+//     Copyright (c) . All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 using PlayerIOClient;
 
 namespace Skylight
 {
+    /// <summary>
+    /// Class CoinObject.
+    /// </summary>
     public class CoinObject
     {
+        /// <summary>
+        /// The _in
+        /// </summary>
         private readonly In _in;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CoinObject"/> class.
+        /// </summary>
+        /// <param name="in">The in.</param>
         public CoinObject(In @in)
         {
             _in = @in;
         }
 
+        /// <summary>
+        /// Occurs when [coin block event].
+        /// </summary>
         public event In.BlockEvent CoinBlockEvent = delegate { };
 
+        /// <summary>
+        /// Called when [add coin door or gate].
+        /// </summary>
+        /// <param name="m">The m.</param>
         public void OnAddCoinDoorOrGate(Message m)
         {
             // Extract data.
