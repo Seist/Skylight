@@ -1,9 +1,16 @@
 namespace Skylight
 {
+    /// <summary>
+    /// Class Upgrade.
+    /// </summary>
     public class Upgrade
     {
         private readonly In _in;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Upgrade"/> class.
+        /// </summary>
+        /// <param name="in">The in.</param>
         public Upgrade(In @in)
         {
             _in = @in;
@@ -16,6 +23,9 @@ namespace Skylight
         /// </summary>
         public event In.RoomEvent UpdateEvent = delegate { };
 
+        /// <summary>
+        /// Called when an upgrade event occurs at the server.
+        /// </summary>
         public void OnUpgrade()
         {
             // Nothing to extract from message.

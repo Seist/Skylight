@@ -3,22 +3,36 @@ using Skylight.Blocks;
 
 namespace Skylight
 {
+    /// <summary>
+    /// Class Add Special Block.
+    /// </summary>
     public class AddSpecialBlock
     {
+        /// <summary>
+        /// The _in
+        /// </summary>
         private readonly In _in;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AddSpecialBlock"/> class.
+        /// </summary>
+        /// <param name="in">The in.</param>
         public AddSpecialBlock(In @in)
         {
             _in = @in;
         }
 
         /// <summary>
-        ///     All of the delegates for BlockEvent. These fire when events occur
-        ///     (such as when a block was added or updated).
+        /// All of the delegates for BlockEvent. These fire when events occur
+        /// (such as when a block was added or updated).
         /// </summary>
         public event In.BlockEvent
             RotateEvent = delegate { };
 
+        /// <summary>
+        /// Called when a user adds scifi blocks or spikes.
+        /// </summary>
+        /// <param name="m">The message.</param>
         public void OnAddScifiOrSpikes(Message m)
         {
             // Extract data.

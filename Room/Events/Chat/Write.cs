@@ -3,22 +3,36 @@ using PlayerIOClient;
 
 namespace Skylight
 {
+    /// <summary>
+    /// Class Write.
+    /// </summary>
     public class Write
     {
+        /// <summary>
+        /// The _in
+        /// </summary>
         private readonly In _in;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Write"/> class.
+        /// </summary>
+        /// <param name="in">The in.</param>
         public Write(In @in)
         {
             _in = @in;
         }
 
         /// <summary>
-        ///     All of the delegates for ChatEvent. Chat events are when the player
-        ///     says something, and distinguishes between auto text and system messages
-        ///     and much more.
+        /// All of the delegates for ChatEvent. Chat events are when the player
+        /// says something, and distinguishes between auto text and system messages
+        /// and much more.
         /// </summary>
         public event In.ChatEvent SystemMessageEvent = delegate { };
 
+        /// <summary>
+        /// Called when a player says something in the chat box (other than a native command).
+        /// </summary>
+        /// <param name="m">The message.</param>
         public void OnWrite(Message m)
         {
             // Extract data.

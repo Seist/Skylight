@@ -2,17 +2,34 @@ using PlayerIOClient;
 
 namespace Skylight
 {
+    /// <summary>
+    /// Class Add.
+    /// </summary>
     public class Add
     {
+        /// <summary>
+        /// The _in
+        /// </summary>
         private readonly In _in;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Add"/> class.
+        /// </summary>
+        /// <param name="in">The in.</param>
         public Add(In @in)
         {
             _in = @in;
         }
 
+        /// <summary>
+        /// Occurs when a player joins the room.
+        /// </summary>
         public event In.PlayerEvent OnAddEvent = delegate { };
 
+        /// <summary>
+        /// Called when a player joins the room.
+        /// </summary>
+        /// <param name="m">The message.</param>
         public void OnAdd(Message m)
         {
             // Extract data.

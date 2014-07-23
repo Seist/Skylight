@@ -2,22 +2,36 @@ using PlayerIOClient;
 
 namespace Skylight
 {
+    /// <summary>
+    /// Class Meta.
+    /// </summary>
     public class Meta
     {
+        /// <summary>
+        /// The _in
+        /// </summary>
         private readonly In _in;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Meta"/> class.
+        /// </summary>
+        /// <param name="in">The in.</param>
         public Meta(In @in)
         {
             _in = @in;
         }
 
         /// <summary>
-        ///     Delegates for RoomEvent. Are only invoked when commands that concern
-        ///     the room's state (such as global clear, potion toggling and saved) for just
-        ///     a few examples.
+        /// Delegates for RoomEvent. Are only invoked when commands that concern
+        /// the room's state (such as global clear, potion toggling and saved) for just
+        /// a few examples.
         /// </summary>
         public event In.RoomEvent UpdateMetaEvent = delegate { };
 
+        /// <summary>
+        /// Called when the room metadata changes (such as title, woots or plays).
+        /// </summary>
+        /// <param name="m">The message.</param>
         public void OnUpdateMeta(Message m)
         {
             // Extract data.

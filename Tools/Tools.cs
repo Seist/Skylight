@@ -392,6 +392,10 @@ namespace Skylight
             return list;
         }
 
+        /// <summary>
+        /// Clears the map.
+        /// </summary>
+        /// <param name="r">The room.</param>
         public static void ClearMap(Room r)
         {
             for (int x = 0; x <= r.Width; x++)

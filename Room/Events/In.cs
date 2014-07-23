@@ -1,8 +1,4 @@
-﻿// <author>TakoMan02</author>
-// <summary>In.cs is s receiver and processor for every event that happens
-// in the world it is in.</summary>
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -13,39 +9,54 @@ using Skylight.Blocks;
 namespace Skylight
 {
     /// <summary>
-    ///     The main class that takes in events from the playerio client.
+    /// The main class that takes in events from the playerio client.
     /// </summary>
     public sealed class In
     {
         /// <summary>
-        ///     The block event compiled from the message from the server.
+        /// The block event compiled from the message from the server.
         /// </summary>
         /// <param name="e">The block object.</param>
         public delegate void BlockEvent(BlockEventArgs e);
 
         /// <summary>
-        ///     A chat event (when the player sends a message).
+        /// A chat event (when the player sends a message).
         /// </summary>
         /// <param name="e">The ChatEventArgs event.</param>
         public delegate void ChatEvent(ChatEventArgs e);
 
         /// <summary>
-        ///     An event that concerns the player.
+        /// An event that concerns the player.
         /// </summary>
         /// <param name="e">The player object.</param>
         public delegate void PlayerEvent(PlayerEventArgs e);
 
         /// <summary>
-        ///     Something changed in the room (for example the title).
+        /// Something changed in the room (for example the title).
         /// </summary>
         /// <param name="e">The room object.</param>
         public delegate void RoomEvent(RoomEventArgs e);
 
+        /// <summary>
+        /// The player physics stopwatch
+        /// </summary>
         private readonly Stopwatch _playerPhysicsStopwatch = new Stopwatch();
+        /// <summary>
+        /// The premature messages
+        /// </summary>
         private readonly List<Message> _prematureMessages = new List<Message>();
+        /// <summary>
+        /// The init message
+        /// </summary>
         private Message _initMessage;
+        /// <summary>
+        /// The player physics thread
+        /// </summary>
         private Thread _playerPhysicsThread;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="In"/> class.
+        /// </summary>
         public In()
         {
             Add = new Add(this);
@@ -91,158 +102,340 @@ namespace Skylight
             Info = new Info(this);
         }
 
+        /// <summary>
+        /// Gets or sets the bot.
+        /// </summary>
+        /// <value>The bot.</value>
         public Bot Bot { get; set; }
 
+        /// <summary>
+        /// Gets or sets the source (room source).
+        /// </summary>
+        /// <value>The source.</value>
         public Room Source { get; set; }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is personal.
+        /// </summary>
+        /// <value><c>true</c> if this instance is personal; otherwise, <c>false</c>.</value>
         internal bool IsPersonal { private get; set; }
 
+        /// <summary>
+        /// Gets the add.
+        /// </summary>
+        /// <value>The add.</value>
         public Add Add { get; private set; }
 
+        /// <summary>
+        /// Gets the potions.
+        /// </summary>
+        /// <value>The potions.</value>
         public Potions Potions { get; private set; }
 
+        /// <summary>
+        /// Gets the autotext.
+        /// </summary>
+        /// <value>The autotext.</value>
         public Autotext Autotext { get; private set; }
 
+        /// <summary>
+        /// Gets the block changed.
+        /// </summary>
+        /// <value>The block changed.</value>
         public BlockChanged BlockChanged { get; private set; }
 
+        /// <summary>
+        /// Gets the coin object.
+        /// </summary>
+        /// <value>The coin object.</value>
         public CoinObject CoinObject { get; private set; }
 
+        /// <summary>
+        /// Gets the add special block.
+        /// </summary>
+        /// <value>The add special block.</value>
         public AddSpecialBlock AddSpecialBlock { get; private set; }
 
+        /// <summary>
+        /// Gets the note block.
+        /// </summary>
+        /// <value>The note block.</value>
         public NoteBlock NoteBlock { get; private set; }
 
+        /// <summary>
+        /// Gets the on coin get.
+        /// </summary>
+        /// <value>The on coin get.</value>
         public OnCoinGet OnCoinGet { get; private set; }
 
+        /// <summary>
+        /// Gets the clear map.
+        /// </summary>
+        /// <value>The clear map.</value>
         public ClearMap ClearMap { get; private set; }
 
+        /// <summary>
+        /// Gets the face change.
+        /// </summary>
+        /// <value>The face change.</value>
         public FaceChange FaceChange { get; private set; }
 
+        /// <summary>
+        /// Gets the grinch.
+        /// </summary>
+        /// <value>The grinch.</value>
         public Grinch Grinch { get; private set; }
 
+        /// <summary>
+        /// Gets the witch.
+        /// </summary>
+        /// <value>The witch.</value>
         public Witch Witch { get; private set; }
 
+        /// <summary>
+        /// Gets the wizard.
+        /// </summary>
+        /// <value>The wizard.</value>
         public Wizard Wizard { get; private set; }
 
+        /// <summary>
+        /// Gets the give wizard2.
+        /// </summary>
+        /// <value>The give wizard2.</value>
         public GiveWizard2 GiveWizard2 { get; private set; }
 
+        /// <summary>
+        /// Gets the god mode.
+        /// </summary>
+        /// <value>The god mode.</value>
         public GodMode GodMode { get; private set; }
 
+        /// <summary>
+        /// Gets the hide.
+        /// </summary>
+        /// <value>The hide.</value>
         public Hide Hide { get; private set; }
 
+        /// <summary>
+        /// Gets the crown.
+        /// </summary>
+        /// <value>The crown.</value>
         public Crown Crown { get; private set; }
 
+        /// <summary>
+        /// Gets the on kill1.
+        /// </summary>
+        /// <value>The on kill1.</value>
         public OnKill OnKill1 { get; private set; }
 
+        /// <summary>
+        /// Gets the trophy.
+        /// </summary>
+        /// <value>The trophy.</value>
         public Trophy Trophy { get; private set; }
 
+        /// <summary>
+        /// Gets the sign block.
+        /// </summary>
+        /// <value>The sign block.</value>
         public SignBlock SignBlock { get; private set; }
 
+        /// <summary>
+        /// Gets the left world.
+        /// </summary>
+        /// <value>The left world.</value>
         public LeftWorld LeftWorld { get; private set; }
 
+        /// <summary>
+        /// Gets the level change.
+        /// </summary>
+        /// <value>The level change.</value>
         public LevelChange LevelChange { get; private set; }
 
+        /// <summary>
+        /// Gets the move.
+        /// </summary>
+        /// <value>The move.</value>
         public Move Move { get; private set; }
 
+        /// <summary>
+        /// Gets the moderator.
+        /// </summary>
+        /// <value>The moderator.</value>
         public Moderator Moderator { get; private set; }
 
+        /// <summary>
+        /// Gets the potion.
+        /// </summary>
+        /// <value>The potion.</value>
         public Potion Potion { get; private set; }
 
+        /// <summary>
+        /// Gets the refresh shop.
+        /// </summary>
+        /// <value>The refresh shop.</value>
         public RefreshShop RefreshShop { get; private set; }
 
+        /// <summary>
+        /// Gets or sets the reset world.
+        /// </summary>
+        /// <value>The reset world.</value>
         private ResetWorld ResetWorld { get; set; }
 
+        /// <summary>
+        /// Gets the chat.
+        /// </summary>
+        /// <value>The chat.</value>
         public Chat Chat { get; private set; }
 
+        /// <summary>
+        /// Gets the chat old.
+        /// </summary>
+        /// <value>The chat old.</value>
         public ChatOld ChatOld { get; private set; }
 
+        /// <summary>
+        /// Gets the save.
+        /// </summary>
+        /// <value>The save.</value>
         public Save Save { get; private set; }
 
+        /// <summary>
+        /// Gets the show.
+        /// </summary>
+        /// <value>The show.</value>
         public Show Show { get; private set; }
 
+        /// <summary>
+        /// Gets the tele.
+        /// </summary>
+        /// <value>The tele.</value>
         public Tele Tele { get; private set; }
 
+        /// <summary>
+        /// Gets the teleport.
+        /// </summary>
+        /// <value>The teleport.</value>
         public Teleport Teleport { get; private set; }
 
+        /// <summary>
+        /// Gets the meta.
+        /// </summary>
+        /// <value>The meta.</value>
         public Meta Meta { get; private set; }
 
+        /// <summary>
+        /// Gets or sets the upgrade.
+        /// </summary>
+        /// <value>The upgrade.</value>
         private Upgrade Upgrade { get; set; }
 
+        /// <summary>
+        /// Gets the wp.
+        /// </summary>
+        /// <value>The wp.</value>
         public Wp Wp { get; private set; }
 
+        /// <summary>
+        /// Gets the write.
+        /// </summary>
+        /// <value>The write.</value>
         public Write Write { get; private set; }
 
+        /// <summary>
+        /// Gets the get woot.
+        /// </summary>
+        /// <value>The get woot.</value>
         public GetWoot GetWoot { get; private set; }
 
+        /// <summary>
+        /// Gets the woot up.
+        /// </summary>
+        /// <value>The woot up.</value>
         public WootUp WootUp { get; private set; }
 
+        /// <summary>
+        /// Gets the access.
+        /// </summary>
+        /// <value>The access.</value>
         public Access Access { get; private set; }
 
+        /// <summary>
+        /// Gets the information.
+        /// </summary>
+        /// <value>The information.</value>
         public Info Info { get; private set; }
 
         /// <summary>
-        ///     All of the delegates for BlockEvent. These fire when events occur
-        ///     (such as when a block was added or updated).
+        /// All of the delegates for BlockEvent. These fire when events occur
+        /// (such as when a block was added or updated).
         /// </summary>
         public event BlockEvent
             CoinBlockEvent = delegate { };
 
         /// <summary>
-        ///     All of the delegates for BlockEvent. These fire when events occur
-        ///     (such as when a block was added or updated).
+        /// All of the delegates for BlockEvent. These fire when events occur
+        /// (such as when a block was added or updated).
         /// </summary>
         public event BlockEvent
             PortalBlockEvent = delegate { };
 
         /// <summary>
-        ///     When a sign block is placed in the world.
+        /// When a sign block is placed in the world.
         /// </summary>
+        /// <param name="m">The m.</param>
         private void OnSignBlockEvent(Message m)
         {
         }
 
         /// <summary>
-        ///     All events that concern the player. This includes many messages that the player
-        ///     gets from the world (such as server information and leveling up). Mostly these
-        ///     events are shown from the server directly to the user in the form of a dialog
-        ///     box or by prefixing a chat message with *SYSTEM.
+        /// All events that concern the player. This includes many messages that the player
+        /// gets from the world (such as server information and leveling up). Mostly these
+        /// events are shown from the server directly to the user in the form of a dialog
+        /// box or by prefixing a chat message with *SYSTEM.
         /// </summary>
         public event PlayerEvent
             AddEvent = delegate { };
 
         /// <summary>
-        ///     All events that concern the player. This includes many messages that the player
-        ///     gets from the world (such as server information and leveling up). Mostly these
-        ///     events are shown from the server directly to the user in the form of a dialog
-        ///     box or by prefixing a chat message with *SYSTEM.
+        /// All events that concern the player. This includes many messages that the player
+        /// gets from the world (such as server information and leveling up). Mostly these
+        /// events are shown from the server directly to the user in the form of a dialog
+        /// box or by prefixing a chat message with *SYSTEM.
         /// </summary>
         public event PlayerEvent
             LoseAccessEvent = delegate { };
 
         /// <summary>
-        ///     All events that concern the player. This includes many messages that the player
-        ///     gets from the world (such as server information and leveling up). Mostly these
-        ///     events are shown from the server directly to the user in the form of a dialog
-        ///     box or by prefixing a chat message with *SYSTEM.
+        /// All events that concern the player. This includes many messages that the player
+        /// gets from the world (such as server information and leveling up). Mostly these
+        /// events are shown from the server directly to the user in the form of a dialog
+        /// box or by prefixing a chat message with *SYSTEM.
         /// </summary>
         public event PlayerEvent
             TickEvent = delegate { };
 
         /// <summary>
-        ///     All events that concern the player. This includes many messages that the player
-        ///     gets from the world (such as server information and leveling up). Mostly these
-        ///     events are shown from the server directly to the user in the form of a dialog
-        ///     box or by prefixing a chat message with *SYSTEM.
+        /// All events that concern the player. This includes many messages that the player
+        /// gets from the world (such as server information and leveling up). Mostly these
+        /// events are shown from the server directly to the user in the form of a dialog
+        /// box or by prefixing a chat message with *SYSTEM.
         /// </summary>
         public event PlayerEvent
             GuardianEvent = delegate { };
 
         /// <summary>
-        ///     Delegates for RoomEvent. Are only invoked when commands that concern
-        ///     the room's state (such as global clear, potion toggling and saved) for just
-        ///     a few examples.
+        /// Delegates for RoomEvent. Are only invoked when commands that concern
+        /// the room's state (such as global clear, potion toggling and saved) for just
+        /// a few examples.
         /// </summary>
         public event RoomEvent InitEvent = delegate { };
 
+        /// <summary>
+        /// Called when [message].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="m">The m.</param>
         internal void OnMessage(object sender, Message m)
         {
             // The order in which things are sent is jacked up, so we need to reorder them.
@@ -469,6 +662,10 @@ namespace Skylight
             }
         }
 
+        /// <summary>
+        /// Called when [guardian mode].
+        /// </summary>
+        /// <param name="m">The m.</param>
         private void OnGuardianMode(Message m)
         {
             int id = m.GetInteger(0);
@@ -480,6 +677,10 @@ namespace Skylight
         }
 
 
+        /// <summary>
+        /// Called when [initialize].
+        /// </summary>
+        /// <param name="m">The m.</param>
         private void OnInit(Message m)
         {
             // Extract data
@@ -559,6 +760,10 @@ namespace Skylight
         }
 
 
+        /// <summary>
+        /// Called when [lost access].
+        /// </summary>
+        /// <param name="m">The m.</param>
         private void OnLostAccess(Message m)
         {
             // Nothing to extract from message.
@@ -571,6 +776,10 @@ namespace Skylight
             Source.Pull.LoseAccessEvent(e);
         }
 
+        /// <summary>
+        /// Called when [pt].
+        /// </summary>
+        /// <param name="m">The m.</param>
         private void OnPt(Message m)
         {
             // Extract data.
@@ -594,6 +803,10 @@ namespace Skylight
             Source.Pull.PortalBlockEvent(e);
         }
 
+        /// <summary>
+        /// Called when [ts].
+        /// </summary>
+        /// <param name="m">The m.</param>
         private void OnTs(Message m)
         {
             // Extract data.
@@ -614,6 +827,9 @@ namespace Skylight
             Source.Pull.CoinBlockEvent(e);
         }
 
+        /// <summary>
+        /// Loads the blocks.
+        /// </summary>
         private void LoadBlocks()
         {
             foreach (Block b in Tools.DeserializeInit(_initMessage, 18, Source))
@@ -628,6 +844,9 @@ namespace Skylight
             _playerPhysicsThread.Start();
         }
 
+        /// <summary>
+        /// Updates the physics.
+        /// </summary>
         private void UpdatePhysics()
         {
             _playerPhysicsStopwatch.Start();

@@ -2,31 +2,45 @@ using PlayerIOClient;
 
 namespace Skylight
 {
+    /// <summary>
+    /// Class Tele.
+    /// </summary>
     public class Tele
     {
+        /// <summary>
+        /// The _in
+        /// </summary>
         private readonly In _in;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Tele"/> class.
+        /// </summary>
+        /// <param name="in">The in.</param>
         public Tele(In @in)
         {
             _in = @in;
         }
 
         /// <summary>
-        ///     All events that concern the player. This includes many messages that the player
-        ///     gets from the world (such as server information and leveling up). Mostly these
-        ///     events are shown from the server directly to the user in the form of a dialog
-        ///     box or by prefixing a chat message with *SYSTEM.
+        /// All events that concern the player. This includes many messages that the player
+        /// gets from the world (such as server information and leveling up). Mostly these
+        /// events are shown from the server directly to the user in the form of a dialog
+        /// box or by prefixing a chat message with *SYSTEM.
         /// </summary>
         public event In.PlayerEvent
             DeathEvent = delegate { };
 
         /// <summary>
-        ///     Delegates for RoomEvent. Are only invoked when commands that concern
-        ///     the room's state (such as global clear, potion toggling and saved) for just
-        ///     a few examples.
+        /// Delegates for RoomEvent. Are only invoked when commands that concern
+        /// the room's state (such as global clear, potion toggling and saved) for just
+        /// a few examples.
         /// </summary>
         public event In.RoomEvent ResetEvent = delegate { };
 
+        /// <summary>
+        /// Called when a player teleports?
+        /// </summary>
+        /// <param name="m">The message.</param>
         public void OnTele(Message m)
         {
             // Extract some of the data.

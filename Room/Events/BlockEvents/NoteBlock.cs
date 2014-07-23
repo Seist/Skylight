@@ -3,22 +3,36 @@ using Skylight.Blocks;
 
 namespace Skylight
 {
+    /// <summary>
+    /// Class Note Block.
+    /// </summary>
     public class NoteBlock
     {
+        /// <summary>
+        /// The _in
+        /// </summary>
         private readonly In _in;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NoteBlock"/> class.
+        /// </summary>
+        /// <param name="in">The in.</param>
         public NoteBlock(In @in)
         {
             _in = @in;
         }
 
         /// <summary>
-        ///     All of the delegates for BlockEvent. These fire when events occur
-        ///     (such as when a block was added or updated).
+        /// All of the delegates for BlockEvent. These fire when events occur
+        /// (such as when a block was added or updated).
         /// </summary>
         public event In.BlockEvent
             SoundBlockEvent = delegate { };
 
+        /// <summary>
+        /// Called when a noteblock is added.
+        /// </summary>
+        /// <param name="m">The message.</param>
         public void OnAddNoteblock(Message m)
         {
             // Extract data.

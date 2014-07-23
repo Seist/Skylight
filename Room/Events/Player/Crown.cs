@@ -2,24 +2,38 @@ using PlayerIOClient;
 
 namespace Skylight
 {
+    /// <summary>
+    /// Class Crown.
+    /// </summary>
     public class Crown
     {
+        /// <summary>
+        /// The _in
+        /// </summary>
         private readonly In _in;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Crown"/> class.
+        /// </summary>
+        /// <param name="in">The in.</param>
         public Crown(In @in)
         {
             _in = @in;
         }
 
         /// <summary>
-        ///     All events that concern the player. This includes many messages that the player
-        ///     gets from the world (such as server information and leveling up). Mostly these
-        ///     events are shown from the server directly to the user in the form of a dialog
-        ///     box or by prefixing a chat message with *SYSTEM.
+        /// All events that concern the player. This includes many messages that the player
+        /// gets from the world (such as server information and leveling up). Mostly these
+        /// events are shown from the server directly to the user in the form of a dialog
+        /// box or by prefixing a chat message with *SYSTEM.
         /// </summary>
         public event In.PlayerEvent
             CrownEvent = delegate { };
 
+        /// <summary>
+        /// Called when a player gets the crown. Only one player can have the crown at one time.
+        /// </summary>
+        /// <param name="m">The message.</param>
         public void OnCrown(Message m)
         {
             // Extract data.

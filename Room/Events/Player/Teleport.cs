@@ -2,24 +2,38 @@ using PlayerIOClient;
 
 namespace Skylight
 {
+    /// <summary>
+    /// Class Teleport.
+    /// </summary>
     public class Teleport
     {
+        /// <summary>
+        /// The _in
+        /// </summary>
         private readonly In _in;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Teleport"/> class.
+        /// </summary>
+        /// <param name="in">The in.</param>
         public Teleport(In @in)
         {
             _in = @in;
         }
 
         /// <summary>
-        ///     All events that concern the player. This includes many messages that the player
-        ///     gets from the world (such as server information and leveling up). Mostly these
-        ///     events are shown from the server directly to the user in the form of a dialog
-        ///     box or by prefixing a chat message with *SYSTEM.
+        /// All events that concern the player. This includes many messages that the player
+        /// gets from the world (such as server information and leveling up). Mostly these
+        /// events are shown from the server directly to the user in the form of a dialog
+        /// box or by prefixing a chat message with *SYSTEM.
         /// </summary>
         public event In.PlayerEvent
             TeleportEvent = delegate { };
 
+        /// <summary>
+        /// Called when a player teleports to a location.
+        /// </summary>
+        /// <param name="m">The message.</param>
         public void OnTeleport(Message m)
         {
             // Extract data.

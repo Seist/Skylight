@@ -2,33 +2,47 @@ using PlayerIOClient;
 
 namespace Skylight
 {
+    /// <summary>
+    /// Class Move.
+    /// </summary>
     public class Move
     {
+        /// <summary>
+        /// The _in
+        /// </summary>
         private readonly In _in;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Move"/> class.
+        /// </summary>
+        /// <param name="in">The in.</param>
         public Move(In @in)
         {
             _in = @in;
         }
 
         /// <summary>
-        ///     All events that concern the player. This includes many messages that the player
-        ///     gets from the world (such as server information and leveling up). Mostly these
-        ///     events are shown from the server directly to the user in the form of a dialog
-        ///     box or by prefixing a chat message with *SYSTEM.
+        /// All events that concern the player. This includes many messages that the player
+        /// gets from the world (such as server information and leveling up). Mostly these
+        /// events are shown from the server directly to the user in the form of a dialog
+        /// box or by prefixing a chat message with *SYSTEM.
         /// </summary>
         public event In.PlayerEvent
             JumpEvent = delegate { };
 
         /// <summary>
-        ///     All events that concern the player. This includes many messages that the player
-        ///     gets from the world (such as server information and leveling up). Mostly these
-        ///     events are shown from the server directly to the user in the form of a dialog
-        ///     box or by prefixing a chat message with *SYSTEM.
+        /// All events that concern the player. This includes many messages that the player
+        /// gets from the world (such as server information and leveling up). Mostly these
+        /// events are shown from the server directly to the user in the form of a dialog
+        /// box or by prefixing a chat message with *SYSTEM.
         /// </summary>
         public event In.PlayerEvent
             MovementEvent = delegate { };
 
+        /// <summary>
+        /// Called when a player moves.
+        /// </summary>
+        /// <param name="m">The message.</param>
         public void OnMove(Message m)
         {
             // Extract data.

@@ -3,23 +3,37 @@ using PlayerIOClient;
 
 namespace Skylight
 {
+    /// <summary>
+    /// Class Autotext.
+    /// </summary>
     public class Autotext
     {
+        /// <summary>
+        /// The _in
+        /// </summary>
         private readonly In _in;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Autotext"/> class.
+        /// </summary>
+        /// <param name="in">The in.</param>
         public Autotext(In @in)
         {
             _in = @in;
         }
 
         /// <summary>
-        ///     All of the delegates for ChatEvent. Chat events are when the player
-        ///     says something, and distinguishes between auto text and system messages
-        ///     and much more.
+        /// All of the delegates for ChatEvent. Chat events are when the player
+        /// says something, and distinguishes between auto text and system messages
+        /// and much more.
         /// </summary>
         public event In.ChatEvent
             AutotextEvent = delegate { };
 
+        /// <summary>
+        /// Called when someone says a message using the auto text function.
+        /// </summary>
+        /// <param name="m">The m.</param>
         public void OnAutotext(Message m)
         {
             // Extract data.

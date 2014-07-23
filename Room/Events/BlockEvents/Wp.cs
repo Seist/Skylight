@@ -3,22 +3,36 @@ using Skylight.Blocks;
 
 namespace Skylight
 {
+    /// <summary>
+    /// Class Wp.
+    /// </summary>
     public class Wp
     {
+        /// <summary>
+        /// The _in
+        /// </summary>
         private readonly In _in;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Wp"/> class.
+        /// </summary>
+        /// <param name="in">The in.</param>
         public Wp(In @in)
         {
             _in = @in;
         }
 
         /// <summary>
-        ///     All of the delegates for BlockEvent. These fire when events occur
-        ///     (such as when a block was added or updated).
+        /// All of the delegates for BlockEvent. These fire when events occur
+        /// (such as when a block was added or updated).
         /// </summary>
         public event In.BlockEvent
             RoomPortalBlockEvent = delegate { };
 
+        /// <summary>
+        /// Called when [wp].
+        /// </summary>
+        /// <param name="m">The m.</param>
         public void OnWp(Message m)
         {
             // Extract data.
