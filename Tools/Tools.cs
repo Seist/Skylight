@@ -13,7 +13,7 @@ using PlayerIOClient;
 using Skylight.Blocks;
 
 namespace Skylight
-{
+{Bass
     /// <summary>
     ///     Tools that are available to the core of the program (converting a player id or name into
     ///     a player object) and internal methods are mostly stored here.
@@ -236,8 +236,8 @@ namespace Skylight
             var list = new List<Block>();
             try
             {
-                //// FULL CREDIT TO BASS5098 FOR THE FOLLOWING CODE
-                //// I wrote it in my own way in C# but Bass5098 made the original.
+                //// FULL CREDIT TO @kevin-brown FOR THE FOLLOWING CODE
+                //// I wrote it in my own way in C# but he made the original.
                 //// Without it I would not know how to do this.
                 //// https://github.com/kevin-brown/ee-level-editor/blob/master/LevelEditor/WorldConverter.vb
                 //// Lines 438-507
