@@ -51,7 +51,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PlayerIOClient">
-      <HintPath>References\PlayerIOClient.dll</HintPath>
+      <HintPath>lib\PlayerIOClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Rabbit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d1393b3767691f4e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Rabbit.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
