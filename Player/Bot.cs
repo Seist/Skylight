@@ -146,20 +146,20 @@ namespace Skylight
 
                 // Parse the level ID (because some people like to put full URLs in).
                 R.Id = Tools.ParseUrl(R.Id);
-                var Connection = rabbitAuth.LogIn(_emailOrToken, _passwordOrToken, R.Id,createRoom);
+                var playerioConnection = rabbitAuth.LogIn(_emailOrToken, _passwordOrToken, R.Id,createRoom);
 
                 // Update room data
                 Room.JoinedRooms.Add(R);
 
                 // Everyone gets a connection.
-                R.Connections.Add(Connection);
+                R.Connections.Add(playerioConnection);
 
                 // The following 25 lines deal with filtering messages from the client.
                 // Every bot receives info from the room, because some of it is exclusive to the bot.
                 // We call those "personal" pulls.
                 // They are exactly the same as the main pull, except In.IsPersonal = true.
                 var i = new In {IsPersonal = true, Source = R, Bot = this};
-                Connection.OnMessage += i.OnMessage;
+                playerioConnection.OnMessage += i.OnMessage;
                 R.Pulls.Add(i);
 
                 // However, everything else only needs one bot to handle. Things like chat and movement.
@@ -170,15 +170,15 @@ namespace Skylight
 
                     R.Receiver = this;
 
-                    Connection.OnMessage += R.Pull.OnMessage;
+                    playerioConnection.OnMessage += R.Pull.OnMessage;
                     R.Pull.IsPersonal = false;
                     R.Pull.Bot = this;
                     R.Pull.Source = R;
                 }
 
                 // Once everything is internal settled, send the init.
-                Connection.Send("init");
-                Connection.Send("init2");
+                playerioConnection.Send("init");
+                playerioConnection.Send("init2");
 
                 R.OnlinePlayers.Add(this);
 

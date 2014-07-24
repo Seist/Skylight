@@ -32,7 +32,8 @@ namespace Skylight
             CoinCollectedEvent = delegate { };
 
         /// <summary>
-        /// Called when a player recieves a coin (by touching one).
+        /// Called when a player recieves a coin (by touching it) or loosing
+        /// coins because they were removed from the level.
         /// </summary>
         /// <param name="m">The message.</param>
         public void OnCoin(Message m)
