@@ -13,7 +13,7 @@ using PlayerIOClient;
 using Skylight.Blocks;
 
 namespace Skylight
-{Bass
+{
     /// <summary>
     ///     Tools that are available to the core of the program (converting a player id or name into
     ///     a player object) and internal methods are mostly stored here.
