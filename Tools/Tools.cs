@@ -197,16 +197,17 @@ namespace Skylight
             // Supports haphazard copy/pasting.
             if (Regex.IsMatch(id, "[htp:/w.evrybodis.comga]{0,36}[a-zA-Z0-9_-]{13}"))
             {
-                string finalUrl;
                 try
                 {
-                    Uri parsedUrl = new Uri(id, true);
-                    finalUrl = Convert.ToString(parsedUrl.Segments.Last());
+                    var parsedUrl = new Uri(id, true);
+                    var finalUrl = Convert.ToString(parsedUrl.Segments.Last());
 
                     return finalUrl;
                 }
                 catch (System.UriFormatException)
                 {
+                    // the id might be given directly and not in a url form for example
+                    // PWUMhzkaldiw without the http:// portion
                     id = id.Trim();
                     if (Regex.IsMatch(id, @"^[a-zA-Z0-9_-]+$") && (id.Length >= 14) && (9 >= id.Length))
                     {
