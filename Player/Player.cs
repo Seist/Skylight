@@ -579,7 +579,7 @@ namespace Skylight
         /// <value><c>true</c> if this instance is owner; otherwise, <c>false</c>.</value>
         public bool IsOwner
         {
-            get { return PlayingIn.Name == this.Name; }
+            get { return PlayingIn.Owner.Name == this.Name; }
         }
 
         /// <summary>

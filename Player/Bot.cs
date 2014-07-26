@@ -146,20 +146,20 @@ namespace Skylight
 
                 // Parse the level ID (because some people like to put full URLs in).
                 R.Id = Tools.ParseUrl(R.Id);
-                var playerioConnection = rabbitAuth.LogIn(_emailOrToken, _passwordOrToken, R.Id,createRoom);
+                Connection = rabbitAuth.LogIn(_emailOrToken, _passwordOrToken, R.Id,createRoom);
 
                 // Update room data
                 Room.JoinedRooms.Add(R);
 
                 // Everyone gets a connection.
-                R.Connections.Add(playerioConnection);
+                R.Connections.Add(Connection);
 
                 // The following 25 lines deal with filtering messages from the client.
                 // Every bot receives info from the room, because some of it is exclusive to the bot.
                 // We call those "personal" pulls.
                 // They are exactly the same as the main pull, except In.IsPersonal = true.
                 var i = new In {IsPersonal = true, Source = R, Bot = this};
-                playerioConnection.OnMessage += i.OnMessage;
+                Connection.OnMessage += i.OnMessage;
                 R.Pulls.Add(i);
 
                 // However, everything else only needs one bot to handle. Things like chat and movement.
@@ -170,26 +170,25 @@ namespace Skylight
 
                     R.Receiver = this;
 
-                    playerioConnection.OnMessage += R.Pull.OnMessage;
+                    Connection.OnMessage += R.Pull.OnMessage;
                     R.Pull.IsPersonal = false;
                     R.Pull.Bot = this;
                     R.Pull.Source = R;
                 }
 
                 // Once everything is internal settled, send the init.
-                playerioConnection.Send("init");
-                playerioConnection.Send("init2");
+                Connection.Send("init");
+                Connection.Send("init2");
 
                 R.OnlinePlayers.Add(this);
 
                 Joined = true;
 
                 // Wait until all the blocks are loaded before joining.
-                /*while (!R.BlocksLoaded)
+                while (!R.BlocksLoaded)
                 {
-                    Thread.Sleep(500);
-                    Console.WriteLine("Waiting until blocks are loaded..." + Environment.NewLine);
-                }*/
+                    Thread.Sleep(100);
+                }
             }
             catch (Exception e)
             {
@@ -287,12 +286,11 @@ namespace Skylight
                     Connection.Send(R.RoomKey, theBlock.Z, theBlock.X, theBlock.Y, theBlock.Id, theBlock.Direction);
                 }
 
-
                 Thread.Sleep(BlockDelay);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                Tools.SkylightMessage("Error: attempted to use Out.Build before connecting");
+                Tools.SkylightMessage("Error in Bot.Build: " + e.ToString());
             }
         }
 
