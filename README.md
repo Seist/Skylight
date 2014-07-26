@@ -12,5 +12,13 @@ Special thanks to:<br>
 <li>@kevin-brown: Providing a system for parsing init message; other OnMessage documentation.</li>
 <li>@BuzzerBee: Finding bugs.</li>
 <li>gustav9797: Porting physics engine to C#.</li>
-<li>@Decagon (Hexagon): Many improvements</li>
+<li>@Decagon (Hexagon): Many improvements.</li>
 </ul>
+
+
+Getting started with Skylight is easy. To connect, simply type:
+
+    using Skylight;
+    var myBot = new Bot(new Room("http://everybodyedits.com/games/roomid"), "Email or token", "Password if applicable");
+    // delegates would be initialized here
+    myBot.Join();
