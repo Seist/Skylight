@@ -154,7 +154,7 @@ namespace Skylight
                 // Everyone gets a connection.
                 R.Connections.Add(Connection);
 
-                // The following 25 lines deal with filtering messages from the client.
+                // The following 20 lines deal with filtering messages from the client.
                 // Every bot receives info from the room, because some of it is exclusive to the bot.
                 // We call those "personal" pulls.
                 // They are exactly the same as the main pull, except In.IsPersonal = true.
