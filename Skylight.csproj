@@ -50,8 +50,9 @@
     <DelaySign>false</DelaySign>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PlayerIOClient">
-      <HintPath>lib\PlayerIOClient.dll</HintPath>
+    <Reference Include="PlayerIOClient, Version=2.3.6.0, Culture=neutral, PublicKeyToken=e73906cd2bb451f7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\PlayerIOClient.dll</HintPath>
     </Reference>
     <Reference Include="Rabbit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d1393b3767691f4e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

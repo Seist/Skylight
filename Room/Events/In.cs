@@ -676,7 +676,6 @@ namespace Skylight
             Source.Pull.GuardianEvent(e);
         }
 
-
         /// <summary>
         /// Called when [initialize].
         /// </summary>
@@ -758,7 +757,6 @@ namespace Skylight
 
             Source.Pull.InitEvent(e);
         }
-
 
         /// <summary>
         /// Called when [lost access].
@@ -861,12 +859,17 @@ namespace Skylight
                     {
                         accumulator += Config.PhysicsMsPerTick;
 
-                        foreach (Player player in Source.OnlinePlayers.Where(player => player.ShouldTick))
-                        {
-                            player.Tick();
+                        List<Player> temp = new List<Player>(Source.OnlinePlayers);
 
-                            var e = new PlayerEventArgs(player, Source, null);
-                            Source.Pull.TickEvent(e);
+                        foreach (Player player in temp)
+                        {
+                            if (player.ShouldTick)
+                            {
+                                player.Tick();
+
+                                var e = new PlayerEventArgs(player, Source, null);
+                                Source.Pull.TickEvent(e);
+                            }
                         }
                     }
                     else

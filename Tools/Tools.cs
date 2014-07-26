@@ -201,7 +201,7 @@ namespace Skylight
                 string finalUrl;
                 try
                 {
-                    Uri parsedUrl = new Uri(id, true);
+                    Uri parsedUrl = new Uri(id);
                     finalUrl = Convert.ToString(parsedUrl.Segments.Last());
 
                     return finalUrl;
