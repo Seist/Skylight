@@ -713,7 +713,7 @@ namespace Skylight
             Bot.X = botX;
             Bot.Y = botY;
             Bot.HasAccess = hasAccess;
-            Bot.IsOwner = isOwner;
+            // Bot.IsOwner = isOwner;
             Bot.PlayingIn = Source;
 
             Source.OnlineBots.Add(Bot);
