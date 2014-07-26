@@ -27,16 +27,16 @@ namespace Skylight
         /// <summary>
         ///     The username of the player.
         /// </summary>
-        private Player Subject { get; set; }
+        public Player Subject { get; internal set; }
 
         /// <summary>
         ///     The room that the player is originating in.
         /// </summary>
-        private Room Origin { get; set; }
+        public Room Origin { get; internal set; }
 
         /// <summary>
         ///     The raw, unparsed message from the server.
         /// </summary>
-        private Message RawMessage { get; set; }
+        public Message RawMessage { get; internal set; }
     }
 }
