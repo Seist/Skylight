@@ -16,7 +16,7 @@ namespace Skylight
     public class PortalBlock : Block
     {
         /// <summary>
-        ///     The minportalid
+        ///     The minimum portal id
         /// </summary>
         private const int
             Minportalid = 0,
@@ -26,13 +26,13 @@ namespace Skylight
         ///     The _portal destination
         /// </summary>
         private int
-            _portalDestination = -1, _portalId = -1;
+            portalDestination = -1, portalId = -1;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="PortalBlock" /> class.
         /// </summary>
         /// <param name="x">The x coordinate.</param>
-        /// <param name="y">The y coordiante.</param>
+        /// <param name="y">The y coordinate.</param>
         /// <param name="direction">The direction.</param>
         /// <param name="portalId">The portal identifier.</param>
         /// <param name="portalDestination">The portal destination.</param>
@@ -45,14 +45,14 @@ namespace Skylight
             int portalDestination,
             bool visible) : base(Tools.PortalIdByVisible(visible), x, y, 0)
         {
-            Direction = direction;
-            PortalDestination = portalDestination;
-            PortalId = portalId;
-            Visible = visible;
+            this.Direction = direction;
+            this.PortalDestination = portalDestination;
+            this.PortalId = portalId;
+            this.Visible = visible;
         }
 
         /// <summary>
-        ///     The direction of the portal.
+        ///     Gets the direction of the portal.
         /// </summary>
         public new int Direction { get; private set; }
 
@@ -62,13 +62,16 @@ namespace Skylight
         /// <value>The portal destination.</value>
         public int PortalDestination
         {
-            get { return _portalDestination; }
+            get
+            {
+                return this.portalDestination;
+            }
 
             private set
             {
                 if (value > Minportalid && value < Maxportalid)
                 {
-                    _portalDestination = value;
+                    this.portalDestination = value;
                 }
             }
         }
@@ -79,19 +82,22 @@ namespace Skylight
         /// <value>The portal identifier.</value>
         public int PortalId
         {
-            get { return _portalId; }
+            get
+            {
+                return this.portalId;
+            }
 
             private set
             {
                 if (value < Maxportalid && value > Minportalid)
                 {
-                    _portalId = value;
+                    this.portalId = value;
                 }
             }
         }
 
         /// <summary>
-        ///     Gets a value indicating whether this <see cref="PortalBlock" /> is visible.
+        ///     Gets or sets a value indicating whether this <see cref="PortalBlock" /> is visible.
         /// </summary>
         /// <value><c>true</c> if visible; otherwise, <c>false</c>.</value>
         private bool Visible { get; set; }

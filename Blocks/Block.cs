@@ -1,7 +1,11 @@
-// <copyright file="Block.cs" company="">
-//     Copyright (c) . All rights reserved.
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Block.cs" company="None">
+//   Copyright (c) . All rights reserved.
 // </copyright>
-// <summary></summary>
+// <summary>
+//   
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace Skylight.Blocks
 {
@@ -22,9 +26,9 @@ namespace Skylight.Blocks
             Backgroundlayer = 1;
 
         /// <summary>
-        ///     The _x
+        ///     The z
         /// </summary>
-        private int _z;
+        private int z;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="Block" /> class.
@@ -41,27 +45,27 @@ namespace Skylight.Blocks
             int z = 0,
             int direction = Up)
         {
-            X = x;
-            Y = y;
-            Z = z;
-            Id = id;
-            Direction = direction;
+            this.X = x;
+            this.Y = y;
+            this.Z = z;
+            this.Id = id;
+            this.Direction = direction;
         }
 
         /// <summary>
-        ///     Gets or sets the y coordinate.
+        ///     Gets the y coordinate.
         /// </summary>
         /// <value>The y coordinate.</value>
         public int Y { get; private set; }
 
         /// <summary>
-        ///     Gets or sets the x coordinate.
+        ///     Gets the x coordinate.
         /// </summary>
         /// <value>The x coordinate.</value>
         public int X { get; private set; }
 
         /// <summary>
-        ///     Gets or sets the direction.
+        ///     Gets the direction.
         /// </summary>
         /// <value>The direction.</value>
         public int Direction { get; private set; }
@@ -79,23 +83,24 @@ namespace Skylight.Blocks
         public int Z
         {
             // Since ID:0 can exist on both layers, it needs to be handled differently.
-            get 
+            get
             {
-                if (Id == 0)
-                    return _z;
-                else
-                    return Id >= 500 ? 1 : 0;
+                if (this.Id == 0)
+                {
+                    return this.z;
+                }
+
+                return this.Id >= 500 ? 1 : 0;
             }
 
             private set
             {
                 if (value == 0 || value == 1)
                 {
-                    _z = value;
+                    this.z = value;
                 }
             }
         }
-
 
         /// <summary>
         ///     Gets the placer (the Player who placed the block).

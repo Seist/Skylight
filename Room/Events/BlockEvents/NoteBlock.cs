@@ -1,8 +1,20 @@
-using PlayerIOClient;
-using Skylight.Blocks;
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="NoteBlock.cs" company="None">
+//   
+// </copyright>
+// <summary>
+//   Class Note Block.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+
 
 namespace Skylight
 {
+    using PlayerIOClient;
+
+    using Skylight.Blocks;
+
     /// <summary>
     /// Class Note Block.
     /// </summary>
@@ -19,7 +31,7 @@ namespace Skylight
         /// <param name="in">The in.</param>
         public NoteBlock(In @in)
         {
-            _in = @in;
+            this._in = @in;
         }
 
         /// <summary>
@@ -30,7 +42,7 @@ namespace Skylight
             SoundBlockEvent = delegate { };
 
         /// <summary>
-        /// Called when a noteblock is added.
+        /// Called when a note block is added.
         /// </summary>
         /// <param name="m">The message.</param>
         public void OnAddNoteblock(Message m)
@@ -57,12 +69,12 @@ namespace Skylight
                     return;
             }
 
-            _in.Source.Map[x, y, 0] = b;
+            this._in.Source.Map[x, y, 0] = b;
 
             // Fire the event.
-            var e = new BlockEventArgs(b, _in.Source);
+            var e = new BlockEventArgs(b, this._in.Source);
 
-            _in.Source.Pull.NoteBlock.SoundBlockEvent(e);
+            this._in.Source.Pull.NoteBlock.SoundBlockEvent(e);
         }
     }
 }

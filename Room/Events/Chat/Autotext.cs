@@ -1,8 +1,20 @@
-using System.Collections.Generic;
-using PlayerIOClient;
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Autotext.cs" company="None">
+//   
+// </copyright>
+// <summary>
+//   Class Autotext.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+
 
 namespace Skylight
 {
+    using System.Collections.Generic;
+
+    using PlayerIOClient;
+
     /// <summary>
     /// Class Autotext.
     /// </summary>
@@ -42,28 +54,28 @@ namespace Skylight
             int message = m.GetInteger(1);
 
             var autoTextConversions = new Dictionary<int, string>
-            {
-                {0, "Left."},
-                {1, "Hi."},
-                {2, "Goodbye."},
-                {3, "Help me!"},
-                {4, "Thank you."},
-                {5, "Follow me."},
-                {6, "Stop!"},
-                {7, "Yes."},
-                {8, "No."},
-                {9, "Right."}
-            };
+                                          {
+                                              { 0, "Left." },
+                                              { 1, "Hi." },
+                                              { 2, "Goodbye." },
+                                              { 3, "Help me!" },
+                                              { 4, "Thank you." },
+                                              { 5, "Follow me." },
+                                              { 6, "Stop!" },
+                                              { 7, "Yes." },
+                                              { 8, "No." },
+                                              { 9, "Right." }
+                                          };
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayer(id, _in.Source);
+            Player subject = Tools.GetPlayer(id, this._in.Source);
 
-            _in.Source.ChatLog.Add(new KeyValuePair<string, Player>(autoTextConversions[message], subject));
+            this._in.Source.ChatLog.Add(new KeyValuePair<string, Player>(autoTextConversions[message], subject));
 
             // Fire the event.
-            var e = new ChatEventArgs(subject, _in.Source);
+            var e = new ChatEventArgs(subject, this._in.Source);
 
-            _in.Source.Pull.Autotext.AutotextEvent(e);
+            this._in.Source.Pull.Autotext.AutotextEvent(e);
         }
     }
 }

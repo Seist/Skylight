@@ -1,8 +1,18 @@
-using PlayerIOClient;
-using Skylight.Blocks;
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="AddSpecialBlock.cs" company="None">
+//   
+// </copyright>
+// <summary>
+//   Class Add Special Block.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace Skylight
 {
+    using PlayerIOClient;
+
+    using Skylight.Blocks;
+
     /// <summary>
     /// Class Add Special Block.
     /// </summary>
@@ -19,7 +29,7 @@ namespace Skylight
         /// <param name="in">The in.</param>
         public AddSpecialBlock(In @in)
         {
-            _in = @in;
+            this._in = @in;
         }
 
         /// <summary>
@@ -30,7 +40,7 @@ namespace Skylight
             RotateEvent = delegate { };
 
         /// <summary>
-        /// Called when a user adds scifi blocks or spikes.
+        /// Called when a user adds Sci-Fi blocks or spikes.
         /// </summary>
         /// <param name="m">The message.</param>
         public void OnAddScifiOrSpikes(Message m)
@@ -44,12 +54,12 @@ namespace Skylight
             // Update relevant objects.
             var b = new Block(id, x, y, 0, rotation);
 
-            _in.Source.Map[x, y, 0] = b;
+            this._in.Source.Map[x, y, 0] = b;
 
             // Fire the event.
-            var e = new BlockEventArgs(b, _in.Source);
+            var e = new BlockEventArgs(b, this._in.Source);
 
-            _in.Source.Pull.AddSpecialBlock.RotateEvent(e);
+            this._in.Source.Pull.AddSpecialBlock.RotateEvent(e);
         }
     }
 }

@@ -1,36 +1,44 @@
-// ***********************************************************************
+// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Tools.cs" company="">
-//     Copyright (c) . All rights reserved.
+//   
 // </copyright>
-// <summary></summary>
-// ***********************************************************************>
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using PlayerIOClient;
-using Skylight.Blocks;
-
+// <summary>
+//   Tools that are available to the core of the program (converting a player id or name into
+//   a player object) and internal methods are mostly stored here.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 namespace Skylight
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text.RegularExpressions;
+
+    using PlayerIOClient;
+
+    using Skylight.Blocks;
+
     /// <summary>
     ///     Tools that are available to the core of the program (converting a player id or name into
     ///     a player object) and internal methods are mostly stored here.
     /// </summary>
     public static class RoomAccessor
     {
-        /// <summary>
-        ///     Gets or sets the width of the room.
-        /// </summary>
-        /// <value>The width.</value>
-        public static int Width { get; set; }
+        #region Public Properties
 
         /// <summary>
         ///     Gets or sets the height of the room.
         /// </summary>
         /// <value>The height.</value>
         public static int Height { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the width of the room.
+        /// </summary>
+        /// <value>The width.</value>
+        public static int Width { get; set; }
+
+        #endregion
     }
 
     /// <summary>
@@ -38,11 +46,12 @@ namespace Skylight
     /// </summary>
     public static class Tools
     {
+        #region Static Fields
+
         /// <summary>
-        ///     Delegate ProgramEvent
+        /// The ran.
         /// </summary>
-        /// <param name="message">The message.</param>
-        public delegate void ProgramEvent(string message);
+        public static Random Ran = new Random();
 
         /// <summary>
         ///     The guest client
@@ -50,26 +59,58 @@ namespace Skylight
         internal static readonly Lazy<Client> GuestClient =
             new Lazy<Client>(() => PlayerIO.QuickConnect.SimpleConnect(Config.PlayerioGameId, "guest", "guest"));
 
+        #endregion
+
+        #region Delegates
+
+        /// <summary>
+        ///     Delegate ProgramEvent
+        /// </summary>
+        /// <param name="message">The message.</param>
+        public delegate void ProgramEvent(string message);
+
+        #endregion
+
+        #region Public Events
+
         /// <summary>
         ///     Occurs when a program message is sent.
         /// </summary>
         public static event ProgramEvent ProgramMessage = delegate { };
 
+        #endregion
+
+        #region Public Methods and Operators
+
         /// <summary>
-        ///     Gets the winners.
+        /// Clears the map.
         /// </summary>
-        /// <param name="r">The room.</param>
-        /// <returns>A list of Players who have touched the trophy</returns>
-        public static List<Player> GetWinners(Room r)
+        /// <param name="r">
+        /// The room.
+        /// </param>
+        public static void ClearMap(Room r)
         {
-            return r.OnlinePlayers.Where(p => p.HasSilverCrown).ToList();
+            for (int x = 0; x <= r.Width; x++)
+            {
+                for (int y = 0; y <= r.Height; y++)
+                {
+                    for (int z = 0; z < 2; z++)
+                    {
+                        r.Map[x, y, z] = new Block(0, x, y, z);
+                    }
+                }
+            }
         }
 
         /// <summary>
-        ///     Gets the crown holder.
+        /// Gets the crown holder.
         /// </summary>
-        /// <param name="r">The room.</param>
-        /// <returns>The Player who holds the crown (if there is one).</returns>
+        /// <param name="r">
+        /// The room.
+        /// </param>
+        /// <returns>
+        /// The Player who holds the crown (if there is one).
+        /// </returns>
         public static Player GetCrownHolder(Room r)
         {
             foreach (Player p in r.OnlinePlayers.Where(p => p.HasCrown))
@@ -82,12 +123,20 @@ namespace Skylight
         }
 
         /// <summary>
-        ///     Gets the player by their session identifier.
+        /// Gets the player by their session identifier.
         /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <param name="r">The room.</param>
-        /// <param name="onlyReturnBots">if set to <c>true</c> [only return bots].</param>
-        /// <returns>Player.</returns>
+        /// <param name="id">
+        /// The identifier.
+        /// </param>
+        /// <param name="r">
+        /// The room.
+        /// </param>
+        /// <param name="onlyReturnBots">
+        /// if set to <c>true</c> [only return bots].
+        /// </param>
+        /// <returns>
+        /// Player.
+        /// </returns>
         public static Player GetPlayer(int id, Room r, bool onlyReturnBots = false)
         {
             foreach (Player p in r.OnlinePlayers.Where(p => p.Id == id).Where(p => !onlyReturnBots || p.IsBot))
@@ -100,12 +149,20 @@ namespace Skylight
         }
 
         /// <summary>
-        ///     Gets the name of the player by.
+        /// Gets the name of the player by.
         /// </summary>
-        /// <param name="name">The name.</param>
-        /// <param name="r">The room.</param>
-        /// <param name="onlyReturnBots">if set to <c>true</c> [only return bots].</param>
-        /// <returns>Player.</returns>
+        /// <param name="name">
+        /// The name.
+        /// </param>
+        /// <param name="r">
+        /// The room.
+        /// </param>
+        /// <param name="onlyReturnBots">
+        /// if set to <c>true</c> [only return bots].
+        /// </param>
+        /// <returns>
+        /// Player.
+        /// </returns>
         public static Player GetPlayer(string name, Room r, bool onlyReturnBots = false)
         {
             foreach (Player p in r.OnlinePlayers.Where(p => p.Name == name).Where(p => !onlyReturnBots || p.IsBot))
@@ -118,10 +175,14 @@ namespace Skylight
         }
 
         /// <summary>
-        ///     Gets the room.
+        /// Gets the room.
         /// </summary>
-        /// <param name="name">The name.</param>
-        /// <returns>Room.</returns>
+        /// <param name="name">
+        /// The name.
+        /// </param>
+        /// <returns>
+        /// Room.
+        /// </returns>
         public static Room GetRoom(string name)
         {
             foreach (Room r in Room.JoinedRooms.Where(r => r.Name == name))
@@ -134,19 +195,105 @@ namespace Skylight
         }
 
         /// <summary>
-        ///     Main logging method.
+        /// Gets the winners.
         /// </summary>
-        /// <param name="m">The message.</param>
-        internal static void SkylightMessage(string m)
+        /// <param name="r">
+        /// The room.
+        /// </param>
+        /// <returns>
+        /// A list of Players who have touched the trophy
+        /// </returns>
+        public static List<Player> GetWinners(Room r)
         {
-            ProgramMessage(m);
+            return r.OnlinePlayers.Where(p => p.HasSilverCrown).ToList();
         }
 
         /// <summary>
-        ///     Derots the specified world key.
+        /// Parses the URL.
         /// </summary>
-        /// <param name="worldKey">The world key.</param>
-        /// <returns>Derotted world key</returns>
+        /// <param name="id">
+        /// The unparsed identifier of the room.
+        /// </param>
+        /// <returns>
+        /// A parsed room id
+        /// </returns>
+        public static string ParseUrl(string id)
+        {
+            // If it matches any type of URL and has 13 characters at the end, return the last 13 characters.
+            // Supports haphazard copy/pasting.
+            if (Regex.IsMatch(id, "[htp:/w.evrybodis.comga]{0,36}[a-zA-Z0-9_-]{13}"))
+            {
+                string finalUrl;
+                try
+                {
+                    var parsedUrl = new Uri(id);
+                    finalUrl = Convert.ToString(parsedUrl.Segments.Last());
+
+                    return finalUrl;
+                }
+                catch (UriFormatException)
+                {
+                    id = id.Trim();
+                    if (Regex.IsMatch(id, @"^[a-zA-Z0-9_-]+$") && (id.Length >= 14) && (9 >= id.Length))
+                    {
+                        return id;
+                    }
+
+                    SkylightMessage("Invalid room id");
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Shuffles a list
+        /// </summary>
+        /// <param name="list">
+        /// The list.
+        /// </param>
+        public static void Shuffle<T>(this IList<T> list)
+        {
+            var rng = new Random();
+            int n = list.Count;
+            while (n > 1)
+            {
+                n--;
+                int k = rng.Next(n + 1);
+                T value = list[k];
+                list[k] = list[n];
+                list[n] = value;
+            }
+        }
+
+        #endregion
+
+        // Return the correct coin ID based based on whether or not the block is gate or door
+        #region Methods
+
+        /// <summary>
+        /// Coins the identifier by gate.
+        /// </summary>
+        /// <param name="isGate">
+        /// if set to <c>true</c> [is gate].
+        /// </param>
+        /// <returns>
+        /// System.Int32.
+        /// </returns>
+        internal static int CoinIdByGate(bool isGate)
+        {
+            return isGate ? BlockIds.Action.Gates.Coin : BlockIds.Action.Doors.Coin;
+        }
+
+        /// <summary>
+        /// Derots the specified world key.
+        /// </summary>
+        /// <param name="worldKey">
+        /// The world key.
+        /// </param>
+        /// <returns>
+        /// Derotted world key
+        /// </returns>
         internal static string Derot(string worldKey)
         {
             char[] array = worldKey.ToCharArray();
@@ -178,58 +325,27 @@ namespace Skylight
                     }
                 }
 
-                array[i] = (char) number;
+                array[i] = (char)number;
             }
 
             return new string(array);
         }
 
         /// <summary>
-        ///     Parses the URL.
+        /// Deserializes the initialize.
         /// </summary>
-        /// <param name="id">The unparsed identifier of the room.</param>
-        /// <returns>A parsed room id</returns>
-
-        // TODO: fix this function (as it parses regular sized custom open world urls incorrectly)
-        public static string ParseUrl(string id)
-        {
-            // If it matches any type of URL and has 13 characters at the end, return the last 13 characters.
-            // Supports haphazard copy/pasting.
-            if (Regex.IsMatch(id, "[htp:/w.evrybodis.comga]{0,36}[a-zA-Z0-9_-]{13}"))
-            {
-                string finalUrl;
-                try
-                {
-                    Uri parsedUrl = new Uri(id);
-                    finalUrl = Convert.ToString(parsedUrl.Segments.Last());
-
-                    return finalUrl;
-                }
-                catch (System.UriFormatException)
-                {
-                    id = id.Trim();
-                    if (Regex.IsMatch(id, @"^[a-zA-Z0-9_-]+$") && (id.Length >= 14) && (9 >= id.Length))
-                    {
-                        return id;
-                    }
-                    else
-                    {
-                        SkylightMessage("Invalid room id");
-                    }
-                }
-
-
-            }
-            return null;
-        }
-
-        /// <summary>
-        ///     Deserializes the initialize.
-        /// </summary>
-        /// <param name="m">The message</param>
-        /// <param name="start">The start.</param>
-        /// <param name="r">The room.</param>
-        /// <returns>A list of blocks which is the room.</returns>
+        /// <param name="m">
+        /// The message
+        /// </param>
+        /// <param name="start">
+        /// The start.
+        /// </param>
+        /// <param name="r">
+        /// The room.
+        /// </param>
+        /// <returns>
+        /// A list of blocks which is the room.
+        /// </returns>
         internal static IEnumerable<Block> DeserializeInit(Message m, uint start, Room r)
         {
             var list = new List<Block>();
@@ -243,7 +359,6 @@ namespace Skylight
                 //// Praise him. (this is mainly due to my laziness)
 
                 // First, fill the entire map with blank blocks (so that you don't get null exceptions).
-
                 ClearMap(r);
 
                 // And now replace empty blocks with the ones that already exist.
@@ -276,7 +391,7 @@ namespace Skylight
 
                     int rotation = 0, note = 0, type = 0, portalId = 0, destination = 0, coins = 0;
                     bool isVisible = false, isGate = false;
-                    string roomDestination = "";
+                    string roomDestination = string.Empty;
 
                     // Get the variables that are unique to the current block
                     switch (blockId)
@@ -289,7 +404,7 @@ namespace Skylight
                             messageIndex++;
                             destination = m.GetInteger(messageIndex);
                             messageIndex++;
-                            isVisible = (blockId != BlockIds.Action.Portals.Invisible);
+                            isVisible = blockId != BlockIds.Action.Portals.Invisible;
                             break;
                         case BlockIds.Action.Portals.World:
                             roomDestination = m.GetString(messageIndex);
@@ -321,14 +436,12 @@ namespace Skylight
                             break;
                     }
 
-
                     // Some variables to simplify things.
-
                     for (int pos = 0; pos < ya.Length; pos += 2)
                     {
                         // Extract the X and Y positions from the array.
-                        int x = (xa[pos]*256) + xa[pos + 1];
-                        int y = (ya[pos]*256) + ya[pos + 1];
+                        int x = (xa[pos] * 256) + xa[pos + 1];
+                        int y = (ya[pos] * 256) + ya[pos + 1];
 
                         // Ascertain the block from the ID.
                         // Add block accordingly.
@@ -336,47 +449,23 @@ namespace Skylight
                         {
                             case BlockIds.Action.Portals.Invisible:
                             case BlockIds.Action.Portals.Normal:
-                                list.Add(new PortalBlock(
-                                    x,
-                                    y,
-                                    rotation,
-                                    portalId,
-                                    destination,
-                                    isVisible));
+                                list.Add(new PortalBlock(x, y, rotation, portalId, destination, isVisible));
                                 break;
                             case BlockIds.Action.Portals.World:
-                                list.Add(new RoomPortalBlock(
-                                    x,
-                                    y,
-                                    roomDestination));
+                                list.Add(new RoomPortalBlock(x, y, roomDestination));
                                 break;
                             case BlockIds.Action.Gates.Coin:
                             case BlockIds.Action.Doors.Coin:
-                                list.Add(new CoinBlock(
-                                    x,
-                                    y,
-                                    coins,
-                                    isGate));
+                                list.Add(new CoinBlock(x, y, coins, isGate));
                                 break;
                             case BlockIds.Action.Music.Percussion:
-                                list.Add(new PercussionBlock(
-                                    x,
-                                    y,
-                                    type));
+                                list.Add(new PercussionBlock(x, y, type));
                                 break;
                             case BlockIds.Action.Music.Piano:
-                                list.Add(new PianoBlock(
-                                    x,
-                                    y,
-                                    note));
+                                list.Add(new PianoBlock(x, y, note));
                                 break;
                             default:
-                                list.Add(new Block(
-                                    blockId,
-                                    x,
-                                    y,
-                                    z,
-                                    rotation));
+                                list.Add(new Block(blockId, x, y, z, rotation));
                                 break;
                         }
                     }
@@ -392,61 +481,30 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Clears the map.
+        /// Return the correct portal ID based on whether or not the portal is visible or invisible.
         /// </summary>
-        /// <param name="r">The room.</param>
-        public static void ClearMap(Room r)
-        {
-            for (int x = 0; x <= r.Width; x++)
-            {
-                for (int y = 0; y <= r.Height; y++)
-                {
-                    for (int z = 0; z < 2; z++)
-                    {
-                        r.Map[x, y, z] = new Block(0, x, y, z);
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Shuffles a list
-        /// </summary>
-        public static void Shuffle<T>(this IList<T> list)
-        {
-            Random rng = new Random();
-            int n = list.Count;
-            while (n > 1)
-            {
-                n--;
-                int k = rng.Next(n + 1);
-                T value = list[k];
-                list[k] = list[n];
-                list[n] = value;
-            }
-        }
-
-        public static Random Ran = new Random();
-
-        /// <summary>
-        ///     Return the correct portal ID based on whether or not the portal is visible or invisible.
-        /// </summary>
-        /// <param name="visible">if set to <c>true</c> [visible].</param>
-        /// <returns>Returns the id of the portal based on its visibility.</returns>
+        /// <param name="visible">
+        /// if set to <c>true</c> [visible].
+        /// </param>
+        /// <returns>
+        /// Returns the id of the portal based on its visibility.
+        /// </returns>
         internal static int PortalIdByVisible(bool visible)
         {
             return visible ? BlockIds.Action.Portals.Normal : BlockIds.Action.Portals.Invisible;
         }
 
-        // Return the correct coin ID based based on whether or not the block is gate or door
         /// <summary>
-        ///     Coins the identifier by gate.
+        /// Main logging method.
         /// </summary>
-        /// <param name="isGate">if set to <c>true</c> [is gate].</param>
-        /// <returns>System.Int32.</returns>
-        internal static int CoinIdByGate(bool isGate)
+        /// <param name="m">
+        /// The message.
+        /// </param>
+        internal static void SkylightMessage(string m)
         {
-            return isGate ? BlockIds.Action.Gates.Coin : BlockIds.Action.Doors.Coin;
+            ProgramMessage(m);
         }
+
+        #endregion
     }
 }

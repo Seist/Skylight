@@ -1,15 +1,16 @@
-﻿// ***********************************************************************
-// <copyright file="CoinBlock.cs" company="">
-//     Copyright 2014 (c) . All rights reserved.
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="CoinBlock.cs" company="None">
+//   Copyright 2014 (c) . All rights reserved.
 // </copyright>
-// <summary></summary>
-// ***********************************************************************
-
-
-using Skylight.Blocks;
+// <summary>
+//   
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace Skylight
 {
+    using Skylight.Blocks;
+
     /// <summary>
     ///     Class CoinBlock.
     /// </summary>
@@ -28,8 +29,8 @@ namespace Skylight
             int coinsRequired,
             bool isGate) : base(Tools.CoinIdByGate(isGate), x, y, 0)
         {
-            CoinsRequired = coinsRequired;
-            IsGate = isGate;
+            this.CoinsRequired = coinsRequired;
+            this.IsGate = isGate;
         }
 
         /// <summary>

@@ -1,20 +1,26 @@
-﻿// <copyright file="Room.cs" company="">
-//     Copyright (c) . All rights reserved.
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Room.cs" company="">
+//   
 // </copyright>
-// <summary></summary>
-// ***********************************************************************
-
-using System.Collections.Generic;
-using PlayerIOClient;
-using Skylight.Blocks;
-
+// <summary>
+//   Class Room.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 namespace Skylight
 {
+    using System.Collections.Generic;
+
+    using PlayerIOClient;
+
+    using Skylight.Blocks;
+
     /// <summary>
     ///     Class Room.
     /// </summary>
     public class Room
     {
+        #region Fields
+
         /// <summary>
         ///     Whether the physics are enabled.
         /// </summary>
@@ -25,6 +31,10 @@ namespace Skylight
         /// </summary>
         private List<Connection> _connections = new List<Connection>();
 
+        #endregion
+
+        #region Constructors and Destructors
+
         /// <summary>
         ///     Initializes static members of the <see cref="Room" /> class.
         /// </summary>
@@ -34,21 +44,29 @@ namespace Skylight
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Room" /> class.
+        /// Initializes a new instance of the <see cref="Room"/> class.
         /// </summary>
-        /// <param name="id">The room identifier.</param>
-        /// <param name="shouldTick">If the room should update player coordinates accurately.</param>
+        /// <param name="id">
+        /// The room identifier.
+        /// </param>
+        /// <param name="shouldTick">
+        /// If the room should update player coordinates accurately.
+        /// </param>
         public Room(string id, bool shouldTick = true)
         {
-            OnlineBots = new List<Bot>();
-            OnlinePlayers = new List<Player>();
-            ChatLog = new List<KeyValuePair<string, Player>>();
-            Pulls = new List<In>();
-            Pull = new In();
-            Map = new Block[700, 400, 2];
-            Id = id;
-            ShouldTick = shouldTick;
+            this.OnlineBots = new List<Bot>();
+            this.OnlinePlayers = new List<Player>();
+            this.ChatLog = new List<KeyValuePair<string, Player>>();
+            this.Pulls = new List<In>();
+            this.Pull = new In();
+            this.Map = new Block[700, 400, 2];
+            this.Id = id;
+            this.ShouldTick = shouldTick;
         }
+
+        #endregion
+
+        #region Public Properties
 
         /// <summary>
         ///     Gets the joined rooms.
@@ -57,22 +75,58 @@ namespace Skylight
         public static List<Room> JoinedRooms { get; private set; }
 
         /// <summary>
-        ///     Gets the map.
-        /// </summary>
-        /// <value>The map.</value>
-        public Block[,,] Map { get; private set; }
-
-        /// <summary>
         ///     Gets a value indicating whether the blocks are loaded.
         /// </summary>
         /// <value><c>true</c> if the blocks loaded; otherwise, <c>false</c>.</value>
         public bool BlocksLoaded { get; internal set; }
 
         /// <summary>
+        ///     Gets or sets a value indicating whether the blue key is activated.
+        /// </summary>
+        /// <value><c>true</c> if the blue key is activated; otherwise, <c>false</c>.</value>
+        public bool BlueActivated { get; set; }
+
+        /// <summary>
+        ///     Gets the chat log.
+        /// </summary>
+        /// <value>The chat log.</value>
+        public List<KeyValuePair<string, Player>> ChatLog { get; internal set; }
+
+        /// <summary>
+        ///     Gets the edit key.
+        /// </summary>
+        /// <value>The edit key.</value>
+        public string EditKey { get; internal set; }
+
+        /// <summary>
+        ///     Gets the gravity multiplier.
+        /// </summary>
+        /// <value>The gravity multiplier.</value>
+        public double GravityMultiplier { get; internal set; }
+
+        /// <summary>
+        ///     Gets or sets a value indicating whether the green key is activated.
+        /// </summary>
+        /// <value><c>true</c> if the green key is activated; otherwise, <c>false</c>.</value>
+        public bool GreenActivated { get; set; }
+
+        /// <summary>
         ///     Gets a value indicating whether this instance has pull access.
         /// </summary>
         /// <value><c>true</c> if this instance has pull access; otherwise, <c>false</c>.</value>
         public bool HasPull { get; internal set; }
+
+        /// <summary>
+        ///     Gets the height of the room.
+        /// </summary>
+        /// <value>The height.</value>
+        public int Height { get; internal set; }
+
+        /// <summary>
+        ///     Gets the identifier of the room.
+        /// </summary>
+        /// <value>The identifier.</value>
+        public string Id { get; internal set; }
 
         /// <summary>
         ///     Gets a value indicating whether this instance is initialized.
@@ -87,28 +141,46 @@ namespace Skylight
         public bool IsTutorialRoom { get; internal set; }
 
         /// <summary>
+        ///     Gets the map.
+        /// </summary>
+        /// <value>The map.</value>
+        public Block[,,] Map { get; private set; }
+
+        /// <summary>
+        ///     Gets the name of the room.
+        /// </summary>
+        /// <value>The name.</value>
+        public string Name { get; internal set; }
+
+        /// <summary>
+        ///     Gets the online bots.
+        /// </summary>
+        /// <value>The online bots.</value>
+        public List<Bot> OnlineBots { get; internal set; }
+
+        /// <summary>
+        ///     Gets the online players.
+        /// </summary>
+        /// <value>The online players.</value>
+        public List<Player> OnlinePlayers { get; internal set; }
+
+        /// <summary>
+        ///     Gets the owner.
+        /// </summary>
+        /// <value>The owner.</value>
+        public Player Owner { get; internal set; }
+
+        /// <summary>
+        ///     Gets the total plays.
+        /// </summary>
+        /// <value>The plays.</value>
+        public int Plays { get; internal set; }
+
+        /// <summary>
         ///     Gets a value indicating whether potions are allowed.
         /// </summary>
         /// <value><c>true</c> if potions are allowed; otherwise, <c>false</c>.</value>
         public bool PotionsAllowed { get; internal set; }
-
-        /// <summary>
-        ///     Gets a value indicating whether time doors are visible.
-        /// </summary>
-        /// <value><c>true</c> if [time doors visible]; otherwise, <c>false</c>.</value>
-        public bool TimeDoorsVisible { get; internal set; }
-
-        /// <summary>
-        ///     Gets the receiver.
-        /// </summary>
-        /// <value>The receiver.</value>
-        public Bot Receiver { get; internal set; }
-
-        /// <summary>
-        ///     Gets the gravity multiplier.
-        /// </summary>
-        /// <value>The gravity multiplier.</value>
-        public double GravityMultiplier { get; internal set; }
 
         /// <summary>
         ///     Gets the pull.
@@ -117,16 +189,34 @@ namespace Skylight
         public In Pull { get; private set; }
 
         /// <summary>
-        ///     Gets the height of the room.
+        ///     Gets the pulls.
         /// </summary>
-        /// <value>The height.</value>
-        public int Height { get; internal set; }
+        /// <value>The pulls.</value>
+        public List<In> Pulls { get; internal set; }
 
         /// <summary>
-        ///     Gets the total plays.
+        ///     Gets the receiver.
         /// </summary>
-        /// <value>The plays.</value>
-        public int Plays { get; internal set; }
+        /// <value>The receiver.</value>
+        public Bot Receiver { get; internal set; }
+
+        /// <summary>
+        ///     Gets or sets a value indicating whether the red key is activated.
+        /// </summary>
+        /// <value><c>true</c> if the red key is activated; otherwise, <c>false</c>.</value>
+        public bool RedActivated { get; set; }
+
+        /// <summary>
+        ///     Gets the room key.
+        /// </summary>
+        /// <value>The room key.</value>
+        public string RoomKey { get; internal set; }
+
+        /// <summary>
+        ///     Gets a value indicating whether time doors are visible.
+        /// </summary>
+        /// <value><c>true</c> if [time doors visible]; otherwise, <c>false</c>.</value>
+        public bool TimeDoorsVisible { get; internal set; }
 
         /// <summary>
         ///     Gets the total woots.
@@ -146,59 +236,9 @@ namespace Skylight
         /// <value>The woots.</value>
         public int Woots { get; internal set; }
 
-        /// <summary>
-        ///     Gets the pulls.
-        /// </summary>
-        /// <value>The pulls.</value>
-        public List<In> Pulls { get; internal set; }
+        #endregion
 
-        /// <summary>
-        ///     Gets the chat log.
-        /// </summary>
-        /// <value>The chat log.</value>
-        public List<KeyValuePair<string, Player>> ChatLog { get; internal set; }
-
-        /// <summary>
-        ///     Gets the online players.
-        /// </summary>
-        /// <value>The online players.</value>
-        public List<Player> OnlinePlayers { get; internal set; }
-
-        /// <summary>
-        ///     Gets the online bots.
-        /// </summary>
-        /// <value>The online bots.</value>
-        public List<Bot> OnlineBots { get; internal set; }
-
-        /// <summary>
-        ///     Gets the owner.
-        /// </summary>
-        /// <value>The owner.</value>
-        public Player Owner { get; internal set; }
-
-        /// <summary>
-        ///     Gets the edit key.
-        /// </summary>
-        /// <value>The edit key.</value>
-        public string EditKey { get; internal set; }
-
-        /// <summary>
-        ///     Gets the identifier of the room.
-        /// </summary>
-        /// <value>The identifier.</value>
-        public string Id { get; internal set; }
-
-        /// <summary>
-        ///     Gets the name of the room.
-        /// </summary>
-        /// <value>The name.</value>
-        public string Name { get; internal set; }
-
-        /// <summary>
-        ///     Gets the room key.
-        /// </summary>
-        /// <value>The room key.</value>
-        public string RoomKey { get; internal set; }
+        #region Properties
 
         /// <summary>
         ///     Gets or sets the connections.
@@ -206,27 +246,17 @@ namespace Skylight
         /// <value>The connections.</value>
         internal List<Connection> Connections
         {
-            get { return _connections; }
+            get
+            {
+                return this._connections;
+            }
 
-            set { _connections = value; }
+            set
+            {
+                this._connections = value;
+            }
         }
 
-        /// <summary>
-        ///     Gets or sets a value indicating whether the red key is activated.
-        /// </summary>
-        /// <value><c>true</c> if the red key is activated; otherwise, <c>false</c>.</value>
-        public bool RedActivated { get; set; }
-
-        /// <summary>
-        ///     Gets or sets a value indicating whether the green key is activated.
-        /// </summary>
-        /// <value><c>true</c> if the green key is activated; otherwise, <c>false</c>.</value>
-        public bool GreenActivated { get; set; }
-
-        /// <summary>
-        ///     Gets or sets a value indicating whether the blue key is activated.
-        /// </summary>
-        /// <value><c>true</c> if the blue key is activated; otherwise, <c>false</c>.</value>
-        public bool BlueActivated { get; set; }
+        #endregion
     }
 }

@@ -1,14 +1,18 @@
-﻿// <copyright file="RoomPortalBlock.cs" company="">
-//     Copyright 2014 (c) . All rights reserved.
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="RoomPortalBlock.cs" company="None">
+//   Copyright 2014 (c) . All rights reserved.
 // </copyright>
-// <summary></summary>
-// ***********************************************************************
-
-using System.Text.RegularExpressions;
-using Skylight.Blocks;
+// <summary>
+//   
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace Skylight
 {
+    using System.Text.RegularExpressions;
+
+    using Skylight.Blocks;
+
     /// <summary>
     ///     Class RoomPortalBlock.
     /// </summary>
@@ -17,7 +21,7 @@ namespace Skylight
         /// <summary>
         ///     The portal destination
         /// </summary>
-        private string _portalDestination;
+        private string portalDestination;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="RoomPortalBlock" /> class.
@@ -30,7 +34,7 @@ namespace Skylight
             int y,
             string portalDestination) : base(BlockIds.Action.Portals.World, x, y, 0)
         {
-            PortalDestination = portalDestination;
+            this.PortalDestination = portalDestination;
         }
 
         /// <summary>
@@ -39,7 +43,10 @@ namespace Skylight
         /// <value>The portal destination.</value>
         public string PortalDestination
         {
-            get { return _portalDestination; }
+            get
+            {
+                return this.portalDestination;
+            }
 
             private set
             {
@@ -47,7 +54,7 @@ namespace Skylight
                 Tools.ParseUrl(s);
                 if (Regex.IsMatch(s, "[A-Za-z0-9-_]{13}"))
                 {
-                    _portalDestination = s;
+                    this.portalDestination = s;
                 }
             }
         }

@@ -1,13 +1,14 @@
 // ***********************************************************************
-// <copyright file="CoinObject.cs" company="">
+// <copyright file="CoinObject.cs" company="None">
 //     Copyright (c) . All rights reserved.
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
-using PlayerIOClient;
 
 namespace Skylight
 {
+    using PlayerIOClient;
+
     /// <summary>
     /// Class CoinObject.
     /// </summary>
@@ -24,7 +25,7 @@ namespace Skylight
         /// <param name="in">The in.</param>
         public CoinObject(In @in)
         {
-            _in = @in;
+            this._in = @in;
         }
 
         /// <summary>
@@ -45,14 +46,14 @@ namespace Skylight
                 coinsRequired = m.GetInteger(3);
 
             // Update relevant objects.
-            var b = new CoinBlock(x, y, coinsRequired, false) {IsGate = (id == BlockIds.Action.Gates.Coin)};
+            var b = new CoinBlock(x, y, coinsRequired, false) { IsGate = id == BlockIds.Action.Gates.Coin };
 
-            _in.Source.Map[x, y, 0] = b;
+            this._in.Source.Map[x, y, 0] = b;
 
             // Fire the event.
-            var e = new BlockEventArgs(b, _in.Source);
+            var e = new BlockEventArgs(b, this._in.Source);
 
-            _in.Source.Pull.CoinObject.CoinBlockEvent(e);
+            this._in.Source.Pull.CoinObject.CoinBlockEvent(e);
         }
     }
 }

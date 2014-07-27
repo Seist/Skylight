@@ -1,8 +1,20 @@
-using PlayerIOClient;
-using Skylight.Blocks;
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Wp.cs" company="None">
+//   
+// </copyright>
+// <summary>
+//   Class Wp.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+
 
 namespace Skylight
 {
+    using PlayerIOClient;
+
+    using Skylight.Blocks;
+
     /// <summary>
     /// Class Wp.
     /// </summary>
@@ -38,6 +50,7 @@ namespace Skylight
             // Extract data.
             int x = m.GetInteger(0),
                 y = m.GetInteger(1);
+
             // possible bug if the id of the block isn't definied then it could
             // mean that the portal is disabled, in which it would go under a seperate
             // category. The destination (below) may not exist.
@@ -46,12 +59,12 @@ namespace Skylight
             // Update relevant objects.
             Block b = new RoomPortalBlock(x, y, destination);
 
-            _in.Source.Map[x, y, 0] = b;
+            this._in.Source.Map[x, y, 0] = b;
 
             // Fire the event
             var e = new BlockEventArgs(b, _in.Source);
 
-            _in.Source.Pull.Wp.RoomPortalBlockEvent(e);
+            this._in.Source.Pull.Wp.RoomPortalBlockEvent(e);
         }
     }
 }

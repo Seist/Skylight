@@ -1,13 +1,16 @@
-﻿// <copyright file="RoomEventArgs.cs" company="">
-//     Copyright 2014 (c) . All rights reserved.
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="RoomEventArgs.cs" company="None">
+//   Copyright 2014 (c) . All rights reserved.
 // </copyright>
-// <summary></summary>
-// ***********************************************************************
-
-using System;
+// <summary>
+//   
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace Skylight
 {
+    using System;
+
     /// <summary>
     ///     Class RoomEventArgs.
     /// </summary>
@@ -16,7 +19,7 @@ namespace Skylight
         /// <summary>
         ///     The changed room
         /// </summary>
-        private readonly Room _changedRoom;
+        private readonly Room changedRoom;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="RoomEventArgs" /> class.
@@ -24,7 +27,7 @@ namespace Skylight
         /// <param name="changedRoom">The changed room.</param>
         public RoomEventArgs(Room changedRoom)
         {
-            _changedRoom = changedRoom;
+            this.changedRoom = changedRoom;
         }
 
         /// <summary>
@@ -33,7 +36,7 @@ namespace Skylight
         /// <value>The changed room.</value>
         public Room ChangedRoom
         {
-            get { return _changedRoom; }
+            get { return this.changedRoom; }
         }
     }
 }
