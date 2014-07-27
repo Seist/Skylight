@@ -1322,7 +1322,7 @@ namespace Skylight
                     {
                         if (!_isDead && !_isInvulnerable)
                         {
-                            KillPlayer();
+                            //KillPlayer(); // this line has problems.
                         }
                         break;
                     }
@@ -1596,12 +1596,6 @@ namespace Skylight
             }
         }
 
-        private void KillPlayer()
-        {
-            //throw new NotImplementedException();
-        }
-
-
         /// <summary>
         ///     Zombies this instance.
         /// </summary>
@@ -1617,13 +1611,13 @@ namespace Skylight
         /// </summary>
         private void UpdateThrust()
         {
-            if (_mory != 0)
+            if (this._mory != 0)
             {
-                speedY = speedY - _currentThrust*(Config.PhysicsJumpHeight/2)*(_mory*0.5);
+                this.speedY = this.speedY - this._currentThrust * (Config.PhysicsJumpHeight / 2) * (this._mory * 0.5);
             }
             if (_morx != 0)
             {
-                speedX = speedX - _currentThrust*(Config.PhysicsJumpHeight/2)*(_morx*0.5);
+                this.speedX = speedX - _currentThrust*(Config.PhysicsJumpHeight/2)*(_morx*0.5);
             }
             if (_isThrusting) return;
             _currentThrust = _currentThrust > 0 ? _currentThrust - ThrustBurnOff : 0;
