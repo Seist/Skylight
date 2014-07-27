@@ -185,10 +185,15 @@ namespace Skylight
                 Joined = true;
 
                 // Wait until all the blocks are loaded before joining.
-                while (!R.BlocksLoaded)
-                {
-                    Thread.Sleep(100);
-                }
+                // Load the blocks
+
+                // This is kinda messy, but it works and is possibly more efficient
+                // because it knows exactly when the LoadBlocks finishes.
+                var In = new In();
+                var loadBlocks = new Thread(In.LoadBlocks);
+                loadBlocks.Start();
+                loadBlocks.Join();
+
             }
             catch (Exception e)
             {

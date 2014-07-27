@@ -740,9 +740,7 @@ namespace Skylight
 
             Source.IsInitialized = true;
 
-            // Load the blocks
-            var loadBlocks = new Thread(LoadBlocks);
-            loadBlocks.Start();
+            
 
             // Execute the messages that came prematurely.
             foreach (Message msg in _prematureMessages)
@@ -828,7 +826,7 @@ namespace Skylight
         /// <summary>
         /// Loads the blocks.
         /// </summary>
-        private void LoadBlocks()
+        public void LoadBlocks()
         {
             foreach (Block b in Tools.DeserializeInit(_initMessage, 18, Source))
             {
