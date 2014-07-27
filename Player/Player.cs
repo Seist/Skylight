@@ -1598,7 +1598,7 @@ namespace Skylight
 
         private void KillPlayer()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
 

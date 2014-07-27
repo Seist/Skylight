@@ -198,10 +198,9 @@ namespace Skylight
             if (Regex.IsMatch(id, "[htp:/w.evrybodis.comga]{0,36}[a-zA-Z0-9_-]{13}"))
             {
                 try
-                {
-                    var parsedUrl = new Uri(id, true);
+				{
                     var finalUrl = Convert.ToString(parsedUrl.Segments.Last());
-
+                    Uri parsedUrl = new Uri(id);
                     return finalUrl;
                 }
                 catch (System.UriFormatException)
