@@ -78,7 +78,14 @@ namespace Skylight.Blocks
         /// <value>The z coordinate.</value>
         public int Z
         {
-            get { return Id >= 500 ? 1 : 0; }
+            // Since ID:0 can exist on both layers, it needs to be handled differently.
+            get 
+            {
+                if (Id == 0)
+                    return _z;
+                else
+                    return Id >= 500 ? 1 : 0;
+            }
 
             private set
             {
