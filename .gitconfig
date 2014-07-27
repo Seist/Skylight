@@ -1,0 +1,9 @@
+[merge]
+        keepBackup = false
+        tool = custom
+        
+[mergetool "P4Merge"]
+        cmd = C:\Program Files\Perforce\p4merge.exe "$PWD/$BASE" "$PWD/$REMOTE" "$PWD/$LOCAL" "$PWD/$MERGED"
+        keepTemporaries = false
+        trustExitCode = false
+        keepBackup = false

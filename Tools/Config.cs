@@ -84,101 +84,6 @@ namespace Skylight
         public static string UrlHelpPage = "http://everybodyedits.com/help";
 
         /// <summary>
-        ///     Whether or not to use the debug server
-        /// </summary>
-        public static bool UseDebugServer = false;
-
-        /// <summary>
-        ///     Whether or not to run in development mode
-        /// </summary>
-        public static bool RunInDevelopmentMode = false;
-
-        /// <summary>
-        ///     Whether or not to show disabled shop items
-        /// </summary>
-        public static bool ShowDisabledShopitems = false;
-
-        /// <summary>
-        ///     If in development mode, auto join a room
-        /// </summary>
-        public static string DevelopmentModeAutojoinRoom = "PWvOaRIeIvbUI";
-
-        /// <summary>
-        ///     The debug news
-        /// </summary>
-        public static string DebugNews = "";
-
-        /// <summary>
-        ///     The developer server (locally)
-        /// </summary>
-        public static string DeveloperServer = "127.0.0.1:8184";
-
-        /// <summary>
-        ///     The force armor authentication option
-        /// </summary>
-        public static bool ForceArmor = false;
-
-        /// <summary>
-        ///     The ArmorGames userid
-        /// </summary>
-        public static string ArmorUserid = null;
-
-        /// <summary>
-        ///     The ArmorGames authentication token
-        /// </summary>
-        public static string ArmorAuthtoken = null;
-
-        /// <summary>
-        ///     The force mouse breaker option
-        /// </summary>
-        public static bool ForceMouseBreaker = false;
-
-        /// <summary>
-        ///     The mousebreaker authtoken
-        /// </summary>
-        public static string MousebreakerAuthtoken = null;
-
-        /// <summary>
-        ///     The force beta
-        /// </summary>
-        public static bool ForceBeta = false;
-
-        /// <summary>
-        ///     Whether or not to show debug profile
-        /// </summary>
-        public static bool ShowDebugProfile = true;
-
-        /// <summary>
-        ///     The debug profile
-        /// </summary>
-        public static string DebugProfile = "";
-
-        /// <summary>
-        ///     The disable cookie option
-        /// </summary>
-        public static bool DisableCookie = false;
-
-        /// <summary>
-        ///     Whether or not to show debug information concerning a friend request
-        /// </summary>
-        public static bool ShowDebugFriendrequest = false;
-
-        /// <summary>
-        ///     The debug inforation for friend request
-        /// </summary>
-        public static string DebugFriendrequest = "";
-
-        /// <summary>
-        ///     Whether or not to show blacklist invitation
-        /// </summary>
-        public static bool ShowBlacklistInvitation = false;
-
-        /// <summary>
-        ///     The debug invitation
-        /// </summary>
-        public static string DebugInvitation = "";
-
-        /// <summary>
         ///     The milliseconds that constitute one player physics tick
         /// </summary>
         public static int PhysicsMsPerTick = 10;
@@ -249,36 +154,6 @@ namespace Skylight
         public static double CameraLag = 0.0625;
 
         /// <summary>
-        ///     The is mobile option
-        /// </summary>
-        public static bool IsMobile = false;
-
-        /// <summary>
-        ///     The enable debug shadow
-        /// </summary>
-        public static bool EnableDebugShadow = false;
-
-        /// <summary>
-        ///     The max width of a room
-        /// </summary>
-        public static int Maxwidth = 850;
-
-        /// <summary>
-        ///     The min width of a room
-        /// </summary>
-        public static int Minwidth = 640;
-
-        /// <summary>
-        ///     The default width of a room
-        /// </summary>
-        public static int Width = 640;
-
-        /// <summary>
-        ///     The default height of a room
-        /// </summary>
-        public static int Height = 500;
-
-        /// <summary>
         ///     The maximum frame rate
         /// </summary>
         public static int MaxFrameRate = 120;
@@ -328,9 +203,5 @@ namespace Skylight
         /// </summary>
         public static string[] TutorialNames = {"Moving", "Gravity", "Edit"};
 
-        /// <summary>
-        ///     The disable tracking options
-        /// </summary>
-        public static bool DisableTracking = false;
     }
 }
