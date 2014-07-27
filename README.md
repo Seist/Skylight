@@ -17,8 +17,8 @@ Special thanks to:<br>
 
 
 Getting started with Skylight is easy. To connect, simply type:
-
-    using Skylight;
-    var myBot = new Bot(new Room("http://everybodyedits.com/games/roomid"), "Email or token", "Password if applicable");
-    // delegates would be initialized here
-    myBot.Join();
+```csharp
+using Skylight;
+var myBot = new Bot(new Room("http://everybodyedits.com/games/roomid"), "Email or token", "Password if applicable");
+// delegates would be initialized here
+myBot.Join();```
