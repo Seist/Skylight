@@ -199,8 +199,8 @@ namespace Skylight
             {
                 try
 				{
-                    var finalUrl = Convert.ToString(parsedUrl.Segments.Last());
                     Uri parsedUrl = new Uri(id);
+                    var finalUrl = Convert.ToString(parsedUrl.Segments.Last());
                     return finalUrl;
                 }
                 catch (System.UriFormatException)
