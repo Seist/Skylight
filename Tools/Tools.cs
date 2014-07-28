@@ -392,6 +392,7 @@ namespace Skylight
                     int rotation = 0, note = 0, type = 0, portalId = 0, destination = 0, coins = 0;
                     bool isVisible = false, isGate = false;
                     string roomDestination = string.Empty;
+                    string signMessage = string.Empty;
 
                     // Get the variables that are unique to the current block
                     switch (blockId)
@@ -409,6 +410,9 @@ namespace Skylight
                         case BlockIds.Action.Portals.World:
                             roomDestination = m.GetString(messageIndex);
                             messageIndex++;
+                            break;
+                        case BlockIds.Action.Sign.Textsign:
+                            signMessage = m.GetString(messageIndex);
                             break;
                         case BlockIds.Action.Gates.Coin:
                         case BlockIds.Action.Doors.Coin:
@@ -463,6 +467,9 @@ namespace Skylight
                                 break;
                             case BlockIds.Action.Music.Piano:
                                 list.Add(new PianoBlock(x, y, note));
+                                break;
+                            case BlockIds.Action.Sign.Textsign:
+                                list.Add(new TextBlock(blockId, x, y, signMessage));
                                 break;
                             default:
                                 list.Add(new Block(blockId, x, y, z, rotation));
