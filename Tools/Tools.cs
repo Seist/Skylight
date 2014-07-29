@@ -221,24 +221,24 @@ namespace Skylight
         {
             // If it matches any type of URL and has 13 characters at the end, return the last 13 characters.
             // Supports haphazard copy/pasting.
+            id = id.Trim();
+
+            if (Regex.IsMatch(id, @"^[a-zA-Z0-9_-]+$") && (id.Length <= 14) && (9 <= id.Length))
+            {
+                return id;
+            }
+
             if (Regex.IsMatch(id, "[htp:/w.evrybodis.comga]{0,36}[a-zA-Z0-9_-]{13}"))
             {
-                string finalUrl;
                 try
                 {
                     var parsedUrl = new Uri(id);
-                    finalUrl = Convert.ToString(parsedUrl.Segments.Last());
+                    var finalUrl = Convert.ToString(parsedUrl.Segments.Last());
 
                     return finalUrl;
                 }
                 catch (UriFormatException)
                 {
-                    id = id.Trim();
-                    if (Regex.IsMatch(id, @"^[a-zA-Z0-9_-]+$") && (id.Length >= 14) && (9 >= id.Length))
-                    {
-                        return id;
-                    }
-
                     SkylightMessage("Invalid room id");
                 }
             }

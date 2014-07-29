@@ -35,9 +35,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Skylight, Version=1.0.5320.39455, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\bin\Release\Skylight.dll</HintPath>
+    <Reference Include="Skylight">
+      <HintPath>..\bin\Debug\Skylight.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
