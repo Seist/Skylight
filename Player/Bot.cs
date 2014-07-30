@@ -141,12 +141,7 @@ namespace Skylight
         public void Join(bool createRoom = true)
         {
             try {
-
-                var rabbitAuth = new Rabbit.Rabbit();
-
-                // Parse the level ID (because some people like to put full URLs in).
-                R.Id = Tools.ParseUrl(R.Id);
-                Connection = rabbitAuth.LogIn(_emailOrToken, _passwordOrToken, R.Id,createRoom);
+                Connection = new Rabbit.Rabbit().LogIn(this._emailOrToken, this.R.Id,this._passwordOrToken,createRoom);
 
                 // Update room data
                 Room.JoinedRooms.Add(R);
