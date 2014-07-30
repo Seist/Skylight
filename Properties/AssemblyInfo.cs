@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("TakoMan02")]
 [assembly: AssemblyProduct("Skylight")]
-[assembly: AssemblyCopyright("Copyright © TakoMan02 2013")]
+[assembly: AssemblyCopyright("Copyright © TakoMan02 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: InternalsVisibleTo("Skylight")]
@@ -22,4 +22,4 @@ using System.Runtime.InteropServices;
 
 
 [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("0.0.5.0")]
