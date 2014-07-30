@@ -86,7 +86,17 @@ namespace Skylight
         /// <summary>
         ///     If the physics clock should tick or not.
         /// </summary>
-        public bool ShouldTickAll { get; set; }
+        public bool ShouldTickAll
+        {
+            get
+        {
+            return true;
+        }
+            set
+            {
+                // do nothing.
+            }
+        }
 
         /// <summary>
         ///     The PlayerIO client class.

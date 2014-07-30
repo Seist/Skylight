@@ -466,7 +466,7 @@ namespace Skylight
                 this.Source.Map[b.X, b.Y, b.Z] = b;
             }
 
-            this.Source.BlocksLoaded = true;
+            //this.Source.BlocksLoaded = true;
 
             this._playerPhysicsThread = new Thread(this.UpdatePhysics);
             this._playerPhysicsThread.Start();
@@ -899,7 +899,7 @@ namespace Skylight
 
             long accumulator = 0;
 
-            while (this.Bot.ShouldTickAll)
+            while (true) // Player shouldtick boolean throws a nullReferenceException
             {
                 try
                 {
