@@ -18,6 +18,7 @@ Special thanks to:<br>
 
 Getting started with Skylight is easy. To connect, simply type:
 ```csharp
+using PlayerIOClient;
 using Rabbit;
 using Skylight;
 var myBot = new Bot(new Room("roomid"), "Email or token", "Password if applicable");
