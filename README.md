@@ -20,7 +20,9 @@ Getting started with Skylight is easy. To connect, simply type:
 ```csharp
 using Rabbit;
 using Skylight;
-var myBot = new Bot(new Room("http://everybodyedits.com/games/roomid"), "Email or token", "Password if applicable");
+var myBot = new Bot(new Room("roomid"), "Email or token", "Password if applicable");
 // delegates would be initialized here
 myBot.Join();
 ```
+
+The room id can be entered in as a full everybody edits url or just directly.
