@@ -14,6 +14,7 @@ namespace Skylight
     /// </summary>
     public class Bot : Player
     {
+        private readonly In _in;
         /// <summary>
         ///     All of the possible account types. Defaults to Regular if unknown.
         /// </summary>
@@ -195,8 +196,7 @@ namespace Skylight
 
                 // This is kinda messy, but it works and is possibly more efficient
                 // because it knows exactly when the LoadBlocks finishes.
-                var In = new In();
-                var loadBlocks = new Thread(In.LoadBlocks);
+                var loadBlocks = new Thread(_in.LoadBlocks);
                 loadBlocks.Start();
                 loadBlocks.Join();
             }
