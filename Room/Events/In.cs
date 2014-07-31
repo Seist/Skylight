@@ -465,13 +465,7 @@ namespace Skylight
             {
                 this.Source.Map[b.X, b.Y, b.Z] = b;
             }
-
-            //this.Source.BlocksLoaded = true;
-
-            this._playerPhysicsThread = new Thread(this.UpdatePhysics);
-            this._playerPhysicsThread.Start();
         }
-
         #endregion
 
         #region Methods
@@ -802,6 +796,15 @@ namespace Skylight
             }
 
             this._prematureMessages.Clear();
+
+            // Begin loading blocks.
+            this.LoadBlocks();
+
+            this.Source.BlocksLoaded = true;
+
+            // Begin updating physics.
+            this._playerPhysicsThread = new Thread(this.UpdatePhysics);
+            this._playerPhysicsThread.Start();
 
             // Fire the event.
             var e = new RoomEventArgs(this.Source);

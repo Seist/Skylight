@@ -14,7 +14,8 @@ namespace Skylight
     /// </summary>
     public class Bot : Player
     {
-        private readonly In _in;
+        private In _in;
+
         /// <summary>
         ///     All of the possible account types. Defaults to Regular if unknown.
         /// </summary>
@@ -153,7 +154,7 @@ namespace Skylight
         public void Join(bool createRoom = true)
         {
             try {
-                Connection = new Rabbit.Rabbit().LogIn(this._emailOrToken, this.R.Id,this._passwordOrToken,createRoom);
+                Connection = new Rabbit.Rabbit().LogIn(_emailOrToken, R.Id, _passwordOrToken, createRoom);
 
                 // Update room data
                 Room.JoinedRooms.Add(R);
@@ -165,9 +166,9 @@ namespace Skylight
                 // Every bot receives info from the room, because some of it is exclusive to the bot.
                 // We call those "personal" pulls.
                 // They are exactly the same as the main pull, except In.IsPersonal = true.
-                var i = new In { IsPersonal = true, Source = R, Bot = this };
-                Connection.OnMessage += i.OnMessage;
-                R.Pulls.Add(i);
+                _in = new In { IsPersonal = true, Source = R, Bot = this };
+                Connection.OnMessage += _in.OnMessage;
+                R.Pulls.Add(_in);
 
                 // However, everything else only needs one bot to handle. Things like chat and movement.
                 // We don't need five bots firing an event every time someone chats.
@@ -191,18 +192,11 @@ namespace Skylight
 
                 Joined = true;
 
-                // Wait until all the blocks are loaded before joining.
-                // Load the blocks
-
-                // This is kinda messy, but it works and is possibly more efficient
-                // because it knows exactly when the LoadBlocks finishes.
-                var loadBlocks = new Thread(_in.LoadBlocks);
-                loadBlocks.Start();
-                loadBlocks.Join();
+                while (!R.BlocksLoaded) Thread.Sleep(100);
             }
             catch (Exception e)
             {
-                Tools.SkylightMessage("Unable to join room \"" + R.Id + "\": " + e.Message);
+                Tools.SkylightMessage("Unable to join room \"" + R.Id + "\": " + e);
             }
         }
 
