@@ -11,7 +11,7 @@
         /// <summary>
         ///     The player who sent the message.
         /// </summary>
-        private readonly Player speaker;
+        public readonly Player speaker;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ChatEventArgs"/> class. 
@@ -32,12 +32,13 @@
             {
                 this.Origin.ChatLog = origin.ChatLog;
             }
+
             this.speaker = speaker;
         }
 
         /// <summary>
         ///     The origin (room) where the message came from.
         /// </summary>
-        public Room Origin { get; private set; }
+        public Room Origin { get;  set; }
     }
 }
