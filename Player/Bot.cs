@@ -4,6 +4,7 @@ using System.Threading;
 using PlayerIOClient;
 using Skylight.Blocks;
 using Rabbit;
+using Rabbit.Auth;
 
 namespace Skylight
 {
@@ -163,7 +164,7 @@ namespace Skylight
                 // Every bot receives info from the room, because some of it is exclusive to the bot.
                 // We call those "personal" pulls.
                 // They are exactly the same as the main pull, except In.IsPersonal = true.
-                var i = new In {IsPersonal = true, Source = R, Bot = this};
+                var i = new In { IsPersonal = true, Source = R, Bot = this };
                 Connection.OnMessage += i.OnMessage;
                 R.Pulls.Add(i);
 
@@ -198,7 +199,6 @@ namespace Skylight
                 var loadBlocks = new Thread(In.LoadBlocks);
                 loadBlocks.Start();
                 loadBlocks.Join();
-
             }
             catch (Exception e)
             {
