@@ -354,8 +354,6 @@ namespace Skylight
                 //// FULL CREDIT TO @kevin-brown FOR THE FOLLOWING CODE
                 //// I wrote it in my own way in C# but he made the original.
                 //// Without it I would not know how to do this.
-                //// https://github.com/kevin-brown/ee-level-editor/blob/master/LevelEditor/WorldConverter.vb
-                //// Lines 438-507
                 //// Praise him. (this is mainly due to my laziness)
 
                 // First, fill the entire map with blank blocks (so that you don't get null exceptions).
