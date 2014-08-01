@@ -14,6 +14,16 @@
         public readonly Player speaker;
 
         /// <summary>
+        ///     The message sent by player.
+        /// </summary>
+        public readonly string message;
+
+        /// <summary>
+        ///     The origin (room) where the message came from.
+        /// <summary>
+        public readonly Room origin;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ChatEventArgs"/> class. 
         ///     The main method where the chat messages are sent. This method sets the properties in
         ///     this class to the speaker and origin of the message, where it is handed off to a delegate
@@ -25,20 +35,43 @@
         /// <param name="origin">
         /// The room where the message originated.
         /// </param>
-        public ChatEventArgs(Player speaker, Room origin)
+        public ChatEventArgs(Player speaker, Room origin, string message)
         {
-            this.Origin = origin;
+            this.origin = origin;
             if (this.Origin != null)
             {
                 this.Origin.ChatLog = origin.ChatLog;
             }
 
             this.speaker = speaker;
+            this.message = message;
         }
 
         /// <summary>
-        ///     The origin (room) where the message came from.
+        ///     Gets the player whe sent the message.
         /// </summary>
-        public Room Origin { get;  set; }
+        /// <value>The player who sent the message.</value>
+        public Player Speaker
+        {
+            get { return this.speaker; }
+        }
+
+        /// <summary>
+        ///     Gets the message sent by player
+        /// <summary>
+        /// <value>The message sent by player.</value>
+        public string Message
+        {
+            get { return this.message; }
+        }
+
+        /// <summary>
+        ///     Gets the origin (room) where the message came from.
+        /// </summary>
+        /// <value>The origin (room) where the message came from.</value>
+        public Room Origin
+        {
+            get { return this.origin; }
+        }
     }
 }
