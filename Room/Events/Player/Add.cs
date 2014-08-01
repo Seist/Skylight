@@ -74,7 +74,7 @@ namespace Skylight
 
             // Update relevant objects.
             var subject = new Player(
-                this._in.Source, 
+                this._in.Source,
                 id, 
                 name, 
                 smiley, 
@@ -86,13 +86,7 @@ namespace Skylight
                 coins, 
                 hasBoost, 
                 isFriend, 
-                xplevel, 
-                hasClub, 
-                false, 
-                false, 
-                false, 
-                false, 
-                false);
+                xplevel);
 
             this._in.Source.OnlinePlayers.Add(subject);
 

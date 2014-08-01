@@ -904,15 +904,16 @@ namespace Skylight
 
             while (true) // Player shouldtick boolean throws a nullReferenceException
             {
+                if (!Source.ShouldTick)
+                    continue;
+
                 try
                 {
-                    if (this._playerPhysicsStopwatch.ElapsedMilliseconds >= accumulator + Config.PhysicsMsPerTick)
+                    if (this._playerPhysicsStopwatch.ElapsedMilliseconds >= accumulator + Config.physics_ms_per_tick)
                     {
-                        accumulator += Config.PhysicsMsPerTick;
+                        accumulator += Config.physics_ms_per_tick;
 
-                        var temp = new List<Player>(this.Source.OnlinePlayers);
-
-                        foreach (Player player in temp)
+                        foreach (Player player in this.Source.OnlinePlayers)
                         {
                             if (player.ShouldTick)
                             {
