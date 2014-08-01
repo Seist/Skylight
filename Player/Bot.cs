@@ -64,8 +64,7 @@ namespace Skylight
         public Bot(Room r,
             string emailOrToken,
             string passwordOrToken,
-            AccountType accType = AccountType.Regular) : base(r, 0, "", 0, 0.0, 0.0, false,
-                false, true, 0, false, false, 0, false, false, false, false, false, false)
+            AccountType accType = AccountType.Regular) : base(r, 0, "", 0, 0, 0, false, false, false, 0, false, false, 0)
         {
             _emailOrToken = emailOrToken;
             _passwordOrToken = passwordOrToken;

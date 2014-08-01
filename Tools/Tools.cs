@@ -53,12 +53,6 @@ namespace Skylight
         /// </summary>
         public static Random Ran = new Random();
 
-        /// <summary>
-        ///     The guest client
-        /// </summary>
-        internal static readonly Lazy<Client> GuestClient =
-            new Lazy<Client>(() => PlayerIO.QuickConnect.SimpleConnect(Config.PlayerioGameId, "guest", "guest"));
-
         #endregion
 
         #region Delegates
