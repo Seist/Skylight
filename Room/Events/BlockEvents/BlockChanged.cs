@@ -4,6 +4,8 @@ using Skylight.Blocks;
 
 namespace Skylight
 {
+    using System;
+
     /// <summary>
     /// Class Block Changed.
     /// </summary>
@@ -42,14 +44,12 @@ namespace Skylight
         {
             _in = @in;
         }
-
         /// <summary>
         /// All of the delegates for BlockEvent. These fire when events occur
         /// (such as when a block was added or updated).
         /// </summary>
         public event In.BlockEvent
             NormalBlockEvent = delegate { };
-
         /// <summary>
         /// Called when a block is changed.
         /// </summary>
@@ -60,17 +60,20 @@ namespace Skylight
             int z = m.GetInteger(0),
                 x = m.GetInteger(1),
                 y = m.GetInteger(2),
-                blockId = m.GetInteger(3),
-                playerId = m.GetInteger(4);
-
+                blockId = m.GetInteger(3);
             // Update relevant objects.
             var b = new Block(blockId, x, y, z);
-
-
-            Player subject = Tools.GetPlayer(playerId, _in.Source);
-
-            b.Placer = subject;
-
+            int playerId = -1;
+            try
+            {
+                playerId = m.GetInteger(4);
+                Player subject = Tools.GetPlayer(playerId, _in.Source);
+                b.Placer = subject;
+            }
+            catch
+            {
+                b.Placer = null;
+            }
 
             _in.Source.Map[x, y, z] = b;
 
