@@ -51,7 +51,7 @@ namespace Skylight
             // Extract data.
             int id = m.GetInteger(0);
 
-            int message = m.GetInteger(1);
+            string message = m.GetString(1);
 
             var autoTextConversions = new Dictionary<int, string>
                                           {
@@ -70,10 +70,10 @@ namespace Skylight
             // Update relevant objects.
             Player subject = Tools.GetPlayer(id, this._in.Source);
 
-            this._in.Source.ChatLog.Add(new KeyValuePair<string, Player>(autoTextConversions[message], subject));
+            this._in.Source.ChatLog.Add(new KeyValuePair<string, Player>(message, subject));
 
             // Fire the event.
-            var e = new ChatEventArgs(subject, this._in.Source, autoTextConversions[message]);
+            var e = new ChatEventArgs(subject, this._in.Source, message);
 
             this._in.Source.Pull.Autotext.AutotextEvent(e);
         }
