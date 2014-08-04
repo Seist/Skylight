@@ -547,13 +547,11 @@ namespace Skylight
         /// <param name="useChatPrefix">if set to <c>true</c> then [use chat prefix].</param>
         public void Say(string s = "", bool useChatPrefix = true)
         {
-            
-            var localChatPrefix = useChatPrefix ? ChatPrefix : string.Empty;
-            var chatPieces = SplitOnLength(s, 80 - localChatPrefix.Length);
+            var chatPieces = SplitOnLength(s, 80 - (useChatPrefix ? ChatPrefix.Length : 0));
 
             foreach (var aPiece in chatPieces)
             {
-                this.say(aPiece);
+                this.say((useChatPrefix ? ChatPrefix : "") + aPiece);
             }
         }
 
@@ -816,7 +814,7 @@ namespace Skylight
         public void Teleport(int newXLocation, int newYLocation, string name = "")
         {
             if (!IsOwner) return;
-            if (name != "")
+            if (name != string.Empty)
             {
                 Say("/teleport " + name + " " + newXLocation + " " + newYLocation);
             }
