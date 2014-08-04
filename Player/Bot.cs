@@ -570,6 +570,11 @@ namespace Skylight
                 }
                 else
                 {
+                    if (string.IsNullOrEmpty(ChatPrefix))
+                    {
+                        ChatPrefix = "";
+                    }
+
                     if (s.Length + ChatPrefix.Length <= 80)
                     {
                         Connection.Send("say", ChatPrefix + s);
