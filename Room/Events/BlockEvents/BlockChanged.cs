@@ -72,7 +72,7 @@ namespace Skylight
             }
             catch
             {
-                b.Placer = this._in.Bot;
+                b.Placer = this._in.Source.Owner;
             }
 
             _in.Source.Map[x, y, z] = b;
