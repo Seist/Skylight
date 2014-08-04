@@ -547,15 +547,80 @@ namespace Skylight
         /// <param name="useChatPrefix">if set to <c>true</c> then [use chat prefix].</param>
         public void Say(string s = "", bool useChatPrefix = true)
         {
-            // Based on http://stackoverflow.com/questions/1450774/
-            int maxChunkSize = useChatPrefix ? 80 : (80 - ChatPrefix.Length);
+            
+            var localChatPrefix = useChatPrefix ? ChatPrefix : string.Empty;
+            var chatPieces = SplitOnLength(s, 80 - localChatPrefix.Length);
 
-            for (int i = 0; i < s.Length; i += maxChunkSize)
+            foreach (var aPiece in chatPieces)
             {
-                this.say((useChatPrefix ? ChatPrefix : string.Empty) +
-                s.Substring(i, Math.Min(maxChunkSize, s.Length - i)));
+                this.say(aPiece);
             }
         }
+
+        // This code was directly copied from http://stackoverflow.com/questions/4556151/
+        public enum WordPolicy
+        {
+            None,
+            ThrowIfTooLong,
+            CutIfTooLong
+        }
+
+        public static IEnumerable<string> SplitOnLength(string input, int length, WordPolicy wordPolicy = WordPolicy.CutIfTooLong)
+        {
+            int index = 0;
+            while (index < input.Length)
+            {
+                int stepsBackward = 0;
+
+                if (index + length < input.Length)
+                {
+                    if (wordPolicy != WordPolicy.None)
+                    {
+                        yield return GetBiggestAllowableSubstring(input, index, length, wordPolicy, out stepsBackward);
+                    }
+                    else
+                    {
+                        yield return input.Substring(index, length);
+                    }
+                }
+                else
+                {
+                    yield return input.Substring(index);
+                }
+
+                index += (length - stepsBackward);
+            }
+        }
+
+        static string GetBiggestAllowableSubstring(string input, int index, int length, WordPolicy wordPolicy, out int stepsBackward)
+        {
+            stepsBackward = 0;
+
+            int lastIndex = index + length - 1;
+
+            if (!char.IsWhiteSpace(input[lastIndex + 1]))
+            {
+                int adjustedLastIndex = input.LastIndexOf(' ', lastIndex, length);
+                stepsBackward = lastIndex - adjustedLastIndex;
+                lastIndex = adjustedLastIndex;
+            }
+
+            if (lastIndex == -1)
+            {
+                if (wordPolicy == WordPolicy.ThrowIfTooLong)
+                {
+                    throw new ArgumentOutOfRangeException("The input string contains at least one word greater in length than the specified length.");
+                }
+                else
+                {
+                    stepsBackward = 0;
+                    lastIndex = index + length - 1;
+                }
+            }
+
+            return input.Substring(index, lastIndex - index + 1);
+        }
+
 
         /// <summary>
         ///     Toggle all potion bans.
