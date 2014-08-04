@@ -64,7 +64,7 @@ namespace Skylight
         public Bot(Room r,
             string emailOrToken,
             string passwordOrToken,
-            AccountType accType = AccountType.Regular) : base(r, 0, "", 0, 0, 0, false, false, false, 0, false, false, 0)
+            AccountType accType = AccountType.Regular) : base(r, 0, string.Empty, 0, 0, 0, false, false, false, 0, false, false, 0)
         {
             _emailOrToken = emailOrToken;
             _passwordOrToken = passwordOrToken;
@@ -545,57 +545,15 @@ namespace Skylight
         /// </summary>
         /// <param name="s">The message.</param>
         /// <param name="useChatPrefix">if set to <c>true</c> then [use chat prefix].</param>
-        public void Say(string s, bool useChatPrefix = true)
+        public void Say(string s = "", bool useChatPrefix = true)
         {
-            try
+            // Based on http://stackoverflow.com/questions/1450774/
+            int maxChunkSize = useChatPrefix ? 80 : (80 - ChatPrefix.Length);
+
+            for (int i = 0; i < s.Length; i += maxChunkSize)
             {
-                if (s.StartsWith("/") || !useChatPrefix)
-                {
-                    if (s.Length <= 80 && s.Length > 0)
-                    {
-                        Connection.Send("say", s);
-                        Thread.Sleep(SpeechDelay);
-                    }
-                    else
-                    {
-                        // Say what you can.
-                        Say(s.Substring(0, 80));
-
-                        // Delete what you just said.
-                        s = s.Substring(80);
-
-                        // Repeat the process.
-                        Say(s);
-                    }
-                }
-                else
-                {
-                    if (string.IsNullOrEmpty(ChatPrefix))
-                    {
-                        ChatPrefix = "";
-                    }
-
-                    if (s.Length + ChatPrefix.Length <= 80)
-                    {
-                        Connection.Send("say", ChatPrefix + s);
-                        Thread.Sleep(SpeechDelay);
-                    }
-                    else
-                    {
-                        // Say what you can.
-                        Say(s.Substring(0, 80 - ChatPrefix.Length));
-
-                        // Delete what you just said.
-                        s = s.Substring(80 - ChatPrefix.Length);
-
-                        // Repeat the process.
-                        Say(s);
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                Tools.SkylightMessage("Error: attempted to use Out.Say before connecting");
+                this.say((useChatPrefix ? ChatPrefix : string.Empty) +
+                s.Substring(i, Math.Min(maxChunkSize, s.Length - i)));
             }
         }
 
