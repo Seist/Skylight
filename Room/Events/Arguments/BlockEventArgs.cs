@@ -34,6 +34,9 @@ namespace Skylight
         /// <param name="b">
         /// The block
         /// </param>
+        /// <param name="m">
+        /// The raw message.
+        /// </param>
         /// <param name="origin">
         /// The room where the block originated from.
         /// </param>

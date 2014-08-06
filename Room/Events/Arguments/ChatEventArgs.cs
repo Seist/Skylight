@@ -1,6 +1,7 @@
 ﻿namespace Skylight
 {
     using System;
+    using PlayerIOClient;
 
     /// <summary>
     ///     The class that handles all chat-based messages from the server
@@ -35,7 +36,7 @@
         /// <param name="origin">
         /// The room where the message originated.
         /// </param>
-        public ChatEventArgs(Player speaker, Room origin, string message)
+        public ChatEventArgs(Player speaker, Message m, Room origin, string message)
         {
             this.origin = origin;
             if (this.Origin != null)
@@ -60,10 +61,15 @@
         ///     Gets the message sent by player
         /// <summary>
         /// <value>The message sent by player.</value>
-        public string Message
+        public string ChatMessage
         {
             get { return this.message; }
         }
+
+        /// <summary>
+        ///     The unparsed message sent from the connection.
+        /// </summary>
+        public Message RawMessage { get; internal set; }
 
         /// <summary>
         ///     Gets the origin (room) where the message came from.

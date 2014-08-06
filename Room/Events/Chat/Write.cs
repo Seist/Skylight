@@ -71,7 +71,7 @@ namespace Skylight
             this._in.Source.ChatLog.Add(new KeyValuePair<string, Player>(message, null));
 
             // Fire the event.
-            var e = new ChatEventArgs(null, this._in.Source, message);
+            var e = new ChatEventArgs(null, m, this._in.Source, message);
 
             this._in.Source.Pull.Write.SystemMessageEvent(e);
         }

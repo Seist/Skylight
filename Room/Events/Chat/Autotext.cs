@@ -73,7 +73,7 @@ namespace Skylight
             this._in.Source.ChatLog.Add(new KeyValuePair<string, Player>(message, subject));
 
             // Fire the event.
-            var e = new ChatEventArgs(subject, this._in.Source, message);
+            var e = new ChatEventArgs(subject, m, this._in.Source, message);
 
             this._in.Source.Pull.Autotext.AutotextEvent(e);
         }

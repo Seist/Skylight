@@ -43,7 +43,7 @@ namespace Skylight
             _in.Source.ChatLog.Add(new KeyValuePair<string, Player>(message, null));
 
             // Fire the event.
-            var e = new ChatEventArgs(null, _in.Source, message);
+            var e = new ChatEventArgs(null, m, _in.Source, message);
 
             _in.Source.Pull.ChatOld.SayOldEvent(e);
         }
