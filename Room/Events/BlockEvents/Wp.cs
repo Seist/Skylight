@@ -62,7 +62,7 @@ namespace Skylight
             this._in.Source.Map[x, y, 0] = b;
 
             // Fire the event
-            var e = new BlockEventArgs(b, _in.Source);
+            var e = new BlockEventArgs(b, m, _in.Source);
 
             this._in.Source.Pull.Wp.RoomPortalBlockEvent(e);
         }

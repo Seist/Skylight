@@ -854,7 +854,7 @@ namespace Skylight
             this.Source.Map[x, y, 1] = b;
 
             // Fire the event.
-            var e = new BlockEventArgs(b, this.Source);
+            var e = new BlockEventArgs(b, m, this.Source);
 
             this.Source.Pull.PortalBlockEvent(e);
         }
@@ -888,7 +888,7 @@ namespace Skylight
             this.Source.Map[x, y, 0] = b;
 
             // Fire the event.
-            var e = new BlockEventArgs(b, this.Source);
+            var e = new BlockEventArgs(b, m, this.Source);
 
             this.Source.Pull.CoinBlockEvent(e);
         }
