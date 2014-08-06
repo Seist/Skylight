@@ -36,7 +36,7 @@
         /// <param name="origin">
         /// The room where the message originated.
         /// </param>
-        public ChatEventArgs(Player speaker, Message m, Room origin, string message)
+        internal ChatEventArgs(Player speaker, Message m, Room origin, string message)
         {
             this.origin = origin;
             if (this.Origin != null)
@@ -46,6 +46,7 @@
 
             this.speaker = speaker;
             this.message = message;
+            RawMessage = m;
         }
 
         /// <summary>

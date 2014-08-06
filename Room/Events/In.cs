@@ -807,7 +807,7 @@ namespace Skylight
             this._playerPhysicsThread.Start();
 
             // Fire the event.
-            var e = new RoomEventArgs(this.Source);
+            var e = new RoomEventArgs(this.Source, m);
 
             this.Source.Pull.InitEvent(e);
         }

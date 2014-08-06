@@ -68,7 +68,7 @@ namespace Skylight
             this._in.Source.PotionsAllowed = potions;
 
             // Fire the event.
-            var e = new RoomEventArgs(this._in.Source);
+            var e = new RoomEventArgs(this._in.Source, m);
 
             this._in.Source.Pull.Potions.PotionToggleEvent(e);
         }

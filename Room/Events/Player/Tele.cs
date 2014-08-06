@@ -90,7 +90,7 @@ namespace Skylight
                 }
 
                 // Fire the event.
-                var e = new RoomEventArgs(this._in.Source);
+                var e = new RoomEventArgs(this._in.Source, m);
 
                 this._in.Source.Pull.Tele.ResetEvent(e);
             }
