@@ -78,7 +78,7 @@ namespace Skylight
             _in.Source.Map[x, y, z] = b;
 
             // Fire the event.
-            var e = new BlockEventArgs(b, _in.Source);
+            var e = new BlockEventArgs(b, m, _in.Source);
 
             _in.Source.Pull.BlockChanged.NormalBlockEvent(e);
         }

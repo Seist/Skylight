@@ -7,6 +7,7 @@
 namespace Skylight
 {
     using System;
+    using PlayerIOClient;
 
     using Skylight.Blocks;
 
@@ -36,11 +37,12 @@ namespace Skylight
         /// <param name="origin">
         /// The room where the block originated from.
         /// </param>
-        public BlockEventArgs(Block b, Room origin = null)
+        public BlockEventArgs(Block b, Message m, Room origin = null)
         {
             Origin = origin ?? Bot.CurrentRoom;
             this.placed = b;
             this.placer = b.Placer;
+            RawMessage = m;
         }
 
         /// <summary>
@@ -63,5 +65,10 @@ namespace Skylight
         {
             get { return this.placer; }
         }
+
+        /// <summary>
+        ///     The unparsed message sent from the connection.
+        /// </summary>
+        public Message RawMessage { get; internal set; }
     }
 }
