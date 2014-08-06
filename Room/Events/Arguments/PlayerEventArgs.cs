@@ -33,7 +33,7 @@ namespace Skylight
         /// <param name="rawMessage">
         /// The raw, unparsed message from the server (concerning player).
         /// </param>
-        public PlayerEventArgs(Player subject, Room origin, Message rawMessage)
+        internal PlayerEventArgs(Player subject, Room origin, Message rawMessage)
         {
             this.Subject = subject;
             this.Origin = origin;

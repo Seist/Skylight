@@ -74,7 +74,7 @@ namespace Skylight
             this._in.Source.TotalWoots = totalWoots;
 
             // Fire the event.
-            var e = new RoomEventArgs(this._in.Source);
+            var e = new RoomEventArgs(this._in.Source, m);
 
             this._in.Source.Pull.Meta.UpdateMetaEvent(e);
         }

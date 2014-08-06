@@ -26,7 +26,6 @@ namespace Skylight
         /// </summary>
         private readonly Player placer;
 
-
         /// <summary>
         /// Initializes a new instance of the <see cref="BlockEventArgs"/> class. 
         ///     Initializes a new instance of the <see cref="BlockEventArgs"/>. Send a block changed event.
@@ -40,7 +39,7 @@ namespace Skylight
         /// <param name="origin">
         /// The room where the block originated from.
         /// </param>
-        public BlockEventArgs(Block b, Message m, Room origin = null)
+        internal BlockEventArgs(Block b, Message m, Room origin = null)
         {
             Origin = origin ?? Bot.CurrentRoom;
             this.placed = b;

@@ -10,6 +10,7 @@
 namespace Skylight
 {
     using System;
+    using PlayerIOClient;
 
     /// <summary>
     ///     Class RoomEventArgs.
@@ -25,9 +26,10 @@ namespace Skylight
         ///     Initializes a new instance of the <see cref="RoomEventArgs" /> class.
         /// </summary>
         /// <param name="changedRoom">The changed room.</param>
-        public RoomEventArgs(Room changedRoom)
+        internal RoomEventArgs(Room changedRoom, Message m = null)
         {
             this.changedRoom = changedRoom;
+            RawMessage = m;
         }
 
         /// <summary>
@@ -38,5 +40,10 @@ namespace Skylight
         {
             get { return this.changedRoom; }
         }
+
+        /// <summary>
+        ///     The unparsed message sent from the connection.
+        /// </summary>
+        public Message RawMessage { get; internal set; }
     }
 }
