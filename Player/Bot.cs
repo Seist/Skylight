@@ -73,6 +73,8 @@ namespace Skylight
             ShouldTickAll = true;
             BlockDelay = 10;
             SpeechDelay = 750;
+
+            ChatPrefix = "";
         }
 
         /// <summary>
@@ -547,12 +549,59 @@ namespace Skylight
         /// <param name="useChatPrefix">if set to <c>true</c> then [use chat prefix].</param>
         public void Say(string s = "", bool useChatPrefix = true)
         {
+            try
+            {
+                if (s.StartsWith("/") || !useChatPrefix)
+                {
+                    if (s.Length <= 80 && s.Length > 0)
+                    {
+                        Connection.Send("say", s);
+                        Thread.Sleep(SpeechDelay);
+                    }
+                    else
+                    {
+                        // Say what you can.
+                        Say(s.Substring(0, 80));
+
+                        // Delete what you just said.
+                        s = s.Substring(80);
+
+                        // Repeat the process.
+                        Say(s);
+                    }
+                }
+                else
+                {
+                    if (s.Length + ChatPrefix.Length <= 80)
+                    {
+                        Connection.Send("say", ChatPrefix + s);
+                        Thread.Sleep(SpeechDelay);
+                    }
+                    else
+                    {
+                        // Say what you can.
+                        Say(s.Substring(0, 80 - ChatPrefix.Length));
+
+                        // Delete what you just said.
+                        s = s.Substring(80 - ChatPrefix.Length);
+
+                        // Repeat the process.
+                        Say(s);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Tools.SkylightMessage(e.ToString());
+            }
+
+            /*
             var chatPieces = SplitOnLength(s, 80 - (useChatPrefix ? ChatPrefix.Length : 0));
 
             foreach (var aPiece in chatPieces)
             {
                 this.say((useChatPrefix ? ChatPrefix : "") + aPiece);
-            }
+            }*/
         }
 
         // This code was directly copied from http://stackoverflow.com/questions/4556151/
