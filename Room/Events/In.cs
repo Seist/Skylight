@@ -733,23 +733,23 @@ namespace Skylight
         private void OnInit(Message m)
         {
             // Extract data
-            string owner = m.GetString(0), 
-                   name = m.GetString(1), 
-                   worldKey = Tools.Derot(m.GetString(5)), 
+            string owner = m.GetString(0),
+                   name = m.GetString(1),
+                   worldKey = Tools.Derot(m.GetString(5)),
                    botName = m.GetString(9);
 
-            int plays = m.GetInteger(2), 
-                woots = m.GetInteger(3), 
-                totalWoots = m.GetInteger(4), 
-                botId = m.GetInteger(6), 
-                width = m.GetInteger(12), 
+            int plays = m.GetInteger(2),
+                woots = m.GetInteger(3),
+                totalWoots = m.GetInteger(4),
+                botId = m.GetInteger(6),
+                width = m.GetInteger(12),
                 height = m.GetInteger(13);
 
             double botX = m.GetDouble(7), botY = m.GetDouble(8), gravityMultiplier = m.GetDouble(15);
 
-            bool isTutorialRoom = m.GetBoolean(14), 
-                 potions = m.GetBoolean(16), 
-                 hasAccess = m.GetBoolean(10), 
+            bool isTutorialRoom = m.GetBoolean(14),
+                 potions = m.GetBoolean(16),
+                 hasAccess = m.GetBoolean(10),
                  isOwner = m.GetBoolean(11);
 
             // Update relevant objects
@@ -839,11 +839,11 @@ namespace Skylight
         private void OnPt(Message m)
         {
             // Extract data.
-            int x = m.GetInteger(0), 
-                y = m.GetInteger(1), 
-                blockId = m.GetInteger(2), 
-                rotation = m.GetInteger(3), 
-                portalId = m.GetInteger(4), 
+            int x = m.GetInteger(0),
+                y = m.GetInteger(1),
+                blockId = m.GetInteger(2),
+                rotation = m.GetInteger(3),
+                portalId = m.GetInteger(4),
                 portalDestination = m.GetInteger(5);
 
             // Update relevant objects.
@@ -912,9 +912,10 @@ namespace Skylight
                     if (this._playerPhysicsStopwatch.ElapsedMilliseconds >= accumulator + Config.physics_ms_per_tick)
                     {
                         accumulator += Config.physics_ms_per_tick;
-
-                        foreach (Player player in this.Source.OnlinePlayers)
+                        int iCount = this.Source.OnlinePlayers.Count();
+                        for (int iPlayer = 0; iPlayer <= iCount; iPlayer++)
                         {
+                            Player player = this.Source.OnlinePlayers[iPlayer];
                             if (player.ShouldTick)
                             {
                                 player.Tick();
