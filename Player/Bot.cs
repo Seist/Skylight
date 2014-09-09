@@ -217,7 +217,29 @@ namespace Skylight
 
         private void Refresh()
         {
-            _storedVersion = Convert.ToString(Client.BigDB.Load("config", "config")["version"]);
+            List<int> verslist = new List<int>();
+            try
+            {
+                Client versClient;
+                Connection versCon;
+                versClient = PlayerIO.QuickConnect.SimpleConnect("everybody-edits-su9rn58o40itdbnw69plyw", "guest", "guest");
+                versCon = versClient.Multiplayer.CreateJoinRoom("PWROOM", "0", true, new Dictionary<string, string>(), new Dictionary<string, string>());
+            }
+            catch (PlayerIOError m)
+            {
+                _storedVersion = m.Message;
+                string[] eevers;
+                eeVers = version.Split(' ');
+                foreach (string s in eevers)
+                {
+                    if (s.StartsWith("Everybodyedits"))
+                    {
+                        int num = int.Parse(s.Replace("Everybodyedits", "").Replace(",", ""));
+                        verslist.Add(num);
+                    }
+                }
+                _storedVersion = verslist.Max().ToString();
+            }
         }
 
         #region In-game functions
