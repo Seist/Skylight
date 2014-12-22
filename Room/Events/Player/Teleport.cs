@@ -7,10 +7,10 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using PlayerIOClient;
+
 namespace Skylight
 {
-    using PlayerIOClient;
-
     /// <summary>
     ///     Class Teleport.
     /// </summary>
@@ -28,14 +28,14 @@ namespace Skylight
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Teleport"/> class.
+        ///     Initializes a new instance of the <see cref="Teleport" /> class.
         /// </summary>
         /// <param name="in">
-        /// The in.
+        ///     The in.
         /// </param>
         public Teleport(In @in)
         {
-            this._in = @in;
+            _in = @in;
         }
 
         #endregion
@@ -55,10 +55,10 @@ namespace Skylight
         #region Public Methods and Operators
 
         /// <summary>
-        /// Called when a player teleports to a location.
+        ///     Called when a player teleports to a location.
         /// </summary>
         /// <param name="m">
-        /// The message.
+        ///     The message.
         /// </param>
         public void OnTeleport(Message m)
         {
@@ -66,15 +66,15 @@ namespace Skylight
             int id = m.GetInteger(0), x = m.GetInteger(1), y = m.GetInteger(2);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayer(id, this._in.Source);
+            var subject = Tools.GetPlayer(id, _in.Source);
 
             subject.X = x;
             subject.Y = y;
 
             // Fire the event.
-            var e = new PlayerEventArgs(subject, this._in.Source, m);
+            var e = new PlayerEventArgs(subject, _in.Source, m);
 
-            this._in.Source.Pull.Teleport.TeleportEvent(e);
+            _in.Source.Pull.Teleport.TeleportEvent(e);
         }
 
         #endregion

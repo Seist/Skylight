@@ -7,12 +7,11 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+using PlayerIOClient;
+
 namespace Skylight
 {
-    using System.Collections.Generic;
-
-    using PlayerIOClient;
-
     /// <summary>
     ///     Class Write.
     /// </summary>
@@ -30,14 +29,14 @@ namespace Skylight
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Write"/> class.
+        ///     Initializes a new instance of the <see cref="Write" /> class.
         /// </summary>
         /// <param name="in">
-        /// The in.
+        ///     The in.
         /// </param>
         public Write(In @in)
         {
-            this._in = @in;
+            _in = @in;
         }
 
         #endregion
@@ -56,24 +55,24 @@ namespace Skylight
         #region Public Methods and Operators
 
         /// <summary>
-        /// Called when a player says something in the chat box (other than a native command).
+        ///     Called when a player says something in the chat box (other than a native command).
         /// </summary>
         /// <param name="m">
-        /// The message.
+        ///     The message.
         /// </param>
         public void OnWrite(Message m)
         {
             // Extract data.
-            string message = m.GetString(1);
+            var message = m.GetString(1);
 
             // Update relevant objects.
             // Player system = new Player() { Name = prefix };
-            this._in.Source.ChatLog.Add(new KeyValuePair<string, Player>(message, null));
+            _in.Source.ChatLog.Add(new KeyValuePair<string, Player>(message, null));
 
             // Fire the event.
-            var e = new ChatEventArgs(null, m, this._in.Source, message);
+            var e = new ChatEventArgs(null, m, _in.Source, message);
 
-            this._in.Source.Pull.Write.SystemMessageEvent(e);
+            _in.Source.Pull.Write.SystemMessageEvent(e);
         }
 
         #endregion

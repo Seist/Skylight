@@ -7,10 +7,10 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using PlayerIOClient;
+
 namespace Skylight
 {
-    using PlayerIOClient;
-
     /// <summary>
     ///     Class Potions.
     /// </summary>
@@ -28,14 +28,14 @@ namespace Skylight
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Potions"/> class.
+        ///     Initializes a new instance of the <see cref="Potions" /> class.
         /// </summary>
         /// <param name="in">
-        /// The in.
+        ///     The in.
         /// </param>
         public Potions(In @in)
         {
-            this._in = @in;
+            _in = @in;
         }
 
         #endregion
@@ -54,23 +54,23 @@ namespace Skylight
         #region Public Methods and Operators
 
         /// <summary>
-        /// Called when toggling potion access.
+        ///     Called when toggling potion access.
         /// </summary>
         /// <param name="m">
-        /// The m.
+        ///     The m.
         /// </param>
         public void OnAllowPotions(Message m)
         {
             // Extract data.
-            bool potions = m.GetBoolean(0);
+            var potions = m.GetBoolean(0);
 
             // Update relevant objects.
-            this._in.Source.PotionsAllowed = potions;
+            _in.Source.PotionsAllowed = potions;
 
             // Fire the event.
-            var e = new RoomEventArgs(this._in.Source, m);
+            var e = new RoomEventArgs(_in.Source, m);
 
-            this._in.Source.Pull.Potions.PotionToggleEvent(e);
+            _in.Source.Pull.Potions.PotionToggleEvent(e);
         }
 
         #endregion

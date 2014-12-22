@@ -7,10 +7,10 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using PlayerIOClient;
+
 namespace Skylight
 {
-    using PlayerIOClient;
-
     /// <summary>
     ///     Class Info.
     /// </summary>
@@ -28,14 +28,14 @@ namespace Skylight
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Info"/> class.
+        ///     Initializes a new instance of the <see cref="Info" /> class.
         /// </summary>
         /// <param name="in">
-        /// The in.
+        ///     The in.
         /// </param>
         public Info(In @in)
         {
-            this._in = @in;
+            _in = @in;
         }
 
         #endregion
@@ -55,10 +55,10 @@ namespace Skylight
         #region Public Methods and Operators
 
         /// <summary>
-        /// Called when the server sends a system message to the bot.
+        ///     Called when the server sends a system message to the bot.
         /// </summary>
         /// <param name="m">
-        /// The message.
+        ///     The message.
         /// </param>
         public void OnInfo(Message m)
         {
@@ -67,18 +67,18 @@ namespace Skylight
 
             // Update relevant objects.
             Tools.SkylightMessage(
-                "Bot " + this._in.Bot.Name + " received a pop-up window:\n   " + title + "\n    " + body);
+                "Bot " + _in.Bot.Name + " received a pop-up window:\n   " + title + "\n    " + body);
 
             if (title == "Limit reached")
             {
-                this._in.Bot.Disconnect();
+                _in.Bot.Disconnect();
                 Tools.SkylightMessage("The bot was forced to disconnect because the limit was reached.");
             }
 
             // Fire the event.
-            var e = new PlayerEventArgs(this._in.Bot, this._in.Source, m);
+            var e = new PlayerEventArgs(_in.Bot, _in.Source, m);
 
-            this._in.Source.Pull.Info.InfoEvent(e);
+            _in.Source.Pull.Info.InfoEvent(e);
         }
 
         #endregion

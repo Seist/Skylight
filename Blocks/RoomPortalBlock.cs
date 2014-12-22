@@ -7,12 +7,11 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Text.RegularExpressions;
+using Skylight.Blocks;
+
 namespace Skylight
 {
-    using System.Text.RegularExpressions;
-
-    using Skylight.Blocks;
-
     /// <summary>
     ///     Class RoomPortalBlock.
     /// </summary>
@@ -34,7 +33,7 @@ namespace Skylight
             int y,
             string portalDestination) : base(BlockIds.Action.Portals.World, x, y, 0)
         {
-            this.PortalDestination = portalDestination;
+            PortalDestination = portalDestination;
         }
 
         /// <summary>
@@ -43,18 +42,15 @@ namespace Skylight
         /// <value>The portal destination.</value>
         public string PortalDestination
         {
-            get
-            {
-                return this.portalDestination;
-            }
+            get { return portalDestination; }
 
             private set
             {
-                string s = value;
+                var s = value;
                 Tools.ParseUrl(s);
                 if (Regex.IsMatch(s, "[A-Za-z0-9-_]{13}"))
                 {
-                    this.portalDestination = s;
+                    portalDestination = s;
                 }
             }
         }

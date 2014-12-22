@@ -26,14 +26,14 @@ namespace Skylight
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Hide"/> class.
+        ///     Initializes a new instance of the <see cref="Hide" /> class.
         /// </summary>
         /// <param name="in">
-        /// The in.
+        ///     The in.
         /// </param>
         public Hide(In @in)
         {
-            this._in = @in;
+            _in = @in;
         }
 
         #endregion
@@ -58,12 +58,12 @@ namespace Skylight
         {
             // Like with "clear", there is data but it is irrelevant.
             // Update relevant objects.
-            this._in.Source.TimeDoorsVisible = false;
+            _in.Source.TimeDoorsVisible = false;
 
             // Fire the event.
-            var e = new RoomEventArgs(this._in.Source);
+            var e = new RoomEventArgs(_in.Source);
 
-            this._in.Source.Pull.Hide.HideEvent(e);
+            _in.Source.Pull.Hide.HideEvent(e);
         }
 
         #endregion

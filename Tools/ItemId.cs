@@ -6,6 +6,7 @@
 //   Class item id.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace Skylight
 {
     /// <summary>
@@ -16,13 +17,13 @@ namespace Skylight
         #region Public Methods and Operators
 
         /// <summary>
-        /// Determines whether the specified block is able to be rotated.
+        ///     Determines whether the specified block is able to be rotated.
         /// </summary>
         /// <param name="blockId">
-        /// The id of the block
+        ///     The id of the block
         /// </param>
         /// <returns>
-        /// <c>true</c> if the specified block is able to be rotated; otherwise, <c>false</c>.
+        ///     <c>true</c> if the specified block is able to be rotated; otherwise, <c>false</c>.
         /// </returns>
         public static bool IsBlockRotateable(int blockId)
         {
@@ -34,27 +35,27 @@ namespace Skylight
                 case BlockIds.Decorative.SciFi2013.Greenbend:
                 case BlockIds.Decorative.SciFi2013.Orangestraight:
                 case BlockIds.Decorative.SciFi2013.Orangebend:
-                    {
-                        return true;
-                    }
+                {
+                    return true;
+                }
 
                 default:
-                    {
-                        break;
-                    }
+                {
+                    break;
+                }
             }
 
             return false;
         }
 
         /// <summary>
-        /// Determines whether the specified block is climbable.
+        ///     Determines whether the specified block is climbable.
         /// </summary>
         /// <param name="blockId">
-        /// The block id
+        ///     The block id
         /// </param>
         /// <returns>
-        /// <c>true</c> if the specified block is climbable; otherwise, <c>false</c>.
+        ///     <c>true</c> if the specified block is climbable; otherwise, <c>false</c>.
         /// </returns>
         public static bool IsClimbable(int blockId)
         {
@@ -64,27 +65,27 @@ namespace Skylight
                 case BlockIds.Action.Ladders.Chain:
                 case BlockIds.Action.Ladders.Horizontalvine:
                 case BlockIds.Action.Ladders.Verticalvine:
-                    {
-                        return true;
-                    }
+                {
+                    return true;
+                }
 
                 default:
-                    {
-                        break;
-                    }
+                {
+                    break;
+                }
             }
 
             return false;
         }
 
         /// <summary>
-        /// Determines whether the specified block is solid.
+        ///     Determines whether the specified block is solid.
         /// </summary>
         /// <param name="blockId">
-        /// The id of the block
+        ///     The id of the block
         /// </param>
         /// <returns>
-        /// <c>true</c> if the specified block is solid; otherwise, <c>false</c>.
+        ///     <c>true</c> if the specified block is solid; otherwise, <c>false</c>.
         /// </returns>
         public static bool IsSolid(int blockId)
         {

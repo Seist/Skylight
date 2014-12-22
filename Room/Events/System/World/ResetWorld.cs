@@ -7,12 +7,10 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using PlayerIOClient;
+
 namespace Skylight
 {
-    using PlayerIOClient;
-
-    using Skylight.Blocks;
-
     /// <summary>
     ///     Class Reset World.
     /// </summary>
@@ -30,14 +28,14 @@ namespace Skylight
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ResetWorld"/> class.
+        ///     Initializes a new instance of the <see cref="ResetWorld" /> class.
         /// </summary>
         /// <param name="in">
-        /// The in.
+        ///     The in.
         /// </param>
         public ResetWorld(In @in)
         {
-            this._in = @in;
+            _in = @in;
         }
 
         #endregion
@@ -45,16 +43,16 @@ namespace Skylight
         #region Public Methods and Operators
 
         /// <summary>
-        /// Called when the world is cleared (then the internal map is).
+        ///     Called when the world is cleared (then the internal map is).
         /// </summary>
         /// <param name="m">
-        /// The message.
+        ///     The message.
         /// </param>
         public void OnReset(Message m)
         {
-            foreach (Block b in Tools.DeserializeInit(m, 1, this._in.Source))
+            foreach (var b in Tools.DeserializeInit(m, 1, _in.Source))
             {
-                this._in.Source.Map[b.X, b.Y, b.Z] = b;
+                _in.Source.Map[b.X, b.Y, b.Z] = b;
             }
         }
 

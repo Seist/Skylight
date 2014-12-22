@@ -7,10 +7,10 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using PlayerIOClient;
+
 namespace Skylight
 {
-    using PlayerIOClient;
-
     /// <summary>
     ///     Class Access.
     /// </summary>
@@ -28,14 +28,14 @@ namespace Skylight
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Access"/> class.
+        ///     Initializes a new instance of the <see cref="Access" /> class.
         /// </summary>
         /// <param name="in">
-        /// The in.
+        ///     The in.
         /// </param>
         public Access(In @in)
         {
-            this._in = @in;
+            _in = @in;
         }
 
         #endregion
@@ -55,21 +55,21 @@ namespace Skylight
         #region Public Methods and Operators
 
         /// <summary>
-        /// Called when the bot received elevated permission access (god mode, changing blocks) to the room.
+        ///     Called when the bot received elevated permission access (god mode, changing blocks) to the room.
         /// </summary>
         /// <param name="m">
-        /// The message.
+        ///     The message.
         /// </param>
         public void OnAccess(Message m)
         {
             // Nothing to extract from message.
             // Update relevant objects.
-            this._in.Bot.HasAccess = true;
+            _in.Bot.HasAccess = true;
 
             // Fire the event.
-            var e = new PlayerEventArgs(this._in.Bot, this._in.Source, m);
+            var e = new PlayerEventArgs(_in.Bot, _in.Source, m);
 
-            this._in.Source.Pull.Access.GainAccessEvent(e);
+            _in.Source.Pull.Access.GainAccessEvent(e);
         }
 
         #endregion

@@ -7,10 +7,10 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using PlayerIOClient;
+
 namespace Skylight
 {
-    using PlayerIOClient;
-
     /// <summary>
     ///     Class WootUp.
     /// </summary>
@@ -28,14 +28,14 @@ namespace Skylight
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="WootUp"/> class.
+        ///     Initializes a new instance of the <see cref="WootUp" /> class.
         /// </summary>
         /// <param name="in">
-        /// The in.
+        ///     The in.
         /// </param>
         public WootUp(In @in)
         {
-            this._in = @in;
+            _in = @in;
         }
 
         #endregion
@@ -55,26 +55,26 @@ namespace Skylight
         #region Public Methods and Operators
 
         /// <summary>
-        /// Called when a player woots the world.
+        ///     Called when a player woots the world.
         /// </summary>
         /// <param name="m">
-        /// The message.
+        ///     The message.
         /// </param>
         public void OnWootUp(Message m)
         {
             // Extract data.
-            int id = m.GetInteger(0);
+            var id = m.GetInteger(0);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayer(id, this._in.Source);
+            var subject = Tools.GetPlayer(id, _in.Source);
 
-            this._in.Source.TotalWoots++;
-            this._in.Source.Woots++;
+            _in.Source.TotalWoots++;
+            _in.Source.Woots++;
 
             // Fire the event.
-            var e = new PlayerEventArgs(subject, this._in.Source, m);
+            var e = new PlayerEventArgs(subject, _in.Source, m);
 
-            this._in.Source.Pull.WootUp.WootEvent(e);
+            _in.Source.Pull.WootUp.WootEvent(e);
         }
 
         #endregion

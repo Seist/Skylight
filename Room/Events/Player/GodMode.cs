@@ -7,10 +7,10 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using PlayerIOClient;
+
 namespace Skylight
 {
-    using PlayerIOClient;
-
     /// <summary>
     ///     Class God Mode.
     /// </summary>
@@ -28,14 +28,14 @@ namespace Skylight
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GodMode"/> class.
+        ///     Initializes a new instance of the <see cref="GodMode" /> class.
         /// </summary>
         /// <param name="in">
-        /// The in.
+        ///     The in.
         /// </param>
         public GodMode(In @in)
         {
-            this._in = @in;
+            _in = @in;
         }
 
         #endregion
@@ -55,27 +55,27 @@ namespace Skylight
         #region Public Methods and Operators
 
         /// <summary>
-        /// Called when a player toggles god mode.
+        ///     Called when a player toggles god mode.
         /// </summary>
         /// <param name="m">
-        /// The message.
+        ///     The message.
         /// </param>
         public void OnGod(Message m)
         {
             // Extract data.
-            bool isGod = m.GetBoolean(1);
+            var isGod = m.GetBoolean(1);
 
-            int id = m.GetInteger(0);
+            var id = m.GetInteger(0);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayer(id, this._in.Source);
+            var subject = Tools.GetPlayer(id, _in.Source);
 
             subject.IsGod = isGod;
 
             // Fire the event.
-            var e = new PlayerEventArgs(subject, this._in.Source, m);
+            var e = new PlayerEventArgs(subject, _in.Source, m);
 
-            this._in.Source.Pull.GodMode.GodEvent(e);
+            _in.Source.Pull.GodMode.GodEvent(e);
         }
 
         #endregion

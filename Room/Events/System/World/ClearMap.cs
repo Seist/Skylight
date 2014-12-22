@@ -26,14 +26,14 @@ namespace Skylight
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ClearMap"/> class.
+        ///     Initializes a new instance of the <see cref="ClearMap" /> class.
         /// </summary>
         /// <param name="in">
-        /// The in.
+        ///     The in.
         /// </param>
         public ClearMap(In @in)
         {
-            this._in = @in;
+            _in = @in;
         }
 
         #endregion
@@ -56,12 +56,12 @@ namespace Skylight
         /// </summary>
         public void OnClear()
         {
-            Tools.ClearMap(this._in.Source);
+            Tools.ClearMap(_in.Source);
 
             // Fire the event.
-            var e = new RoomEventArgs(this._in.Source);
+            var e = new RoomEventArgs(_in.Source);
 
-            this._in.Source.Pull.ClearMap.ClearEvent(e);
+            _in.Source.Pull.ClearMap.ClearEvent(e);
         }
 
         #endregion

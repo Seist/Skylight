@@ -6,19 +6,33 @@
 //   Class Room.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
+using System.Collections.Generic;
+using PlayerIOClient;
+using Skylight.Blocks;
+
 namespace Skylight
 {
-    using System.Collections.Generic;
-
-    using PlayerIOClient;
-
-    using Skylight.Blocks;
-
     /// <summary>
     ///     Class Room.
     /// </summary>
     public class Room
     {
+        #region Properties
+
+        /// <summary>
+        ///     Gets or sets the connections.
+        /// </summary>
+        /// <value>The connections.</value>
+        internal List<Connection> Connections
+        {
+            get { return _connections; }
+
+            set { _connections = value; }
+        }
+
+        #endregion
+
         #region Fields
 
         /// <summary>
@@ -44,24 +58,24 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Room"/> class.
+        ///     Initializes a new instance of the <see cref="Room" /> class.
         /// </summary>
         /// <param name="id">
-        /// The room identifier.
+        ///     The room identifier.
         /// </param>
         /// <param name="shouldTick">
-        /// If the room should update player coordinates accurately.
+        ///     If the room should update player coordinates accurately.
         /// </param>
         public Room(string id, bool shouldTick = true)
         {
-            this.OnlineBots = new List<Bot>();
-            this.OnlinePlayers = new List<Player>();
-            this.ChatLog = new List<KeyValuePair<string, Player>>();
-            this.Pulls = new List<In>();
-            this.Pull = new In();
-            this.Map = new Block[700, 400, 2];
-            this.Id = id;
-            this.ShouldTick = shouldTick;
+            OnlineBots = new List<Bot>();
+            OnlinePlayers = new List<Player>();
+            ChatLog = new List<KeyValuePair<string, Player>>();
+            Pulls = new List<In>();
+            Pull = new In();
+            Map = new Block[700, 400, 2];
+            Id = id;
+            ShouldTick = shouldTick;
         }
 
         #endregion
@@ -235,27 +249,6 @@ namespace Skylight
         /// </summary>
         /// <value>The woots.</value>
         public int Woots { get; internal set; }
-
-        #endregion
-
-        #region Properties
-
-        /// <summary>
-        ///     Gets or sets the connections.
-        /// </summary>
-        /// <value>The connections.</value>
-        internal List<Connection> Connections
-        {
-            get
-            {
-                return this._connections;
-            }
-
-            set
-            {
-                this._connections = value;
-            }
-        }
 
         #endregion
     }

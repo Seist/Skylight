@@ -7,12 +7,11 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+using PlayerIOClient;
+
 namespace Skylight
 {
-    using System.Collections.Generic;
-
-    using PlayerIOClient;
-
     /// <summary>
     ///     Class Chat.
     /// </summary>
@@ -30,14 +29,14 @@ namespace Skylight
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Chat"/> class.
+        ///     Initializes a new instance of the <see cref="Chat" /> class.
         /// </summary>
         /// <param name="in">
-        /// The in.
+        ///     The in.
         /// </param>
         public Chat(In @in)
         {
-            this._in = @in;
+            _in = @in;
         }
 
         #endregion
@@ -56,27 +55,27 @@ namespace Skylight
         #region Public Methods and Operators
 
         /// <summary>
-        /// Called when someone says a message.
+        ///     Called when someone says a message.
         /// </summary>
         /// <param name="m">
-        /// The message.
+        ///     The message.
         /// </param>
         public void OnSay(Message m)
         {
             // Extract data.
-            int id = m.GetInteger(0);
+            var id = m.GetInteger(0);
 
-            string message = m.GetString(1);
+            var message = m.GetString(1);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayer(id, this._in.Source);
+            var subject = Tools.GetPlayer(id, _in.Source);
 
-            this._in.Source.ChatLog.Add(new KeyValuePair<string, Player>(message, subject));
+            _in.Source.ChatLog.Add(new KeyValuePair<string, Player>(message, subject));
 
             // Fire the event.
-            var e = new ChatEventArgs(subject, m, this._in.Source, message);
+            var e = new ChatEventArgs(subject, m, _in.Source, message);
 
-            this._in.Source.Pull.Chat.NormalChatEvent(e);
+            _in.Source.Pull.Chat.NormalChatEvent(e);
         }
 
         #endregion

@@ -5,10 +5,10 @@
 // <summary></summary>
 // ***********************************************************************
 
+using Skylight.Blocks;
+
 namespace Skylight
 {
-    using Skylight.Blocks;
-
     /// <summary>
     ///     Class PianoBlock.
     /// </summary>
@@ -175,7 +175,7 @@ namespace Skylight
             int y,
             int key) : base(BlockIds.Action.Music.Piano, x, y, 0)
         {
-            this.PianoId = key;
+            PianoId = key;
         }
 
         /// <summary>

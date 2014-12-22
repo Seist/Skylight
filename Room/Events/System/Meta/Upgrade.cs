@@ -17,7 +17,7 @@ namespace Skylight
         #region Fields
 
         /// <summary>
-        /// The _in.
+        ///     The _in.
         /// </summary>
         private readonly In _in;
 
@@ -26,14 +26,14 @@ namespace Skylight
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Upgrade"/> class.
+        ///     Initializes a new instance of the <see cref="Upgrade" /> class.
         /// </summary>
         /// <param name="in">
-        /// The in.
+        ///     The in.
         /// </param>
         public Upgrade(In @in)
         {
-            this._in = @in;
+            _in = @in;
         }
 
         #endregion
@@ -59,9 +59,9 @@ namespace Skylight
             // Nothing to extract from message.
             // Nothing to update.
             // Fire the event.
-            var e = new RoomEventArgs(this._in.Source);
+            var e = new RoomEventArgs(_in.Source);
 
-            this.UpdateEvent(e);
+            UpdateEvent(e);
         }
 
         #endregion

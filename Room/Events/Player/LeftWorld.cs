@@ -7,10 +7,10 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using PlayerIOClient;
+
 namespace Skylight
 {
-    using PlayerIOClient;
-
     /// <summary>
     ///     Class Left World.
     /// </summary>
@@ -28,14 +28,14 @@ namespace Skylight
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="LeftWorld"/> class.
+        ///     Initializes a new instance of the <see cref="LeftWorld" /> class.
         /// </summary>
         /// <param name="in">
-        /// The in.
+        ///     The in.
         /// </param>
         public LeftWorld(In @in)
         {
-            this._in = @in;
+            _in = @in;
         }
 
         #endregion
@@ -55,33 +55,33 @@ namespace Skylight
         #region Public Methods and Operators
 
         /// <summary>
-        /// Called when a player left the world.
+        ///     Called when a player left the world.
         /// </summary>
         /// <param name="m">
-        /// The m.
+        ///     The m.
         /// </param>
         public void OnLeft(Message m)
         {
             // Extract data.
-            int id = m.GetInteger(0);
+            var id = m.GetInteger(0);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayer(id, this._in.Source);
-            for (int i = 0; i < this._in.Source.OnlinePlayers.Count; i++)
+            var subject = Tools.GetPlayer(id, _in.Source);
+            for (var i = 0; i < _in.Source.OnlinePlayers.Count; i++)
             {
-                if (this._in.Source.OnlinePlayers[i] != subject)
+                if (_in.Source.OnlinePlayers[i] != subject)
                 {
                     continue;
                 }
 
-                this._in.Source.OnlinePlayers.RemoveAt(i);
+                _in.Source.OnlinePlayers.RemoveAt(i);
                 break;
             }
 
             // Fire the event.
-            var e = new PlayerEventArgs(subject, this._in.Source, m);
+            var e = new PlayerEventArgs(subject, _in.Source, m);
 
-            this._in.Source.Pull.LeftWorld.LeaveEvent(e);
+            _in.Source.Pull.LeftWorld.LeaveEvent(e);
         }
 
         #endregion

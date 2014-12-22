@@ -1,19 +1,10 @@
-﻿namespace Skylight
-{
-    using System;
+﻿using System;
 
+namespace Skylight
+{
     public class Config : object
     {
         public static string playerio_game_id = "everybody-edits-su9rn58o40itdbnw69plyw";
-        public static int server_type_version = 176;
-        public static string server_type_normalroom = "Everybodyedits" + server_type_version;
-        public static string server_type_betaroom = "Beta" + server_type_version;
-        public static string server_type_guestserviceroom = "LobbyGuest" + server_type_version;
-        public static string server_type_serviceroom = "Lobby" + server_type_version;
-        public static string server_type_authroom = "Auth" + server_type_version;
-        public static string server_type_blacklistroom = "QuickInviteHandler" + server_type_version;
-        public static string server_type_tutorialroom = "Tutorial" + server_type_version + "_world_";
-        public static string server_type_trackingroom = "Tracking" + server_type_version;
         public static string url_blog = "http://blog.everybodyedits.com";
         public static string url_clubmember_about_page = "http://everybodyedits.com/club";
         public static string url_terms_page = "http://everybodyedits.com/terms";
@@ -37,12 +28,7 @@
         public static string debug_friendrequest = "";
         public static bool show_blacklist_invitation = false;
         public static string debug_invitation = "";
-        public static int physics_ms_per_tick = 10;
         public static double physics_variable_multiplyer = 7.752;
-        public static double physics_base_drag = Math.Pow(0.9981, physics_ms_per_tick) * 1.00016;
-        public static double physics_no_modifier_drag = Math.Pow(0.99, physics_ms_per_tick) * 1.00016;
-        public static double physics_water_drag = Math.Pow(0.995, physics_ms_per_tick) * 1.00016;
-        public static double physics_mud_drag = Math.Pow(0.975, physics_ms_per_tick) * 1.00016;
         public static double physics_jump_height = 26;
         public static double physics_gravity = 2;
         public static double physics_boost = 16;
@@ -66,13 +52,26 @@
         public static uint friend_color_dark = 47872;
         public static uint mod_color = 16759552;
         public static uint admin_color = 16757760;
-        public static string[] tutorial_names = { "Moving", "Gravity", "Edit" };
+        public static string[] tutorial_names = {"Moving", "Gravity", "Edit"};
         public static bool disable_tracking = false;
 
         public Config()
         {
-            return;
-        }// end function
+        }
 
+        public static int server_type_version = 176;
+        public static string server_type_normalroom = "Everybodyedits" + server_type_version;
+        public static string server_type_betaroom = "Beta" + server_type_version;
+        public static string server_type_guestserviceroom = "LobbyGuest" + server_type_version;
+        public static string server_type_serviceroom = "Lobby" + server_type_version;
+        public static string server_type_authroom = "Auth" + server_type_version;
+        public static string server_type_blacklistroom = "QuickInviteHandler" + server_type_version;
+        public static string server_type_tutorialroom = "Tutorial" + server_type_version + "_world_";
+        public static string server_type_trackingroom = "Tracking" + server_type_version;
+        public static int physics_ms_per_tick = 10;
+        public static double physics_base_drag = Math.Pow(0.9981, physics_ms_per_tick)*1.00016;
+        public static double physics_no_modifier_drag = Math.Pow(0.99, physics_ms_per_tick)*1.00016;
+        public static double physics_water_drag = Math.Pow(0.995, physics_ms_per_tick)*1.00016;
+        public static double physics_mud_drag = Math.Pow(0.975, physics_ms_per_tick)*1.00016;
     }
 }

@@ -5,36 +5,36 @@
 // <summary></summary>
 // ***********************************************************************
 
+using PlayerIOClient;
+
 namespace Skylight
 {
-    using PlayerIOClient;
-
     /// <summary>
-    /// Class CoinObject.
+    ///     Class CoinObject.
     /// </summary>
     public class CoinObject
     {
         /// <summary>
-        /// The _in
+        ///     The _in
         /// </summary>
         private readonly In _in;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CoinObject"/> class.
+        ///     Initializes a new instance of the <see cref="CoinObject" /> class.
         /// </summary>
         /// <param name="in">The in.</param>
         public CoinObject(In @in)
         {
-            this._in = @in;
+            _in = @in;
         }
 
         /// <summary>
-        /// Occurs when [coin block event].
+        ///     Occurs when [coin block event].
         /// </summary>
         public event In.BlockEvent CoinBlockEvent = delegate { };
 
         /// <summary>
-        /// Called when [add coin door or gate].
+        ///     Called when [add coin door or gate].
         /// </summary>
         /// <param name="m">The m.</param>
         public void OnAddCoinDoorOrGate(Message m)
@@ -46,14 +46,14 @@ namespace Skylight
                 coinsRequired = m.GetInteger(3);
 
             // Update relevant objects.
-            var b = new CoinBlock(x, y, coinsRequired, false) { IsGate = id == BlockIds.Action.Gates.Coin };
+            var b = new CoinBlock(x, y, coinsRequired, false) {IsGate = id == BlockIds.Action.Gates.Coin};
 
-            this._in.Source.Map[x, y, 0] = b;
+            _in.Source.Map[x, y, 0] = b;
 
             // Fire the event.
-            var e = new BlockEventArgs(b, m, this._in.Source);
+            var e = new BlockEventArgs(b, m, _in.Source);
 
-            this._in.Source.Pull.CoinObject.CoinBlockEvent(e);
+            _in.Source.Pull.CoinObject.CoinBlockEvent(e);
         }
     }
 }

@@ -8,12 +8,11 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
+using PlayerIOClient;
+
 namespace Skylight
 {
-    using System;
-
-    using PlayerIOClient;
-
     /// <summary>
     ///     This class sets the properties about a player such as who the player is (username), their most
     ///     recent message and where they are (the room that they are in).
@@ -21,23 +20,23 @@ namespace Skylight
     public class PlayerEventArgs : EventArgs
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PlayerEventArgs"/> class. 
+        ///     Initializes a new instance of the <see cref="PlayerEventArgs" /> class.
         ///     The main constructor method.
         /// </summary>
         /// <param name="subject">
-        /// The player
+        ///     The player
         /// </param>
         /// <param name="origin">
-        /// The room where the player is originating in.
+        ///     The room where the player is originating in.
         /// </param>
         /// <param name="rawMessage">
-        /// The raw, unparsed message from the server (concerning player).
+        ///     The raw, unparsed message from the server (concerning player).
         /// </param>
         internal PlayerEventArgs(Player subject, Room origin, Message rawMessage)
         {
-            this.Subject = subject;
-            this.Origin = origin;
-            this.RawMessage = rawMessage;
+            Subject = subject;
+            Origin = origin;
+            RawMessage = rawMessage;
         }
 
         /// <summary>
