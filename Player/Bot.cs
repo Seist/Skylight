@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using PlayerIOClient;
+using Rabbit.EE;
 using Skylight.Blocks;
 
 namespace Skylight
@@ -151,13 +152,13 @@ namespace Skylight
         {
             try
             {
-                Connection = new Rabbit.Rabbit().LogIn(_emailOrToken, R.Id, _passwordOrToken, createRoom);
+                Connection connection = new EERabbitAuth.LogOn(_emailOrToken, R.Id, _passwordOrToken); // missing createRoom param
 
                 // Update room data
                 Room.JoinedRooms.Add(R);
 
                 // Everyone gets a connection.
-                R.Connections.Add(Connection);
+                R.Connections.Add(connection);
 
                 // The following 20 lines deal with filtering messages from the client.
                 // Every bot receives info from the room, because some of it is exclusive to the bot.
@@ -182,8 +183,8 @@ namespace Skylight
                 }
 
                 // Once everything is internal settled, send the init.
-                Connection.Send("init");
-                Connection.Send("init2");
+                connection.Send("init");
+                connection.Send("init2");
 
                 R.OnlinePlayers.Add(this);
 
