@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using PlayerIOClient;
 using Skylight.Blocks;
@@ -229,7 +230,7 @@ namespace Skylight
             {
                 _storedVersion = m.Message;
                 string[] eevers;
-                eeVers = version.Split(' ');
+                eevers = _storedVersion.Split(' ');
                 foreach (string s in eevers)
                 {
                     if (s.StartsWith("Everybodyedits"))
