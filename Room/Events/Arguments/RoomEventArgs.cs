@@ -7,11 +7,11 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
+using PlayerIOClient;
+
 namespace Skylight
 {
-    using System;
-    using PlayerIOClient;
-
     /// <summary>
     ///     Class RoomEventArgs.
     /// </summary>
@@ -38,7 +38,7 @@ namespace Skylight
         /// <value>The changed room.</value>
         public Room ChangedRoom
         {
-            get { return this.changedRoom; }
+            get { return changedRoom; }
         }
 
         /// <summary>

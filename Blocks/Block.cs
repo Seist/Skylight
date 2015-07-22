@@ -45,11 +45,11 @@ namespace Skylight.Blocks
             int z = 0,
             int direction = Up)
         {
-            this.X = x;
-            this.Y = y;
-            this.Z = z;
-            this.Id = id;
-            this.Direction = direction;
+            X = x;
+            Y = y;
+            Z = z;
+            Id = id;
+            Direction = direction;
         }
 
         /// <summary>
@@ -85,19 +85,19 @@ namespace Skylight.Blocks
             // Since ID:0 can exist on both layers, it needs to be handled differently.
             get
             {
-                if (this.Id == 0)
+                if (Id == 0)
                 {
-                    return this.z;
+                    return z;
                 }
 
-                return this.Id >= 500 ? 1 : 0;
+                return Id >= 500 ? 1 : 0;
             }
 
             private set
             {
                 if (value == 0 || value == 1)
                 {
-                    this.z = value;
+                    z = value;
                 }
             }
         }

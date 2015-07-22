@@ -6,6 +6,7 @@
 //   Class PotionIds.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace Skylight
 {
     /// <summary>
@@ -13,40 +14,6 @@ namespace Skylight
     /// </summary>
     public static class PotionIds
     {
-        #region Static Fields
-
-        /// <summary>
-        ///     The curses
-        /// </summary>
-        public static readonly int Curse = 6;
-
-        /// <summary>
-        ///     The curses
-        /// </summary>
-        public static readonly int Flauntlevel = 12;
-
-        /// <summary>
-        ///     The curses
-        /// </summary>
-        public static readonly int Invulnerable = 8;
-
-        /// <summary>
-        ///     The curses
-        /// </summary>
-        public static readonly int Respawn = 10;
-
-        /// <summary>
-        ///     The curses
-        /// </summary>
-        public static readonly int Solitude = 13;
-
-        /// <summary>
-        ///     The curses
-        /// </summary>
-        public static readonly int Zombie = 9;
-
-        #endregion
-
         /// <summary>
         ///     Class Auras.
         /// </summary>
@@ -101,5 +68,39 @@ namespace Skylight
 
             #endregion
         }
+
+        #region Static Fields
+
+        /// <summary>
+        ///     The curses
+        /// </summary>
+        public static readonly int Curse = 6;
+
+        /// <summary>
+        ///     The curses
+        /// </summary>
+        public static readonly int Flauntlevel = 12;
+
+        /// <summary>
+        ///     The curses
+        /// </summary>
+        public static readonly int Invulnerable = 8;
+
+        /// <summary>
+        ///     The curses
+        /// </summary>
+        public static readonly int Respawn = 10;
+
+        /// <summary>
+        ///     The curses
+        /// </summary>
+        public static readonly int Solitude = 13;
+
+        /// <summary>
+        ///     The curses
+        /// </summary>
+        public static readonly int Zombie = 9;
+
+        #endregion
     }
 }

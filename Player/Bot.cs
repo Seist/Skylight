@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using PlayerIOClient;
+using Rabbit.EE;
 using Skylight.Blocks;
-using Rabbit;
-using Rabbit.Auth;
 
 namespace Skylight
 {
@@ -14,8 +14,6 @@ namespace Skylight
     /// </summary>
     public class Bot : Player
     {
-        private In _in;
-
         /// <summary>
         ///     All of the possible account types. Defaults to Regular if unknown.
         /// </summary>
@@ -45,6 +43,7 @@ namespace Skylight
         }
 
         private static string _storedVersion;
+        private In _in;
         private readonly AccountType _accType;
 
         private readonly string
@@ -64,7 +63,8 @@ namespace Skylight
         public Bot(Room r,
             string emailOrToken,
             string passwordOrToken,
-            AccountType accType = AccountType.Regular) : base(r, 0, string.Empty, 0, 0, 0, false, false, false, 0, false, false, 0)
+            AccountType accType = AccountType.Regular)
+            : base(r, 0, string.Empty, 0, 0, 0, false, false, false, 0, false, false, 0)
         {
             _emailOrToken = emailOrToken;
             _passwordOrToken = passwordOrToken;
@@ -92,10 +92,7 @@ namespace Skylight
         /// </summary>
         public bool ShouldTickAll
         {
-            get
-        {
-            return true;
-        }
+            get { return true; }
             set
             {
                 // do nothing.
@@ -141,7 +138,6 @@ namespace Skylight
         /// <summary>
         ///     The main method to login the bot with the credentials already specified.
         /// </summary>
-
         public void LogIn()
         {
             Tools.SkylightMessage("Please use Join() instead. LogIn() is depricated.");
@@ -154,20 +150,21 @@ namespace Skylight
         /// <param name="createRoom"></param>
         public void Join(bool createRoom = true)
         {
-            try {
-                Connection = new Rabbit.Rabbit().LogIn(_emailOrToken, R.Id, _passwordOrToken, createRoom);
+            try
+            {
+                Connection connection = new EERabbitAuth.LogOn(_emailOrToken, R.Id, _passwordOrToken); // missing createRoom param
 
                 // Update room data
                 Room.JoinedRooms.Add(R);
 
                 // Everyone gets a connection.
-                R.Connections.Add(Connection);
+                R.Connections.Add(connection);
 
                 // The following 20 lines deal with filtering messages from the client.
                 // Every bot receives info from the room, because some of it is exclusive to the bot.
                 // We call those "personal" pulls.
                 // They are exactly the same as the main pull, except In.IsPersonal = true.
-                _in = new In { IsPersonal = true, Source = R, Bot = this };
+                _in = new In {IsPersonal = true, Source = R, Bot = this};
                 Connection.OnMessage += _in.OnMessage;
                 R.Pulls.Add(_in);
 
@@ -186,8 +183,8 @@ namespace Skylight
                 }
 
                 // Once everything is internal settled, send the init.
-                Connection.Send("init");
-                Connection.Send("init2");
+                connection.Send("init");
+                connection.Send("init2");
 
                 R.OnlinePlayers.Add(this);
 
@@ -217,24 +214,26 @@ namespace Skylight
 
         private void Refresh()
         {
-            List<int> verslist = new List<int>();
+            var verslist = new List<int>();
             try
             {
                 Client versClient;
                 Connection versCon;
-                versClient = PlayerIO.QuickConnect.SimpleConnect("everybody-edits-su9rn58o40itdbnw69plyw", "guest", "guest");
-                versCon = versClient.Multiplayer.CreateJoinRoom("PWROOM", "0", true, new Dictionary<string, string>(), new Dictionary<string, string>());
+                versClient = PlayerIO.QuickConnect.SimpleConnect("everybody-edits-su9rn58o40itdbnw69plyw", "guest",
+                    "guest");
+                versCon = versClient.Multiplayer.CreateJoinRoom("PWROOM", "0", true, new Dictionary<string, string>(),
+                    new Dictionary<string, string>());
             }
             catch (PlayerIOError m)
             {
                 _storedVersion = m.Message;
                 string[] eevers;
-                eeVers = version.Split(' ');
-                foreach (string s in eevers)
+                eevers = _storedVersion.Split(' ');
+                foreach (var s in eevers)
                 {
                     if (s.StartsWith("Everybodyedits"))
                     {
-                        int num = int.Parse(s.Replace("Everybodyedits", "").Replace(",", ""));
+                        var num = int.Parse(s.Replace("Everybodyedits", "").Replace(",", ""));
                         verslist.Add(num);
                     }
                 }
@@ -317,7 +316,7 @@ namespace Skylight
             }
             catch (Exception e)
             {
-                Tools.SkylightMessage("Error in Bot.Build: " + e.ToString());
+                Tools.SkylightMessage("Error in Bot.Build: " + e);
             }
         }
 
@@ -330,7 +329,7 @@ namespace Skylight
             var tempList = new List<Block>();
             tempList.AddRange(blockList);
 
-            foreach (Block b in tempList)
+            foreach (var b in tempList)
             {
                 if (R.Map[b.X, b.Y, b.Z] == b)
                 {
@@ -634,12 +633,13 @@ namespace Skylight
             CutIfTooLong
         }
 
-        public static IEnumerable<string> SplitOnLength(string input, int length, WordPolicy wordPolicy = WordPolicy.CutIfTooLong)
+        public static IEnumerable<string> SplitOnLength(string input, int length,
+            WordPolicy wordPolicy = WordPolicy.CutIfTooLong)
         {
-            int index = 0;
+            var index = 0;
             while (index < input.Length)
             {
-                int stepsBackward = 0;
+                var stepsBackward = 0;
 
                 if (index + length < input.Length)
                 {
@@ -661,15 +661,16 @@ namespace Skylight
             }
         }
 
-        static string GetBiggestAllowableSubstring(string input, int index, int length, WordPolicy wordPolicy, out int stepsBackward)
+        private static string GetBiggestAllowableSubstring(string input, int index, int length, WordPolicy wordPolicy,
+            out int stepsBackward)
         {
             stepsBackward = 0;
 
-            int lastIndex = index + length - 1;
+            var lastIndex = index + length - 1;
 
             if (!char.IsWhiteSpace(input[lastIndex + 1]))
             {
-                int adjustedLastIndex = input.LastIndexOf(' ', lastIndex, length);
+                var adjustedLastIndex = input.LastIndexOf(' ', lastIndex, length);
                 stepsBackward = lastIndex - adjustedLastIndex;
                 lastIndex = adjustedLastIndex;
             }
@@ -678,13 +679,11 @@ namespace Skylight
             {
                 if (wordPolicy == WordPolicy.ThrowIfTooLong)
                 {
-                    throw new ArgumentOutOfRangeException("The input string contains at least one word greater in length than the specified length.");
+                    throw new ArgumentOutOfRangeException(
+                        "The input string contains at least one word greater in length than the specified length.");
                 }
-                else
-                {
-                    stepsBackward = 0;
-                    lastIndex = index + length - 1;
-                }
+                stepsBackward = 0;
+                lastIndex = index + length - 1;
             }
 
             return input.Substring(index, lastIndex - index + 1);
@@ -922,7 +921,7 @@ namespace Skylight
         public void TeleportAll(int newXLocation, int newYLocation)
         {
             if (!IsOwner) return;
-            foreach (Player p in R.OnlinePlayers)
+            foreach (var p in R.OnlinePlayers)
             {
                 Teleport(newXLocation, newYLocation, p);
             }

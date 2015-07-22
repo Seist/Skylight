@@ -1,8 +1,8 @@
-﻿namespace Skylight
-{
-    using System;
-    using PlayerIOClient;
+﻿using System;
+using PlayerIOClient;
 
+namespace Skylight
+{
     /// <summary>
     ///     The class that handles all chat-based messages from the server
     ///     including ones sent to the user through system.
@@ -10,38 +10,38 @@
     public class ChatEventArgs : EventArgs
     {
         /// <summary>
-        ///     The player who sent the message.
-        /// </summary>
-        public readonly Player speaker;
-
-        /// <summary>
         ///     The message sent by player.
         /// </summary>
         public readonly string message;
 
         /// <summary>
         ///     The origin (room) where the message came from.
-        /// <summary>
+        ///     <summary>
         public readonly Room origin;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ChatEventArgs"/> class. 
+        ///     The player who sent the message.
+        /// </summary>
+        public readonly Player speaker;
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="ChatEventArgs" /> class.
         ///     The main method where the chat messages are sent. This method sets the properties in
         ///     this class to the speaker and origin of the message, where it is handed off to a delegate
         ///     later.
         /// </summary>
         /// <param name="speaker">
-        /// The player who said the message.
+        ///     The player who said the message.
         /// </param>
         /// <param name="origin">
-        /// The room where the message originated.
+        ///     The room where the message originated.
         /// </param>
         internal ChatEventArgs(Player speaker, Message m, Room origin, string message)
         {
             this.origin = origin;
-            if (this.Origin != null)
+            if (Origin != null)
             {
-                this.Origin.ChatLog = origin.ChatLog;
+                Origin.ChatLog = origin.ChatLog;
             }
 
             this.speaker = speaker;
@@ -55,16 +55,16 @@
         /// <value>The player who sent the message.</value>
         public Player Speaker
         {
-            get { return this.speaker; }
+            get { return speaker; }
         }
 
         /// <summary>
         ///     Gets the message sent by player
-        /// <summary>
-        /// <value>The message sent by player.</value>
+        ///     <summary>
+        ///         <value>The message sent by player.</value>
         public string ChatMessage
         {
-            get { return this.message; }
+            get { return message; }
         }
 
         /// <summary>
@@ -78,7 +78,7 @@
         /// <value>The origin (room) where the message came from.</value>
         public Room Origin
         {
-            get { return this.origin; }
+            get { return origin; }
         }
     }
 }

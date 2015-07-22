@@ -7,12 +7,11 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
+using PlayerIOClient;
+
 namespace Skylight
 {
-    using System;
-
-    using PlayerIOClient;
-
     /// <summary>
     ///     Class On Coin Get.
     /// </summary>
@@ -30,14 +29,14 @@ namespace Skylight
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="OnCoinGet"/> class.
+        ///     Initializes a new instance of the <see cref="OnCoinGet" /> class.
         /// </summary>
         /// <param name="in">
-        /// The in.
+        ///     The in.
         /// </param>
         public OnCoinGet(In @in)
         {
-            this._in = @in;
+            _in = @in;
         }
 
         #endregion
@@ -57,11 +56,11 @@ namespace Skylight
         #region Public Methods and Operators
 
         /// <summary>
-        /// Called when a player receives a coin (by touching it) or loosing
+        ///     Called when a player receives a coin (by touching it) or loosing
         ///     coins because they were removed from the level.
         /// </summary>
         /// <param name="m">
-        /// The message.
+        ///     The message.
         /// </param>
         public void OnCoin(Message m)
         {
@@ -71,14 +70,14 @@ namespace Skylight
                 int id = m.GetInteger(0), totalCoins = m.GetInteger(1);
 
                 // Update relevant objects.
-                Player subject = Tools.GetPlayer(id, this._in.Source);
+                var subject = Tools.GetPlayer(id, _in.Source);
 
                 subject.Coins = totalCoins;
 
                 // Fire the event.
-                var e = new PlayerEventArgs(subject, this._in.Source, m);
+                var e = new PlayerEventArgs(subject, _in.Source, m);
 
-                this._in.Source.Pull.OnCoinGet.CoinCollectedEvent(e);
+                _in.Source.Pull.OnCoinGet.CoinCollectedEvent(e);
             }
             catch (Exception ex)
             {

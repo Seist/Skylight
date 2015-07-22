@@ -8,41 +8,39 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 
+using PlayerIOClient;
+using Skylight.Blocks;
 
 namespace Skylight
 {
-    using PlayerIOClient;
-
-    using Skylight.Blocks;
-
     /// <summary>
-    /// Class Note Block.
+    ///     Class Note Block.
     /// </summary>
     public class NoteBlock
     {
         /// <summary>
-        /// The _in
+        ///     The _in
         /// </summary>
         private readonly In _in;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NoteBlock"/> class.
+        ///     Initializes a new instance of the <see cref="NoteBlock" /> class.
         /// </summary>
         /// <param name="in">The in.</param>
         public NoteBlock(In @in)
         {
-            this._in = @in;
+            _in = @in;
         }
 
         /// <summary>
-        /// All of the delegates for BlockEvent. These fire when events occur
-        /// (such as when a block was added or updated).
+        ///     All of the delegates for BlockEvent. These fire when events occur
+        ///     (such as when a block was added or updated).
         /// </summary>
         public event In.BlockEvent
             SoundBlockEvent = delegate { };
 
         /// <summary>
-        /// Called when a note block is added.
+        ///     Called when a note block is added.
         /// </summary>
         /// <param name="m">The message.</param>
         public void OnAddNoteblock(Message m)
@@ -69,12 +67,12 @@ namespace Skylight
                     return;
             }
 
-            this._in.Source.Map[x, y, 0] = b;
+            _in.Source.Map[x, y, 0] = b;
 
             // Fire the event.
-            var e = new BlockEventArgs(b, m, this._in.Source);
+            var e = new BlockEventArgs(b, m, _in.Source);
 
-            this._in.Source.Pull.NoteBlock.SoundBlockEvent(e);
+            _in.Source.Pull.NoteBlock.SoundBlockEvent(e);
         }
     }
 }

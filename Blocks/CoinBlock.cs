@@ -7,10 +7,10 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using Skylight.Blocks;
+
 namespace Skylight
 {
-    using Skylight.Blocks;
-
     /// <summary>
     ///     Class CoinBlock.
     /// </summary>
@@ -29,8 +29,8 @@ namespace Skylight
             int coinsRequired,
             bool isGate) : base(Tools.CoinIdByGate(isGate), x, y, 0)
         {
-            this.CoinsRequired = coinsRequired;
-            this.IsGate = isGate;
+            CoinsRequired = coinsRequired;
+            IsGate = isGate;
         }
 
         /// <summary>

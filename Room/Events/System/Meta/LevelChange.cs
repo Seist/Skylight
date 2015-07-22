@@ -7,10 +7,10 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using PlayerIOClient;
+
 namespace Skylight
 {
-    using PlayerIOClient;
-
     /// <summary>
     ///     Class Level Change.
     /// </summary>
@@ -28,14 +28,14 @@ namespace Skylight
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="LevelChange"/> class.
+        ///     Initializes a new instance of the <see cref="LevelChange" /> class.
         /// </summary>
         /// <param name="in">
-        /// The in.
+        ///     The in.
         /// </param>
         public LevelChange(In @in)
         {
-            this._in = @in;
+            _in = @in;
         }
 
         #endregion
@@ -55,10 +55,10 @@ namespace Skylight
         #region Public Methods and Operators
 
         /// <summary>
-        /// Called when a player levels up.
+        ///     Called when a player levels up.
         /// </summary>
         /// <param name="m">
-        /// The message.
+        ///     The message.
         /// </param>
         public void OnLevelUp(Message m)
         {
@@ -66,13 +66,13 @@ namespace Skylight
             int id = m.GetInteger(0), level = m.GetInteger(1);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayer(id, this._in.Source);
+            var subject = Tools.GetPlayer(id, _in.Source);
             subject.Level = level;
 
             // Fire the event.
-            var e = new PlayerEventArgs(subject, this._in.Source, m);
+            var e = new PlayerEventArgs(subject, _in.Source, m);
 
-            this._in.Source.Pull.LevelChange.LevelUpEvent(e);
+            _in.Source.Pull.LevelChange.LevelUpEvent(e);
         }
 
         #endregion

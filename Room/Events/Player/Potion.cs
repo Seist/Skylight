@@ -7,10 +7,10 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using PlayerIOClient;
+
 namespace Skylight
 {
-    using PlayerIOClient;
-
     /// <summary>
     ///     Class Potion.
     /// </summary>
@@ -28,14 +28,14 @@ namespace Skylight
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Potion"/> class.
+        ///     Initializes a new instance of the <see cref="Potion" /> class.
         /// </summary>
         /// <param name="in">
-        /// The in.
+        ///     The in.
         /// </param>
         public Potion(In @in)
         {
-            this._in = @in;
+            _in = @in;
         }
 
         #endregion
@@ -55,20 +55,20 @@ namespace Skylight
         #region Public Methods and Operators
 
         /// <summary>
-        /// Called when a potion is activated.
+        ///     Called when a potion is activated.
         /// </summary>
         /// <param name="m">
-        /// The message.
+        ///     The message.
         /// </param>
         public void OnP(Message m)
         {
             // Extract data.
             int id = m.GetInteger(0), potionId = m.GetInteger(1);
 
-            bool isActive = m.GetBoolean(2);
+            var isActive = m.GetBoolean(2);
 
             // Update relevant objects
-            Player subject = Tools.GetPlayer(id, this._in.Source);
+            var subject = Tools.GetPlayer(id, _in.Source);
 
             if (isActive)
             {
@@ -80,9 +80,9 @@ namespace Skylight
             }
 
             // Fire the event.
-            var e = new PlayerEventArgs(subject, this._in.Source, m);
+            var e = new PlayerEventArgs(subject, _in.Source, m);
 
-            this._in.Source.Pull.Potion.PotionEvent(e);
+            _in.Source.Pull.Potion.PotionEvent(e);
         }
 
         #endregion

@@ -7,10 +7,10 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using PlayerIOClient;
+
 namespace Skylight
 {
-    using PlayerIOClient;
-
     /// <summary>
     ///     Class Move.
     /// </summary>
@@ -28,64 +28,44 @@ namespace Skylight
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Move"/> class.
+        ///     Initializes a new instance of the <see cref="Move" /> class.
         /// </summary>
         /// <param name="in">
-        /// The in.
+        ///     The in.
         /// </param>
         public Move(In @in)
         {
-            this._in = @in;
+            _in = @in;
         }
-
-        #endregion
-
-        #region Public Events
-
-        /// <summary>
-        ///     All events that concern the player. This includes many messages that the player
-        ///     gets from the world (such as server information and leveling up). Mostly these
-        ///     events are shown from the server directly to the user in the form of a dialog
-        ///     box or by prefixing a chat message with *SYSTEM.
-        /// </summary>
-        public event In.PlayerEvent JumpEvent = delegate { };
-
-        /// <summary>
-        ///     All events that concern the player. This includes many messages that the player
-        ///     gets from the world (such as server information and leveling up). Mostly these
-        ///     events are shown from the server directly to the user in the form of a dialog
-        ///     box or by prefixing a chat message with *SYSTEM.
-        /// </summary>
-        public event In.PlayerEvent MovementEvent = delegate { };
 
         #endregion
 
         #region Public Methods and Operators
 
         /// <summary>
-        /// Called when a player moves.
+        ///     Called when a player moves.
         /// </summary>
         /// <param name="m">
-        /// The message.
+        ///     The message.
         /// </param>
         public void OnMove(Message m)
         {
             // Extract data.
-            double xLocation = m.GetDouble(1), 
-                   yLocation = m.GetDouble(2), 
-                   horizontalSpeed = m.GetDouble(3), 
-                   verticalSpeed = m.GetDouble(4);
+            double xLocation = m.GetDouble(1),
+                yLocation = m.GetDouble(2),
+                horizontalSpeed = m.GetDouble(3),
+                verticalSpeed = m.GetDouble(4);
 
-            int id = m.GetInteger(0), 
-                horizontalModifier = m.GetInteger(5), 
-                verticalModifier = m.GetInteger(6), 
-                horizontalDirection = m.GetInteger(7), 
+            int id = m.GetInteger(0),
+                horizontalModifier = m.GetInteger(5),
+                verticalModifier = m.GetInteger(6),
+                horizontalDirection = m.GetInteger(7),
                 verticalDirection = m.GetInteger(8);
 
             bool hasGravityModifier = m.GetBoolean(10), spaceDown = m.GetBoolean(11);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayer(id, this._in.Source);
+            var subject = Tools.GetPlayer(id, _in.Source);
 
             subject.IsHoldingSpace = false;
             if (spaceDown)
@@ -96,9 +76,9 @@ namespace Skylight
                 if (subject.Vertical == verticalDirection && subject.Horizontal == horizontalDirection)
                 {
                     // Fire the jump event.
-                    var jumpEventArgs = new PlayerEventArgs(subject, this._in.Source, m);
+                    var jumpEventArgs = new PlayerEventArgs(subject, _in.Source, m);
 
-                    this._in.Source.Pull.Move.JumpEvent(jumpEventArgs);
+                    _in.Source.Pull.Move.JumpEvent(jumpEventArgs);
                 }
             }
 
@@ -125,10 +105,30 @@ namespace Skylight
             subject.IsHoldingRight = horizontalDirection == 1;
 
             // Fire the event.
-            var movementEventArgs = new PlayerEventArgs(subject, this._in.Source, m);
+            var movementEventArgs = new PlayerEventArgs(subject, _in.Source, m);
 
-            this._in.Source.Pull.Move.MovementEvent(movementEventArgs);
+            _in.Source.Pull.Move.MovementEvent(movementEventArgs);
         }
+
+        #endregion
+
+        #region Public Events
+
+        /// <summary>
+        ///     All events that concern the player. This includes many messages that the player
+        ///     gets from the world (such as server information and leveling up). Mostly these
+        ///     events are shown from the server directly to the user in the form of a dialog
+        ///     box or by prefixing a chat message with *SYSTEM.
+        /// </summary>
+        public event In.PlayerEvent JumpEvent = delegate { };
+
+        /// <summary>
+        ///     All events that concern the player. This includes many messages that the player
+        ///     gets from the world (such as server information and leveling up). Mostly these
+        ///     events are shown from the server directly to the user in the form of a dialog
+        ///     box or by prefixing a chat message with *SYSTEM.
+        /// </summary>
+        public event In.PlayerEvent MovementEvent = delegate { };
 
         #endregion
     }

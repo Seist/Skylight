@@ -7,10 +7,10 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using PlayerIOClient;
+
 namespace Skylight
 {
-    using PlayerIOClient;
-
     /// <summary>
     ///     Class Give Wizard 2.
     /// </summary>
@@ -28,14 +28,14 @@ namespace Skylight
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GiveWizard2"/> class.
+        ///     Initializes a new instance of the <see cref="GiveWizard2" /> class.
         /// </summary>
         /// <param name="in">
-        /// The in.
+        ///     The in.
         /// </param>
         public GiveWizard2(In @in)
         {
-            this._in = @in;
+            _in = @in;
         }
 
         #endregion
@@ -55,23 +55,23 @@ namespace Skylight
         #region Public Methods and Operators
 
         /// <summary>
-        /// Called when the server gives a different wizard smiley to a player.
+        ///     Called when the server gives a different wizard smiley to a player.
         /// </summary>
         /// <param name="m">
-        /// The message.
+        ///     The message.
         /// </param>
         public void OnGiveWizard2(Message m)
         {
             // Extract data
-            int id = m.GetInteger(0);
+            var id = m.GetInteger(0);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayer(id, this._in.Source);
+            var subject = Tools.GetPlayer(id, _in.Source);
 
             // Fire the event.
-            var e = new PlayerEventArgs(subject, this._in.Source, m);
+            var e = new PlayerEventArgs(subject, _in.Source, m);
 
-            this._in.Source.Pull.GiveWizard2.RedWizardEvent(e);
+            _in.Source.Pull.GiveWizard2.RedWizardEvent(e);
         }
 
         #endregion

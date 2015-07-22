@@ -7,22 +7,86 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading;
+using PlayerIOClient;
+
 namespace Skylight
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Threading;
-
-    using PlayerIOClient;
-
-    using Skylight.Blocks;
-
     /// <summary>
     ///     The main class that takes in events from the playerio client.
     /// </summary>
     public sealed class In
     {
+        #region Constructors and Destructors
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="In" /> class.
+        /// </summary>
+        public In()
+        {
+            Add = new Add(this);
+            Potions = new Potions(this);
+            Autotext = new Autotext(this);
+            BlockChanged = new BlockChanged(this);
+            CoinObject = new CoinObject(this);
+            AddSpecialBlock = new AddSpecialBlock(this);
+            NoteBlock = new NoteBlock(this);
+            OnCoinGet = new OnCoinGet(this);
+            ClearMap = new ClearMap(this);
+            FaceChange = new FaceChange(this);
+            Grinch = new Grinch(this);
+            Witch = new Witch(this);
+            Wizard = new Wizard(this);
+            GiveWizard2 = new GiveWizard2(this);
+            GodMode = new GodMode(this);
+            Hide = new Hide(this);
+            Crown = new Crown(this);
+            OnKill1 = new OnKill(this);
+            Trophy = new Trophy(this);
+            SignBlock = new SignBlock(this);
+            LeftWorld = new LeftWorld(this);
+            LevelChange = new LevelChange(this);
+            Move = new Move(this);
+            Moderator = new Moderator(this);
+            Potion = new Potion(this);
+            RefreshShop = new RefreshShop(this);
+            ResetWorld = new ResetWorld(this);
+            Chat = new Chat(this);
+            ChatOld = new ChatOld(this);
+            Save = new Save(this);
+            Show = new Show(this);
+            Tele = new Tele(this);
+            Teleport = new Teleport(this);
+            Meta = new Meta(this);
+            Upgrade = new Upgrade(this);
+            Wp = new Wp(this);
+            Write = new Write(this);
+            GetWoot = new GetWoot(this);
+            WootUp = new WootUp(this);
+            Access = new Access(this);
+            Info = new Info(this);
+        }
+
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>
+        ///     Loads the blocks.
+        /// </summary>
+        public void LoadBlocks()
+        {
+            foreach (var b in Tools.DeserializeInit(_initMessage, 18, Source))
+            {
+                Source.Map[b.X, b.Y, b.Z] = b;
+            }
+        }
+
+        #endregion
+
         #region Fields
 
         /// <summary>
@@ -44,58 +108,6 @@ namespace Skylight
         ///     The player physics thread
         /// </summary>
         private Thread _playerPhysicsThread;
-
-        #endregion
-
-        #region Constructors and Destructors
-
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="In" /> class.
-        /// </summary>
-        public In()
-        {
-            this.Add = new Add(this);
-            this.Potions = new Potions(this);
-            this.Autotext = new Autotext(this);
-            this.BlockChanged = new BlockChanged(this);
-            this.CoinObject = new CoinObject(this);
-            this.AddSpecialBlock = new AddSpecialBlock(this);
-            this.NoteBlock = new NoteBlock(this);
-            this.OnCoinGet = new OnCoinGet(this);
-            this.ClearMap = new ClearMap(this);
-            this.FaceChange = new FaceChange(this);
-            this.Grinch = new Grinch(this);
-            this.Witch = new Witch(this);
-            this.Wizard = new Wizard(this);
-            this.GiveWizard2 = new GiveWizard2(this);
-            this.GodMode = new GodMode(this);
-            this.Hide = new Hide(this);
-            this.Crown = new Crown(this);
-            this.OnKill1 = new OnKill(this);
-            this.Trophy = new Trophy(this);
-            this.SignBlock = new SignBlock(this);
-            this.LeftWorld = new LeftWorld(this);
-            this.LevelChange = new LevelChange(this);
-            this.Move = new Move(this);
-            this.Moderator = new Moderator(this);
-            this.Potion = new Potion(this);
-            this.RefreshShop = new RefreshShop(this);
-            this.ResetWorld = new ResetWorld(this);
-            this.Chat = new Chat(this);
-            this.ChatOld = new ChatOld(this);
-            this.Save = new Save(this);
-            this.Show = new Show(this);
-            this.Tele = new Tele(this);
-            this.Teleport = new Teleport(this);
-            this.Meta = new Meta(this);
-            this.Upgrade = new Upgrade(this);
-            this.Wp = new Wp(this);
-            this.Write = new Write(this);
-            this.GetWoot = new GetWoot(this);
-            this.WootUp = new WootUp(this);
-            this.Access = new Access(this);
-            this.Info = new Info(this);
-        }
 
         #endregion
 
@@ -454,30 +466,16 @@ namespace Skylight
 
         #endregion
 
-        #region Public Methods and Operators
-
-        /// <summary>
-        ///     Loads the blocks.
-        /// </summary>
-        public void LoadBlocks()
-        {
-            foreach (Block b in Tools.DeserializeInit(this._initMessage, 18, this.Source))
-            {
-                this.Source.Map[b.X, b.Y, b.Z] = b;
-            }
-        }
-        #endregion
-
         #region Methods
 
         /// <summary>
-        /// Called when [message].
+        ///     Called when [message].
         /// </summary>
         /// <param name="sender">
-        /// The sender.
+        ///     The sender.
         /// </param>
         /// <param name="m">
-        /// The m.
+        ///     The m.
         /// </param>
         internal void OnMessage(object sender, Message m)
         {
@@ -486,9 +484,9 @@ namespace Skylight
             // Then, when the room is initialized, parse the messages.
             try
             {
-                if (!this.Source.IsInitialized)
+                if (!Source.IsInitialized)
                 {
-                    if (this.IsPersonal)
+                    if (IsPersonal)
                     {
                         return;
                     }
@@ -496,186 +494,186 @@ namespace Skylight
                     switch (m.Type)
                     {
                         case "init":
-                            this.OnInit(m);
+                            OnInit(m);
                             break;
                         case "add":
-                            this.Add.OnAdd(m);
+                            Add.OnAdd(m);
                             break;
                         default:
-                            this._prematureMessages.Add(m);
+                            _prematureMessages.Add(m);
                             break;
                     }
                 }
                 else
                 {
-                    if (!this.IsPersonal)
+                    if (!IsPersonal)
                     {
                         switch (Convert.ToString(m.Type))
                         {
                             case "add":
-                                this.Add.OnAdd(m);
+                                Add.OnAdd(m);
                                 break;
 
                             case "allowpotions":
-                                this.Potions.OnAllowPotions(m);
+                                Potions.OnAllowPotions(m);
                                 break;
 
                             case "autotext":
-                                this.Autotext.OnAutotext(m);
+                                Autotext.OnAutotext(m);
                                 break;
 
                             case "b":
-                                this.BlockChanged.OnBlock(m);
+                                BlockChanged.OnBlock(m);
                                 break;
 
                             case "bc":
-                                this.CoinObject.OnAddCoinDoorOrGate(m);
+                                CoinObject.OnAddCoinDoorOrGate(m);
                                 break;
 
                             case "br":
-                                this.AddSpecialBlock.OnAddScifiOrSpikes(m);
+                                AddSpecialBlock.OnAddScifiOrSpikes(m);
                                 break;
 
                             case "bs":
-                                this.NoteBlock.OnAddNoteblock(m);
+                                NoteBlock.OnAddNoteblock(m);
                                 break;
 
                             case "c":
-                                this.OnCoinGet.OnCoin(m);
+                                OnCoinGet.OnCoin(m);
                                 break;
 
                             case "clear":
-                                this.ClearMap.OnClear();
+                                ClearMap.OnClear();
                                 break;
 
                             case "face":
-                                this.FaceChange.OnFace(m);
+                                FaceChange.OnFace(m);
                                 break;
 
                             case "givegrinch":
-                                this.Grinch.OnGiveGrinch(m);
+                                Grinch.OnGiveGrinch(m);
                                 break;
 
                             case "givewitch":
-                                this.Witch.OnGiveWitch(m);
+                                Witch.OnGiveWitch(m);
                                 break;
 
                             case "givewizard":
-                                this.Wizard.OnGiveWizard(m);
+                                Wizard.OnGiveWizard(m);
                                 break;
 
                             case "givewizard2":
-                                this.GiveWizard2.OnGiveWizard2(m);
+                                GiveWizard2.OnGiveWizard2(m);
                                 break;
 
                             case "god":
-                                this.GodMode.OnGod(m);
+                                GodMode.OnGod(m);
                                 break;
                             case "guardian":
-                                this.OnGuardianMode(m);
+                                OnGuardianMode(m);
                                 break;
                             case "hide":
-                                this.Hide.OnHide();
+                                Hide.OnHide();
                                 break;
 
                             case "k":
-                                this.Crown.OnCrown(m);
+                                Crown.OnCrown(m);
                                 break;
 
                             case "kill":
-                                this.OnKill1.OnKillPlayer(m);
+                                OnKill1.OnKillPlayer(m);
                                 break;
 
                             case "ks":
-                                this.Trophy.OnTrophy(m);
+                                Trophy.OnTrophy(m);
                                 break;
 
                             case "lb":
-                                this.SignBlock.OnSignBlockEvent(m);
+                                SignBlock.OnSignBlockEvent(m);
                                 break;
 
                             case "left":
-                                this.LeftWorld.OnLeft(m);
+                                LeftWorld.OnLeft(m);
                                 break;
 
                             case "levelup":
-                                this.LevelChange.OnLevelUp(m);
+                                LevelChange.OnLevelUp(m);
                                 break;
 
                             case "m":
-                                this.Move.OnMove(m);
+                                Move.OnMove(m);
                                 break;
 
                             case "mod":
-                                this.Moderator.OnMod(m);
+                                Moderator.OnMod(m);
                                 break;
 
                             case "p":
-                                this.Potion.OnP(m);
+                                Potion.OnP(m);
                                 break;
 
                             case "pt":
-                                this.OnPt(m);
+                                OnPt(m);
                                 break;
 
                             case "refreshshop":
-                                this.RefreshShop.OnRefreshShop();
+                                RefreshShop.OnRefreshShop();
                                 break;
 
                             case "reset":
-                                this.ResetWorld.OnReset(m);
+                                ResetWorld.OnReset(m);
                                 break;
 
                             case "say":
-                                this.Chat.OnSay(m);
+                                Chat.OnSay(m);
                                 break;
 
                             case "say_old":
-                                this.ChatOld.OnSayOld(m);
+                                ChatOld.OnSayOld(m);
                                 break;
 
                             case "saved":
-                                this.Save.OnSaved();
+                                Save.OnSaved();
                                 break;
 
                             case "show":
-                                this.Show.OnShow();
+                                Show.OnShow();
                                 break;
 
                             case "tele":
-                                this.Tele.OnTele(m);
+                                Tele.OnTele(m);
                                 break;
 
                             case "teleport":
-                                this.Teleport.OnTeleport(m);
+                                Teleport.OnTeleport(m);
                                 break;
 
                             case "ts":
-                                this.OnTs(m);
+                                OnTs(m);
                                 break;
 
                             case "updatemeta":
-                                this.Meta.OnUpdateMeta(m);
+                                Meta.OnUpdateMeta(m);
                                 break;
 
                             case "upgrade":
-                                this.Upgrade.OnUpgrade();
+                                Upgrade.OnUpgrade();
                                 break;
 
                             case "wp":
-                                this.Wp.OnWp(m);
+                                Wp.OnWp(m);
                                 break;
 
                             case "write":
-                                this.Write.OnWrite(m);
+                                Write.OnWrite(m);
                                 break;
 
                             case "w":
-                                this.GetWoot.OnGetWoot(m);
+                                GetWoot.OnGetWoot(m);
                                 break;
 
                             case "wu":
-                                this.WootUp.OnWootUp(m);
+                                WootUp.OnWootUp(m);
                                 break;
                         }
                     }
@@ -684,19 +682,19 @@ namespace Skylight
                         switch (m.Type)
                         {
                             case "access":
-                                this.Access.OnAccess(m);
+                                Access.OnAccess(m);
                                 break;
 
                             case "lostaccess":
-                                this.OnLostAccess(m);
+                                OnLostAccess(m);
                                 break;
 
                             case "init":
-                                this.OnInit(m);
+                                OnInit(m);
                                 break;
 
                             case "info":
-                                this.Info.OnInfo(m);
+                                Info.OnInfo(m);
                                 break;
                         }
                     }
@@ -709,34 +707,34 @@ namespace Skylight
         }
 
         /// <summary>
-        /// Called when [guardian mode].
+        ///     Called when [guardian mode].
         /// </summary>
         /// <param name="m">
-        /// The m.
+        ///     The m.
         /// </param>
         private void OnGuardianMode(Message m)
         {
-            int id = m.GetInteger(0);
+            var id = m.GetInteger(0);
 
-            Player player = Tools.GetPlayer(id, this.Source);
+            var player = Tools.GetPlayer(id, Source);
 
-            var e = new PlayerEventArgs(player, this.Source, null);
-            this.Source.Pull.GuardianEvent(e);
+            var e = new PlayerEventArgs(player, Source, null);
+            Source.Pull.GuardianEvent(e);
         }
 
         /// <summary>
-        /// Called when [initialize].
+        ///     Called when [initialize].
         /// </summary>
         /// <param name="m">
-        /// The m.
+        ///     The m.
         /// </param>
         private void OnInit(Message m)
         {
             // Extract data
             string owner = m.GetString(0),
-                   name = m.GetString(1),
-                   worldKey = Tools.Derot(m.GetString(5)),
-                   botName = m.GetString(9);
+                name = m.GetString(1),
+                worldKey = Tools.Derot(m.GetString(5)),
+                botName = m.GetString(9);
 
             int plays = m.GetInteger(2),
                 woots = m.GetInteger(3),
@@ -748,93 +746,93 @@ namespace Skylight
             double botX = m.GetDouble(7), botY = m.GetDouble(8), gravityMultiplier = m.GetDouble(15);
 
             bool isTutorialRoom = m.GetBoolean(14),
-                 potions = m.GetBoolean(16),
-                 hasAccess = m.GetBoolean(10),
-                 isOwner = m.GetBoolean(11);
+                potions = m.GetBoolean(16),
+                hasAccess = m.GetBoolean(10),
+                isOwner = m.GetBoolean(11);
 
             // Update relevant objects
-            this._initMessage = m;
+            _initMessage = m;
 
-            this.Bot.Name = botName;
-            this.Bot.Id = botId;
-            this.Bot.X = botX;
-            this.Bot.Y = botY;
-            this.Bot.HasAccess = hasAccess;
+            Bot.Name = botName;
+            Bot.Id = botId;
+            Bot.X = botX;
+            Bot.Y = botY;
+            Bot.HasAccess = hasAccess;
 
             // Bot.IsOwner = isOwner;
-            this.Bot.PlayingIn = this.Source;
+            Bot.PlayingIn = Source;
 
-            this.Source.OnlineBots.Add(this.Bot);
+            Source.OnlineBots.Add(Bot);
 
-            if (this.Source.IsInitialized)
+            if (Source.IsInitialized)
             {
                 // You don't need to get the room data multiple times. Save time by returning.
                 return;
             }
 
             // Update the room data.
-            this.Source.Name = name;
-            this.Source.Owner = Tools.GetPlayer(owner, this.Source);
-            this.Source.Plays = plays;
-            this.Source.Woots = woots;
-            this.Source.TotalWoots = totalWoots;
-            this.Source.RoomKey = worldKey;
-            this.Source.Height = height;
-            this.Source.Width = width;
+            Source.Name = name;
+            Source.Owner = Tools.GetPlayer(owner, Source);
+            Source.Plays = plays;
+            Source.Woots = woots;
+            Source.TotalWoots = totalWoots;
+            Source.RoomKey = worldKey;
+            Source.Height = height;
+            Source.Width = width;
             RoomAccessor.Width = width;
             RoomAccessor.Height = height;
-            this.Source.PotionsAllowed = potions;
-            this.Source.IsTutorialRoom = isTutorialRoom;
-            this.Source.GravityMultiplier = gravityMultiplier;
+            Source.PotionsAllowed = potions;
+            Source.IsTutorialRoom = isTutorialRoom;
+            Source.GravityMultiplier = gravityMultiplier;
 
-            this.Source.IsInitialized = true;
+            Source.IsInitialized = true;
 
             // Execute the messages that came prematurely.
-            foreach (Message msg in this._prematureMessages)
+            foreach (var msg in _prematureMessages)
             {
-                this.OnMessage(this, msg);
+                OnMessage(this, msg);
             }
 
-            this._prematureMessages.Clear();
+            _prematureMessages.Clear();
 
             // Begin loading blocks.
-            this.LoadBlocks();
+            LoadBlocks();
 
-            this.Source.BlocksLoaded = true;
+            Source.BlocksLoaded = true;
 
             // Begin updating physics.
-            this._playerPhysicsThread = new Thread(this.UpdatePhysics);
-            this._playerPhysicsThread.Start();
+            _playerPhysicsThread = new Thread(UpdatePhysics);
+            _playerPhysicsThread.Start();
 
             // Fire the event.
-            var e = new RoomEventArgs(this.Source, m);
+            var e = new RoomEventArgs(Source, m);
 
-            this.Source.Pull.InitEvent(e);
+            Source.Pull.InitEvent(e);
         }
 
         /// <summary>
-        /// Called when [lost access].
+        ///     Called when [lost access].
         /// </summary>
         /// <param name="m">
-        /// The m.
+        ///     The m.
         /// </param>
         private void OnLostAccess(Message m)
         {
             // Nothing to extract from message.
             // Update relevant objects.
-            this.Bot.HasAccess = false;
+            Bot.HasAccess = false;
 
             // Fire the event.
-            var e = new PlayerEventArgs(this.Bot, this.Source, m);
+            var e = new PlayerEventArgs(Bot, Source, m);
 
-            this.Source.Pull.LoseAccessEvent(e);
+            Source.Pull.LoseAccessEvent(e);
         }
 
         /// <summary>
-        /// Called when [pt].
+        ///     Called when [pt].
         /// </summary>
         /// <param name="m">
-        /// The m.
+        ///     The m.
         /// </param>
         private void OnPt(Message m)
         {
@@ -847,50 +845,50 @@ namespace Skylight
                 portalDestination = m.GetInteger(5);
 
             // Update relevant objects.
-            bool isVisible = blockId == BlockIds.Action.Portals.Normal;
+            var isVisible = blockId == BlockIds.Action.Portals.Normal;
 
             var b = new PortalBlock(x, y, rotation, portalId, portalDestination, isVisible);
 
-            this.Source.Map[x, y, 1] = b;
+            Source.Map[x, y, 1] = b;
 
             // Fire the event.
-            var e = new BlockEventArgs(b, m, this.Source);
+            var e = new BlockEventArgs(b, m, Source);
 
-            this.Source.Pull.PortalBlockEvent(e);
+            Source.Pull.PortalBlockEvent(e);
         }
 
         /// <summary>
-        /// When a sign block is placed in the world.
+        ///     When a sign block is placed in the world.
         /// </summary>
         /// <param name="m">
-        /// The m.
+        ///     The m.
         /// </param>
         private void OnSignBlockEvent(Message m)
         {
         }
 
         /// <summary>
-        /// Called when [ts].
+        ///     Called when [ts].
         /// </summary>
         /// <param name="m">
-        /// The m.
+        ///     The m.
         /// </param>
         private void OnTs(Message m)
         {
             // Extract data.
             int id = m.GetInteger(0), x = m.GetInteger(1), y = m.GetInteger(2);
 
-            string text = m.GetString(3);
+            var text = m.GetString(3);
 
             // Update relevant objects.
             var b = new TextBlock(id, x, y, text);
 
-            this.Source.Map[x, y, 0] = b;
+            Source.Map[x, y, 0] = b;
 
             // Fire the event.
-            var e = new BlockEventArgs(b, m, this.Source);
+            var e = new BlockEventArgs(b, m, Source);
 
-            this.Source.Pull.CoinBlockEvent(e);
+            Source.Pull.CoinBlockEvent(e);
         }
 
         /// <summary>
@@ -898,7 +896,7 @@ namespace Skylight
         /// </summary>
         private void UpdatePhysics()
         {
-            this._playerPhysicsStopwatch.Start();
+            _playerPhysicsStopwatch.Start();
 
             long accumulator = 0;
 
@@ -909,19 +907,19 @@ namespace Skylight
 
                 try
                 {
-                    if (this._playerPhysicsStopwatch.ElapsedMilliseconds >= accumulator + Config.physics_ms_per_tick)
+                    if (_playerPhysicsStopwatch.ElapsedMilliseconds >= accumulator + Config.physics_ms_per_tick)
                     {
                         accumulator += Config.physics_ms_per_tick;
-                        int iCount = this.Source.OnlinePlayers.Count();
-                        for (int iPlayer = 0; iPlayer <= iCount; iPlayer++)
+                        int iCount = Source.OnlinePlayers.Count();
+                        for (var iPlayer = 0; iPlayer <= iCount; iPlayer++)
                         {
-                            Player player = this.Source.OnlinePlayers[iPlayer];
+                            var player = Source.OnlinePlayers[iPlayer];
                             if (player.ShouldTick)
                             {
                                 player.Tick();
 
-                                var e = new PlayerEventArgs(player, this.Source, null);
-                                this.Source.Pull.TickEvent(e);
+                                var e = new PlayerEventArgs(player, Source, null);
+                                Source.Pull.TickEvent(e);
                             }
                         }
                     }
@@ -929,7 +927,7 @@ namespace Skylight
                     {
                         // Since the timescales dealt with here should be subsecond, explicit unchecked casts
                         // to int should never overflow.
-                        var difference = (int)(this._playerPhysicsStopwatch.ElapsedMilliseconds - accumulator);
+                        var difference = (int) (_playerPhysicsStopwatch.ElapsedMilliseconds - accumulator);
                         Thread.Sleep(difference);
                     }
                 }

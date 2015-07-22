@@ -26,14 +26,14 @@ namespace Skylight
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Save"/> class.
+        ///     Initializes a new instance of the <see cref="Save" /> class.
         /// </summary>
         /// <param name="in">
-        /// The in.
+        ///     The in.
         /// </param>
         public Save(In @in)
         {
-            this._in = @in;
+            _in = @in;
         }
 
         #endregion
@@ -59,9 +59,9 @@ namespace Skylight
             // Nothing to extract from message.
             // Nothing to update because I have no idea what it is.
             // Fire the event.
-            var e = new RoomEventArgs(this._in.Source);
+            var e = new RoomEventArgs(_in.Source);
 
-            this._in.Source.Pull.Save.SavedEvent(e);
+            _in.Source.Pull.Save.SavedEvent(e);
         }
 
         #endregion

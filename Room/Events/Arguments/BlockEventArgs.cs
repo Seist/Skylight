@@ -4,13 +4,12 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+using System;
+using PlayerIOClient;
+using Skylight.Blocks;
+
 namespace Skylight
 {
-    using System;
-    using PlayerIOClient;
-
-    using Skylight.Blocks;
-
     /// <summary>
     ///     Sends the delegate an event based on the content of the block.
     /// </summary>
@@ -27,23 +26,23 @@ namespace Skylight
         private readonly Player placer;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BlockEventArgs"/> class. 
-        ///     Initializes a new instance of the <see cref="BlockEventArgs"/>. Send a block changed event.
+        ///     Initializes a new instance of the <see cref="BlockEventArgs" /> class.
+        ///     Initializes a new instance of the <see cref="BlockEventArgs" />. Send a block changed event.
         /// </summary>
         /// <param name="b">
-        /// The block
+        ///     The block
         /// </param>
         /// <param name="m">
-        /// The raw message.
+        ///     The raw message.
         /// </param>
         /// <param name="origin">
-        /// The room where the block originated from.
+        ///     The room where the block originated from.
         /// </param>
         internal BlockEventArgs(Block b, Message m, Room origin = null)
         {
             Origin = origin ?? Bot.CurrentRoom;
-            this.placed = b;
-            this.placer = b.Placer;
+            placed = b;
+            placer = b.Placer;
             RawMessage = m;
         }
 
@@ -57,7 +56,7 @@ namespace Skylight
         /// </summary>
         public Block Placed
         {
-            get { return this.placed; }
+            get { return placed; }
         }
 
         /// <summary>
@@ -65,7 +64,7 @@ namespace Skylight
         /// </summary>
         public Player Placer
         {
-            get { return this.placer; }
+            get { return placer; }
         }
 
         /// <summary>

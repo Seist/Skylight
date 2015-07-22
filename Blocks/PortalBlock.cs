@@ -45,10 +45,10 @@ namespace Skylight
             int portalDestination,
             bool visible) : base(Tools.PortalIdByVisible(visible), x, y, 0)
         {
-            this.Direction = direction;
-            this.PortalDestination = portalDestination;
-            this.PortalId = portalId;
-            this.Visible = visible;
+            Direction = direction;
+            PortalDestination = portalDestination;
+            PortalId = portalId;
+            Visible = visible;
         }
 
         /// <summary>
@@ -62,16 +62,13 @@ namespace Skylight
         /// <value>The portal destination.</value>
         public int PortalDestination
         {
-            get
-            {
-                return this.portalDestination;
-            }
+            get { return portalDestination; }
 
             private set
             {
                 if (value > Minportalid && value < Maxportalid)
                 {
-                    this.portalDestination = value;
+                    portalDestination = value;
                 }
             }
         }
@@ -82,16 +79,13 @@ namespace Skylight
         /// <value>The portal identifier.</value>
         public int PortalId
         {
-            get
-            {
-                return this.portalId;
-            }
+            get { return portalId; }
 
             private set
             {
                 if (value < Maxportalid && value > Minportalid)
                 {
-                    this.portalId = value;
+                    portalId = value;
                 }
             }
         }
