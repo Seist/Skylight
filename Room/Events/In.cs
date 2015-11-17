@@ -55,7 +55,6 @@ namespace Skylight
         public In()
         {
             this.Add = new Add(this);
-            this.Potions = new Potions(this);
             this.Autotext = new Autotext(this);
             this.BlockChanged = new BlockChanged(this);
             this.CoinObject = new CoinObject(this);
@@ -78,7 +77,6 @@ namespace Skylight
             this.LevelChange = new LevelChange(this);
             this.Move = new Move(this);
             this.Moderator = new Moderator(this);
-            this.Potion = new Potion(this);
             this.RefreshShop = new RefreshShop(this);
             this.ResetWorld = new ResetWorld(this);
             this.Chat = new Chat(this);
@@ -91,8 +89,6 @@ namespace Skylight
             this.Upgrade = new Upgrade(this);
             this.Wp = new Wp(this);
             this.Write = new Write(this);
-            this.GetWoot = new GetWoot(this);
-            this.WootUp = new WootUp(this);
             this.Access = new Access(this);
             this.Info = new Info(this);
         }
@@ -153,7 +149,7 @@ namespace Skylight
 
         /// <summary>
         ///     Delegates for RoomEvent. Are only invoked when commands that concern
-        ///     the room's state (such as global clear, potion toggling and saved) for just
+        ///     the room's state (such as global clear, saved) for just
         ///     a few examples.
         /// </summary>
         public event RoomEvent InitEvent = delegate { };
@@ -257,12 +253,6 @@ namespace Skylight
         public FaceChange FaceChange { get; private set; }
 
         /// <summary>
-        ///     Gets the get woot.
-        /// </summary>
-        /// <value>The get woot.</value>
-        public GetWoot GetWoot { get; private set; }
-
-        /// <summary>
         ///     Gets the give wizard2.
         /// </summary>
         /// <value>The give wizard2.</value>
@@ -341,18 +331,6 @@ namespace Skylight
         public OnKill OnKill1 { get; private set; }
 
         /// <summary>
-        ///     Gets the potion.
-        /// </summary>
-        /// <value>The potion.</value>
-        public Potion Potion { get; private set; }
-
-        /// <summary>
-        ///     Gets the potions.
-        /// </summary>
-        /// <value>The potions.</value>
-        public Potions Potions { get; private set; }
-
-        /// <summary>
         ///     Gets the refresh shop.
         /// </summary>
         /// <value>The refresh shop.</value>
@@ -413,12 +391,6 @@ namespace Skylight
         public Wizard Wizard { get; private set; }
 
         /// <summary>
-        ///     Gets the woot up.
-        /// </summary>
-        /// <value>The woot up.</value>
-        public WootUp WootUp { get; private set; }
-
-        /// <summary>
         ///     Gets the wp.
         /// </summary>
         /// <value>The wp.</value>
@@ -461,10 +433,17 @@ namespace Skylight
         /// </summary>
         public void LoadBlocks()
         {
-            foreach (Block b in Tools.DeserializeInit(this._initMessage, 18, this.Source))
+            if (this.Bot.Verbose) Console.WriteLine("Beginning to LoadBlocks...");
+
+            Console.WriteLine(this._initMessage);
+            foreach (Block b in Tools.DeserializeInit(this._initMessage, 35, this.Source))
             {
-                this.Source.Map[b.X, b.Y, b.Z] = b;
+                this.Source.Map[b.X][b.Y][b.Z] = b;
             }
+
+            this.Source.BlocksLoaded = true;
+
+            if (this.Bot.Verbose) Console.WriteLine("Loaded Blocks.");
         }
         #endregion
 
@@ -514,10 +493,6 @@ namespace Skylight
                         {
                             case "add":
                                 this.Add.OnAdd(m);
-                                break;
-
-                            case "allowpotions":
-                                this.Potions.OnAllowPotions(m);
                                 break;
 
                             case "autotext":
@@ -610,10 +585,6 @@ namespace Skylight
                                 this.Moderator.OnMod(m);
                                 break;
 
-                            case "p":
-                                this.Potion.OnP(m);
-                                break;
-
                             case "pt":
                                 this.OnPt(m);
                                 break;
@@ -668,14 +639,6 @@ namespace Skylight
 
                             case "write":
                                 this.Write.OnWrite(m);
-                                break;
-
-                            case "w":
-                                this.GetWoot.OnGetWoot(m);
-                                break;
-
-                            case "wu":
-                                this.WootUp.OnWootUp(m);
                                 break;
                         }
                     }
@@ -732,60 +695,87 @@ namespace Skylight
         /// </param>
         private void OnInit(Message m)
         {
-            // Extract data
             string owner = m.GetString(0),
-                   name = m.GetString(1),
-                   worldKey = Tools.Derot(m.GetString(5)),
-                   botName = m.GetString(9);
+                title = m.GetString(1),
+                editKey = m.GetString(5),
+                botName = m.GetString(12),
+                worldDescription = m.GetString(24),
+                crewId = m.GetString(28),
+                crewName = m.GetString(29),
+                botBadge = m.GetString(32);
 
-            int plays = m.GetInteger(2),
-                woots = m.GetInteger(3),
-                totalWoots = m.GetInteger(4),
-                botId = m.GetInteger(6),
-                width = m.GetInteger(12),
-                height = m.GetInteger(13);
+            int plays = m.GetInt(2),
+                favorites = m.GetInt(3),
+                likes = m.GetInt(4),
+                botId = m.GetInt(6),
+                botFaceId = m.GetInt(7),
+                botAura = m.GetInt(8),
+                botX = m.GetInt(9),
+                botY = m.GetInt(10),
+                width = m.GetInt(17),
+                height = m.GetInt(18),
+                curseLimit = m.GetInt(25),
+                zombieLimit = m.GetInt(26),
+                CrewWorldStatus = m.GetInt(31);
 
-            double botX = m.GetDouble(7), botY = m.GetDouble(8), gravityMultiplier = m.GetDouble(15);
+            uint chatcolor = m.GetUInt(11),
+                backgroundColor = m.GetUInt(20);
 
-            bool isTutorialRoom = m.GetBoolean(14),
-                 potions = m.GetBoolean(16),
-                 hasAccess = m.GetBoolean(10),
-                 isOwner = m.GetBoolean(11);
+            bool canEdit = m.GetBoolean(13),
+                isOwner = m.GetBoolean(14),
+                hasFavorited = m.GetBoolean(15),
+                hasLiked = m.GetBoolean(16),
+                isVisible = m.GetBoolean(21),
+                isHiddenFromLobby = m.GetBoolean(22),
+                allowsSpectating = m.GetBoolean(23),
+                isCampaignRoom = m.GetBoolean(27),
+                botCanChangeRoomOptions= m.GetBoolean(30),
+                botIsCrewMember = m.GetBoolean(33);
+            
+            double gravityMultiplier = m.GetDouble(19);
 
             // Update relevant objects
             this._initMessage = m;
 
-            this.Bot.Name = botName;
             this.Bot.Id = botId;
+            this.Bot.Smiley = botFaceId;
+            this.Bot.AuraColor = botAura;
             this.Bot.X = botX;
             this.Bot.Y = botY;
-            this.Bot.HasAccess = hasAccess;
+            this.Bot.ChatColor = chatcolor;
+            this.Bot.Name = botName;
+            this.Bot.HasAccess = canEdit;
+            this.Bot.IsOwner = isOwner;
+            this.Bot.HasFavorited = hasFavorited;
+            this.Bot.HasLiked = hasLiked;
+            this.Bot.CanChangeRoomOptions = botCanChangeRoomOptions;
+            this.Bot.Badge = botBadge;
+            this.Bot.IsCrewMember = botIsCrewMember;
 
-            // Bot.IsOwner = isOwner;
-            this.Bot.PlayingIn = this.Source;
-
-            this.Source.OnlineBots.Add(this.Bot);
-
+            // No need to initialize it twice.
             if (this.Source.IsInitialized)
-            {
-                // You don't need to get the room data multiple times. Save time by returning.
                 return;
-            }
 
-            // Update the room data.
-            this.Source.Name = name;
-            this.Source.Owner = Tools.GetPlayer(owner, this.Source);
+            this.Source.Name = title;
             this.Source.Plays = plays;
-            this.Source.Woots = woots;
-            this.Source.TotalWoots = totalWoots;
-            this.Source.RoomKey = worldKey;
-            this.Source.Height = height;
+            this.Source.Favorites = favorites;
+            this.Source.Likes = likes;
+            this.Source.RoomKey = Tools.Derot(editKey);
             this.Source.Width = width;
-            RoomAccessor.Width = width;
-            RoomAccessor.Height = height;
-            this.Source.PotionsAllowed = potions;
-            this.Source.IsTutorialRoom = isTutorialRoom;
+            this.Source.Height = height;
             this.Source.GravityMultiplier = gravityMultiplier;
+            this.Source.BackgroundColor = backgroundColor;
+            this.Source.IsVisible = isVisible;
+            this.Source.IsOpenToLobby = !isHiddenFromLobby;
+            this.Source.AllowsSpectating = allowsSpectating;
+            this.Source.RoomDescription = worldDescription;
+            this.Source.CurseLimit = curseLimit;
+            this.Source.ZombieLimit = zombieLimit;
+            this.Source.IsCampaignRoom = isCampaignRoom;
+            this.Source.CrewCreators = new Crew(crewName, crewId);
+            this.Source.RoomStatus = CrewWorldStatus;
+
+            this.Bot.PlayingIn = this.Source;
 
             this.Source.IsInitialized = true;
 
@@ -800,16 +790,13 @@ namespace Skylight
             // Begin loading blocks.
             this.LoadBlocks();
 
-            this.Source.BlocksLoaded = true;
-
-            // Begin updating physics.
-            this._playerPhysicsThread = new Thread(this.UpdatePhysics);
-            this._playerPhysicsThread.Start();
-
             // Fire the event.
             var e = new RoomEventArgs(this.Source, m);
 
             this.Source.Pull.InitEvent(e);
+
+            if (this.Bot.Verbose) Console.WriteLine("Finished Init event");
+
         }
 
         /// <summary>
@@ -851,7 +838,7 @@ namespace Skylight
 
             var b = new PortalBlock(x, y, rotation, portalId, portalDestination, isVisible);
 
-            this.Source.Map[x, y, 1] = b;
+            this.Source.Map[x][y][1] = b;
 
             // Fire the event.
             var e = new BlockEventArgs(b, m, this.Source);
@@ -885,59 +872,12 @@ namespace Skylight
             // Update relevant objects.
             var b = new TextBlock(id, x, y, text);
 
-            this.Source.Map[x, y, 0] = b;
+            this.Source.Map[x][y][0] = b;
 
             // Fire the event.
             var e = new BlockEventArgs(b, m, this.Source);
 
             this.Source.Pull.CoinBlockEvent(e);
-        }
-
-        /// <summary>
-        ///     Updates the physics.
-        /// </summary>
-        private void UpdatePhysics()
-        {
-            this._playerPhysicsStopwatch.Start();
-
-            long accumulator = 0;
-
-            while (true) // Player shouldtick boolean throws a nullReferenceException
-            {
-                if (!Source.ShouldTick)
-                    continue;
-
-                try
-                {
-                    if (this._playerPhysicsStopwatch.ElapsedMilliseconds >= accumulator + Config.physics_ms_per_tick)
-                    {
-                        accumulator += Config.physics_ms_per_tick;
-                        int iCount = this.Source.OnlinePlayers.Count();
-                        for (int iPlayer = 0; iPlayer <= iCount; iPlayer++)
-                        {
-                            Player player = this.Source.OnlinePlayers[iPlayer];
-                            if (player.ShouldTick)
-                            {
-                                player.Tick();
-
-                                var e = new PlayerEventArgs(player, this.Source, null);
-                                this.Source.Pull.TickEvent(e);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        // Since the timescales dealt with here should be subsecond, explicit unchecked casts
-                        // to int should never overflow.
-                        var difference = (int)(this._playerPhysicsStopwatch.ElapsedMilliseconds - accumulator);
-                        Thread.Sleep(difference);
-                    }
-                }
-                catch (Exception e)
-                {
-                    Tools.SkylightMessage(e.ToString());
-                }
-            }
         }
 
         #endregion

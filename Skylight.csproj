@@ -52,11 +52,7 @@
   <ItemGroup>
     <Reference Include="PlayerIOClient, Version=2.3.6.0, Culture=neutral, PublicKeyToken=e73906cd2bb451f7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\PlayerIOClient.dll</HintPath>
-    </Reference>
-    <Reference Include="Rabbit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d1393b3767691f4e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\Rabbit.dll</HintPath>
+      <HintPath>..\..\Yahoo Games Network SDK.hn089naAiQfzPIHBNp7Sxg\DotNet\PlayerIOClient.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -64,6 +60,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Player\Crew.cs" />
     <Compile Include="Room\Events\Arguments\BlockEventArgs.cs" />
     <Compile Include="Room\Events\Arguments\ChatEventArgs.cs" />
     <Compile Include="Room\Events\Arguments\PlayerEventArgs.cs" />
@@ -82,7 +79,6 @@
     <Compile Include="Room\Events\System\Visibility\Hide.cs" />
     <Compile Include="Room\Events\In.cs" />
     <Compile Include="Room\Events\System\Info.cs" />
-    <Compile Include="Tools\PotionIds.cs" />
     <Compile Include="Tools\SmileyIds.cs" />
     <Compile Include="Tools\Config.cs" />
     <Compile Include="Tools\ItemId.cs" />
@@ -104,10 +100,8 @@
     <Compile Include="Room\Events\BlockEvents\NoteBlock.cs" />
     <Compile Include="Room\Events\BlockEvents\SignBlock.cs" />
     <Compile Include="Room\Events\System\World\ClearMap.cs" />
-    <Compile Include="Room\Events\System\World\GetWoot.cs" />
     <Compile Include="Room\Events\System\Meta\LevelChange.cs" />
     <Compile Include="Room\Events\System\Meta\Meta.cs" />
-    <Compile Include="Room\Events\System\World\Potions.cs" />
     <Compile Include="Room\Events\System\World\ResetWorld.cs" />
     <Compile Include="Room\Room.cs" />
     <Compile Include="Room\Events\System\World\Save.cs" />
@@ -123,17 +117,16 @@
     <Compile Include="Room\Events\Player\OnCoinGet.cs" />
     <Compile Include="Room\Events\Player\OnKill.cs" />
     <Compile Include="Player\Player.cs" />
-    <Compile Include="Room\Events\Player\Potion.cs" />
     <Compile Include="Room\Events\Player\Tele.cs" />
     <Compile Include="Room\Events\Player\Teleport.cs" />
     <Compile Include="Room\Events\Player\Trophy.cs" />
     <Compile Include="Room\Events\Player\Witch.cs" />
     <Compile Include="Room\Events\Player\Wizard.cs" />
-    <Compile Include="Room\Events\Player\WootUp.cs" />
     <Compile Include="Room\Events\BlockEvents\Wp.cs" />
     <Compile Include="Room\Events\Chat\Write.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

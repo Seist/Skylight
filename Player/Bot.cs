@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Threading;
 using PlayerIOClient;
 using Skylight.Blocks;
-using Rabbit;
-using Rabbit.Auth;
 
 namespace Skylight
 {
@@ -77,10 +75,20 @@ namespace Skylight
             ChatPrefix = "";
         }
 
+        public bool Verbose = true;
+
         /// <summary>
         ///     Whether or not the bot is connected to the world.
         /// </summary>
         public bool IsConnected { get; internal set; }
+
+        public bool HasFavorited { get; internal set; }
+
+        public bool HasLiked { get; internal set; }
+
+        public bool CanChangeRoomOptions { get; internal set; }
+
+        public bool IsCrewMember { get; internal set; }
 
         /// <summary>
         ///     The room the bot is joined to.
@@ -142,21 +150,18 @@ namespace Skylight
         ///     The main method to login the bot with the credentials already specified.
         /// </summary>
 
-        public void LogIn()
-        {
-            Tools.SkylightMessage("Please use Join() instead. LogIn() is depricated.");
-            throw new MissingMethodException();
-        }
-
         /// <summary>
         ///     Join the room that was already set.
         /// </summary>
         /// <param name="createRoom"></param>
         public void Join(bool createRoom = true)
         {
-            try {
-                Connection = new Rabbit.Rabbit().LogIn(_emailOrToken, R.Id, _passwordOrToken, createRoom);
+            if (Verbose) Console.WriteLine("Connecting to \"{0}\"...", this.R.Id);
 
+            try {
+                this.Client = PlayerIO.QuickConnect.SimpleConnect("everybody-edits-su9rn58o40itdbnw69plyw", this._emailOrToken, this._passwordOrToken, null);
+                this.Connection = Client.Multiplayer.JoinRoom(this.R.Id, new Dictionary<string, string>());
+                
                 // Update room data
                 Room.JoinedRooms.Add(R);
 
@@ -189,11 +194,17 @@ namespace Skylight
                 Connection.Send("init");
                 Connection.Send("init2");
 
+                if (Verbose) Console.WriteLine("Connected.");
+
                 R.OnlinePlayers.Add(this);
 
                 Joined = true;
 
+                if (Verbose) Console.WriteLine("Loading blocks...");
+
                 while (!R.BlocksLoaded) Thread.Sleep(100);
+
+                if (Verbose) Console.WriteLine("Blocks loaded.");
             }
             catch (Exception e)
             {
@@ -222,14 +233,14 @@ namespace Skylight
             {
                 Client versClient;
                 Connection versCon;
-                versClient = PlayerIO.QuickConnect.SimpleConnect("everybody-edits-su9rn58o40itdbnw69plyw", "guest", "guest");
+                versClient = PlayerIO.QuickConnect.SimpleConnect("everybody-edits-su9rn58o40itdbnw69plyw", "guest", "guest", null);
                 versCon = versClient.Multiplayer.CreateJoinRoom("PWROOM", "0", true, new Dictionary<string, string>(), new Dictionary<string, string>());
             }
             catch (PlayerIOError m)
             {
                 _storedVersion = m.Message;
                 string[] eevers;
-                eeVers = version.Split(' ');
+                eevers = _storedVersion.Split(' ');
                 foreach (string s in eevers)
                 {
                     if (s.StartsWith("Everybodyedits"))
@@ -238,7 +249,7 @@ namespace Skylight
                         verslist.Add(num);
                     }
                 }
-                _storedVersion = verslist.Max().ToString();
+                _storedVersion = verslist[verslist.Count - 1].ToString();
             }
         }
 
@@ -261,7 +272,7 @@ namespace Skylight
         /// <param name="theBlock">The block.</param>
         public void Build(Block theBlock)
         {
-            if (R.Map[theBlock.X, theBlock.Y, theBlock.Z] == theBlock)
+            if (R.Map[theBlock.X][theBlock.Y][theBlock.Z] == theBlock)
             {
                 // don't bother writing a block to the map if it's already there.
                 return;
@@ -332,7 +343,7 @@ namespace Skylight
 
             foreach (Block b in tempList)
             {
-                if (R.Map[b.X, b.Y, b.Z] == b)
+                if (R.Map[b.X][b.Y][b.Z] == b)
                 {
                     // don't bother writing a block to the map if it's already there.
                     return;
@@ -483,7 +494,7 @@ namespace Skylight
             if (up && down)
                 throw new Exception("Out.Move() does not allow you to move up and down at the same time.");
 
-            var reset = new object[11] {X, Y, 0, 0, 0, 0, 0, 0, 0, false, false};
+            var reset = new object[11] { X, Y, 0, 0, 0, 0, 0, 0, 0, false, false};
 
             var args = new object[11]
             {
@@ -690,29 +701,6 @@ namespace Skylight
             return input.Substring(index, lastIndex - index + 1);
         }
 
-
-        /// <summary>
-        ///     Toggle all potion bans.
-        /// </summary>
-        public void SetAllPotionBans(bool shouldSetPotionBan)
-        {
-            try
-            {
-                if (IsOwner)
-                {
-                    Connection.Send("allowpotions", shouldSetPotionBan);
-                }
-                else
-                {
-                    throw new Exception("You are not authorized to allow potions.");
-                }
-            }
-            catch (Exception)
-            {
-                Tools.SkylightMessage("Error: attempted to use Out.SetAllPotionBans before connecting");
-            }
-        }
-
         /// <summary>
         ///     Sets the edit key for the current room.
         /// </summary>
@@ -805,26 +793,6 @@ namespace Skylight
             else
             {
                 Say("/unmute " + p.Name);
-            }
-        }
-
-        /// <summary>
-        ///     Sets the potion ban.
-        /// </summary>
-        /// <param name="potionId">The potion id.</param>
-        /// <param name="shouldSetPotionBans">if set to <c>true</c> then potions will be turned on for that potion.</param>
-        public void SetPotionBan(int potionId, bool shouldSetPotionBans)
-        {
-            if (IsOwner)
-            {
-                if (shouldSetPotionBans)
-                {
-                    Say("/potionson " + potionId);
-                }
-                else
-                {
-                    Say("/potionsoff " + potionId);
-                }
             }
         }
 

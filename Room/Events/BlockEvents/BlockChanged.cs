@@ -17,26 +17,6 @@ namespace Skylight
         private readonly In _in;
 
         /// <summary>
-        /// These IDs do not have an associated Player id when sent.
-        /// </summary>
-        private readonly List<int> _specialBlockIds = new List<int>
-        {
-            BlockIds.Action.Switches.Switch,
-            BlockIds.Action.Tools.Trophy,
-            BlockIds.Action.Doors.Time,
-            BlockIds.Action.Gates.Time,
-            BlockIds.Action.Doors.Switch,
-            BlockIds.Action.Gates.Switch,
-            BlockIds.Action.Doors.Zombie,
-            BlockIds.Action.Gates.Zombie,
-            BlockIds.Blocks.Secrets.NONSOLID,
-            BlockIds.Action.Tools.Spawn,
-            BlockIds.Action.Cake.CAKE,
-            BlockIds.Action.Tools.Checkpoint,
-            BlockIds.Action.Hazards.Fire
-        };
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="BlockChanged"/> class.
         /// </summary>
         /// <param name="in">The in.</param>
@@ -75,7 +55,7 @@ namespace Skylight
                 b.Placer = this._in.Source.Owner;
             }
 
-            _in.Source.Map[x, y, z] = b;
+            _in.Source.Map[x][y][z] = b;
 
             // Fire the event.
             var e = new BlockEventArgs(b, m, _in.Source);

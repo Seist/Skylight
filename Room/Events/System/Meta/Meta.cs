@@ -44,7 +44,7 @@ namespace Skylight
 
         /// <summary>
         ///     Delegates for RoomEvent. Are only invoked when commands that concern
-        ///     the room's state (such as global clear, potion toggling and saved) for just
+        ///     the room's state (such as global clear, saved) for just
         ///     a few examples.
         /// </summary>
         public event In.RoomEvent UpdateMetaEvent = delegate { };
@@ -54,7 +54,7 @@ namespace Skylight
         #region Public Methods and Operators
 
         /// <summary>
-        /// Called when the room metadata changes (such as title, woots or plays).
+        /// Called when the room metadata changes (such as title, likes or plays).
         /// </summary>
         /// <param name="m">
         /// The message.
@@ -64,14 +64,11 @@ namespace Skylight
             // Extract data.
             string ownerName = m.GetString(0), roomName = m.GetString(1);
 
-            int plays = m.GetInteger(2), woots = m.GetInteger(3), totalWoots = m.GetInteger(4);
-
+            int plays = m.GetInteger(2);
             // Update relevant objects.
             this._in.Source.Owner.Name = ownerName;
             this._in.Source.Name = roomName;
             this._in.Source.Plays = plays;
-            this._in.Source.Woots = woots;
-            this._in.Source.TotalWoots = totalWoots;
 
             // Fire the event.
             var e = new RoomEventArgs(this._in.Source, m);

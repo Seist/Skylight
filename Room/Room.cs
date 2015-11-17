@@ -59,7 +59,7 @@ namespace Skylight
             this.ChatLog = new List<KeyValuePair<string, Player>>();
             this.Pulls = new List<In>();
             this.Pull = new In();
-            this.Map = new Block[700, 400, 2];
+            this.Map = new List<List<List<Block>>>();
             this.Id = id;
             this.ShouldTick = shouldTick;
         }
@@ -135,16 +135,10 @@ namespace Skylight
         public bool IsInitialized { get; internal set; }
 
         /// <summary>
-        ///     Gets a value indicating whether this instance is a tutorial room.
-        /// </summary>
-        /// <value><c>true</c> if this instance is a tutorial room; otherwise, <c>false</c>.</value>
-        public bool IsTutorialRoom { get; internal set; }
-
-        /// <summary>
         ///     Gets the map.
         /// </summary>
         /// <value>The map.</value>
-        public Block[,,] Map { get; private set; }
+        public List<List<List<Block>>> Map { get; internal set; }
 
         /// <summary>
         ///     Gets the name of the room.
@@ -175,12 +169,6 @@ namespace Skylight
         /// </summary>
         /// <value>The plays.</value>
         public int Plays { get; internal set; }
-
-        /// <summary>
-        ///     Gets a value indicating whether potions are allowed.
-        /// </summary>
-        /// <value><c>true</c> if potions are allowed; otherwise, <c>false</c>.</value>
-        public bool PotionsAllowed { get; internal set; }
 
         /// <summary>
         ///     Gets the pull.
@@ -219,10 +207,10 @@ namespace Skylight
         public bool TimeDoorsVisible { get; internal set; }
 
         /// <summary>
-        ///     Gets the total woots.
+        ///     Gets a value indicating whether the room is visible from owner's profile.
         /// </summary>
-        /// <value>The total woots.</value>
-        public int TotalWoots { get; internal set; }
+        public bool IsVisible { get; internal set; }
+
 
         /// <summary>
         ///     Gets the width pf the room.
@@ -230,11 +218,29 @@ namespace Skylight
         /// <value>The width.</value>
         public int Width { get; internal set; }
 
-        /// <summary>
-        ///     Gets the woots.
-        /// </summary>
-        /// <value>The woots.</value>
-        public int Woots { get; internal set; }
+        public int Favorites { get; internal set; }
+
+        public int Likes { get; internal set; }
+
+        public uint ChatColor { get; internal set; }
+
+        public uint BackgroundColor { get; internal set; }
+
+        public bool IsOpenToLobby { get; internal set; }
+
+        public bool AllowsSpectating { get; internal set; }
+
+        public string RoomDescription { get; internal set; }
+
+        public bool IsCampaignRoom { get; internal set; }
+
+        public int CurseLimit { get; internal set; }
+
+        public int ZombieLimit { get; internal set; }
+
+        public Crew CrewCreators { get; internal set; }
+
+        public int RoomStatus { get; internal set; }
 
         #endregion
 

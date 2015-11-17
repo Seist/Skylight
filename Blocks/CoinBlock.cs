@@ -24,20 +24,13 @@ namespace Skylight
         /// <param name="coinsRequired">The coins required to open the gate if applicable.</param>
         /// <param name="isGate">if set to <c>true</c> [is gate].</param>
         public CoinBlock(
+            int id,
             int x,
             int y,
-            int coinsRequired,
-            bool isGate) : base(Tools.CoinIdByGate(isGate), x, y, 0)
+            int coinsRequired) : base(id, x, y, 0)
         {
             this.CoinsRequired = coinsRequired;
-            this.IsGate = isGate;
         }
-
-        /// <summary>
-        ///     Gets a value indicating whether this instance is a gate.
-        /// </summary>
-        /// <value><c>true</c> if this instance is gate; otherwise, <c>false</c>.</value>
-        public bool IsGate { get; internal set; }
 
         /// <summary>
         ///     Gets the coins required to open the gate (or close the door).

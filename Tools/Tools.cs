@@ -85,12 +85,22 @@ namespace Skylight
         public static void ClearMap(Room r)
         {
             for (int x = 0; x <= r.Width; x++)
+                r.Map.Add(new List<List<Block>>(r.Height));
+
+            for (int x = 0; x <= r.Width; x++)
+                for (int y = 0; y <= r.Height; y++)
+                    r.Map[x].Add(new List<Block>(2));
+
+            for (int x = 0; x <= r.Width; x++)
             {
+                // Add each column
+                r.Map[x].Add(new List<Block>(r.Height));
+
                 for (int y = 0; y <= r.Height; y++)
                 {
                     for (int z = 0; z < 2; z++)
                     {
-                        r.Map[x, y, z] = new Block(0, x, y, z);
+                        r.Map[x][y].Add(new Block(0, x, y, z));
                     }
                 }
             }
@@ -266,20 +276,6 @@ namespace Skylight
         #region Methods
 
         /// <summary>
-        /// Coins the identifier by gate.
-        /// </summary>
-        /// <param name="isGate">
-        /// if set to <c>true</c> [is gate].
-        /// </param>
-        /// <returns>
-        /// System.Int32.
-        /// </returns>
-        internal static int CoinIdByGate(bool isGate)
-        {
-            return isGate ? BlockIds.Action.Gates.Coin : BlockIds.Action.Doors.Coin;
-        }
-
-        /// <summary>
         /// Derots the specified world key.
         /// </summary>
         /// <param name="worldKey">
@@ -357,29 +353,19 @@ namespace Skylight
                 uint messageIndex = start;
 
                 // Iterate through each internal set of messages.
-                while (messageIndex < m.Count)
+                while (messageIndex < m.Count && !(m[messageIndex] is string))
                 {
-                    // If it is a string, exit.
-                    if (m[messageIndex] is string)
-                    {
-                        break;
-                    }
-
                     // The ID is first.
-                    int blockId = m.GetInteger(messageIndex);
-                    messageIndex++;
+                    int blockId = m.GetInteger(messageIndex++);
 
                     // Then the z.
-                    int z = m.GetInteger(messageIndex);
-                    messageIndex++;
+                    int z = m.GetInteger(messageIndex++);
 
                     // Then the list of all X coordinates of given block
-                    byte[] xa = m.GetByteArray(messageIndex);
-                    messageIndex++;
+                    byte[] xa = m.GetByteArray(messageIndex++);
 
                     // Then the list of all Y coordinates of given block
-                    byte[] ya = m.GetByteArray(messageIndex);
-                    messageIndex++;
+                    byte[] ya = m.GetByteArray(messageIndex++);
 
                     int rotation = 0, note = 0, type = 0, portalId = 0, destination = 0, coins = 0;
                     bool isVisible = false, isGate = false;
@@ -391,35 +377,34 @@ namespace Skylight
                     {
                         case BlockIds.Action.Portals.Invisible:
                         case BlockIds.Action.Portals.Normal:
-                            rotation = m.GetInteger(messageIndex);
-                            messageIndex++;
-                            portalId = m.GetInteger(messageIndex);
-                            messageIndex++;
-                            destination = m.GetInteger(messageIndex);
-                            messageIndex++;
+                            rotation = m.GetInteger(messageIndex++);
+                            portalId = m.GetInteger(messageIndex++);
+                            destination = m.GetInteger(messageIndex++);
                             isVisible = blockId != BlockIds.Action.Portals.Invisible;
                             break;
+
                         case BlockIds.Action.Portals.World:
-                            roomDestination = m.GetString(messageIndex);
-                            messageIndex++;
+                            roomDestination = m.GetString(messageIndex++);
                             break;
-                        case BlockIds.Action.Sign.Textsign:
-                            signMessage = m.GetString(messageIndex);
+
+                        case BlockIds.Action.Sign:
+                            signMessage = m.GetString(messageIndex++);
                             break;
-                        case BlockIds.Action.Gates.Coin:
-                        case BlockIds.Action.Doors.Coin:
-                            coins = m.GetInteger(messageIndex);
-                            messageIndex++;
-                            isGate = blockId == BlockIds.Action.Gates.Coin;
+
+                        case BlockIds.Action.Coins.GoldGate:
+                        case BlockIds.Action.Coins.GoldDoor:
+                            coins = m.GetInteger(messageIndex++);
+                            isGate = blockId == BlockIds.Action.Coins.GoldGate;
                             break;
+
                         case BlockIds.Action.Music.Percussion:
-                            type = m.GetInteger(messageIndex);
-                            messageIndex++;
+                            type = m.GetInteger(messageIndex++);
                             break;
+
                         case BlockIds.Action.Music.Piano:
-                            note = m.GetInteger(messageIndex);
-                            messageIndex++;
+                            note = m.GetInteger(messageIndex++);
                             break;
+
                         case BlockIds.Action.Hazards.Spike:
                         case BlockIds.Decorative.SciFi2013.Orangestraight:
                         case BlockIds.Decorative.SciFi2013.Orangebend:
@@ -427,7 +412,18 @@ namespace Skylight
                         case BlockIds.Decorative.SciFi2013.Greenbend:
                         case BlockIds.Decorative.SciFi2013.Bluestraight:
                         case BlockIds.Decorative.SciFi2013.Bluebend:
-                            rotation = m.GetInteger(messageIndex);
+                        case BlockIds.Blocks.OneWay.Blue:
+                        case BlockIds.Blocks.OneWay.Red:
+                        case BlockIds.Blocks.OneWay.Yellow:
+                        case BlockIds.Blocks.OneWay.Purple:
+                            rotation = m.GetInteger(messageIndex++);
+                            break;
+
+                        case BlockIds.Action.Effect.Fly:
+                        case BlockIds.Action.Effect.Jump:
+                        case BlockIds.Action.Effect.LowGravity:
+                        case BlockIds.Action.Effect.Protection:
+                        case BlockIds.Action.Effect.Speed:
                             messageIndex++;
                             break;
                     }
@@ -447,22 +443,31 @@ namespace Skylight
                             case BlockIds.Action.Portals.Normal:
                                 list.Add(new PortalBlock(x, y, rotation, portalId, destination, isVisible));
                                 break;
+
                             case BlockIds.Action.Portals.World:
                                 list.Add(new RoomPortalBlock(x, y, roomDestination));
                                 break;
-                            case BlockIds.Action.Gates.Coin:
-                            case BlockIds.Action.Doors.Coin:
-                                list.Add(new CoinBlock(x, y, coins, isGate));
+
+                            case BlockIds.Action.Coins.GoldGate:
+                                list.Add(new CoinBlock(BlockIds.Action.Coins.GoldGate, x, y, coins));
                                 break;
+
+                            case BlockIds.Action.Coins.GoldDoor:
+                                list.Add(new CoinBlock(BlockIds.Action.Coins.GoldDoor, x, y, coins));
+                                break;
+
                             case BlockIds.Action.Music.Percussion:
                                 list.Add(new PercussionBlock(x, y, type));
                                 break;
+
                             case BlockIds.Action.Music.Piano:
                                 list.Add(new PianoBlock(x, y, note));
                                 break;
-                            case BlockIds.Action.Sign.Textsign:
+
+                            case BlockIds.Action.Sign:
                                 list.Add(new TextBlock(blockId, x, y, signMessage));
                                 break;
+
                             default:
                                 list.Add(new Block(blockId, x, y, z, rotation));
                                 break;
@@ -472,7 +477,7 @@ namespace Skylight
             }
             catch (Exception e)
             {
-                SkylightMessage("Error loading existing blocks:\n" + e);
+                Console.WriteLine("Error loading existing blocks:\n" + e);
             }
 
             SkylightMessage("Done loading blocks");

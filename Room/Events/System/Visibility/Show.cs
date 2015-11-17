@@ -42,7 +42,7 @@ namespace Skylight
 
         /// <summary>
         ///     Delegates for RoomEvent. Are only invoked when commands that concern
-        ///     the room's state (such as global clear, potion toggling and saved) for just
+        ///     the room's state (such as global clear, saved) for just
         ///     a few examples.
         /// </summary>
         public event In.RoomEvent ShowEvent = delegate { };

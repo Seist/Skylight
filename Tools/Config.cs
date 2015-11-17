@@ -5,7 +5,7 @@
     public class Config : object
     {
         public static string playerio_game_id = "everybody-edits-su9rn58o40itdbnw69plyw";
-        public static int server_type_version = 176;
+        public static int server_type_version = 202;
         public static string server_type_normalroom = "Everybodyedits" + server_type_version;
         public static string server_type_betaroom = "Beta" + server_type_version;
         public static string server_type_guestserviceroom = "LobbyGuest" + server_type_version;
@@ -49,7 +49,6 @@
         public static double physics_water_buoyancy = -0.5;
         public static double physics_mud_buoyancy = 0.4;
         public static int physics_queue_length = 2;
-        public static int shop_potion_max = 10;
         public static double camera_lag = 0.0625;
         public static bool isMobile = false;
         public static bool enableDebugShadow = false;

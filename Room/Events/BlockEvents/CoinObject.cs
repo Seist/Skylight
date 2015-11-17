@@ -46,14 +46,15 @@ namespace Skylight
                 coinsRequired = m.GetInteger(3);
 
             // Update relevant objects.
-            var b = new CoinBlock(x, y, coinsRequired, false) { IsGate = id == BlockIds.Action.Gates.Coin };
+            // TODO Update this and Coin implementation in lieu of blue and regrouping
+            //var b = new CoinBlock(x, y, coinsRequired) { IsGate = id == BlockIds.Action.Coins.GoldGate };
 
-            this._in.Source.Map[x, y, 0] = b;
+            //this._in.Source.Map[x][y][0] = b;
 
             // Fire the event.
-            var e = new BlockEventArgs(b, m, this._in.Source);
+            //var e = new BlockEventArgs(b, m, this._in.Source);
 
-            this._in.Source.Pull.CoinObject.CoinBlockEvent(e);
+            //this._in.Source.Pull.CoinObject.CoinBlockEvent(e);
         }
     }
 }

@@ -59,7 +59,7 @@ namespace Skylight
             // Update relevant objects.
             Block b = new RoomPortalBlock(x, y, destination);
 
-            this._in.Source.Map[x, y, 0] = b;
+            this._in.Source.Map[x][y][0] = b;
 
             // Fire the event
             var e = new BlockEventArgs(b, m, _in.Source);

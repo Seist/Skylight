@@ -54,7 +54,7 @@ namespace Skylight
             // Update relevant objects.
             var b = new Block(id, x, y, 0, rotation);
 
-            this._in.Source.Map[x, y, 0] = b;
+            this._in.Source.Map[x][y][0] = b;
 
             // Fire the event.
             var e = new BlockEventArgs(b, m, this._in.Source);

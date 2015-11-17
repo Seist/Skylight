@@ -44,17 +44,9 @@ namespace Skylight
                     Down = 117;
             }
 
-            /// <summary>
-            ///     Class Cake.
-            /// </summary>
-            public static class Cake
-            {
-                /// <summary>
-                ///     The cake
-                /// </summary>
-                public const int
-                    CAKE = 337;
-            }
+            public const int
+                CAKE = 337;
+            
 
             /// <summary>
             ///     Class Coins.
@@ -66,32 +58,16 @@ namespace Skylight
                 /// </summary>
                 public const int
                     Gold = 100,
-                    Blue = 101;
+                    Blue = 101,
+                    GoldGate = 165,
+                    GoldDoor = 43,
+                    BlueGate = 214,
+                    BlueDoor = 213;
             }
 
-            /// <summary>
-            ///     Class Crowns.
-            /// </summary>
-            public static class Crowns
-            {
-                /// <summary>
-                ///     The gold crown is the only one.
-                /// </summary>
-                public const int
-                    Gold = 5;
-            }
-
-            /// <summary>
-            ///     Class Diamond.
-            /// </summary>
-            public static class Diamond
-            {
-                /// <summary>
-                ///     The diamond block
-                /// </summary>
-                public const int
-                    Diamondblock = 241;
-            }
+            public const int
+                Diamondblock = 241;
+            
 
             /// <summary>
             ///     Class Doors.
@@ -107,11 +83,9 @@ namespace Skylight
                     Red = 23,
                     Green = 24,
                     Blue = 25,
-                    Coin = 43,
-                    Time = 156,
-                    Switch = 184,
-                    Club = 200,
-                    Zombie = 207;
+                    LightBlue = 1005,
+                    Purple = 1006,
+                    Yellow = 1007;
             }
 
             /// <summary>
@@ -127,11 +101,9 @@ namespace Skylight
                     Red = 26,
                     Green = 27,
                     Blue = 28,
-                    Coin = 165,
-                    Time = 157,
-                    Switch = 185,
-                    Club = 201,
-                    Zombie = 206;
+                    LightBlue = 1008,
+                    Purple = 1009,
+                    Yellow = 1010;
             }
 
             /// <summary>
@@ -147,7 +119,11 @@ namespace Skylight
                     Left = 1,
                     Up = 2,
                     Right = 3,
-                    Zero = 4;
+                    Zero = 4,
+                    InvisibleLeft = 411,
+                    InvisibleUp = 412,
+                    InvisibleRight = 413,
+                    InvisibleZero = 414;
             }
 
             /// <summary>
@@ -174,7 +150,10 @@ namespace Skylight
                 public const int
                     Red = 6,
                     Green = 7,
-                    Blue = 8;
+                    Blue = 8,
+                    LightBlue = 408,
+                    Purple = 409,
+                    Yellow = 410;
             }
 
             /// <summary>
@@ -202,7 +181,8 @@ namespace Skylight
                 /// </summary>
                 public const int
                     Water = 119,
-                    Mud = 173;
+                    Mud = 173,
+                    Lava = 416;
             }
 
             /// <summary>
@@ -232,17 +212,8 @@ namespace Skylight
                     World = 374;
             }
 
-            /// <summary>
-            ///     Class Sign. Signs can be read by a player going over top of it.
-            /// </summary>
-            public static class Sign
-            {
-                /// <summary>
-                ///     The text sign.
-                /// </summary>
-                public const int
-                    Textsign = 385;
-            }
+            public const int
+                Sign = 385;
 
             /// <summary>
             ///     Class Switches.
@@ -253,7 +224,39 @@ namespace Skylight
                 ///     The switch.
                 /// </summary>
                 public const int
-                    Switch = 113;
+                    Switch = 113,
+                    Gate = 185,
+                    Door = 184;
+            }
+
+            public static class Death
+            {
+                public const int
+                    Gate = 1012,
+                    Door = 1011;
+            }
+
+            public static class Zombie
+            {
+                public const int
+                    Infector = 422,
+                    Gate = 206,
+                    Door = 207;
+            }
+
+            public static class Teams
+            {
+                public const int
+                    Activator = 423,
+                    Gate = 1028,
+                    Door = 1027;
+            }
+
+            public static class Timed
+            {
+                public const int
+                    Gate = 157,
+                    Door = 156;
             }
 
             /// <summary>
@@ -267,21 +270,25 @@ namespace Skylight
                 ///     each time.
                 /// </summary>
                 public const int
-                    Spawn = 255;
-
-                /// <summary>
-                ///     Respawns the player at the most recent checkpoint that they touched
-                ///     when they die. Resets when the player leaves the room.
-                /// </summary>
-                public const int
-                    Checkpoint = 360;
-
-                /// <summary>
-                ///     A trophy. Not a spawn point.
-                /// </summary>
-                public const int
+                    Crown = 5,
+                    Spawn = 255,
+                    Checkpoint = 360,
                     Trophy = 121;
             }
+
+            public const int
+                    Hologram = 397;
+
+            public static class Effect
+            {
+                public const int
+                    Jump = 417,
+                    Fly = 418,
+                    Speed = 419,
+                    LowGravity = 453,
+                    Protection = 420;
+            }
+
         }
 
         /// <summary>
@@ -310,7 +317,9 @@ namespace Skylight
                     Red = 503,
                     Yellow = 504,
                     Green = 505,
-                    Cyan = 506;
+                    Cyan = 506,
+                    DarkGray = 645,
+                    Orange = 644;
             }
 
             /// <summary>
@@ -327,7 +336,9 @@ namespace Skylight
                     Purple = 509,
                     Green = 510,
                     Red = 511,
-                    Tan = 512;
+                    Tan = 512,
+                    Gray = 646,
+                    DarkGray = 648;
             }
 
             /// <summary>
@@ -352,12 +363,15 @@ namespace Skylight
                 ///     The different colors of the canvas background.
                 /// </summary>
                 public const int
-                    Red = 533,
-                    Tan = 534,
-                    Gold = 535,
+                    Gray = 538,
+                    Blue = 606,
+                    Purple = 672,
+                    Red = 671,
+                    Orange = 533,
+                    Yellow = 535,
                     Lime = 536,
-                    Blue = 537,
-                    Gray = 538;
+                    LightBlue = 537,
+                    Tan = 534;
             }
 
             /// <summary>
@@ -369,23 +383,27 @@ namespace Skylight
                 ///     The different types of carnival colors.
                 /// </summary>
                 public const int
-                    Redstripe = 545,
-                    Bluestripe = 546,
+                    RedYellowStripe = 545,
+                    PurpleStripe = 546,
                     Pink = 547,
                     Checker = 548,
-                    Green = 549;
+                    Green = 549,
+                    Mustard = 558,
+                    RedWhiteStripe = 563,
+                    DarkBlue = 607;
             }
 
-            /// <summary>
-            ///     Class Castle.
-            /// </summary>
-            public static class Castle
+            public static class Stone
             {
-                /// <summary>
-                ///     The brick. There is only one castle block.
-                /// </summary>
                 public const int
-                    Bricks = 599;
+                    GrayWhole = 561,
+                    GrayHalf = 562,
+                    GreenWhole = 688,
+                    GreenHalf = 689,
+                    BrownWhole = 690,
+                    BrownHalf = 691,
+                    BlueWhole = 692,
+                    BlueHalf = 693;
             }
 
             /// <summary>
@@ -403,27 +421,15 @@ namespace Skylight
                     Red = 516,
                     Yellow = 517,
                     Green = 518,
-                    Cyan = 519;
-            }
-
-            /// <summary>
-            ///     Class Christmas 2012.
-            /// </summary>
-            public static class Christmas2012
-            {
-                /// <summary>
-                ///     The different patterns available.
-                /// </summary>
-                public const int
-                    Yellowpattern = 624,
-                    Greenpattern = 625,
-                    Bluepattern = 626;
+                    Cyan = 519,
+                    Orange = 649,
+                    DarkGray = 650;
             }
 
             /// <summary>
             ///     Class Cowboy.
             /// </summary>
-            public static class Cowboy
+            public static class WildWest
             {
                 /// <summary>
                 ///     The different building materials inspired by this theme.
@@ -452,7 +458,9 @@ namespace Skylight
                     Red = 523,
                     Yellow = 524,
                     Green = 525,
-                    Cyan = 526;
+                    Cyan = 526,
+                    Orange = 651,
+                    DarkGray = 652;
             }
 
             /// <summary>
@@ -479,24 +487,21 @@ namespace Skylight
                 ///     The different types of plants.
                 /// </summary>
                 public const int
+                    Gray = 617,
+                    Red = 618,
+                    Blue = 619,
+                    Yellow = 620,
                     Brightplants = 621,
                     Plants = 622,
                     Darkplants = 623;
             }
 
-            /// <summary>
-            ///     Class Jungle Ruins.
-            /// </summary>
-            public static class JungleRuins
+            public static class Christmas2012
             {
-                /// <summary>
-                ///     The blocks that are used when the jungle is ruined.
-                /// </summary>
                 public const int
-                    Gray = 617,
-                    Red = 618,
-                    Blue = 619,
-                    Yellow = 620;
+                    Orange = 624,
+                    Green = 625,
+                    Blue = 626;
             }
 
             /// <summary>
@@ -514,20 +519,6 @@ namespace Skylight
             }
 
             /// <summary>
-            ///     Class Mars.
-            /// </summary>
-            public static class Mars
-            {
-                /// <summary>
-                ///     These are space themed.
-                /// </summary>
-                public const int
-                    Blue = 605,
-                    Littlestar = 606,
-                    Bigstar = 607;
-            }
-
-            /// <summary>
             ///     Class Medieval.
             /// </summary>
             public static class Medieval
@@ -536,7 +527,13 @@ namespace Skylight
                 ///     There is only one block, and it's name is planks.
                 /// </summary>
                 public const int
-                    Planks = 600;
+                    Bricks = 599,
+                    Planks = 600,
+                    Straw = 590,
+                    RedThatch = 591,
+                    TealThatch = 592,
+                    BrownThatch = 556,
+                    LightGray = 593;
             }
 
             /// <summary>
@@ -548,8 +545,12 @@ namespace Skylight
                 ///     The different types of fur available.
                 /// </summary>
                 public const int
-                    Lightfur = 608,
-                    Darkfur = 609;
+                    Green = 608,
+                    DarkGreen = 609,
+                    Red = 663,
+                    DarkRed = 664,
+                    Purple = 665,
+                    DarkPurple = 666;
             }
 
             /// <summary>
@@ -564,8 +565,12 @@ namespace Skylight
                 public const int
                     White = 564,
                     Gray = 565,
-                    Lightshingles = 566,
-                    Darkshingles = 567;
+                    BlueShingles = 566,
+                    Darkshingles = 567,
+                    RedShingles = 667,
+                    DarkRedShingles = 668,
+                    GreenShingles = 669,
+                    DarkGreenShingles = 670;
             }
 
             /// <summary>
@@ -583,7 +588,9 @@ namespace Skylight
                     Red = 613,
                     Yellow = 614,
                     Green = 615,
-                    Cyan = 616;
+                    Cyan = 616,
+                    Orange = 653,
+                    DarkGray = 654;
             }
 
             /// <summary>
@@ -595,12 +602,14 @@ namespace Skylight
                 ///     The pastel blocks
                 /// </summary>
                 public const int
-                    Orange = 527,
+                    Yellow = 527,
                     Green = 528,
-                    Yellow = 529,
-                    Cyan = 530,
+                    Lime = 529,
+                    LightBlue = 530,
                     Blue = 531,
-                    Red = 532;
+                    Red = 532,
+                    Orange = 676,
+                    Purple = 677;
             }
 
             /// <summary>
@@ -612,19 +621,16 @@ namespace Skylight
                 ///     The types of pirate blocks. Themed from the pirate ship.
                 /// </summary>
                 public const int
-                    Darkplank = 554,
+                    Plank = 554,
                     Lightplank = 555,
-                    Peggedplank = 556,
-                    Lifesaver = 557,
-                    Window = 558,
-                    Cannon = 559,
+                    DarkPlank = 559,
                     Flag = 560;
             }
 
             /// <summary>
             ///     Class Plate Iron.
             /// </summary>
-            public static class PlateIron
+            public static class Industrial
             {
                 /// <summary>
                 ///     The different colors of plate iron.
@@ -648,15 +654,15 @@ namespace Skylight
                 /// </summary>
                 public const int
                     Brick = 550,
-                    Window = 551,
-                    Bars = 552,
-                    Brokenbars = 553;
+                    RedBars = 551,
+                    BlueBars = 552,
+                    DarkBars = 553;
             }
 
             /// <summary>
             ///     Class Rocket.
             /// </summary>
-            public static class Rocket
+            public static class OuterSpace
             {
                 /// <summary>
                 ///     The types of rocket blocks.
@@ -666,6 +672,15 @@ namespace Skylight
                     Blue = 602,
                     Green = 603,
                     Red = 604;
+            }
+
+            public static class Neon
+            {
+                public const int
+                    Blue = 605,
+                    Orange = 673,
+                    Green = 674,
+                    Magenta = 675;
             }
 
             /// <summary>
@@ -685,22 +700,24 @@ namespace Skylight
                     Brown = 584;
             }
 
-            /// <summary>
-            ///     Class Sci-Fi 2013.
-            /// </summary>
-            public static class SciFi2013
+            public static class Clay
             {
-                /// <summary>
-                ///     The tile block. There is only one block.
-                /// </summary>
-                public const int
-                    Tile = 637;
+                public const int 
+                    Plain = 594,
+                    Brick = 595,
+                    Diamond = 596,
+                    Cross = 597,
+                    Raw = 598;
+
             }
+
+            public const int
+                SciFi = 637;
 
             /// <summary>
             ///     Class Sparta.
             /// </summary>
-            public static class Sparta
+            public static class Marble
             {
                 /// <summary>
                 ///     The different colors of sparta blocks.
@@ -709,53 +726,6 @@ namespace Skylight
                     Blue = 638,
                     Green = 639,
                     Red = 640;
-            }
-
-            /// <summary>
-            ///     Class Swamp.
-            /// </summary>
-            public static class Swamp
-            {
-                /// <summary>
-                ///     The underbrush block.
-                /// </summary>
-                public const int
-                    Underbrush = 630;
-            }
-
-            /// <summary>
-            ///     Class Timbered.
-            /// </summary>
-            public static class Timbered
-            {
-                /// <summary>
-                ///     The different types of wooden blocks. Meant to be made in
-                ///     a house-type of way.
-                /// </summary>
-                public const int
-                    Thatchroof = 590,
-                    Redshingles = 591,
-                    Tealshingles = 592,
-                    Vsupport = 593,
-                    Leftdiagonalsupport = 594,
-                    Rightdiagonalsupport = 595,
-                    Horizontalsupport = 596,
-                    Tsupport = 597,
-                    Closedwindow = 598;
-            }
-
-            /// <summary>
-            ///     Class Vikings.
-            /// </summary>
-            public static class Vikings
-            {
-                /// <summary>
-                ///     The viking blocks.
-                /// </summary>
-                public const int
-                    Fullbrick = 561,
-                    Halfbrick = 562,
-                    Redwhitestripes = 563;
             }
 
             /// <summary>
@@ -772,6 +742,29 @@ namespace Skylight
                     Fish = 576,
                     Seahorse = 577,
                     Seaweed = 578;
+            }
+
+            public static class Cave
+            {
+                public const int
+                    Purple = 655,
+                    Teal = 656,
+                    Blue = 657,
+                    Magenta = 658,
+                    Green = 659,
+                    Brown = 660,
+                    Tan = 661,
+                    Red = 662;
+            }
+
+            public static class Environment
+            {
+                public const int
+                    RedWood = 678,
+                    Grass = 679,
+                    Bamboo = 680,
+                    Blue = 681,
+                    Red = 682;
             }
         }
 
@@ -819,7 +812,10 @@ namespace Skylight
                     Blue = 39,
                     Red = 40,
                     Gold = 41,
-                    Gray = 42;
+                    Gray = 42,
+                    LightBlue = 1019,
+                    Orange = 1020,
+                    DarkGray = 1021;
             }
 
             /// <summary>
@@ -836,7 +832,10 @@ namespace Skylight
                     Purple = 18,
                     Green = 19,
                     Red = 20,
-                    Tan = 21;
+                    Tan = 21,
+                    Gray = 1022,
+                    Blue = 1023,
+                    DarkGray = 1024;
             }
 
             /// <summary>
@@ -896,8 +895,10 @@ namespace Skylight
                 /// </summary>
                 public const int
                     Brick = 159,
-                    Window = 160;
-
+                    Window = 160,
+                    Anvil = 162,
+                    Barrel = 163;
+                
                 /// <summary>
                 ///     Class Oneway.
                 /// </summary>
@@ -926,7 +927,8 @@ namespace Skylight
                     Red = 189,
                     Yellow = 190,
                     Green = 191,
-                    Cyan = 192;
+                    Cyan = 192,
+                    DarkGray = 1026;
             }
 
             /// <summary>
@@ -1078,6 +1080,8 @@ namespace Skylight
                 ///     The crosssupport
                 /// </summary>
                 public const int
+                    Plateiron = 144,
+                    Wires = 145,
                     Crosssupport = 147,
                     Elevator = 148,
                     Support = 149,
@@ -1145,31 +1149,17 @@ namespace Skylight
             /// <summary>
             ///     Class Mars.
             /// </summary>
-            public static class Mars
+            public static class Desert
             {
                 /// <summary>
                 ///     The sand
                 /// </summary>
                 public const int
-                    Sand = 176,
                     Pattern1 = 177,
                     Pattern2 = 178,
                     Pattern3 = 179,
                     Rock1 = 180,
                     Rock2 = 181;
-            }
-
-            /// <summary>
-            ///     Class Medieval.
-            /// </summary>
-            public static class Medieval
-            {
-                /// <summary>
-                ///     The types of medieval weapons
-                /// </summary>
-                public const int
-                    Anvil = 162,
-                    Barrel = 163;
             }
 
             /// <summary>
@@ -1207,7 +1197,7 @@ namespace Skylight
             /// <summary>
             ///     Class Ninja.
             /// </summary>
-            public static class Ninja
+            public static class Dojo
             {
                 /// <summary>
                 ///     Class Oneway.
@@ -1273,19 +1263,6 @@ namespace Skylight
             }
 
             /// <summary>
-            ///     Class Plate Iron.
-            /// </summary>
-            public static class PlateIron
-            {
-                /// <summary>
-                ///     The plate iron types.
-                /// </summary>
-                public const int
-                    Plateiron = 144,
-                    Wires = 145;
-            }
-
-            /// <summary>
             ///     Class Prison.
             /// </summary>
             public static class Prison
@@ -1300,7 +1277,7 @@ namespace Skylight
             /// <summary>
             ///     Class Rocket.
             /// </summary>
-            public static class Rocket
+            public static class OuterSpace
             {
                 /// <summary>
                 ///     The colors of a rocket.
@@ -1309,7 +1286,9 @@ namespace Skylight
                     White = 172,
                     Blue = 173,
                     Green = 174,
-                    Red = 175;
+                    Red = 175,
+                    Sand = 176,
+                    DentedMetal = 1029;
             }
 
             /// <summary>
@@ -1323,7 +1302,7 @@ namespace Skylight
                 public const int
                     White = 137,
                     Gray = 138,
-                    Lighttan = 139,
+                    LightTan = 139,
                     Orange = 140,
                     Tan = 141,
                     Brown = 142;
@@ -1368,14 +1347,15 @@ namespace Skylight
                 ///     The types of secret blocks.
                 /// </summary>
                 public const int
-                    Solid = 50,
-                    NONSOLID = 243;
+                    InvisibleUntilTouch = 50,
+                    FullyBlackNonSolid = 243,
+                    AlwaysInvisible = 136;
             }
 
             /// <summary>
             ///     Class Sparta.
             /// </summary>
-            public static class Sparta
+            public static class Marble
             {
                 /// <summary>
                 ///     The different spartian colors.
@@ -1435,13 +1415,35 @@ namespace Skylight
             /// <summary>
             ///     Class Viking.
             /// </summary>
-            public static class Viking
+            public static class Stone
             {
                 /// <summary>
                 ///     The gray
                 /// </summary>
                 public const int
-                    Gray = 95;
+                    Gray = 95,
+                    Green = 1044,
+                    Brown = 1045,
+                    Blue = 1046;
+            }
+
+            public static class OneWay
+            {
+                public const int
+                    Blue = 1001,
+                    Red = 1002,
+                    Yellow = 1003,
+                    Purple = 1004;
+            }
+
+            public static class Environment
+            {
+                public const int
+                    Wood = 1030,
+                    Grass = 1031,
+                    Bamboo = 1032,
+                    Gray = 1033,
+                    Red = 1034;
             }
         }
 
@@ -1739,15 +1741,15 @@ namespace Skylight
                 ///     The various ninja blocks
                 /// </summary>
                 public const int
-                    Leftbrightrooftop = 276,
-                    Rightbrightrooftop = 277,
-                    Brightwindow = 278,
-                    Leftdarkrooftop = 279,
-                    Rightdarkrooftop = 280,
-                    Darkwindow = 281,
-                    Ladder = 282,
-                    Antennae = 283,
-                    Yinyang = 284;
+                    BrightRoofCornerLeft = 276,
+                    BrightRoofCornerRight = 277,
+                    BrightWindow = 278,
+                    DarkRoofCornerLeft = 279,
+                    DarkRoofCornerRight = 280,
+                    DarkWindow = 281,
+                    Character1 = 282,
+                    Character2 = 283,
+                    YinYang = 284;
             }
 
             /// <summary>
@@ -1964,6 +1966,14 @@ namespace Skylight
                     Red = 268,
                     Orange = 269,
                     Yellow = 270;
+            }
+
+            public static class Valentines2015
+            {
+                public const int
+                    Red = 405,
+                    Purple = 406,
+                    Pink = 407;
             }
         }
     }
