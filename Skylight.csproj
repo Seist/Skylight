@@ -79,6 +79,7 @@
     <Compile Include="Room\Events\System\Visibility\Hide.cs" />
     <Compile Include="Room\Events\In.cs" />
     <Compile Include="Room\Events\System\Info.cs" />
+    <Compile Include="Room\Map.cs" />
     <Compile Include="Tools\SmileyIds.cs" />
     <Compile Include="Tools\Config.cs" />
     <Compile Include="Tools\ItemId.cs" />
