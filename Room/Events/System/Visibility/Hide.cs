@@ -17,9 +17,9 @@ namespace Skylight
         #region Fields
 
         /// <summary>
-        ///     The _in
+        ///     The _receiver
         /// </summary>
-        private readonly In _in;
+        private readonly Receiver _receiver;
 
         #endregion
 
@@ -31,9 +31,9 @@ namespace Skylight
         /// <param name="in">
         /// The in.
         /// </param>
-        public Hide(In @in)
+        public Hide(Receiver @in)
         {
-            this._in = @in;
+            this._receiver = @in;
         }
 
         #endregion
@@ -45,7 +45,7 @@ namespace Skylight
         ///     the room's state (such as global clear, saved) for just
         ///     a few examples.
         /// </summary>
-        public event In.RoomEvent HideEvent = delegate { };
+        public event Receiver.RoomEvent HideEvent = delegate { };
 
         #endregion
 
@@ -58,12 +58,12 @@ namespace Skylight
         {
             // Like with "clear", there is data but it is irrelevant.
             // Update relevant objects.
-            this._in.Source.TimeDoorsVisible = false;
+            this._receiver.Source.TimeDoorsVisible = false;
 
             // Fire the event.
-            var e = new RoomEventArgs(this._in.Source);
+            var e = new RoomEventArgs(this._receiver.Source);
 
-            this._in.Source.Pull.Hide.HideEvent(e);
+            this._receiver.Source.MainReceiver.Hide.HideEvent(e);
         }
 
         #endregion

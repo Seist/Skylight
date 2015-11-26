@@ -19,9 +19,9 @@ namespace Skylight
         #region Fields
 
         /// <summary>
-        ///     The _in
+        ///     The _receiver
         /// </summary>
-        private readonly In _in;
+        private readonly Receiver _receiver;
 
         #endregion
 
@@ -33,9 +33,9 @@ namespace Skylight
         /// <param name="in">
         /// The in.
         /// </param>
-        public OnKill(In @in)
+        public OnKill(Receiver @in)
         {
-            this._in = @in;
+            this._receiver = @in;
         }
 
         #endregion
@@ -45,7 +45,7 @@ namespace Skylight
         /// <summary>
         ///     Occurs when the player dies.
         /// </summary>
-        public event In.PlayerEvent DeathEvent = delegate { };
+        public event Receiver.PlayerEvent DeathEvent = delegate { };
 
         #endregion
 
@@ -63,14 +63,14 @@ namespace Skylight
             int id = m.GetInteger(0);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayer(id, this._in.Source);
+            Player subject = Tools.GetPlayer(id, this._receiver.Source);
 
             subject.DeathCount++;
 
             // Fire the event.
-            var e = new PlayerEventArgs(subject, this._in.Source, m);
+            var e = new PlayerEventArgs(subject, this._receiver.Source, m);
 
-            this._in.Source.Pull.OnKill1.DeathEvent(e);
+            this._receiver.Source.MainReceiver.OnKill1.DeathEvent(e);
         }
 
         #endregion

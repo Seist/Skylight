@@ -12,23 +12,23 @@ namespace Skylight
     public class BlockChanged
     {
         /// <summary>
-        /// The _in
+        /// The _receiver
         /// </summary>
-        private readonly In _in;
+        private readonly Receiver _receiver;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BlockChanged"/> class.
         /// </summary>
         /// <param name="in">The in.</param>
-        public BlockChanged(In @in)
+        public BlockChanged(Receiver @in)
         {
-            _in = @in;
+            _receiver = @in;
         }
         /// <summary>
         /// All of the delegates for BlockEvent. These fire when events occur
         /// (such as when a block was added or updated).
         /// </summary>
-        public event In.BlockEvent
+        public event Receiver.BlockEvent
             NormalBlockEvent = delegate { };
         /// <summary>
         /// Called when a block is changed.
@@ -47,20 +47,20 @@ namespace Skylight
             try
             {
                 playerId = m.GetInteger(4);
-                Player subject = Tools.GetPlayer(playerId, _in.Source);
+                Player subject = Tools.GetPlayer(playerId, _receiver.Source);
                 b.Placer = subject;
             }
             catch
             {
-                b.Placer = this._in.Source.Owner;
+                b.Placer = this._receiver.Source.Owner;
             }
 
-            _in.Source.Map[x][y][z] = b;
+            _receiver.Source.Map[x][y][z] = b;
 
             // Fire the event.
-            var e = new BlockEventArgs(b, m, _in.Source);
+            var e = new BlockEventArgs(b, m, _receiver.Source);
 
-            _in.Source.Pull.BlockChanged.NormalBlockEvent(e);
+            _receiver.Source.MainReceiver.BlockChanged.NormalBlockEvent(e);
         }
     }
 }

@@ -21,9 +21,9 @@ namespace Skylight
         #region Fields
 
         /// <summary>
-        ///     The _in
+        ///     The _receiver
         /// </summary>
-        private readonly In _in;
+        private readonly Receiver _receiver;
 
         #endregion
 
@@ -35,9 +35,9 @@ namespace Skylight
         /// <param name="in">
         /// The in.
         /// </param>
-        public ResetWorld(In @in)
+        public ResetWorld(Receiver @in)
         {
-            this._in = @in;
+            this._receiver = @in;
         }
 
         #endregion
@@ -52,9 +52,9 @@ namespace Skylight
         /// </param>
         public void OnReset(Message m)
         {
-            foreach (Block b in Tools.DeserializeInit(m, 1, this._in.Source))
+            foreach (Block b in Tools.DeserializeInit(m, 1, this._receiver.Source))
             {
-                this._in.Source.Map[b.X][b.Y][b.Z] = b;
+                this._receiver.Source.Map[b.X][b.Y][b.Z] = b;
             }
         }
 

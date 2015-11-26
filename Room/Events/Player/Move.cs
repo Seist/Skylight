@@ -19,9 +19,9 @@ namespace Skylight
         #region Fields
 
         /// <summary>
-        ///     The _in
+        ///     The _receiver
         /// </summary>
-        private readonly In _in;
+        private readonly Receiver _receiver;
 
         #endregion
 
@@ -33,9 +33,9 @@ namespace Skylight
         /// <param name="in">
         /// The in.
         /// </param>
-        public Move(In @in)
+        public Move(Receiver @in)
         {
-            this._in = @in;
+            this._receiver = @in;
         }
 
         #endregion
@@ -48,7 +48,7 @@ namespace Skylight
         ///     events are shown from the server directly to the user in the form of a dialog
         ///     box or by prefixing a chat message with *SYSTEM.
         /// </summary>
-        public event In.PlayerEvent JumpEvent = delegate { };
+        public event Receiver.PlayerEvent JumpEvent = delegate { };
 
         /// <summary>
         ///     All events that concern the player. This includes many messages that the player
@@ -56,7 +56,7 @@ namespace Skylight
         ///     events are shown from the server directly to the user in the form of a dialog
         ///     box or by prefixing a chat message with *SYSTEM.
         /// </summary>
-        public event In.PlayerEvent MovementEvent = delegate { };
+        public event Receiver.PlayerEvent MovementEvent = delegate { };
 
         #endregion
 
@@ -85,7 +85,7 @@ namespace Skylight
             bool hasGravityModifier = m.GetBoolean(10), spaceDown = m.GetBoolean(11);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayer(id, this._in.Source);
+            Player subject = Tools.GetPlayer(id, this._receiver.Source);
 
             subject.IsHoldingSpace = false;
             if (spaceDown)
@@ -96,9 +96,9 @@ namespace Skylight
                 if (subject.Vertical == verticalDirection && subject.Horizontal == horizontalDirection)
                 {
                     // Fire the jump event.
-                    var jumpEventArgs = new PlayerEventArgs(subject, this._in.Source, m);
+                    var jumpEventArgs = new PlayerEventArgs(subject, this._receiver.Source, m);
 
-                    this._in.Source.Pull.Move.JumpEvent(jumpEventArgs);
+                    this._receiver.Source.MainReceiver.Move.JumpEvent(jumpEventArgs);
                 }
             }
 
@@ -125,9 +125,9 @@ namespace Skylight
             subject.IsHoldingRight = horizontalDirection == 1;
 
             // Fire the event.
-            var movementEventArgs = new PlayerEventArgs(subject, this._in.Source, m);
+            var movementEventArgs = new PlayerEventArgs(subject, this._receiver.Source, m);
 
-            this._in.Source.Pull.Move.MovementEvent(movementEventArgs);
+            this._receiver.Source.MainReceiver.Move.MovementEvent(movementEventArgs);
         }
 
         #endregion

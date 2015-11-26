@@ -19,9 +19,9 @@ namespace Skylight
         #region Fields
 
         /// <summary>
-        ///     The _in
+        ///     The _receiver
         /// </summary>
-        private readonly In _in;
+        private readonly Receiver _receiver;
 
         #endregion
 
@@ -33,9 +33,9 @@ namespace Skylight
         /// <param name="in">
         /// The in.
         /// </param>
-        public Teleport(In @in)
+        public Teleport(Receiver @in)
         {
-            this._in = @in;
+            this._receiver = @in;
         }
 
         #endregion
@@ -48,7 +48,7 @@ namespace Skylight
         ///     events are shown from the server directly to the user in the form of a dialog
         ///     box or by prefixing a chat message with *SYSTEM.
         /// </summary>
-        public event In.PlayerEvent TeleportEvent = delegate { };
+        public event Receiver.PlayerEvent TeleportEvent = delegate { };
 
         #endregion
 
@@ -66,15 +66,15 @@ namespace Skylight
             int id = m.GetInteger(0), x = m.GetInteger(1), y = m.GetInteger(2);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayer(id, this._in.Source);
+            Player subject = Tools.GetPlayer(id, this._receiver.Source);
 
             subject.X = x;
             subject.Y = y;
 
             // Fire the event.
-            var e = new PlayerEventArgs(subject, this._in.Source, m);
+            var e = new PlayerEventArgs(subject, this._receiver.Source, m);
 
-            this._in.Source.Pull.Teleport.TeleportEvent(e);
+            this._receiver.Source.MainReceiver.Teleport.TeleportEvent(e);
         }
 
         #endregion

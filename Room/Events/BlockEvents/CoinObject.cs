@@ -15,23 +15,23 @@ namespace Skylight
     public class CoinObject
     {
         /// <summary>
-        /// The _in
+        /// The _receiver
         /// </summary>
-        private readonly In _in;
+        private readonly Receiver _receiver;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CoinObject"/> class.
         /// </summary>
         /// <param name="in">The in.</param>
-        public CoinObject(In @in)
+        public CoinObject(Receiver @in)
         {
-            this._in = @in;
+            this._receiver = @in;
         }
 
         /// <summary>
         /// Occurs when [coin block event].
         /// </summary>
-        public event In.BlockEvent CoinBlockEvent = delegate { };
+        public event Receiver.BlockEvent CoinBlockEvent = delegate { };
 
         /// <summary>
         /// Called when [add coin door or gate].
@@ -49,12 +49,12 @@ namespace Skylight
             // TODO Update this and Coin implementation in lieu of blue and regrouping
             //var b = new CoinBlock(x, y, coinsRequired) { IsGate = id == BlockIds.Action.Coins.GoldGate };
 
-            //this._in.Source.Map[x][y][0] = b;
+            //this._receiver.Source.Map[x][y][0] = b;
 
             // Fire the event.
-            //var e = new BlockEventArgs(b, m, this._in.Source);
+            //var e = new BlockEventArgs(b, m, this._receiver.Source);
 
-            //this._in.Source.Pull.CoinObject.CoinBlockEvent(e);
+            //this._receiver.Source.Receiver.CoinObject.CoinBlockEvent(e);
         }
     }
 }

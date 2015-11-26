@@ -19,9 +19,9 @@ namespace Skylight
         #region Fields
 
         /// <summary>
-        ///     The _in
+        ///     The _receiver
         /// </summary>
-        private readonly In _in;
+        private readonly Receiver _receiver;
 
         #endregion
 
@@ -33,9 +33,9 @@ namespace Skylight
         /// <param name="in">
         /// The in.
         /// </param>
-        public Access(In @in)
+        public Access(Receiver @in)
         {
-            this._in = @in;
+            this._receiver = @in;
         }
 
         #endregion
@@ -48,7 +48,7 @@ namespace Skylight
         ///     events are shown from the server directly to the user in the form of a dialog
         ///     box or by prefixing a chat message with *SYSTEM.
         /// </summary>
-        public event In.PlayerEvent GainAccessEvent = delegate { };
+        public event Receiver.PlayerEvent GainAccessEvent = delegate { };
 
         #endregion
 
@@ -64,12 +64,12 @@ namespace Skylight
         {
             // Nothing to extract from message.
             // Update relevant objects.
-            this._in.Bot.HasAccess = true;
+            this._receiver.Bot.HasAccess = true;
 
             // Fire the event.
-            var e = new PlayerEventArgs(this._in.Bot, this._in.Source, m);
+            var e = new PlayerEventArgs(this._receiver.Bot, this._receiver.Source, m);
 
-            this._in.Source.Pull.Access.GainAccessEvent(e);
+            this._receiver.Source.MainReceiver.Access.GainAccessEvent(e);
         }
 
         #endregion

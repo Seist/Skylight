@@ -19,9 +19,9 @@ namespace Skylight
         #region Fields
 
         /// <summary>
-        ///     The _in
+        ///     The _receiver
         /// </summary>
-        private readonly In _in;
+        private readonly Receiver _receiver;
 
         #endregion
 
@@ -33,9 +33,9 @@ namespace Skylight
         /// <param name="in">
         /// The in.
         /// </param>
-        public Meta(In @in)
+        public Meta(Receiver @in)
         {
-            this._in = @in;
+            this._receiver = @in;
         }
 
         #endregion
@@ -47,7 +47,7 @@ namespace Skylight
         ///     the room's state (such as global clear, saved) for just
         ///     a few examples.
         /// </summary>
-        public event In.RoomEvent UpdateMetaEvent = delegate { };
+        public event Receiver.RoomEvent UpdateMetaEvent = delegate { };
 
         #endregion
 
@@ -66,14 +66,14 @@ namespace Skylight
 
             int plays = m.GetInteger(2);
             // Update relevant objects.
-            this._in.Source.Owner.Name = ownerName;
-            this._in.Source.Name = roomName;
-            this._in.Source.Plays = plays;
+            this._receiver.Source.Owner.Name = ownerName;
+            this._receiver.Source.Name = roomName;
+            this._receiver.Source.Plays = plays;
 
             // Fire the event.
-            var e = new RoomEventArgs(this._in.Source, m);
+            var e = new RoomEventArgs(this._receiver.Source, m);
 
-            this._in.Source.Pull.Meta.UpdateMetaEvent(e);
+            this._receiver.Source.MainReceiver.Meta.UpdateMetaEvent(e);
         }
 
         #endregion

@@ -9,17 +9,17 @@ namespace Skylight
     public class ChatOld
     {
         /// <summary>
-        /// The _in
+        /// The _receiver
         /// </summary>
-        private readonly In _in;
+        private readonly Receiver _receiver;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ChatOld"/> class.
         /// </summary>
         /// <param name="in">The in.</param>
-        public ChatOld(In @in)
+        public ChatOld(Receiver @in)
         {
-            _in = @in;
+            _receiver = @in;
         }
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace Skylight
         /// says something, and distinguishes between auto text and system messages
         /// and much more.
         /// </summary>
-        public event In.ChatEvent SayOldEvent = delegate { };
+        public event Receiver.ChatEvent SayOldEvent = delegate { };
 
         /// <summary>
         /// Called when premature messages are given to the client.
@@ -40,12 +40,12 @@ namespace Skylight
 
             // Update relevant objects.
 
-            _in.Source.ChatLog.Add(new KeyValuePair<string, Player>(message, null));
+            _receiver.Source.ChatLog.Add(new KeyValuePair<string, Player>(message, null));
 
             // Fire the event.
-            var e = new ChatEventArgs(null, m, _in.Source, message);
+            var e = new ChatEventArgs(null, m, _receiver.Source, message);
 
-            _in.Source.Pull.ChatOld.SayOldEvent(e);
+            _receiver.Source.MainReceiver.ChatOld.SayOldEvent(e);
         }
     }
 }

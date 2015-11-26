@@ -19,9 +19,9 @@ namespace Skylight
         #region Fields
 
         /// <summary>
-        ///     The _in
+        ///     The _receiver
         /// </summary>
-        private readonly In _in;
+        private readonly Receiver _receiver;
 
         #endregion
 
@@ -33,9 +33,9 @@ namespace Skylight
         /// <param name="in">
         /// The in.
         /// </param>
-        public LeftWorld(In @in)
+        public LeftWorld(Receiver @in)
         {
-            this._in = @in;
+            this._receiver = @in;
         }
 
         #endregion
@@ -48,7 +48,7 @@ namespace Skylight
         ///     events are shown from the server directly to the user in the form of a dialog
         ///     box or by prefixing a chat message with *SYSTEM.
         /// </summary>
-        public event In.PlayerEvent LeaveEvent = delegate { };
+        public event Receiver.PlayerEvent LeaveEvent = delegate { };
 
         #endregion
 
@@ -66,22 +66,22 @@ namespace Skylight
             int id = m.GetInteger(0);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayer(id, this._in.Source);
-            for (int i = 0; i < this._in.Source.OnlinePlayers.Count; i++)
+            Player subject = Tools.GetPlayer(id, this._receiver.Source);
+            for (int i = 0; i < this._receiver.Source.OnlinePlayers.Count; i++)
             {
-                if (this._in.Source.OnlinePlayers[i] != subject)
+                if (this._receiver.Source.OnlinePlayers[i] != subject)
                 {
                     continue;
                 }
 
-                this._in.Source.OnlinePlayers.RemoveAt(i);
+                this._receiver.Source.OnlinePlayers.RemoveAt(i);
                 break;
             }
 
             // Fire the event.
-            var e = new PlayerEventArgs(subject, this._in.Source, m);
+            var e = new PlayerEventArgs(subject, this._receiver.Source, m);
 
-            this._in.Source.Pull.LeftWorld.LeaveEvent(e);
+            this._receiver.Source.MainReceiver.LeftWorld.LeaveEvent(e);
         }
 
         #endregion

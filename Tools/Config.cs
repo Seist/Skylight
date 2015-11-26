@@ -19,7 +19,7 @@
         public static string url_terms_page = "http://everybodyedits.com/terms";
         public static string url_help_page = "http://everybodyedits.com/help";
         public static bool use_debug_server = false;
-        public static bool run_in_development_mode = false;
+        public static bool run_receiver_development_mode = false;
         public static bool show_disabled_shopitems = false;
         public static string development_mode_autojoin_room = "PWvOaRIeIvbUI";
         public static string debug_news = "";
@@ -35,8 +35,8 @@
         public static bool disableCookie = false;
         public static bool show_debug_friendrequest = false;
         public static string debug_friendrequest = "";
-        public static bool show_blacklist_invitation = false;
-        public static string debug_invitation = "";
+        public static bool show_blacklist_receivervitation = false;
+        public static string debug_receivervitation = "";
         public static int physics_ms_per_tick = 10;
         public static double physics_variable_multiplyer = 7.752;
         public static double physics_base_drag = Math.Pow(0.9981, physics_ms_per_tick) * 1.00016;

@@ -17,9 +17,9 @@ namespace Skylight
         #region Fields
 
         /// <summary>
-        ///     The _in
+        ///     The _receiver
         /// </summary>
-        private readonly In _in;
+        private readonly Receiver _receiver;
 
         #endregion
 
@@ -31,9 +31,9 @@ namespace Skylight
         /// <param name="in">
         /// The in.
         /// </param>
-        public ClearMap(In @in)
+        public ClearMap(Receiver @in)
         {
-            this._in = @in;
+            this._receiver = @in;
         }
 
         #endregion
@@ -45,7 +45,7 @@ namespace Skylight
         ///     the room's state (such as global clear, saved) for just
         ///     a few examples.
         /// </summary>
-        public event In.RoomEvent ClearEvent = delegate { };
+        public event Receiver.RoomEvent ClearEvent = delegate { };
 
         #endregion
 
@@ -56,12 +56,12 @@ namespace Skylight
         /// </summary>
         public void OnClear()
         {
-            Tools.ClearMap(this._in.Source);
+            Tools.ClearMap(this._receiver.Source);
 
             // Fire the event.
-            var e = new RoomEventArgs(this._in.Source);
+            var e = new RoomEventArgs(this._receiver.Source);
 
-            this._in.Source.Pull.ClearMap.ClearEvent(e);
+            this._receiver.Source.MainReceiver.ClearMap.ClearEvent(e);
         }
 
         #endregion

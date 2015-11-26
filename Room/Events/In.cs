@@ -21,7 +21,7 @@ namespace Skylight
     /// <summary>
     ///     The main class that takes in events from the playerio client.
     /// </summary>
-    public sealed class In
+    public sealed class Receiver
     {
         #region Fields
 
@@ -38,7 +38,7 @@ namespace Skylight
         /// <summary>
         ///     The init message
         /// </summary>
-        private Message _initMessage;
+        private Message _receiveritMessage;
 
         /// <summary>
         ///     The player physics thread
@@ -50,9 +50,9 @@ namespace Skylight
         #region Constructors and Destructors
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="In" /> class.
+        ///     Initializes a new instance of the <see cref="Receiver" /> class.
         /// </summary>
-        public In()
+        public Receiver()
         {
             this.Add = new Add(this);
             this.Autotext = new Autotext(this);
@@ -433,17 +433,12 @@ namespace Skylight
         /// </summary>
         public void LoadBlocks()
         {
-            if (this.Bot.Verbose) Console.WriteLine("Beginning to LoadBlocks...");
-
-            Console.WriteLine(this._initMessage);
-            foreach (Block b in Tools.DeserializeInit(this._initMessage, 35, this.Source))
+            foreach (Block b in Tools.DeserializeInit(this._receiveritMessage, 35, this.Source))
             {
                 this.Source.Map[b.X][b.Y][b.Z] = b;
             }
 
             this.Source.BlocksLoaded = true;
-
-            if (this.Bot.Verbose) Console.WriteLine("Loaded Blocks.");
         }
         #endregion
 
@@ -684,7 +679,7 @@ namespace Skylight
             Player player = Tools.GetPlayer(id, this.Source);
 
             var e = new PlayerEventArgs(player, this.Source, null);
-            this.Source.Pull.GuardianEvent(e);
+            this.Source.MainReceiver.GuardianEvent(e);
         }
 
         /// <summary>
@@ -735,7 +730,7 @@ namespace Skylight
             double gravityMultiplier = m.GetDouble(19);
 
             // Update relevant objects
-            this._initMessage = m;
+            this._receiveritMessage = m;
 
             this.Bot.Id = botId;
             this.Bot.Smiley = botFaceId;
@@ -793,10 +788,7 @@ namespace Skylight
             // Fire the event.
             var e = new RoomEventArgs(this.Source, m);
 
-            this.Source.Pull.InitEvent(e);
-
-            if (this.Bot.Verbose) Console.WriteLine("Finished Init event");
-
+            this.Source.MainReceiver.InitEvent(e);
         }
 
         /// <summary>
@@ -814,7 +806,7 @@ namespace Skylight
             // Fire the event.
             var e = new PlayerEventArgs(this.Bot, this.Source, m);
 
-            this.Source.Pull.LoseAccessEvent(e);
+            this.Source.MainReceiver.LoseAccessEvent(e);
         }
 
         /// <summary>
@@ -843,7 +835,7 @@ namespace Skylight
             // Fire the event.
             var e = new BlockEventArgs(b, m, this.Source);
 
-            this.Source.Pull.PortalBlockEvent(e);
+            this.Source.MainReceiver.PortalBlockEvent(e);
         }
 
         /// <summary>
@@ -877,7 +869,7 @@ namespace Skylight
             // Fire the event.
             var e = new BlockEventArgs(b, m, this.Source);
 
-            this.Source.Pull.CoinBlockEvent(e);
+            this.Source.MainReceiver.CoinBlockEvent(e);
         }
 
         #endregion

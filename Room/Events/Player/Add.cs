@@ -19,9 +19,9 @@ namespace Skylight
         #region Fields
 
         /// <summary>
-        ///     The _in
+        ///     The _receiver
         /// </summary>
-        private readonly In _in;
+        private readonly Receiver _receiver;
 
         #endregion
 
@@ -33,9 +33,9 @@ namespace Skylight
         /// <param name="in">
         /// The in.
         /// </param>
-        public Add(In @in)
+        public Add(Receiver @in)
         {
-            this._in = @in;
+            this._receiver = @in;
         }
 
         #endregion
@@ -45,7 +45,7 @@ namespace Skylight
         /// <summary>
         ///     Occurs when a player joins the room.
         /// </summary>
-        public event In.PlayerEvent OnAddEvent = delegate { };
+        public event Receiver.PlayerEvent OnAddEvent = delegate { };
 
         #endregion
 
@@ -74,7 +74,7 @@ namespace Skylight
 
             // Update relevant objects.
             var subject = new Player(
-                this._in.Source,
+                this._receiver.Source,
                 id, 
                 name, 
                 smiley, 
@@ -88,12 +88,12 @@ namespace Skylight
                 isFriend, 
                 xplevel);
 
-            this._in.Source.OnlinePlayers.Add(subject);
+            this._receiver.Source.OnlinePlayers.Add(subject);
 
             // Fire the event.
-            var e = new PlayerEventArgs(subject, this._in.Source, m);
+            var e = new PlayerEventArgs(subject, this._receiver.Source, m);
 
-            this._in.Source.Pull.Add.OnAddEvent(e);
+            this._receiver.Source.MainReceiver.Add.OnAddEvent(e);
         }
 
         #endregion

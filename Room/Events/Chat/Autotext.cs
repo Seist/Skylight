@@ -21,17 +21,17 @@ namespace Skylight
     public class Autotext
     {
         /// <summary>
-        /// The _in
+        /// The _receiver
         /// </summary>
-        private readonly In _in;
+        private readonly Receiver _receiver;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Autotext"/> class.
         /// </summary>
         /// <param name="in">The in.</param>
-        public Autotext(In @in)
+        public Autotext(Receiver @in)
         {
-            _in = @in;
+            _receiver = @in;
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Skylight
         /// says something, and distinguishes between auto text and system messages
         /// and much more.
         /// </summary>
-        public event In.ChatEvent
+        public event Receiver.ChatEvent
             AutotextEvent = delegate { };
 
         /// <summary>
@@ -68,14 +68,14 @@ namespace Skylight
                                           };
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayer(id, this._in.Source);
+            Player subject = Tools.GetPlayer(id, this._receiver.Source);
 
-            this._in.Source.ChatLog.Add(new KeyValuePair<string, Player>(message, subject));
+            this._receiver.Source.ChatLog.Add(new KeyValuePair<string, Player>(message, subject));
 
             // Fire the event.
-            var e = new ChatEventArgs(subject, m, this._in.Source, message);
+            var e = new ChatEventArgs(subject, m, this._receiver.Source, message);
 
-            this._in.Source.Pull.Autotext.AutotextEvent(e);
+            this._receiver.Source.MainReceiver.Autotext.AutotextEvent(e);
         }
     }
 }

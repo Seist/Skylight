@@ -12,7 +12,7 @@ namespace Skylight
     /// </summary>
     public class Bot : Player
     {
-        private In _in;
+        private Receiver _receiver;
 
         /// <summary>
         ///     All of the possible account types. Defaults to Regular if unknown.
@@ -156,8 +156,6 @@ namespace Skylight
         /// <param name="createRoom"></param>
         public void Join(bool createRoom = true)
         {
-            if (Verbose) Console.WriteLine("Connecting to \"{0}\"...", this.R.Id);
-
             try {
                 this.Client = PlayerIO.QuickConnect.SimpleConnect("everybody-edits-su9rn58o40itdbnw69plyw", this._emailOrToken, this._passwordOrToken, null);
                 this.Connection = Client.Multiplayer.JoinRoom(this.R.Id, new Dictionary<string, string>());
@@ -168,43 +166,42 @@ namespace Skylight
                 // Everyone gets a connection.
                 R.Connections.Add(Connection);
 
-                // The following 20 lines deal with filtering messages from the client.
-                // Every bot receives info from the room, because some of it is exclusive to the bot.
-                // We call those "personal" pulls.
-                // They are exactly the same as the main pull, except In.IsPersonal = true.
-                _in = new In { IsPersonal = true, Source = R, Bot = this };
-                Connection.OnMessage += _in.OnMessage;
-                R.Pulls.Add(_in);
+                /*
+                 * Brief explanation of "Pull"
+                 * Receivers process EE messages
+                 * If there is just one bot, there is one pull, and it processes all messages
+                 * If there are more than one, we need to make the first one special
+                 * Because if, for example, you have five bots, you don't want five
+                 * individual bots processing each message, unless they need to.
+                 */
+
+                _receiver = new Receiver { IsPersonal = true, Source = R, Bot = this };
+                Connection.OnMessage += _receiver.OnMessage;
+                R.Receivers.Add(_receiver);
 
                 // However, everything else only needs one bot to handle. Things like chat and movement.
                 // We don't need five bots firing an event every time someone chats.
-                if (!R.HasPull)
+                if (!R.HasReceiver)
                 {
-                    R.HasPull = true;
+                    R.HasReceiver = true;
 
-                    R.Receiver = this;
+                    R.ReceiverBot = this;
 
-                    Connection.OnMessage += R.Pull.OnMessage;
-                    R.Pull.IsPersonal = false;
-                    R.Pull.Bot = this;
-                    R.Pull.Source = R;
+                    Connection.OnMessage += R.MainReceiver.OnMessage;
+                    R.MainReceiver.IsPersonal = false;
+                    R.MainReceiver.Bot = this;
+                    R.MainReceiver.Source = R;
                 }
 
                 // Once everything is internal settled, send the init.
                 Connection.Send("init");
                 Connection.Send("init2");
 
-                if (Verbose) Console.WriteLine("Connected.");
-
                 R.OnlinePlayers.Add(this);
 
                 Joined = true;
 
-                if (Verbose) Console.WriteLine("Loading blocks...");
-
-                while (!R.BlocksLoaded) Thread.Sleep(100);
-
-                if (Verbose) Console.WriteLine("Blocks loaded.");
+                while (!R.BlocksLoaded);
             }
             catch (Exception e)
             {

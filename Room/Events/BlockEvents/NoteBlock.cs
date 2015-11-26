@@ -21,24 +21,24 @@ namespace Skylight
     public class NoteBlock
     {
         /// <summary>
-        /// The _in
+        /// The _receiver
         /// </summary>
-        private readonly In _in;
+        private readonly Receiver _receiver;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NoteBlock"/> class.
         /// </summary>
         /// <param name="in">The in.</param>
-        public NoteBlock(In @in)
+        public NoteBlock(Receiver @in)
         {
-            this._in = @in;
+            this._receiver = @in;
         }
 
         /// <summary>
         /// All of the delegates for BlockEvent. These fire when events occur
         /// (such as when a block was added or updated).
         /// </summary>
-        public event In.BlockEvent
+        public event Receiver.BlockEvent
             SoundBlockEvent = delegate { };
 
         /// <summary>
@@ -69,12 +69,12 @@ namespace Skylight
                     return;
             }
 
-            _in.Source.Map[x][y][0] = b;
+            _receiver.Source.Map[x][y][0] = b;
 
             // Fire the event.
-            var e = new BlockEventArgs(b, m, this._in.Source);
+            var e = new BlockEventArgs(b, m, this._receiver.Source);
 
-            this._in.Source.Pull.NoteBlock.SoundBlockEvent(e);
+            this._receiver.Source.MainReceiver.NoteBlock.SoundBlockEvent(e);
         }
     }
 }

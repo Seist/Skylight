@@ -19,9 +19,9 @@ namespace Skylight
         #region Fields
 
         /// <summary>
-        ///     The _in
+        ///     The _receiver
         /// </summary>
-        private readonly In _in;
+        private readonly Receiver _receiver;
 
         #endregion
 
@@ -33,9 +33,9 @@ namespace Skylight
         /// <param name="in">
         /// The in.
         /// </param>
-        public FaceChange(In @in)
+        public FaceChange(Receiver @in)
         {
-            this._in = @in;
+            this._receiver = @in;
         }
 
         #endregion
@@ -48,7 +48,7 @@ namespace Skylight
         ///     events are shown from the server directly to the user in the form of a dialog
         ///     box or by prefixing a chat message with *SYSTEM.
         /// </summary>
-        public event In.PlayerEvent FaceEvent = delegate { };
+        public event Receiver.PlayerEvent FaceEvent = delegate { };
 
         #endregion
 
@@ -66,14 +66,14 @@ namespace Skylight
             int playerId = m.GetInteger(0), smileyId = m.GetInteger(1);
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayer(playerId, this._in.Source);
+            Player subject = Tools.GetPlayer(playerId, this._receiver.Source);
 
             subject.Smiley = smileyId;
 
             // Fire the event.
-            var e = new PlayerEventArgs(subject, this._in.Source, m);
+            var e = new PlayerEventArgs(subject, this._receiver.Source, m);
 
-            this._in.Source.Pull.FaceChange.FaceEvent(e);
+            this._receiver.Source.MainReceiver.FaceChange.FaceEvent(e);
         }
 
         #endregion

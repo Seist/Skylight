@@ -57,8 +57,8 @@ namespace Skylight
             this.OnlineBots = new List<Bot>();
             this.OnlinePlayers = new List<Player>();
             this.ChatLog = new List<KeyValuePair<string, Player>>();
-            this.Pulls = new List<In>();
-            this.Pull = new In();
+            this.Receivers = new List<Receiver>();
+            this.MainReceiver = new Receiver();
             this.Map = new List<List<List<Block>>>();
             this.Id = id;
             this.ShouldTick = shouldTick;
@@ -111,10 +111,10 @@ namespace Skylight
         public bool GreenActivated { get; set; }
 
         /// <summary>
-        ///     Gets a value indicating whether this instance has pull access.
+        ///     Gets a value indicating whether this instance has Receiver access.
         /// </summary>
-        /// <value><c>true</c> if this instance has pull access; otherwise, <c>false</c>.</value>
-        public bool HasPull { get; internal set; }
+        /// <value><c>true</c> if this instance has Receiver access; otherwise, <c>false</c>.</value>
+        public bool HasReceiver { get; internal set; }
 
         /// <summary>
         ///     Gets the height of the room.
@@ -171,22 +171,22 @@ namespace Skylight
         public int Plays { get; internal set; }
 
         /// <summary>
-        ///     Gets the pull.
+        ///     Gets the Receiver.
         /// </summary>
-        /// <value>The pull.</value>
-        public In Pull { get; private set; }
+        /// <value>The Receiver.</value>
+        public Receiver MainReceiver { get; internal set; }
 
         /// <summary>
-        ///     Gets the pulls.
+        ///     Gets the Receivers.
         /// </summary>
-        /// <value>The pulls.</value>
-        public List<In> Pulls { get; internal set; }
+        /// <value>The Receivers.</value>
+        public List<Receiver> Receivers { get; internal set; }
 
         /// <summary>
         ///     Gets the receiver.
         /// </summary>
         /// <value>The receiver.</value>
-        public Bot Receiver { get; internal set; }
+        public Bot ReceiverBot { get; internal set; }
 
         /// <summary>
         ///     Gets or sets a value indicating whether the red key is activated.

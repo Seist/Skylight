@@ -17,9 +17,9 @@ namespace Skylight
         #region Fields
 
         /// <summary>
-        ///     The _in
+        ///     The _receiver
         /// </summary>
-        private readonly In _in;
+        private readonly Receiver _receiver;
 
         #endregion
 
@@ -31,9 +31,9 @@ namespace Skylight
         /// <param name="in">
         /// The in.
         /// </param>
-        public Save(In @in)
+        public Save(Receiver @in)
         {
-            this._in = @in;
+            this._receiver = @in;
         }
 
         #endregion
@@ -45,7 +45,7 @@ namespace Skylight
         ///     the room's state (such as global clear, saved) for just
         ///     a few examples.
         /// </summary>
-        public event In.RoomEvent SavedEvent = delegate { };
+        public event Receiver.RoomEvent SavedEvent = delegate { };
 
         #endregion
 
@@ -59,9 +59,9 @@ namespace Skylight
             // Nothing to extract from message.
             // Nothing to update because I have no idea what it is.
             // Fire the event.
-            var e = new RoomEventArgs(this._in.Source);
+            var e = new RoomEventArgs(this._receiver.Source);
 
-            this._in.Source.Pull.Save.SavedEvent(e);
+            this._receiver.Source.MainReceiver.Save.SavedEvent(e);
         }
 
         #endregion

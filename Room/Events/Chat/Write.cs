@@ -21,9 +21,9 @@ namespace Skylight
         #region Fields
 
         /// <summary>
-        ///     The _in
+        ///     The _receiver
         /// </summary>
-        private readonly In _in;
+        private readonly Receiver _receiver;
 
         #endregion
 
@@ -35,9 +35,9 @@ namespace Skylight
         /// <param name="in">
         /// The in.
         /// </param>
-        public Write(In @in)
+        public Write(Receiver @in)
         {
-            this._in = @in;
+            this._receiver = @in;
         }
 
         #endregion
@@ -49,7 +49,7 @@ namespace Skylight
         ///     says something, and distinguishes between auto text and system messages
         ///     and much more.
         /// </summary>
-        public event In.ChatEvent SystemMessageEvent = delegate { };
+        public event Receiver.ChatEvent SystemMessageEvent = delegate { };
 
         #endregion
 
@@ -68,12 +68,12 @@ namespace Skylight
 
             // Update relevant objects.
             // Player system = new Player() { Name = prefix };
-            this._in.Source.ChatLog.Add(new KeyValuePair<string, Player>(message, null));
+            this._receiver.Source.ChatLog.Add(new KeyValuePair<string, Player>(message, null));
 
             // Fire the event.
-            var e = new ChatEventArgs(null, m, this._in.Source, message);
+            var e = new ChatEventArgs(null, m, this._receiver.Source, message);
 
-            this._in.Source.Pull.Write.SystemMessageEvent(e);
+            this._receiver.Source.MainReceiver.Write.SystemMessageEvent(e);
         }
 
         #endregion

@@ -19,9 +19,9 @@ namespace Skylight
         #region Fields
 
         /// <summary>
-        ///     The _in
+        ///     The _receiver
         /// </summary>
-        private readonly In _in;
+        private readonly Receiver _receiver;
 
         #endregion
 
@@ -33,9 +33,9 @@ namespace Skylight
         /// <param name="in">
         /// The in.
         /// </param>
-        public Info(In @in)
+        public Info(Receiver @in)
         {
-            this._in = @in;
+            this._receiver = @in;
         }
 
         #endregion
@@ -48,7 +48,7 @@ namespace Skylight
         ///     events are shown from the server directly to the user in the form of a dialog
         ///     box or by prefixing a chat message with *SYSTEM.
         /// </summary>
-        public event In.PlayerEvent InfoEvent = delegate { };
+        public event Receiver.PlayerEvent InfoEvent = delegate { };
 
         #endregion
 
@@ -67,18 +67,18 @@ namespace Skylight
 
             // Update relevant objects.
             Tools.SkylightMessage(
-                "Bot " + this._in.Bot.Name + " received a pop-up window:\n   " + title + "\n    " + body);
+                "Bot " + this._receiver.Bot.Name + " received a pop-up window:\n   " + title + "\n    " + body);
 
             if (title == "Limit reached")
             {
-                this._in.Bot.Disconnect();
+                this._receiver.Bot.Disconnect();
                 Tools.SkylightMessage("The bot was forced to disconnect because the limit was reached.");
             }
 
             // Fire the event.
-            var e = new PlayerEventArgs(this._in.Bot, this._in.Source, m);
+            var e = new PlayerEventArgs(this._receiver.Bot, this._receiver.Source, m);
 
-            this._in.Source.Pull.Info.InfoEvent(e);
+            this._receiver.Source.MainReceiver.Info.InfoEvent(e);
         }
 
         #endregion

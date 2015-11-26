@@ -8,17 +8,17 @@ namespace Skylight
     public class SignBlock
     {
         /// <summary>
-        /// The _in
+        /// The _receiver
         /// </summary>
-        private readonly In _in;
+        private readonly Receiver _receiver;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SignBlock"/> class.
         /// </summary>
         /// <param name="in">The in.</param>
-        public SignBlock(In @in)
+        public SignBlock(Receiver @in)
         {
-            _in = @in;
+            _receiver = @in;
         }
 
         /// <summary>
@@ -34,17 +34,17 @@ namespace Skylight
 
             // Fire the event.
             var b = new TextBlock(385, x, y, theText);
-            _in.Source.Map[x][y][0] = b;
+            _receiver.Source.Map[x][y][0] = b;
             var e = new BlockEventArgs(b, m);
 
-            _in.Source.Pull.SignBlock.SignBlockEvent(e);
+            _receiver.Source.MainReceiver.SignBlock.SignBlockEvent(e);
         }
 
         /// <summary>
         /// All of the delegates for BlockEvent. These fire when events occur
         /// (such as when a block was added or updated).
         /// </summary>
-        public event In.BlockEvent
+        public event Receiver.BlockEvent
             SignBlockEvent = delegate { };
     }
 }

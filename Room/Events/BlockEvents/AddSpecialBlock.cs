@@ -19,24 +19,24 @@ namespace Skylight
     public class AddSpecialBlock
     {
         /// <summary>
-        /// The _in
+        /// The _receiver
         /// </summary>
-        private readonly In _in;
+        private readonly Receiver _receiver;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AddSpecialBlock"/> class.
         /// </summary>
         /// <param name="in">The in.</param>
-        public AddSpecialBlock(In @in)
+        public AddSpecialBlock(Receiver @in)
         {
-            this._in = @in;
+            this._receiver = @in;
         }
 
         /// <summary>
         /// All of the delegates for BlockEvent. These fire when events occur
         /// (such as when a block was added or updated).
         /// </summary>
-        public event In.BlockEvent
+        public event Receiver.BlockEvent
             RotateEvent = delegate { };
 
         /// <summary>
@@ -54,12 +54,12 @@ namespace Skylight
             // Update relevant objects.
             var b = new Block(id, x, y, 0, rotation);
 
-            this._in.Source.Map[x][y][0] = b;
+            this._receiver.Source.Map[x][y][0] = b;
 
             // Fire the event.
-            var e = new BlockEventArgs(b, m, this._in.Source);
+            var e = new BlockEventArgs(b, m, this._receiver.Source);
 
-            this._in.Source.Pull.AddSpecialBlock.RotateEvent(e);
+            this._receiver.Source.MainReceiver.AddSpecialBlock.RotateEvent(e);
         }
     }
 }

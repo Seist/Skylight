@@ -21,24 +21,24 @@ namespace Skylight
     public class Wp
     {
         /// <summary>
-        /// The _in
+        /// The _receiver
         /// </summary>
-        private readonly In _in;
+        private readonly Receiver _receiver;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Wp"/> class.
         /// </summary>
         /// <param name="in">The in.</param>
-        public Wp(In @in)
+        public Wp(Receiver @in)
         {
-            _in = @in;
+            _receiver = @in;
         }
 
         /// <summary>
         /// All of the delegates for BlockEvent. These fire when events occur
         /// (such as when a block was added or updated).
         /// </summary>
-        public event In.BlockEvent
+        public event Receiver.BlockEvent
             RoomPortalBlockEvent = delegate { };
 
         /// <summary>
@@ -59,12 +59,12 @@ namespace Skylight
             // Update relevant objects.
             Block b = new RoomPortalBlock(x, y, destination);
 
-            this._in.Source.Map[x][y][0] = b;
+            this._receiver.Source.Map[x][y][0] = b;
 
             // Fire the event
-            var e = new BlockEventArgs(b, m, _in.Source);
+            var e = new BlockEventArgs(b, m, _receiver.Source);
 
-            this._in.Source.Pull.Wp.RoomPortalBlockEvent(e);
+            this._receiver.Source.MainReceiver.Wp.RoomPortalBlockEvent(e);
         }
     }
 }

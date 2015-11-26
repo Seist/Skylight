@@ -8,17 +8,17 @@ namespace Skylight
     public class Crown
     {
         /// <summary>
-        /// The _in
+        /// The _receiver
         /// </summary>
-        private readonly In _in;
+        private readonly Receiver _receiver;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Crown"/> class.
         /// </summary>
         /// <param name="in">The in.</param>
-        public Crown(In @in)
+        public Crown(Receiver @in)
         {
-            _in = @in;
+            _receiver = @in;
         }
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace Skylight
         /// events are shown from the server directly to the user in the form of a dialog
         /// box or by prefixing a chat message with *SYSTEM.
         /// </summary>
-        public event In.PlayerEvent
+        public event Receiver.PlayerEvent
             CrownEvent = delegate { };
 
         /// <summary>
@@ -45,10 +45,10 @@ namespace Skylight
             }
 
             // Update relevant objects.
-            Player subject = Tools.GetPlayer(id, _in.Source);
+            Player subject = Tools.GetPlayer(id, _receiver.Source);
 
             // Take the crown from the current holder (if one exists)
-            Player crownHolder = Tools.GetCrownHolder(_in.Source);
+            Player crownHolder = Tools.GetCrownHolder(_receiver.Source);
 
             if (crownHolder != null)
                 crownHolder.HasCrown = false;
@@ -58,9 +58,9 @@ namespace Skylight
                 subject.HasCrown = true;
 
             // Fire the event.
-            var e = new PlayerEventArgs(subject, _in.Source, m);
+            var e = new PlayerEventArgs(subject, _receiver.Source, m);
 
-            _in.Source.Pull.Crown.CrownEvent(e);
+            _receiver.Source.MainReceiver.Crown.CrownEvent(e);
         }
     }
 }
