@@ -49,7 +49,7 @@ namespace Skylight
             // TODO Update this and Coin implementation in lieu of blue and regrouping
             //var b = new CoinBlock(x, y, coinsRequired) { IsGate = id == BlockIds.Action.Coins.GoldGate };
 
-            //this._receiver.Source.Map[x][y][0] = b;
+            //this._receiver.Source.Map.AddBlock(b);
 
             // Fire the event.
             //var e = new BlockEventArgs(b, m, this._receiver.Source);

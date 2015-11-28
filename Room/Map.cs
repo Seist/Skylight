@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace Skylight
 {
-    internal class Map
+    public class Map
     {
         internal Map(int width, int height)
         {
@@ -37,8 +37,8 @@ namespace Skylight
 
         }
 
-        private List<List<List<Block>>> threeDimBlockList = new List<List<List<Block>>>();
-        private List<Block> oneDimBlockList = new List<Block>();
+        internal List<List<List<Block>>> threeDimBlockList = new List<List<List<Block>>>();
+        internal List<Block> oneDimBlockList = new List<Block>();
 
         public List<List<Block>> RowAt(int y)
         {
@@ -68,6 +68,11 @@ namespace Skylight
         public Block BlockAt(int x, int y, int z)
         {
             return threeDimBlockList[x][y][z];
+        }
+
+        public void AddBlock(Block b)
+        {
+            threeDimBlockList[b.X][b.Y][b.Z] = b;
         }
 
         public List<Block> RegionAt(Point p1, Point p2)

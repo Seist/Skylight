@@ -84,23 +84,25 @@ namespace Skylight
         /// </param>
         public static void ClearMap(Room r)
         {
+            r.Map.threeDimBlockList.Clear();
+
             for (int x = 0; x <= r.Width; x++)
-                r.Map.Add(new List<List<Block>>(r.Height));
+                r.Map.threeDimBlockList.Add(new List<List<Block>>(r.Height));
 
             for (int x = 0; x <= r.Width; x++)
                 for (int y = 0; y <= r.Height; y++)
-                    r.Map[x].Add(new List<Block>(2));
+                    r.Map.threeDimBlockList[x].Add(new List<Block>(2));
 
             for (int x = 0; x <= r.Width; x++)
             {
                 // Add each column
-                r.Map[x].Add(new List<Block>(r.Height));
+                r.Map.threeDimBlockList[x].Add(new List<Block>(r.Height));
 
                 for (int y = 0; y <= r.Height; y++)
                 {
                     for (int z = 0; z < 2; z++)
                     {
-                        r.Map[x][y].Add(new Block(0, x, y, z));
+                        r.Map.threeDimBlockList[x][y].Add(new Block(0, x, y, z));
                     }
                 }
             }

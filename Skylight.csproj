@@ -77,7 +77,7 @@
     <Compile Include="Room\Events\Chat\ChatOld.cs" />
     <Compile Include="Room\Events\System\Meta\GiveWizard2.cs" />
     <Compile Include="Room\Events\System\Visibility\Hide.cs" />
-    <Compile Include="Room\Events\In.cs" />
+    <Compile Include="Room\Events\Receiver.cs" />
     <Compile Include="Room\Events\System\Info.cs" />
     <Compile Include="Room\Map.cs" />
     <Compile Include="Tools\SmileyIds.cs" />

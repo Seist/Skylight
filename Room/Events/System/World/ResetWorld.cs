@@ -54,7 +54,7 @@ namespace Skylight
         {
             foreach (Block b in Tools.DeserializeInit(m, 1, this._receiver.Source))
             {
-                this._receiver.Source.Map[b.X][b.Y][b.Z] = b;
+                this._receiver.Source.Map.AddBlock(b);
             }
         }
 

@@ -55,7 +55,7 @@ namespace Skylight
                 b.Placer = this._receiver.Source.Owner;
             }
 
-            _receiver.Source.Map[x][y][z] = b;
+            _receiver.Source.Map.AddBlock(b);
 
             // Fire the event.
             var e = new BlockEventArgs(b, m, _receiver.Source);

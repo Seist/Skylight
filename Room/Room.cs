@@ -52,16 +52,13 @@ namespace Skylight
         /// <param name="shouldTick">
         /// If the room should update player coordinates accurately.
         /// </param>
-        public Room(string id, bool shouldTick = true)
+        public Room(string id)
         {
             this.OnlineBots = new List<Bot>();
             this.OnlinePlayers = new List<Player>();
             this.ChatLog = new List<KeyValuePair<string, Player>>();
             this.Receivers = new List<Receiver>();
-            this.MainReceiver = new Receiver();
-            this.Map = new List<List<List<Block>>>();
             this.Id = id;
-            this.ShouldTick = shouldTick;
         }
 
         #endregion
@@ -138,7 +135,7 @@ namespace Skylight
         ///     Gets the map.
         /// </summary>
         /// <value>The map.</value>
-        public List<List<List<Block>>> Map { get; internal set; }
+        public Map Map { get; internal set; }
 
         /// <summary>
         ///     Gets the name of the room.

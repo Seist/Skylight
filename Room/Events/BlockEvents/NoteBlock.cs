@@ -69,7 +69,7 @@ namespace Skylight
                     return;
             }
 
-            _receiver.Source.Map[x][y][0] = b;
+            _receiver.Source.Map.AddBlock(b);
 
             // Fire the event.
             var e = new BlockEventArgs(b, m, this._receiver.Source);

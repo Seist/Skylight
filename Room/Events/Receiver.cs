@@ -52,8 +52,14 @@ namespace Skylight
         /// <summary>
         ///     Initializes a new instance of the <see cref="Receiver" /> class.
         /// </summary>
-        public Receiver()
+        public Receiver(Room r, Bot b, Connection c, bool personal)
         {
+            this.Source = r;
+            this.Bot = b;
+            this.IsPersonal = personal;
+            c.OnMessage += this.OnMessage;
+            
+
             this.Add = new Add(this);
             this.Autotext = new Autotext(this);
             this.BlockChanged = new BlockChanged(this);
@@ -435,7 +441,7 @@ namespace Skylight
         {
             foreach (Block b in Tools.DeserializeInit(this._receiveritMessage, 35, this.Source))
             {
-                this.Source.Map[b.X][b.Y][b.Z] = b;
+                this.Source.Map.AddBlock(b);
             }
 
             this.Source.BlocksLoaded = true;
@@ -463,9 +469,10 @@ namespace Skylight
                 if (!this.Source.IsInitialized)
                 {
                     if (this.IsPersonal)
-                    {
                         return;
-                    }
+
+                    // If it's not intialized, only take events which initialize it
+                    // Save everything else for later.
 
                     switch (m.Type)
                     {
@@ -476,7 +483,7 @@ namespace Skylight
                             this.Add.OnAdd(m);
                             break;
                         default:
-                            this._prematureMessages.Add(m);
+                            this._prematureMessages.Add(m); // "everything else"
                             break;
                     }
                 }
@@ -637,7 +644,7 @@ namespace Skylight
                                 break;
                         }
                     }
-                    else
+                    else // if (this.IsPersonal)...
                     {
                         switch (m.Type)
                         {
@@ -751,6 +758,7 @@ namespace Skylight
             if (this.Source.IsInitialized)
                 return;
 
+            this.Source.Map = new Map(width, height);
             this.Source.Name = title;
             this.Source.Plays = plays;
             this.Source.Favorites = favorites;
@@ -830,7 +838,7 @@ namespace Skylight
 
             var b = new PortalBlock(x, y, rotation, portalId, portalDestination, isVisible);
 
-            this.Source.Map[x][y][1] = b;
+            this.Source.Map.AddBlock(b);
 
             // Fire the event.
             var e = new BlockEventArgs(b, m, this.Source);
@@ -864,7 +872,7 @@ namespace Skylight
             // Update relevant objects.
             var b = new TextBlock(id, x, y, text);
 
-            this.Source.Map[x][y][0] = b;
+            this.Source.Map.AddBlock(b);
 
             // Fire the event.
             var e = new BlockEventArgs(b, m, this.Source);

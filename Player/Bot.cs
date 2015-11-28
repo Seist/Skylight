@@ -161,36 +161,40 @@ namespace Skylight
                 this.Connection = Client.Multiplayer.JoinRoom(this.R.Id, new Dictionary<string, string>());
                 
                 // Update room data
-                Room.JoinedRooms.Add(R);
+                if (!Room.JoinedRooms.Contains(R))
+                    Room.JoinedRooms.Add(R);
 
                 // Everyone gets a connection.
                 R.Connections.Add(Connection);
 
                 /*
-                 * Brief explanation of "Pull"
+                 * Brief explanation of "Receiver"
                  * Receivers process EE messages
-                 * If there is just one bot, there is one pull, and it processes all messages
-                 * If there are more than one, we need to make the first one special
-                 * Because if, for example, you have five bots, you don't want five
-                 * individual bots processing each message, unless they need to.
+                 * If there is just one bot, there are two receivers, one for messages unique to this bot ("personal"),
+                 * and one for messages that have nothing to do with the bot
+                 * 
+                 * Every additional bot after the first one gets an impersonal receiver.
                  */
 
-                _receiver = new Receiver { IsPersonal = true, Source = R, Bot = this };
+                // Every bot gets a personal receiver.
+                _receiver = new Receiver(this.R, this, Connection, true);
                 Connection.OnMessage += _receiver.OnMessage;
+
+                //
                 R.Receivers.Add(_receiver);
 
-                // However, everything else only needs one bot to handle. Things like chat and movement.
-                // We don't need five bots firing an event every time someone chats.
                 if (!R.HasReceiver)
                 {
-                    R.HasReceiver = true;
-
-                    R.ReceiverBot = this;
+                    R.MainReceiver = new Receiver(this.R, this, Connection, false);
 
                     Connection.OnMessage += R.MainReceiver.OnMessage;
-                    R.MainReceiver.IsPersonal = false;
-                    R.MainReceiver.Bot = this;
                     R.MainReceiver.Source = R;
+
+                    R.HasReceiver = true;
+                    R.MainReceiver.IsPersonal = false;
+
+                    R.ReceiverBot = this;
+                    R.MainReceiver.Bot = this;
                 }
 
                 // Once everything is internal settled, send the init.
@@ -269,7 +273,7 @@ namespace Skylight
         /// <param name="theBlock">The block.</param>
         public void Build(Block theBlock)
         {
-            if (R.Map[theBlock.X][theBlock.Y][theBlock.Z] == theBlock)
+            if (R.Map.BlockAt(theBlock.X, theBlock.Y, theBlock.Z) == theBlock)
             {
                 // don't bother writing a block to the map if it's already there.
                 return;
@@ -340,7 +344,7 @@ namespace Skylight
 
             foreach (Block b in tempList)
             {
-                if (R.Map[b.X][b.Y][b.Z] == b)
+                if (R.Map.BlockAt(b.X, b.Y, b.Z) == b)
                 {
                     // don't bother writing a block to the map if it's already there.
                     return;

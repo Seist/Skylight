@@ -34,7 +34,7 @@ namespace Skylight
 
             // Fire the event.
             var b = new TextBlock(385, x, y, theText);
-            _receiver.Source.Map[x][y][0] = b;
+            _receiver.Source.Map.AddBlock(b);
             var e = new BlockEventArgs(b, m);
 
             _receiver.Source.MainReceiver.SignBlock.SignBlockEvent(e);
